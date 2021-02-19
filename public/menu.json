@@ -1,0 +1,11 @@
+[
+    { "label": "Home", "link": "/" },
+    { "label": "Video", "link": "/videos" },
+    { "label": "Free Slot Machine Games", "link": "/slots" },
+    { "label": "Bar Slot", "link": "/slot-bar" },
+    { "label": "VLT slot", "link": "/slot-vlt" },
+    { "label": "Welcome bonus", "link": "/migliori-bonus-casino" },
+    { "label": "Book of Ra Online", "link": "/slot/book-of-ra-deluxe" },
+    { "label": "Guides and Tricks", "link": "/guide-e-trucchi" },
+    { "label": "Blogs and Articles", "link": "/blog" }
+]
