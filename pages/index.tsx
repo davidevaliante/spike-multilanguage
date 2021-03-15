@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from 'react'
+import React, { FunctionComponent, useContext, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import NavbarProvider from '../components/Navbar/NavbarProvider'
 import { countryContext } from '../context/CountryContext'
@@ -21,26 +21,82 @@ import { useTranslation } from "react-i18next";
 import SpikeContest from '../components/Singles/SpikeContest'
 import NewsLetterForm from '../components/Singles/NewsLetterForm'
 import { OnlyMobile } from '../components/Responsive/Only'
+import FullPageLoader from '../components/Layout/FullPageLoader'
+import { ApolloSlotCard } from '../data/models/Slot'
+import { ApolloBonusCardReveal } from '../data/models/Bonus'
+import { getUserCountryCode } from '../utils/Utils'
 
 
 
 interface PageProps {
-    home: Home,
-    countryCode:string
+    _home: Home,
+    _countryCode:string
 }
 
-const Index: FunctionComponent<PageProps> = ({ home,countryCode }) => {
-    
-    const { currentCountry } = useContext(countryContext)
+const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
+    const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    console.log(currentCountry)
-    const producerSlots = home.producerSlots.slot.map(s => s.slot)
-    const onlineSlots = home.onlineSlots.slot.map(s => s.slot)
-    const barSlots = home.barSlots?.slot.map(s => s.slot)
-    const vltSlots = home.vltSlots?.slot.map(s => s.slot)
-    const bonusList = home.bonuses.bonus.map(b => b.bonus)
-    const { t } = useTranslation()
+    const [home, setHome] = useState<Home | undefined>(undefined)
+    const [countryCode, setCountryCode] = useState<string | undefined>(undefined)
+    const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
+    const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
+    const [barSlots, setBarSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
+    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
+    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[] | undefined>(undefined)
+
+    useEffect(() => {
+        getCountryData()
+    }, [])
+
+    const getCountryData = async () => {
+        const userCountryCode = await getUserCountryCode()
+        if(userCountryCode !== 'it'){
+            const homeDataRequest = await aquaClient.query({
+                query: HOME,
+                variables: { countryCode: userCountryCode}
+            })
     
+            if(homeDataRequest.data.data.homes[0]){
+                const homeData = homeDataRequest.data.data.homes[0] as Home
+                setHome(homeData)
+                setCountryCode(userCountryCode)
+                setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
+                setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
+                setBarSlots(homeData.barSlots.slot.map(s => s.slot))
+                setVltSlots(homeData.vltSlots.slot.map(s => s.slot))
+                setBonusList(homeData.bonuses.bonus.map(b => b.bonus))
+            } else {
+                const homeRowDataRequest = await aquaClient.query({
+                    query: HOME,
+                    variables: { countryCode: 'row'}
+                })
+
+                const homeData = homeRowDataRequest.data.data.homes[0] as Home
+                setHome(homeData)
+                setCountryCode(userCountryCode)
+                setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
+                setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
+                setBarSlots(homeData.barSlots.slot.map(s => s.slot))
+                setVltSlots(homeData.vltSlots.slot.map(s => s.slot))
+                setBonusList(homeData.bonuses.bonus.map(b => b.bonus))
+            }
+
+            
+        } else {
+            setHome(_home)
+            setCountryCode(_countryCode)
+            setProducerSlots(_home.producerSlots.slot.map(s => s.slot))
+            setOnlineSlots(_home.onlineSlots.slot.map(s => s.slot))
+            setBarSlots(_home.barSlots.slot.map(s => s.slot))
+            setVltSlots(_home.vltSlots.slot.map(s => s.slot))
+            setBonusList(_home.bonuses.bonus.map(b => b.bonus))
+        }
+    }
+
+    const { t } = useTranslation()
+
+
+    if(!home || !countryCode || !producerSlots || !onlineSlots || !barSlots || !vltSlots || !bonusList) return <FullPageLoader />
     return <div>
         <Head>
             <title>{home.seo.seoTitle}</title>
@@ -70,7 +126,7 @@ const Index: FunctionComponent<PageProps> = ({ home,countryCode }) => {
                             icon='/icons/slot_online_icon.svg'
                             buttonText={t('See the full list of Online Slots')}
                             buttonRoute={`/slots/[countryCode]`}
-                            buttonRouteAs={`/slots/${currentCountry}`}
+                            buttonRouteAs={`/slots/${countryCode}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.primary}
                             secondaryColor={appTheme.colors.primary} />
@@ -83,7 +139,7 @@ const Index: FunctionComponent<PageProps> = ({ home,countryCode }) => {
                             icon='/icons/slot_bar_icon.svg'
                             buttonText='See the full list of Bar Slots'
                             buttonRoute={`/slot-bar/[countryCode]`}
-                            buttonRouteAs={`/slot-bar/${currentCountry}`}
+                            buttonRouteAs={`/slot-bar/${countryCode}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.secondary}
                             secondaryColor={appTheme.colors.secondary} />
@@ -96,7 +152,7 @@ const Index: FunctionComponent<PageProps> = ({ home,countryCode }) => {
                             icon='/icons/slot_vlt_icon.svg'
                             buttonText='See the full list of VLT Slots'
                             buttonRoute={`/slot-vlt/[countryCode]`}
-                            buttonRouteAs={`/slot-vlt/${currentCountry}`}
+                            buttonRouteAs={`/slot-vlt/${countryCode}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.terziary}
                             secondaryColor={appTheme.colors.terziary} />
@@ -136,31 +192,18 @@ const Index: FunctionComponent<PageProps> = ({ home,countryCode }) => {
     </div>
 }
 
-export async function getServerSideProps({ query }) {
-    
-    const publicIp = require('public-ip');
-    let ip: any
-    ip = await publicIp.v4()
-    const res = await fetch('http://ip-api.com/json/' + ip)
-    const country: any = await res.json()
-    const countryCode = country.countryCode.toLowerCase();
-    
+export async function getServerSideProps({req}) {
+  
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
     const data = await aquaClient.query({
         query: HOME,
-        variables: { countryCode: countryCode}
+        variables: { countryCode: 'it'}
     })
 
-    let data1:any    
-    if (data.data.data.homes[0] == undefined) { // with existing country code not getting any data then set country code as 'row'
-        data1 = await aquaClient.query({
-        query: HOME,
-        variables: { countryCode: 'row'}
-    })}
     return {
         props: {
-            home: data.data.data.homes.length > 0 ? data.data.data.homes[0]:data1.data.data.homes[0] as Home,
-            countryCode:countryCode
+            _home: data.data.data.homes[0] as Home,
+            _countryCode:'it'
         }
     }
 }

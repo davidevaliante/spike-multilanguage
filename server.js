@@ -72,6 +72,20 @@ app.prepare().then(() => {
     const server = express()
     server.use(compression());
 
+    server.use(function (req, res, next) {
+        if (req.method === 'get') {
+            console.log('get triggered')
+          var ip = req.headers['x-real-ip'] || req.connection.remoteAddress
+            if (ip.substr(0, 7) == "::ffff:") {
+              ip = ip.substr(7)
+              console.log(ip, 'THIS IS THE IP')
+            } else {
+                console.log('NOT FOUND')
+            }
+        }
+        next()
+      })
+
     if (process.env.NODE_ENV === "production") {
         server.use(compression());
     }

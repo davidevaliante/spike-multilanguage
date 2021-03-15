@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 import itaLocale from 'date-fns/locale/it'
 import Router from 'next/router'
 import { useRouter } from 'next/router'
+import publicIp from 'public-ip';
 
 // export const removeHtmlFrom = (str) => {
 //     if ((str === null) || (str === '') || (str === undefined))
@@ -12,6 +13,16 @@ import { useRouter } from 'next/router'
 //         str = str.toString();
 //     return he.decode(str.replace(/<[^>]*>/g, ''));
 // }
+
+export const getUserCountryCode = async () => {
+    const userIp = await  publicIp.v4()
+    const geoLocation = await fetch('http://ip-api.com/json/' + userIp)
+
+    const country: any = await geoLocation.json()
+    const countryCode = country.countryCode.toLowerCase()
+
+    return countryCode
+}
 
 export const getCanonicalPath = () => {
     const router = useRouter()

@@ -9,7 +9,8 @@ export default class Document extends NextDocument {
         const styledComponentSheet = new StyledComponentSheets()
         const materialUiSheets = new MaterialUiServerStyleSheets()
         const originalRenderPage = ctx.renderPage
-        
+
+       
         try {
             ctx.renderPage = () =>
                 originalRenderPage({
