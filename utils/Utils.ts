@@ -5,7 +5,7 @@ import itaLocale from 'date-fns/locale/it'
 import Router from 'next/router'
 import { useRouter } from 'next/router'
 import publicIp from 'public-ip';
-
+import axios from 'axios'
 // export const removeHtmlFrom = (str) => {
 //     if ((str === null) || (str === '') || (str === undefined))
 //         return '';
@@ -16,10 +16,10 @@ import publicIp from 'public-ip';
 
 export const getUserCountryCode = async () => {
     const userIp = await  publicIp.v4()
-    const geoLocation = await fetch('http://ip-api.com/json/' + userIp)
+    const geoLocation = await axios.get(`/api/user-country-code/${userIp}`)
 
-    const country: any = await geoLocation.json()
-    const countryCode = country.countryCode.toLowerCase()
+    console.log(geoLocation)
+    const countryCode = geoLocation.data.countryCode.toLowerCase()
 
     return countryCode
 }

@@ -25,7 +25,7 @@ import FullPageLoader from '../components/Layout/FullPageLoader'
 import { ApolloSlotCard } from '../data/models/Slot'
 import { ApolloBonusCardReveal } from '../data/models/Bonus'
 import { getUserCountryCode } from '../utils/Utils'
-
+import axios from 'axios'
 
 
 interface PageProps {
