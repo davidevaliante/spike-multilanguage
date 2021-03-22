@@ -76,8 +76,6 @@ app.prepare().then(() => {
         server.use(compression());
     }
 
-    server.get('/404')
-
     server.get('/', (req, res) => {
         // since we don't use next's requestHandler, we lose compression, so we manually add it
         renderAndCache(app)(req, res, '/');

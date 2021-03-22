@@ -99,8 +99,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                         limit: 12
                     }
                 })
-                setCountryCode('row')
-                i18n.changeLanguage('row')
+                setContextCountry('row')
             }
              
             const bonusListResponse = await aquaClient.query({

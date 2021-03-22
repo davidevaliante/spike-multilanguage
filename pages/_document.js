@@ -12,11 +12,16 @@ export default class Document extends NextDocument {
         const originalRenderPage = ctx.renderPage
 
         let lang
-        const path = ctx.req.path
-        const pathElements = path.split('/')
+        
 
-        if(pathElements.length == 2 && pathElements[0] === '' && pathElements[1] === '') lang ='it'
-        else lang = pathElements[pathElements.length - 1] === 'row' ? 'en' : pathElements[pathElements.length - 1]
+        if(ctx.req && ctx.req.path){
+            const path = ctx.req.path
+            const pathElements = path.split('/')
+
+            if(pathElements.length == 2 && pathElements[0] === '' && pathElements[1] === '') lang ='it'
+            else lang = pathElements[pathElements.length - 1] === 'row' ? 'en' : pathElements[pathElements.length - 1]
+        }
+        
        
         try {
             ctx.renderPage = () =>
