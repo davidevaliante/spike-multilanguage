@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { FunctionComponent } from 'react'
 import { AlgoliaSearchResult } from './../../graphql/schema'
 import SlotListSlotCard from '../Cards/SlotListSlotCard'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from './../../context/LocaleContext';
+import { useContext } from 'react'
 
 interface Props {
     slotList: AlgoliaSearchResult[] | undefined
@@ -12,7 +13,7 @@ interface Props {
 
 const SlotList: FunctionComponent<Props> = ({ slotList, showSearchHasNoResults }) => {
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
     
     return (
         <Fragment>

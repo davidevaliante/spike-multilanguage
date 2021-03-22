@@ -13,6 +13,8 @@ import 'video.js/dist/video-js.css'
 import { cookieContext } from '../context/CookieContext'
 import { useMyCookies } from '../hooks/useMyCookies'
 import '../data/i18n/i18n'
+import { I18nextProvider, useTranslation } from 'react-i18next';
+import { LocaleContextProvider } from '../context/LocaleContext'
 
 const ContextProvider: FunctionComponent = ({ children }) => {
 
@@ -20,11 +22,13 @@ const ContextProvider: FunctionComponent = ({ children }) => {
     const cookieAcceptedStatus = useMyCookies()
 
     return (<Fragment>
-        <countryContext.Provider value={currentCountry}>
-            <cookieContext.Provider value={cookieAcceptedStatus}>
-                {children}
-            </cookieContext.Provider>
-        </countryContext.Provider>
+        <LocaleContextProvider>
+            <countryContext.Provider value={currentCountry}>
+                <cookieContext.Provider value={cookieAcceptedStatus}>
+                    {children}
+                </cookieContext.Provider>
+            </countryContext.Provider>
+        </LocaleContextProvider>
     </Fragment>)
 }
 

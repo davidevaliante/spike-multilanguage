@@ -1,5 +1,5 @@
 
-import React, { FunctionComponent, Fragment, ChangeEvent, useState, useEffect, useRef } from 'react'
+import React, { FunctionComponent, Fragment, ChangeEvent, useState, useEffect, useRef, useContext } from 'react'
 import styled from 'styled-components'
 import { SearchStringBigScreens } from './../../translations/translations'
 import { StyledTheme } from './../../theme/theme'
@@ -7,6 +7,7 @@ import SearchResults from '../Navbar/SearchResults'
 import { AlgoliaSearchResult } from '../../graphql/schema'
 import LazyImage from '../Lazy/LazyImage'
 import useOnClickOutside from './../../hooks/useOnClickOutside'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     value: string
@@ -18,6 +19,8 @@ interface Props {
 const SearchInput: FunctionComponent<Props> = ({ onSearchChange, value, onSearchFocusChange, searchResults }) => {
 
     const [hasFocus, setHasFocus] = useState(false)
+
+    const {t} = useContext(LocaleContext)
 
     useEffect(() => {
         if (hasFocus) onSearchFocusChange(true)
@@ -39,7 +42,7 @@ const SearchInput: FunctionComponent<Props> = ({ onSearchChange, value, onSearch
                     value={value}
                     autoComplete={'new-password'}
                     onFocus={() => setHasFocus(true)}
-                    placeholder={SearchStringBigScreens.it}
+                    placeholder={t('Search for a Slot or a Software House')}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => onSearchChange(e.target.value)} >
                 </Search>
 

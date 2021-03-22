@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FunctionComponent } from 'react'
-import { useTranslation } from 'react-i18next'
+import { LocaleContext } from './../../context/LocaleContext';
+import { useContext } from 'react';
 
 interface Props {
     onLoadMore: () => void
@@ -9,7 +10,7 @@ interface Props {
 
 const LoadMoreButton: FunctionComponent<Props> = ({ onLoadMore }) => {
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
 
     return (
         <LoadMoreButtonStyle onClick={() => onLoadMore()}>

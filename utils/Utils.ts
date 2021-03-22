@@ -6,6 +6,7 @@ import Router from 'next/router'
 import { useRouter } from 'next/router'
 import publicIp from 'public-ip';
 import axios from 'axios'
+import upperCase  from 'lodash/upperCase';
 // export const removeHtmlFrom = (str) => {
 //     if ((str === null) || (str === '') || (str === undefined))
 //         return '';
@@ -17,12 +18,29 @@ import axios from 'axios'
 export const getUserCountryCode = async () => {
     const userIp = await  publicIp.v4()
     const geoLocation = await axios.get(`/api/user-country-code/${userIp}`)
-
-    console.log(geoLocation)
     const countryCode = geoLocation.data.countryCode.toLowerCase()
 
     return countryCode
 }
+
+export const isShallow = (countryCode : string | undefined, _shallow : boolean | undefined) => {
+    if(countryCode === 'row') return true
+    if(_shallow == true) return true
+    if(_shallow == undefined) return null
+}
+
+export const somethingIsUndefined = (stuff : any[]) => {
+    if(stuff.includes(undefined)) return true
+    return false
+}
+
+export const serverSideRedirect = (res :any, location : string) => {
+    res.statusCode = 302
+    res.setHeader('Location', location) // Replace <link> with your url link
+    res.end()
+}
+
+export const buildContentLanguageString = (countryCode : string) => `${countryCode}-${upperCase(countryCode)}`
 
 export const getCanonicalPath = () => {
     const router = useRouter()

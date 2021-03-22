@@ -5,11 +5,18 @@ import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/c
 import { appTheme } from './../theme/theme'
 
 export default class Document extends NextDocument {
+
     static async getInitialProps(ctx) {
         const styledComponentSheet = new StyledComponentSheets()
         const materialUiSheets = new MaterialUiServerStyleSheets()
         const originalRenderPage = ctx.renderPage
 
+        let lang
+        const path = ctx.req.path
+        const pathElements = path.split('/')
+
+        if(pathElements.length == 2 && pathElements[0] === '' && pathElements[1] === '') lang ='it'
+        else lang = pathElements[pathElements.length - 1] === 'row' ? 'en' : pathElements[pathElements.length - 1]
        
         try {
             ctx.renderPage = () =>
@@ -29,6 +36,7 @@ export default class Document extends NextDocument {
                         {styledComponentSheet.getStyleElement()}
                     </React.Fragment>,
                 ],
+                lang
             }
         } finally {
             styledComponentSheet.seal()
@@ -37,7 +45,7 @@ export default class Document extends NextDocument {
 
     render() {
         return (
-            <Html lang="it">
+            <Html lang={this.props.lang}>
                 <Head>
                     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@900&family=Raleway:wght@500&display=swap" rel="stylesheet" />
                     <meta name="google-site-verification" content="UmP-j4RgASnaCO-_OIXFoGoNb1M9xd8a22uMn4T2JiI" />

@@ -6,7 +6,8 @@ import { injectCDN } from './../../utils/Utils'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { laptop } from '../Responsive/Breakpoints'
 import Router from 'next/router'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from './../../context/LocaleContext';
+import { useContext } from 'react'
 
 interface Props {
     slotData: ApolloSlotCard
@@ -16,7 +17,7 @@ interface Props {
 
 const SlotListHighlightSlot: FunctionComponent<Props> = ({ slotData, style,countryCode }) => {
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
 
     const goToHighlightSlot = () => Router.push(`/slot/book-of-ra-deluxe-6/${countryCode}`)
 

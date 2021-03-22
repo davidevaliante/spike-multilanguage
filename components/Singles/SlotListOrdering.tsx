@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { FormGroup, FormControlLabel, Checkbox } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     onOrderChange: (value: 'date' | 'alphabetical' | 'rating') => void
@@ -12,7 +12,7 @@ interface Props {
 
 const SlotListOrdering: FunctionComponent<Props> = ({ onOrderChange, ordering, style }) => {
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
 
     const handleOrderChange = (event: React.FormEvent<HTMLInputElement>) => {
         // @ts-ignore

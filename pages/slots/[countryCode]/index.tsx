@@ -7,8 +7,7 @@ import { BodyContainer, MainColumn, RightColumn } from '../../../components/Layo
 import CustomBreadcrumbs from '../../../components/Breadcrumbs/CustomBreadcrumbs'
 import styled from 'styled-components'
 import { SLOT_LIST_ARTICLE_BY_COUNTRY } from '../../../graphql/queries/slotList'
-import ReactMarkdown from 'react-markdown'
-import { getCanonicalPath, injectCDN } from '../../../utils/Utils'
+import { buildContentLanguageString, getCanonicalPath, getUserCountryCode, injectCDN, isShallow, serverSideRedirect, somethingIsUndefined } from '../../../utils/Utils'
 import { SearchIndex } from 'algoliasearch'
 import SlotListSearchInput from '../../../components/Search/SlotListSearch'
 import delay from 'lodash/delay'
@@ -21,21 +20,26 @@ import SlotListOrdering from '../../../components/Singles/SlotListOrdering'
 import { laptop } from '../../../components/Responsive/Breakpoints'
 import { ApolloSlotCard } from '../../../data/models/Slot'
 import SlotListHighlightSlot from '../../../components/Cards/SlotListHighlightSlot'
-import {useRouter} from 'next/router'
+import {Router, useRouter} from 'next/router'
 import SlotList from '../../../components/Lists/SlotList'
 import LoadMoreButton from '../../../components/Buttons/LoadMoreButton'
 import ArticleToMarkdown from '../../../components/Markdown/ArticleToMarkdown'
 import Head from 'next/head'
 import {useTranslation} from 'react-i18next'
 import usePrevious from '../../../hooks/usePrevious'
+import FullPageLoader from '../../../components/Layout/FullPageLoader'
+import { translateHeadString } from '../../../translations/TranslationsUtils'
+import { LocaleContext } from '../../../context/LocaleContext'
+import i18n from '../../../data/i18n/i18n'
 
 interface Props {
-    initialSlots: AlgoliaSearchResult[]
-    countryCode: string
-    slotListArticles: SlotListArticles
-    bonusList: { bonus: ApolloBonusCardReveal }[]
-    highlightSlot: ApolloSlotCard,
-    producersQuery:any
+    _shallow : boolean
+    _initialSlots: AlgoliaSearchResult[]
+    _countryCode: string
+    _slotListArticles: SlotListArticles
+    _bonusList: { bonus: ApolloBonusCardReveal }[]
+    _highlightSlot: ApolloSlotCard,
+    _producersQuery:any
 }
 
 interface SlotListArticles {
@@ -43,26 +47,123 @@ interface SlotListArticles {
     bottomArticle: string | undefined
 }
 
-const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode, slotListArticles, highlightSlot,producersQuery }) => {
+const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, _countryCode, _slotListArticles, _highlightSlot, _producersQuery }) => {
+
+    console.log(_shallow, 'shallow')
+
 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const { currentCountry } = useContext(countryContext)
 
-    const {t} = useTranslation()
+    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
 
     const router = useRouter()
 
-    useEffect(() => {
-        if(!currentCountry){} else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-    }, [currentCountry])
+    const [initialSlots, setInitialSlots] = useState<AlgoliaSearchResult[]>(_initialSlots)
+    const [slotList, setSlotList] = useState<AlgoliaSearchResult[]>(_initialSlots)
+    const [slotLength, setSlotLength] = useState(_initialSlots.length)
+    const [bonusList, setBonusList] = useState<{ bonus: ApolloBonusCardReveal }[]>(_bonusList)
+    const [slotListArticles, setSlotListArticles] = useState<SlotListArticles>(_slotListArticles)
+    const [highlightSlot, setHighlightSlot] = useState<ApolloSlotCard>(_highlightSlot)
+    const [producersQuery, setProducersQuery] = useState(_producersQuery)
 
-    const [slotLength, setSlotLength] = useState(initialSlots.length)
-    const [slotList, setSlotList] = useState<AlgoliaSearchResult[] | undefined>(initialSlots)
+    useEffect(() => {
+        if(_shallow){
+            setContextCountry(_countryCode)
+        }
+        else getCountryData()
+    }, [])
+
+    const getCountryData = async () => {
+        const userCountryCode = await getUserCountryCode()
+        if(userCountryCode !== _countryCode && _countryCode !== 'row'){
+            const slotListResponse = await aquaClient.query({
+                query: PAGINATED_SLOTS,
+                variables: {
+                    countryCode: userCountryCode,
+                    sortingField: "created_at:DESC",
+                    start: 0,
+                    limit: 12
+                }
+            })
+        
+            let slotListResponseForCountry : any
+
+            if(slotListResponse.data.data.slots[0] === undefined){
+                slotListResponseForCountry = await aquaClient.query({
+                    query: PAGINATED_SLOTS,
+                    variables: {
+                        countryCode: 'row',
+                        sortingField: 'created_at:DESC',
+                        start: 0,
+                        limit: 12
+                    }
+                })
+                setCountryCode('row')
+                i18n.changeLanguage('row')
+            }
+             
+            const bonusListResponse = await aquaClient.query({
+                query: HOME_BONUS_LIST,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            let bonusListResponseForCountry : any
+            if(bonusListResponse.data.data.homes[0] === undefined){
+                bonusListResponseForCountry = await aquaClient.query({
+                    query: HOME_BONUS_LIST,
+                    variables: {
+                        countryCode: 'row'
+                    }
+                })
+            }
+        
+            const slotListArticlesResponse = await aquaClient.query({
+                query: SLOT_LIST_ARTICLE_BY_COUNTRY,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            let slotListArticlesResponseData1 : any
+            if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
+                slotListArticlesResponseData1 = await aquaClient.query({
+                    query: SLOT_LIST_ARTICLE_BY_COUNTRY,
+                    variables: {
+                        countryCode: "row"
+                    }
+                })
+            }
+
+            //TODO non c'è bisogno di questa chiamata, meglio l'hard coding dsella slot in evidenza
+            const highlightSlotResponse = await aquaClient.query({
+                query: HIGHLIGHT_SLOT,
+                variables: {}
+            })
+        
+            const producersQuery = await aquaClient.query({
+                query: PRODUCERS_BY_COUNTRY_DROPDOWN,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            const slotList_ = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseForCountry.data.data.slots
+            const bonusList_ = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseForCountry.data.data.homes[0]?.bonuses.bonus
+            const slotListArticles_ = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
+            const highlightSlot_ =  highlightSlotResponse.data.data.slot
+
+            setSlotList(slotList_)
+            setBonusList(bonusList_)
+            setSlotListArticles(slotListArticles_)
+            setHighlightSlot(highlightSlot_)
+        
+        } else {
+            setContextCountry(_countryCode)
+        }
+    }
 
     useEffect(() => {
         slotList && setSlotLength(slotList?.length)
@@ -129,7 +230,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
         const slotListResponse = await aquaClient.query({
             query: PAGINATED_SLOTS,
             variables: {
-                countryCode: currentCountry,
+                countryCode: contextCountry,
                 sortingField: orderingString,
                 start: 0,
                 limit: 12
@@ -148,7 +249,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
         const response = await aquaClient.query({
             query: PAGINATED_SLOTS,
             variables: {
-                countryCode: currentCountry,
+                countryCode: contextCountry,
                 sortingField: orderingString,
                 start: slotLength,
                 limit: 12
@@ -176,8 +277,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
     }
 
 
-
-    const handleSearchChange = async (t: string) => {
+    const handleSearchChange = async (t: string) => {setContextCountry
 
         if (algoliaIndex === undefined) {
             import('algoliasearch').then(algoliasearch => {
@@ -196,7 +296,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
 
         const newTimer = delay(async () => {
             const results = await algoliaIndex!.search(s, {
-                filters: `(country:'${currentCountry}') AND type:slot`
+                filters: `(country:'${contextCountry}') AND type:slot`
             })
 
             setSearchResults(results.hits.map((obj: any) => {
@@ -234,43 +334,54 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
         }
     }
 
-    const goToProducer = (slug: string) => {
-        router.push(`/producer/${slug}/${currentCountry}`)
-    }
+    const goToProducer = (slug: string) => router.push(`/producer/${slug}/${contextCountry}`)
 
+    if(!contextCountry) return <FullPageLoader />
     return (
         <StyleProvider>
             <Head>
-                <title>{t("Free Slot Machine - Play now without downloading |  SPIKE Slot")}</title>
+                <title>{translateHeadString(contextCountry, 'Free Slot Machine - Play now without downloading |  SPIKE Slot')}</title>
                 <meta
                     name="description"
-                    content="Su SPIKE Slot trovi le slot machine gratis giocabili per divertimento senza soldi, senza registrarsi. Gioca tutte le Slot Gratis">
+                    content={translateHeadString(contextCountry,'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos')}>
                 </meta>
-                <meta httpEquiv="content-language" content="it-IT"></meta>
+                <meta httpEquiv="content-language" content={buildContentLanguageString(contextCountry)}></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                <meta property="og:locale" content={'it'} />
+                <meta property="og:locale" content={contextCountry} />
                 <meta property="og:type" content="article" />
-                <meta property="og:description" content="Su SPIKE Slot trovi le slot machine gratis giocabili per divertimento senza soldi, senza registrarsi. Gioca tutte le Slot Gratis" />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta property="og:description" content={translateHeadString(contextCountry,'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos')} />
+                <meta property="og:site_name" content={translateHeadString(contextCountry,'SPIKE Slot | The number 1 blog on Slot Machines and gambling" :"SPIKE Slot | The number 1 blog on Slot Machines and gambling')} />
             </Head>
 
-            <NavbarProvider currentPage='/slot-list' countryCode={countryCode}>
+            <NavbarProvider currentPage='/slot-list' countryCode={contextCountry}>
                 <BodyContainer>
                     <MainColumn>
 
                         <CustomBreadcrumbs
-                            style={{ padding: '1rem .5rem' }}
+                            style={{ 
+                                padding: '1rem .5rem' 
+                            }}
                             from='slot-list' />
 
-                        <ArticleToMarkdown style={{ padding: '0rem 1rem' }} content={injectCDN(slotListArticles?.topArticle!)} />
+                        <ArticleToMarkdown 
+                            style={{ 
+                                padding: '0rem 1rem' 
+                            }} 
+                            content={injectCDN(slotListArticles?.topArticle!)} />
 
-                        <SlotListHighlightSlot style={{ marginTop: '2rem', marginBottom: '2rem' }} slotData={highlightSlot} countryCode={countryCode} />
+                        <SlotListHighlightSlot 
+                            style={{ 
+                                marginTop: '2rem', 
+                                marginBottom: '2rem' 
+                            }} 
+                            slotData={highlightSlot} 
+                            countryCode={contextCountry} />
 
                         <FiltersContainer>
                             <MainFiltersContainer>
                                 <SlotListSearchInput
-                                    countryCode={countryCode}
+                                    countryCode={contextCountry}
                                     value={searchValue}
                                     searchResults={searchResults}
                                     onSearchChange={handleSearchChange} />
@@ -325,7 +436,6 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
                         </FiltersContainer>
 
                         <SlotList slotList={slotList} showSearchHasNoResults={showSearchHasNoResults} />
-
 
                         <LoadMoreButton onLoadMore={() => loadNextOrderedBatch(ordering)} />
 
@@ -489,42 +599,13 @@ const MainFiltersContainer = styled.div`
     }
 `
 
-const SlotListContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap;
-    border-radius : 4px;
-    background : #f5f5f5;
-    justify-content : center;
-    padding : 1rem;
-    margin : 1.4rem;  
-`
 
-const MarkDownStyleProvider = styled.div`
-    margin-bottom : 1rem;
+export async function getServerSideProps({ query, req, res }) {
 
-    h1{
-        color : ${(props) => props.theme.colors.primary};
-        font-family : ${(props) => props.theme.text.secondaryFont};
-        padding : 1rem 1.4rem;
-        font-size : 1.5rem;
-        line-height: 1.9rem;
-    }
-
-    p{
-        padding : 0rem 1.4rem;
-        line-height: 1.4rem;
-    }
-
-    a{
-        color : ${(props) => props.theme.colors.fifth};
-        font-family : ${(props) => props.theme.text.secondaryFont};
-    }
-`
-
-export async function getServerSideProps({ query }) {
-
-    const country = query.countryCode as string
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+
+    const shallow = req.query.shallow as boolean
+    const country = query.countryCode as string
 
     const slotListResponse = await aquaClient.query({
         query: PAGINATED_SLOTS,
@@ -536,18 +617,6 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    let slotListResponseData1 : any
-    if(slotListResponse.data.data.slots[0] === undefined){
-        slotListResponseData1 = await aquaClient.query({
-            query: PAGINATED_SLOTS,
-            variables: {
-                countryCode: "row",
-                sortingField: "created_at:DESC",
-                start: 0,
-                limit: 12
-            }
-        })
-    }
      
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
@@ -556,16 +625,6 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    let bonusListResponseData1 : any
-    if(bonusListResponse.data.data.homes[0] === undefined){
-        bonusListResponseData1 = await aquaClient.query({
-            query: HOME_BONUS_LIST,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
-
     const slotListArticlesResponse = await aquaClient.query({
         query: SLOT_LIST_ARTICLE_BY_COUNTRY,
         variables: {
@@ -573,16 +632,6 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    let slotListArticlesResponseData1 : any
-    if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
-        slotListArticlesResponseData1 = await aquaClient.query({
-            query: SLOT_LIST_ARTICLE_BY_COUNTRY,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
-    //TODO non c'è bisogno di questa chiamata, meglio l'hard coding dsella slot in evidenza
     const highlightSlotResponse = await aquaClient.query({
         query: HIGHLIGHT_SLOT,
         variables: {}
@@ -595,19 +644,22 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    const slotList = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseData1.data.data.slots
-    const bonusList = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseData1.data.data.homes[0]?.bonuses.bonus
-    const slotListArticles = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
+    const slotList = slotListResponse.data.data.slots
+    const bonusList = bonusListResponse.data.data.homes[0]?.bonuses.bonus
+    const slotListArticles = slotListArticlesResponse.data.data.slotListArticles[0]
     const highlightSlot =  highlightSlotResponse.data.data.slot
 
+
+    if(somethingIsUndefined([slotList, bonusList, slotListArticles, highlightSlot])) serverSideRedirect(res, '/slots/row')
     return {
         props: {
-            initialSlots: slotList,
-            slotListArticles: slotListArticles,
-            bonusList: bonusList,
-            countryCode: country,
-            highlightSlot,
-            producersQuery:producersQuery.data.data.producers
+            _shallow : isShallow(country, shallow),
+            _initialSlots: slotList,
+            _slotListArticles: slotListArticles,
+            _bonusList: bonusList,
+            _countryCode: country,
+            _highlightSlot : highlightSlot,
+            _producersQuery:producersQuery.data.data.producers
         }
     }
 }

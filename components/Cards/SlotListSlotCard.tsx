@@ -9,6 +9,7 @@ import LazyLoad from 'react-lazyload'
 import { AlgoliaSearchResult } from '../../graphql/schema'
 import { tablet } from '../Responsive/Breakpoints'
 import {useTranslation} from 'react-i18next'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     slotCardData: AlgoliaSearchResult
@@ -16,13 +17,11 @@ interface Props {
 
 const SlotListSlotCard: FunctionComponent<Props> = ({ slotCardData }) => {
 
-    const { currentCountry } = useContext(countryContext)
-
     const { name, rating, slug } = slotCardData
 
     const fullStars = rating
 
-    const {t} = useTranslation()
+    const {t, contextCountry} = useContext(LocaleContext)
 
     const injectCdnOrFallback = (): string => {
         if (slotCardData.image === null || slotCardData.image.url === 'https://spikeapi.eu/icons/app_icon.svg') return 'https://spikeapi.eu/icons/app_icon.svg'
@@ -37,13 +36,13 @@ const SlotListSlotCard: FunctionComponent<Props> = ({ slotCardData }) => {
                         <FadeBorderButton
                             noFade={true}
                             href={slotCardData.link!}
-                            external={(slotCardData.bonuses !== null && slotCardData.bonuses.length > 0) ? slotCardData.bonuses[0].link : `www.google.${currentCountry}`}
+                            external={(slotCardData.bonuses !== null && slotCardData.bonuses.length > 0) ? slotCardData.bonuses[0].link : `www.google.${contextCountry}`}
                             text={t("Real money")}
                             color='#07ba13' />
                         <FadeBorderButton
                             noFade={true}
                             href={`/slot/[slug]/[countryCode]`}
-                            as={`/slot/${slug}/${currentCountry}`} />
+                            as={`/slot/${slug}/${contextCountry}`} />
                     </ButtonsContainer>
 
                     <img

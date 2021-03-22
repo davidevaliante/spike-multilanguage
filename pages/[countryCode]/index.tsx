@@ -1,28 +1,28 @@
-import React, { FunctionComponent, useContext, useState, useEffect } from 'react'
-import styled from 'styled-components'
-import NavbarProvider from '../components/Navbar/NavbarProvider'
-import { countryContext } from '../context/CountryContext'
-import HomeHeader from './../components/Home/HomeHeader'
-import { appTheme } from './../theme/theme'
-import LazyLoad from 'react-lazyload'
+
 import Head from 'next/head'
-import LatestVideoCard from '../components/Cards/LatestVideoCard'
-import Icon from '../components/Icons/Icon'
-import { Home } from './../graphql/schema'
-import SlideShow from '../components/SlideShow/SlideShow'
-import HighlightProducerSlideShow from '../components/SlideShow/HighlightProducerSlideShow'
-import BonusCardRevealComponent from '../components/Cards/BonusCardReveal'
-import AquaClient from './../graphql/aquaClient'
-import { BodyContainer, MainColumn, RightColumn } from '../components/Layout/Layout'
-import { HOME } from '../graphql/queries/home'
-import ArticleToMarkdown from '../components/Markdown/ArticleToMarkdown'
-import { useTranslation } from "react-i18next";
-import { OnlyMobile } from '../components/Responsive/Only'
-import FullPageLoader from '../components/Layout/FullPageLoader'
-import { ApolloSlotCard } from '../data/models/Slot'
-import { ApolloBonusCardReveal } from '../data/models/Bonus'
-import { getUserCountryCode } from '../utils/Utils'
-import Router from 'next/router'
+import React, { FunctionComponent, useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+import LatestVideoCard from '../../components/Cards/LatestVideoCard'
+import HomeHeader from '../../components/Home/HomeHeader'
+import FullPageLoader from '../../components/Layout/FullPageLoader'
+import { BodyContainer, MainColumn, RightColumn } from '../../components/Layout/Layout'
+import ArticleToMarkdown from '../../components/Markdown/ArticleToMarkdown'
+import NavbarProvider from '../../components/Navbar/NavbarProvider'
+import { OnlyMobile } from '../../components/Responsive/Only'
+import HighlightProducerSlideShow from '../../components/SlideShow/HighlightProducerSlideShow'
+import SlideShow from '../../components/SlideShow/SlideShow'
+import { ApolloBonusCardReveal } from '../../data/models/Bonus'
+import { ApolloSlotCard } from '../../data/models/Slot'
+import AquaClient from '../../graphql/aquaClient'
+import { HOME } from '../../graphql/queries/home'
+import { Home } from '../../graphql/schema'
+import { appTheme } from '../../theme/theme'
+import { getUserCountryCode } from '../../utils/Utils'
+import LazyLoad from 'react-lazyload'
+import Icon from '../../components/Icons/Icon'
+import BonusCardRevealComponent from '../../components/Cards/BonusCardReveal'
+
 
 interface PageProps {
     _home: Home,
@@ -47,7 +47,41 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
     const getCountryData = async () => {
         const userCountryCode = await getUserCountryCode()
         if(userCountryCode !== 'it'){
-            Router.push(`/${userCountryCode}`)
+            const homeDataRequest = await aquaClient.query({
+                query: HOME,
+                variables: { countryCode: userCountryCode}
+            })
+    
+            if(homeDataRequest.data.data.homes[0]){
+                const homeData = homeDataRequest.data.data.homes[0] as Home
+                setHome(homeData)
+                setCountryCode(userCountryCode)
+                setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
+                setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
+                setBarSlots(homeData.barSlots.slot.map(s => s.slot))
+                setVltSlots(homeData.vltSlots.slot.map(s => s.slot))
+                setBonusList(homeData.bonuses.bonus.map(b => b.bonus))
+            } else {
+                console.log('falling back to ROW data')
+                const homeRowDataRequest = await aquaClient.query({
+                    query: HOME,
+                    variables: { countryCode: 'row'}
+                })
+
+                const homeData = homeRowDataRequest.data.data.homes[0] as Home
+                console.log(homeData)
+
+                const rowBarSlots = homeData.barSlots
+                const rowVltSlots = homeData.vltSlots
+
+                setHome(homeData)
+                setCountryCode(userCountryCode)
+                setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
+                setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
+                rowBarSlots && setBarSlots(rowBarSlots.slot.map(s => s.slot))
+                rowVltSlots && setVltSlots(rowVltSlots.slot.map(s => s.slot))
+                setBonusList(homeData.bonuses.bonus.map(b => b.bonus))
+            }   
         } else {
             setHome(_home)
             setCountryCode(_countryCode)
@@ -61,6 +95,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
 
     const { t } = useTranslation()
 
+
     if(!home || !countryCode || !producerSlots || !onlineSlots  || !bonusList) return <FullPageLoader />
     return <div>
         <Head>
@@ -72,7 +107,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
             </meta>
             <meta httpEquiv="content-language" content="it-IT"></meta>
             <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-            <meta property="og:locale" content={'it'} />
+            <meta property="og:locale" content={countryCode} />
             <meta property="og:type" content="article" />
             <meta property="og:description" content={home.seo?.seoDescription} />
             <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
@@ -87,7 +122,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                     <LazyLoad height={450} once>
                         <SlideShow
                             apolloSlotCards={onlineSlots.filter(s => s.image !== undefined)}
-                            title='The Online Slots of the moment'
+                            title={t('The Online Slots of the moment')}
                             icon='/icons/slot_online_icon.svg'
                             buttonText={t('See the full list of Online Slots')}
                             buttonRoute={`/slots/[countryCode]`}
@@ -133,7 +168,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                             width={56}
                             height={56}
                             source='/icons/flame_icon.svg' />
-                        <h1 className='video-header'>{t(`Watch SPIKE's latest video`)}</h1>
+                        <h1 className='video-header'>{"Watch SPIKE's latest video"}</h1>
                     </div>
 
                     <LatestVideoCard />

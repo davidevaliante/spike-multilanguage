@@ -3,7 +3,8 @@ import React, { FunctionComponent, Fragment, ChangeEvent, useState, useEffect } 
 import styled from 'styled-components'
 import { StyledTheme } from './../../theme/theme'
 import { AlgoliaSearchResult } from '../../graphql/schema'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from './../../context/LocaleContext';
+import { useContext } from 'react';
 
 interface Props {
     value: string
@@ -17,7 +18,7 @@ const SlotListSearchInput: FunctionComponent<Props> = ({ onSearchChange, value, 
 
     const [hasFocus, setHasFocus] = useState(false)
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
 
     useEffect(() => {
         if (onSearchFocusChange) {

@@ -25,6 +25,8 @@ import { cookieContext } from '../../context/CookieContext';
 import CookieDisclaimer from '../CookieDisclaimer/CookieDisclaimer';
 import { initializeAnalytics } from '../../analytics/base';
 import { useTranslation } from "react-i18next";
+import CountrySelect from './CountrySelect'
+import { LocaleContext } from '../../context/LocaleContext';
 
 interface Props {
     onDrawerOpen?: Function,
@@ -58,7 +60,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
 
-    const { t } = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     const router = useRouter()
     
@@ -73,6 +75,8 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     const [searchOpen, setSearchOpen] = useState(false)
     const [searchTimerId, setSearchTimerId] = useState<number | undefined>(undefined)
     const [exitBonuses, setExitBonuses] = useState<Bonus[] | undefined>(undefined)
+
+    const [selectedCountry, setSelectedCountry] = useState('')
 
     const getExitBonuses = async () => {        
         const aquaClient = new AquaClient()
@@ -166,7 +170,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     const handleSearchChange = async (t: string) => {
         if (algoliaIndex === undefined) {
             import('algoliasearch').then().then(algoliasearch => {
-                const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
+            const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
                 const index = client.initIndex('entities');
                 setAlgoliaIndex(index)
             })
@@ -261,7 +265,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
 
     return <Wrapper currentPage={currentPage} style={{ background: '#fafafa' }}>
         <InjectSchemaBasedOnCurrentPage />
-        <NavbarWrapper searchOpen={searchOpen}>
+        <NavbarWrapper searchOpen={searchOpen}>a
             <MobileAndTablet>
                 {!searchOpen && <SearchClosedContainer>
 
@@ -314,6 +318,9 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
                         searchResults={searchResults}
                         onSearchFocusChange={handleSearchFocusChange}
                         onSearchChange={handleSearchChange} />
+
+                    <CountrySelect initialCountry={'it'} />
+
                 </div>
                 <div className='bottom-row'>
                     {drawerPages.map(page => remapNavbarLink(page))}
