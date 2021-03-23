@@ -22,6 +22,7 @@ import { ApolloSlotCard } from '../data/models/Slot'
 import { ApolloBonusCardReveal } from '../data/models/Bonus'
 import { getUserCountryCode } from '../utils/Utils'
 import Router, { useRouter } from 'next/router'
+import { LocaleContext } from '../context/LocaleContext'
 
 interface PageProps {
     _home: Home,
@@ -62,7 +63,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
         }
     }
 
-    const { t } = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     if(!home || !countryCode || !producerSlots || !onlineSlots  || !bonusList) return <FullPageLoader />
     return <div>
