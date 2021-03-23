@@ -8,15 +8,14 @@ import LazyImage from '../Lazy/LazyImage'
 import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
 import { useTranslation } from "react-i18next"
 import NewsLetterForm from '../Singles/NewsLetterForm'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     topArticle: string
 }
 
 const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
-    const { t } = useTranslation();
-
-    const { currentCountry } = useContext(countryContext)
+    const { t, contextCountry } = useContext(LocaleContext)
 
     const [disclaimerOpen, setDisclaimerOpen] = useState(false)
 
@@ -35,7 +34,7 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
                             src='/icons/alert.svg' />
                     </HeaderContainer>
 
-                    <Link href={'/slots/[countryCode]'} as={`/slots/${currentCountry}`}>
+                    <Link href={'/slots/[countryCode]'} as={`/slots/${contextCountry}`}>
                         <a>
                             <div>
                                 <GoToFullSlotListButton>

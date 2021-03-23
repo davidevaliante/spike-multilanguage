@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent,useContext,useEffect } from 'react'
+import React, { Fragment, FunctionComponent,useContext,useEffect, useState } from 'react'
 import { BonusGuide, Bonus, Article } from '../../../graphql/schema'
 import AquaClient from '../../../graphql/aquaClient'
 import { BONUS_GUIDES_BY_COUNTRY } from '../../../graphql/queries/bonusguide'
@@ -14,7 +14,7 @@ import { tablet } from '../../../components/Responsive/Breakpoints'
 import { useTranslation } from "react-i18next";
 import {useRouter} from 'next/router'
 import {countryContext} from '../../../context/CountryContext'
-import { getCanonicalPath } from '../../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode } from '../../../utils/Utils'
 import { LocaleContext } from './../../../context/LocaleContext';
 
 interface Props {
@@ -25,10 +25,17 @@ interface Props {
 }
 
 const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _articles,_countryCode }) => {
+   
+    const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const { t } = useContext(LocaleContext)
+
+    const { t, contextCountry, setContextCountry } = useContext(LocaleContext)
 
     const [loading, setLoading] = useState(true)
+
+    const [initialGuides, setInitialGuides] = useState<BonusGuide[]>(_initialGuides)
+    const [articles, setArticles] = useState<Article[]>(_articles)
+    const [bonusList, setBonusList] = useState<Bonus[]>(_bonusList)
 
     useEffect(() => {
         getCountryData()
@@ -37,12 +44,75 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
     const getCountryData = async () => {
         const userCountryCode = await getUserCountryCode()
         if(userCountryCode !== _countryCode && _countryCode !== 'row'){
+            const initialGuidesResponse = await aquaClient.query({
+                query: BONUS_GUIDES_BY_COUNTRY,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+
+
+            let countryBonusGuidesRequest
+
+            if(initialGuidesResponse.data.data.bonusGuides === undefined){
+                countryBonusGuidesRequest = await aquaClient.query({
+                    query: BONUS_GUIDES_BY_COUNTRY,
+                    variables: {
+                        countryCode: 'row'
+                    }
+                })
+            }
+
+
+               
+            const initialArticlesResponse = await aquaClient.query({
+                query: ARTICLES_BY_COUNTRY,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+
+            let countryInitialArticlesRequest 
+
+
+            if(initialArticlesResponse.data.data.articles === undefined){
+                countryInitialArticlesRequest = await aquaClient.query({
+                    query: ARTICLES_BY_COUNTRY,
+                    variables: {
+                        countryCode: userCountryCode
+                    }
+                })
+            }
+            
+            const bonusListResponse = await aquaClient.query({
+                query: HOME_BONUS_LIST,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })    
+
+            let countryBonusListRequest
+
+            if(bonusListResponse.data.data.homes[0]?.bonuses){
+                countryBonusListRequest = await aquaClient.query({
+                    query: HOME_BONUS_LIST,
+                    variables: {
+                        countryCode: userCountryCode
+                    }
+                })    
+            }
+
+            setInitialGuides(initialGuidesResponse.data.data.bonusGuides ? initialGuidesResponse.data.data.bonusGuides : countryBonusGuidesRequest.data.data.bonusGuides)
+            setArticles(initialArticlesResponse.data.data.articles ? initialArticlesResponse.data.data.articles : countryInitialArticlesRequest.data.data.articles)
+            setBonusList(bonusListResponse.data.data.data.homes[0].bonuses ? bonusListResponse.data.data.data.homes[0].bonuses : countryBonusListRequest.data.data.data.homes[0].bonuses )
         
         } else {
             setContextCountry(_countryCode)
             setLoading(false)
         }
     }
+
+
     
     const router = useRouter()
 
@@ -66,7 +136,7 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
             </Head>
 
-            <NavbarProvider currentPage='/guide-e-trucchi' countryCode={countryCode}>
+            <NavbarProvider currentPage='/guide-e-trucchi' countryCode={contextCountry}>
 
                 <StyleProvider>
                     <CustomBreadcrumbs style={{ margin: '1rem 0rem' }} from='guide-list' name='Guides and Tricks' />
@@ -157,10 +227,10 @@ export async function getServerSideProps({ query }) {
 
     return {
         props: {
-            initialGuides:initialGuidesResponse.data.data.bonusGuides,
-            articles: initialArticlesResponse.data.data.articles,
-            bonusList: bonusListResponse.data.data.homes[0]?.bonuses || null,
-            countryCode:countryCode
+            _initialGuides:initialGuidesResponse.data.data.bonusGuides,
+            _articles: initialArticlesResponse.data.data.articles,
+            _bonusList: bonusListResponse.data.data.homes[0]?.bonuses || null,
+            _countryCode:countryCode
         }
     }
 }
