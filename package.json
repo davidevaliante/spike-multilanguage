@@ -42,6 +42,7 @@
     "react-device-detect": "^1.12.1",
     "react-dom": "^16.13.1",
     "react-ga": "^3.0.0",
+    "react-gif-player": "^0.4.2",
     "react-i18next": "^11.7.3",
     "react-image-fade-in": "^1.1.1",
     "react-intersection-observer": "^8.26.2",

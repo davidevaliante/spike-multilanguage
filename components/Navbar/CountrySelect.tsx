@@ -7,10 +7,17 @@ interface Props {
     initialCountry : string
 }
 
+const supportedCountries = ['it', 'row']
+
+const getInitialCountry = (countryCode : string) => {
+    if(supportedCountries.includes(countryCode)) return countryCode
+    else return 'row'
+}
+
 const CountrySelect : FunctionComponent<Props> = ({initialCountry}) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [items, setItems] = useState(['it', 'row'])
-    const [selectedFlag, setSelectedFlag] = useState(initialCountry)
+    const [items, setItems] = useState(supportedCountries)
+    const [selectedFlag, setSelectedFlag] = useState(getInitialCountry(initialCountry))
 
     const handleClick = (event: React.MouseEvent<HTMLImageElement>) => {
         setAnchorEl(event.currentTarget);

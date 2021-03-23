@@ -18,34 +18,17 @@ import { getCanonicalPath } from '../../../utils/Utils'
 import { LocaleContext } from './../../../context/LocaleContext';
 
 interface Props {
-    _initialGuides: BonusGuide[]
-    _articles: Article[]
-    _bonusList: Bonus[],
-    _countryCode:string
+    initialGuides: BonusGuide[]
+    articles: Article[]
+    bonusList: Bonus[],
+    countryCode:string
 }
 
-const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _articles,_countryCode }) => {
+const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articles,countryCode }) => {
 
-    const { t } = useContext(LocaleContext)
-
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        getCountryData()
-    }, [])
-
-    const getCountryData = async () => {
-        const userCountryCode = await getUserCountryCode()
-        if(userCountryCode !== _countryCode && _countryCode !== 'row'){
-        
-        } else {
-            setContextCountry(_countryCode)
-            setLoading(false)
-        }
-    }
+    const { t, contextCountry, setContextCountry } = useContext(LocaleContext)
     
     const router = useRouter()
-
   
     return (
         <Fragment>
@@ -140,7 +123,17 @@ export async function getServerSideProps({ query }) {
             countryCode: countryCode
         }
     })
-       
+    
+    let initialGuidesResponse_data1:any
+    if(initialGuidesResponse.data.data.bonusGuides[0] === undefined){
+        initialGuidesResponse_data1 = await aquaClient.query({
+            query: BONUS_GUIDES_BY_COUNTRY,
+            variables: {
+                countryCode: "row"
+            }
+        })
+    }
+    
     const initialArticlesResponse = await aquaClient.query({
         query: ARTICLES_BY_COUNTRY,
         variables: {
@@ -148,6 +141,16 @@ export async function getServerSideProps({ query }) {
         }
     })
     
+    let initialArticlesResponse_data1:any
+    if(initialArticlesResponse.data.data.articles[0] === undefined){
+        initialArticlesResponse_data1 = await aquaClient.query({
+            query: ARTICLES_BY_COUNTRY,
+            variables: {
+                countryCode: "row"
+            }
+        })
+    }
+
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
         variables: {
@@ -157,8 +160,8 @@ export async function getServerSideProps({ query }) {
 
     return {
         props: {
-            initialGuides:initialGuidesResponse.data.data.bonusGuides,
-            articles: initialArticlesResponse.data.data.articles,
+            initialGuides:initialGuidesResponse.data.data.bonusGuides.length > 0 ? initialGuidesResponse.data.data.bonusGuides :  initialGuidesResponse_data1.data.data.bonusGuides,
+            articles: initialArticlesResponse.data.data.articles.length > 0 ? initialArticlesResponse.data.data.articles : initialArticlesResponse_data1.data.data.articles,
             bonusList: bonusListResponse.data.data.homes[0]?.bonuses || null,
             countryCode:countryCode
         }

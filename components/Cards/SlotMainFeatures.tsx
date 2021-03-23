@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
 import capitalize from 'lodash/capitalize'
 import {useTranslation} from 'react-i18next'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     rtp: number
@@ -68,7 +69,7 @@ const SlotMainFeatures: FunctionComponent<Props> = ({
         })
     }
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
 
     return (
         <Container style={style}>

@@ -23,10 +23,12 @@ export const getUserCountryCode = async () => {
     return countryCode
 }
 
-export const isShallow = (countryCode : string | undefined, _shallow : boolean | undefined) => {
+export const isShallow = (countryCode : string | undefined, _shallow : boolean | string | undefined) => {
     if(countryCode === 'row') return true
-    if(_shallow == true) return true
+    if(_shallow == true || _shallow === 'true') return true
     if(_shallow == undefined) return null
+
+    return null
 }
 
 export const somethingIsUndefined = (stuff : any[]) => {

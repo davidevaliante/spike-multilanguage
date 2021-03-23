@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useContext, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import NavbarProvider from '../components/Navbar/NavbarProvider'
-import { countryContext } from '../context/CountryContext'
 import HomeHeader from './../components/Home/HomeHeader'
 import { appTheme } from './../theme/theme'
 import LazyLoad from 'react-lazyload'
@@ -22,7 +21,7 @@ import FullPageLoader from '../components/Layout/FullPageLoader'
 import { ApolloSlotCard } from '../data/models/Slot'
 import { ApolloBonusCardReveal } from '../data/models/Bonus'
 import { getUserCountryCode } from '../utils/Utils'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 interface PageProps {
     _home: Home,
@@ -31,6 +30,8 @@ interface PageProps {
 
 const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+
+    const router = useRouter()
 
     const [home, setHome] = useState<Home | undefined>(undefined)
     const [countryCode, setCountryCode] = useState<string | undefined>(undefined)
@@ -46,9 +47,8 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
 
     const getCountryData = async () => {
         const userCountryCode = await getUserCountryCode()
-        if(userCountryCode !== 'it'){
-            Router.push(`/${userCountryCode}`)
-        } else {
+        if(userCountryCode === 'it'){
+            // if the user is from Italy we stay on the same page and use the server side fetched data
             setHome(_home)
             setCountryCode(_countryCode)
             setProducerSlots(_home.producerSlots.slot.map(s => s.slot))
@@ -56,6 +56,9 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
             setBarSlots(_home.barSlots.slot.map(s => s.slot))
             setVltSlots(_home.vltSlots.slot.map(s => s.slot))
             setBonusList(_home.bonuses.bonus.map(b => b.bonus))
+        } else {
+            // otherwise we redirect to /[countryCode] route
+            router.push(`/${userCountryCode}`)
         }
     }
 

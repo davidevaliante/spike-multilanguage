@@ -8,7 +8,7 @@ import CustomBreadcrumbs from '../../../components/Breadcrumbs/CustomBreadcrumbs
 import styled from 'styled-components'
 import { SLOT_LIST_ARTICLE_BY_COUNTRY } from '../../../graphql/queries/slotList'
 import ReactMarkdown from 'react-markdown'
-import { getCanonicalPath, injectCDN } from '../../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode, injectCDN, serverSideRedirect, somethingIsUndefined } from '../../../utils/Utils'
 import { SearchIndex } from 'algoliasearch'
 import SlotListSearchInput from '../../../components/Search/SlotListSearch'
 import delay from 'lodash/delay'
@@ -31,15 +31,19 @@ import SlideShow from '../../../components/SlideShow/SlideShow'
 import orderBy from 'lodash/orderBy'
 import { BAR_SLOT_LIST } from './../../../graphql/queries/barslotlist'
 import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../../context/LocaleContext'
+import FullPageLoader from '../../../components/Layout/FullPageLoader'
+import { buildContentLanguageString, isShallow } from './../../../utils/Utils';
 
 interface Props {
-    initialSlots: AlgoliaSearchResult[]
-    countryCode: string
-    slotListArticles: SlotListArticles
-    bonusList: { bonus: ApolloBonusCardReveal }[]
-    highlightSlot: ApolloSlotCard
-    barSlotListPage: BarSlotListPage,
-    producersQuery:any
+    _shallow : boolean
+    _initialSlots: AlgoliaSearchResult[]
+    _countryCode: string
+    _slotListArticles: SlotListArticles
+    _bonusList: { bonus: ApolloBonusCardReveal }[]
+    _highlightSlot: ApolloSlotCard
+    _barSlotListPage: BarSlotListPage,
+    _producersQuery:any
 }
 
 interface SlotListArticles {
@@ -47,26 +51,128 @@ interface SlotListArticles {
     bottomArticle: string | undefined
 }
 
-const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode, slotListArticles, highlightSlot,producersQuery, barSlotListPage }) => {
+const Slots: FunctionComponent<Props> = ({ _initialSlots, _bonusList, _countryCode, _slotListArticles, _highlightSlot,_producersQuery, _barSlotListPage, _shallow }) => {
 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
-
-    const {t} = useTranslation()
-
-    const { currentCountry } = useContext(countryContext)
-
     const router = useRouter()
 
-    useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-    }, [currentCountry])
+    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
 
-    const [slotLength, setSlotLength] = useState(initialSlots.length)
-    const [slotList, setSlotList] = useState<AlgoliaSearchResult[] | undefined>(initialSlots)
+    const [loading, setLoading] = useState(true)
+
+    const [initialSlots, setInitialSlots] = useState<AlgoliaSearchResult[] | undefined>(_initialSlots)
+    const [bonusList, setBonusList] = useState<{ bonus: ApolloBonusCardReveal }[]>(_bonusList)
+    const [slotListArticles, setSlotListArticles] = useState<SlotListArticles>(_slotListArticles)
+    const [highlightSlot, setHighlightSlot] = useState<ApolloSlotCard>(_highlightSlot)
+    const [barSlotListPage, setBarSlotListPage] = useState<BarSlotListPage | undefined>(_barSlotListPage[0])
+    const [producersQuery, setProducersQuery] = useState(_producersQuery)
+    const [slotLength, setSlotLength] = useState(_initialSlots.length)
+    const [slotList, setSlotList] = useState<AlgoliaSearchResult[] | undefined>(_initialSlots)
+
+    useEffect(() => {
+        getCountryData()
+    }, [])
+
+    const getCountryData = async () => {
+        const userCountryCode = await getUserCountryCode()
+        if(userCountryCode !== _countryCode && _countryCode !== 'row'){
+            const slotListResponse = await aquaClient.query({
+                query: PAGINATED_BAR_SLOTS,
+                variables: {
+                    countryCode: userCountryCode,
+                    sortingField: "created_at:DESC",
+                    start: 0,
+                    limit: 50,
+                }
+            })
+        
+            let slotListResponseForCountry : any
+            if(slotListResponse.data.data.slots[0] === undefined){
+                slotListResponseForCountry = await aquaClient.query({
+                    query: PAGINATED_BAR_SLOTS,
+                    variables: {
+                        countryCode: "row",
+                        sortingField: "created_at:DESC",
+                        start: 0,
+                        limit: 50,
+                    }
+                })
+            }
+        
+            const barSlotListResponse = await aquaClient.query({
+                query: BAR_SLOT_LIST,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            let barSlotListForCountry : any
+            if(barSlotListResponse.data.data.barSlotLists[0] === undefined){
+                barSlotListForCountry = await aquaClient.query({
+                    query: BAR_SLOT_LIST,
+                    variables: {
+                        countryCode: "row"
+                    }
+                })
+            }   
+        
+            const bonusListResponse = await aquaClient.query({
+                query: HOME_BONUS_LIST,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            let bonusListForCountry : any
+            if(bonusListResponse.data.data.homes[0] === undefined){
+                bonusListForCountry = await aquaClient.query({
+                    query: HOME_BONUS_LIST,
+                    variables: {
+                        countryCode: "row"
+                    }
+                })
+            }
+        
+            const slotListArticlesResponse = await aquaClient.query({
+                query: SLOT_LIST_ARTICLE_BY_COUNTRY,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+        
+            let slotListArticlesForCountry : any
+            if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
+                slotListArticlesForCountry = await aquaClient.query({
+                    query: SLOT_LIST_ARTICLE_BY_COUNTRY,
+                    variables: {
+                        countryCode: "row"
+                    }
+                })
+            }
+        
+            const producersQuery = await aquaClient.query({
+                query: PRODUCERS_BY_COUNTRY_DROPDOWN,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+
+            const slotList_ = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseForCountry.data.data.slots
+            const bonusList_ = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListForCountry.data.data.homes[0]?.bonuses.bonus
+            const slotListArticles_ = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesForCountry.data.data.slotListArticles[0]
+
+            setSlotList(slotList_)
+            setBonusList(bonusList_)
+            setSlotListArticles(slotListArticles_)
+            setLoading(false)
+        
+        } else {
+            setContextCountry(_countryCode)
+            setLoading(false)
+        }
+    }
+
 
     useEffect(() => {
         slotList && setSlotLength(slotList?.length)
@@ -133,7 +239,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
         const response = await aquaClient.query({
             query: PAGINATED_SLOTS,
             variables: {
-                countryCode: currentCountry,
+                countryCode: contextCountry,
                 sortingField: orderingString,
                 start: slotLength,
                 limit: 12
@@ -165,7 +271,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
         clearTimeout(searchTimerId)
         const newTimer = delay(async () => {
             const results = await algoliaIndex!.search(s, {
-                filters: `(country:'${currentCountry}') AND type:slot`
+                filters: `(country:'${contextCountry}') AND type:slot`
             })
 
             setSearchResults(results.hits.map((obj: any) => {
@@ -202,9 +308,12 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
     }
 
     const goToProducer = (slug: string) => {
-        router.push(`/producer/${slug}/${currentCountry}`)
+        router.push(`/producer/${slug}/${contextCountry}`)
     }
 
+    console.log(barSlotListPage)
+
+    if(loading) return <FullPageLoader />
     return (
         <StyleProvider>
             <Head>
@@ -213,16 +322,16 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
                     name="description"
                     content={barSlotListPage?.seo?.seoDescription}>
                 </meta>
-                <meta httpEquiv="content-language" content="it-IT"></meta>
+                <meta httpEquiv="content-language" content={buildContentLanguageString(contextCountry)}></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                <meta property="og:locale" content={'it'} />
+                <meta property="og:locale" content={contextCountry} />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={barSlotListPage?.seo?.seoDescription} />
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
             </Head>
 
-            <NavbarProvider currentPage={`/slot-bar-list`} countryCode={countryCode}>
+            <NavbarProvider currentPage={`/slot-bar-list`} countryCode={contextCountry}>
                 <BodyContainer>
                     <MainColumn>
 
@@ -232,27 +341,21 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
 
                         <ArticleToMarkdown style={{ padding: '0rem 1rem' }} content={injectCDN(barSlotListPage?.topArticle!)} />
 
-                        <LazyLoad height={450} once offset={100}>
+                        {barSlotListPage?.sliderSlots[0].slot && <LazyLoad height={450} once offset={100}>
                             <SlideShow
-                                apolloSlotCards={barSlotListPage?.sliderSlots?.slot.map(s => s.slot)}
+                                apolloSlotCards={barSlotListPage?.sliderSlots[0].slot.map(s => s.slot)}
                                 title='The most famous Bar Slots'
                                 icon='/icons/slot_bar_icon.svg'
                                 buttonText=''
                                 buttonRoute={`/slots/[countryCode]`}
-                                buttonRouteAs={`/slots/${currentCountry}`}
+                                buttonRouteAs={`/slots/${contextCountry}`}
                                 style={{ marginTop: '2rem' }}
                                 mainColor={appTheme.colors.secondary}
                                 secondaryColor={appTheme.colors.secondary} />
-                        </LazyLoad>
+                        </LazyLoad>}
 
                         <FiltersContainer>
                             <MainFiltersContainer>
-                                {/* <SlotListSearchInput
-                                    countryCode={countryCode}
-                                    value={searchValue}
-                                    searchResults={searchResults}
-                                    onSearchChange={handleSearchChange} /> */}
-
                                 <SlotListOrdering
                                     style={{ margin: '2rem auto' }}
                                     onOrderChange={handleOrderChange}
@@ -468,40 +571,11 @@ const MainFiltersContainer = styled.div`
     }
 `
 
-const SlotListContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap;
-    border-radius : 4px;
-    background : #f5f5f5;
-    justify-content : center;
-    padding : 1rem;
-    margin : 1.4rem;  
-`
 
-const MarkDownStyleProvider = styled.div`
-    margin-bottom : 1rem;
 
-    h1{
-        color : ${(props) => props.theme.colors.primary};
-        font-family : ${(props) => props.theme.text.secondaryFont};
-        padding : 1rem 1.4rem;
-        font-size : 1.5rem;
-        line-height: 1.9rem;
-    }
+export async function getServerSideProps({ query, req, res }) {
 
-    p{
-        padding : 0rem 1.4rem;
-        line-height: 1.4rem;
-    }
-
-    a{
-        color : ${(props) => props.theme.colors.fifth};
-        font-family : ${(props) => props.theme.text.secondaryFont};
-    }
-`
-
-export async function getServerSideProps({ query }) {
-
+    const shallow = req.query.shallow as boolean
     const country = query.countryCode as string
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
@@ -515,35 +589,12 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    let slotListResponseData1 : any
-    if(slotListResponse.data.data.slots[0] === undefined){
-        slotListResponseData1 = await aquaClient.query({
-            query: PAGINATED_BAR_SLOTS,
-            variables: {
-                countryCode: "row",
-                sortingField: "created_at:DESC",
-                start: 0,
-                limit: 50,
-            }
-        })
-    }
-
     const barSlotListResponse = await aquaClient.query({
         query: BAR_SLOT_LIST,
         variables: {
             countryCode: country
         }
     })
-
-    let barSlotListResponseData1 : any
-    if(barSlotListResponse.data.data.barSlotLists[0] === undefined){
-        barSlotListResponseData1 = await aquaClient.query({
-            query: BAR_SLOT_LIST,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }   
 
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
@@ -552,33 +603,12 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    let bonusListResponseData1 : any
-    if(bonusListResponse.data.data.homes[0] === undefined){
-        bonusListResponseData1 = await aquaClient.query({
-            query: HOME_BONUS_LIST,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
-
     const slotListArticlesResponse = await aquaClient.query({
         query: SLOT_LIST_ARTICLE_BY_COUNTRY,
         variables: {
             countryCode: country
         }
     })
-
-
-    let slotListArticlesResponseData1 : any
-    if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
-        slotListArticlesResponseData1 = await aquaClient.query({
-            query: SLOT_LIST_ARTICLE_BY_COUNTRY,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
 
     const producersQuery = await aquaClient.query({
         query: PRODUCERS_BY_COUNTRY_DROPDOWN,
@@ -587,26 +617,21 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    // const pageData = await Promise.all([slotListResponse, bonusListResponse, slotListArticlesResponse, barSlotListResponse])
-
-    // const slotList = pageData.find(res => res.data.data.slots !== undefined)?.data.data.slots
-    // const bonusList = pageData.find(res => res.data.data.homes !== undefined)?.data.data.homes[0]?.bonuses.bonus || null
-    // const slotListArticles = pageData.find(res => res.data.data.slotListArticles !== undefined)?.data.data.slotListArticles[0] || null
-    // const barSlotListPage = pageData.find(res => res.data.data.barSlotLists !== undefined)?.data.data.barSlotLists[0] || null
-
-    const slotList = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseData1.data.data.slots
-    const bonusList = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseData1.data.data.homes[0]?.bonuses.bonus
-    const slotListArticles = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
-    const barSlotListPage = barSlotListResponse.data.data.barSlotLists.length > 0 ? barSlotListResponse.data.data.barSlotLists : barSlotListResponseData1.data.data.barSlotLists
+    const slotList = slotListResponse.data.data.slots
+    const bonusList = bonusListResponse.data.data.homes[0]?.bonuses.bonus 
+    const slotListArticles = slotListArticlesResponse.data.data.slotListArticles[0]
+    const barSlotListPage = barSlotListResponse.data.data.barSlotLists
     
+    if(somethingIsUndefined([slotList, bonusList, slotListArticles])) serverSideRedirect(res, '/slot-bar/row')
     return {
         props: {
-            initialSlots: slotList,
-            slotListArticles: slotListArticles,
-            bonusList: bonusList,
-            countryCode: country,
-            barSlotListPage: barSlotListPage,
-            producersQuery:producersQuery.data.data.producers
+            _shallow : isShallow(country, shallow),
+            _initialSlots: slotList,
+            _slotListArticles: slotListArticles,
+            _bonusList: bonusList,
+            _countryCode: country,
+            _barSlotListPage: barSlotListPage,
+            _producersQuery:producersQuery.data.data.producers
         }
     }
 }

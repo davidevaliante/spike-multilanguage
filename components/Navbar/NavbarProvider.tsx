@@ -41,26 +41,37 @@ export interface NavbarPage {
 }
 
 
-//TODO da tradurre
-const drawerPages = [
-    { label: 'Home', link: '/' },
-    { label: 'Video', link: '/videos' },
-    { label: 'Free Slot Machine Games', link: '/slots' },
-    { label: 'Bar Slot', link: '/slot-bar' },
-    { label: 'VLT slot', link: '/slot-vlt' },
-    { label: 'Welcome bonus', link: '/migliori-bonus-casino' },
-    { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
-    { label: 'Guides and Tricks', link: '/guide-e-trucchi' },
-    { label: 'Blogs and Articles', link: '/blog' },
-    // { label: 'Altro', link: '/altro' }
-]
+
 
 
 const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen, currentPage, children,countryCode }) => {
+
+    const p = [
+        { label: 'Home', link: '/' },
+        { label: 'Video', link: '/videos' },
+        { label: 'Free Slot Machine Games', link: '/slots' },
+        { label: 'Bar Slot', link: '/slot-bar' },
+        { label: 'VLT slot', link: '/slot-vlt' },
+        
+        { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
+        
+        { label: 'Blogs and Articles', link: '/blog' },
+    ]
     
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
 
-    const { t } = useContext(LocaleContext)
+    const { t, contextCountry } = useContext(LocaleContext)
+    useEffect(() => {
+        if(contextCountry === 'it') {
+            p.splice(5, 0, { label: 'Welcome bonus', link: '/migliori-bonus-casino' })
+            p.splice(7, 0, { label: 'Guides and Tricks', link: '/guide-e-trucchi' })
+        }
+        if(contextCountry === 'row'  || contextCountry === 'ca') {
+            p.splice(5, 0, { label: 'Welcome bonus', link: `/best-casino-bonus`},)
+            p.splice(7, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
+        }
+        setDrawerPages(p)
+    }, [contextCountry])
 
     const router = useRouter()
     
@@ -70,7 +81,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         }
     }, [cookiesAccepted])
 
-
+    const [drawerPages, setDrawerPages] = useState<{label : string, link : string}[]>([])
     const [algoliaIndex, setAlgoliaIndex] = useState<SearchIndex | undefined>(undefined)
     const [searchOpen, setSearchOpen] = useState(false)
     const [searchTimerId, setSearchTimerId] = useState<number | undefined>(undefined)
@@ -170,7 +181,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     const handleSearchChange = async (t: string) => {
         if (algoliaIndex === undefined) {
             import('algoliasearch').then().then(algoliasearch => {
-            const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
+                const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
                 const index = client.initIndex('entities');
                 setAlgoliaIndex(index)
             })
@@ -265,7 +276,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
 
     return <Wrapper currentPage={currentPage} style={{ background: '#fafafa' }}>
         <InjectSchemaBasedOnCurrentPage />
-        <NavbarWrapper searchOpen={searchOpen}>a
+        <NavbarWrapper searchOpen={searchOpen}>
             <MobileAndTablet>
                 {!searchOpen && <SearchClosedContainer>
 
@@ -319,11 +330,11 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
                         onSearchFocusChange={handleSearchFocusChange}
                         onSearchChange={handleSearchChange} />
 
-                    <CountrySelect initialCountry={'it'} />
+                    <CountrySelect initialCountry={contextCountry} />
 
                 </div>
                 <div className='bottom-row'>
-                    {drawerPages.map(page => remapNavbarLink(page))}
+                    {contextCountry === 'it' ? drawerPages.map(page => remapNavbarLink(page)) : drawerPages.filter(p => p.label !== 'Bar Slot' && p.label !== 'VLT slot').map(page => remapNavbarLink(page))}
                 </div>
             </BigScreens>
         </NavbarWrapper>

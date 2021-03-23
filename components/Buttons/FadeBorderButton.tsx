@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext } from 'react'
 import styled from 'styled-components'
 import { AppTheme } from '../../theme/theme'
 import Link from 'next/link'
-import { useTranslation } from "react-i18next"
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     color?: string
@@ -15,7 +15,7 @@ interface Props {
 
 const FadeBorderButton: FunctionComponent<Props> = ({ color, text, href, as, external, noFade = false }) => {
 
-    const { t } = useTranslation()
+    const { t } = useContext(LocaleContext)
     
     return (
         <ButtonStyleProvider color={color} noFade={noFade}>

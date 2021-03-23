@@ -9,6 +9,7 @@ import { appTheme } from './../../theme/theme'
 import Link from "next/link"
 import {useTranslation} from 'react-i18next'
 import {countryContext} from '../../context/CountryContext'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     bonus: Bonus,
@@ -17,9 +18,7 @@ interface Props {
 }
 
 const PrimaryBonusCard: FunctionComponent<Props> = ({ bonus, style, withSuggestion = true }) => {
-
-    const {currentCountry} = useContext(countryContext)
-    
+   
     const mapPaymentsMethodsToIcons = () => {
         return bonus.acceptedPayments.map(({ methodName }) => {
             if (methodName === 'mastercard') return <Icon src='/icons/mastercard.svg' />
@@ -31,7 +30,7 @@ const PrimaryBonusCard: FunctionComponent<Props> = ({ bonus, style, withSuggesti
             if (methodName === 'skrill') return <Icon src='/icons/skrill.svg' />
         })
     }
-    const {t} = useTranslation()
+    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
 
     return <Fragment>
 
@@ -58,7 +57,7 @@ const PrimaryBonusCard: FunctionComponent<Props> = ({ bonus, style, withSuggesti
 
             <Button onClick={() => window.open(bonus.link)}><div><div>{t("VISIT THE SITE")}</div><div style={{ marginTop: '.5rem', textAlign: 'center', fontFamily: appTheme.text.primaryFont, fontSize: '.8rem' }}>{bonus?.name}</div></div></Button>
 
-            {bonus?.bonus_guide && <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${bonus.bonus_guide.slug}/${currentCountry}`}>
+            {bonus?.bonus_guide && <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${bonus.bonus_guide.slug}/${contextCountry}`}>
                 <a>
                     <HollowButton>{t("READ THE GUIDE")}</HollowButton>
                 </a>

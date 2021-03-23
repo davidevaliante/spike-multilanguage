@@ -8,6 +8,7 @@ import LazyBonusImage from '../Lazy/LazyBonusImage'
 import {useTranslation} from 'react-i18next'
 import Link from "next/link"
 import {countryContext} from '../../context/CountryContext'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
 	bonus: ApolloBonusCardReveal
@@ -15,9 +16,7 @@ interface Props {
 
 const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus }) => {
 
-	const {t} = useTranslation()
-
-	const {currentCountry} = useContext(countryContext)
+	const {t, contextCountry} = useContext(LocaleContext)
 
 	const goToBonus = () => {
 		window.open(bonus?.link)
@@ -58,7 +57,7 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus }) => 
 
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 								<a className='visit-website' onClick={() => goToBonus()}>{t("VISIT THE SITE")}</a>
-								<Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${bonus?.bonus_guide?.slug}/${currentCountry}`}>
+								<Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${bonus?.bonus_guide?.slug}/${contextCountry}`}>
 									<a className='read-guide'>{t("READ THE GUIDE")}</a>
 								</Link>
 							</div>

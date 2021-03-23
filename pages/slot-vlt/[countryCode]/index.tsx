@@ -7,12 +7,9 @@ import { BodyContainer, MainColumn, RightColumn } from '../../../components/Layo
 import CustomBreadcrumbs from '../../../components/Breadcrumbs/CustomBreadcrumbs'
 import styled from 'styled-components'
 import { SLOT_LIST_ARTICLE_BY_COUNTRY } from '../../../graphql/queries/slotList'
-import ReactMarkdown from 'react-markdown'
-import { getCanonicalPath, injectCDN } from '../../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode, injectCDN, isShallow, serverSideRedirect, somethingIsUndefined } from '../../../utils/Utils'
 import { SearchIndex } from 'algoliasearch'
-import SlotListSearchInput from '../../../components/Search/SlotListSearch'
 import delay from 'lodash/delay'
-import { countryContext } from '../../../context/CountryContext'
 import { PRODUCERS_BY_COUNTRY_DROPDOWN } from '../../../graphql/queries/producers'
 import ApolloBonusCardRevealComponent from '../../../components/Cards/BonusCardReveal'
 import { HOME_BONUS_LIST } from '../../../graphql/queries/bonus'
@@ -22,7 +19,6 @@ import { laptop } from '../../../components/Responsive/Breakpoints'
 import { ApolloSlotCard } from '../../../data/models/Slot'
 import {useRouter} from 'next/router'
 import SlotList from '../../../components/Lists/SlotList'
-import LoadMoreButton from '../../../components/Buttons/LoadMoreButton'
 import ArticleToMarkdown from '../../../components/Markdown/ArticleToMarkdown'
 import Head from 'next/head'
 import { VLT_SLOT_LIST_BY_COUNTRY } from '../../../graphql/queries/vltslotlist'
@@ -30,16 +26,18 @@ import LazyLoad from 'react-lazyload'
 import { appTheme } from './../../../theme/theme'
 import SlideShow from '../../../components/SlideShow/SlideShow'
 import orderBy from 'lodash/orderBy'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../../context/LocaleContext'
+import FullPageLoader from '../../../components/Layout/FullPageLoader'
 
 interface Props {
-    initialSlots: AlgoliaSearchResult[]
-    countryCode: string
-    slotListArticles: SlotListArticles
-    bonusList: { bonus: ApolloBonusCardReveal }[]
-    highlightSlot: ApolloSlotCard
-    vltSlotListPage: VltSlotListPage,
-    producersQuery:any
+    _shallow : boolean
+    _initialSlots: AlgoliaSearchResult[]
+    _countryCode: string
+    _slotListArticles: SlotListArticles
+    _bonusList: { bonus: ApolloBonusCardReveal }[]
+    _highlightSlot: ApolloSlotCard
+    _vltSlotListPage: VltSlotListPage,
+    _producersQuery:any
 }
 
 interface SlotListArticles {
@@ -47,26 +45,138 @@ interface SlotListArticles {
     bottomArticle: string | undefined
 }
 
-const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode, slotListArticles, highlightSlot,producersQuery, vltSlotListPage }) => {
+const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _countryCode, _slotListArticles, _highlightSlot,_producersQuery, _vltSlotListPage }) => {
 
+    console.log(_shallow)
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const {t} = useTranslation()
-
-    const { currentCountry } = useContext(countryContext)
+    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
 
     const router = useRouter() 
 
-    useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-    }, [currentCountry])
+    const [loading, setLoading] = useState(true)
+    const [initialSlots, setInitialSlots] = useState<AlgoliaSearchResult[]>(_initialSlots)
+    const [bonusList, setBonusList] = useState<{ bonus: ApolloBonusCardReveal }[]>(_bonusList)
+    const [slotListArticles, setSlotListArticles] = useState<SlotListArticles>(_slotListArticles)
+    const [highlightSlot, setHighlightSlot] = useState<ApolloSlotCard>(_highlightSlot)
+    const [producersQuery, setProducersQuery] = useState(_producersQuery)
+    const [vltSlotListPage, setVltSlotListPage] = useState<VltSlotListPage | undefined>(_vltSlotListPage)
 
-    const [slotLength, setSlotLength] = useState(initialSlots.length)
-    const [slotList, setSlotList] = useState<AlgoliaSearchResult[] | undefined>(initialSlots)
+    useEffect(() => {
+        if(_shallow){
+            setContextCountry(_countryCode)
+            setLoading(false)
+        }
+        else getCountryData()
+    }, [])
+
+    const getCountryData = async () => {
+        const userCountryCode = await getUserCountryCode()
+        if(userCountryCode !== _countryCode && _countryCode !== 'row'){
+            const slotListResponse = await aquaClient.query({
+                query: PAGINATED_SLOTS,
+                variables: {
+                    countryCode: userCountryCode,
+                    sortingField: "created_at:DESC",
+                    start: 0,
+                    limit: 50,
+                    type: 'vlt'
+                }
+            })
+        
+            let slotListResponseData1 : any
+            if(slotListResponse.data.data.slots[0] === undefined){
+                slotListResponseData1 = await aquaClient.query({
+                    query: PAGINATED_SLOTS,
+                    variables: {
+                        countryCode: "row",
+                        sortingField: "created_at:DESC",
+                        start: 0,
+                        limit: 50,
+                        type: 'vlt'
+                    }
+                })
+                setContextCountry('row')
+            }
+        
+            const vltSlotListResponse = await aquaClient.query({
+                query: VLT_SLOT_LIST_BY_COUNTRY,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            let vltSlotListResponseData1 : any
+            if(vltSlotListResponse.data.data.vltSlotLists[0] === undefined){
+                vltSlotListResponseData1 = await aquaClient.query({
+                    query: VLT_SLOT_LIST_BY_COUNTRY,
+                    variables: {
+                        countryCode: "row"
+                    }
+                })
+            }    
+        
+            const bonusListResponse = await aquaClient.query({
+                query: HOME_BONUS_LIST,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            let bonusListResponseData1 : any
+            if(bonusListResponse.data.data.homes[0] === undefined){
+                bonusListResponseData1 = await aquaClient.query({
+                    query: HOME_BONUS_LIST,
+                    variables: {
+                        countryCode: "row"
+                    }
+                })
+            }
+        
+        
+            const slotListArticlesResponse = await aquaClient.query({
+                query: SLOT_LIST_ARTICLE_BY_COUNTRY,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+            let slotListArticlesResponseData1 : any
+            if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
+                slotListArticlesResponseData1 = await aquaClient.query({
+                    query: SLOT_LIST_ARTICLE_BY_COUNTRY,
+                    variables: {
+                        countryCode: "row"
+                    }
+                })
+            }
+        
+            const producersQuery = await aquaClient.query({
+                query: PRODUCERS_BY_COUNTRY_DROPDOWN,
+                variables: {
+                    countryCode: userCountryCode
+                }
+            })
+        
+        
+            const slotList_ = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseData1.data.data.slots
+            const bonusList_ = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseData1.data.data.homes[0]?.bonuses.bonus
+            const slotListArticles_ = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
+            const vltSlotListPage_ = vltSlotListResponse.data.data.vltSlotLists.length > 0 ? vltSlotListResponse.data.data.vltSlotLists[0] : vltSlotListResponseData1.data.data.vltSlotLists
+
+            setSlotList(slotList_)
+            setBonusList(bonusList_)
+            setSlotListArticles(slotListArticles_)
+            setVltSlotListPage(vltSlotListPage_)
+            setLoading(false)
+        } else {
+            setContextCountry(_countryCode)
+            setLoading(false)
+        }        
+    }
+
+    const [slotLength, setSlotLength] = useState(_initialSlots.length)
+    const [slotList, setSlotList] = useState<AlgoliaSearchResult[] | undefined>(_initialSlots)
 
     useEffect(() => {
         slotList && setSlotLength(slotList?.length)
@@ -132,7 +242,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
         const response = await aquaClient.query({
             query: PAGINATED_SLOTS,
             variables: {
-                countryCode: currentCountry,
+                countryCode: contextCountry,
                 sortingField: orderingString,
                 start: slotLength,
                 limit: 12
@@ -162,7 +272,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
         clearTimeout(searchTimerId)
         const newTimer = delay(async () => {
             const results = await algoliaIndex!.search(s, {
-                filters: `(country:'${currentCountry}') AND type:slot`
+                filters: `(country:'${contextCountry}') AND type:slot`
             })
 
             setSearchResults(results.hits.map((obj: any) => {
@@ -199,9 +309,12 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
     }
 
     const goToProducer = (slug: string) => {
-        router.push(`/producer/${slug}/${currentCountry}`)
+        router.push(`/producer/${slug}/${contextCountry}`)
     }
 
+    console.log(vltSlotListPage, 'page')
+
+    if(loading) return <FullPageLoader />
     return (
         <StyleProvider>
             <Head>
@@ -220,7 +333,7 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
             </Head>
 
-            <NavbarProvider currentPage={`/slot-vlt-list`} countryCode={countryCode}>
+            <NavbarProvider currentPage={`/slot-vlt-list`} countryCode={contextCountry}>
                 <BodyContainer>
                     <MainColumn>
 
@@ -230,28 +343,22 @@ const Slots: FunctionComponent<Props> = ({ initialSlots, bonusList, countryCode,
 
                         <ArticleToMarkdown style={{ padding: '0rem 1rem' }} content={injectCDN(vltSlotListPage?.topArticle!)} />
 
-                        <LazyLoad height={450} once offset={100}>
+                       {vltSlotListPage?.sliderSlots &&  <LazyLoad height={450} once offset={100}>
                             <SlideShow
                                 apolloSlotCards={vltSlotListPage?.sliderSlots}
                                 title='The funniest VLT Slots'
                                 icon='/icons/slot_vlt_icon.svg'
                                 buttonText='    '
                                 buttonRoute={`/slots/[countryCode]`}
-                                buttonRouteAs={`/slots/${currentCountry}`}
+                                buttonRouteAs={`/slots/${contextCountry}`}
                                 style={{ marginTop: '2rem' }}
                                 mainColor={appTheme.colors.terziary}
                                 secondaryColor={appTheme.colors.terziary} />
-                        </LazyLoad>
+                        </LazyLoad>}
 
                         <FiltersContainer>
                             <MainFiltersContainer>
-                                {/* <SlotListSearchInput
-                                    countryCode={countryCode}
-                                    value={searchValue}
-                                    searchResults={searchResults}
-                                    onSearchChange={handleSearchChange} /> */}
-
-                                <SlotListOrdering
+                                  <SlotListOrdering
                                     style={{ margin: '2rem auto' }}
                                     onOrderChange={handleOrderChange}
                                     ordering={ordering} />
@@ -489,8 +596,11 @@ const MarkDownStyleProvider = styled.div`
     }
 `
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, req, res }) {
 
+    const shallow = req.query.shallow as boolean
+    console.log(req.query)
+    console.log(shallow, 'shallow')
     const country = query.countryCode as string
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
@@ -584,14 +694,17 @@ export async function getServerSideProps({ query }) {
     const slotListArticles = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
     const vltSlotListPage = vltSlotListResponse.data.data.vltSlotLists.length > 0 ? vltSlotListResponse.data.data.vltSlotLists[0] : vltSlotListResponseData1.data.data.vltSlotLists
 
+
+    if(somethingIsUndefined([slotList, bonusList, slotListArticles, vltSlotListPage])) serverSideRedirect(res, '/slot-vlt/row')
     return {
         props: {
-            initialSlots: slotList,
-            slotListArticles: slotListArticles,
-            bonusList: bonusList,
-            countryCode: country,
-            vltSlotListPage: vltSlotListPage,
-            producersQuery:producersQuery.data.data.producers
+            _shallow : isShallow(country, shallow),
+            _initialSlots: slotList,
+            _slotListArticles: slotListArticles,
+            _bonusList: bonusList,
+            _countryCode: country,
+            _vltSlotListPage: vltSlotListPage,
+            _producersQuery:producersQuery.data.data.producers
         }
     }
 }

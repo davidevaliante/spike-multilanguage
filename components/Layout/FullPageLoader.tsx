@@ -9,7 +9,7 @@ interface Props {
 const FullPageLoader = (props: Props) => {
     return (
         <Wrapper>
-            <CircularProgress />
+              <img src='/gifs/spike-loader.gif' />
         </Wrapper>
     )
 }

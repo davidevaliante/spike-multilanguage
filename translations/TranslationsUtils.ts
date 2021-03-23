@@ -1,10 +1,12 @@
 import  HeadTranslations  from './HeadTranslations.json';
 import translation from './transaltions.json'
 
-export const translateHeadString = (countryCode : string, s : string) => HeadTranslations[countryCode][s]
+export const translateHeadString = (countryCode : string, s : string) => {
+    if(HeadTranslations[countryCode]) return HeadTranslations[countryCode][s]
+    else return HeadTranslations['row'][s]
+}
 
 export const translate = (countryCode : string, key : string) => {
-    console.log(countryCode);
-    
-    return translation[countryCode]['translations'][key]
+    if(translation[countryCode]) return translation[countryCode]['translations'][key]
+    else return translation['row']['translations'][key]
 }

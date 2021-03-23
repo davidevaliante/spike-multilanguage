@@ -1,6 +1,6 @@
 
 import Head from 'next/head'
-import React, { FunctionComponent, useState, useEffect } from 'react'
+import React, { FunctionComponent, useState, useEffect, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import LatestVideoCard from '../../components/Cards/LatestVideoCard'
@@ -18,27 +18,34 @@ import AquaClient from '../../graphql/aquaClient'
 import { HOME } from '../../graphql/queries/home'
 import { Home } from '../../graphql/schema'
 import { appTheme } from '../../theme/theme'
-import { getUserCountryCode } from '../../utils/Utils'
+import { getUserCountryCode, isShallow, somethingIsUndefined, serverSideRedirect } from '../../utils/Utils'
 import LazyLoad from 'react-lazyload'
 import Icon from '../../components/Icons/Icon'
 import BonusCardRevealComponent from '../../components/Cards/BonusCardReveal'
+import { LocaleContext } from '../../context/LocaleContext'
+import { useRouter } from 'next/router'
 
 
 interface PageProps {
+    _shallow : boolean,
     _home: Home,
     _countryCode:string
 }
 
-const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
+const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _countryCode }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const [home, setHome] = useState<Home | undefined>(undefined)
-    const [countryCode, setCountryCode] = useState<string | undefined>(undefined)
-    const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [barSlots, setBarSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[] | undefined>(undefined)
+    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
+    const router = useRouter()
+
+
+    const [loading, setLoading] = useState(true)
+    const [home, setHome] = useState<Home>(_home)
+    const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map(s => s.slot))
+    const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[]>(_home.onlineSlots.slot.map(s => s.slot))
+    const [barSlots, setBarSlots] = useState<ApolloSlotCard[] | undefined>(_home.barSlots?.slot.map(s => s.slot))
+    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[] | undefined>(_home.vltSlots?.slot.map(s => s.slot))
+    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[] | undefined>(_home.bonuses.bonus.map(b => b.bonus))
 
     useEffect(() => {
         getCountryData()
@@ -46,7 +53,17 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
 
     const getCountryData = async () => {
         const userCountryCode = await getUserCountryCode()
-        if(userCountryCode !== 'it'){
+
+        // it should always be redirected to index
+        if(userCountryCode === 'it') router.push('/')
+
+        if(userCountryCode === _countryCode || _shallow){
+            setContextCountry(userCountryCode)
+            setLoading(false)
+            return
+        }
+
+        if(_countryCode !== 'row'){
             const homeDataRequest = await aquaClient.query({
                 query: HOME,
                 variables: { countryCode: userCountryCode}
@@ -55,7 +72,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
             if(homeDataRequest.data.data.homes[0]){
                 const homeData = homeDataRequest.data.data.homes[0] as Home
                 setHome(homeData)
-                setCountryCode(userCountryCode)
+                setContextCountry(userCountryCode)
                 setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
                 setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
                 setBarSlots(homeData.barSlots.slot.map(s => s.slot))
@@ -75,7 +92,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                 const rowVltSlots = homeData.vltSlots
 
                 setHome(homeData)
-                setCountryCode(userCountryCode)
+                setContextCountry(userCountryCode)
                 setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
                 setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
                 rowBarSlots && setBarSlots(rowBarSlots.slot.map(s => s.slot))
@@ -84,7 +101,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
             }   
         } else {
             setHome(_home)
-            setCountryCode(_countryCode)
+            setContextCountry(_countryCode)
             setProducerSlots(_home.producerSlots.slot.map(s => s.slot))
             setOnlineSlots(_home.onlineSlots.slot.map(s => s.slot))
             setBarSlots(_home.barSlots.slot.map(s => s.slot))
@@ -93,10 +110,8 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
         }
     }
 
-    const { t } = useTranslation()
 
-
-    if(!home || !countryCode || !producerSlots || !onlineSlots  || !bonusList) return <FullPageLoader />
+    if(loading) return <FullPageLoader />
     return <div>
         <Head>
             <title>{home.seo.seoTitle}</title>
@@ -107,13 +122,13 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
             </meta>
             <meta httpEquiv="content-language" content="it-IT"></meta>
             <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-            <meta property="og:locale" content={countryCode} />
+            <meta property="og:locale" content={contextCountry} />
             <meta property="og:type" content="article" />
             <meta property="og:description" content={home.seo?.seoDescription} />
             <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
         </Head>
 
-        <NavbarProvider currentPage='Home' countryCode={countryCode}>
+        <NavbarProvider currentPage='Home' countryCode={contextCountry}>
             {home.topArticle && <HomeHeader topArticle={home.topArticle}>SPIKE SLOT</HomeHeader>}
             <BodyContainer>
                 <MainColumn>
@@ -126,7 +141,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                             icon='/icons/slot_online_icon.svg'
                             buttonText={t('See the full list of Online Slots')}
                             buttonRoute={`/slots/[countryCode]`}
-                            buttonRouteAs={`/slots/${countryCode}`}
+                            buttonRouteAs={`/slots/${contextCountry}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.primary}
                             secondaryColor={appTheme.colors.primary} />
@@ -139,7 +154,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                             icon='/icons/slot_bar_icon.svg'
                             buttonText='See the full list of Bar Slots'
                             buttonRoute={`/slot-bar/[countryCode]`}
-                            buttonRouteAs={`/slot-bar/${countryCode}`}
+                            buttonRouteAs={`/slot-bar/${contextCountry}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.secondary}
                             secondaryColor={appTheme.colors.secondary} />
@@ -152,7 +167,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                             icon='/icons/slot_vlt_icon.svg'
                             buttonText='See the full list of VLT Slots'
                             buttonRoute={`/slot-vlt/[countryCode]`}
-                            buttonRouteAs={`/slot-vlt/${countryCode}`}
+                            buttonRouteAs={`/slot-vlt/${contextCountry}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.terziary}
                             secondaryColor={appTheme.colors.terziary} />
@@ -192,18 +207,25 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
     </div>
 }
 
-export async function getServerSideProps({req}) {
+export async function getServerSideProps({query, req, res}) {
   
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+
+    const {countryCode} = query
+    const shallow = req.query.shallow as boolean
+
+
     const data = await aquaClient.query({
         query: HOME,
-        variables: { countryCode: 'it'}
+        variables: { countryCode: countryCode}
     })
 
+    if(somethingIsUndefined([data.data.data.homes[0]])) serverSideRedirect(res,`/row`)
     return {
         props: {
+            _shallow : isShallow(countryCode, shallow),
             _home: data.data.data.homes[0] as Home,
-            _countryCode:'it'
+            _countryCode: countryCode
         }
     }
 }
@@ -215,16 +237,7 @@ const Provider = styled.div`
     }
 `
 
-const Text = styled.p`
-    line-height : 1.5rem;
-`
 
-const Header = styled.h1`
-    font-family : ${(props) => props.theme.text.secondaryFont};
-    font-size : 2rem;
-    padding : 2rem 0rem;
-    color : ${(props) => props.theme.colors.primary};
-`
 
 export default Index
 

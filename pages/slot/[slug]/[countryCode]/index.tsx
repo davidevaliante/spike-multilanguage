@@ -27,66 +27,64 @@ import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { useRouter }  from 'next/router'
 import {useTranslation} from 'react-i18next'
 import { countryContext } from '../../../../context/CountryContext'
+import { LocaleContext } from './../../../../context/LocaleContext';
+import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 
 interface PageProps extends NextPageContext {
-    slotData: Slot
-    bonusList: { bonus: ApolloBonusCardReveal }[],
-    countryCode:string
+    _shallow : boolean
+    _slotData: Slot
+    _bonusList: { bonus: ApolloBonusCardReveal }[],
+    _countryCode:string
 }
 
-const SlotPage: FunctionComponent<PageProps> = ({ slotData, bonusList,countryCode}) => {
+const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusList,_countryCode}) => {
     
-    const {t} = useTranslation()
+    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
 
-    const slot: Slot = slotData
+    useEffect(() => {
+        setContextCountry(_countryCode)
+        setLoading(false)
+    }, [])
 
-    const primaryBonus = slotData?.mainBonus
+    const [loading, setLoading] = useState(true)
+    const [slot, setSlot] = useState<Slot>(_slotData)
+    const [primaryBonus, setPrimaryBonus] = useState(_slotData.mainBonus)
+    const [auxiliaryBonuses, setAuxiliaryBonuses] = useState(_slotData?.bonuses.filter((b: Bonus) => b.name !== primaryBonus?.name))
 
-    const auxiliaryBonuses: Bonus[] = slot?.bonuses.filter((b: Bonus) => b.name !== primaryBonus?.name)
-
-    const [homeBonuses, setHomeBonuses] = useState<{ bonus: ApolloBonusCardReveal }[]>(bonusList)
+    const [homeBonuses, setHomeBonuses] = useState<{ bonus: ApolloBonusCardReveal }[]>(_bonusList)
 
     const [isPlaying, setIsPlaying] = useState(false)
 
     const [isPlayingMobile, setIsPlayingMobile] = useState(false)
 
-    const {currentCountry} = useContext(countryContext)
-
     const router  = useRouter()
 
     useEffect(() => {
-        // if current url of the page is not with existing country code then pass with only existing country code
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-
         if (isPlayingMobile) goFullScreen()
         else exitFullscreen()
-        
-    }, [isPlayingMobile,currentCountry])
+    }, [isPlayingMobile])
 
+    if(loading) return <FullPageLoader />
     return (
         <Fragment>
             <Head>
-                <title>{slotData?.seo ? `${slotData?.seo.seoTitle}` : `${slotData?.name} | SPIKE`}</title>
+                <title>{slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`}</title>
                 <meta
                     name="description"
-                    content={slotData?.seo ? `${slotData?.seo.seoDescription}` : `${slotData?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`}>
+                    content={slot?.seo ? `${slot?.seo.seoDescription}` : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`}>
                 </meta>
                 <meta httpEquiv="content-language" content="it-IT"></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
-                <meta property="og:image" content={slotData.image.url} />
+                <meta property="og:image" content={slot.image.url} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />
-                <meta property="og:description" content={slotData?.seo?.seoDescription} />
+                <meta property="og:description" content={slot?.seo?.seoDescription} />
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-                <meta property="article:tag" content={slotData?.seo?.seoTitle} />
+                <meta property="article:tag" content={slot?.seo?.seoTitle} />
             </Head>
 
             <FadeInOut visible={!isPlayingMobile}>
-                {!isPlayingMobile && <NavbarProvider currentPage={`/slot/${slotData?.name}`} countryCode={countryCode}>
+                {!isPlayingMobile && <NavbarProvider currentPage={`/slot/${slot?.name}`} countryCode={contextCountry}>
                     <Body>
                         <div>
                             <CustomBreadcrumbs
@@ -147,15 +145,15 @@ const SlotPage: FunctionComponent<PageProps> = ({ slotData, bonusList,countryCod
                                 </MainColumn>
                                 <RightColumn>
                                     <SlotMainFeatures
-                                        rtp={slotData?.rtp}
-                                        paymentMethods={slotData?.mainBonus?.acceptedPayments}
-                                        gameMode={slotData?.gameMode}
-                                        theme={slotData?.theme}
-                                        volatility={slotData?.volatility}
-                                        rating={slotData?.rating}
-                                        bonusName={slotData?.mainBonus?.name}
-                                        bonusLink={slotData?.mainBonus?.link}
-                                        winningSpinFrequency={slotData?.winningSpinFrequency}
+                                        rtp={slot?.rtp}
+                                        paymentMethods={slot?.mainBonus?.acceptedPayments}
+                                        gameMode={slot?.gameMode}
+                                        theme={slot?.theme}
+                                        volatility={slot?.volatility}
+                                        rating={slot?.rating}
+                                        bonusName={slot?.mainBonus?.name}
+                                        bonusLink={slot?.mainBonus?.link}
+                                        winningSpinFrequency={slot?.winningSpinFrequency}
                                     />
                                     <div style={{ top: '0', position: 'static' }} className='bonus-column-container'>
                                         {homeBonuses && homeBonuses.map(bo => <BonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />)}
@@ -311,9 +309,9 @@ export async function getServerSideProps({ query, res }) {
     return {
         props: {
             query,
-            slotData: response.data.data.slots[0],
-            bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
-            countryCode:country
+            _slotData: response.data.data.slots[0],
+            _bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
+            _countryCode:country
         }
     }
 }

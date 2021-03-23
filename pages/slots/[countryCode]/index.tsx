@@ -59,6 +59,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
 
     const router = useRouter()
 
+    const [loading, setLoading] = useState(true)
     const [initialSlots, setInitialSlots] = useState<AlgoliaSearchResult[]>(_initialSlots)
     const [slotList, setSlotList] = useState<AlgoliaSearchResult[]>(_initialSlots)
     const [slotLength, setSlotLength] = useState(_initialSlots.length)
@@ -70,6 +71,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
     useEffect(() => {
         if(_shallow){
             setContextCountry(_countryCode)
+            setLoading(false)
         }
         else getCountryData()
     }, [])
@@ -77,6 +79,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
     const getCountryData = async () => {
         const userCountryCode = await getUserCountryCode()
         if(userCountryCode !== _countryCode && _countryCode !== 'row'){
+
             const slotListResponse = await aquaClient.query({
                 query: PAGINATED_SLOTS,
                 variables: {
@@ -86,6 +89,11 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                     limit: 12
                 }
             })
+
+            if(slotListResponse.data.data.slots[0] !== undefined) {
+                router.push(`/slots/${userCountryCode}`)
+                return
+            }            
         
             let slotListResponseForCountry : any
 
@@ -158,9 +166,11 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
             setBonusList(bonusList_)
             setSlotListArticles(slotListArticles_)
             setHighlightSlot(highlightSlot_)
+            setLoading(false)
         
         } else {
             setContextCountry(_countryCode)
+            setLoading(false)
         }
     }
 
@@ -335,7 +345,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
 
     const goToProducer = (slug: string) => router.push(`/producer/${slug}/${contextCountry}`)
 
-    if(!contextCountry) return <FullPageLoader />
+    if(loading) return <FullPageLoader />
     return (
         <StyleProvider>
             <Head>
@@ -647,7 +657,6 @@ export async function getServerSideProps({ query, req, res }) {
     const bonusList = bonusListResponse.data.data.homes[0]?.bonuses.bonus
     const slotListArticles = slotListArticlesResponse.data.data.slotListArticles[0]
     const highlightSlot =  highlightSlotResponse.data.data.slot
-
 
     if(somethingIsUndefined([slotList, bonusList, slotListArticles, highlightSlot])) serverSideRedirect(res, '/slots/row')
     return {
