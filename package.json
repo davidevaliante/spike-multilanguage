@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "cross-env NODE_ENV=production next build",
     "analyze-bundle": "cross-env NODE_ENV=production ANALYZE=true next build",
-    "start": "cross-env NODE_ENV=production next start",
+    "start": "cross-env NODE_ENV=production next start -p 3066",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
