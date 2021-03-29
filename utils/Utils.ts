@@ -2,29 +2,19 @@ import snakeCase from 'lodash/snakeCase'
 import { appTheme } from '../theme/theme';
 import { formatDistanceToNow } from 'date-fns';
 import itaLocale from 'date-fns/locale/it'
-import Router from 'next/router'
 import { useRouter } from 'next/router'
-import publicIp from 'public-ip';
 import axios from 'axios'
 import upperCase  from 'lodash/upperCase';
-// export const removeHtmlFrom = (str) => {
-//     if ((str === null) || (str === '') || (str === undefined))
-//         return '';
-//     else
-//         str = str.toString();
-//     return he.decode(str.replace(/<[^>]*>/g, ''));
-// }
+import lowerCase from 'lodash/lowerCase'
 
 export const getUserCountryCode = async () => {
-    const userIp = await  publicIp.v4()
-    const geoLocation = await axios.get(`/api/user-country-code/${userIp}`)
-    const countryCode = geoLocation.data.countryCode.toLowerCase()
-
+    const geolocationRequest = await axios.get(process.env.NODE_ENV === 'development' ? 'https://api.ipgeolocation.io/ipgeo?apiKey=d9c8ca199b3f40fabc69dfdfefdc9aa2' : 'https://api.ipgeolocation.io/ipgeo')
+    const countryCode = lowerCase(geolocationRequest.data.country_code2)
+    
     return countryCode
 }
 
 export const isShallow = (countryCode : string | undefined, _shallow : boolean | string | undefined) => {
-    if(countryCode === 'row') return true
     if(_shallow == true || _shallow === 'true') return true
     if(_shallow == undefined) return null
 
@@ -36,8 +26,8 @@ export const somethingIsUndefined = (stuff : any[]) => {
     return false
 }
 
-export const serverSideRedirect = (res :any, location : string) => {
-    res.statusCode = 302
+export const serverSideRedirect = (res :any, location : string, status : number = 302) => {
+    res.statusCode = status
     res.setHeader('Location', location) // Replace <link> with your url link
     res.end()
 }

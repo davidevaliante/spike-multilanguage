@@ -6,33 +6,27 @@ import { Reset } from 'styled-reset'
 import Head from 'next/head'
 import { ThemeProvider as MaterialThemeProvider } from '@material-ui/core/styles'
 import { materialTheme } from './../theme/theme'
-import { useCountry } from '../hooks/useCountry'
-import { countryContext } from '../context/CountryContext'
 import 'react-multi-carousel/lib/styles.css'
 import 'video.js/dist/video-js.css'
 import { cookieContext } from '../context/CookieContext'
 import { useMyCookies } from '../hooks/useMyCookies'
-import '../data/i18n/i18n'
 import { LocaleContextProvider } from '../context/LocaleContext'
 
 const ContextProvider: FunctionComponent = ({ children }) => {
 
-    const currentCountry = useCountry()
     const cookieAcceptedStatus = useMyCookies()
 
     return (<Fragment>
         <LocaleContextProvider>
-            <countryContext.Provider value={currentCountry}>
                 <cookieContext.Provider value={cookieAcceptedStatus}>
                     {children}
                 </cookieContext.Provider>
-            </countryContext.Provider>
         </LocaleContextProvider>
     </Fragment>)
 }
 
 class MyApp extends App {
-    
+
     render() {
         const { Component, pageProps } = this.props
         return (

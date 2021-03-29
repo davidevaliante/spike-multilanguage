@@ -9,21 +9,21 @@ import Router from 'next/router'
 import { countryContext } from '../../context/CountryContext'
 import LazyLoad from 'react-lazyload'
 import LazyImage from '../Lazy/LazyImage'
+import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
     slotCardData: ApolloSlotCard
 }
 
 const SlotCardComponent: FunctionComponent<Props> = ({ slotCardData }) => {
-
-    const { currentCountry } = useContext(countryContext)
+    const {contextCountry} = useContext(LocaleContext)
 
     const { name, rating, slug } = slotCardData
 
     const fullStars = rating
 
     const goToSlotPage = () => {
-        Router.push(`/slot/${slug}/${currentCountry}`)
+        Router.push(`/slot/${slug}/${contextCountry}`)
     }
 
     const injectCdnOrFallback = (): string => {
@@ -45,14 +45,13 @@ const SlotCardComponent: FunctionComponent<Props> = ({ slotCardData }) => {
                 <div className='card-content'>
                     <h3>{name.toUpperCase()}</h3>
                     <div style={{ position: 'absolute', bottom: '0', width: '100%', }}>
-                        <FadeBorderButton href={`/slot/[slug]/[countryCode]`} as={`/slot/${slug}/${currentCountry}`} />
+                        <FadeBorderButton href={`/slot/[slug]/[countryCode]`} as={`/slot/${slug}/${contextCountry}`} />
                         <LazyLoad offset={100}>
                             <StarContainer>
                                 {[...Array(fullStars).keys()].map((s, i) => <img key={`${snakeCase(name)}_${i}_start_full`} alt='full_star_icon' className='star' src='/icons/star_full.svg' />)}
                                 {[...Array(5 - fullStars).keys()].map((s, i) => <img key={`${snakeCase(name)}_${i}_start_empty`} alt='empty_star_icon' className='star' src='/icons/star_empty.svg' />)}
                             </StarContainer>
                         </LazyLoad>
-
                     </div>
                 </div>
             </CardContainer>
@@ -89,9 +88,7 @@ const CardContainer = styled.div`
         width : 250px;
         height:140px;
     }
-
-   
-
+  
     h3{
         
         font-family : ${(props) => props.theme.text.secondaryFont};

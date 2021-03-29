@@ -5,6 +5,8 @@ import { translate } from "../translations/TranslationsUtils"
 interface LocaleContextInterface {
     contextCountry : string,
     setContextCountry : any,
+    userCountry : any,
+    setUserCountry : any,
     t : any
 }
 
@@ -12,6 +14,8 @@ interface LocaleContextInterface {
 export const LocaleContext = createContext<LocaleContextInterface>({
     contextCountry : 'it',
     setContextCountry : {},
+    userCountry : undefined,
+    setUserCountry : undefined,
     t : undefined
 })
 
@@ -19,17 +23,25 @@ export const LocaleContext = createContext<LocaleContextInterface>({
 export const LocaleContextProvider : FunctionComponent = ( props : any) => {
 
     const [country, setCountry] = useState('it')
+    const [_userCountry, set_userCountry] = useState('')
 
     useEffect(() => {
-        console.log(country)
-    }, [country])
+        console.log(_userCountry)
+    }, [_userCountry])
     
     const t = (key : string) => translate(country, key)
 
     const setContextCountry = (countryCode :string) => setCountry(countryCode)
+    const setUserCountry = (countryCode : string) => set_userCountry(countryCode)
 
     return(
-        <LocaleContext.Provider value={{contextCountry : country, setContextCountry, t}}>
+        <LocaleContext.Provider value={{
+            contextCountry : country, 
+            setContextCountry, 
+            t, 
+            userCountry : _userCountry,
+            setUserCountry
+        }}>
             {props.children}
         </LocaleContext.Provider>
     )

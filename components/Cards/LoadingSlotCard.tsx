@@ -66,8 +66,8 @@ const LoadingSlotCard: FunctionComponent<Props> = ({ slotName }) => {
                             <FadeBorderButton href={`/slot/[slug]/[countryCode]`} as={`/slot/${slotCardData.slug}/${currentCountry}`} />
                             <LazyLoad offset={100}>
                                 <StarContainer>
-                                    {[...Array(slotCardData.rating).keys()].map((s, i) => <img key={`${snakeCase(name)}_${i}_start_full`} alt='full_star_icon' className='star' src='/icons/star_full.svg' />)}
-                                    {[...Array(5 - slotCardData.rating).keys()].map((s, i) => <img key={`${snakeCase(name)}_${i}_start_empty`} alt='empty_star_icon' className='star' src='/icons/star_empty.svg' />)}
+                                    {[...Array(slotCardData.rating).keys()].map((s, i) => <img key={`${snakeCase(slotName)}_${i}_start_full`} alt='full_star_icon' className='star' src='/icons/star_full.svg' />)}
+                                    {[...Array(5 - slotCardData.rating).keys()].map((s, i) => <img key={`${snakeCase(slotName)}_${i}_start_empty`} alt='empty_star_icon' className='star' src='/icons/star_empty.svg' />)}
                                 </StarContainer>
                             </LazyLoad>
 

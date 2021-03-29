@@ -1,30 +1,26 @@
 import React, { useState, FunctionComponent, useEffect, useContext } from 'react'
 import styled from 'styled-components'
-import { appTheme, AppTheme } from '../../theme/theme';
-import SearchBox from './SearchBox';
-import { laptop, desktop } from './../Responsive/Breakpoints';
-import SearchInput from '../Input/SearchInput';
-import Link from 'next/link';
-import NavbarAams from '../Banners/NavbarAams';
-import Footer from '../Footer/Footer';
-import PushMenu from './Menu/PushMenu';
-import BurgerMenuIcon from './BurgerMenuIcon';
-import { SearchIndex } from 'algoliasearch';
-import delay from 'lodash/delay';
-import MobileSearchResults from './MobileSearchResults';
-import { AlgoliaSearchResult, Bonus, Home } from '../../graphql/schema';
-import FadeInOut from '../Ui/FadeInOut';
-import LazyImage from '../Lazy/LazyImage';
-import ExitBonuses from '../Lists/ExitBonuses';
-import AquaClient from '../../graphql/aquaClient';
-import { HOME } from '../../graphql/queries/home';
-import {  HomeSchemaWebSite, HomeSchemaOrganization } from '../Schema/Website';
+import { appTheme, AppTheme } from '../../theme/theme'
+import SearchBox from './SearchBox'
+import { laptop, desktop } from './../Responsive/Breakpoints'
+import SearchInput from '../Input/SearchInput'
+import Link from 'next/link'
+import NavbarAams from '../Banners/NavbarAams'
+import Footer from '../Footer/Footer'
+import PushMenu from './Menu/PushMenu'
+import BurgerMenuIcon from './BurgerMenuIcon'
+import { SearchIndex } from 'algoliasearch'
+import delay from 'lodash/delay'
+import MobileSearchResults from './MobileSearchResults'
+import { AlgoliaSearchResult } from '../../graphql/schema'
+import FadeInOut from '../Ui/FadeInOut'
+import LazyImage from '../Lazy/LazyImage'
+import {  HomeSchemaWebSite, HomeSchemaOrganization } from '../Schema/Website'
 import {useRouter} from 'next/router';
-import MultiLevelDropdown from '../MultiLevelDropdown/MultiLevelDropdown';
-import { cookieContext } from '../../context/CookieContext';
-import CookieDisclaimer from '../CookieDisclaimer/CookieDisclaimer';
-import { initializeAnalytics } from '../../analytics/base';
-import { useTranslation } from "react-i18next";
+import MultiLevelDropdown from '../MultiLevelDropdown/MultiLevelDropdown'
+import { cookieContext } from '../../context/CookieContext'
+import CookieDisclaimer from '../CookieDisclaimer/CookieDisclaimer'
+import { initializeAnalytics } from '../../analytics/base'
 import CountrySelect from './CountrySelect'
 import { LocaleContext } from '../../context/LocaleContext';
 
@@ -39,9 +35,6 @@ export interface NavbarPage {
     label: string
     link: string
 }
-
-
-
 
 
 const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen, currentPage, children,countryCode }) => {
@@ -85,33 +78,6 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     const [algoliaIndex, setAlgoliaIndex] = useState<SearchIndex | undefined>(undefined)
     const [searchOpen, setSearchOpen] = useState(false)
     const [searchTimerId, setSearchTimerId] = useState<number | undefined>(undefined)
-    const [exitBonuses, setExitBonuses] = useState<Bonus[] | undefined>(undefined)
-
-    const [selectedCountry, setSelectedCountry] = useState('')
-
-    const getExitBonuses = async () => {        
-        const aquaClient = new AquaClient()
-
-        const data = await aquaClient.query({
-            query: HOME,
-            variables: { countryCode: countryCode }
-        })
-
-        let data1:any
-
-        if (data.data.data.homes[0] == undefined) {
-            data1 = await aquaClient.query({
-            query: HOME,
-            variables: { countryCode: 'row'}
-        }) }
-
-        setExitBonuses(((data.data.data.homes[0]?data.data.data.homes[0]:data1.data.data.homes[0] as Home).bonuses?.bonus).map(b => b.bonus as Bonus))
-    }
-
-    useEffect(() => {
-        getExitBonuses()
-    }, [])
-
 
     const [searchValue, setSearchValue] = useState('')
 
@@ -250,9 +216,6 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         )
     }
 
-    const [showExitBonuses, setShowExitBonuses] = useState(false)
-
-    const handleUserAttemptingToExit = () => setShowExitBonuses(true)
 
     const InjectSchemaBasedOnCurrentPage = () => {
         if (currentPage === 'Home') {
@@ -266,13 +229,10 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         return <div></div>
     }
 
-    const handleCookieAccepted = () => {
-        updateCookiesAccepted(true)
-    }
+    const handleCookieAccepted = () => updateCookiesAccepted(true)
+    
 
-    const handleCookieRefused = () => {
-        updateCookiesAccepted(false)
-    }
+    const handleCookieRefused = () => updateCookiesAccepted(false)
 
     return <Wrapper currentPage={currentPage} style={{ background: '#fafafa' }}>
         <InjectSchemaBasedOnCurrentPage />
@@ -344,9 +304,6 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
             state={drawerOpen}>
             <FadeInOut visible={!searchOpen}>
                 <ChildrenWrapper style={{ background: 'white' }}>
-                    {showExitBonuses && exitBonuses && <ExitBonuses
-                        onClickOutside={() => setShowExitBonuses(false)}
-                        bonuses={exitBonuses.slice(0, 3)} />}
                     {children}
                 </ChildrenWrapper>
                 <Footer />
@@ -356,16 +313,6 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     </Wrapper>
 }
 
-const Dimmer = styled.div`
-    position : absolute;
-    background : rgba(0,0,0, 0.2);
-    width : 100%;
-    height : calc(100vh - 160px);
-    z-index : 99;
-    flex-grow : 1;
-    top : 160px;
-    transition : background .3s ease-in;
-`
 
 const ChildrenWrapper = styled.div`
     
@@ -384,6 +331,7 @@ const Wrapper = styled.div`
     flex-direction : column;
 
     background : ${(props: IWrapper) => props.currentPage === 'video' && '#3b3b3b'};
+    font-family : 'Raleway', sans-serif;
 `
 
 type NavbarWrapperProps = {
@@ -421,12 +369,6 @@ const SearchClosedContainer = styled.div`
     width : 100vw;
 `
 
-
-const SlotIcon = styled.img`
-    width : 60px;
-    height : 60px;
-    transform : rotate(-25deg);
-`
 
 
 // RESPONSIVE

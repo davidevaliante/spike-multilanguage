@@ -1,5 +1,5 @@
 import  HeadTranslations  from './HeadTranslations.json';
-import translation from './transaltions.json'
+import translation from './translations-strings.json'
 
 export const translateHeadString = (countryCode : string, s : string) => {
     if(HeadTranslations[countryCode]) return HeadTranslations[countryCode][s]

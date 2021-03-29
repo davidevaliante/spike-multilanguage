@@ -28,11 +28,14 @@ import SlideShow from '../../../components/SlideShow/SlideShow'
 import orderBy from 'lodash/orderBy'
 import { LocaleContext } from '../../../context/LocaleContext'
 import FullPageLoader from '../../../components/Layout/FullPageLoader'
+import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
+import ProducersList, { MainFiltersContainer, OptionalFiltersContainer, MoreFiltersWrapper, MoreFiltersList, MoreFiltersButton } from '../../../components/Lists/ProducersList'
+import CategoriesList from '../../../components/Lists/CategoriesList'
 
 interface Props {
     _shallow : boolean
     _initialSlots: AlgoliaSearchResult[]
-    _countryCode: string
+    _requestedCountryCode: string
     _slotListArticles: SlotListArticles
     _bonusList: { bonus: ApolloBonusCardReveal }[]
     _highlightSlot: ApolloSlotCard
@@ -45,12 +48,13 @@ interface SlotListArticles {
     bottomArticle: string | undefined
 }
 
-const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _countryCode, _slotListArticles, _highlightSlot,_producersQuery, _vltSlotListPage }) => {
+const automaticRedirect = false
 
-    console.log(_shallow)
+const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _requestedCountryCode, _slotListArticles, _highlightSlot,_producersQuery, _vltSlotListPage }) => {
+
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
     const router = useRouter() 
 
@@ -62,125 +66,47 @@ const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _
     const [producersQuery, setProducersQuery] = useState(_producersQuery)
     const [vltSlotListPage, setVltSlotListPage] = useState<VltSlotListPage | undefined>(_vltSlotListPage)
 
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
     useEffect(() => {
         if(_shallow){
-            setContextCountry(_countryCode)
+            setContextCountry(_requestedCountryCode)
             setLoading(false)
         }
         else getCountryData()
     }, [])
 
     const getCountryData = async () => {
-        const userCountryCode = await getUserCountryCode()
-        if(userCountryCode !== _countryCode && _countryCode !== 'row'){
-            const slotListResponse = await aquaClient.query({
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+
+
+        if(geoLocatedCountryCode !== _requestedCountryCode){
+            const userCountrySlotListResponse = await aquaClient.query({
                 query: PAGINATED_SLOTS,
                 variables: {
-                    countryCode: userCountryCode,
+                    countryCode: geoLocatedCountryCode,
                     sortingField: "created_at:DESC",
                     start: 0,
                     limit: 50,
                     type: 'vlt'
                 }
             })
-        
-            let slotListResponseData1 : any
-            if(slotListResponse.data.data.slots[0] === undefined){
-                slotListResponseData1 = await aquaClient.query({
-                    query: PAGINATED_SLOTS,
-                    variables: {
-                        countryCode: "row",
-                        sortingField: "created_at:DESC",
-                        start: 0,
-                        limit: 50,
-                        type: 'vlt'
-                    }
-                })
-                setContextCountry('row')
-            }
-        
-            const vltSlotListResponse = await aquaClient.query({
-                query: VLT_SLOT_LIST_BY_COUNTRY,
-                variables: {
-                    countryCode: userCountryCode
-                }
-            })
-        
-            let vltSlotListResponseData1 : any
-            if(vltSlotListResponse.data.data.vltSlotLists[0] === undefined){
-                vltSlotListResponseData1 = await aquaClient.query({
-                    query: VLT_SLOT_LIST_BY_COUNTRY,
-                    variables: {
-                        countryCode: "row"
-                    }
-                })
-            }    
-        
-            const bonusListResponse = await aquaClient.query({
-                query: HOME_BONUS_LIST,
-                variables: {
-                    countryCode: userCountryCode
-                }
-            })
-        
-            let bonusListResponseData1 : any
-            if(bonusListResponse.data.data.homes[0] === undefined){
-                bonusListResponseData1 = await aquaClient.query({
-                    query: HOME_BONUS_LIST,
-                    variables: {
-                        countryCode: "row"
-                    }
-                })
-            }
-        
-        
-            const slotListArticlesResponse = await aquaClient.query({
-                query: SLOT_LIST_ARTICLE_BY_COUNTRY,
-                variables: {
-                    countryCode: userCountryCode
-                }
-            })
-        
-            let slotListArticlesResponseData1 : any
-            if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
-                slotListArticlesResponseData1 = await aquaClient.query({
-                    query: SLOT_LIST_ARTICLE_BY_COUNTRY,
-                    variables: {
-                        countryCode: "row"
-                    }
-                })
-            }
-        
-            const producersQuery = await aquaClient.query({
-                query: PRODUCERS_BY_COUNTRY_DROPDOWN,
-                variables: {
-                    countryCode: userCountryCode
-                }
-            })
-        
-        
-            const slotList_ = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseData1.data.data.slots
-            const bonusList_ = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseData1.data.data.homes[0]?.bonuses.bonus
-            const slotListArticles_ = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
-            const vltSlotListPage_ = vltSlotListResponse.data.data.vltSlotLists.length > 0 ? vltSlotListResponse.data.data.vltSlotLists[0] : vltSlotListResponseData1.data.data.vltSlotLists
 
-            setSlotList(slotList_)
-            setBonusList(bonusList_)
-            setSlotListArticles(slotListArticles_)
-            setVltSlotListPage(vltSlotListPage_)
-            setLoading(false)
-        } else {
-            setContextCountry(_countryCode)
-            setLoading(false)
-        }        
+            if(userCountrySlotListResponse.data.data.slots !== undefined){
+                if(automaticRedirect){
+                    router.push(`/slot-vlt/${geoLocatedCountryCode}`)
+                    return
+                }
+                else setUserCountryEquivalentExists(true)
+            }
+            setContextCountry(_requestedCountryCode)           
+        }
+        setLoading(false)   
     }
 
     const [slotLength, setSlotLength] = useState(_initialSlots.length)
     const [slotList, setSlotList] = useState<AlgoliaSearchResult[] | undefined>(_initialSlots)
-
-    useEffect(() => {
-        slotList && setSlotLength(slotList?.length)
-    }, [slotList])
 
     // search
     const [algoliaIndex, setAlgoliaIndex] = useState<SearchIndex | undefined>(undefined)
@@ -308,12 +234,6 @@ const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _
         }
     }
 
-    const goToProducer = (slug: string) => {
-        router.push(`/producer/${slug}/${contextCountry}`)
-    }
-
-    console.log(vltSlotListPage, 'page')
-
     if(loading) return <FullPageLoader />
     return (
         <StyleProvider>
@@ -336,6 +256,7 @@ const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _
             <NavbarProvider currentPage={`/slot-vlt-list`} countryCode={contextCountry}>
                 <BodyContainer>
                     <MainColumn>
+                        {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/slot-vlt/${userCountry}`} />}
 
                         <CustomBreadcrumbs
                             style={{ padding: '1rem .5rem' }}
@@ -380,19 +301,17 @@ const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _
                                                     {t("Categories")}
                                                 </h4>
                                             </div>}
+                                            
                                         {showMoreFilter && <div>
-                                            <div
-                                                style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'start', alignItems: 'flex-start' }}>
-                                                {producers && showProducers && producers.map(p => <h1
-                                                    key={p.name}
-                                                    onClick={() => goToProducer(p.slug)}
-                                                    className='hollow-button'>
-                                                    {p.name}
-                                                </h1>)}
-                                            </div>
-                                            <div style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'start', alignItems: 'flex-start' }}>
-                                                {categories && showCategories && categories.map(c => <h1 key={c} className='hollow-button-cyan'>{c}</h1>)}
-                                            </div>
+                                            <ProducersList 
+                                                showMoreFilter={showMoreFilter}
+                                                showProducers={showProducers}
+                                                producers={producers}/>
+
+                                            <CategoriesList 
+                                                categories={categories}
+                                                showCategories={showCategories}
+                                            />
                                         </div>}
                                     </MoreFiltersList>
                                 </MoreFiltersWrapper>
@@ -424,183 +343,12 @@ const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _
     )
 }
 
-const StyleProvider = styled.div`
-   .hollow-button{
-       cursor : pointer;
-       color : white;
-       padding : .5rem 1rem;
-       margin : .5rem .3rem;
-       border : 2px solid #f2a20c;
-       border-radius : 36px;
-       transition : all .3s ease-in-out;
-       background : ${(props) => props.theme.colors.yellowDark};
-       box-shadow: 10px 10px 5px -5px rgba(0,0,0,0.1);
 
-       :hover {
-         color : white-space;
-         border : 2px solid ${(props) => props.theme.colors.primaryDark};
-         background : ${(props) => props.theme.colors.primary};
-         color : white;
-       }
-   }
-
-   .hollow-button-cyan{
-       cursor : pointer;
-       color : black;
-       padding : .5rem 1rem;
-       margin : .5rem .3rem;
-       border : 2px solid #1e8ef7;
-       border-radius : 36px;
-       transition : all .3s ease-in-out;
-       background : #0cebf2;
-       box-shadow: 10px 10px 5px -5px rgba(0,0,0,0.1);
-
-       :hover {
-         color : white-space;
-         border : 2px solid #0cebf2;
-         background : #1e8ef7;
-         color : white;
-       }
-   }
-`
-
-const FiltersContainer = styled.div`
-`
-
-const OptionalFiltersContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin-top:1rem;
-    padding : 0rem 1rem;
-`
-
-interface MoreFiltersWrapper {
-    isOpen: boolean
-}
-
-const MoreFiltersWrapper = styled.div`
-    max-height : ${(props: MoreFiltersWrapper) => props.isOpen ? '3000px' : '0px'};
-    transition : max-height .7s ease-in-out;
-    display : flex;
-    width:100%;
-    flex-direction : column;
-`
-
-const MoreFiltersList = styled.div`
-    display  :flex;
-    flex-direction : column;
-    align-items:center;
-   
-    h4{
-        cursor : pointer;
-        user-select : none;
-        background : ${(props) => props.theme.colors.primary};
-        color : white;
-        text-align :center;
-        padding : 1rem 3rem;
-        border-radius : 6px;
-        transition : all .3s ease-in;
-        margin-bottom : 1rem;
-        width : 250px;
-        border : 3px solid ${(props) => props.theme.colors.primary};
-
-        :hover {
-            background : ${(props) => props.theme.colors.primaryDark};
-        }        
-    }
-
-    .selected{
-        cursor : pointer;
-        user-select : none;
-        background : ${(props) => props.theme.colors.primaryDark};
-        color : white;
-        text-align :center;
-        padding : 1rem 3rem;
-        border-radius : 6px;
-        transition : all .3s ease-in;
-        margin-bottom : 1rem;
-        width : 250px;
-        border : 3px solid ${(props) => props.theme.colors.yellow};
-
-        :hover {
-            background : ${(props) => props.theme.colors.primaryDark};
-        }       
-    }
-`
-
-const MoreFiltersButton = styled.div`
-    cursor : pointer;
-    display : flex;
-    justify-content : center;
-    align-items: center;
-    -webkit-tap-highlight-color:transparent;
-
-    h3{
-        text-align : center;
-        color : ${(props) => props.theme.colors.primary};
-        font-size : 85%;
-    }
-    
-    img{
-        margin-left:1rem;
-        width  :16px;
-        height : 16px;
-    }
-`
-
-const MainFiltersContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap;
-    justify-content : center;
-
-    span{
-        font-size : .8rem;
-    }
-
-    ${laptop}{
-        justify-content : space-between;
-    }
-`
-
-const SlotListContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap;
-    border-radius : 4px;
-    background : #f5f5f5;
-    justify-content : center;
-    padding : 1rem;
-    margin : 1.4rem;  
-`
-
-const MarkDownStyleProvider = styled.div`
-    margin-bottom : 1rem;
-
-    h1{
-        color : ${(props) => props.theme.colors.primary};
-        font-family : ${(props) => props.theme.text.secondaryFont};
-        padding : 1rem 1.4rem;
-        font-size : 1.5rem;
-        line-height: 1.9rem;
-    }
-
-    p{
-        padding : 0rem 1.4rem;
-        line-height: 1.4rem;
-    }
-
-    a{
-        color : ${(props) => props.theme.colors.fifth};
-        font-family : ${(props) => props.theme.text.secondaryFont};
-    }
-`
 
 export async function getServerSideProps({ query, req, res }) {
 
     const shallow = req.query.shallow as boolean
-    console.log(req.query)
-    console.log(shallow, 'shallow')
+
     const country = query.countryCode as string
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
@@ -615,36 +363,12 @@ export async function getServerSideProps({ query, req, res }) {
         }
     })
 
-    let slotListResponseData1 : any
-    if(slotListResponse.data.data.slots[0] === undefined){
-        slotListResponseData1 = await aquaClient.query({
-            query: PAGINATED_SLOTS,
-            variables: {
-                countryCode: "row",
-                sortingField: "created_at:DESC",
-                start: 0,
-                limit: 50,
-                type: 'vlt'
-            }
-        })
-    }
-
     const vltSlotListResponse = await aquaClient.query({
         query: VLT_SLOT_LIST_BY_COUNTRY,
         variables: {
             countryCode: country
         }
     })
-
-    let vltSlotListResponseData1 : any
-    if(vltSlotListResponse.data.data.vltSlotLists[0] === undefined){
-        vltSlotListResponseData1 = await aquaClient.query({
-            query: VLT_SLOT_LIST_BY_COUNTRY,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }    
 
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
@@ -653,33 +377,12 @@ export async function getServerSideProps({ query, req, res }) {
         }
     })
 
-    let bonusListResponseData1 : any
-    if(bonusListResponse.data.data.homes[0] === undefined){
-        bonusListResponseData1 = await aquaClient.query({
-            query: HOME_BONUS_LIST,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
-
-
     const slotListArticlesResponse = await aquaClient.query({
         query: SLOT_LIST_ARTICLE_BY_COUNTRY,
         variables: {
             countryCode: country
         }
     })
-
-    let slotListArticlesResponseData1 : any
-    if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
-        slotListArticlesResponseData1 = await aquaClient.query({
-            query: SLOT_LIST_ARTICLE_BY_COUNTRY,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
 
     const producersQuery = await aquaClient.query({
         query: PRODUCERS_BY_COUNTRY_DROPDOWN,
@@ -689,24 +392,31 @@ export async function getServerSideProps({ query, req, res }) {
     })
 
 
-    const slotList = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseData1.data.data.slots
-    const bonusList = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseData1.data.data.homes[0]?.bonuses.bonus
-    const slotListArticles = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
-    const vltSlotListPage = vltSlotListResponse.data.data.vltSlotLists.length > 0 ? vltSlotListResponse.data.data.vltSlotLists[0] : vltSlotListResponseData1.data.data.vltSlotLists
+    const slotList = slotListResponse.data.data.slots
+    const bonusList = bonusListResponse.data.data.homes[0]?.bonuses.bonus
+    const slotListArticles = slotListArticlesResponse.data.data.slotListArticles[0]
+    const vltSlotListPage = vltSlotListResponse.data.data.vltSlotLists[0]
 
 
-    if(somethingIsUndefined([slotList, bonusList, slotListArticles, vltSlotListPage])) serverSideRedirect(res, '/slot-vlt/row')
+    if(somethingIsUndefined([slotList, bonusList, slotListArticles, vltSlotListPage])) serverSideRedirect(res, '/')
     return {
         props: {
             _shallow : isShallow(country, shallow),
             _initialSlots: slotList,
             _slotListArticles: slotListArticles,
             _bonusList: bonusList,
-            _countryCode: country,
+            _requestedCountryCode: country,
             _vltSlotListPage: vltSlotListPage,
             _producersQuery:producersQuery.data.data.producers
         }
     }
 }
+
+const StyleProvider = styled.div`
+  
+`
+
+const FiltersContainer = styled.div`
+`
 
 export default Slots

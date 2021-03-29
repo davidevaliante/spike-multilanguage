@@ -11,35 +11,35 @@ import { buildContentLanguageString, getCanonicalPath, getUserCountryCode, injec
 import { SearchIndex } from 'algoliasearch'
 import SlotListSearchInput from '../../../components/Search/SlotListSearch'
 import delay from 'lodash/delay'
-import { countryContext } from '../../../context/CountryContext'
 import { PRODUCERS_BY_COUNTRY_DROPDOWN } from '../../../graphql/queries/producers'
 import ApolloBonusCardRevealComponent from '../../../components/Cards/BonusCardReveal'
 import { HOME_BONUS_LIST } from '../../../graphql/queries/bonus'
 import { ApolloBonusCardReveal } from '../../../data/models/Bonus'
 import SlotListOrdering from '../../../components/Singles/SlotListOrdering'
-import { laptop } from '../../../components/Responsive/Breakpoints'
 import { ApolloSlotCard } from '../../../data/models/Slot'
 import SlotListHighlightSlot from '../../../components/Cards/SlotListHighlightSlot'
-import {Router, useRouter} from 'next/router'
+import {useRouter} from 'next/router'
 import SlotList from '../../../components/Lists/SlotList'
 import LoadMoreButton from '../../../components/Buttons/LoadMoreButton'
 import ArticleToMarkdown from '../../../components/Markdown/ArticleToMarkdown'
 import Head from 'next/head'
-import {useTranslation} from 'react-i18next'
 import usePrevious from '../../../hooks/usePrevious'
 import FullPageLoader from '../../../components/Layout/FullPageLoader'
 import { translateHeadString } from '../../../translations/TranslationsUtils'
 import { LocaleContext } from '../../../context/LocaleContext'
-import i18n from '../../../data/i18n/i18n'
+import ProducersList, { OptionalFiltersContainer, MainFiltersContainer, MoreFiltersWrapper, MoreFiltersList, MoreFiltersButton } from '../../../components/Lists/ProducersList'
+import CategoriesList from '../../../components/Lists/CategoriesList'
+import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
 
 interface Props {
     _shallow : boolean
     _initialSlots: AlgoliaSearchResult[]
-    _countryCode: string
     _slotListArticles: SlotListArticles
     _bonusList: { bonus: ApolloBonusCardReveal }[]
-    _highlightSlot: ApolloSlotCard,
+    _highlightSlot: ApolloSlotCard
     _producersQuery:any
+    _requestedCountryCode:string
+
 }
 
 interface SlotListArticles {
@@ -47,7 +47,9 @@ interface SlotListArticles {
     bottomArticle: string | undefined
 }
 
-const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, _countryCode, _slotListArticles, _highlightSlot, _producersQuery }) => {
+const automaticRedirect = false
+
+const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, _slotListArticles, _highlightSlot, _producersQuery, _requestedCountryCode }) => {
 
     console.log(_shallow, 'shallow')
 
@@ -55,7 +57,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
 
-    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
     const router = useRouter()
 
@@ -68,115 +70,44 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
     const [highlightSlot, setHighlightSlot] = useState<ApolloSlotCard>(_highlightSlot)
     const [producersQuery, setProducersQuery] = useState(_producersQuery)
 
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
     useEffect(() => {
         if(_shallow){
-            setContextCountry(_countryCode)
+            setContextCountry(_requestedCountryCode)
             setLoading(false)
         }
         else getCountryData()
     }, [])
 
     const getCountryData = async () => {
-        const userCountryCode = await getUserCountryCode()
-        if(userCountryCode !== _countryCode && _countryCode !== 'row'){
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
 
-            const slotListResponse = await aquaClient.query({
+        if(geoLocatedCountryCode !== _requestedCountryCode){
+            const userCountrySlotListRequest = await aquaClient.query({
                 query: PAGINATED_SLOTS,
                 variables: {
-                    countryCode: userCountryCode,
+                    countryCode: geoLocatedCountryCode,
                     sortingField: "created_at:DESC",
                     start: 0,
                     limit: 12
                 }
             })
 
-            if(slotListResponse.data.data.slots[0] !== undefined) {
-                router.push(`/slots/${userCountryCode}`)
-                return
-            }            
-        
-            let slotListResponseForCountry : any
-
-            if(slotListResponse.data.data.slots[0] === undefined){
-                slotListResponseForCountry = await aquaClient.query({
-                    query: PAGINATED_SLOTS,
-                    variables: {
-                        countryCode: 'row',
-                        sortingField: 'created_at:DESC',
-                        start: 0,
-                        limit: 12
-                    }
-                })
-                setContextCountry('row')
-            }
-             
-            const bonusListResponse = await aquaClient.query({
-                query: HOME_BONUS_LIST,
-                variables: {
-                    countryCode: userCountryCode
+            if(userCountrySlotListRequest.data.data.slots !== undefined){
+                if(automaticRedirect){
+                    router.push(`/slots/${geoLocatedCountryCode}`)
+                    return
                 }
-            })
-        
-            let bonusListResponseForCountry : any
-            if(bonusListResponse.data.data.homes[0] === undefined){
-                bonusListResponseForCountry = await aquaClient.query({
-                    query: HOME_BONUS_LIST,
-                    variables: {
-                        countryCode: 'row'
-                    }
-                })
+                else setUserCountryEquivalentExists(true)
             }
-        
-            const slotListArticlesResponse = await aquaClient.query({
-                query: SLOT_LIST_ARTICLE_BY_COUNTRY,
-                variables: {
-                    countryCode: userCountryCode
-                }
-            })
-        
-            let slotListArticlesResponseData1 : any
-            if(slotListArticlesResponse.data.data.slotListArticles[0] === undefined){
-                slotListArticlesResponseData1 = await aquaClient.query({
-                    query: SLOT_LIST_ARTICLE_BY_COUNTRY,
-                    variables: {
-                        countryCode: "row"
-                    }
-                })
-            }
-
-            //TODO non c'è bisogno di questa chiamata, meglio l'hard coding dsella slot in evidenza
-            const highlightSlotResponse = await aquaClient.query({
-                query: HIGHLIGHT_SLOT,
-                variables: {}
-            })
-        
-            const producersQuery = await aquaClient.query({
-                query: PRODUCERS_BY_COUNTRY_DROPDOWN,
-                variables: {
-                    countryCode: userCountryCode
-                }
-            })
-        
-            const slotList_ = slotListResponse.data.data.slots.length > 0 ? slotListResponse.data.data.slots : slotListResponseForCountry.data.data.slots
-            const bonusList_ = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseForCountry.data.data.homes[0]?.bonuses.bonus
-            const slotListArticles_ = slotListArticlesResponse.data.data.slotListArticles.length > 0 ? slotListArticlesResponse.data.data.slotListArticles[0] : slotListArticlesResponseData1.data.data.slotListArticles[0]
-            const highlightSlot_ =  highlightSlotResponse.data.data.slot
-
-            setSlotList(slotList_)
-            setBonusList(bonusList_)
-            setSlotListArticles(slotListArticles_)
-            setHighlightSlot(highlightSlot_)
-            setLoading(false)
-        
-        } else {
-            setContextCountry(_countryCode)
-            setLoading(false)
+            setContextCountry(_requestedCountryCode)           
         }
+
+        setLoading(false)
     }
 
-    useEffect(() => {
-        slotList && setSlotLength(slotList?.length)
-    }, [slotList])
 
     // search
     const [algoliaIndex, setAlgoliaIndex] = useState<SearchIndex | undefined>(undefined)
@@ -210,7 +141,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
         else setShowSearchHasNoResults(false)
     }, [searchValue, searchResults])
 
-    // ordinamento
+    // slot ordering
     const [ordering, setOrdering] = useState<'date' | 'alphabetical' | 'rating'>('date')
     const prevOrdering = usePrevious(ordering)
 
@@ -218,7 +149,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
         if (prevOrdering !== undefined && ordering !== prevOrdering) getInitalOrderedBatch(ordering)
     }, [ordering])
 
-    // filtri
+    // filters
     const [showMoreFilter, setShowMoreFilter] = useState(false)
     const [categories, setCategories] = useState<any>(undefined)
     const [producers, setProducers] = useState<Producer[] | undefined>(undefined)
@@ -230,7 +161,6 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
     const [showProducers, setShowProducers] = useState(false)
     const [showCategories, setShowCategories] = useState(false)
 
-    // funzioni
     const getInitalOrderedBatch = async (ordering: 'date' | 'alphabetical' | 'rating') => {
         let orderingString: string = "created_at:DESC"
         if (ordering === 'alphabetical') orderingString = "name:ASC"
@@ -343,8 +273,6 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
         }
     }
 
-    const goToProducer = (slug: string) => router.push(`/producer/${slug}/${contextCountry}`)
-
     if(loading) return <FullPageLoader />
     return (
         <StyleProvider>
@@ -365,8 +293,8 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
 
             <NavbarProvider currentPage='/slot-list' countryCode={contextCountry}>
                 <BodyContainer>
+                    {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/slots/${userCountry}`} />}
                     <MainColumn>
-
                         <CustomBreadcrumbs
                             style={{ 
                                 padding: '1rem .5rem' 
@@ -416,21 +344,17 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                                                     {t("Categories")}
                                                 </h4>
                                             </div>}
+                                            
                                         {showMoreFilter && <div>
-                                            <div
-                                                style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'start', alignItems: 'flex-start' }}>
-                                                {producers && showProducers && producers.map(p => <h1
-                                                    key={p.name}
-                                                    onClick={() => goToProducer(p.slug)}
-                                                    className='hollow-button'>
-                                                    {p.name}
-                                                </h1>)}
-                                            </div>
+                                            <ProducersList 
+                                                showMoreFilter={showMoreFilter}
+                                                showProducers={showProducers}
+                                                producers={producers}/>
 
-
-                                            <div style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'start', alignItems: 'flex-start' }}>
-                                                {categories && showCategories && categories.map(c => <h1 key={c} className='hollow-button-cyan'>{c}</h1>)}
-                                            </div>
+                                            <CategoriesList 
+                                                categories={categories}
+                                                showCategories={showCategories}
+                                            />
                                         </div>}
                                     </MoreFiltersList>
                                 </MoreFiltersWrapper>
@@ -466,148 +390,6 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
         </StyleProvider>
     )
 }
-
-const StyleProvider = styled.div`
-   .hollow-button{
-       cursor : pointer;
-       color : white;
-       padding : .5rem 1rem;
-       margin : .5rem .3rem;
-       border : 2px solid #f2a20c;
-       border-radius : 36px;
-       transition : all .3s ease-in-out;
-       background : ${(props) => props.theme.colors.yellowDark};
-       box-shadow: 10px 10px 5px -5px rgba(0,0,0,0.1);
-
-       :hover {
-         color : white-space;
-         border : 2px solid ${(props) => props.theme.colors.primaryDark};
-         background : ${(props) => props.theme.colors.primary};
-         color : white;
-       }
-   }
-
-   .hollow-button-cyan{
-       cursor : pointer;
-       color : black;
-       padding : .5rem 1rem;
-       margin : .5rem .3rem;
-       border : 2px solid #1e8ef7;
-       border-radius : 36px;
-       transition : all .3s ease-in-out;
-       background : #0cebf2;
-       box-shadow: 10px 10px 5px -5px rgba(0,0,0,0.1);
-
-       :hover {
-         color : white-space;
-         border : 2px solid #0cebf2;
-         background : #1e8ef7;
-         color : white;
-       }
-   }
-`
-
-const FiltersContainer = styled.div`
-`
-
-const OptionalFiltersContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin-top:1rem;
-    padding : 0rem 1rem;
-`
-
-interface MoreFiltersWrapper {
-    isOpen: boolean
-}
-
-const MoreFiltersWrapper = styled.div`
-    max-height : ${(props: MoreFiltersWrapper) => props.isOpen ? '3000px' : '0px'};
-    transition : max-height .7s ease-in-out;
-    display : flex;
-    width:100%;
-    flex-direction : column;
-`
-
-const MoreFiltersList = styled.div`
-    display  :flex;
-    flex-direction : column;
-    align-items:center;
-   
-
-    h4{
-        cursor : pointer;
-        user-select : none;
-        background : ${(props) => props.theme.colors.primary};
-        color : white;
-        text-align :center;
-        padding : 1rem 3rem;
-        border-radius : 6px;
-        transition : all .3s ease-in;
-        margin-bottom : 1rem;
-        width : 250px;
-        border : 3px solid ${(props) => props.theme.colors.primary};
-
-        :hover {
-            background : ${(props) => props.theme.colors.primaryDark};
-        }        
-    }
-
-    .selected{
-        cursor : pointer;
-        user-select : none;
-        background : ${(props) => props.theme.colors.primaryDark};
-        color : white;
-        text-align :center;
-        padding : 1rem 3rem;
-        border-radius : 6px;
-        transition : all .3s ease-in;
-        margin-bottom : 1rem;
-        width : 250px;
-        border : 3px solid ${(props) => props.theme.colors.yellow};
-
-        :hover {
-            background : ${(props) => props.theme.colors.primaryDark};
-        }       
-    }
-`
-
-const MoreFiltersButton = styled.div`
-    cursor : pointer;
-    display : flex;
-    justify-content : center;
-    align-items: center;
-    -webkit-tap-highlight-color:transparent;
-
-    h3{
-        text-align : center;
-        color : ${(props) => props.theme.colors.primary};
-        font-size : 85%;
-    }
-    
-    img{
-        margin-left:1rem;
-        width  :16px;
-        height : 16px;
-    }
-`
-
-const MainFiltersContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap;
-    justify-content : center;
-
-    span{
-        font-size : .8rem;
-    }
-
-    ${laptop}{
-        justify-content : space-between;
-    }
-`
-
 
 export async function getServerSideProps({ query, req, res }) {
 
@@ -665,11 +447,18 @@ export async function getServerSideProps({ query, req, res }) {
             _initialSlots: slotList,
             _slotListArticles: slotListArticles,
             _bonusList: bonusList,
-            _countryCode: country,
             _highlightSlot : highlightSlot,
-            _producersQuery:producersQuery.data.data.producers
+            _producersQuery:producersQuery.data.data.producers,
+            _requestedCountryCode : country
         }
     }
 }
+
+const StyleProvider = styled.div`
+
+`
+
+const FiltersContainer = styled.div`
+`
 
 export default Slots

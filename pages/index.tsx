@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useContext, useState, useEffect } from 'react'
-import styled from 'styled-components'
 import NavbarProvider from '../components/Navbar/NavbarProvider'
 import HomeHeader from './../components/Home/HomeHeader'
 import { appTheme } from './../theme/theme'
@@ -15,57 +14,77 @@ import AquaClient from './../graphql/aquaClient'
 import { BodyContainer, MainColumn, RightColumn } from '../components/Layout/Layout'
 import { HOME } from '../graphql/queries/home'
 import ArticleToMarkdown from '../components/Markdown/ArticleToMarkdown'
-import { useTranslation } from "react-i18next";
 import { OnlyMobile } from '../components/Responsive/Only'
 import FullPageLoader from '../components/Layout/FullPageLoader'
 import { ApolloSlotCard } from '../data/models/Slot'
 import { ApolloBonusCardReveal } from '../data/models/Bonus'
 import { getUserCountryCode } from '../utils/Utils'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { LocaleContext } from '../context/LocaleContext'
+import Newsletter from '../components/Newsletter/Newsletter'
+import CountryEquivalentPageSnackbar from '../components/Snackbars/CountryEquivalentPageSnackbar'
+import { GetStaticPaths } from 'next'
 
 interface PageProps {
-    _home: Home,
-    _countryCode:string
+    _shallow : boolean
+    _home: Home
 }
 
-const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
-    const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+const automaticRedirect = false
+
+const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const router = useRouter()
 
-    const [home, setHome] = useState<Home | undefined>(undefined)
-    const [countryCode, setCountryCode] = useState<string | undefined>(undefined)
-    const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [barSlots, setBarSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[] | undefined>(undefined)
-    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[] | undefined>(undefined)
+    const [loading, setLoading] = useState(true)
+    const [home, setHome] = useState<Home>(_home)
+    const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map(s => s.slot))
+    const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[]>(_home.onlineSlots.slot.map(s => s.slot))
+    const [barSlots, setBarSlots] = useState<ApolloSlotCard[]>(_home.barSlots.slot.map(s => s.slot))
+    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[]>(_home.vltSlots.slot.map(s => s.slot))
+    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[]>(_home.bonuses.bonus.map(b => b.bonus))
+
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
 
     useEffect(() => {
-        getCountryData()
+        if(_shallow){
+            setContextCountry('it')
+            setLoading(false)
+        }
+        else getCountryData()
     }, [])
 
     const getCountryData = async () => {
-        const userCountryCode = await getUserCountryCode()
-        if(userCountryCode === 'it'){
-            // if the user is from Italy we stay on the same page and use the server side fetched data
-            setHome(_home)
-            setCountryCode(_countryCode)
-            setProducerSlots(_home.producerSlots.slot.map(s => s.slot))
-            setOnlineSlots(_home.onlineSlots.slot.map(s => s.slot))
-            setBarSlots(_home.barSlots.slot.map(s => s.slot))
-            setVltSlots(_home.vltSlots.slot.map(s => s.slot))
-            setBonusList(_home.bonuses.bonus.map(b => b.bonus))
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+
+        if(geoLocatedCountryCode !== 'it'){
+            const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+            const homeData = await aquaClient.query({
+                query: HOME,
+                variables: { countryCode: geoLocatedCountryCode}
+            })
+
+            if(homeData.data.data.homes[0]){
+                if(automaticRedirect) {
+                    router.push(`/${geoLocatedCountryCode}`)
+                    return
+                } else {
+                    setUserCountryEquivalentExists(true)
+                    setContextCountry('it')
+                }
+            }
         } else {
-            // otherwise we redirect to /[countryCode] route
-            router.push(`/${userCountryCode}`)
+            setContextCountry('it')
         }
+
+        setLoading(false)
     }
 
-    const { t } = useContext(LocaleContext)
 
-    if(!home || !countryCode || !producerSlots || !onlineSlots  || !bonusList) return <FullPageLoader />
+    if(loading) return <FullPageLoader />
     return <div>
         <Head>
             <title>{home.seo.seoTitle}</title>
@@ -82,20 +101,21 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
             <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
         </Head>
 
-        <NavbarProvider currentPage='Home' countryCode={countryCode}>
+        <NavbarProvider currentPage='Home' countryCode={contextCountry}>
             {home.topArticle && <HomeHeader topArticle={home.topArticle}>SPIKE SLOT</HomeHeader>}
             <BodyContainer>
+                {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/${userCountry}`} />}
                 <MainColumn>
                     {producerSlots && <HighlightProducerSlideShow producerSlots={producerSlots} />}
 
                     <LazyLoad height={450} once>
                         <SlideShow
                             apolloSlotCards={onlineSlots.filter(s => s.image !== undefined)}
-                            title='The Online Slots of the moment'
+                            title={t('The Online Slots of the moment')}
                             icon='/icons/slot_online_icon.svg'
                             buttonText={t('See the full list of Online Slots')}
                             buttonRoute={`/slots/[countryCode]`}
-                            buttonRouteAs={`/slots/${countryCode}`}
+                            buttonRouteAs={`/slots/${contextCountry}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.primary}
                             secondaryColor={appTheme.colors.primary} />
@@ -108,7 +128,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                             icon='/icons/slot_bar_icon.svg'
                             buttonText='See the full list of Bar Slots'
                             buttonRoute={`/slot-bar/[countryCode]`}
-                            buttonRouteAs={`/slot-bar/${countryCode}`}
+                            buttonRouteAs={`/slot-bar/${contextCountry}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.secondary}
                             secondaryColor={appTheme.colors.secondary} />
@@ -121,7 +141,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                             icon='/icons/slot_vlt_icon.svg'
                             buttonText='See the full list of VLT Slots'
                             buttonRoute={`/slot-vlt/[countryCode]`}
-                            buttonRouteAs={`/slot-vlt/${countryCode}`}
+                            buttonRouteAs={`/slot-vlt/${contextCountry}`}
                             style={{ marginTop: '2rem' }}
                             mainColor={appTheme.colors.terziary}
                             secondaryColor={appTheme.colors.terziary} />
@@ -142,9 +162,7 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
 
                     <LatestVideoCard />
 
-                    <Provider>
-                    <iframe className={'sib-form'} width="500" height='600' src="https://c4236f72.sibforms.com/serve/MUIEAH9KaDzyuXi3daFo5LJ-0Y8EBDFsdQ4PEXaF5c2P0bghKc__0xqGLS0G0XL8lniYtTnyPiKPyLC83CM8ZBLDOXTAN-bf4nijExyd1yBXjXAA-NJkOY7xTU9w6r_z0HxnnmewgVrYVdcJzKPZKou9FTgwc957psJ189mbdwRfqj70JyPvJRtFhaizXBR87WKEjHI5tVbE9rb5" frameBorder="0" scrolling="auto" allowFullScreen style={{display: 'block', marginLeft: 'auto',marginRight: 'auto',maxWidth: '100%', padding : '0'}}></iframe>
-                    </Provider>
+                    <Newsletter />
 
                     <h1 style={{paddingTop : '1rem'}} className='bonus-header'>I migliori bonus di benvenuto</h1>
                     <div style={{top : '820px'}} className='bonus-column-container'>
@@ -153,17 +171,17 @@ const Index: FunctionComponent<PageProps> = ({ _home, _countryCode }) => {
                 </RightColumn>
 
                 <OnlyMobile>
-                <iframe className={'sib-form'} width="500" height='600' src="https://c4236f72.sibforms.com/serve/MUIEAH9KaDzyuXi3daFo5LJ-0Y8EBDFsdQ4PEXaF5c2P0bghKc__0xqGLS0G0XL8lniYtTnyPiKPyLC83CM8ZBLDOXTAN-bf4nijExyd1yBXjXAA-NJkOY7xTU9w6r_z0HxnnmewgVrYVdcJzKPZKou9FTgwc957psJ189mbdwRfqj70JyPvJRtFhaizXBR87WKEjHI5tVbE9rb5" frameBorder="0" scrolling="auto" allowFullScreen style={{display: 'block', marginLeft: 'auto',marginRight: 'auto',maxWidth: '100%', padding : '0'}}></iframe>
+                    <Newsletter />
                 </OnlyMobile>
-
             </BodyContainer>
         </NavbarProvider>
     </div>
 }
 
-export async function getServerSideProps({req}) {
+export async function getStaticProps({query, req}) {
   
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+
     const data = await aquaClient.query({
         query: HOME,
         variables: { countryCode: 'it'}
@@ -172,28 +190,13 @@ export async function getServerSideProps({req}) {
     return {
         props: {
             _home: data.data.data.homes[0] as Home,
-            _countryCode:'it'
+            _shallow : null
         }
     }
 }
 
-const Provider = styled.div`
-    .sib-form{
-        padding : 0px !important;
-        margin : 0px !important;
-    }
-`
 
-const Text = styled.p`
-    line-height : 1.5rem;
-`
 
-const Header = styled.h1`
-    font-family : ${(props) => props.theme.text.secondaryFont};
-    font-size : 2rem;
-    padding : 2rem 0rem;
-    color : ${(props) => props.theme.colors.primary};
-`
 
 export default Index
 

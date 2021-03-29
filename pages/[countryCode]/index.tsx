@@ -1,7 +1,6 @@
 
 import Head from 'next/head'
 import React, { FunctionComponent, useState, useEffect, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import LatestVideoCard from '../../components/Cards/LatestVideoCard'
 import HomeHeader from '../../components/Home/HomeHeader'
@@ -18,96 +17,73 @@ import AquaClient from '../../graphql/aquaClient'
 import { HOME } from '../../graphql/queries/home'
 import { Home } from '../../graphql/schema'
 import { appTheme } from '../../theme/theme'
-import { getUserCountryCode, isShallow, somethingIsUndefined, serverSideRedirect } from '../../utils/Utils'
+import { getUserCountryCode, isShallow, somethingIsUndefined, serverSideRedirect, buildContentLanguageString } from '../../utils/Utils'
 import LazyLoad from 'react-lazyload'
 import Icon from '../../components/Icons/Icon'
 import BonusCardRevealComponent from '../../components/Cards/BonusCardReveal'
 import { LocaleContext } from '../../context/LocaleContext'
 import { useRouter } from 'next/router'
+import CountryEquivalentPageSnackbar from '../../components/Snackbars/CountryEquivalentPageSnackbar'
+import { GetStaticProps, GetStaticPaths } from 'next'
 
 
 interface PageProps {
     _shallow : boolean,
     _home: Home,
-    _countryCode:string
+    _requestedCountryCode:string
 }
 
-const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _countryCode }) => {
+const automaticRedirect = false
+
+const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountryCode }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
     const router = useRouter()
+
+    if(router.isFallback) return <FullPageLoader />
 
 
     const [loading, setLoading] = useState(true)
     const [home, setHome] = useState<Home>(_home)
     const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map(s => s.slot))
     const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[]>(_home.onlineSlots.slot.map(s => s.slot))
-    const [barSlots, setBarSlots] = useState<ApolloSlotCard[] | undefined>(_home.barSlots?.slot.map(s => s.slot))
-    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[] | undefined>(_home.vltSlots?.slot.map(s => s.slot))
-    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[] | undefined>(_home.bonuses.bonus.map(b => b.bonus))
+    const [barSlots, setBarSlots] = useState<ApolloSlotCard[]>(_home.barSlots?.slot.map(s => s.slot))
+    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[]>(_home.vltSlots?.slot.map(s => s.slot))
+    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[]>(_home.bonuses.bonus.map(b => b.bonus))
+
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
     useEffect(() => {
-        getCountryData()
+        if(_shallow){
+            setContextCountry(_requestedCountryCode)
+            setLoading(false)
+        }
+        else getCountryData()
     }, [])
 
     const getCountryData = async () => {
-        const userCountryCode = await getUserCountryCode()
+        const geolocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geolocatedCountryCode)
 
-        // it should always be redirected to index
-        if(userCountryCode === 'it') router.push('/')
-
-        if(userCountryCode === _countryCode || _shallow){
-            setContextCountry(userCountryCode)
-            setLoading(false)
-            return
-        }
-
-        if(_countryCode !== 'row'){
+        if(_requestedCountryCode !== geolocatedCountryCode){           
+            // user landed on a page that is different from his country
             const homeDataRequest = await aquaClient.query({
                 query: HOME,
-                variables: { countryCode: userCountryCode}
+                variables: { countryCode: geolocatedCountryCode}
             })
     
-            if(homeDataRequest.data.data.homes[0]){
-                const homeData = homeDataRequest.data.data.homes[0] as Home
-                setHome(homeData)
-                setContextCountry(userCountryCode)
-                setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
-                setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
-                setBarSlots(homeData.barSlots.slot.map(s => s.slot))
-                setVltSlots(homeData.vltSlots.slot.map(s => s.slot))
-                setBonusList(homeData.bonuses.bonus.map(b => b.bonus))
-            } else {
-                console.log('falling back to ROW data')
-                const homeRowDataRequest = await aquaClient.query({
-                    query: HOME,
-                    variables: { countryCode: 'row'}
-                })
+            // we check if data for the user country exists
+            if(homeDataRequest.data.data.homes[0]) {
+                if(automaticRedirect) {
+                    router.push(`/${geolocatedCountryCode}`)
+                    return
+                } else setUserCountryEquivalentExists(true)
+            }
+            setContextCountry(_requestedCountryCode)           
+        } else setContextCountry(_requestedCountryCode)
 
-                const homeData = homeRowDataRequest.data.data.homes[0] as Home
-                console.log(homeData)
-
-                const rowBarSlots = homeData.barSlots
-                const rowVltSlots = homeData.vltSlots
-
-                setHome(homeData)
-                setContextCountry(userCountryCode)
-                setProducerSlots(homeData.producerSlots.slot.map(s => s.slot))
-                setOnlineSlots(homeData.onlineSlots.slot.map(s => s.slot))
-                rowBarSlots && setBarSlots(rowBarSlots.slot.map(s => s.slot))
-                rowVltSlots && setVltSlots(rowVltSlots.slot.map(s => s.slot))
-                setBonusList(homeData.bonuses.bonus.map(b => b.bonus))
-            }   
-        } else {
-            setHome(_home)
-            setContextCountry(_countryCode)
-            setProducerSlots(_home.producerSlots.slot.map(s => s.slot))
-            setOnlineSlots(_home.onlineSlots.slot.map(s => s.slot))
-            setBarSlots(_home.barSlots.slot.map(s => s.slot))
-            setVltSlots(_home.vltSlots.slot.map(s => s.slot))
-            setBonusList(_home.bonuses.bonus.map(b => b.bonus))
-        }
+        setLoading(false)
     }
 
 
@@ -120,7 +96,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _countryCode }) 
                 name="description"
                 content={home.seo.seoDescription}>
             </meta>
-            <meta httpEquiv="content-language" content="it-IT"></meta>
+            <meta httpEquiv="content-language" content={buildContentLanguageString(contextCountry)}></meta>
             <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
             <meta property="og:locale" content={contextCountry} />
             <meta property="og:type" content="article" />
@@ -131,9 +107,9 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _countryCode }) 
         <NavbarProvider currentPage='Home' countryCode={contextCountry}>
             {home.topArticle && <HomeHeader topArticle={home.topArticle}>SPIKE SLOT</HomeHeader>}
             <BodyContainer>
+                {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={userCountry === 'it' ? '/' : `/${userCountry}`} />}
                 <MainColumn>
                     {producerSlots && <HighlightProducerSlideShow producerSlots={producerSlots} />}
-
                     <LazyLoad height={450} once>
                         <SlideShow
                             apolloSlotCards={onlineSlots.filter(s => s.image !== undefined)}
@@ -207,26 +183,36 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _countryCode }) 
     </div>
 }
 
-export async function getServerSideProps({query, req, res}) {
+export const getStaticProps : GetStaticProps = async ({params}) =>  {
   
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const {countryCode} = query
-    const shallow = req.query.shallow as boolean
+    const requestedCountryCode = params?.countryCode
 
 
     const data = await aquaClient.query({
         query: HOME,
-        variables: { countryCode: countryCode}
+        variables: { countryCode: requestedCountryCode}
     })
 
-    if(somethingIsUndefined([data.data.data.homes[0]])) serverSideRedirect(res,`/row`)
+    // console.log('hello world')
+
+    // if(requestedCountryCode === 'it') serverSideRedirect(res, '/', 301)
+    // if(somethingIsUndefined([data.data.data.homes[0]])) serverSideRedirect(res,`/row`)
     return {
         props: {
-            _shallow : isShallow(countryCode, shallow),
+            _shallow : false,
             _home: data.data.data.homes[0] as Home,
-            _countryCode: countryCode
+            _requestedCountryCode: requestedCountryCode
         }
+    }
+}
+
+export const getStaticPaths : GetStaticPaths = async () =>  {
+
+    return {
+      paths: [{ params: { countryCode: 'it' } }],
+      fallback: true,
     }
 }
 
