@@ -39,26 +39,29 @@ const About: FunctionComponent<Props> = ({ seo, content, bonusList }) => {
                 <meta httpEquiv="content-language" content="it-IT"></meta>
             </Head>
             <NavbarProvider currentPage='about' countryCode={''}>
-                <BodyContainer style={{ padding: '1rem' }}>
-                    <MainColumn style={{ marginRight: '1rem' }}>
-                        <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='about' name='SPIKE' />
-                        <DynamicContent content={content} />
-                    </MainColumn>
-                    <RightColumn>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <Icon
-                                width={56}
-                                height={56}
-                                source='/icons/flame_icon.svg' />
-                            <h1 className='video-header'>{t("Watch SPIKE's latest video")}</h1>
-                        </div>
-                        <LatestVideoCard />
-                        <h1 className='bonus-header'>{t("The best welcome bonuses")}</h1>
-                        <div className='bonus-column-container'>
-                            {bonusList && bonusList.map(bo => <ApolloBonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />)}
-                        </div>
-                    </RightColumn>
-                </BodyContainer>
+                <div style={{ width: '100%', marginBottom: '6rem', paddingTop : '3rem' }}>
+                    <BodyContainer>
+                        <MainColumn>
+                            <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='about' name='SPIKE' />
+                            <DynamicContent content={content} />
+                        </MainColumn>
+                        <RightColumn>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <Icon
+                                    width={56}
+                                    height={56}
+                                    source='/icons/flame_icon.svg' />
+                                <h1 className='video-header'>{t("Watch SPIKE's latest video")}</h1>
+                            </div>
+                            <LatestVideoCard />
+                            <h1 className='bonus-header'>{t("The best welcome bonuses")}</h1>
+                            <div className='bonus-column-container'>
+                                {bonusList && bonusList.map(bo => <ApolloBonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />)}
+                            </div>
+                        </RightColumn>
+                    </BodyContainer>
+                </div>
+                
             </NavbarProvider>
         </Fragment>
 

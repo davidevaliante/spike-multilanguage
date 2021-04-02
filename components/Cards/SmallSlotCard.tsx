@@ -5,6 +5,8 @@ import LazyLoad from 'react-lazyload'
 // import { Translations } from './../../constants/translation';
 import { laptop } from './../Responsive/Breakpoints'
 import { FunctionComponent } from 'react'
+import { LocaleContext } from '../../context/LocaleContext'
+import Link from 'next/link'
 
 interface Props {
     image: string
@@ -14,21 +16,21 @@ interface Props {
 
 const SmallSlotCard: FunctionComponent<Props> = ({ image, slug, onClick }) => {
 
-    // const country = useContext(countryContext)
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     return (
         <Container onClick={() => onClick && onClick()}>
             <LazyLoad>
                 <img src={image} />
             </LazyLoad>
-            {/* <PlayButton>
-                <p>{Translations.playString[country.currentCountry]}</p> */}
-                {/* <Link href={`/demo/[slug]/[countryCode]`} as={`/demo/${slug}/${country.currentCountry}`} passHref>
+            <PlayButton>
+                <p>{t('Play')}</p> 
+                <Link href={`/demo/[slug]/[countryCode]`} as={`/demo/${slug}/${contextCountry}`} passHref>
                     <a>
 
                     </a>
-                </Link> */}
-            {/* </PlayButton> */}
+                </Link> 
+            </PlayButton>
         </Container >
     )
 }

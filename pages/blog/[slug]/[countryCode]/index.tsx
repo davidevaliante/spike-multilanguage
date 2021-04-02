@@ -30,6 +30,8 @@ const automaticRedirect = false
 
 const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCountryCode }) => {
 
+    console.log(_requestedCountryCode)
+
     const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
@@ -93,8 +95,6 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCo
                     from='blog-article' />
 
                 <BodyContainer>
-                    {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={userCountry === 'it' ? '/' : `/${userCountry}`} />}
-
                     <MainColumn>
                         <Wrapper>
                             <ArticleToMarkdown content={article.article} />
@@ -158,7 +158,7 @@ export async function getServerSideProps({ query }) {
             query,
             article: articleResponse.data.data.blogArticles[0],
             bonusList: bonusList || null,
-            countryCode:country
+            _requestedCountryCode:country
         }
     }
 }
