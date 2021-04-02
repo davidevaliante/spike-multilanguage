@@ -5,8 +5,6 @@ import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
 import AquaClient from './../../graphql/aquaClient'
 import { FOOTER } from '../../graphql/queries/footer'
 import CoFreeImage from '../Singles/CoFreeImage'
-import {useTranslation} from 'react-i18next'
-import {countryContext} from '../../context/CountryContext'
 import { LocaleContext } from '../../context/LocaleContext'
 
 const Footer = () => {

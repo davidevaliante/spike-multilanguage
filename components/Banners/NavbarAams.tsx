@@ -1,11 +1,11 @@
-import React, { FunctionComponent, Fragment } from "react"
+import React, { FunctionComponent, Fragment, useContext } from "react"
 import styled from 'styled-components'
 import LazyImage from "../Lazy/LazyImage"
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 const NavbarAams: FunctionComponent = () => {
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
     
     return <Fragment>
         <Container>

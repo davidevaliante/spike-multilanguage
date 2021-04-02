@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { FunctionComponent } from 'react'
 import { NextPageContext } from 'next'
 import AquaClient from '../../graphql/aquaClient'
@@ -15,8 +15,8 @@ import { ApolloBonusCardReveal } from '../../data/models/Bonus'
 import ApolloBonusCardRevealComponent from './../../components/Cards/BonusCardReveal'
 import { HOME_BONUS_LIST } from '../../graphql/queries/bonus'
 import fetch from 'cross-fetch'
-import {useTranslation} from 'react-i18next'
 import { getCanonicalPath } from '../../utils/Utils'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props extends DynamicContentProps {
     seo: Seo
@@ -25,7 +25,7 @@ interface Props extends DynamicContentProps {
 
 const About: FunctionComponent<Props> = ({ seo, content, bonusList }) => {
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     return (
         <Fragment>

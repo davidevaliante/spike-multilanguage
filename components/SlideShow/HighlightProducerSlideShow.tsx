@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { ApolloSlotCard } from '../../data/models/Slot'
@@ -6,7 +6,7 @@ import { laptop, desktop, tablet } from '../Responsive/Breakpoints'
 import SlotCardComponent from '../Cards/SlotCardComponent'
 import Carousel from 'react-multi-carousel'
 import LazyLoad from 'react-lazyload'
-import { useTranslation } from "react-i18next"
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     producerSlots: ApolloSlotCard[]
@@ -34,7 +34,7 @@ const ApolloHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerSl
         }
     };
 
-    const { t } = useTranslation();
+    const { t } = useContext(LocaleContext)
 
     return (
         <Fragment>

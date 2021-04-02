@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Icon from '../Icons/Icon'
 import lowerCase from 'lodash/lowerCase'
 import capitalize from 'lodash/capitalize'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     from: 'slot' | 'article' | 'slot-list' | 'producer' | 'blog' | 'guide' | 'guide-list' | 'vlt-slot-list' | 'article' | 'about' | 'privacy-policy' | 'contacts' | 'blog-article' | 'bar-slot-list',
@@ -24,8 +24,8 @@ const websiteRoot = 'https://spikeslot.com'
 
 const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, producerName, producerSlug, slotSlug, slotName, guideSlug, style }) => {
 
-    const { currentCountry } = useContext(countryContext)
-    const {t} = useTranslation()
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
+
 
     const breadCrumbRenderer = () => {
         if (from === 'slot') {
@@ -42,19 +42,19 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Slots",
-                        "item": `${websiteRoot}/slots/${currentCountry}`
+                        "item": `${websiteRoot}/slots/${contextCountry}`
                     },
                     {
                         "@type": "ListItem",
                         "position": 3,
                         "name": `${producerName}`,
-                        "item": `${websiteRoot}/producer/${producerSlug}/${currentCountry}`
+                        "item": `${websiteRoot}/producer/${producerSlug}/${contextCountry}`
                     },
                     {
                         "@type": "ListItem",
                         "position": 4,
                         "name": `${slotName}`,
-                        "item": `${websiteRoot}/slot/${slotSlug}/${currentCountry}`
+                        "item": `${websiteRoot}/slot/${slotSlug}/${contextCountry}`
                     }]
                 }
             }
@@ -72,11 +72,11 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/slots/${currentCountry}`}>
+                <a href={`/slots/${contextCountry}`}>
                     Slots
                 </a>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <Link href={`/producer/[slug]/[countryCode]`} as={`/producer/${producerSlug}/${currentCountry}`}>
+                <Link href={`/producer/[slug]/[countryCode]`} as={`/producer/${producerSlug}/${contextCountry}`}>
                     <a>{producerName}</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
@@ -101,7 +101,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Slots",
-                        "item": `${websiteRoot}/slots/${currentCountry}`
+                        "item": `${websiteRoot}/slots/${contextCountry}`
                     }]
                 }
             }
@@ -119,7 +119,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/slots/${currentCountry}`}>
+                <a href={`/slots/${contextCountry}`}>
                     <a>Slots</a>
                 </a>
             </div>
@@ -140,7 +140,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Vlt Slots",
-                        "item": `${websiteRoot}/vlt-slots/${currentCountry}`
+                        "item": `${websiteRoot}/vlt-slots/${contextCountry}`
                     }]
                 }
             }
@@ -179,7 +179,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Vlt Slots",
-                        "item": `${websiteRoot}/slot-bar/${currentCountry}`
+                        "item": `${websiteRoot}/slot-bar/${contextCountry}`
                     }]
                 }
             }
@@ -193,7 +193,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
 
             return <div style={{ display: 'flex', alignItems: 'center' }}>
                 <VltSlotListBreadCrumb />
-                <Link href={currentCountry === 'it' ? '/' : `/${currentCountry}`}>
+                <Link href={contextCountry === 'it' ? '/' : `/${contextCountry}`}>
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
@@ -218,7 +218,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": `${producerName}`,
-                        "item": `${websiteRoot}/producer/${producerSlug}/${currentCountry}`
+                        "item": `${websiteRoot}/producer/${producerSlug}/${contextCountry}`
                     }]
                 }
             }
@@ -252,7 +252,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/blog/${currentCountry}`}>
+                <a href={`/blog/${contextCountry}`}>
                     Blog
                 </a>
             </div>
@@ -273,12 +273,12 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": `Guide e Trucchi`,
-                        "item": `${websiteRoot}/guide-e-trucchi/${currentCountry}`
+                        "item": `${websiteRoot}/guide-e-trucchi/${contextCountry}`
                     }, {
                         "@type": "ListItem",
                         "position": 3,
                         "name": `${name}`,
-                        "item": `${websiteRoot}/guida/${guideSlug}/${currentCountry}`
+                        "item": `${websiteRoot}/guida/${guideSlug}/${contextCountry}`
                     }]
                 }
             }
@@ -296,7 +296,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/guide-e-trucchi/${currentCountry}`}>
+                <a href={`/guide-e-trucchi/${contextCountry}`}>
                     {t("Guides and Tricks")}
                 </a>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
@@ -320,12 +320,12 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": `Guide e Trucchi`,
-                        "item": `${websiteRoot}/guide-e-trucchi/${currentCountry}`
+                        "item": `${websiteRoot}/guide-e-trucchi/${contextCountry}`
                     }, {
                         "@type": "ListItem",
                         "position": 3,
                         "name": `${name}`,
-                        "item": `${websiteRoot}/articoli/${guideSlug}/${currentCountry}`
+                        "item": `${websiteRoot}/articoli/${guideSlug}/${contextCountry}`
                     }]
                 }
             }
@@ -343,7 +343,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/guide-e-trucchi/${currentCountry}`}>
+                <a href={`/guide-e-trucchi/${contextCountry}`}>
                     {t("Guides and Tricks")}
                 </a>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
@@ -367,12 +367,12 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": `Guide e Trucchi`,
-                        "item": `${websiteRoot}/guide-e-trucchi/${currentCountry}`
+                        "item": `${websiteRoot}/guide-e-trucchi/${contextCountry}`
                     }, {
                         "@type": "ListItem",
                         "position": 3,
                         "name": `${name}`,
-                        "item": `${websiteRoot}/articoli/${guideSlug}/${currentCountry}`
+                        "item": `${websiteRoot}/articoli/${guideSlug}/${contextCountry}`
                     }]
                 }
             }
@@ -390,7 +390,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/blog/${currentCountry}`}>
+                <a href={`/blog/${contextCountry}`}>
                     Blog
                 </a>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
@@ -414,7 +414,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": `Guide e Trucchi`,
-                        "item": `${websiteRoot}/guides/${currentCountry}`
+                        "item": `${websiteRoot}/guides/${contextCountry}`
                     }]
                 }
             }
@@ -432,7 +432,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/guide-e-trucchi/${currentCountry}`}>
+                <a href={`/guide-e-trucchi/${contextCountry}`}>
                     {t(`${name}`)}
                 </a>
             </div>

@@ -5,9 +5,7 @@ import { ApolloBonusCardReveal } from '../../data/models/Bonus'
 import { extractTips, injectCDN } from '../../utils/Utils'
 import { AppTheme } from '../../theme/theme'
 import LazyBonusImage from '../Lazy/LazyBonusImage'
-import {useTranslation} from 'react-i18next'
 import Link from "next/link"
-import {countryContext} from '../../context/CountryContext'
 import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
@@ -16,7 +14,7 @@ interface Props {
 
 const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus }) => {
 
-	const {t, contextCountry} = useContext(LocaleContext)
+    const {t, contextCountry} = useContext(LocaleContext)
 
 	const goToBonus = () => {
 		window.open(bonus?.link)

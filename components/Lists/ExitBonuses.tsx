@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import styled from 'styled-components'
 import { Bonus } from '../../graphql/schema'
 import { FunctionComponent } from 'react'
 import PrimaryBonusCard from '../Cards/PrimaryBonusCard'
 import useOnClickOutside from './../../hooks/useOnClickOutside'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     bonuses: Bonus[]
@@ -13,7 +13,7 @@ interface Props {
 
 const ExitBonuses: FunctionComponent<Props> = ({ bonuses, onClickOutside }) => {
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     const ref = useRef(null)
 

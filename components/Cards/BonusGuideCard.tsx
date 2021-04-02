@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import LazyBonusImage from '../Lazy/LazyBonusImage'
 import LazyImage from '../Lazy/LazyImage'
 import Link from 'next/link'
-import {countryContext} from '../../context/CountryContext'
-import {useTranslation} from 'react-i18next'
 import { LocaleContext } from '../../context/LocaleContext'
 
 interface BonusGuideCardProps {
@@ -14,7 +12,7 @@ interface BonusGuideCardProps {
 
 const BonusGuideCard: FunctionComponent<BonusGuideCardProps> = ({ guide }) => {
 
-    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
+    const {t, contextCountry} = useContext(LocaleContext)
 
     
     return <StyleProvider>

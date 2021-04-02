@@ -1,11 +1,11 @@
-import React, { Fragment, FunctionComponent } from "react"
+import React, { Fragment, FunctionComponent, useContext } from "react"
 import styled from 'styled-components'
 import { Bonus } from "../../graphql/schema"
 import { injectCDN } from './../../utils/Utils'
 import LazyLoad from 'react-lazyload'
 import { laptop } from "../Responsive/Breakpoints"
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     bonus: Bonus
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ArticleBonusCard: FunctionComponent<Props> = ({ bonus, style }) => {
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
     return <Fragment>
         <Container style={style} bonus={bonus} onClick={() => window.open(bonus.link)}>
             <ImageContainer bonus={bonus}>

@@ -11,9 +11,7 @@ import Head from 'next/head'
 import { ARTICLES_BY_COUNTRY } from '../../../graphql/queries/article'
 import ArticleCard from './../../../components/Cards/ArticleCard'
 import { tablet } from '../../../components/Responsive/Breakpoints'
-import { useTranslation } from "react-i18next";
 import {useRouter} from 'next/router'
-import {countryContext} from '../../../context/CountryContext'
 import { getCanonicalPath, getUserCountryCode } from '../../../utils/Utils'
 import { LocaleContext } from './../../../context/LocaleContext';
 

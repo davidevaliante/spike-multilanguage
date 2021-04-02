@@ -25,8 +25,6 @@ import Head from 'next/head'
 import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { useRouter }  from 'next/router'
-import {useTranslation} from 'react-i18next'
-import { countryContext } from '../../../../context/CountryContext'
 import { LocaleContext } from './../../../../context/LocaleContext';
 import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 
@@ -39,7 +37,7 @@ interface PageProps extends NextPageContext {
 
 const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusList,_countryCode}) => {
     
-    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         setContextCountry(_countryCode)

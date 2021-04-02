@@ -4,11 +4,9 @@ import { FunctionComponent } from 'react'
 import { injectCDN } from '../../utils/Utils'
 import FadeBorderButton from './../Buttons/FadeBorderButton'
 import snakeCase from 'lodash/snakeCase'
-import { countryContext } from './../../context/CountryContext'
 import LazyLoad from 'react-lazyload'
 import { AlgoliaSearchResult } from '../../graphql/schema'
 import { tablet } from '../Responsive/Breakpoints'
-import {useTranslation} from 'react-i18next'
 import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {

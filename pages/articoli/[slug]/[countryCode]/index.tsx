@@ -1,10 +1,8 @@
-import React, { Fragment, useContext, useEffect } from 'react'
+import React, { Fragment, useContext } from 'react'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import AquaClient from '../../../../graphql/aquaClient'
 import { FunctionComponent } from 'react'
-import MarkdownProvider from '../../../../components/Markdown/MarkdownProvider'
-import { getCanonicalPath, injectCDN } from '../../../../utils/Utils'
-import ReactMarkdown from 'react-markdown'
+import { getCanonicalPath } from '../../../../utils/Utils'
 import styled from 'styled-components'
 import { BodyContainer, MainColumn, RightColumn } from '../../../../components/Layout/Layout'
 import LatestVideoCard from '../../../../components/Cards/LatestVideoCard'
@@ -17,9 +15,7 @@ import DynamicContent from '../../../../components/DynamicContent/DynamicContent
 import { ARTICLE_BY_SLUG } from './../../../../graphql/queries/article'
 import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
-import { useTranslation } from "react-i18next"
-import {useRouter} from 'next/router'
-import {countryContext} from '../../../../context/CountryContext'
+import { LocaleContext } from '../../../../context/LocaleContext'
 
 interface Props {
     article: Article,
@@ -29,19 +25,7 @@ interface Props {
 
 const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode }) => {
 
-    const { t } = useTranslation()
-
-    const {currentCountry} = useContext(countryContext)
-
-    const router = useRouter()
-
-    useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-    },[currentCountry])
+    const { t } = useContext(LocaleContext)
 
     return (
         <Fragment>

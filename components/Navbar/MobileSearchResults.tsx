@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext } from 'react'
 import styled from 'styled-components'
 import Divider from '../Ui/Divider'
 import { AlgoliaSearchResult } from '../../graphql/schema'
 import Router from 'next/router'
 import { injectCDN } from './../../utils/Utils'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     searchResults: AlgoliaSearchResult[] | undefined
@@ -38,7 +38,7 @@ const MobileSearchResults: FunctionComponent<Props> = ({ searchResults }) => {
 
 const SuggestedSearchs: FunctionComponent = () => {
 
-    const {t} = useTranslation()
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
     
     return (
         <div>

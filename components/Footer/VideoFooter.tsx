@@ -4,8 +4,8 @@ import { desktop } from '../Responsive/Breakpoints'
 import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
 import AquaClient from './../../graphql/aquaClient'
 import { VIDEO_FOOTER } from '../../graphql/queries/footer'
-import {useTranslation} from 'react-i18next'
 import {countryContext} from '../../context/CountryContext'
+import { LocaleContext } from '../../context/LocaleContext'
 
 const VideoFooter = () => {
 
@@ -16,7 +16,7 @@ const VideoFooter = () => {
 
     const aquaClient = new AquaClient()
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     useEffect(() => {
         getFooterArticle()

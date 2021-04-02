@@ -2,12 +2,9 @@ import React, { Fragment, useState, useContext } from 'react'
 import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import Divider from '../Ui/Divider'
-import { countryContext } from './../../context/CountryContext'
 import Link from 'next/link'
 import LazyImage from '../Lazy/LazyImage'
 import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
-import { useTranslation } from "react-i18next"
-import NewsLetterForm from '../Singles/NewsLetterForm'
 import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {

@@ -7,8 +7,6 @@ import { laptop } from './../Responsive/Breakpoints'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { appTheme } from './../../theme/theme'
 import Link from "next/link"
-import {useTranslation} from 'react-i18next'
-import {countryContext} from '../../context/CountryContext'
 import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {

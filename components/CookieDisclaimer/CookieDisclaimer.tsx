@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { tablet } from './../Responsive/Breakpoints'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     onCookiesAccepted: () => void
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const CookieDisclaimer: FunctionComponent<Props> = ({ onCookiesAccepted, onCookiesRefused }) => {
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
     return (
         <StyleProvider>
             <p>This website uses real time data about bonuses offered by selected and legal Bookmakers in Italy. Please do NOT continue on this website if you are under 18 years old. This site uses cookies and geolocation to personalize content and to analyse traffic. If you continue without changing your settings, we'll assume that you are happy to receive all cookies on Spike Slot. <a href='/cookie-privacy-policy'>Learn More</a></p>

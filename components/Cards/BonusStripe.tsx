@@ -7,8 +7,7 @@ import { injectCDN } from './../../utils/Utils'
 import snakeCase from 'lodash'
 import LazyImage from '../Lazy/LazyImage'
 import Link from 'next/link'
-import { countryContext } from './../../context/CountryContext'
-import { useTranslation } from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
  
 interface Props {
     bonus: Bonus
@@ -16,9 +15,8 @@ interface Props {
 
 const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
 
-    const { currentCountry } = useContext(countryContext)
+    const {t, contextCountry} = useContext(LocaleContext)
 
-    const {t} = useTranslation()
 
     const visit = () => {
         window.open(bonus.link)
@@ -56,7 +54,7 @@ const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
 
             <Row style={{ marginTop: '.5rem' }}>
                 {bonus.bonus_guide && <GuideButton>
-                    <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${bonus.bonus_guide.slug}/${currentCountry}`}>
+                    <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${bonus.bonus_guide.slug}/${contextCountry}`}>
                         <a>
                             {t("READ THE GUIDE")}
                         </a>

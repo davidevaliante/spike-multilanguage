@@ -3,7 +3,6 @@ import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
 import capitalize from 'lodash/capitalize'
-import {useTranslation} from 'react-i18next'
 import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {

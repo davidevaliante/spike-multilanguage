@@ -11,7 +11,6 @@ import BurgerMenuIcon from './BurgerMenuIcon'
 import { SearchIndex } from 'algoliasearch'
 import delay from 'lodash/delay'
 import MobileSearchResults from './MobileSearchResults'
-import { countryContext } from '../../context/CountryContext'
 import { AlgoliaSearchResult, Video, Bonus } from '../../graphql/schema'
 import FadeInOut from '../Ui/FadeInOut'
 import LazyImage from '../Lazy/LazyImage'
@@ -20,7 +19,7 @@ import VideoFooter from '../Footer/VideoFooter'
 import Router from 'next/router'
 import { cookieContext } from '../../context/CookieContext'
 import { initializeAnalytics } from '../../analytics/base'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     onDrawerOpen?: Function,
@@ -56,7 +55,6 @@ const drawerPages = [
 
 const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen, currentPage, children, video, mainBonus }) => {
 
-    const { currentCountry } = useContext(countryContext)
 
     const [algoliaIndex, setAlgoliaIndex] = useState<SearchIndex | undefined>(undefined)
     const [searchOpen, setSearchOpen] = useState(false)
@@ -64,7 +62,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
     const [videoLink, setVideoLink] = useState(getCdnZone(video))
 
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
-    const {t} = useTranslation() 
+    const { t, contextCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         if (cookiesAccepted === 'accepted') {
@@ -92,7 +90,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
         clearTimeout(searchTimerId)
         const newTimer = delay(async () => {
             const results = await algoliaIndex!.search(s, {
-                filters: `country:${currentCountry}`
+                filters: `country:${contextCountry}`
             })
 
             setSearchResults(results.hits.map((obj: any) => {
@@ -188,7 +186,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
         return (
             <Link
                 key={key}
-                href={page.link === '/' ? `${page.link}` : `${page.link}/${currentCountry}`}>
+                href={page.link === '/' ? `${page.link}` : `${page.link}/${contextCountry}`}>
                 <a>{t(page.label)}</a>
             </Link>
         )

@@ -8,13 +8,7 @@ import VideoMainData from '../../../../components/Video/VideoMainData'
 import AquaClient from '../../../../graphql/aquaClient'
 import { GET_BONUS_BY_LEGACY_ID } from '../../../../graphql/queries/bonus'
 import { Bonus, Slot, AlgoliaSearchResult } from '../../../../graphql/schema'
-import VideoMainBonusCard from '../../../../components/Cards/VideoMainBonusCard'
-import VideoAuxBonusCard from '../../../../components/Cards/VideoAuxBonusCard'
-import Router from 'next/router'
-import { getCanonicalPath, getImageLinkFromName } from '../../../../utils/Utils'
-import LazyVideoImage from '../../../../components/Lazy/LazyVideoImage'
-import Link from 'next/link'
-import snakeCase from 'lodash/snakeCase'
+import { getCanonicalPath } from '../../../../utils/Utils'
 import { OnlyMobile, OnlyDesktop } from '../../../../components/Responsive/Only'
 import { bigscreens } from '../../../../components/Responsive/Breakpoints'
 import RelatedVideoCard from '../../../../components/Cards/RelatedVideoCard'
@@ -28,9 +22,8 @@ import Divider from '../../../../components/Ui/Divider'
 import NavbarWithPlayer from '../../../../components/Navbar/NavbarWithPlayer'
 import BonusStripe from './../../../../components/Cards/BonusStripe'
 import truncate from 'lodash/truncate'
-import {useTranslation} from 'react-i18next'
 import {useRouter} from 'next/router'
-import {countryContext} from '../../../../context/CountryContext'
+import { LocaleContext } from '../../../../context/LocaleContext'
 
 
 interface Props {
@@ -62,17 +55,8 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
     const [videoLink, setVideoLink] = useState(getCdnZone(video))
     const [descriptionOpen, setDescriptionOpen] = useState(false)
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
-    const {currentCountry}  = useContext(countryContext)
-
-    useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-    },[currentCountry])
 
     const goToBonus = (link: string) => {
         window.open(link, '_self')

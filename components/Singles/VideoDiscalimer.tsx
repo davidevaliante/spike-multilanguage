@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import LazyImage from '../Lazy/LazyImage'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 const palette = {
     darkBg: '#2e2e2e',
@@ -11,7 +11,7 @@ const palette = {
 
 const VideoDiscalimer = () => {
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
     
     return (
         <Container>

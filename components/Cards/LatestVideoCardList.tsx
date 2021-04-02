@@ -8,8 +8,8 @@ import { formatVideoCardDate, getColorForType } from '../../utils/Utils'
 import { formatVideoCardType } from './../../utils/Utils'
 import Link from 'next/link'
 import snakeCase from 'lodash/snakeCase'
-import {countryContext} from '../../context/CountryContext'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
+
 
 interface Props {
     videoData: AlgoliaVideo
@@ -17,11 +17,11 @@ interface Props {
 
 const LatestVideoCardList: FunctionComponent<Props> = ({ videoData }) => {
 
-    const {currentCountry} = useContext(countryContext)
-    const { t } = useTranslation();
+    const { t, contextCountry } = useContext(LocaleContext)
+
 
     return (
-        <Link href={`/videos/${snakeCase(videoData.title)}/${currentCountry}`}>
+        <Link href={`/videos/${snakeCase(videoData.title)}/${contextCountry}`}>
             <a>
                 <CardContainer>
                     <div className="ribbon">

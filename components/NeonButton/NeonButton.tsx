@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import {useTranslation} from 'react-i18next'
 import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
 
 const NeonButton = (props: Props) => {
 
-	const {t} = useContext(LocaleContext)
+    const { t } = useContext(LocaleContext)
 
 	return (
 		<StyleProvider onClick={() => props.onClick()}>

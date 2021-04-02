@@ -4,20 +4,17 @@ import { FunctionComponent } from 'react'
 import NavbarProvider from '../../../components/Navbar/NavbarProvider'
 import { Video, AlgoliaVideo } from '../../../graphql/schema'
 import { getInitialVideos } from '../../../data/api/video'
-import { getCanonicalPath, mapJsonToArray } from '../../../utils/Utils'
-import { firebaseDatabaseUrl } from '../../../data/firebaseConfig'
-import axios from 'axios'
+import { getCanonicalPath } from '../../../utils/Utils'
 import { loadNextVideoListChunk } from '../../../data/api/video'
 import { orderBy, pickBy, delay } from 'lodash'
 import VideoListSearchInput from '../../../components/Search/VideoListSearch'
-import algoliasearch, { SearchIndex } from 'algoliasearch'
+import  { SearchIndex } from 'algoliasearch'
 import VideoListComponent from '../../../components/Lists/VideoListComponent'
 import LatestVideoCardList from '../../../components/Cards/LatestVideoCardList'
-import { countryContext } from '../../../context/CountryContext'
 import Head from 'next/head'
 import { laptop } from '../../../components/Responsive/Breakpoints'
-import {useTranslation} from 'react-i18next'
 import {useRouter} from 'next/router'
+import { LocaleContext } from '../../../context/LocaleContext'
 
 interface Props {
     latestVideo: AlgoliaVideo
@@ -28,11 +25,10 @@ interface Props {
 
 const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initialLatestVideoInListTime,countryCode }) => {
 
-    const { currentCountry } = useContext(countryContext)    
     const [videoList, setVideoList] = useState<AlgoliaVideo[] | undefined>(initialVideos)
     const [lastVideoTime, setLastVideoTime] = useState<number>(initialLatestVideoInListTime)
     const [showNewest, setShowNewest] = useState(true)
-    const { t } = useTranslation()
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
     // search
     const [searchValue, setSearchValue] = useState('')
     const [algoliaVideoIndex, setAlgoliaVideoIndex] = useState<SearchIndex | undefined>(undefined)
@@ -40,16 +36,6 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
     const [searchResults, setsearchResults] = useState<AlgoliaVideo[] | undefined>(undefined)
     const router = useRouter()
 
-    useEffect(() => {
-        // if current url of the page is not with existing country code then redirect page with only existing country code
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.slug){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-        if (searchResults) setShowNewest(false)
-        else setShowNewest(true)
-    }, [searchResults,currentCountry])
 
     useEffect(() => {
         if (searchValue !== undefined && searchValue.length !== 0) searchVideo(searchValue)
@@ -134,7 +120,7 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
             <Head>
                 <title>Video Slot | SPIKE</title>
                 <meta charSet="utf-8" />
-                <meta property="og:locale" content={currentCountry} />
+                <meta property="og:locale" content={contextCountry} />
                 <meta name="description" content={"In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"} />
                 <meta http-equiv="content-language" content={"it-IT"} />
                 <meta property="article:tag" content={`Slot Online Video`} />
@@ -164,7 +150,7 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
                     <LatestVideoCardList videoData={latestVideo} />
 
                     <VideoListSearchInput
-                        countryCode={currentCountry}
+                        countryCode={contextCountry}
                         onSearchChange={handleSearchChange}
                         onSearchFocusChange={handleSearchFocusChange}
                         value={searchValue} />

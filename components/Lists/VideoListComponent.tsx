@@ -1,8 +1,8 @@
-import React, { FunctionComponent, Fragment } from "react"
+import React, { FunctionComponent, Fragment, useContext } from "react"
 import { AlgoliaVideo } from "../../graphql/schema"
 import VideoCard from './../Cards/VideoCard'
 import styled from 'styled-components'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface VideoListProps {
     videoList: AlgoliaVideo[] | undefined
@@ -11,7 +11,7 @@ interface VideoListProps {
 
 const VideoListComponent: FunctionComponent<VideoListProps> = ({ videoList, showNewest }) => {
 
-    const {t} = useTranslation()
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     if (videoList === undefined || videoList.length === 0) return <h1>{t("The search returned no results")}</h1>
 

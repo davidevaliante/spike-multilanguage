@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { AlgoliaSearchResult } from './../../graphql/schema'
 import SlotListSlotCard from '../Cards/SlotListSlotCard'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     slotList: AlgoliaSearchResult[]
@@ -16,7 +16,7 @@ const palette = {
 
 const VideoRelatedSlots = ({ slotList }) => {
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     return (
         <StyleProvider>

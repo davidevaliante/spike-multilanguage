@@ -1,8 +1,8 @@
 
-import React, { FunctionComponent, Fragment, ChangeEvent, useState, useEffect } from 'react'
+import React, { FunctionComponent, Fragment, ChangeEvent, useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { StyledTheme } from './../../theme/theme'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     value: string
@@ -15,7 +15,7 @@ const VideoListSearchInput: FunctionComponent<Props> = ({ onSearchChange, value,
 
     const [hasFocus, setHasFocus] = useState(false)
 
-    const { t } = useTranslation();
+    const { t } = useContext(LocaleContext)
 
     useEffect(() => {
         if (onSearchFocusChange) {

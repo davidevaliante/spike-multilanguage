@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext } from 'react'
 import LazyBonusImage from '../Lazy/LazyBonusImage'
 import LazyImage from '../Lazy/LazyImage'
 import styled from 'styled-components'
 import { laptop } from '../Responsive/Breakpoints'
 import { Bonus } from '../../graphql/schema'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 const palette = {
     darkBg: '#2e2e2e',
@@ -19,7 +19,7 @@ interface Props {
 
 const VideoAuxBonusCard: FunctionComponent<Props> = ({ bonusData, onClick }) => {
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     return (
         <MainBonusContainer

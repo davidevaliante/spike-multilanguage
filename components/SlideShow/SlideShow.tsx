@@ -1,4 +1,4 @@
-import React, { Fragment, CSSProperties } from 'react'
+import React, { Fragment, CSSProperties, useContext } from 'react'
 import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { ApolloSlotCard } from '../../data/models/Slot'
@@ -8,7 +8,7 @@ import snakeCase from 'lodash/snakeCase'
 import Link from 'next/link'
 import SlotCardComponent from '../Cards/SlotCardComponent'
 import Carousel from 'react-multi-carousel'
-import { useTranslation } from "react-i18next"
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     title: string
@@ -44,7 +44,7 @@ const ApolloSlideShow: FunctionComponent<Props> = ({ title, buttonText, buttonRo
         }
     };
 
-    const { t } = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     return (
         <Fragment>

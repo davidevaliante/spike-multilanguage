@@ -6,8 +6,7 @@ import Link from 'next/link'
 import LazyImage from '../Lazy/LazyImage'
 import { injectCDN } from './../../utils/Utils'
 import { format } from 'date-fns'
-import {countryContext} from '../../context/CountryContext'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     article: Article
@@ -15,13 +14,11 @@ interface Props {
 
 const ArticleCard: FunctionComponent<Props> = ({ article }) => {
 
-    const {currentCountry} = useContext(countryContext)
+    const {t, contextCountry} = useContext(LocaleContext)
 
-    const {t} = useTranslation()
-    
     return (
         <StyleProvider>
-            <Link href={`/articoli/[slug]/[countryCode]`} as={`/articoli/${article.slug}/${currentCountry}`}>
+            <Link href={`/articoli/[slug]/[countryCode]`} as={`/articoli/${article.slug}/${contextCountry}`}>
                 <a>
                     <CardContainer>
                         <LazyImage width='100%' height='200px' src={injectCDN(article.image[0].url)} />

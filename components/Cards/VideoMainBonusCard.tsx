@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment, CSSProperties} from 'react'
+import React, { FunctionComponent, Fragment, CSSProperties, useContext} from 'react'
 import LazyBonusImage from '../Lazy/LazyBonusImage'
 import LazyImage from '../Lazy/LazyImage'
 import styled from 'styled-components'
@@ -6,7 +6,7 @@ import { laptop } from '../Responsive/Breakpoints'
 import { Bonus } from '../../graphql/schema'
 import Divider from '../Ui/Divider'
 import Link from 'next/link'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 const palette = {
     darkBg: '#2e2e2e',
@@ -22,7 +22,7 @@ interface Props {
 
 const VideoMainBonusCard: FunctionComponent<Props> = ({ bonusData, style, onClick }) => {
     
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
     
     return (
         <Fragment>

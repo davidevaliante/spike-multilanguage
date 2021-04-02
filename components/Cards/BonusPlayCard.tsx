@@ -1,9 +1,9 @@
-import React, { Fragment, FunctionComponent } from "react"
+import React, { Fragment, FunctionComponent, useContext } from "react"
 import styled from 'styled-components'
 import { Bonus } from "../../graphql/schema"
 import { injectCDN } from './../../utils/Utils'
 import LazyLoad from 'react-lazyload'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     bonus: Bonus
@@ -11,7 +11,7 @@ interface Props {
 
 const BonusPlayCard: FunctionComponent<Props> = ({ bonus }) => {
 
-    const {t} = useTranslation()
+    const {t} = useContext(LocaleContext)
     
     return <Fragment>
         <Container bonus={bonus} onClick={() => window.open(bonus.link)}>

@@ -4,10 +4,7 @@ import { GET_PRODUCER } from '../../../../graphql/queries/producers'
 import { Producer, AlgoliaSearchResult } from '../../../../graphql/schema'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import CustomBreadcrumbs from '../../../../components/Breadcrumbs/CustomBreadcrumbs'
-import { countryContext } from '../../../../context/CountryContext'
 import styled from 'styled-components'
-import MarkdownProvider from '../../../../components/Markdown/MarkdownProvider'
-import ReactMarkdown from 'react-markdown'
 import { getCanonicalPath, injectCDN } from '../../../../utils/Utils'
 import { GET_SLOTS_BY_PRODUCER_SLUG } from './../../../../graphql/queries/slots'
 import SlotList from '../../../../components/Lists/SlotList'
@@ -21,8 +18,8 @@ import ApolloBonusCardRevealComponent from './../../../../components/Cards/Bonus
 import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import Head from 'next/head'
-import {useTranslation} from 'react-i18next'
 import {useRouter} from 'next/router'
+import { LocaleContext } from '../../../../context/LocaleContext'
 
 interface Props {
     producer: Producer
@@ -35,22 +32,13 @@ const ProducerPage: FunctionComponent<Props> = ({ producer, initialSlots, bonusL
 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const { currentCountry } = useContext(countryContext)
 
     const [slotList, setSlotList] = useState(initialSlots)
 
-    const {t} = useTranslation()
+    const { t, contextCountry } = useContext(LocaleContext)
 
     const router = useRouter()
 
-    useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-        slotList && setSlotLength(slotList?.length)
-    }, [slotList,currentCountry])
 
     const [slotLength, setSlotLength] = useState(initialSlots.length)
 
@@ -74,7 +62,7 @@ const ProducerPage: FunctionComponent<Props> = ({ producer, initialSlots, bonusL
             query: GET_SLOTS_BY_PRODUCER_SLUG,
             variables: {
                 slug: producer.slug,
-                countryCode: currentCountry,
+                countryCode: contextCountry,
                 start: 0,
                 sorting: orderingString,
                 limit: 16
@@ -95,7 +83,7 @@ const ProducerPage: FunctionComponent<Props> = ({ producer, initialSlots, bonusL
             query: GET_SLOTS_BY_PRODUCER_SLUG,
             variables: {
                 slug: producer.slug,
-                countryCode: currentCountry,
+                countryCode: contextCountry,
                 start: slotList.length,
                 sorting: orderingString,
                 limit: 12
@@ -134,13 +122,13 @@ const ProducerPage: FunctionComponent<Props> = ({ producer, initialSlots, bonusL
                             name={producer.name}
                             producerName={producer.name}
                             producerSlug={producer.slug}
-                            currentPageLink={`/producer/${producer.slug}/${currentCountry}`}
+                            currentPageLink={`/producer/${producer.slug}/${contextCountry}`}
                             from={'producer'} />
                         <StyleProdvider>
                             <div style={{ paddingLeft: '.5rem', paddingRight: '1rem' }}>
                                 <h1 className='prod-header'>{producer.name}</h1>
                                 <ArticleToMarkdown content={injectCDN(producer.description)} />
-                                <h2 className='header-2'>{`${Translations.slotsByPrefix[currentCountry]}${producer.name}`}</h2>
+                                <h2 className='header-2'>{`${Translations.slotsByPrefix[contextCountry]}${producer.name}`}</h2>
 
                                 <SlotListOrdering
                                     onOrderChange={handleOrderChange}

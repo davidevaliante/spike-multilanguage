@@ -3,14 +3,13 @@ import delay from 'lodash/delay'
 import TextField from '@material-ui/core/TextField'
 import styled from 'styled-components'
 import axios from 'axios'
-import {useTranslation} from 'react-i18next'
 
 const MailForm = (props) => {
 
     const [email, setEmail] = useState(undefined)
     const [message, setMessage] = useState(undefined)
     
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     const [status, setStatus] = useState({
         submitted: false,

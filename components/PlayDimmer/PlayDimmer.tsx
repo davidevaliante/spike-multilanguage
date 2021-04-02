@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect, Fragment } from 'react'
+import React, { FunctionComponent, useState, useEffect, Fragment, useContext } from 'react'
 import { Slot, Bonus } from '../../graphql/schema'
 import styled from 'styled-components'
 import delay from 'lodash/delay'
@@ -6,7 +6,7 @@ import useOrientationChange from './../../hooks/useOrientationChange'
 import BonusPlayCard from './../Cards/BonusPlayCard'
 import random from 'lodash/random'
 import FadeInOut from '../Ui/FadeInOut'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     slotData: Slot
@@ -22,7 +22,7 @@ const PlayDimmer: FunctionComponent<Props> = ({ slotData, onClose }) => {
 
     const orientation = typeof window !== 'undefined' && useOrientationChange()
 
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     useEffect(() => {
         if (orientation === 'landscape') {

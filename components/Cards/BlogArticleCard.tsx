@@ -6,8 +6,6 @@ import Link from 'next/link';
 import LazyImage from '../Lazy/LazyImage';
 import { injectCDN } from './../../utils/Utils';
 import { format } from 'date-fns';
-import {countryContext} from '../../context/CountryContext'
-import {useTranslation} from 'react-i18next'
 import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
@@ -16,7 +14,7 @@ interface Props {
 
 const BlogArticleCard: FunctionComponent<Props> = ({ article }) => {
 
-    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
+    const {t, contextCountry} = useContext(LocaleContext)
 
    
     return (

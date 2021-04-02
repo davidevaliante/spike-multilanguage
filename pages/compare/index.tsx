@@ -9,7 +9,7 @@ import VideoDiscalimer from '../../components/Singles/VideoDiscalimer'
 import { initializeAnalytics } from './../../analytics/base'
 import { cookieContext } from '../../context/CookieContext'
 import CookieDisclaimer from '../../components/CookieDisclaimer/CookieDisclaimer'
-import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     mainBonus: Bonus,
@@ -22,7 +22,7 @@ const Compare: FunctionComponent<Props> = ({ videoId, mainBonus, secondBonus, th
 
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
     
-    const {t} = useTranslation()
+    const { t } = useContext(LocaleContext)
 
     const analiticsString = [mainBonus, secondBonus, thirdBonus].filter(n => n !== undefined && n !== null).map(b => b.name).join()
 
