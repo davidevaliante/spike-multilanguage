@@ -1,5 +1,6 @@
 // import firebase, { database } from "firebase"
 
+
 const configuration = {
     apiKey: "AIzaSyAkXyu5MCrT5H7VUnDtyfnWsBzHr4jmhRM",
     authDomain: "spike-2481d.firebaseapp.com",
