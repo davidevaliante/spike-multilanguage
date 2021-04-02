@@ -18,6 +18,7 @@ import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import {useRouter} from 'next/router'
 import {countryContext} from '../../../../context/CountryContext'
+import { LocaleContext } from '../../../../context/LocaleContext'
 
 interface Props {
     bonusGuide: BonusGuide,
@@ -28,15 +29,8 @@ interface Props {
 const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList,countryCode }) => {
 
     const router = useRouter()
-    const {currentCountry} = useContext(countryContext)
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
-    useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-    },[currentCountry])
 
     return (
         <Fragment>

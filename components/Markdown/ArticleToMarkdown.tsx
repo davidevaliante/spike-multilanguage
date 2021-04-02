@@ -2,7 +2,7 @@ import React from 'react'
 import MarkdownProvider from './MarkdownProvider'
 import ReactMarkdown from 'react-markdown'
 import { injectCDN } from '../../utils/Utils'
-import { FunctionComponent } from 'react';
+import { FunctionComponent, Children } from 'react';
 import ArticleBonus from './ArticleBonus';
 import styled from 'styled-components';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
@@ -38,7 +38,8 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style }) => {
         }
 
         if (elementType === 'spikeVideo') {
-            const videoLink = props.children[0].props.children[1].props.children[0].props.children
+            console.log(props.children[0].props.children[0].props.children)
+            const videoLink = props.children[0].props.children[0].props.children.split('@')[1]
             return <video controls preload="metadata">
                 <source src={`${videoLink}#t=0.5`} type="video/mp4"></source>
             </video>

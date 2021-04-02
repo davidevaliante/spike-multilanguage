@@ -6,6 +6,7 @@ import LazyImage from '../Lazy/LazyImage'
 import Link from 'next/link'
 import {countryContext} from '../../context/CountryContext'
 import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface BonusGuideCardProps {
     guide: BonusGuide
@@ -13,12 +14,11 @@ interface BonusGuideCardProps {
 
 const BonusGuideCard: FunctionComponent<BonusGuideCardProps> = ({ guide }) => {
 
-    const {currentCountry} = useContext(countryContext)
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
-    const {t} = useTranslation()
     
     return <StyleProvider>
-        <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${guide.slug}/${currentCountry}`}>
+        <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${guide.slug}/${contextCountry}`}>
             <a>
                 <CardContainer backgroundColor={guide.bonus!.backgroundColor!}>
                     <LazyBonusImage width={60} height={60} borderColor={guide.bonus?.borderColor!} src={guide.bonus?.circular_image.url} />

@@ -64,7 +64,9 @@ const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _
     const [slotListArticles, setSlotListArticles] = useState<SlotListArticles>(_slotListArticles)
     const [highlightSlot, setHighlightSlot] = useState<ApolloSlotCard>(_highlightSlot)
     const [producersQuery, setProducersQuery] = useState(_producersQuery)
-    const [vltSlotListPage, setVltSlotListPage] = useState<VltSlotListPage | undefined>(_vltSlotListPage)
+    const [vltSlotListPage, setVltSlotListPage] = useState<VltSlotListPage>(_vltSlotListPage)
+
+    console.log(vltSlotListPage)
 
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
