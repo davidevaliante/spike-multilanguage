@@ -69,14 +69,9 @@ const About: FunctionComponent<Props> = ({ seo, content, bonusList }) => {
 }
 
 export async function getServerSideProps(context: NextPageContext) {
-    const publicIp = require('public-ip')
 
-    let ip: any
-    ip = await publicIp.v4()
 
-    const res = await fetch('http://ip-api.com/json/' + ip)
-    const country: any = await res.json()
-    const countryCode = country.countryCode.toLowerCase();
+    const countryCode = 'it'
     const aquaClient = new AquaClient()
 
     const aboutPageResponse = await aquaClient.query({
