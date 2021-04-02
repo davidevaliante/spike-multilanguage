@@ -91,19 +91,7 @@ export async function getServerSideProps(context: NextPageContext) {
         }
     })
     
-    let data1:any
-    if (bonusListResponse.data.data.homes[0] == undefined) {
-       data1=await aquaClient.query({
-            query: HOME_BONUS_LIST,
-            variables: {
-                countryCode: 'row'
-            }
-    }) }
-
-    const bonusList = bonusListResponse.data.data.homes.length > 0 ?
-                      bonusListResponse.data.data.homes[0].bonuses.bonus:
-                      data1.data.data.homes[0].bonuses.bonus
-
+    const bonusList = bonusListResponse.data.data.homes[0].bonuses.bonus
     return {
         props: {
             seo: aboutPageResponse.data.data.about.seo,

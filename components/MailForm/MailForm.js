@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import delay from 'lodash/delay'
 import TextField from '@material-ui/core/TextField'
 import styled from 'styled-components'
-import axios from 'axios'
+import { LocaleContext } from './../../context/LocaleContext'
 
 const MailForm = (props) => {
 
