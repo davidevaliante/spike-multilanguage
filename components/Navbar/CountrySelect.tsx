@@ -54,7 +54,7 @@ const CountrySelect : FunctionComponent<Props> = ({initialCountry}) => {
     )
 }
 
-const Flag = styled.img`
+export const Flag = styled.img`
     cursor : pointer;
     height : 36px;
     width : 36px;

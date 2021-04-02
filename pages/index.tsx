@@ -23,7 +23,7 @@ import { useRouter } from 'next/router'
 import { LocaleContext } from '../context/LocaleContext'
 import Newsletter from '../components/Newsletter/Newsletter'
 import CountryEquivalentPageSnackbar from '../components/Snackbars/CountryEquivalentPageSnackbar'
-import { GetStaticPaths } from 'next'
+import { homeDataForCountry } from '../data/data/pages-data'
 
 interface PageProps {
     _shallow : boolean
@@ -180,16 +180,11 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
 export async function getStaticProps({query, req}) {
   
-    const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
-
-    const data = await aquaClient.query({
-        query: HOME,
-        variables: { countryCode: 'it'}
-    })
+    const pageData = await homeDataForCountry('it')
 
     return {
         props: {
-            _home: data.data.data.homes[0] as Home,
+            _home: pageData,
             _shallow : null
         }
     }

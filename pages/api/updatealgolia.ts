@@ -5,7 +5,7 @@ import { Bonus, Producer } from './../../graphql/schema'
 
 const ALL_SLOTS_QUERY = `
     query{
-        slots(limit:7000, where:{type_ne:"bar", country:{code:"it"}}){
+        slots(limit:7000, where:{type_ne:"bar"}){
             id
             name
             type
@@ -46,7 +46,7 @@ const ALL_BONUS_QUERY = `
 
 const ALL_PRODUCERS_QUERY = `
 query{
-    producers(where : {country:{code:"it"}},limit: 10000){
+    producers(limit: 10000){
         id
         name,
         slug,
@@ -101,6 +101,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         return undefined
     })
 
+    console.log(slotEntities.filter(s => s != undefined).filter(s => s.country === 'row'))
+
     const bonusEntities = (allBonuses.data.data.bonuses).map((bonus: Bonus) => {
         return {
             objectID: `${bonus.id}_bonus`,
@@ -124,7 +126,12 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         }
     })
 
+
+    // for row
+    // const arr = [...slotEntities.filter(s => s != undefined).filter(s => s.country === 'row'), ...producerEntities, ...bonusEntities]
+
     const arr = [...slotEntities, ...producerEntities, ...bonusEntities]
+
 
     try {
         await index.saveObjects(arr, {
@@ -138,7 +145,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     if (req.method === 'GET') {
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json')
-        console.log('get')
         res.end(
             JSON.stringify(arr),
         )

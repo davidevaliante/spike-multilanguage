@@ -51,11 +51,9 @@ const automaticRedirect = false
 
 const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, _slotListArticles, _highlightSlot, _producersQuery, _requestedCountryCode }) => {
 
-    console.log(_shallow, 'shallow')
-
-
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
+    
 
     const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
@@ -104,9 +102,19 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
             }
             setContextCountry(_requestedCountryCode)           
         }
-
         setLoading(false)
     }
+
+    useEffect(() => {
+        setInitialSlots(_initialSlots)
+        setSlotList(_initialSlots)
+        setSlotLength(_initialSlots.length)
+        setBonusList(_bonusList)
+        setSlotListArticles(_slotListArticles)
+        setHighlightSlot(_highlightSlot)
+        setProducersQuery(_producersQuery)
+        setContextCountry(_requestedCountryCode)
+    }, [_requestedCountryCode])
 
 
     // search
@@ -220,7 +228,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
 
         if (algoliaIndex === undefined) {
             import('algoliasearch').then(algoliasearch => {
-                const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
+            const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
                 const index = client.initIndex('entities');
                 setAlgoliaIndex(index)
             })
@@ -395,7 +403,6 @@ export async function getServerSideProps({ query, req, res }) {
 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const shallow = req.query.shallow as boolean
     const country = query.countryCode as string
 
     const slotListResponse = await aquaClient.query({
@@ -443,7 +450,7 @@ export async function getServerSideProps({ query, req, res }) {
     if(somethingIsUndefined([slotList, bonusList, slotListArticles, highlightSlot])) serverSideRedirect(res, '/slots/row')
     return {
         props: {
-            _shallow : isShallow(country, shallow),
+            _shallow : false,
             _initialSlots: slotList,
             _slotListArticles: slotListArticles,
             _bonusList: bonusList,

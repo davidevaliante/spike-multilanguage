@@ -1,11 +1,9 @@
-import React, { Fragment, useContext, useEffect } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import AquaClient from '../../../../graphql/aquaClient'
 import { BLOG_ARTICLE_BY_SLUG } from '../../../../graphql/queries/blogarticle'
 import { FunctionComponent } from 'react'
-import MarkdownProvider from '../../../../components/Markdown/MarkdownProvider'
-import { getCanonicalPath, injectCDN } from '../../../../utils/Utils'
-import ReactMarkdown from 'react-markdown'
+import { getCanonicalPath, injectCDN, getUserCountryCode } from '../../../../utils/Utils'
 import styled from 'styled-components'
 import ArticleToMarkdown from '../../../../components/Markdown/ArticleToMarkdown'
 import { BodyContainer, MainColumn, RightColumn } from '../../../../components/Layout/Layout'
@@ -17,32 +15,58 @@ import CustomBreadcrumbs from '../../../../components/Breadcrumbs/CustomBreadcru
 import Head from 'next/head'
 import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
-import {useTranslation} from 'react-i18next'
 import {useRouter} from 'next/router'
-import {countryContext} from '../../../../context/CountryContext'
+import FullPageLoader from '../../../../components/Layout/FullPageLoader'
+import { LocaleContext } from './../../../../context/LocaleContext';
+import CountryEquivalentPageSnackbar from '../../../../components/Snackbars/CountryEquivalentPageSnackbar'
 
 interface Props {
     article: BG,
     bonusList: { bonus: ApolloBonusCardReveal }[],
-    countryCode:string
+    _requestedCountryCode:string
 }
 
-const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,countryCode }) => {
+const automaticRedirect = false
 
-    const {t} = useTranslation()
+const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCountryCode }) => {
 
-    const {currentCountry} = useContext(countryContext)
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
+    const [loading, setLoading] = useState(true)
     
     const router = useRouter()
 
     useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.countryCode){
-                router.push('/', `${currentCountry}`)
-            }
-        }
-    },[currentCountry])
+        getCountryData()
+    },[])
 
+    const getCountryData = async () => {
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+
+        if(_requestedCountryCode !== geoLocatedCountryCode){
+            const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+            const homeData = await aquaClient.query({
+                query: BLOG_ARTICLE_BY_SLUG,
+                variables: { countryCode: geoLocatedCountryCode}
+            })
+
+            if(homeData.data.data.blogArticles[0]){
+                if(automaticRedirect) {
+                    router.push(`/blog/${geoLocatedCountryCode}`)
+                    return
+                } else {
+                    setUserCountryEquivalentExists(true)
+                    setContextCountry(_requestedCountryCode)
+                }
+            }
+        } else setContextCountry(_requestedCountryCode)
+
+        setLoading(false)
+    }
+
+    if(loading) return <FullPageLoader />
     return (
         <Fragment>
             <Head>
@@ -62,13 +86,14 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,countryCode 
                 <meta property="article:published_time" content={article.created_at} />
             </Head>
 
-            <NavbarProvider currentPage={`/blog-article/${article.seo?.seoTitle}`} countryCode={countryCode}>
+            <NavbarProvider currentPage={`/blog-article/${article.seo?.seoTitle}`} countryCode={contextCountry}>
                 <CustomBreadcrumbs
                     style={{ padding: '1rem 1rem' }}
                     name={article.title}
                     from='blog-article' />
 
                 <BodyContainer>
+                    {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={userCountry === 'it' ? '/' : `/${userCountry}`} />}
 
                     <MainColumn>
                         <Wrapper>
@@ -126,6 +151,7 @@ export async function getServerSideProps({ query }) {
     })    
 
     const bonusList = bonusListResponse.data.data.homes[0]?.bonuses.bonus
+
 
     return {
         props: {

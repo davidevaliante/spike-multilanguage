@@ -8,6 +8,7 @@ import { injectCDN } from './../../utils/Utils';
 import { format } from 'date-fns';
 import {countryContext} from '../../context/CountryContext'
 import {useTranslation} from 'react-i18next'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     article: Article
@@ -15,13 +16,12 @@ interface Props {
 
 const BlogArticleCard: FunctionComponent<Props> = ({ article }) => {
 
-    const {currentCountry} = useContext(countryContext)
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
-    const {t} = useTranslation()
-    
+   
     return (
         <StyleProvider>
-            <Link href={`/blog/[slug]/[countryCode]`} as={`/blog/${article.slug}/${currentCountry}`}>
+            <Link href={`/blog/[slug]/[countryCode]`} as={`/blog/${article.slug}/${contextCountry}`}>
                 <a>
                     <CardContainer>
                         <LazyImage width='100%' height='200px' src={injectCDN(article.image?.url!)} />

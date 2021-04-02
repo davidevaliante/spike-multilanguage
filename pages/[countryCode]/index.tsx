@@ -183,7 +183,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
     </div>
 }
 
-export const getStaticProps : GetStaticProps = async ({params}) =>  {
+export const getServerSideProps = async ({params}) =>  {
   
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
@@ -208,13 +208,7 @@ export const getStaticProps : GetStaticProps = async ({params}) =>  {
     }
 }
 
-export const getStaticPaths : GetStaticPaths = async () =>  {
 
-    return {
-      paths: [{ params: { countryCode: 'it' } }],
-      fallback: true,
-    }
-}
 
 const Provider = styled.div`
     .sib-form{

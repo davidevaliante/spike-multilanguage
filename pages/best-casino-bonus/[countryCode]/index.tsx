@@ -1,21 +1,22 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { Seo } from '../../../graphql/schema'
-import { NextPageContext } from 'next'
 import AquaClient from '../../../graphql/aquaClient'
 import { BONUS_PAGE_BY_COUNTRY } from '../../../graphql/queries/bonuspage'
-import ArticleToMarkdown from '../../../components/Markdown/ArticleToMarkdown'
-import { getCanonicalPath, getUserCountryCode, injectCDN } from '...//../../utils/Utils'
-import PrimaryBonusCard from '../../../components/Cards/PrimaryBonusCard'
+import { getCanonicalPath, getUserCountryCode, injectCDN, getBonusPageRedirectUrlForCountry } from '...//../../utils/Utils'
 import NavbarProvider from '../../../components/Navbar/NavbarProvider'
-import { BodyContainer, MainColumn } from '../../../components/Layout/Layout'
+import { BodyContainer, MainColumn, RightColumn } from '../../../components/Layout/Layout'
 import { DynamicArticle, DynamicBonusList, DynamicSlotList, DynamicVideo } from '../../../components/DynamicContent/DynamicContent'
 import DynamicContent from './../../../components/DynamicContent/DynamicContent'
 import Head from 'next/head'
-import fetch from 'cross-fetch'
 import { LocaleContext } from './../../../context/LocaleContext';
 import { useContext } from 'react'
 import FullPageLoader from '../../../components/Layout/FullPageLoader'
 import { isShallow } from './../../../utils/Utils';
+import { useRouter } from 'next/router';
+import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
+import { HOME_BONUS_LIST } from '../../../graphql/queries/bonus'
+import { ApolloBonusCardReveal } from '../../../data/models/Bonus'
+import ApolloBonusCardRevealComponent from '../../../components/Cards/BonusCardReveal'
 
 
 interface BonusPage {
@@ -26,46 +27,55 @@ interface BonusPage {
 interface Props {
     _shallow : boolean
     _bonusPage: BonusPage,
-    _countryCode:string
+    _requestedCountryCode:string
+    _bonusList : { bonus: ApolloBonusCardReveal }[]
 }
 
-const BestBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_countryCode }) => {
-    console.log(_bonusPage, _countryCode)
+const automaticRedirect = false
+
+const BestBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCountryCode, _bonusList }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+    const router = useRouter()
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
     const [loading, setLoading] = useState(true)
-    const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
     const [bonusPage, setBonusPage] = useState<BonusPage>(_bonusPage)
+    const [bonusList, setBonusList] = useState(_bonusList)
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
+    console.log(bonusList)
+
 
     useEffect(() => {
-        getCountryData()
+        if(_shallow){
+            setContextCountry(_requestedCountryCode)
+            setLoading(false)
+        }
+        else getCountryData()
     }, [])
 
     const getCountryData = async () => {
-        const userCountryCode = await getUserCountryCode()
-        if(userCountryCode !== _countryCode && _countryCode !== 'row'){
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+
+        if(geoLocatedCountryCode !== _requestedCountryCode){
             const data = await aquaClient.query({
                 query: BONUS_PAGE_BY_COUNTRY,
-                variables: { countryCode: userCountryCode }
+                variables: { countryCode: geoLocatedCountryCode }
             })
-        
-            let data1:any
-            if (data.data.data.bonusPages[0] == undefined) {
-                data1 = await aquaClient.query({
-                    query: BONUS_PAGE_BY_COUNTRY,
-                    variables: { countryCode: 'row'}
-                    })  
-                setContextCountry('row')
-            }
 
-            const d = data.data.data.bonusPages[0]? data.data.data.bonusPages[0] : data1.data.data.bonusPages[0]
-            setBonusPage(d)
-            setLoading(false)
-        } else {
-            setContextCountry(_countryCode)
-            setLoading(false)
+            if(data.data.data.bonusPages[0] !== undefined){
+                if(automaticRedirect){
+                    router.push(getBonusPageRedirectUrlForCountry(geoLocatedCountryCode))
+                    return
+                }
+                else setUserCountryEquivalentExists(true)
+            }
+            setContextCountry(_requestedCountryCode)           
         }
+        setLoading(false)
     }
+
 
     if(loading) return <FullPageLoader />
     return (
@@ -85,11 +95,19 @@ const BestBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_countryCode
             </Head>
 
             <BodyContainer>
+                {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={getBonusPageRedirectUrlForCountry(userCountry)} />}
                 <MainColumn>
                     <div style={{ padding: '1rem' }}>
                         <DynamicContent content={bonusPage?.content} />
                     </div>
                 </MainColumn>
+                
+                <RightColumn>
+                        <h1 className='bonus-header'>{t("The best welcome bonuses")}</h1>
+                        <div style={{ top: '2rem' }} className='bonus-column-container'>
+                            {bonusList && bonusList.map(bo => <ApolloBonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />)}
+                        </div>
+                </RightColumn>
             </BodyContainer>
         </NavbarProvider>
     )
@@ -114,11 +132,19 @@ export async function getServerSideProps({query, req, res}) {
     })  
     }
 
+    const bonusListResponse = await aquaClient.query({
+        query: HOME_BONUS_LIST,
+        variables: {
+            countryCode: country
+        }
+    })
+
     return {
         props: {
             _shallow : isShallow(country, shallow),
             _bonusPage: data.data.data.bonusPages[0]? data.data.data.bonusPages[0] : data1.data.data.bonusPages[0],
-            _countryCode:country
+            _bonusList : bonusListResponse.data.data.homes[0]?.bonuses.bonus,
+            _requestedCountryCode:country
         }
     }
 }

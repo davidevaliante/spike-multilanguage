@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "cross-env NODE_ENV=production next build",
-    "analyze-bundle": "cross-env NODE_ENV=production ANALYZE=true next build",
-    "start": "cross-env NODE_ENV=production next start -p 3006",
-    "heroku-postbuild": "npm run build"
+    "start": "cross-env NODE_ENV=production node server.js",
+    "heroku-postbuild": "npm run build",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.27",

@@ -4,7 +4,6 @@ import { appTheme, AppTheme } from '../../theme/theme'
 import SearchBox from './SearchBox'
 import { laptop, desktop } from './../Responsive/Breakpoints'
 import SearchInput from '../Input/SearchInput'
-import Link from 'next/link'
 import NavbarAams from '../Banners/NavbarAams'
 import Footer from '../Footer/Footer'
 import PushMenu from './Menu/PushMenu'
@@ -99,7 +98,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         clearTimeout(searchTimerId)
         const newTimer = delay(async () => {
             const results = await algoliaIndex!.search(s, {
-                filters: `country:${countryCode}`
+                filters: `country:${contextCountry}`
             })
 
             setSearchResults(results.hits.map((obj: any) => {
@@ -163,31 +162,31 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
 
         if (page.link === '/') {
             return (
-                <Link
+                <a
                     key={key}
                     href={`/`}>
-                    <a>{t("Home")}</a>
-                </Link>
+                    {t("Home")}
+                </a>
             )
         }
 
         if (page.link === '/migliori-bonus-casino') {
             return (
-                <Link
+                <a
                     key={key}
                     href={`/migliori-bonus-casino`}>
-                    <a>{t(page.label)}</a>
-                </Link>
+                    {t(page.label)}
+                </a>
             )
         }
 
         if (page.link === '/videolist') {
             return (
-                <Link
+                <a
                     key={key}
                     href={`${page.link}/${countryCode}`}>
-                    <a>{t(page.label)}</a>
-                </Link>
+                    {t(page.label)}
+                </a>
             )
         }
 
@@ -239,7 +238,6 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         <NavbarWrapper searchOpen={searchOpen}>
             <MobileAndTablet>
                 {!searchOpen && <SearchClosedContainer>
-
                     <BurgerMenuIcon
                         isOpen={drawerOpen}
                         onDrawerOpen={() => setDrawerOpen(true)}
@@ -273,7 +271,6 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
 
             <BigScreens>
                 <div className='top-row'>
-
                     <LazyImage
                         onClick={() => router.push('/')}
                         className='slot-icon'
@@ -290,7 +287,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
                         onSearchFocusChange={handleSearchFocusChange}
                         onSearchChange={handleSearchChange} />
 
-                    <CountrySelect initialCountry={contextCountry} />
+                    {/* <CountrySelect initialCountry={contextCountry} /> */}
 
                 </div>
                 <div className='bottom-row'>

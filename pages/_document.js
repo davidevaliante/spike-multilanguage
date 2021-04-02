@@ -52,7 +52,8 @@ export default class Document extends NextDocument {
         return (
             <Html lang={this.props.lang}>
                 <Head>
-                    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@900&family=Raleway:wght@500&display=swap" rel="stylesheet" />
+                    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@900&display=swap" rel="stylesheet" />
+                    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet" />
                     <meta name="google-site-verification" content="UmP-j4RgASnaCO-_OIXFoGoNb1M9xd8a22uMn4T2JiI" />
                     <link rel="shortcut icon" href="/icons/favicon.ico" />
                     <meta name="theme-color" content={`${appTheme.colors.primaryDark}`} />

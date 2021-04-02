@@ -14,6 +14,12 @@ export const getUserCountryCode = async () => {
     return countryCode
 }
 
+export const getBonusPageRedirectUrlForCountry = (countryCode : string) => {
+    if(countryCode === 'it') return '/migliori-bonus-casino'
+    if(countryCode === 'row') return '/best-casino-bonus'
+    return ''
+}
+
 
 export const isShallow = (countryCode : string | undefined, _shallow : boolean | string | undefined) => {
     if(_shallow == true || _shallow === 'true') return true

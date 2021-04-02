@@ -1,10 +1,10 @@
-import React, { Fragment,useEffect,useContext } from 'react'
+import React, { Fragment,useEffect,useContext, useState } from 'react'
 import NavbarProvider from '../../../components/Navbar/NavbarProvider'
 import AquaClient from './../../../graphql/aquaClient'
-import { BLOG_ARTICLES_BY_COUNTRY } from './../../../graphql/queries/blogarticle'
+import { BLOG_ARTICLES_BY_COUNTRY, BLOG_ARTICLE_BY_SLUG } from './../../../graphql/queries/blogarticle'
 import { FunctionComponent } from 'react'
 import MarkdownProvider from '../../../components/Markdown/MarkdownProvider'
-import { getCanonicalPath, injectCDN } from '../../../utils/Utils'
+import { getCanonicalPath, injectCDN, getUserCountryCode } from '../../../utils/Utils'
 import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 import { BodyContainer, MainColumn, RightColumn } from '../../../components/Layout/Layout'
@@ -24,6 +24,9 @@ import { HOME_BONUS_LIST } from '../../../graphql/queries/bonus'
 import {useTranslation} from 'react-i18next'
 import {useRouter} from 'next/router'
 import {countryContext} from '../../../context/CountryContext'
+import { LocaleContext } from '../../../context/LocaleContext'
+import FullPageLoader from '../../../components/Layout/FullPageLoader'
+import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
 
 interface Props {
     blogList: {
@@ -32,24 +35,54 @@ interface Props {
     }
     articles: Article[]
     bonusList: { bonus: ApolloBonusCardReveal }[],
-    countryCode:string
+    _requestedCountryCode:string
 }
 
-const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articles,countryCode }) => {
 
+const automaticRedirect = true
+
+const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articles,_requestedCountryCode }) => {
+
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
+    const [loading, setLoading] = useState(true)
+    
     const router = useRouter()
 
-    const {t} = useTranslation()
 
-    const {currentCountry} = useContext(countryContext)
+    console.log(blogList)
 
     useEffect(() => {
-        if(!currentCountry){}else{
-            if(currentCountry !== router.query.slug){
-                router.push('/', `${currentCountry}`)
+        getCountryData()
+    },[])
+
+    const getCountryData = async () => {
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+
+        if(_requestedCountryCode !== geoLocatedCountryCode){
+            const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+            const homeData = await aquaClient.query({
+                query: BLOG_ARTICLES_BY_COUNTRY,
+                variables: { countryCode: geoLocatedCountryCode}
+            })
+
+            if(homeData.data.data.blogArticles[0]){
+                if(automaticRedirect) {
+                    router.push(`/blog/${geoLocatedCountryCode}`)
+                } else {
+                    setUserCountryEquivalentExists(true)
+                    setContextCountry(_requestedCountryCode)
+                }
             }
-        }
-    },[currentCountry])
+        } else setContextCountry(_requestedCountryCode)
+
+        setLoading(false)
+    }
+
+
+    if(loading) return <FullPageLoader />
 
     return (
         <Fragment>
@@ -69,11 +102,12 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
             </Head>
 
-            <NavbarProvider currentPage='/blog' countryCode={countryCode}>
+            <NavbarProvider currentPage='/blog' countryCode={contextCountry}>
                 <CustomBreadcrumbs
                     style={{ padding: '1rem 1rem' }}
                     from='blog' />
                 <BodyContainer>
+                    {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/blog/${userCountry}`} />}
 
                     <MainColumn>
                         <Wrapper>
@@ -131,8 +165,12 @@ export async function getServerSideProps({ query }) {
 
     const blogListResponse = await aquaClient.query({
         query: BLOG_LIST_BY_COUNTRY,
-        variables: { slug: slug }
+        variables: { countryCode: slug }
     })
+
+    console.log(slug)
+
+    console.log(blogListResponse.data.data.blogLists[0].content)
 
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
@@ -150,24 +188,13 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    let initialArticlesResponse_data1: any
-
-    if(initialArticlesResponse.data.data.blogArticles[0] === undefined){
-        initialArticlesResponse_data1 = await aquaClient.query({
-            query: BLOG_ARTICLES_BY_COUNTRY,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
-
     return {
         props: {
             query,
             blogList: blogListResponse.data.data.blogLists[0],
             bonusList: bonusList,
-            articles: initialArticlesResponse.data.data.blogArticles.length > 0 ? initialArticlesResponse.data.data.blogArticles : initialArticlesResponse_data1.data.data.blogArticles,
-            countryCode:slug
+            articles: initialArticlesResponse.data.data.blogArticles,
+            _requestedCountryCode:slug
         }
     }
 }

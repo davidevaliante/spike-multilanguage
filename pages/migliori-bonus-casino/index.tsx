@@ -1,18 +1,21 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext, useState, useEffect } from 'react'
 import { Seo } from '../../graphql/schema'
 import { NextPageContext } from 'next'
 import AquaClient from '../../graphql/aquaClient'
 import { BONUS_PAGE_BY_COUNTRY } from '../../graphql/queries/bonuspage'
-import ArticleToMarkdown from '../../components/Markdown/ArticleToMarkdown'
-import { getCanonicalPath, injectCDN } from './../../utils/Utils'
-import PrimaryBonusCard from '../../components/Cards/PrimaryBonusCard'
+import { getCanonicalPath, getUserCountryCode, getBonusPageRedirectUrlForCountry } from './../../utils/Utils'
 import NavbarProvider from '../../components/Navbar/NavbarProvider'
-import { BodyContainer, MainColumn } from '../../components/Layout/Layout'
+import { BodyContainer, MainColumn, RightColumn } from '../../components/Layout/Layout'
 import { DynamicArticle, DynamicBonusList, DynamicSlotList, DynamicVideo } from '../../components/DynamicContent/DynamicContent'
 import DynamicContent from './../../components/DynamicContent/DynamicContent'
 import Head from 'next/head'
 import fetch from 'cross-fetch'
-import {useTranslation} from 'react-i18next'
+import { useRouter } from 'next/router'
+import { LocaleContext } from '../../context/LocaleContext'
+import ApolloBonusCardRevealComponent from '../../components/Cards/BonusCardReveal'
+import { ApolloBonusCardReveal } from '../../data/models/Bonus'
+import { HOME_BONUS_LIST } from '../../graphql/queries/bonus'
+import CountryEquivalentPageSnackbar from '../../components/Snackbars/CountryEquivalentPageSnackbar'
 
 
 interface BonusPage {
@@ -21,16 +24,57 @@ interface BonusPage {
 }
 
 interface Props {
-    bonusPage: BonusPage,
-    countryCode:string
+    _shallow : boolean
+    _bonusPage: BonusPage,
+    _requestedCountryCode:string
 }
 
-const MiglioriBonus: FunctionComponent<Props> = ({ bonusPage,countryCode }) => {
+const automaticRedirect = false
 
-    const {t} = useTranslation()
+const MiglioriBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCountryCode }) => {
+
+    const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+    const router = useRouter()
+    const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
+
+    const [loading, setLoading] = useState(true)
+    const [bonusPage, setBonusPage] = useState<BonusPage>(_bonusPage)
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
+
+
+    useEffect(() => {
+        if(_shallow){
+            setContextCountry(_requestedCountryCode)
+            setLoading(false)
+        }
+        else getCountryData()
+    }, [])
+
+    const getCountryData = async () => {
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+
+        if(geoLocatedCountryCode !== _requestedCountryCode){
+            const data = await aquaClient.query({
+                query: BONUS_PAGE_BY_COUNTRY,
+                variables: { countryCode: geoLocatedCountryCode }
+            })
+
+            if(data.data.data.bonusPages[0] !== undefined){
+                if(automaticRedirect){
+                    router.push(getBonusPageRedirectUrlForCountry(geoLocatedCountryCode))
+                    return
+                }
+                else setUserCountryEquivalentExists(true)
+            }
+            setContextCountry(_requestedCountryCode)           
+        }
+        setLoading(false)
+    }
 
     return (
-        <NavbarProvider currentPage='/migliori-bonus-casino' countryCode={countryCode}>
+        <NavbarProvider currentPage='/migliori-bonus-casino' countryCode={contextCountry}>
             <Head>
                 <title>{t("Best Casino Bonuses |  SPIKE")}</title>
                 <link rel="canonical" href={getCanonicalPath()} />
@@ -47,6 +91,8 @@ const MiglioriBonus: FunctionComponent<Props> = ({ bonusPage,countryCode }) => {
             </Head>
 
             <BodyContainer>
+                {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={getBonusPageRedirectUrlForCountry(userCountry)} />}
+
                 <MainColumn>
                     <div style={{ padding: '1rem' }}>
                         <DynamicContent content={bonusPage?.content} />
@@ -57,23 +103,16 @@ const MiglioriBonus: FunctionComponent<Props> = ({ bonusPage,countryCode }) => {
     )
 }
 
-export async function getServerSideProps(context: NextPageContext) {
-
-    const publicIp = require('public-ip');
-
-    let ip: any
-    ip = await publicIp.v4()
-
-    const res = await fetch('http://ip-api.com/json/' + ip)
-
-    const country: any = await res.json()
-    const countryCode = country.countryCode.toLowerCase()
+export const getServerSideProps = async ({params}) => {
     
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
+    const requestedCountryCode = 'it'
+
+
     const data = await aquaClient.query({
         query: BONUS_PAGE_BY_COUNTRY,
-        variables: { countryCode: countryCode }
+        variables: { countryCode: requestedCountryCode }
     })
 
     let data1:any
@@ -86,8 +125,9 @@ export async function getServerSideProps(context: NextPageContext) {
 
     return {
         props: {
-            bonusPage: data.data.data.bonusPages[0]? data.data.data.bonusPages[0] : data1.data.data.bonusPages[0],
-            countryCode:countryCode
+            _bonusPage: data.data.data.bonusPages[0]? data.data.data.bonusPages[0] : data1.data.data.bonusPages[0],
+            _requestedCountryCode:requestedCountryCode,
+            _shallow : false
         }
     }
 }
