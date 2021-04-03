@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent,useContext,useEffect } from 'react'
+import React, { Fragment, FunctionComponent,useContext,useEffect, useState } from 'react'
 import { BonusGuide, Bonus, Article } from '../../../graphql/schema'
 import AquaClient from '../../../graphql/aquaClient'
 import { BONUS_GUIDES_BY_COUNTRY } from '../../../graphql/queries/bonusguide'
@@ -12,26 +12,68 @@ import { ARTICLES_BY_COUNTRY } from '../../../graphql/queries/article'
 import ArticleCard from './../../../components/Cards/ArticleCard'
 import { tablet } from '../../../components/Responsive/Breakpoints'
 import {useRouter} from 'next/router'
-import { getCanonicalPath } from '../../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode } from '../../../utils/Utils'
 import { LocaleContext } from './../../../context/LocaleContext';
+import FullPageLoader from '../../../components/Layout/FullPageLoader'
+import { HOME } from '../../../graphql/queries/home'
+import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
+import { getBGuidePageRedirectUrlForCountry } from './../../../utils/Utils';
 
 interface Props {
     initialGuides: BonusGuide[]
     articles: Article[]
     bonusList: Bonus[],
-    countryCode:string
+    _requestedCountryCode:string
 }
 
-const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articles,countryCode }) => {
+const automaticRedirect = false
 
-    const { t, contextCountry, setContextCountry } = useContext(LocaleContext)
+const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articles,_requestedCountryCode }) => {
+
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const router = useRouter()
+
+    const [loading, setLoading] = useState(true)
+    const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
+    useEffect(() => {
+        getCountryData()
+    }, [])
+
+    const getCountryData = async () => {
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+        const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+
+        if(geoLocatedCountryCode !== _requestedCountryCode){
+            const initialGuidesResponse = await aquaClient.query({
+                query: BONUS_GUIDES_BY_COUNTRY,
+                variables: {
+                    countryCode: geoLocatedCountryCode
+                }
+            })
+            
+
+            if(initialGuidesResponse.data.data.bonusGuides !== undefined){
+                if(automaticRedirect){
+                    router.push(getBGuidePageRedirectUrlForCountry(geoLocatedCountryCode))
+                    return
+                }
+                else setUserCountryEquivalentExists(true)
+            }
+            setContextCountry(_requestedCountryCode)           
+        }
+        setLoading(false)
+    }
+
+
     
- 
+    if(loading) return <FullPageLoader />
     return (
         <Fragment>
 
             <Head>
-                <title>{t(`Bonus Guides and Slot Tricks |  SPIKE`)}</title>
+                <title>{t('GuideTextTitlePageTitle')}</title>
                 <link rel="canonical" href={getCanonicalPath()} />
                 <meta
                     name="description"
@@ -46,7 +88,8 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
             </Head>
 
-            <NavbarProvider currentPage='/guide-e-trucchi' countryCode={countryCode}>
+            <NavbarProvider currentPage='/guide-e-trucchi' countryCode={contextCountry}>
+                {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={getBGuidePageRedirectUrlForCountry(userCountry)} />}
 
                 <StyleProvider>
                     <CustomBreadcrumbs style={{ margin: '1rem 0rem' }} from='guide-list' name='Guides and Tricks' />
@@ -121,16 +164,6 @@ export async function getServerSideProps({ query }) {
         }
     })
     
-    let initialGuidesResponse_data1:any
-    if(initialGuidesResponse.data.data.bonusGuides[0] === undefined){
-        initialGuidesResponse_data1 = await aquaClient.query({
-            query: BONUS_GUIDES_BY_COUNTRY,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
-    
     const initialArticlesResponse = await aquaClient.query({
         query: ARTICLES_BY_COUNTRY,
         variables: {
@@ -138,15 +171,6 @@ export async function getServerSideProps({ query }) {
         }
     })
     
-    let initialArticlesResponse_data1:any
-    if(initialArticlesResponse.data.data.articles[0] === undefined){
-        initialArticlesResponse_data1 = await aquaClient.query({
-            query: ARTICLES_BY_COUNTRY,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
 
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
@@ -157,10 +181,10 @@ export async function getServerSideProps({ query }) {
 
     return {
         props: {
-            initialGuides:initialGuidesResponse.data.data.bonusGuides.length > 0 ? initialGuidesResponse.data.data.bonusGuides :  initialGuidesResponse_data1.data.data.bonusGuides,
-            articles: initialArticlesResponse.data.data.articles.length > 0 ? initialArticlesResponse.data.data.articles : initialArticlesResponse_data1.data.data.articles,
+            initialGuides:initialGuidesResponse.data.data.bonusGuides,
+            articles: initialArticlesResponse.data.data.articles,
             bonusList: bonusListResponse.data.data.homes[0]?.bonuses || null,
-            countryCode:countryCode
+            _requestedCountryCode:countryCode
         }
     }
 }

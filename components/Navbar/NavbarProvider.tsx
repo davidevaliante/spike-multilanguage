@@ -164,7 +164,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
             return (
                 <a
                     key={key}
-                    href={`/`}>
+                    href={contextCountry === 'it' ? `/` : `/${contextCountry}`}>
                     {t("Home")}
                 </a>
             )
@@ -272,7 +272,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
             <BigScreens>
                 <div className='top-row'>
                     <LazyImage
-                        onClick={() => router.push('/')}
+                        onClick={() => contextCountry === 'it' ? router.push('/') : router.push(`/${contextCountry}`)}
                         className='slot-icon'
                         width={180}
                         height={60}

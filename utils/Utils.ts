@@ -20,6 +20,12 @@ export const getBonusPageRedirectUrlForCountry = (countryCode : string) => {
     return ''
 }
 
+export const getBGuidePageRedirectUrlForCountry = (countryCode : string) => {
+    if(countryCode === 'it') return '/guide-e-trucchi/it'
+    if(countryCode === 'row') return '/guide-and-tricks/row'
+    return ''
+}
+
 
 export const isShallow = (countryCode : string | undefined, _shallow : boolean | string | undefined) => {
     if(_shallow == true || _shallow === 'true') return true

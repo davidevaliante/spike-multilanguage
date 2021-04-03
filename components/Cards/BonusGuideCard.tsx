@@ -23,7 +23,7 @@ const BonusGuideCard: FunctionComponent<BonusGuideCardProps> = ({ guide }) => {
 
                     <div style={{ display: 'flex' }}>
                         <div>
-                            <h2 className='card-header'>{`Guida bonus ${guide.bonus?.name}`}</h2>
+                            <h2 className='card-header'>{`${t('Bonus Guide')} ${guide.bonus?.name}`}</h2>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <p className='card-subheader'>{t("With video explanation by SPIKE")}</p>
                                 <LazyImage width={30} height={30} src={'/icons/ciak.svg'} />

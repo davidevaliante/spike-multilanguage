@@ -111,9 +111,9 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                     <LazyLoad height={450} once>
                         <SlideShow
                             apolloSlotCards={onlineSlots.filter(s => s.image !== undefined)}
-                            title={t('The Online Slots of the moment')}
+                            title={'The Online Slots of the moment'}
                             icon='/icons/slot_online_icon.svg'
-                            buttonText={t('See the full list of Online Slots')}
+                            buttonText={'See the full list of Online Slots'}
                             buttonRoute={`/slots/[countryCode]`}
                             buttonRouteAs={`/slots/${contextCountry}`}
                             style={{ marginTop: '2rem' }}

@@ -35,7 +35,7 @@ interface Props {
 }
 
 
-const automaticRedirect = true
+const automaticRedirect = false
 
 const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articles,_requestedCountryCode }) => {
 
