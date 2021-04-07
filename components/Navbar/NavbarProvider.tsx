@@ -245,7 +245,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
                     />
 
                     <LazyImage
-                        onClick={() => router.push('/')}
+                        onClick={() => contextCountry === 'it' ? router.push('/') : router.push(`/${contextCountry}`)}
                         width={60}
                         height={60}
                         alt='spike_slot_logo'
@@ -297,7 +297,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         </NavbarWrapper>
 
         <PushMenu
-            tiles={drawerPages}
+            tiles={contextCountry === 'it' ? p : p.filter(p => p.label !== 'Bar Slot' && p.label !== 'VLT slot')}
             state={drawerOpen}>
             <FadeInOut visible={!searchOpen}>
                 <ChildrenWrapper style={{ background: 'white' }}>

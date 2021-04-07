@@ -5,17 +5,17 @@ import { LocaleContext } from '../../context/LocaleContext'
 
 const NavbarAams: FunctionComponent = () => {
 
-    const {t} = useContext(LocaleContext)
+    const {t, contextCountry} = useContext(LocaleContext)
     
     return <Fragment>
         <Container>
 
             <LazyImage
-                width={66}
-                height={56}
+                width={contextCountry === 'it' ? 66 : 66}
+                height={contextCountry === 'it' ? 56 : 66}
                 style={{ marginRight: '1rem' }}
                 alt='aams logo'
-                src='https://spikewebsitemedia.b-cdn.net/adm_logo.png' />
+                src={contextCountry === 'it' ? 'https://spikewebsitemedia.b-cdn.net/adm_logo.png' : '/icons/gamble_aware.png'} />
 
             <LazyImage
                 width={36}

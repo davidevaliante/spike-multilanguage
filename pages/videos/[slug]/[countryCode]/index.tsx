@@ -88,7 +88,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                 currentPage={`/video/${video.title}`}>
                 <Body>
 
-                    <div style={{ margin: '0rem 1rem' }}>
+                    <div style={{ margin: '0rem 1rem', fontFamily : 'Raleway' }}>
 
                         <VideoMainData
                             title={video.title}
@@ -159,7 +159,7 @@ const RelatedBonusContainer = styled.div`
     width : 100%;
 
     ${bigscreens}{
-                    position : absolute;
+        position : absolute;
         flex-direction : column;
         top : -600px;
         left : -785px;

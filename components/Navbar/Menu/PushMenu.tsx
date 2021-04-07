@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FunctionComponent } from 'react'
 import Divider from '../../Ui/Divider'
 import Router from 'next/router'
 import { countryContext } from './../../../context/CountryContext'
+import { useContext } from 'react';
+import { LocaleContext } from '../../../context/LocaleContext'
 
 interface Props {
     state: boolean,
@@ -15,7 +17,9 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
 
     const [childrenWrapperPosition, setChildrenWrapperPosition] = useState(false)
 
-    const { currentCountry } = useContext(countryContext)
+    const {t, contextCountry} = useContext(LocaleContext)
+
+    console.log(tiles)
 
     useEffect(() => {
         if (state === true) setChildrenWrapperPosition(true)
@@ -30,7 +34,7 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
 
     const navigateTo = (link: string) => {
         if (link === '/' || link === '/migliori-bonus-casino') Router.push(link)
-        else Router.push(`${link}/${currentCountry}`)
+        else Router.push(`${link}/${contextCountry}`)
     }
 
     return (
@@ -38,7 +42,7 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
             <PushMenuContainer isOpen={state} offSet={offset} childrenWrapperPosition={childrenWrapperPosition}>
                 <div>
                     {tiles.map(tile => <div key={`push_menu_${tile.label}`} onClick={() => navigateTo(tile.link)}>
-                        <p>{tile.label}</p>
+                        <p>{t(tile.label)}</p>
                         <Divider />
                     </div>)}
                 </div>

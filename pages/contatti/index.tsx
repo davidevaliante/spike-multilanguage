@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect, useContext } from 'react'
 import AquaClient from '../../graphql/aquaClient'
 import { NextPageContext } from 'next'
 import { CONTACTS } from './../../graphql/queries/contacts'
@@ -10,7 +10,10 @@ import { BodyContainer } from '../../components/Layout/Layout'
 import CustomBreadcrumbs from '../../components/Breadcrumbs/CustomBreadcrumbs'
 import MailForm from '../../components/MailForm/MailForm'
 import Head from 'next/head'
-import { getCanonicalPath } from '../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode } from '../../utils/Utils'
+import FullPageLoader from '../../components/Layout/FullPageLoader'
+import { LocaleContext } from '../../context/LocaleContext'
+import { HOME } from '../../graphql/queries/home'
 
 
 interface Props extends DynamicContentProps {
@@ -19,15 +22,35 @@ interface Props extends DynamicContentProps {
 
 const index: FunctionComponent<Props> = ({  content }) => {
     
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        getGeoData()
+    }, [])
+
+    const getGeoData = async () => {
+        const geoLocatedCountryCode = await getUserCountryCode()
+        setUserCountry(geoLocatedCountryCode)
+
+        if(geoLocatedCountryCode !== 'it') setContextCountry('row')
+        else setContextCountry('it')
+        setLoading(false)
+
+    }
+
+
+    if(loading) return <FullPageLoader />
     return (
         <Fragment>
             <Head>
                 <link rel="canonical" href={getCanonicalPath()} />
             </Head>
-            <NavbarProvider currentPage='/contacts' countryCode={''}>
+            <NavbarProvider currentPage='/contacts' countryCode={contextCountry}>
             <BodyContainer>
                 <div style={{ padding: '1rem', width: '100%' }}>
-                    <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='contacts' name='Contatti' />
+                    <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='contacts' name={t('Contacts')} />
                     {content !== null && <DynamicContent content={content} />}
                     <MailForm />
                 </div>

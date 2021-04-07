@@ -319,6 +319,7 @@ const NavbarWrapper = styled.div`
     height : 96px;
     transition : background .4s ease-in;
     color : white;
+    font-family : 'Raleway', sans-serif !important;
 
     ${laptop}{
         display : flex; 

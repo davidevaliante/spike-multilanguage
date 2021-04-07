@@ -25,6 +25,7 @@ import { LocaleContext } from '../../context/LocaleContext'
 import { useRouter } from 'next/router'
 import CountryEquivalentPageSnackbar from '../../components/Snackbars/CountryEquivalentPageSnackbar'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import Newsletter from '../../components/Newsletter/Newsletter'
 
 
 interface PageProps {
@@ -164,9 +165,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
 
                     <LatestVideoCard />
 
-                    <Provider>
-                    <iframe className={'sib-form'} width="500" height='600' src="https://c4236f72.sibforms.com/serve/MUIEAH9KaDzyuXi3daFo5LJ-0Y8EBDFsdQ4PEXaF5c2P0bghKc__0xqGLS0G0XL8lniYtTnyPiKPyLC83CM8ZBLDOXTAN-bf4nijExyd1yBXjXAA-NJkOY7xTU9w6r_z0HxnnmewgVrYVdcJzKPZKou9FTgwc957psJ189mbdwRfqj70JyPvJRtFhaizXBR87WKEjHI5tVbE9rb5" frameBorder="0" scrolling="auto" allowFullScreen style={{display: 'block', marginLeft: 'auto',marginRight: 'auto',maxWidth: '100%', padding : '0'}}></iframe>
-                    </Provider>
+                    <Newsletter />
+
 
                     <h1 style={{paddingTop : '1rem'}} className='bonus-header'>I migliori bonus di benvenuto</h1>
                     <div style={{top : '820px'}} className='bonus-column-container'>
@@ -175,7 +175,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
                 </RightColumn>
 
                 <OnlyMobile>
-                <iframe className={'sib-form'} width="500" height='600' src="https://c4236f72.sibforms.com/serve/MUIEAH9KaDzyuXi3daFo5LJ-0Y8EBDFsdQ4PEXaF5c2P0bghKc__0xqGLS0G0XL8lniYtTnyPiKPyLC83CM8ZBLDOXTAN-bf4nijExyd1yBXjXAA-NJkOY7xTU9w6r_z0HxnnmewgVrYVdcJzKPZKou9FTgwc957psJ189mbdwRfqj70JyPvJRtFhaizXBR87WKEjHI5tVbE9rb5" frameBorder="0" scrolling="auto" allowFullScreen style={{display: 'block', marginLeft: 'auto',marginRight: 'auto',maxWidth: '100%', padding : '0'}}></iframe>
+                <Newsletter />
                 </OnlyMobile>
 
             </BodyContainer>

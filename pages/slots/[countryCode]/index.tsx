@@ -93,7 +93,8 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                 }
             })
 
-            if(userCountrySlotListRequest.data.data.slots !== undefined){
+            if(userCountrySlotListRequest.data.data.slots !== undefined && userCountrySlotListRequest.data.data.slots.length > 0){
+
                 if(automaticRedirect){
                     router.push(`/slots/${geoLocatedCountryCode}`)
                     return
