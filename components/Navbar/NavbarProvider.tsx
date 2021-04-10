@@ -54,15 +54,16 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
 
     const { t, contextCountry } = useContext(LocaleContext)
     useEffect(() => {
+        let copy = [...p]
         if(contextCountry === 'it') {
-            p.splice(5, 0, { label: 'Welcome bonus', link: '/migliori-bonus-casino' })
-            p.splice(7, 0, { label: 'Guides and Tricks', link: '/guide-e-trucchi' })
+            copy.splice(5, 0, { label: 'Welcome bonus', link: '/migliori-bonus-casino' })
+            copy.splice(7, 0, { label: 'Guides and Tricks', link: '/guide-e-trucchi' })
         }
         if(contextCountry === 'row'  || contextCountry === 'ca') {
-            p.splice(5, 0, { label: 'Welcome bonus', link: `/best-casino-bonus`},)
-            p.splice(7, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
+            copy.splice(5, 0, { label: 'Welcome bonus', link: `/best-casino-bonus`},)
+            copy.splice(7, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
         }
-        setDrawerPages(p)
+        setDrawerPages(copy)
     }, [contextCountry])
 
     const router = useRouter()
