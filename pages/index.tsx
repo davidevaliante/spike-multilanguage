@@ -49,6 +49,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
 
     useEffect(() => {
+        setContextCountry('it')
         if(_shallow){
             setContextCountry('it')
             setLoading(false)
