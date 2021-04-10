@@ -60,6 +60,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
     const getCountryData = async () => {
         const geoLocatedCountryCode = await getUserCountryCode()
         setUserCountry(geoLocatedCountryCode)
+        setContextCountry('it')
 
         if(geoLocatedCountryCode !== 'it'){
             const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
