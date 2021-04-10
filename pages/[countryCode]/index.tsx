@@ -173,7 +173,6 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
 
 
                     <h1 style={{paddingTop : '1rem'}} className='bonus-header'>I migliori bonus di benvenuto</h1>
-                    <p>a</p>
 
                     <div style={{top : '820px'}} className='bonus-column-container'>
                         {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.name} bonus={bo} />)}

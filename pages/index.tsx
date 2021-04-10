@@ -167,7 +167,6 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                     <Newsletter />
 
                     <h1 style={{paddingTop : '1rem'}} className='bonus-header'>I migliori bonus di benvenuto</h1>
-                    <p>a</p>
 
                     <div style={{top : '820px'}} className='bonus-column-container'>
                         {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.name} bonus={bo} />)}
@@ -182,7 +181,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
     </div>
 }
 
-export async function getStaticProps({query, req}) {
+export async function getServerSideProps({query, req}) {
   
     const pageData = await homeDataForCountry('it')
 
