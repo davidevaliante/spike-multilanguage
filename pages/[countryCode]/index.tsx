@@ -55,6 +55,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
 
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
+    console.log(_requestedCountryCode, 'requested country code')
+
     useEffect(() => {
         if(_shallow){
             setContextCountry(_requestedCountryCode)
@@ -83,6 +85,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
             }
             setContextCountry(_requestedCountryCode)           
         } else setContextCountry(_requestedCountryCode)
+
+        if(_requestedCountryCode === '' || _requestedCountryCode === undefined) setContextCountry('it')
 
         setLoading(false)
     }
