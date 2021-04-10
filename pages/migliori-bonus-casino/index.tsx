@@ -92,7 +92,6 @@ const MiglioriBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_request
 
             <BodyContainer>
                 {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={getBonusPageRedirectUrlForCountry(userCountry)} />}
-
                     <div style={{ padding: '1rem', maxWidth : '1200px' }}>
                         <DynamicContent content={bonusPage?.content} />
                     </div>

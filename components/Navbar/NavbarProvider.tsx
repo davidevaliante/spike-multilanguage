@@ -298,7 +298,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         </NavbarWrapper>
 
         <PushMenu
-            tiles={contextCountry === 'it' ? drawerPages : drawerPages.filter(p => p.label !== 'Bar Slot' && p.label !== 'VLT slot')}
+            tiles={drawerPages}
             state={drawerOpen}>
             <FadeInOut visible={!searchOpen}>
                 <ChildrenWrapper style={{ background: 'white' }}>
