@@ -3,6 +3,7 @@ import delay from 'lodash/delay'
 import TextField from '@material-ui/core/TextField'
 import styled from 'styled-components'
 import { LocaleContext } from './../../context/LocaleContext'
+import axios from 'axios'
 
 const MailForm = (props) => {
 
@@ -51,19 +52,17 @@ const MailForm = (props) => {
 
 
     const handleOnSubmit = async e => {
-        setStatus(prevStatus => ({ ...prevStatus, submitting: true }))
-        const res = await fetch('/api/send', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                message: message
-            })
+        console.log('asdasdas')
+
+        const res = await axios.post('http://localhost:3000/api/send',{
+            email: email,
+            message: message
         })
 
-        const text = await res.text()
+        console.log('asdasdas')
+
+        const text = res.data
+        console.log(text)
         handleResponse(res.status, text)
     }
 
