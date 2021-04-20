@@ -38,13 +38,10 @@ interface PageProps extends NextPageContext {
 const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusList,_countryCode}) => {
     
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
-
-    useEffect(() => {
-        setContextCountry(_countryCode)
-        setLoading(false)
-    }, [])
-
     const [loading, setLoading] = useState(true)
+
+
+
     const [slot, setSlot] = useState<Slot>(_slotData)
     const [primaryBonus, setPrimaryBonus] = useState(_slotData.mainBonus)
     const [auxiliaryBonuses, setAuxiliaryBonuses] = useState(_slotData?.bonuses.filter((b: Bonus) => b.name !== primaryBonus?.name))
@@ -55,12 +52,19 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
     const [isPlayingMobile, setIsPlayingMobile] = useState(false)
 
-    const router  = useRouter()
-
     useEffect(() => {
         if (isPlayingMobile) goFullScreen()
         else exitFullscreen()
     }, [isPlayingMobile])
+
+    useEffect(() => {
+        setup()
+    }, [])
+
+    const setup = () => {
+        setContextCountry(_countryCode)
+        setLoading(false)
+    }
 
     if(loading) return <FullPageLoader />
     return (
