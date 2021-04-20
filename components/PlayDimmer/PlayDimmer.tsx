@@ -53,7 +53,7 @@ const PlayDimmer: FunctionComponent<Props> = ({ slotData, onClose }) => {
     }
 
     return (
-        <Fragment>
+        <Wrapper>
             {backSuggestion &&
 
                 <BackSuggestionButton onClick={() => onClose()}>
@@ -79,9 +79,13 @@ const PlayDimmer: FunctionComponent<Props> = ({ slotData, onClose }) => {
                     <img src='/icons/rotate_screen.svg' />
                 </RotateScreen>
             </FadeInOut>
-        </Fragment >
+        </Wrapper >
     )
 }
+
+const Wrapper = styled.div`
+    font-family: Raleway, sans-serif;
+`
 
 const BackSuggestionButton = styled.div`
     width : 46px;

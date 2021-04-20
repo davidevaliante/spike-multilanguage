@@ -59,6 +59,8 @@ const StyleProvider = styled.div`
     height : 100vh;
     position : relative;
 
+    font-family : Raleway, sans-serif;
+
     iframe{
         width : 100%;
         height : 100%;
