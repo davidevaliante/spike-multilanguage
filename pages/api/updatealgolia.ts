@@ -77,8 +77,8 @@ interface AlgoliaSlot {
 }
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-    const client = algoliasearch('92GGCDET16', '72d81cff846ce00014dab2122cd757ac');
-    const index = client.initIndex('entities');
+    const client = algoliasearch('92GGCDET16', '72d81cff846ce00014dab2122cd757ac')
+    const index = client.initIndex('entities')
 
     const aquaClient = new AquaClient('https://spikeapistaging.tech/graphql')
 
@@ -99,7 +99,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
                 type: 'slot',
             }
         return undefined
-    })
+    }).filter(it => it != undefined)
 
     console.log(slotEntities.filter(s => s != undefined).filter(s => s.country === 'row'))
 
@@ -136,7 +136,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     try {
         await index.saveObjects(arr, {
             autoGenerateObjectIDIfNotExist: true
-        })
+        }).then(({ objectIDs }) => {
+          })
 
     } catch (error) {
         console.log(error)

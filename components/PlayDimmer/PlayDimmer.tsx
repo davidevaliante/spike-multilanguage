@@ -84,7 +84,7 @@ const PlayDimmer: FunctionComponent<Props> = ({ slotData, onClose }) => {
 }
 
 const Wrapper = styled.div`
-    font-family : Raleway, sans-serif;
+    font-family: Raleway, sans-serif;
 `
 
 const BackSuggestionButton = styled.div`
