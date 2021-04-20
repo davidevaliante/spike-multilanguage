@@ -21,7 +21,7 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
             <DescriptionContainer>
                 <HeaderAndButtonContainer>
                     <HeaderContainer>
-                        <h1>SPIKE SLOTs</h1>
+                        <h1>SPIKE SLOT</h1>
                         <LazyImage
                             style={{ marginLeft: '1rem', cursor: 'pointer' }}
                             width={16}
