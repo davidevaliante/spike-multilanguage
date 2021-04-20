@@ -64,7 +64,6 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
             copy.splice(7, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
         }
         setDrawerPages(copy)
-        console.log(`context country changed to ${contextCountry}`)
     }, [contextCountry])
 
     const router = useRouter()

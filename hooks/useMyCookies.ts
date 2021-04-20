@@ -8,7 +8,6 @@ export const useMyCookies = (): CookieContext => {
     const [cookieAcceptedStatus, setCookiesAccepted] = useState<'accepted' | 'not_accepted' | 'unknown'>('accepted')
 
     useEffect(() => {
-        console.log(cookieAcceptedStatus)
     }, [cookieAcceptedStatus])
 
     useEffect(() => {

@@ -26,7 +26,6 @@ export const LocaleContextProvider : FunctionComponent = ( props : any) => {
     const [_userCountry, set_userCountry] = useState('')
 
     useEffect(() => {
-        console.log(_userCountry)
     }, [_userCountry])
     
     const t = (key : string) => translate(country, key)
