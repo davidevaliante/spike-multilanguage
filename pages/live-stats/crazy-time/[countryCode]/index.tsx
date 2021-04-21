@@ -22,7 +22,7 @@ interface Props {
     _lastTenSpins : Spin[]
 }
 
-const SOCKET_ENDPOINT =  'https://crazytime.spike-realtime-api.eu'
+const SOCKET_ENDPOINT = 'http://localhost:5000' // 'https://crazytime.spike-realtime-api.eu'
 
 const RESULTS_IN_TABLE = 15
 
@@ -35,7 +35,8 @@ interface Stat {
 }
 
 interface CardProps {
-    stat : Stat
+    stat : Stat,
+    totalSpinsConsidered : number
 }
 
 const StyledTableRow = withStyles((theme: Theme) =>
@@ -49,7 +50,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
 )(TableRow);
 
 
-const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat}) => {
+const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsidered}) => {
 
     const expectation = (s : string) => {
         if(s === 'one') return(
@@ -123,6 +124,10 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat}) => {
             <CardContent style={{display : 'flex', flexDirection : 'column', justifyContent : 'center', alignItems : 'center',}}>
                 {symbolToStatImage(stat.symbol)}
                 <p style={{fontWeight : 'bold', fontSize : '2rem', textAlign : 'center', marginTop : '1rem'}}>{Math.round(stat.percentage * 100) / 100} %</p>
+                <span style={{display : 'flex', alignItems : 'center', justifyContent : 'center', marginTop : '1rem'}}>
+                    <p style={{fontWeight : 'bold', marginRight : '.4rem'}}>{stat.spinSince != totalSpinsConsidered ? stat.spinSince  : `> ${totalSpinsConsidered}`}</p>
+                    <p>Spins Since</p>
+                </span>
                 <p style={{ fontSize : '1rem', textAlign : 'center', marginTop : '1rem'}}>{stat.lands} Lands</p>
                 {expectation(stat.symbol)}
             </CardContent>
@@ -141,6 +146,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
 
     const [rows, setRows] = useState<Spin[] | undefined>(_lastTenSpins)
     const [stats, setStats] = useState<Stat[] | undefined>(_stats.stats)
+    const [totalSpinsInTimeFrame, setTotalSpinsInTimeFrame] = useState(_stats.totalSpins)
 
     // table Ordering
     const [order, setOrder] = useState<'asc' | 'des'>('des')
@@ -242,7 +248,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                     </TimeFrameContainer>    
 
                     {stats && <StatsContainer>
-                        {stats.map(s => <CrazyTimeStatCard stat={s}/>)}    
+                        {stats.map(s => <CrazyTimeStatCard key={`stats_${s.symbol}`} stat={s} totalSpinsConsidered={totalSpinsInTimeFrame}/>)}    
                     </StatsContainer>}
                     
 
