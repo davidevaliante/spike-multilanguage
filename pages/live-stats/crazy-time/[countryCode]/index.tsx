@@ -22,7 +22,7 @@ interface Props {
     _lastTenSpins : Spin[]
 }
 
-const SOCKET_ENDPOINT =  'http://crazytime.spike-realtime-api.eu:5001' // 'http://localhost:5001'
+const SOCKET_ENDPOINT =  'https://crazytime.spike-realtime-api.eu'
 
 const RESULTS_IN_TABLE = 15
 
@@ -186,7 +186,14 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
     }, [])
 
     const setUpSocketConnection = async () => {
-        const s = io(SOCKET_ENDPOINT)
+        const s = io(SOCKET_ENDPOINT,  {
+
+            secure:true,
+    
+   
+            rejectUnauthorized : false
+    
+        })
         setSocket(s)
     }
 
