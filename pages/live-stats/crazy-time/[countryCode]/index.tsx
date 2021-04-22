@@ -22,7 +22,7 @@ interface Props {
     _lastTenSpins : Spin[]
 }
 
-const SOCKET_ENDPOINT = 'http://localhost:5000' // 'https://crazytime.spike-realtime-api.eu'
+const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
 const RESULTS_IN_TABLE = 15
 
