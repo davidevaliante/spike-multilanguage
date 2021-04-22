@@ -282,7 +282,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
             </FadeInOut>
             {searchResults && searchOpen && <MobileSearchResults searchResults={searchResults} />}
         </PushMenu>
-    </Wrapper >
+    </Wrapper>
 }
 
 

@@ -12,11 +12,9 @@ const VideoFooter = () => {
     const [show, setShow] = useState(false)
     const [article, setArticle] = useState<string | undefined>(undefined)
 
-    const {currentCountry} = useContext(countryContext)
-
     const aquaClient = new AquaClient()
 
-    const { t } = useContext(LocaleContext)
+    const { t, contextCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         getFooterArticle()
@@ -58,7 +56,7 @@ const VideoFooter = () => {
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/articoli/ludopatia-come-smettere-di-giocare/${currentCountry}`}>{t("Responsible gaming")}</a>
+                                <a href={`/articoli/ludopatia-come-smettere-di-giocare/${contextCountry}`}>{t("Responsible gaming")}</a>
                                 
                             </LinkContainer>
                         </div>
@@ -70,27 +68,27 @@ const VideoFooter = () => {
                         </Header>
                         <div>
                             <LinkContainer>
-                                <a href={`/slot/book-of-ra-deluxe/${currentCountry}`}>{t("Book of Ra Deluxe")}</a>
+                                <a href={`/slot/book-of-ra-deluxe/${contextCountry}`}>{t("Book of Ra Deluxe")}</a>
                             </LinkContainer>
 
                             <LinkContainer >
-                                <a href={`/slot/reactoonz/${currentCountry}`}>{t("Reactoonz")}</a>
+                                <a href={`/slot/reactoonz/${contextCountry}`}>{t("Reactoonz")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/sweet-bonanza/${currentCountry}`}>{t("Sweet Bonanza")}</a>
+                                <a href={`/slot/sweet-bonanza/${contextCountry}`}>{t("Sweet Bonanza")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/dead-or-alive-2/${currentCountry}`}>{t("Dead or Alive 2")}</a>
+                                <a href={`/slot/dead-or-alive-2/${contextCountry}`}>{t("Dead or Alive 2")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/starburst/${currentCountry}`}>{t("Starburst")}</a>
+                                <a href={`/slot/starburst/${contextCountry}`}>{t("Starburst")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/the-dog-house/${currentCountry}`}>{t("The dog house")}</a>
+                                <a href={`/slot/the-dog-house/${contextCountry}`}>{t("The dog house")}</a>
                             </LinkContainer>
                         </div>
                     </section>
@@ -101,23 +99,23 @@ const VideoFooter = () => {
                         </Header>
                         <div>
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-starcasino/${currentCountry}`}>{t("Starcasino")}</a>
+                                <a href={`/guida/bonus-benvenuto-starcasino/${contextCountry}`}>{t("Starcasino")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-leovegas/${currentCountry}`}>{t("Leovegas")}</a>
+                                <a href={`/guida/bonus-benvenuto-casino-leovegas/${contextCountry}`}>{t("Leovegas")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-starvegas/${currentCountry}`}>{t("Starvegas")}</a>
+                                <a href={`/guida/bonus-benvenuto-casino-starvegas/${contextCountry}`}>{t("Starvegas")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-snai/${currentCountry}`}>{t("Snai")}</a>
+                                <a href={`/guida/bonus-benvenuto-casino-snai/${contextCountry}`}>{t("Snai")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-slotyes/${currentCountry}`}>{t("Slot-Yes")}</a>
+                                <a href={`/guida/bonus-benvenuto-casino-slotyes/${contextCountry}`}>{t("Slot-Yes")}</a>
                             </LinkContainer>
 
                         </div>
@@ -156,6 +154,7 @@ const LinkContainer = styled.div`
 const Container = styled.div`
     background : #292929;
     display : flex;
+    font-family :  Raleway, sans-serif;
 
     p{
         color : white;
