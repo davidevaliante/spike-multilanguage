@@ -100,10 +100,8 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                             onClick={link => goToBonus(link)}
                             bonusData={mainBonus} /> */}
 
-                        <MainBonusHeader>{t("In this video I played on")}</MainBonusHeader>
+                        <MainBonusHeader>{t("Compare legal websites")}</MainBonusHeader>
                         <BonusStripe bonus={mainBonus} />
-
-                        <CompareHeader>{t("Comparison with other offers")}</CompareHeader>
 
                         {auxiliaryBonuses.map(b => <BonusStripe
                             key={`${b.name}`}
@@ -119,7 +117,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
 
                         <OnlyBigScreens>
                             <RelatedBonusContainer>
-                                <RelatedBonusHeader>{("Recommended Bonuses")}</RelatedBonusHeader>
+                                <RelatedBonusHeader>{t("Recommended Bonuses")}</RelatedBonusHeader>
                                 {[mainBonus, ...auxiliaryBonuses].map((b, index) => <div style={{ marginBottom: '1rem', width: '100%' }} key={`${b.name}_side_${index}`}>
                                     <VideoSecondaryBonusCard bonus={b} />
                                 </div>)}
