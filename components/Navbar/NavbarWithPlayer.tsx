@@ -27,6 +27,7 @@ interface Props {
     currentPage: string,
     video: Video
     mainBonus: Bonus
+    bonuses : Bonus[]
 }
 
 export interface NavbarPage {
@@ -53,7 +54,7 @@ const drawerPages = [
 
 
 
-const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen, currentPage, children, video, mainBonus }) => {
+const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen, currentPage, children, video, mainBonus, bonuses }) => {
 
 
     const [algoliaIndex, setAlgoliaIndex] = useState<SearchIndex | undefined>(undefined)
@@ -261,6 +262,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
                 <ChildrenWrapper>
 
                     <Player
+                        _bonuses={bonuses}
                         mainBonus={mainBonus}
                         bonusId={video.mainBonus}
                         highLights={video.highLights}

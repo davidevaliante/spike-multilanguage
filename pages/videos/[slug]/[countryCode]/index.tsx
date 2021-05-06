@@ -83,6 +83,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
             </Head>
 
             <NavbarWithPlayer
+                bonuses={[mainBonus, ...auxiliaryBonuses]}
                 mainBonus={mainBonus}
                 video={video}
                 currentPage={`/video/${video.title}`}>

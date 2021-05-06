@@ -17,7 +17,7 @@ const fromLaptop = 'only screen and (min-width : 992px)'
 
 const fromTablet = 'only screen and (min-width: 768px)'
 
-const Player = ({ highLights, videoLink, bonusId, autoplay, mainBonus, onPlayerReady }) => {
+const Player = ({ highLights, videoLink, bonusId, autoplay, mainBonus, onPlayerReady, _bonuses }) => {
    
     const videoRef = useRef()
     
@@ -48,6 +48,7 @@ const Player = ({ highLights, videoLink, bonusId, autoplay, mainBonus, onPlayerR
     const [highlightToShowIndex, setHighlightToShowIndex] = useState(undefined)
     const [bonusData, setBonusData] = useState(mainBonus)
     const [forwardingIncrement, setForwardingIncrement] = useState(10)
+    const [bonuses, setBonuses] = useState(_bonuses)
     const [forwardingDelta, setForwardingDelta] = useState(0)
     const [canForward, setCanForward] = useState(false)
     const [fastMode, setFastMode] = useState('forward')
@@ -173,11 +174,15 @@ const Player = ({ highLights, videoLink, bonusId, autoplay, mainBonus, onPlayerR
         window.open(`${bonusData.link}`)
     }
 
+    const goToTargetBonus = (link) => {
+        window.open(link)
+    }
+
     const getCircularImage = name => `https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/CircularBonusImages%2Fbonus_circular_${snakeCase(name)}?alt=media`
 
     const goFirstBonus = () => {
-        const { minute, seconds } = _highLights[0]
-        const b = parseInt(minute) * 60 + parseInt(seconds) - 1
+        const { minute, second } = _highLights[0]
+        const b = parseInt(minute) * 60 + parseInt(second) - 1
 
         player.currentTime(b)
     }
@@ -314,17 +319,21 @@ const Player = ({ highLights, videoLink, bonusId, autoplay, mainBonus, onPlayerR
                                             initial={{ x: -120, opacity: 0 }}
                                             animate={{ x: 0, opacity: 1 }}
                                             exit={{ x: 120, opacity: 0 }}>
-                                            {bonusData && <BonusCard onClick={() => goToBonus()} glowColor={bonusData.borderColor}>
-                                                <CircularImage borderColor={bonusData.borderColor} src={getCircularImage(bonusData.name)} />
-                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem' }}>
-                                                    <h1 style={{ marginBottom: '.5rem', color: 'white' }}>{bonusData.name}</h1>
-                                                    <Divider style={{ marginBottom: '.5rem' }} color={bonusData && bonusData.borderColor} />
-                                                    <p style={{ fontSize: '.8rem' }}>{bonusData.description}</p>
-                                                </div>
-                                                <div style={{ maxWidth: '50px' }}>
-                                                    <img height='22px' width='22px' src='/icons/arrow_right.svg' />
-                                                </div>
-                                            </BonusCard>}
+                                            {bonuses  && bonuses.map(bonusData =>  {
+                                                return(
+                                                    <BonusCard onClick={() => goToTargetBonus(bonusData.link)} glowColor={bonusData.borderColor}>
+                                                        <CircularImage borderColor={bonusData.borderColor} src={getCircularImage(bonusData.name)} />
+                                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem' }}>
+                                                            <h1 style={{ marginBottom: '.5rem', color: 'white' }}>{bonusData.name}</h1>
+                                                            <Divider style={{ marginBottom: '.5rem' }} color={bonusData && bonusData.borderColor} />
+                                                            <p style={{ fontSize: '.7rem' }}>{bonusData.description}</p>
+                                                        </div>
+                                                        <div style={{ maxWidth: '50px' }}>
+                                                            <img height='20px' width='20px' src='/icons/arrow_right.svg' />
+                                                        </div>
+                                                    </BonusCard>
+                                                )
+                                            })}
                                         </motion.div>}
                                     </AnimatePresence>
                                 </AddHilightColumn>
@@ -370,8 +379,6 @@ const Player = ({ highLights, videoLink, bonusId, autoplay, mainBonus, onPlayerR
                                         </motion.div>}
                                     </AnimatePresence>
                                 </FastBackward>
-
-
                             </div>
                         </div>
                     </StyleProvider>
@@ -455,7 +462,7 @@ const FastForward = styled.div`
     transform : translateY(-50%);
     right : 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    z-index : 99;
+    z-index : 80;
     background-position: center;
     transition: background 0.8s;
     background : transparent;
@@ -502,6 +509,7 @@ const FastBackward = styled.div`
     flex-direction : column;
     justify-content : center;
     align-items : center;
+    z-index : 80;
 
     .circle {
         width: 100px;
@@ -528,6 +536,11 @@ const CircularImage = styled.img`
     height : 56px;
     width : 56px;
     border : ${({ borderColor }) => `${borderColor} 2px solid`};
+
+    @media (max-width : 1000px) {
+        height : 36px;
+        width : 36px;
+    }
 `
 
 const InfoContainer = styled.div`
@@ -585,9 +598,16 @@ const BonusCard = styled.div`
     position : relative;
     right : 150;
     animation: glow .7s ease-in-out infinite alternate;
+    z-index :  90;
 
     img{
         cursor: pointer;
+    }
+
+    @media (max-width : 1000px) {
+        padding : .2rem .5rem;
+        margin-bottom : .3rem;
+        font-size : 0.7rem;
     }
 
     @keyframes glow {
