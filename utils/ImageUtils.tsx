@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { injectCDN } from './Utils'
 
 const root = '/icons/crazy-time/'
 
@@ -11,29 +12,21 @@ const rectHeight = '49px'
 export const symbolToSlotResultImage = (symbolString : string) => {
     switch(symbolString){
         case 'one':
-            const oneS = root + 'ico-crazytime-slot-1.png'
-            return <Image width={squareLength} height={squareLength} src={oneS}/>
+            return <img width={squareLength} height={squareLength} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-1_db272f778d.png')}/>
         case 'two':
-            const twoS = root + 'ico-crazytime-slot-2.png'
-            return <Image width={squareLength} height={squareLength} src={twoS}/>
+            return <img width={squareLength} height={squareLength} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-2_9fae79a563.png')}/>
         case 'five':
-            const fiveS = root + 'ico-crazytime-slot-5.png'
-            return <Image width={squareLength} height={squareLength} src={fiveS}/>
+            return <img width={squareLength} height={squareLength} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-5_4b584c0988.png')}/>
         case 'ten':
-            const tenS = root + 'ico-crazytime-slot-10.png'
-            return <Image width={squareLength} height={squareLength} src={tenS}/>
+            return <img width={squareLength} height={squareLength} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-10_c72360b662.png')}/>
         case 'coinflip':
-            const coinFlipS = root + 'ico-crazytime-slot-cf.png'
-            return <Image width={rectWidht} height={rectHeight} src={coinFlipS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-cf_7ed53595a8.png')}/>
         case 'cashhunt':
-            const cashHuntS = root + 'ico-crazytime-slot-ch.png'
-            return <Image width={rectWidht} height={rectHeight} src={cashHuntS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-ch_08e236c7e7.png')}/>
         case 'crazytime':
-            const crazyTimeS = root + 'ico-crazytime-slot-ct.png'
-            return <Image width={rectWidht} height={rectHeight} src={crazyTimeS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-ct_d430610c57.png')}/>
         case 'pachinko':
-            const pachinkoS = root + 'ico-crazytime-slot-pa.png'
-            return <Image width={rectWidht} height={rectHeight} src={pachinkoS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-slot-pa_1b1b4d7d6f.png')}/>
     }
 }
 
@@ -41,28 +34,20 @@ export const symbolToSlotResultImage = (symbolString : string) => {
 export const symbolToSpinResultImage = (symbolString : string) => {
     switch(symbolString){
         case 'one':
-            const oneS = root + 'ico-crazytime-1.png'
-            return <Image width={rectWidht} height={rectHeight} src={oneS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-1_c9b5f94f87.png')}/>
         case 'two':
-            const twoS = root + 'ico-crazytime-2.png'
-            return <Image width={rectWidht} height={rectHeight} src={twoS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-2_5c5c16ed5e.png')}/>
         case 'five':
-            const fiveS = root + 'ico-crazytime-5.png'
-            return <Image width={rectWidht} height={rectHeight} src={fiveS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-5_e91e34891d.png')}/>
         case 'ten':
-            const tenS = root + 'ico-crazytime-10.png'
-            return <Image width={rectWidht} height={rectHeight} src={tenS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-10_6728a2b6a0.png')}/>
         case 'coinflip':
-            const coinFlipS = root + 'ico-crazytime-cf.png'
-            return <Image width={rectWidht} height={rectHeight} src={coinFlipS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-cf_85575cab6d.png')}/>
         case 'cashhunt':
-            const cashHuntS = root + 'ico-crazytime-ch.png'
-            return <Image width={rectWidht} height={rectHeight} src={cashHuntS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-ch_5e98cad8db.png')}/>
         case 'crazytime':
-            const crazyTimeS = root + 'ico-crazytime-ct.png'
-            return <Image width={rectWidht} height={rectHeight} src={crazyTimeS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-ct_a7261a08f7.png')}/>
         case 'pachinko':
-            const pachinkoS = root + 'ico-crazytime-pa.png'
-            return <Image width={rectWidht} height={rectHeight} src={pachinkoS}/>
+            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-pa_e928e94532.png')}/>
     }
 }
