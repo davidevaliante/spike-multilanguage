@@ -34,6 +34,7 @@ interface Props {
     currentPage: string,
     video: Video
     mainBonus: Bonus
+    _bonuses :  Bonus[]
 }
 
 export interface NavbarPage {
@@ -60,7 +61,7 @@ const drawerPages = [
     // { label: 'Altro', link: '/altro' }
 ]
 
-const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen, currentPage, children, video, mainBonus }) => {
+const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen, currentPage, children, video, mainBonus,  _bonuses }) => {
 
     const { currentCountry } = useContext(countryContext)
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
@@ -325,6 +326,7 @@ const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen
                 <ChildrenWrapper>
 
                     <Player
+                        _bonuses={_bonuses}
                         mainBonus={mainBonus}
                         bonusId={video.mainBonus}
                         highLights={video.highLights}
