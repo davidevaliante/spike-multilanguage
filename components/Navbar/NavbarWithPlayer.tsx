@@ -20,6 +20,7 @@ import Router from 'next/router'
 import { cookieContext } from '../../context/CookieContext'
 import { initializeAnalytics } from '../../analytics/base'
 import { LocaleContext } from '../../context/LocaleContext'
+import NewAnchorTag from '../Singles/NewAnchorTag'
 
 interface Props {
     onDrawerOpen?: Function,
@@ -46,10 +47,12 @@ const drawerPages = [
     { label: 'Free Slot Machine Games', link: '/slots' },
     { label: 'Bar Slot', link: '/slot-bar' },
     { label: 'VLT slot', link: '/slot-vlt' },
+    { label : 'Crazy Time Live', link: '/live-stats/crazy-time' },
     { label: 'Welcome bonus', link: '/migliori-bonus-casino' },
     { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
     { label: 'Guides and Tricks', link: '/guide-e-trucchi' },
-    { label: 'Blogs and Articles', link: '/blog' }]
+    { label: 'Blogs and Articles', link: '/blog' }
+]
 
 
 
@@ -160,6 +163,15 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
                     href={`/`}>
                     <a>{t(page.label)}</a>
                 </Link>
+            )
+        }
+
+        if (page.link === '/live-stats/crazy-time') {
+            return (
+                <NewAnchorTag
+                    key={key}
+                    href={`${page.link}/${contextCountry}`}
+                    text={t("Crazy Time Live")} />
             )
         }
 

@@ -113,7 +113,22 @@
           "On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos" : "On SPIKE Slot you'll find free slots machines playable without money and without regitration. Play the free demos",
           "SPIKE Slot | The number 1 blog on Slot Machines and gambling" :"SPIKE Slot | The number 1 blog on Slot Machines and gambling",
           "Play" : "Play",
-          "GuideTextTitlePageTitle" : "Bonus Guides and Slot tricks | SPIKE"
+          "GuideTextTitlePageTitle" : "Bonus Guides and Slot tricks | SPIKE",
+          "Crazy Time Live" : "Crazy Time Live",
+          "Crazy Time Statistics" : "Crazy Time Statistics",
+          "for the past" : "for the past",
+          "Spins Since" : "Missing since",
+          "Lands" : "Lands",
+          "You can play at CRAZY TIME here" : "You can play at CRAZY TIME here",
+          "Spin History" : "Spin History",
+          "Occurred At" : "Occurred At",
+          "Slot Result" : "Slot Result",
+          "Spin Result" : "Spin Result",
+          "Multiplier" : "Multiplier",
+          "Total Winners" : "Total Winners",
+          "Total Payout" : "Total Payout",
+          "Watch Video" : "Watch Video",
+          "Rows per page" : "Rows per page"
         }
     },
     "it": {
@@ -229,8 +244,23 @@
           "#Diamonds" : "#Diamanti",
           "Search for a Slot or a Software House" : "Cerca una Slot o un produttore",
           "Play" : "Gioca",
-          "GuideTextTitlePageTitle" : "Guide Bonus e Trucchi Slot | SPIKE"
-          
+          "GuideTextTitlePageTitle" : "Guide Bonus e Trucchi Slot | SPIKE",
+          "Crazy Time Live" : "Crazy Time Live",
+          "Crazy Time Statistics" : "Statistiche Crazy Time",
+          "for the past" : "Nelle ultime",
+          "Spins Since" : "Non esce da",
+          "Lands" : "Estrazioni Totali",
+          "Expected" : "Probabilità di base",
+          "You can play at CRAZY TIME here" : "Puoi giocarare alla CRAZY TIME QUI",
+          "Spin History" : "Storico degli Spin",
+          "Occurred At" : "Alle ore",
+          "Slot Result" : "Risultato Slot",
+          "Spin Result" : "Risultato Spin",
+          "Multiplier" : "Moltiplicatore",
+          "Total Winners" : "Vincitori Totali",
+          "Total Payout" : "Payout Totale",
+          "Watch Video" : "Guarda Video",
+          "Rows per page" : "Righe per pagina"
       }
     },
     "row": {
@@ -348,7 +378,22 @@
           "On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos" : "On SPIKE Slot you'll find free slots machines playable without money and without regitration. Play the free demos",
           "SPIKE Slot | The number 1 blog on Slot Machines and gambling" :"SPIKE Slot | The number 1 blog on Slot Machines and gambling",
           "Play" : "Play",
-          "GuideTextTitlePageTitle" : "Bonus Guides and Slot tricks | SPIKE"
+          "GuideTextTitlePageTitle" : "Bonus Guides and Slot tricks | SPIKE",
+          "Crazy Time Live" : "Crazy Time Live",
+          "Crazy Time Statistics" : "Crazy Time Statistics",
+          "for the past" : "for the past",
+          "Spins Since" : "Missing since",
+          "Lands" : "Lands",
+          "You can play at CRAZY TIME here" : "You can play at CRAZY TIME here",
+          "Spin History" : "Spin History",
+          "Occurred At" : "Occurred At",
+          "Slot Result" : "Slot Result",
+          "Spin Result" : "Spin Result",
+          "Multiplier" : "Multiplier",
+          "Total Winners" : "Total Winners",
+          "Total Payout" : "Total Payout",
+          "Watch Video" : "Watch Video",
+          "Rows per page" : "Rows per page"
       }
     }
 }

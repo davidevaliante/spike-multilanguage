@@ -1,22 +1,27 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useContext } from 'react'
 import { Card, CardContent } from '@material-ui/core'
 import { CrazyTimeSymbolStat } from '../../data/models/CrazyTimeSymbolStat'
 import Image from 'next/image'
 import { injectCDN } from '../../utils/Utils'
+import { LocaleContext } from '../../context/LocaleContext'
+import Divider from '../Ui/Divider'
 
 interface CardProps {
     stat : CrazyTimeSymbolStat,
-    totalSpinsConsidered : number
+    totalSpinsConsidered : number,
+    timeFrame : string
 }
 
-const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsidered}) => {
+const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsidered, timeFrame}) => {
+
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const expectation = (s : string) => {
         if(s === 'one') return(
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>21 / 54</p>
-                    <p>(38.89%) Expected</p>
+                    <p>(38.89%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -24,7 +29,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>13 / 54</p>
-                    <p>(24.07%) Expected</p>
+                    <p>(24.07%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -32,7 +37,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>7 / 54</p>
-                    <p>(12.96%) Expected</p>
+                    <p>(12.96%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -40,7 +45,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>4 / 54</p>
-                    <p>(7.41%) Expected</p>
+                    <p>(7.41%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -48,7 +53,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>2 / 54</p>
-                    <p>(3.70%) Expected</p>
+                    <p>(3.70%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -56,7 +61,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>4 / 54</p>
-                    <p>(7.41%) Expected</p>
+                    <p>(7.41%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -64,7 +69,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>2 / 54</p>
-                    <p>(3.70%) Expected</p>
+                    <p>(3.70%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -72,7 +77,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
             <div style={{marginTop : '1rem'}}>
                 <span style = {{fontSize : '.8rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>1 / 54</p>
-                    <p>(1.85%) Expected</p>
+                    <p>(1.85%) {`${t('Expected')}`}</p>
                 </span>
             </div>
         )
@@ -82,12 +87,21 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         <Card elevation={6} style={{width : '250px', display : 'flex', flexDirection : 'column', justifyContent : 'center', alignItems : 'center', marginBottom : '2rem'}}>
             <CardContent style={{display : 'flex', flexDirection : 'column', justifyContent : 'center', alignItems : 'center',}}>
                 {symbolToStatImage(stat.symbol)}
-                <p style={{fontWeight : 'bold', fontSize : '2rem', textAlign : 'center', marginTop : '1rem'}}>{Math.round(stat.percentage * 100) / 100} %</p>
                 <span style={{display : 'flex', alignItems : 'center', justifyContent : 'center', marginTop : '1rem'}}>
-                    <p style={{fontWeight : 'bold', marginRight : '.4rem'}}>{stat.spinSince != totalSpinsConsidered ? stat.spinSince  : `> ${totalSpinsConsidered}`}</p>
-                    <p>Spins Since</p>
+                    <p style={{marginTop : '.3rem',marginRight : '.4rem',}}>{`${t('Spins Since')}`}</p>
+                    <p style={{fontWeight : 'bold',  fontSize : '1.5rem'}}>{stat.spinSince != totalSpinsConsidered ? stat.spinSince  : `> ${totalSpinsConsidered}`} Spin</p>
                 </span>
-                <p style={{ fontSize : '1rem', textAlign : 'center', marginTop : '1rem'}}>{stat.lands} Lands</p>
+
+                <div style={{height : '2px', width : '100%', background : 'grey', marginTop : '1rem'}}></div>
+
+                <p style={{fontSize : '1rem', textAlign : 'center', marginTop : '1rem'}}>
+                    <span style={{fontWeight : 'bold'}}>
+                        {`${Math.round(stat.percentage * 100) / 100}`}
+                    </span>
+                    {` % ${t('for the past')} ${timeFrame}`}
+                </p>
+                
+                <p style={{ fontSize : '1rem', textAlign : 'center', marginTop : '1rem'}}>{stat.lands} {`${t('Lands')}`}</p>
                 {expectation(stat.symbol)}
             </CardContent>
         </Card>

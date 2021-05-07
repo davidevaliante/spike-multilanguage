@@ -1,12 +1,16 @@
-import React, { FunctionComponent, useState } from 'react'
-import { TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell, Button, withStyles, Theme, createStyles, Checkbox, TableSortLabel, makeStyles, TablePagination, FormControlLabel, Switch } from '@material-ui/core'
+import React, { FunctionComponent, useState, useContext } from 'react'
+import { TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell, Button, withStyles, Theme, createStyles, Checkbox, TableSortLabel, makeStyles, TablePagination, FormControlLabel, Switch, IconButton } from '@material-ui/core'
 import { symbolToSlotResultImage, symbolToSpinResultImage } from '../../utils/ImageUtils'
 import MultiplierTableCell from './MultiplierTableCell'
 import { Spin } from '../../data/models/Spin'
 import format from 'date-fns-tz/format'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { orderBy } from 'lodash'
-import classes from '*.module.css'
+import { LocaleContext } from '../../context/LocaleContext'
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import LastPageIcon from '@material-ui/icons/LastPage';
 
 interface Props {
     rows : Spin[]
@@ -85,6 +89,8 @@ export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,
     const createSortHandler = (property: keyof Spin) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property)
     }
+    
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
 
     return(
@@ -99,7 +105,7 @@ export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}>
-                            {headCell.label}
+                            {t(headCell.label)}
                             {orderBy === headCell.id ? (
                                 <span className={classes.visuallyHidden}>
                                 {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -126,6 +132,8 @@ export const EnhancedTable : FunctionComponent<EnhancedTableProps> = ({rows}) =>
     const [page, setPage] = useState(0)
     const [dense, setDense] = useState(false)
     const [rowsPerPage, setRowsPerPage] = useState(10)
+
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Spin) => {
         const isAsc = orderBy === property && order === 'asc'
@@ -189,7 +197,7 @@ export const EnhancedTable : FunctionComponent<EnhancedTableProps> = ({rows}) =>
                                         </TableCell>
                                         <MultiplierTableCell spin={row as unknown as Spin}/>                                        
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalWinners}</TableCell>
-                                        <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalPayout}</TableCell>
+                                        <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalPayout} €</TableCell>
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='right'>
                                             {row.watchVideo !== 'no_video' ? <Button onClick={() => handleOpenVideo(row.watchVideo as string)} color='primary' variant='contained'>Watch</Button> : ''}
                                         </TableCell>
@@ -200,13 +208,17 @@ export const EnhancedTable : FunctionComponent<EnhancedTableProps> = ({rows}) =>
                     </Table>
                     </TableContainer>
                     <TablePagination
-                        rowsPerPageOptions={[5, 10, 25]}
+                        rowsPerPageOptions={[5, 10, 25, 50, 100]}
                         component="div"
+                        labelRowsPerPage={<p>{t('Rows per page')}</p>}
+                        labelDisplayedRows={({ from, to, count }) => ``}
                         count={rows.length}
                         rowsPerPage={rowsPerPage}
                         page={page}
                         onChangePage={handleChangePage}
                         onChangeRowsPerPage={handleChangeRowsPerPage}
+                        ActionsComponent={TablePaginationActions}
+
                     />
                 </Paper>
             </div>
@@ -214,6 +226,65 @@ export const EnhancedTable : FunctionComponent<EnhancedTableProps> = ({rows}) =>
         
     )
 }
+
+interface TablePaginationActionsProps {
+    count: number;
+    page: number;
+    rowsPerPage: number;
+    onChangePage: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+  }
+  
+  function TablePaginationActions(props: TablePaginationActionsProps) {
+    const theme = useTheme();
+    const { count, page, rowsPerPage, onChangePage } = props;
+  
+    const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, 0);
+    };
+  
+    const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, page - 1);
+    };
+  
+    const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, page + 1);
+    };
+  
+    const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    };
+
+    console.log(page, 'page')
+  
+    return (
+      <div>
+        <IconButton
+          onClick={handleFirstPageButtonClick}
+          disabled={page === 0}
+          aria-label="first page"
+        >
+           <FirstPageIcon />
+        </IconButton>
+        <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+          <KeyboardArrowLeft />
+        </IconButton>
+        <IconButton
+          onClick={handleNextButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="next page"
+        >
+          <KeyboardArrowRight />
+        </IconButton>
+        <IconButton
+          onClick={handleLastPageButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="last page"
+        >
+          <LastPageIcon />
+        </IconButton>
+      </div>
+    );
+  }
 
 const CrazyTimeTable : FunctionComponent<Props> = ({rows}) => {
 

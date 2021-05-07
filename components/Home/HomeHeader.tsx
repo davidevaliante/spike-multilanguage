@@ -157,6 +157,25 @@ const GoToFullSlotListButton = styled.div`
     }
 `
 
+const GoToCrazyTimeStatsButton = styled.div`
+    cursor : pointer;
+    display : flex;
+    padding : 1rem;
+    background : ${(props) => props.theme.colors.primaryDark};
+    margin-bottom : 1rem;
+    border-radius : 4px;
+    align-items : center;
+    color : #fff;
+    font-weight : bold;
+    justify-content : space-between;
+    max-width : 450px;
+    transition : background .2s ease-in;
+
+    :hover{
+        background : ${(props) => props.theme.colors.primary};
+    }
+`
+
 const NewsLetterCTAButton = styled.div`
     cursor : pointer;
     display : flex;
