@@ -254,8 +254,7 @@ interface TablePaginationActionsProps {
       onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
     };
 
-    console.log(page, 'page')
-  
+
     return (
       <div>
         <IconButton
