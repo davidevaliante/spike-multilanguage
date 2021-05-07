@@ -128,7 +128,8 @@
           "Total Winners" : "Total Winners",
           "Total Payout" : "Total Payout",
           "Watch Video" : "Watch Video",
-          "Rows per page" : "Rows per page"
+          "Rows per page" : "Rows per page",
+          "Compare legal websites" :  "Compare legal websites"
         }
     },
     "it": {
@@ -260,7 +261,8 @@
           "Total Winners" : "Vincitori Totali",
           "Total Payout" : "Payout Totale",
           "Watch Video" : "Guarda Video",
-          "Rows per page" : "Righe per pagina"
+          "Rows per page" : "Righe per pagina",
+          "Compare legal websites" :  "Comparazione offerte di siti legali"
       }
     },
     "row": {
@@ -393,7 +395,8 @@
           "Total Winners" : "Total Winners",
           "Total Payout" : "Total Payout",
           "Watch Video" : "Watch Video",
-          "Rows per page" : "Rows per page"
+          "Rows per page" : "Rows per page",
+          "Compare legal websites" :  "Compare legal websites"
       }
     }
 }
