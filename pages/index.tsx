@@ -24,6 +24,7 @@ import { LocaleContext } from '../context/LocaleContext'
 import Newsletter from '../components/Newsletter/Newsletter'
 import CountryEquivalentPageSnackbar from '../components/Snackbars/CountryEquivalentPageSnackbar'
 import { homeDataForCountry } from '../data/data/pages-data'
+import LiveStatsCta from './../components/Singles/LiveStatsCta';
 
 interface PageProps {
     _shallow : boolean
@@ -108,6 +109,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
             <BodyContainer>
                 {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/${userCountry}`} />}
                 <MainColumn>
+                    <LiveStatsCta />
+
                     {producerSlots && <HighlightProducerSlideShow producerSlots={producerSlots} />}
 
                     <LazyLoad height={450} once>

@@ -45,7 +45,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         { label: 'Free Slot Machine Games', link: '/slots' },
         { label: 'Bar Slot', link: '/slot-bar' },
         { label: 'VLT slot', link: '/slot-vlt' },
-        { label : 'Crazy Time Live', link: '/live-stats/crazy-time' },
+        { label : 'Crazy Time Statistiche Live', link: '/live-stats/crazy-time' },
         
         { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
         

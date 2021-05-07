@@ -76,12 +76,12 @@ interface HeadCell {
 
 const headCells: HeadCell[] = [
     { id: 'date', numeric: true, disablePadding: true, label: 'Occurred At' },
-    { id: 'slotResultSymbol', numeric: false, disablePadding: true, label: 'Slot Result' },
     { id: 'spinResultSymbol', numeric: true, disablePadding: false, label: 'Spin Result' },
+    { id: 'slotResultSymbol', numeric: false, disablePadding: true, label: 'Slot Result' },
     { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
     { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
     { id: 'totalPayout', numeric: true, disablePadding: false, label: 'Total Payout' },
-    { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
+    // { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
 ]
 
 export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,  order, orderBy, numSelected, rowCount, onRequestSort }) => {
@@ -185,22 +185,22 @@ export const EnhancedTable : FunctionComponent<EnhancedTableProps> = ({rows}) =>
                                             {format(row.timeOfSpin, 'dd/MM HH:mm')}
                                         </TableCell>
                                         <TableCell align='left'>
+                                            <SpinResultSpan>
+                                                {symbolToSpinResultImage(row.spinResultSymbol as string)}
+                                            </SpinResultSpan>
+                                        </TableCell>
+                                        <TableCell align='left'>
                                             <SlotResultSpan>
                                                 {symbolToSlotResultImage(row.slotResultSymbol as string)}
                                                 <p style={{fontFamily : 'Montserrat'}}>{row.slotResult}</p>
                                             </SlotResultSpan>
                                         </TableCell>
-                                        <TableCell align='left'>
-                                            <SpinResultSpan>
-                                                {symbolToSpinResultImage(row.spinResultSymbol as string)}
-                                            </SpinResultSpan>
-                                        </TableCell>
                                         <MultiplierTableCell spin={row as unknown as Spin}/>                                        
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalWinners}</TableCell>
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalPayout} €</TableCell>
-                                        <TableCell style={{fontFamily : 'Montserrat'}} align='right'>
+                                        {/* <TableCell style={{fontFamily : 'Montserrat'}} align='right'>
                                             {row.watchVideo !== 'no_video' ? <Button onClick={() => handleOpenVideo(row.watchVideo as string)} color='primary' variant='contained'>Watch</Button> : ''}
-                                        </TableCell>
+                                        </TableCell> */}
                                     </StyledTableRow>
                                 )
                             })}
