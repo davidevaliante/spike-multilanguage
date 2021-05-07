@@ -19,8 +19,6 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
 
     const {t, contextCountry} = useContext(LocaleContext)
 
-    console.log(tiles)
-
     useEffect(() => {
         if (state === true) setChildrenWrapperPosition(true)
         else updateStateDelayed()

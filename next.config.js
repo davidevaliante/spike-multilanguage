@@ -5,6 +5,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   })
   module.exports = withBundleAnalyzer({})
 
-module.exports = withBundleAnalyzer({
-    assetPrefix: isProd ? 'https://spikeslotwebsite.b-cdn.net' : '',
-})
+// module.exports = withBundleAnalyzer({
+//     assetPrefix: isProd ? 'https://spikeslotwebsite.b-cdn.net' : '',
+// })

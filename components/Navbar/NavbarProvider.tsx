@@ -22,6 +22,7 @@ import CookieDisclaimer from '../CookieDisclaimer/CookieDisclaimer'
 import { initializeAnalytics } from '../../analytics/base'
 import CountrySelect from './CountrySelect'
 import { LocaleContext } from '../../context/LocaleContext';
+import NewAnchorTag from '../Singles/NewAnchorTag'
 
 interface Props {
     onDrawerOpen?: Function,
@@ -44,6 +45,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         { label: 'Free Slot Machine Games', link: '/slots' },
         { label: 'Bar Slot', link: '/slot-bar' },
         { label: 'VLT slot', link: '/slot-vlt' },
+        { label : 'Crazy Time Live', link: '/live-stats/crazy-time' },
         
         { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
         
@@ -56,15 +58,14 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     useEffect(() => {
         let copy = [...p]
         if(contextCountry === 'it') {
-            copy.splice(5, 0, { label: 'Welcome bonus', link: '/migliori-bonus-casino' })
-            copy.splice(7, 0, { label: 'Guides and Tricks', link: '/guide-e-trucchi' })
+            copy.splice(6, 0, { label: 'Welcome bonus', link: '/migliori-bonus-casino' })
+            copy.splice(8, 0, { label: 'Guides and Tricks', link: '/guide-e-trucchi' })
         }
         if(contextCountry === 'row'  || contextCountry === 'ca') {
-            copy.splice(5, 0, { label: 'Welcome bonus', link: `/best-casino-bonus`},)
-            copy.splice(7, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
+            copy.splice(6, 0, { label: 'Welcome bonus', link: `/best-casino-bonus`},)
+            copy.splice(8, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
         }
         setDrawerPages(copy)
-        console.log(`context country changed to ${contextCountry}`)
     }, [contextCountry])
 
     const router = useRouter()
@@ -169,6 +170,15 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
                     href={contextCountry === 'it' ? `/` : `/${contextCountry}`}>
                     {t("Home")}
                 </a>
+            )
+        }
+
+        if (page.link === '/live-stats/crazy-time') {
+            return (
+                <NewAnchorTag
+                    key={key}
+                    href={`${page.link}/${contextCountry}`}
+                    text={t("Crazy Time Live")} />
             )
         }
 
