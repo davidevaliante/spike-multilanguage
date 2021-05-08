@@ -226,7 +226,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                               </Select> 
                           </div>   
                       </div>
-                      <p style={{marginTop : '1rem', fontSize : '.9rem'}}>{`Ultimo Aggiornamento ${format(lastUpdate, 'dd/MM hh:mm:ss')}`}</p>
+                      <p style={{marginTop : '1rem', fontSize : '.9rem'}}>{`Ultimo Aggiornamento ${format(lastUpdate, 'dd/MM HH:mm:ss')}`}</p>
                     </div>                    
 
                     <Divider style={{marginTop : '2rem', marginBottom : '2rem'}}/>
