@@ -39,33 +39,6 @@ interface Props {
     _bonuses : Bonus[]
     _pageContent : CrazyTimeArticle
 }
-/* 
- TODO per oggi  :
-
-  - Aggiungere articolo Top e Bottom
-  
-  - Aggiungere Seo component
-
-  - Rimappare link bonus con quelli nuovi
-
-  - Mettere CTA in Home e in navbar per andare alla pagina
-
-  - NON ESCE DA X TIRI
-    8:05
-    mettiamo quello grande e sotto mettiamo la percentuale che è uscito ma in modo che si capisca cos'è
-    8:05
-    tipo "X% nell'arco temporale"
-
-  - Traduzioni almeno in ita
-
-  - Fare pagina per LIVE senza bonus spam
-
-  - Aggiungere simbolo Euro al Total Payout
-
-  - Aggiungere icona doppia freccia al cash hunt
- 
- */
-
 
 const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
@@ -78,18 +51,22 @@ const SPAM_INTERVAL = 20000
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
 const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent}) => {
 
     const aquaClient = new AquaClient()
+    const menuRef = useRef()
+
+    const MenuProps = {
+      anchorEl : menuRef.current,
+      PaperProps: {
+        style: {
+          maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+          width: 250,
+        },
+      },
+    }
+
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
@@ -275,6 +252,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                           labelId="demo-mutiple-checkbox-label"
                           id="demo-mutiple-checkbox"
                           multiple
+                          ref={menuRef}
                           value={selectedFilters}
                           onChange={handleChange}
                           input={<Input />}
