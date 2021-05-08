@@ -5,24 +5,21 @@ import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import { BodyContainer, MainColumn } from '../../../../components/Layout/Layout'
 import io, { Socket } from 'socket.io-client'
-import { Select, MenuItem, TableCell, Paper, Divider, Backdrop, InputLabel, Input, Checkbox, ListItemText} from '@material-ui/core'
+import { Select, MenuItem, Paper, Divider, Backdrop, Input, Checkbox, ListItemText} from '@material-ui/core'
 import { TimeFrame } from '../../../../data/models/TimeFrames'
 import styled from 'styled-components'
-import { Spin, crazyTimeSymbolToFilterOption, CrazyTimeSymbol } from '../../../../data/models/Spin'
+import { Spin, crazyTimeSymbolToFilterOption } from '../../../../data/models/Spin'
 import axios from 'axios'
 import { CrazyTimeSymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
 import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
 import  { EnhancedTable } from '../../../../components/CrazyTimeLiveStats/CrazyTimeTable'
 import AquaClient from './../../../../graphql/aquaClient';
-import { BONUSES_BY_NAME } from '../../../../graphql/queries/bonus'
 import BonusStripe from '../../../../components/Cards/BonusStripe'
 import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
-import BonusPlayCard from '../../../../components/Cards/BonusPlayCard'
 import PrimaryBonusCard from './../../../../components/Cards/PrimaryBonusCard';
 import { useRef } from 'react';
 import useOnClickOutside from '../../../../hooks/useOnClickOutside'
 import { isMobile, isDesktop, isTablet } from "react-device-detect";
-import StickyBonus from '../../../../components/Singles/StickyBonus'
 import DynamicContent from '../../../../components/DynamicContent/DynamicContent'
 import Head from 'next/head'
 import { format } from 'date-fns';
@@ -44,7 +41,7 @@ const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
 const PAGE_BONUSES = ["BetFlag", "LeoVegas", "888 Casino", "StarCasinò", "Unibet", "PokerStars Casino"]
 
-const SPAM_BONUSES = true
+const SPAM_BONUSES = false
 
 const SPAM_INTERVAL = 20000
 

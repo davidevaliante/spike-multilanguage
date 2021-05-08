@@ -65,7 +65,6 @@ const ImgContainer = styled.div`
 `
 
 const CTAImage = styled.img`
-    cursor : pointer;
     width : 260px;
     border-radius : 6px;
     box-shadow: 3px 3px 5px 3px #ccc;

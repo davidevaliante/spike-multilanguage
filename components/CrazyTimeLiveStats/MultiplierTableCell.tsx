@@ -13,11 +13,11 @@ const MultiplierTableCell : FunctionComponent<Props>= ({spin}) => {
     // helper render method for the multiplier column (Might be refactored in it's own component)
     const renderMultiplierCell = (spin : Spin) => {
         if(spin.multiplierInfo === 'none') return (
-            <TableCell style={{fontFamily : 'Montserrat'}} align="left">{spin.multiplier}</TableCell>
+            <TableCell style={{fontFamily : 'Montserrat', fontWeight : spin.sameSlotAndSpinResult ? 'bold' : 'normal', fontSize : spin.sameSlotAndSpinResult ? '1.1rem' : ''}} align="left">{spin.multiplier}</TableCell>
         )
 
         if(spin.multiplierInfo === 'heads') return (
-            <TableCell style={{fontFamily : 'Montserrat'}} align="left">
+            <TableCell style={{fontFamily : 'Montserrat', fontWeight : spin.sameSlotAndSpinResult ? 'bold' : 'normal', fontSize : spin.sameSlotAndSpinResult ? '1.1rem' : ''}} align="left">
                 <span style={{display : 'flex', alignItems : 'center', justifyContent : 'flex-start'}}>
                     <p style={{marginRight : '1rem'}}>{spin.multiplier}</p>
                     <Image width='36px' height='36px' src='/icons/crazy-time/heads.svg'/> 
@@ -25,7 +25,7 @@ const MultiplierTableCell : FunctionComponent<Props>= ({spin}) => {
             </TableCell>
         )
         if(spin.multiplierInfo === 'tails') return (
-            <TableCell style={{fontFamily : 'Montserrat'}} align="left">
+            <TableCell style={{fontFamily : 'Montserrat', fontWeight : spin.sameSlotAndSpinResult ? 'bold' : 'normal', fontSize : spin.sameSlotAndSpinResult ? '1.1rem' : ''}} align="left">
                 <span style={{display : 'flex', alignItems : 'center', justifyContent : 'flex-start'}}>
                     <p style={{marginRight : '1rem'}}>{spin.multiplier}</p>
                     <Image width='36px' height='36px' src='/icons/crazy-time/tails.svg'/> 
@@ -40,7 +40,7 @@ const MultiplierTableCell : FunctionComponent<Props>= ({spin}) => {
             const third = pieces[2]
 
             return (
-                <TableCell style={{fontFamily : 'Montserrat'}} align="left">
+                <TableCell style={{fontFamily : 'Montserrat', fontWeight : spin.sameSlotAndSpinResult ? 'bold' : 'normal', fontSize : spin.sameSlotAndSpinResult ? '1.1rem' : ''}} align="left">
                     <div style={{display : 'flex', alignItems : 'center'}}>
                         <TriangleImage src='/icons/crazy-time/green_triangle.svg'/>
                         <span>
