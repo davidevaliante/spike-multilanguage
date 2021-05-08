@@ -71,7 +71,7 @@ const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
 const PAGE_BONUSES = ["BetFlag", "LeoVegas", "888 Casino", "StarCasinò", "Unibet", "PokerStars Casino"]
 
-const SPAM_BONUSES = false
+const SPAM_BONUSES = true
 
 const SPAM_INTERVAL = 20000
 
@@ -96,16 +96,16 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
     const filterOptions = ["1", "2", "5", "10", "Pachinko", "Cash Hunt", "Coin Flip", "Crazy Time"]
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
-      setFilteredRows(rows?.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
+      setFilteredRows(rows.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
     }, [selectedFilters])
 
 
     // keeps track of rows in the table
-    const [rows, setRows] = useState<Spin[] | undefined>(_lastTenSpins)
+    const [rows, setRows] = useState<Spin[]>(_lastTenSpins)
     useEffect(() => {
-      setFilteredRows(rows?.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
+      setFilteredRows(rows.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
     }, [rows])
-    const [filteredRows, setFilteredRows] = useState<Spin[] | undefined>(_lastTenSpins)
+    const [filteredRows, setFilteredRows] = useState<Spin[]>(_lastTenSpins)
     const [lastUpdate, setLastUpdate] = useState(now())
 
     const [showSpamBonuses, setShowSpamBonuses] = useState(false)
