@@ -24,7 +24,7 @@ import { LocaleContext } from '../context/LocaleContext'
 import Newsletter from '../components/Newsletter/Newsletter'
 import CountryEquivalentPageSnackbar from '../components/Snackbars/CountryEquivalentPageSnackbar'
 import { homeDataForCountry } from '../data/data/pages-data'
-import LiveStatsCta from './../components/Singles/LiveStatsCta';
+import LiveStatsCta from './../components/Singles/LiveStatsCta'
 
 interface PageProps {
     _shallow : boolean

@@ -19,7 +19,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
     const expectation = (s : string) => {
         if(s === 'one') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>21 / 54</p>
                     <p>(38.89%) {`${t('Expected')}`}</p>
                 </span>
@@ -27,7 +27,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         )
         if(s === 'two') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>13 / 54</p>
                     <p>(24.07%) {`${t('Expected')}`}</p>
                 </span>
@@ -35,7 +35,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         )
         if(s === 'five') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>7 / 54</p>
                     <p>(12.96%) {`${t('Expected')}`}</p>
                 </span>
@@ -43,7 +43,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         )
         if(s === 'ten') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>4 / 54</p>
                     <p>(7.41%) {`${t('Expected')}`}</p>
                 </span>
@@ -51,7 +51,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         )
         if(s === 'cashhunt') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>2 / 54</p>
                     <p>(3.70%) {`${t('Expected')}`}</p>
                 </span>
@@ -59,7 +59,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         )
         if(s === 'coinflip') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>4 / 54</p>
                     <p>(7.41%) {`${t('Expected')}`}</p>
                 </span>
@@ -67,7 +67,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         )
         if(s === 'pachinko') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>2 / 54</p>
                     <p>(3.70%) {`${t('Expected')}`}</p>
                 </span>
@@ -75,7 +75,7 @@ const CrazyTimeStatCard : FunctionComponent<CardProps> = ({stat, totalSpinsConsi
         )
         if(s === 'crazytime') return(
             <div style={{marginTop : '1rem'}}>
-                <span style = {{fontSize : '.8rem', display : 'flex'}}>
+                <span style = {{fontSize : '.7rem', display : 'flex'}}>
                     <p style={{fontWeight : 'bold', marginRight : '.5rem'}}>1 / 54</p>
                     <p>(1.85%) {`${t('Expected')}`}</p>
                 </span>

@@ -76,7 +76,7 @@ interface HeadCell {
 
 const headCells: HeadCell[] = [
     { id: 'date', numeric: true, disablePadding: true, label: 'Occurred At' },
-    { id: 'spinResultSymbol', numeric: true, disablePadding: false, label: 'Spin Result' },
+    { id: 'spinResultSymbol', numeric: false, disablePadding: false, label: 'Spin Result' },
     { id: 'slotResultSymbol', numeric: false, disablePadding: true, label: 'Slot Result' },
     { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
     { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
@@ -92,11 +92,11 @@ export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,
     
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-
     return(
         <TableHead style={{background : '#db0d30'}}>
             <TableRow>
                 {headCells.map((headCell, i) => (
+                    headCell.id === 'spinResultSymbol' || headCell.id === 'slotResultSymbol' ? <StyledTableCell>{t(headCell.label)}</StyledTableCell> :
                     <StyledTableCell
                         key={headCell.id}
                         align={i == 0 ? 'center' : 'left'}

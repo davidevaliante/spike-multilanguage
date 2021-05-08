@@ -5,10 +5,10 @@ import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import { BodyContainer, MainColumn } from '../../../../components/Layout/Layout'
 import io, { Socket } from 'socket.io-client'
-import { Select, MenuItem, TableCell, Paper, Divider, Backdrop} from '@material-ui/core'
+import { Select, MenuItem, TableCell, Paper, Divider, Backdrop, InputLabel, Input, Checkbox, ListItemText} from '@material-ui/core'
 import { TimeFrame } from '../../../../data/models/TimeFrames'
 import styled from 'styled-components'
-import { Spin } from '../../../../data/models/Spin'
+import { Spin, crazyTimeSymbolToFilterOption, CrazyTimeSymbol } from '../../../../data/models/Spin'
 import axios from 'axios'
 import { CrazyTimeSymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
 import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
@@ -25,10 +25,16 @@ import { isMobile, isDesktop, isTablet } from "react-device-detect";
 import StickyBonus from '../../../../components/Singles/StickyBonus'
 import DynamicContent from '../../../../components/DynamicContent/DynamicContent'
 import Head from 'next/head'
+import { format } from 'date-fns';
+import now from 'lodash/now'
 
 interface Props {
     _requestedCountryCode : string
-    _stats : any
+    _stats : {
+      totalSpins : number,
+      lastTenSpins : Spin[]
+      stats : any
+    }
     _lastTenSpins : Spin[]
     _bonuses : Bonus[]
     _pageContent : CrazyTimeArticle
@@ -69,14 +75,38 @@ const SPAM_BONUSES = false
 
 const SPAM_INTERVAL = 20000
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
 const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent}) => {
 
     const aquaClient = new AquaClient()
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
+    const filterOptions = ["1", "2", "5", "10", "Pachinko", "Cash Hunt", "Coin Flip", "Crazy Time"]
+    const [selectedFilters, setSelectedFilters] = useState(filterOptions)
+    useEffect(() => {
+      setFilteredRows(rows?.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
+    }, [selectedFilters])
+
+
     // keeps track of rows in the table
     const [rows, setRows] = useState<Spin[] | undefined>(_lastTenSpins)
+    useEffect(() => {
+      setFilteredRows(rows?.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
+    }, [rows])
+    const [filteredRows, setFilteredRows] = useState<Spin[] | undefined>(_lastTenSpins)
+    const [lastUpdate, setLastUpdate] = useState(now())
 
     const [showSpamBonuses, setShowSpamBonuses] = useState(false)
     const bonusRef = useRef()
@@ -123,6 +153,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                 // we merge the current rows and the updated rows updating the table afterward
                 if(rows) setRows(mergeWithUpdate(rows, updatedRows))
                 setStats(topUpdate)
+                setLastUpdate(now())
             })
         }
     }, [socket])
@@ -173,6 +204,12 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
         if(isTablet) return 2
     }
 
+    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+      const change = event.target.value as string[]
+      console.log(change)
+      setSelectedFilters(change)
+    }
+
     if(loading) return <FullPageLoader />
     return <Fragment>
         <NavbarProvider  currentPage='Crazy Time Stats' countryCode={contextCountry}>
@@ -198,22 +235,24 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
 
                     <Divider style={{marginTop : '2rem'}} />
 
-                    <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginTop: '2rem'}}>
-                        <div>
-                            <h1 style={{ fontWeight : 'bold', fontSize : '2rem'}}>{t('Crazy Time Statistics')}</h1>
-                            <h1 style={{marginTop : '.5rem'}}>{`${t('for the past')} ${timeFrame}`}<span style={{marginLeft : '1rem', fontWeight : 'bold', color : 'crimson'}}>In REAL TIME</span></h1>
-                        </div>
+                    <div>
+                      <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginTop: '2rem'}}>
+                          <div>
+                              <h1 style={{ fontWeight : 'bold', fontSize : '2rem'}}>{t('Crazy Time Statistics')}</h1>
+                              <h1 style={{marginTop : '.5rem'}}>{`${t('for the past')} ${timeFrame}`}<span style={{marginLeft : '1rem', fontWeight : 'bold', color : 'crimson'}}>In REAL TIME</span></h1>
+                          </div>
 
-                        <div>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                value={timeFrame}
-                                onChange={(e) => handleTimeFrameChange(e)}>
-                                {Object.values(TimeFrame).map((k, i) => <MenuItem key={k} value={k}>{Object.values(TimeFrame)[i]}</MenuItem>)}
-                            </Select> 
-                        </div>   
-                    </div>
-                    
+                          <div>
+                              <Select
+                                  labelId="demo-simple-select-label"
+                                  value={timeFrame}
+                                  onChange={(e) => handleTimeFrameChange(e)}>
+                                  {Object.values(TimeFrame).map((k, i) => <MenuItem key={k} value={k}>{Object.values(TimeFrame)[i]}</MenuItem>)}
+                              </Select> 
+                          </div>   
+                      </div>
+                      <p style={{marginTop : '1rem', fontSize : '.9rem'}}>{`Ultimo Aggiornamento ${format(lastUpdate, 'dd/MM hh:mm:ss')}`}</p>
+                    </div>                    
 
                     <Divider style={{marginTop : '2rem', marginBottom : '2rem'}}/>
 
@@ -226,10 +265,32 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                         {_bonuses && _bonuses.map(b => <BonusStripe key={b.name} bonus={b} />)}
                     </Paper>
 
-                    <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', marginBottom : '1rem'}}>
-                      {`${t('Spin History')}`}
-                    </h1>
-                    {rows && <EnhancedTable rows={rows} />}
+                    <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginBottom : '1rem'}}>
+                      <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', marginBottom : '1rem'}}>
+                        {`${t('Spin History')}`}
+                      </h1>
+
+                      <div>
+                        <Select
+                          labelId="demo-mutiple-checkbox-label"
+                          id="demo-mutiple-checkbox"
+                          multiple
+                          value={selectedFilters}
+                          onChange={handleChange}
+                          input={<Input />}
+                          renderValue={(selected) => 'Filtri'}
+                          MenuProps={MenuProps}>
+                          {filterOptions.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              <Checkbox checked={selectedFilters.indexOf(name) > -1} />
+                              <ListItemText primary={name} />
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </div>                      
+                    </div>
+                 
+                    {rows && <EnhancedTable rows={filteredRows} />}
                     <DynamicContent content={_pageContent.bottomContent}/>
 
                     {SPAM_BONUSES && <Backdrop style={{zIndex : 10}} open={showSpamBonuses}>
