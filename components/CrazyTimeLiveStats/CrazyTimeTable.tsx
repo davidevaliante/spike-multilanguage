@@ -192,7 +192,7 @@ export const EnhancedTable : FunctionComponent<EnhancedTableProps> = ({rows}) =>
                                         <TableCell align='left'>
                                             <SlotResultSpan>
                                                 {symbolToSlotResultImage(row.slotResultSymbol as string)}
-                                                <p style={{fontFamily : 'Montserrat'}}>{row.slotResult}</p>
+                                                <p style={{fontFamily : 'Montserrat',fontWeight : row.sameSlotAndSpinResult ? 'bold' : 'normal', fontSize : row.sameSlotAndSpinResult ? '1.1rem' : ''}}>{row.slotResult === 'Miss' ? 'Nullo' : row.slotResult}</p>
                                             </SlotResultSpan>
                                         </TableCell>
                                         <MultiplierTableCell spin={row as unknown as Spin}/>                                        
