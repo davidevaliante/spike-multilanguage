@@ -55,11 +55,8 @@ const ITEM_PADDING_TOP = 8;
 const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent}) => {
 
     const aquaClient = new AquaClient()
-    const menuRef = useRef()
 
     const MenuProps = {
-      anchorEl : menuRef.current,
-      variant : 'menu',
       disableAutoFocusItem : true,
       PaperProps: {
         style: {
@@ -253,7 +250,6 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                           labelId="demo-mutiple-checkbox-label"
                           id="demo-mutiple-checkbox"
                           multiple
-                          ref={menuRef}
                           value={selectedFilters}
                           onChange={handleChange}
                           input={<Input />}
