@@ -16,14 +16,11 @@ import  { EnhancedTable } from '../../../../components/CrazyTimeLiveStats/CrazyT
 import AquaClient from './../../../../graphql/aquaClient';
 import BonusStripe from '../../../../components/Cards/BonusStripe'
 import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
-import PrimaryBonusCard from './../../../../components/Cards/PrimaryBonusCard';
-import { useRef } from 'react';
-import useOnClickOutside from '../../../../hooks/useOnClickOutside'
-import { isMobile, isDesktop, isTablet } from "react-device-detect";
 import DynamicContent from '../../../../components/DynamicContent/DynamicContent'
 import Head from 'next/head'
 import { format } from 'date-fns';
 import now from 'lodash/now'
+import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 
 interface Props {
     _requestedCountryCode : string
@@ -41,12 +38,7 @@ const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
 const PAGE_BONUSES = ["BetFlag", "LeoVegas", "888 Casino", "StarCasinò", "Unibet", "PokerStars Casino"]
 
-const SPAM_BONUSES = false
-
-const SPAM_INTERVAL = 20000
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+const SPAM_BONUSES = true
 
 
 const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent}) => {
@@ -80,9 +72,6 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
     const [filteredRows, setFilteredRows] = useState<Spin[]>(_lastTenSpins)
     const [lastUpdate, setLastUpdate] = useState(now())
 
-    const [showSpamBonuses, setShowSpamBonuses] = useState(false)
-    const bonusRef = useRef()
-    useOnClickOutside(bonusRef, () => handleCloseSpamBonuses())
 
     // keeps track of the stats
     const [stats, setStats] = useState<CrazyTimeSymbolStat[] | undefined>(_stats.stats)
@@ -135,7 +124,6 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
     // stuff for multilanguage porpouses
     const [loading, setLoading] = useState(false)
 
-    const [timeout, setTimeout] = useState<NodeJS.Timeout | undefined>(undefined)
 
     useEffect(() => {
         // at first render we initialize socket connection
@@ -145,36 +133,15 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
         })
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
-
-        const spamBonusInterval = setInterval(() => setShowSpamBonuses(true), SPAM_INTERVAL)
-        setTimeout(spamBonusInterval)
-
-
-
         return () => {
             // cleaning up socket connection if it exists
             socket && socket.disconnect()
-            timeout && clearInterval(timeout)
         }
     }, [])
 
 
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
-
-    const handleCloseSpamBonuses = () => {
-        timeout && clearInterval(timeout)
-        setShowSpamBonuses(false)
-        const spamBonusInterval = setInterval(() => setShowSpamBonuses(true), SPAM_INTERVAL)
-        setTimeout(spamBonusInterval)
-    }
-
-    // utils
-    const getSliceSize = () => {
-        if(isMobile) return 1
-        if(isDesktop) return 3
-        if(isTablet) return 2
-    }
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
       const change = event.target.value as string[]
@@ -265,17 +232,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                     {rows && <EnhancedTable rows={filteredRows} />}
                     <DynamicContent content={_pageContent.bottomContent}/>
 
-                    {SPAM_BONUSES && <Backdrop style={{zIndex : 10}} open={showSpamBonuses}>
-                        <Paper ref={bonusRef} elevation={3} style={{padding : '2rem'}}>
-                            <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'space-around'}}>
-                                <h1 style={{marginLeft : '1rem', fontWeight : 'bold', fontSize : '1.5rem', color : 'crimson', }}>Exclusive Bonuses</h1>
-                                <img onClick={() => handleCloseSpamBonuses()} style={{width : '36px', height : '36px', cursor : 'pointer'}} src='/icons/close_red.svg'/>
-                            </div>
-                            <div style={{display : 'flex', justifyContent : 'space-between'}}>
-                                {[..._bonuses.slice(0,getSliceSize())].map(b => <PrimaryBonusCard key={b.name} style={{margin : '1rem'}} bonus={b}/>)}
-                            </div>
-                        </Paper>
-                    </Backdrop>}
+                    {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses}  />}
 
                 </MainColumn>
             </BodyContainer>
