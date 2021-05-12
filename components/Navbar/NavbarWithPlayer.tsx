@@ -105,7 +105,10 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
                     country: obj.country,
                     image: obj.image,
                     bonuses: obj.link,
-                    rating: obj.rating
+                    rating: obj.rating,
+                    mainBonus : {
+                        link : obj.link
+                    }
                 }
             }))
         }, 400)
