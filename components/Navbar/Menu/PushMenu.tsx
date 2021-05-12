@@ -14,8 +14,6 @@ interface Props {
 
 const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
 
-    console.log(tiles, 'tiless')
-
     const offset = '80vw'
 
     const [childrenWrapperPosition, setChildrenWrapperPosition] = useState(false)

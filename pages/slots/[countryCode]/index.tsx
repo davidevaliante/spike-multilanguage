@@ -203,8 +203,9 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                 limit: 12
             }
         })
-        
-        setSlotList([...slotList!, ...(response.data.data.slots as AlgoliaSearchResult[])])
+        const updatedList = [...slotList!, ...(response.data.data.slots as AlgoliaSearchResult[])]
+        setSlotList(updatedList)
+        setSlotLength(updatedList.length)
     }
 
     const getCategoriesAndProducers =  () => {

@@ -16,13 +16,9 @@ const Newsletter = (props: Props) => {
     const [src, setSrc] = useState('')
 
     useEffect(() => {
-        console.log(contextCountry)
         if(contextCountry === 'it') setSrc(itSrc)
         else setSrc(rowSrc)
-    }, [contextCountry])
-
-    console.log(`hello`)
-    
+    }, [contextCountry])  
 
     return (
         <Fragment>
