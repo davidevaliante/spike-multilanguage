@@ -34,7 +34,7 @@ const SlotListSlotCard: FunctionComponent<Props> = ({ slotCardData }) => {
                         <FadeBorderButton
                             noFade={true}
                             href={slotCardData.link!}
-                            external={(slotCardData.bonuses !== null && slotCardData.bonuses.length > 0) ? slotCardData.bonuses[0].link : `www.google.${contextCountry}`}
+                            external={slotCardData.mainBonus.link ? slotCardData.mainBonus.link : slotCardData.bonuses[0].link}
                             text={t("Real money")}
                             color='#07ba13' />
                         <FadeBorderButton

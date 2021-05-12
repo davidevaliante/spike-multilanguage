@@ -237,6 +237,9 @@ export interface AlgoliaSearchResult {
     producer?: {
         id: number
     }
+    mainBonus : {
+        link:string
+    }
 }
 
 export interface Video {

@@ -52,9 +52,7 @@ const automaticRedirect = false
 const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, _slotListArticles, _highlightSlot, _producersQuery, _requestedCountryCode }) => {
 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
-
-    
-
+   
     const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
     const router = useRouter()
@@ -69,6 +67,8 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
     const [producersQuery, setProducersQuery] = useState(_producersQuery)
 
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
+    console.log(slotList)
 
     useEffect(() => {
         if(_shallow){
@@ -258,7 +258,10 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                         url: obj.image
                     },
                     bonuses: [{ link: obj.link }],
-                    rating: obj.rating
+                    rating: obj.rating,
+                    mainBonus : {
+                        link : ''
+                    }
                 }
             }))
         }, 300)
@@ -385,7 +388,6 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                         <ArticleToMarkdown style={{ padding: '0rem 1rem' }} content={injectCDN(slotListArticles?.bottomArticle!)} />
 
                     </MainColumn>
-
 
                     <RightColumn>
                         <h1 className='bonus-header'>{t("The best welcome bonuses")}</h1>
