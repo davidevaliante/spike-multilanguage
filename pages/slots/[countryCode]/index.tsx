@@ -260,7 +260,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                     bonuses: [{ link: obj.link }],
                     rating: obj.rating,
                     mainBonus : {
-                        link : ''
+                        link : obj.link
                     }
                 }
             }))
