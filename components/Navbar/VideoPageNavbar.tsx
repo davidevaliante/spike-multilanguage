@@ -123,7 +123,10 @@ const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen
                     link: obj.link,
                     image: obj.image,
                     bonuses: obj.link,
-                    rating: obj.rating
+                    rating: obj.rating,
+                    mainBonus : {
+                        link : obj.link
+                    }
                 }
             }))
         }, 400)
