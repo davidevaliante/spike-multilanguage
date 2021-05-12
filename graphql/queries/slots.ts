@@ -287,6 +287,9 @@ query SLOT_BY_LEGACY_ID($legacyId:String){
       image{
         url
       }
+      mainBonus{
+        link
+      }
     }
   }
 `
@@ -302,6 +305,9 @@ query SLOT_CARD_BY_ID($id:ID=2171){
       }
       image{
         url
+      }
+      mainBonus{
+        link
       }
   }
 }
