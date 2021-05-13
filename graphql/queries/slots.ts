@@ -264,12 +264,15 @@ export const GET_SLOTS_BY_PRODUCER_SLUG = `
             rating
             bonuses(limit:1, start: 0){
                 link
-              }
+            }
             image{
                 url
             }
             producer{
                 id
+            }
+            mainBonus{
+              link
             }
         }
     }

@@ -28,7 +28,7 @@ interface Props {
     countryCode:string
 }
 
-const ProducerPage: FunctionComponent<Props> = ({ producer, initialSlots, bonusList,countryCode }) => {
+const ProducerPage: FunctionComponent<Props> = ({ producer, initialSlots, bonusList, countryCode }) => {
 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
