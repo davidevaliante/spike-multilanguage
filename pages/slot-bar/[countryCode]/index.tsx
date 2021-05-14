@@ -264,7 +264,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
             <NavbarProvider currentPage={`/slot-bar-list`} countryCode={contextCountry}>
                 <BodyContainer>
                     <MainColumn>
-                        {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/slot-bar/${userCountry}`} />}
+                        {/* {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/slot-bar/${userCountry}`} />} */}
                         <CustomBreadcrumbs
                             style={{ padding: '1rem .5rem' }}
                             from='bar-slot-list' />
