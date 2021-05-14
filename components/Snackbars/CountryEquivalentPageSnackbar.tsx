@@ -10,9 +10,9 @@ interface Props {
 }
 
 const CountryEquivalentPageSnackbar : FunctionComponent<Props> = ({path}) => {
+    const router = useRouter()
 
     const {t, contextCountry, userCountry} = useContext(LocaleContext)
-    const router = useRouter()
 
     const [open, setOpen] = useState(true)
 
@@ -26,6 +26,10 @@ const CountryEquivalentPageSnackbar : FunctionComponent<Props> = ({path}) => {
     const getFlagLink = (countryCode : string) => {
         if(countryCode === 'it') return '/flags/it.svg'
         if(countryCode === 'row') return '/flags/row.svg'
+        if(countryCode === 'mt') return '/flags/mt.svg'
+        if(countryCode === 'ca') return '/flags/ca.svg'
+        if(countryCode === 'nz') return '/flags/nz.svg'
+        if(countryCode === 'es') return '/flags/es.svg'
     }
 
     return (

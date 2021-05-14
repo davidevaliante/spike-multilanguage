@@ -22,7 +22,11 @@ export const getBonusPageRedirectUrlForCountry = (countryCode : string) => {
 
 export const getBGuidePageRedirectUrlForCountry = (countryCode : string) => {
     if(countryCode === 'it') return '/guide-e-trucchi/it'
-    if(countryCode === 'row') return '/guide-and-tricks/row'
+    if(countryCode === 'row') return '/guides-and-tricks/row'
+    if(countryCode === 'es') return '/guides-and-tricks/es'
+    if(countryCode === 'mt') return '/guides-and-tricks/mt'
+    if(countryCode === 'ca') return '/guides-and-tricks/ca'
+    if(countryCode === 'nz') return '/guides-and-tricks/nz'
     return ''
 }
 

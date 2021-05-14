@@ -30,11 +30,10 @@ const automaticRedirect = false
 
 const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articles,_requestedCountryCode }) => {
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
-    const router = useRouter()
-
     const [loading, setLoading] = useState(true)
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
+
+    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         getCountryData()
@@ -42,7 +41,6 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
 
     const getCountryData = async () => {
         const geoLocatedCountryCode = await getUserCountryCode()
-        setUserCountry(geoLocatedCountryCode)
         const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
         if(geoLocatedCountryCode !== _requestedCountryCode){
@@ -52,17 +50,13 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
                     countryCode: geoLocatedCountryCode
                 }
             })
-            
 
-            if(initialGuidesResponse.data.data.bonusGuides !== undefined){
-                if(automaticRedirect){
-                    router.push(getBGuidePageRedirectUrlForCountry(geoLocatedCountryCode))
-                    return
-                }
-                else setUserCountryEquivalentExists(true)
-            }
-            setContextCountry(_requestedCountryCode)           
+            console.log(initialGuidesResponse.data.data.bonusGuides)
+
+            if(initialGuidesResponse.data.data.bonusGuides.length > 0 ) setUserCountryEquivalentExists(true)
         }
+        setUserCountry(geoLocatedCountryCode)
+        setContextCountry(_requestedCountryCode)           
         setLoading(false)
     }
 
@@ -74,7 +68,6 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
 
             <Head>
                 <title>{t('GuideTextTitlePageTitle')}</title>
-                <link rel="canonical" href={getCanonicalPath()} />
                 <meta
                     name="description"
                     content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}>
@@ -94,7 +87,7 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
                 <StyleProvider>
                     <CustomBreadcrumbs style={{ margin: '1rem 0rem' }} from='guide-list' name='Guides and Tricks' />
 
-                    <h1>{t('Guides to the best bonuses of Italian casinos')} </h1>
+                    <h1>{t('Guides to the best bonuses of Italian casinos')}</h1>
                     <p>{t("GuidesTextContent1")}</p>
                     <BonusGuideContainer>
                         {initialGuides.map((guide, index) => <BonusGuideCard key={`guide_${index}`} guide={guide} />)}
