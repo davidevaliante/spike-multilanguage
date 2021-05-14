@@ -228,6 +228,9 @@ query PAGINATED_SLOTS(
             bonuses(limit:1, start: 0){
               link
             }
+            mainBonus{
+              link
+            }
         }
 }
 `
