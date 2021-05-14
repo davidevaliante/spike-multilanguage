@@ -82,8 +82,30 @@ app.prepare().then(() => {
     });
 
     server.get('/slot/:slug/:countryCode', (req, res) => {
-        const pagePath = `/slot/${req.params.slug}/${req.params.countryCode}`
-        renderAndCache(app)(req, res, pagePath)
+
+        const { slug, countryCode } = req.params
+
+        const websiteRoot = 'https://spikeslot.com'
+
+        const oldUrls = [
+            'sweet_bonanza/row',
+        ]
+
+        const newUrls = [
+            '/slot/sweet-bonanza/row'
+        ]
+
+        const oldUrlIndex = oldUrls.indexOf(`${slug}/${countryCode}`)
+        const newUrl = newUrls[oldUrlIndex]
+
+        if(oldUrlIndex != -1){
+            console.log('hello')
+            res.set('location', `${websiteRoot}${newUrl}`)
+            res.status(301).send()
+        } else {
+            const pagePath = `/slot/${req.params.slug}/${req.params.countryCode}`
+            renderAndCache(app)(req, res, pagePath)
+        }
     })
 
     server.get('/slots/:countryCode', (req, res) => {
