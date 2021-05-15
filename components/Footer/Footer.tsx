@@ -28,6 +28,63 @@ const Footer = () => {
         })
         setArticle(articleResponse.data.data.footer.article)
     }
+
+
+    const getBonusGuideLinkForCountry = (countryCode : string) => {
+        switch(countryCode){
+            case 'it':
+                return (
+                    <div>
+                        <LinkContainer>
+                            <a href={`/guida/bonus-benvenuto-starcasino/${contextCountry}`}>{t("Starcasino")}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/bonus-benvenuto-casino-leovegas/${contextCountry}`}>{t("Leovegas")}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/bonus-benvenuto-casino-starvegas/${contextCountry}`}>{t("Starvegas")}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/bonus-benvenuto-casino-snai/${contextCountry}`}>{t("Snai")}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/bonus-benvenuto-casino-slotyes/${contextCountry}`}>{t("Slot-Yes")}</a>
+                        </LinkContainer>
+                    </div>
+                )
+            case 'row':
+                return (
+                    <div>
+                        <LinkContainer>
+                            <a href={`/guida/cobra-casino-review/${contextCountry}`}>{'Cobra Casino'}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/buran-casino-review/${contextCountry}`}>{'Buran Casino'}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/yoyocasino-review/${contextCountry}`}>{'Yoyo Casino'}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/mr-play-casino-review/${contextCountry}`}>{'MrPlay'}</a>
+                        </LinkContainer>
+
+                        <LinkContainer>
+                            <a href={`/guida/888-casino-bonus-guide/${contextCountry}`}>{'888 Casino'}</a>
+                        </LinkContainer>
+                    </div>
+                )
+            
+            default:
+                return <div></div>
+        }
+    }
     
     return (
         <Container>
@@ -94,29 +151,8 @@ const Footer = () => {
                     <section>
                         <Header>
                             {t("Welcome Bonus Guides")}
-                    </Header>
-                        <div>
-                            <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-starcasino/${contextCountry}`}>{t("Starcasino")}</a>
-                            </LinkContainer>
-
-                            <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-leovegas/${contextCountry}`}>{t("Leovegas")}</a>
-                            </LinkContainer>
-
-                            <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-starvegas/${contextCountry}`}>{t("Starvegas")}</a>
-                            </LinkContainer>
-
-                            <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-snai/${contextCountry}`}>{t("Snai")}</a>
-                            </LinkContainer>
-
-                            <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-slotyes/${contextCountry}`}>{t("Slot-Yes")}</a>
-                            </LinkContainer>
-
-                        </div>
+                        </Header>
+                        {getBonusGuideLinkForCountry(contextCountry)}
                     </section>
 
                 </Body>
