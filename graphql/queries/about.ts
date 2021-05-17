@@ -1,13 +1,12 @@
 export const ABOUT_PAGE = `
-query ABOUT_PAGE{
-    about{
+query ABOUT_PAGE($countryCode:String="it"){
+    aboutPages(where: {country: {code: $countryCode}}){
       seo{
         seoTitle
         seoDescription
       }
       
       content{
-        
             ...on ComponentArticleArticle{
             type
             article

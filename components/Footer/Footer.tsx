@@ -85,6 +85,28 @@ const Footer = () => {
                 return <div></div>
         }
     }
+
+    const getResponsibleGamingArticle = () => {
+        switch(contextCountry){
+            case 'it':
+                return (
+                    <LinkContainer>
+                        <a href={`/articoli/ludopatia-come-smettere-di-giocare/${contextCountry}`}>{t("Responsible gaming")}</a>
+                    </LinkContainer>
+                )
+
+            case 'row':
+                return(
+                    <LinkContainer>
+                        <a href={`/articoli/ludopatia-come-smettere-di-giocare/${contextCountry}`}>{t("Responsible gaming")}</a>
+                    </LinkContainer>
+                )
+            default:
+                <LinkContainer>
+                    <a href={`/articoli/ludopatia-come-smettere-di-giocare/${contextCountry}`}>{t("Responsible gaming")}</a>
+                </LinkContainer>
+        }
+    }
     
     return (
         <Container>
@@ -96,7 +118,7 @@ const Footer = () => {
                         </Header>
                         <div>
                             <LinkContainer>
-                                <a href='/spike'>{t("About")}</a>
+                                <a href={`/spike/${contextCountry}`}>{t("About")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
@@ -104,16 +126,14 @@ const Footer = () => {
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href='/cookie-privacy-policy'>{t("Privacy and Cookie Policy")}</a>
+                                <a href={`/cookie-privacy-policy/${contextCountry}`}>{t("Privacy and Cookie Policy")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
                                 <a href='https://shop.spreadshirt.it/spike4'>{t("Official Store")}</a>
                             </LinkContainer>
 
-                            <LinkContainer>
-                                <a href={`/articoli/ludopatia-come-smettere-di-giocare/${contextCountry}`}>{t("Responsible gaming")}</a>
-                            </LinkContainer>
+                            {getResponsibleGamingArticle()}
                         </div>
                     </section>
 

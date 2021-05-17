@@ -296,7 +296,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/guide-e-trucchi/${contextCountry}`}>
+                <a href={contextCountry === 'it' ? `/guide-e-trucchi/${contextCountry}` : `/guides-and-tricks/${contextCountry}`}>
                     {t("Guides and Tricks")}
                 </a>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />

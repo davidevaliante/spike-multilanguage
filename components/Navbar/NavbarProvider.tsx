@@ -64,6 +64,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         if(contextCountry === 'row'  || contextCountry === 'ca') {
             copy.splice(6, 0, { label: 'Welcome bonus', link: `/best-casino-bonus`},)
             copy.splice(8, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
+            copy.splice(1,1)
         }
         setDrawerPages(copy)
     }, [contextCountry])

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useEffect } from 'react'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import AquaClient from '../../../../graphql/aquaClient'
 import { FunctionComponent } from 'react'
@@ -25,8 +25,12 @@ interface Props {
 
 const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode }) => {
 
-    const { t } = useContext(LocaleContext)
+    const { t, setContextCountry} = useContext(LocaleContext)
 
+    useEffect(() => {
+        setContextCountry(countryCode)
+    }, [])
+    
     return (
         <Fragment>
             <Head>

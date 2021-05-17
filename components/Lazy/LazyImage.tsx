@@ -63,8 +63,8 @@ const LazyImage: FunctionComponent<Props> = ({
             height={height}>
             {!_inView && withPlaceholder && <div style={style} className='grey-div'></div>}
 
-
             <img
+                key={src}
                 style={style}
                 className={`image ${_inView ? 'fade-in' : ''} ${className ? className : ''}`}
                 onLoad={() => setImageLoaded(true)}

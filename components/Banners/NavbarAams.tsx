@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment, useContext } from "react"
+import React, { FunctionComponent, Fragment, useContext, useState, useEffect } from "react"
 import styled from 'styled-components'
 import LazyImage from "../Lazy/LazyImage"
 import { LocaleContext } from '../../context/LocaleContext'
@@ -6,16 +6,57 @@ import { LocaleContext } from '../../context/LocaleContext'
 const NavbarAams: FunctionComponent = () => {
 
     const {t, contextCountry} = useContext(LocaleContext)
+
+    useEffect(() => {
+        setImage(getImage())
+    }, [contextCountry])
     
+    const getImage = () => {
+        switch(contextCountry){
+            case 'it':
+                return 'https://spikewebsitemedia.b-cdn.net/adm_logo.png'
+            case 'row':
+                return '/icons/gamble_aware.png'
+            default:
+                return 'https://spikewebsitemedia.b-cdn.net/adm_logo.png'
+        }
+    }
+
+    const getWidth = () => {
+        switch(contextCountry){
+            case 'it':
+                return 66
+            case 'row':
+                return 66
+            default:
+                return 66
+        }
+    } 
+
+    const getHeight = () => {
+        switch(contextCountry){
+            case 'it':
+                return 56
+            case 'row':
+                return 66
+            default:
+                return 66
+        }
+    } 
+
+    const [image, setImage] = useState(getImage())
+
+
     return <Fragment>
         <Container>
 
             <LazyImage
-                width={contextCountry === 'it' ? 66 : 66}
-                height={contextCountry === 'it' ? 56 : 66}
+                key={image}
+                width={getWidth()}
+                height={getHeight()}
                 style={{ marginRight: '1rem' }}
                 alt='aams logo'
-                src={contextCountry === 'it' ? 'https://spikewebsitemedia.b-cdn.net/adm_logo.png' : '/icons/gamble_aware.png'} />
+                src={image} />
 
             <LazyImage
                 width={36}

@@ -31,13 +31,16 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList,countr
     const router = useRouter()
     const {t, contextCountry, setContextCountry, userCountry, setUserCountry} = useContext(LocaleContext)
 
+    useEffect(() => {
+        setContextCountry(countryCode)
+    }, [countryCode])
+
 
     return (
         <Fragment>
             <Head>
                 <title>{bonusGuide.seo ? `${bonusGuide.seo.seoTitle}` : `${bonusGuide.bonus?.name} | SPIKE`}</title>
                 <link rel="canonical" href={getCanonicalPath()} />
-
                 <meta
                     name="description"
                     content={bonusGuide?.seo ? `${bonusGuide.seo.seoDescription}` : `${bonusGuide?.bonus?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`}>
@@ -51,7 +54,7 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList,countr
                 <meta property="article:tag" content={bonusGuide?.seo?.seoTitle} />
             </Head>
 
-            <NavbarProvider currentPage={`Guida - ${bonusGuide?.bonus?.name} - ${bonusGuide?.bonus?.country.code}`} countryCode={countryCode}>
+            <NavbarProvider currentPage={`Guida - ${bonusGuide?.bonus?.name} - ${bonusGuide?.bonus?.country.code}`} countryCode={contextCountry}>
                 <CustomBreadcrumbs
                     style={{ padding: '1rem 1rem' }}
                     guideSlug={bonusGuide?.slug}

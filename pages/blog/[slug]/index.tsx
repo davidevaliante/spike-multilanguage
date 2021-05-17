@@ -77,6 +77,10 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
         setLoading(false)
     }
 
+    useEffect(() => {
+        setContextCountry(_requestedCountryCode)
+    }, [_requestedCountryCode])
+
 
     if(loading) return <FullPageLoader />
 
