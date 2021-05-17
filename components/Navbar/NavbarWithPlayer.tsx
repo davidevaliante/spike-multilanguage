@@ -175,7 +175,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpe
                 <NewAnchorTag
                     key={key}
                     href={`${page.link}/${contextCountry}`}
-                    text={t("Crazy Time Live")} />
+                    text={t("CrazyTimeNavbar")} />
             )
         }
 
