@@ -38,9 +38,10 @@ export interface DynamicVideo {
 
 export interface DynamicContentProps {
     content: (DynamicArticle | DynamicBonusList | DynamicSlotList | DynamicVideo)[]
+    isBakeca? : boolean
 }
 
-const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content }) => {
+const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBakeca }) => {
 
 
     const contentToBlocks = () => {
@@ -58,6 +59,19 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content }) => 
 
     const bonusListRenderer: FunctionComponent<DynamicBonusList> = ({ bonus, direction, tableLabel, collapsable }) => {
 
+
+        const remapBonusLink = () => bonus.map(b => {
+            if(b.bonus.name === 'LeoVegas') b.bonus.link = 'https://ads.leovegas.com/redirect.aspx?pid=3704891&bid=1496'
+            if(b.bonus.name === 'BetFlag') b.bonus.link = 'https://adv.betflag.com/redirect.aspx?pid=5268&bid=2680'
+            if(b.bonus.name === '888 Casino') b.bonus.link = 'https://ic.aff-handler.com/c/43431?sr=1868494'
+            if(b.bonus.name === 'PokerStars Casino') b.bonus.link = 'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182820b_4095c_&affid=100976968&siteid=182820&adid=4095&c='
+            if(b.bonus.name === 'Starcasinò') b.bonus.link = 'http://record.affiliatelounge.com/_SEA3QA6bJTMP_fzV1idzxmNd7ZgqdRLk/132/'
+            if(b.bonus.name === 'GoldBet') b.bonus.link = 'https://media.goldbetpartners.it/redirect.aspx?pid=4641&bid=1495'
+            if(b.bonus.name === 'Starvegas') b.bonus.link = 'https://www.starvegas.it/gmg/refer/60a2b6ffcb4f5e0001afa975'
+            if(b.bonus.name === 'Eurobet') b.bonus.link = 'https://record.betpartners.it/_E_C7XwxgprAZV93hC2dJ_GNd7ZgqdRLk/110/'
+            if(b.bonus.name === 'Gioco Digitale') b.bonus.link = 'https://mediaserver.entainpartners.com/renderBanner.do?zoneId=2022788'
+            return b
+        })
         const [collapsed, setCollapsed] = useState(collapsable === true)
         useEffect(() => {
             console.log(collapsed, 'collapsed')
@@ -77,7 +91,7 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content }) => 
             {tableLabel && <HorizontalTableHeader> {tableLabel}</HorizontalTableHeader>}
 
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {bonus.map(b => <PrimaryBonusCard withSuggestion={false} key={b.bonus.name} bonus={b.bonus} />)}
+                {isBakeca ? remapBonusLink().map(b => <PrimaryBonusCard withSuggestion={false} key={b.bonus.name} bonus={b.bonus} />) : bonus.map(b => <PrimaryBonusCard withSuggestion={false} key={b.bonus.name} bonus={b.bonus} />)}
             </div>
 
             {collapsable && <LoadMoreButtonStyle onClick={() => setCollapsed(!collapsed)}>
