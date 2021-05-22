@@ -65,6 +65,16 @@ const MiglioriBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_request
     //     setLoading(false)
     // }
 
+    const myFakeFunction = () => {
+        return(
+            <div>
+                <h1>
+                    Hello World
+                </h1>
+            </div>
+        )
+    }
+
     return (
         <NavbarProvider currentPage='/bonus-bakeca' countryCode={contextCountry}>
             <Head>

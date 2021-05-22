@@ -81,7 +81,7 @@ const headCells: HeadCell[] = [
     { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
     { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
     { id: 'totalPayout', numeric: true, disablePadding: false, label: 'Total Payout' },
-    // { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
+    { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
 ]
 
 export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,  order, orderBy, numSelected, rowCount, onRequestSort }) => {
@@ -198,9 +198,9 @@ export const EnhancedTable : FunctionComponent<EnhancedTableProps> = ({rows}) =>
                                         <MultiplierTableCell spin={row as unknown as Spin}/>                                        
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalWinners}</TableCell>
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalPayout} €</TableCell>
-                                        {/* <TableCell style={{fontFamily : 'Montserrat'}} align='right'>
-                                            {row.watchVideo !== 'no_video' ? <Button onClick={() => handleOpenVideo(row.watchVideo as string)} color='primary' variant='contained'>Watch</Button> : ''}
-                                        </TableCell> */}
+                                        <TableCell style={{fontFamily : 'Montserrat'}} align='right'>
+                                            {row.watchVideo !== 'no_video' ? <Button onClick={() => handleOpenVideo(row.watchVideo as string)} color='primary' variant='contained'>{t('Watch')}</Button> : ''}
+                                        </TableCell>
                                     </StyledTableRow>
                                 )
                             })}

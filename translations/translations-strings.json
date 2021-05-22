@@ -262,7 +262,8 @@
           "Total Payout" : "Payout Totale",
           "Watch Video" : "Guarda Video",
           "Rows per page" : "Righe per pagina",
-          "Compare legal websites" :  "Comparazione offerte di siti legali"
+          "Compare legal websites" :  "Comparazione offerte di siti legali",
+          "Watch" : "Guarda"
       }
     },
     "row": {
@@ -396,7 +397,8 @@
           "Total Payout" : "Total Payout",
           "Watch Video" : "Watch Video",
           "Rows per page" : "Rows per page",
-          "Compare legal websites" :  "Compare legal websites"
+          "Compare legal websites" :  "Compare legal websites",
+          "Watch" : "Watch"
       }
     },
     "ca": {
@@ -529,7 +531,8 @@
           "Total Payout" : "Total Payout",
           "Watch Video" : "Watch Video",
           "Rows per page" : "Rows per page",
-          "Compare legal websites" :  "Compare legal websites"
+          "Compare legal websites" :  "Compare legal websites",
+          "Watch" : "Watch"
       }
     },
     "nz": {
@@ -662,7 +665,8 @@
           "Total Payout" : "Total Payout",
           "Watch Video" : "Watch Video",
           "Rows per page" : "Rows per page",
-          "Compare legal websites" :  "Compare legal websites"
+          "Compare legal websites" :  "Compare legal websites",
+          "Watch" : "Watch"
       }
     },
     "rs": {
@@ -795,7 +799,8 @@
           "Total Payout" : "Ukupna isplata",
           "Watch Video" : "Pogledajte video",
           "Rows per page" : "Redovi po stranici",
-          "Compare legal websites" :  "Uporedite legalne veb lokacije"
+          "Compare legal websites" :  "Uporedite legalne veb lokacije",
+          "Watch" : "Watch"
         }
     },
     "me": {
@@ -928,7 +933,8 @@
           "Total Payout" : "Ukupna isplata",
           "Watch Video" : "Pogledajte video",
           "Rows per page" : "Redovi po stranici",
-          "Compare legal websites" :  "Uporedite legalne veb lokacije"
+          "Compare legal websites" :  "Uporedite legalne veb lokacije",
+          "Watch" : "Watch"
         }
     }
 }
