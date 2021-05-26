@@ -21,14 +21,11 @@ import Head from 'next/head'
 import { format } from 'date-fns';
 import now from 'lodash/now'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
+import { MonopolyTables } from './../../../../data/models/MonopolyTable';
 
 interface Props {
     _requestedCountryCode : string
-    _stats : {
-      totalSpins : number,
-      lastTenSpins : Spin[]
-      stats : any
-    }
+    _tables : MonopolyTables
     _lastTenSpins : Spin[]
     _bonuses : Bonus[]
     _pageContent : CrazyTimeArticle
@@ -38,12 +35,14 @@ const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
 const PAGE_BONUSES = ["BetFlag", "LeoVegas", "888 Casino", "StarCasinò", "Unibet", "PokerStars Casino"]
 
-const SPAM_BONUSES = true
+const SPAM_BONUSES = false
 
 
-const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent}) => {
+const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _lastTenSpins, _bonuses, _pageContent}) => {
 
     const aquaClient = new AquaClient()
+
+    console.log(_lastTenSpins, _tables)
 
     const MenuProps = {
       disableAutoFocusItem : true,
@@ -74,8 +73,9 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
 
 
     // keeps track of the stats
-    const [stats, setStats] = useState<CrazyTimeSymbolStat[] | undefined>(_stats.stats)
-    const [totalSpinsInTimeFrame, setTotalSpinsInTimeFrame] = useState(_stats.totalSpins)
+    const [tables, setStats] = useState<MonopolyTables | undefined>(_tables)
+    // const [totalSpinsInTimeFrame, setTotalSpinsInTimeFrame] = useState(_stats.totalSpins)
+
     // the time frame currently selected
     const [timeFrame, setTimeFrame] = useState(TimeFrame.TWENTY_FOUR_HOURS)
     useEffect(() => {
@@ -151,28 +151,13 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
 
     if(loading) return <FullPageLoader />
     return <Fragment>
-        <NavbarProvider  currentPage='Crazy Time Stats' countryCode={contextCountry}>
-            <Head>
-                <title>{_pageContent.seo?.seoTitle}</title>
-                <link rel="canonical" href="https://spikeslot.com" />
-                <meta
-                    name="description"
-                    content={_pageContent.seo.seoDescription}>
-                </meta>
-                <meta httpEquiv="content-language" content="it-IT"></meta>
-                <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                <meta property="og:locale" content={'it'} />
-                <meta property="og:type" content="article" />
-                <meta property="og:description" content={_pageContent.seo?.seoDescription} />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-            </Head>
-
-            <BodyContainer>
+        <NavbarProvider  currentPage='Monopoly Stats' countryCode={contextCountry}>
+                <BodyContainer>
                 <MainColumn style={{width : '100%', maxWidth : '90%', paddingBottom : '4rem', paddingTop : '2rem'}}>
 
-                    <DynamicContent content={_pageContent.topContent}/>
+                    {/* <DynamicContent content={_pageContent.topContent}/>
 
-                    <Divider style={{marginTop : '2rem'}} />
+                    <Divider style={{marginTop : '2rem'}} /> */}
 
                     <div>
                       <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginTop: '2rem'}}>
@@ -195,14 +180,14 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
 
                     <Divider style={{marginTop : '2rem', marginBottom : '2rem'}}/>
 
-                    {stats && <StatsContainer>
+                    {/* {stats && <StatsContainer>
                         {stats.map(s => <CrazyTimeStatCard key={`stats_${s.symbol}`} stat={s} totalSpinsConsidered={totalSpinsInTimeFrame} timeFrame={timeFrame}/>)}    
-                    </StatsContainer>}
+                    </StatsContainer>} */}
                     
-                    <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', textAlign : 'center'}}>{`${t('You can play at CRAZY TIME here')}`}</h1>
+                    {/* <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', textAlign : 'center'}}>{`${t('You can play at CRAZY TIME here')}`}</h1>
                     <Paper elevation={6} style={{marginTop : '1rem', marginBottom : '4rem'}}> 
                         {_bonuses && _bonuses.map(b => <BonusStripe key={b.name} bonus={b} />)}
-                    </Paper>
+                    </Paper> */}
 
                     <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginBottom : '1rem'}}>
                       <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', marginBottom : '1rem'}}>
@@ -230,7 +215,8 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                     </div>
                  
                     {rows && <CrazyTimeTable rows={filteredRows} />}
-                    <DynamicContent content={_pageContent.bottomContent}/>
+
+                    {/* <DynamicContent content={_pageContent.bottomContent}/> */}
 
                     {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses}  />}
 
@@ -256,7 +242,7 @@ export const getServerSideProps = async ({query, req, res}) => {
     const aquaClient = new AquaClient()
 
     const _requestedCountryCode = query.countryCode
-    const pageData  = await axios.get('https://crazytime.spike-realtime-api.eu/api/data-for-the-last-hours/24')
+    const pageData  = await axios.get('https://monopoly.spike-realtime-api.eu/api/data-for-the-last-hours/24')
    
     
     const pageContent = await aquaClient.query({
@@ -287,10 +273,12 @@ export const getServerSideProps = async ({query, req, res}) => {
         'PokerStars Casino' : 'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_4095c_&affid=100976968&siteid=182773&adid=4095&c='
     }
 
+    console.log(pageData.data)
+
     return {
         props : {
             _requestedCountryCode,
-            _stats : pageData.data.stats,
+            _tables : pageData.data.tables[0],
             _lastTenSpins : pageData.data.spinsInTimeFrame,
             _bonuses : orderedBonusList.map(b => {
                 b.link = bonusRemapping[b.name]

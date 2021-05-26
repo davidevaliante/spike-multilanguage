@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState, useContext } from 'react'
 import { TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell, Button, withStyles, Theme, createStyles, Checkbox, TableSortLabel, makeStyles, TablePagination, FormControlLabel, Switch, IconButton } from '@material-ui/core'
 import { symbolToSlotResultImage, symbolToSpinResultImage } from '../../utils/ImageUtils'
-import MultiplierTableCell from './MultiplierTableCell'
 import { Spin } from '../../data/models/Spin'
 import format from 'date-fns-tz/format'
 import styled, { useTheme } from 'styled-components'
@@ -11,6 +10,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import MultiplierTableCell from '../CrazyTimeLiveStats/MultiplierTableCell'
 
 interface Props {
     rows : Spin[]
@@ -285,55 +285,6 @@ interface TablePaginationActionsProps {
     );
   }
 
-// const CrazyTimeTable : FunctionComponent<Props> = ({rows}) => {
-
-//     // opens the video windows on a free Vercel instance
-//     const handleOpenVideo = (url : string) => window.open(`https://crazy-time-scalper.vercel.app/video/${url.split('/').pop()}`)
-
-//     return (
-//         <TableWrapper>
-//             <TableContainer component={Paper}>
-//                 <Table aria-label="simple table">
-//                     <TableHead style={{background : '#db0d30' }}>
-//                         <TableRow>
-//                             <StyledTableCell>Occured at</StyledTableCell>
-//                             <StyledTableCell align="left">Slot Result</StyledTableCell>
-//                             <StyledTableCell align="left">Spin Result</StyledTableCell>
-//                             <StyledTableCell align="left">Multiplier</StyledTableCell>
-//                             <StyledTableCell align="left">Total Winner</StyledTableCell>
-//                             <StyledTableCell align="left">Total Payout</StyledTableCell>
-//                             <StyledTableCell align="right">Watch Video</StyledTableCell>
-//                         </TableRow>
-//                     </TableHead>
-//                     <TableBody>
-//                     {rows.map((row) => (
-//                         <StyledTableRow key={row._id}>
-//                             <TableCell component="th" scope="row">
-//                                 {format(row.timeOfSpin, 'dd/MM HH:mm')}
-//                             </TableCell>
-//                             <TableCell align="left">
-//                                 <SlotResultSpan>
-//                                     {symbolToSlotResultImage(row.slotResultSymbol)}
-//                                     <p>{row.slotResult}</p>
-//                                 </SlotResultSpan>
-//                             </TableCell>
-//                             <TableCell align="left">
-//                                 <SpinResultSpan>
-//                                     {symbolToSpinResultImage(row.spinResultSymbol)}
-//                                 </SpinResultSpan>
-//                             </TableCell>
-//                             <MultiplierTableCell spin={row}/>
-//                             <TableCell align="left">{row.totalWinners}</TableCell>
-//                             <TableCell align="left">{row.totalPayout}€</TableCell>
-//                             <TableCell align="right">{row.watchVideo !== 'no_video' ? <Button onClick={() => handleOpenVideo(row.watchVideo)} color='primary' variant='contained'>Watch</Button> : ''}</TableCell>
-//                         </StyledTableRow>
-//                     ))}
-//                     </TableBody>
-//                 </Table>
-//             </TableContainer>
-//         </TableWrapper>
-//     )
-// }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
