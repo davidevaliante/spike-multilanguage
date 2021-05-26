@@ -79,14 +79,14 @@ const Container = styled.div`
     margin : 2rem auto;  
 
     h3{
-        color : white;
-        font-size : .9rem;
-        margin : .3rem;
+        color : white !important;
+        font-size : .9rem !important;
+        margin : .3rem !important;
     }
 
     p{
-        font-size : .8rem;
-        line-height : .9rem;
+        font-size : .8rem !important;
+        line-height : .9rem !important;
     }
 
     .circular-image{

@@ -72,6 +72,8 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBak
             if(b.bonus.name === 'Gioco Digitale') b.bonus.link = 'https://mediaserver.entainpartners.com/renderBanner.do?zoneId=2022788'
             return b
         })
+
+        
         const [collapsed, setCollapsed] = useState(collapsable === true)
         useEffect(() => {
             console.log(collapsed, 'collapsed')

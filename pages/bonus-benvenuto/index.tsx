@@ -1,15 +1,15 @@
-import { Seo } from '../graphql/schema'
-import DynamicContent, { DynamicArticle, DynamicBonusList, DynamicSlotList, DynamicVideo } from '../components/DynamicContent/DynamicContent'
+import { Seo } from '../../graphql/schema'
+import DynamicContent, { DynamicArticle, DynamicBonusList, DynamicSlotList, DynamicVideo } from '../../components/DynamicContent/DynamicContent'
 import { FunctionComponent, useContext, useState, useEffect } from 'react'
-import AquaClient from '../graphql/aquaClient'
+import AquaClient from '../../graphql/aquaClient'
 import { useRouter } from 'next/router'
-import { LocaleContext } from '../context/LocaleContext'
-import { getUserCountryCode, getBonusPageRedirectUrlForCountry, getCanonicalPath } from '../utils/Utils'
-import { BONUS_PAGE_BY_COUNTRY } from '../graphql/queries/bonuspage'
-import NavbarProvider from '../components/Navbar/NavbarProvider'
+import { LocaleContext } from '../../context/LocaleContext'
+import { getUserCountryCode, getBonusPageRedirectUrlForCountry, getCanonicalPath } from '../../utils/Utils'
+import { BONUS_PAGE_BY_COUNTRY } from '../../graphql/queries/bonuspage'
+import NavbarProvider from '../../components/Navbar/NavbarProvider'
 import Head from 'next/head'
-import { BodyContainer } from '../components/Layout/Layout'
-import CountryEquivalentPageSnackbar from '../components/Snackbars/CountryEquivalentPageSnackbar'
+import { BodyContainer, MainColumn } from '../../components/Layout/Layout'
+import CountryEquivalentPageSnackbar from '../../components/Snackbars/CountryEquivalentPageSnackbar'
 
 
 interface BonusPage {
@@ -25,7 +25,7 @@ interface Props {
 
 const automaticRedirect = false
 
-const MiglioriBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCountryCode }) => {
+const index: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCountryCode }) => {
 
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
     const router = useRouter()
@@ -34,46 +34,6 @@ const MiglioriBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_request
     const [loading, setLoading] = useState(true)
     const [bonusPage, setBonusPage] = useState<BonusPage>(_bonusPage)
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
-
-    // useEffect(() => {
-    //     if(_shallow){
-    //         setContextCountry(_requestedCountryCode)
-    //         setLoading(false)
-    //     }
-    //     else getCountryData()
-    // }, [])
-
-    // const getCountryData = async () => {
-    //     const geoLocatedCountryCode = await getUserCountryCode()
-    //     setUserCountry(geoLocatedCountryCode)
-
-    //     if(geoLocatedCountryCode !== _requestedCountryCode){
-    //         const data = await aquaClient.query({
-    //             query: BONUS_PAGE_BY_COUNTRY,
-    //             variables: { countryCode: geoLocatedCountryCode }
-    //         })
-
-    //         if(data.data.data.bonusPages[0] !== undefined){
-    //             if(automaticRedirect){
-    //                 router.push(getBonusPageRedirectUrlForCountry(geoLocatedCountryCode))
-    //                 return
-    //             }
-    //             else setUserCountryEquivalentExists(true)
-    //         }
-    //         setContextCountry(_requestedCountryCode)           
-    //     }
-    //     setLoading(false)
-    // }
-
-    const myFakeFunction = () => {
-        return(
-            <div>
-                <h1>
-                    Hello World
-                </h1>
-            </div>
-        )
-    }
 
     return (
         <NavbarProvider currentPage='/bonus-bakeca' countryCode={contextCountry}>
@@ -94,9 +54,9 @@ const MiglioriBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_request
 
             <BodyContainer>
                 {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={getBonusPageRedirectUrlForCountry(userCountry)} />}
-                    <div style={{ padding: '1rem', maxWidth : '1200px' }}>
-                        <DynamicContent isBakeca={true} content={bonusPage?.content} />
-                    </div>
+                <div style={{ padding: '1rem', maxWidth : '1200px' }}>
+                    <DynamicContent content={bonusPage?.content} />
+                </div>
             </BodyContainer>
         </NavbarProvider>
     )
@@ -123,4 +83,4 @@ export const getServerSideProps = async ({params}) => {
     }
 }
 
-export default MiglioriBonus
+export default index
