@@ -119,9 +119,58 @@ app.prepare().then(() => {
     })
 
     server.get('/producer/:slug/:countryCode', (req, res) => {
-        const queryParams = { slug: req.params.slug, countryCode: req.params.countryCode }
-        const pagePath = `/producer/${req.params.slug}/${req.params.countryCode}`
-        renderAndCache(app)(req, res, pagePath, queryParams)
+
+        const { slug, countryCode } = req.params
+
+        console.log(slug)
+
+        // const websiteRoot = 'https://spikeslot.com/producer'
+        const websiteRoot = 'http://localhost:3000/producer'
+
+
+        const oldUrls = [
+            'Playson',
+            'Novomatic',
+            'Play\'n Go',
+            'Push Gaming',
+            'Nazionale Elettronica',
+            'BTG',
+            'Habanero',
+            'Yggdrasil',
+            'Capecod',
+            'TUKO%20Productions',
+            'Bakoo',
+            'Elsy',
+            'Iron Dog Studio'
+        ]
+
+        const newUrls = [
+            'playson',
+            'novomatic',
+            'playn-go',
+            'push-gaming',
+            'nazionale-elettronica',
+            'btg',
+            'habanero',
+            'yggdrasil',
+            'capecod',
+            'tuko-productions',
+            'bakoo',
+            'elsy',
+            'iron_dog_studio'
+        ]
+
+        const oldUrlIndex = oldUrls.indexOf(slug)
+        if(oldUrlIndex != -1){
+            const newUrl = newUrls[oldUrlIndex]
+
+            res.set('location', `${websiteRoot}/${newUrl}/${countryCode}`)
+            res.status(301).send()
+        } else {
+            const queryParams = { slug: req.params.slug, countryCode: req.params.countryCode }
+            const pagePath = `/producer/${req.params.slug}/${req.params.countryCode}`
+            renderAndCache(app)(req, res, pagePath, queryParams)
+        } 
     })
 
     server.get('/sendemail', async (req, res) => {
