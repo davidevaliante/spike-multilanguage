@@ -4,3 +4,10 @@ export interface CrazyTimeSymbolStat {
     percentage : number,
     spinSince : number
 }
+
+export interface MonopolySymbolStat {
+    symbol : string,
+    lands : number,
+    percentage : number,
+    spinSince : number
+}

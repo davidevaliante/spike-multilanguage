@@ -10,7 +10,7 @@ import { TimeFrame } from '../../../../data/models/TimeFrames'
 import styled from 'styled-components'
 import { Spin, crazyTimeSymbolToFilterOption } from '../../../../data/models/Spin'
 import axios from 'axios'
-import { CrazyTimeSymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
+import { CrazyTimeSymbolStat, MonopolySymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
 import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
 import  { CrazyTimeTable } from '../../../../components/CrazyTimeLiveStats/CrazyTimeTable'
 import AquaClient from './../../../../graphql/aquaClient';
@@ -22,23 +22,33 @@ import { format } from 'date-fns';
 import now from 'lodash/now'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 import { MonopolyTables } from './../../../../data/models/MonopolyTable';
+import { MonopolySpinTable } from '../../../../components/MonopolyLiveStats/MonopolySpinTable'
+import { monopolySymbolToFilterOption } from '../../../../data/models/MonopolySpin'
+import { MonopolySpin } from './../../../../data/models/MonopolySpin';
+import MonopolyDiceRollTable from '../../../../components/MonopolyLiveStats/MonopolyDiceRollTable'
+import MonopolyStatCard from '../../../../components/Cards/MonopolyStatCard'
 
 interface Props {
     _requestedCountryCode : string
+    _stats : {
+      totalSpins : number,
+      lastTenSpins : Spin[]
+      stats : any
+    },
     _tables : MonopolyTables
-    _lastTenSpins : Spin[]
+    _lastTenSpins : MonopolySpin[]
     _bonuses : Bonus[]
     _pageContent : CrazyTimeArticle
 }
 
-const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
+const SOCKET_ENDPOINT = 'https://monopoly.spike-realtime-api.eu'
 
 const PAGE_BONUSES = ["BetFlag", "LeoVegas", "888 Casino", "StarCasinò", "Unibet", "PokerStars Casino"]
 
 const SPAM_BONUSES = false
 
 
-const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _lastTenSpins, _bonuses, _pageContent}) => {
+const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _lastTenSpins, _bonuses, _pageContent, _stats}) => {
 
     const aquaClient = new AquaClient()
 
@@ -56,24 +66,26 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const filterOptions = ["1", "2", "5", "10", "Pachinko", "Cash Hunt", "Coin Flip", "Crazy Time"]
+    const filterOptions = ["1", "2", "5", "10", "Chance", "2 Rolls", "4 Rolls"]
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
-      setFilteredRows(rows.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
+      setFilteredRows(rows.filter(r => selectedFilters.includes(monopolySymbolToFilterOption(r.spinResultSymbol))))
     }, [selectedFilters])
 
 
     // keeps track of rows in the table
-    const [rows, setRows] = useState<Spin[]>(_lastTenSpins)
+    const [rows, setRows] = useState<MonopolySpin[]>(_lastTenSpins)
     useEffect(() => {
-      setFilteredRows(rows.filter(r => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
+      setFilteredRows(rows.filter(r => selectedFilters.includes(monopolySymbolToFilterOption(r.spinResultSymbol))))
     }, [rows])
-    const [filteredRows, setFilteredRows] = useState<Spin[]>(_lastTenSpins)
+    const [filteredRows, setFilteredRows] = useState<MonopolySpin[]>(_lastTenSpins)
     const [lastUpdate, setLastUpdate] = useState(now())
 
+    const [stats, setStats] = useState<MonopolySymbolStat[] | undefined>(_stats.stats)
+    const [totalSpinsInTimeFrame, setTotalSpinsInTimeFrame] = useState(_stats.totalSpins)
 
     // keeps track of the stats
-    const [tables, setStats] = useState<MonopolyTables | undefined>(_tables)
+    const [tables, setTables] = useState<MonopolyTables | undefined>(_tables)
     // const [totalSpinsInTimeFrame, setTotalSpinsInTimeFrame] = useState(_stats.totalSpins)
 
     // the time frame currently selected
@@ -92,7 +104,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
                 if(rows) setRows(mergeWithUpdate(rows, updatedRows))
-                setStats(topUpdate)
+                setTables(data.tables[0])
             })
         }
     }, [timeFrame])
@@ -113,7 +125,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
                 const updatedRows = data.spins
                 // we merge the current rows and the updated rows updating the table afterward
                 if(rows) setRows(mergeWithUpdate(rows, updatedRows))
-                setStats(topUpdate)
+                setTables(data.tables[0])
                 setLastUpdate(now())
             })
         }
@@ -162,7 +174,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
                     <div>
                       <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginTop: '2rem'}}>
                           <div>
-                              <h1 style={{ fontWeight : 'bold', fontSize : '2rem'}}>{t('Crazy Time Statistics')}</h1>
+                              <h1 style={{ fontWeight : 'bold', fontSize : '2rem'}}>{t('Monopoly Statistics')}</h1>
                               <h1 style={{marginTop : '.5rem'}}>{`${t('for the past')} ${timeFrame}`}<span style={{marginLeft : '1rem', fontWeight : 'bold', color : 'crimson'}}>In REAL TIME</span></h1>
                           </div>
 
@@ -180,9 +192,9 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
 
                     <Divider style={{marginTop : '2rem', marginBottom : '2rem'}}/>
 
-                    {/* {stats && <StatsContainer>
-                        {stats.map(s => <CrazyTimeStatCard key={`stats_${s.symbol}`} stat={s} totalSpinsConsidered={totalSpinsInTimeFrame} timeFrame={timeFrame}/>)}    
-                    </StatsContainer>} */}
+                    {stats && <StatsContainer>
+                        {stats.map(s => <MonopolyStatCard key={`stats_${s.symbol}`} stat={s} totalSpinsConsidered={totalSpinsInTimeFrame} timeFrame={timeFrame}/>)}    
+                    </StatsContainer>}
                     
                     {/* <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', textAlign : 'center'}}>{`${t('You can play at CRAZY TIME here')}`}</h1>
                     <Paper elevation={6} style={{marginTop : '1rem', marginBottom : '4rem'}}> 
@@ -214,7 +226,13 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
                       </div>                      
                     </div>
                  
-                    {rows && <CrazyTimeTable rows={filteredRows} />}
+                    {rows && <MonopolySpinTable rows={filteredRows} />}
+
+                    {tables && <div style={{display : 'flex', justifyContent : 'space-around', marginTop : '4rem', flexWrap : 'wrap'}}>
+                      <MonopolyDiceRollTable type='low' rows={tables.lowTierTable.rows}/> 
+                      <MonopolyDiceRollTable type='mid' rows={tables.midTierTable.rows}/>  
+                      <MonopolyDiceRollTable type='high' rows={tables.highTierTable.rows}/>   
+                    </div>}
 
                     {/* <DynamicContent content={_pageContent.bottomContent}/> */}
 
@@ -227,7 +245,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
 }
 
 // helper function to merge exsisting rows with the update from the Socket
-export const mergeWithUpdate = (current : Spin[], update : Spin[]) => {
+export const mergeWithUpdate = (current : MonopolySpin[], update : MonopolySpin[]) => {
     // the latest row in the table
     const lastFromCurrent = current[0]
     // slicing up the update array to the last known row based on the _id
@@ -280,6 +298,7 @@ export const getServerSideProps = async ({query, req, res}) => {
             _requestedCountryCode,
             _tables : pageData.data.tables[0],
             _lastTenSpins : pageData.data.spinsInTimeFrame,
+            _stats : pageData.data.stats,
             _bonuses : orderedBonusList.map(b => {
                 b.link = bonusRemapping[b.name]
                 return b

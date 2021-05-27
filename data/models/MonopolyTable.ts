@@ -5,12 +5,7 @@ export interface MonopolyTables {
         id : string,
         type : 'low' | 'mid' | 'high',
         timeOfSpins : number,
-        rows : {
-          rowPosition : number,
-          percentage : number,
-          lands : number,
-          total : number
-        }[]
+        rows : MonopolyTableRow[]
     },
     midTierTable : {
         id : string,
@@ -34,4 +29,11 @@ export interface MonopolyTables {
           total : number
         }[]
     }
-  }
+}
+
+export interface MonopolyTableRow {
+  rowPosition : number,
+  percentage : number,
+  lands : number,
+  total : number
+}
