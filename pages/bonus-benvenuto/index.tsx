@@ -55,7 +55,7 @@ const index: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCountr
             <BodyContainer>
                 {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={getBonusPageRedirectUrlForCountry(userCountry)} />}
                 <div style={{ padding: '1rem', maxWidth : '1200px' }}>
-                    <DynamicContent content={bonusPage?.content} />
+                    <DynamicContent content={bonusPage?.content} isBakeca={true}/>
                 </div>
             </BodyContainer>
         </NavbarProvider>
