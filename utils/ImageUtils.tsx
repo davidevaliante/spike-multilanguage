@@ -31,23 +31,44 @@ export const symbolToSlotResultImage = (symbolString : string) => {
 }
 
 
-export const symbolToSpinResultImage = (symbolString : string) => {
-    switch(symbolString){
-        case 'one':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-1_c9b5f94f87.png')}/>
-        case 'two':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-2_5c5c16ed5e.png')}/>
-        case 'five':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-5_e91e34891d.png')}/>
-        case 'ten':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-10_6728a2b6a0.png')}/>
-        case 'coinflip':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-cf_85575cab6d.png')}/>
-        case 'cashhunt':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-ch_5e98cad8db.png')}/>
-        case 'crazytime':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-ct_a7261a08f7.png')}/>
-        case 'pachinko':
-            return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-pa_e928e94532.png')}/>
+export const symbolToSpinResultImage = (symbolString : string, game : 'crazy-time' | 'monopoly' = 'crazy-time') => {
+    if(game === 'crazy-time'){
+        switch(symbolString){
+            case 'one':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-1_c9b5f94f87.png')}/>
+            case 'two':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-2_5c5c16ed5e.png')}/>
+            case 'five':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-5_e91e34891d.png')}/>
+            case 'ten':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-10_6728a2b6a0.png')}/>
+            case 'coinflip':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-cf_85575cab6d.png')}/>
+            case 'cashhunt':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-ch_5e98cad8db.png')}/>
+            case 'crazytime':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-ct_a7261a08f7.png')}/>
+            case 'pachinko':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/ico-crazytime-pa_e928e94532.png')}/>
+        }
+    }
+
+    if(game === 'monopoly'){
+        switch(symbolString){
+            case 'one':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-1_33a076459b.png')}/>
+            case 'two':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-2_76b8237627.png')}/>
+            case 'five':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-5_23a698085f.png')}/>
+            case 'ten':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-10_abec4dd827.png')}/>
+            case 'chance':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/chance-monopoly_f668ac3e67.png')}/>
+            case 'tworolls':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-2r_ee78ad08f5.png')}/>
+            case 'fourrolls':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-4r_404d02b0de.png')}/>
+        }
     }
 }

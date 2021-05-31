@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState, useContext } from 'react'
 import { TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell, Button, withStyles, Theme, createStyles, Checkbox, TableSortLabel, makeStyles, TablePagination, FormControlLabel, Switch, IconButton } from '@material-ui/core'
 import { symbolToSlotResultImage, symbolToSpinResultImage } from '../../utils/ImageUtils'
-import MultiplierTableCell from './MultiplierTableCell'
 import { Spin } from '../../data/models/Spin'
 import format from 'date-fns-tz/format'
 import styled, { useTheme } from 'styled-components'
@@ -11,9 +10,11 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import MultiplierTableCell from '../CrazyTimeLiveStats/MultiplierTableCell'
+import { MonopolySpin } from '../../data/models/MonopolySpin'
 
 interface Props {
-    rows : Spin[]
+    rows : MonopolySpin[]
 }
 
 const StyledTableRow = withStyles((theme: Theme) =>
@@ -60,7 +61,7 @@ function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
 interface TableHeadProps {
     classes: ReturnType<typeof useStyles>;
     numSelected: number;
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Spin) => void;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof MonopolySpin) => void;
     order: Order;
     orderBy: string;
     rowCount: number;
@@ -69,7 +70,7 @@ interface TableHeadProps {
 
 interface HeadCell {
     disablePadding: boolean
-    id: keyof Spin
+    id: keyof MonopolySpin
     label: string
     numeric: boolean
 }
@@ -77,8 +78,9 @@ interface HeadCell {
 const headCells: HeadCell[] = [
     { id: 'date', numeric: true, disablePadding: true, label: 'Occurred At' },
     { id: 'spinResultSymbol', numeric: false, disablePadding: false, label: 'Spin Result' },
-    { id: 'slotResultSymbol', numeric: false, disablePadding: true, label: 'Slot Result' },
     { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
+    { id: 'boardRolls', numeric: true, disablePadding: false, label: 'Board Rolls' },
+    { id: 'chanceMultiplier', numeric: true, disablePadding: false, label: 'Chance Multiplier' },
     { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
     { id: 'totalPayout', numeric: true, disablePadding: false, label: 'Total Payout' },
     { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
@@ -86,7 +88,7 @@ const headCells: HeadCell[] = [
 
 export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,  order, orderBy, numSelected, rowCount, onRequestSort }) => {
 
-    const createSortHandler = (property: keyof Spin) => (event: React.MouseEvent<unknown>) => {
+    const createSortHandler = (property: keyof MonopolySpin) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property)
     }
     
@@ -96,7 +98,7 @@ export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,
         <TableHead style={{background : '#db0d30'}}>
             <TableRow>
                 {headCells.map((headCell, i) => (
-                    headCell.id === 'spinResultSymbol' || headCell.id === 'slotResultSymbol' ? <StyledTableCell>{t(headCell.label)}</StyledTableCell> :
+                    headCell.id === 'spinResultSymbol' ? <StyledTableCell>{t(headCell.label)}</StyledTableCell> :
                     <StyledTableCell
                         key={headCell.id}
                         align={i == 0 ? 'center' : 'left'}
@@ -120,14 +122,14 @@ export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,
 }
 
 interface EnhancedTableProps {
-    rows : Spin[]
+    rows : MonopolySpin[]
 }
 
-export const CrazyTimeTable : FunctionComponent<EnhancedTableProps> = ({rows}) => {
+export const MonopolySpinTable : FunctionComponent<EnhancedTableProps> = ({rows}) => {
 
     const classes = useStyles()
     const [order, setOrder] = useState<Order>('desc')
-    const [orderBy, setOrderBy] = useState<keyof Spin>('date')
+    const [orderBy, setOrderBy] = useState<keyof MonopolySpin>('date')
     const [selected, setSelected] = useState<string[]>([])
     const [page, setPage] = useState(0)
     const [dense, setDense] = useState(false)
@@ -135,7 +137,7 @@ export const CrazyTimeTable : FunctionComponent<EnhancedTableProps> = ({rows}) =
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Spin) => {
+    const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof MonopolySpin) => {
         const isAsc = orderBy === property && order === 'asc'
         setOrder(isAsc ? 'desc' : 'asc')
         setOrderBy(property)
@@ -185,17 +187,13 @@ export const CrazyTimeTable : FunctionComponent<EnhancedTableProps> = ({rows}) =
                                             {format(row.timeOfSpin, 'dd/MM HH:mm')}
                                         </TableCell>
                                         <TableCell align='left'>
-                                            <SpinResultSpan>
-                                                {symbolToSpinResultImage(row.spinResultSymbol as string)}
-                                            </SpinResultSpan>
-                                        </TableCell>
-                                        <TableCell align='left'>
                                             <SlotResultSpan>
-                                                {symbolToSlotResultImage(row.slotResultSymbol as string)}
-                                                <p style={{fontFamily : 'Montserrat',fontWeight : row.sameSlotAndSpinResult ? 'bold' : 'normal', fontSize : row.sameSlotAndSpinResult ? '1.1rem' : ''}}>{row.slotResult === 'Miss' ? 'Nullo' : row.slotResult}</p>
+                                                {symbolToSpinResultImage(row.spinResultSymbol as string, 'monopoly')}
                                             </SlotResultSpan>
                                         </TableCell>
-                                        <MultiplierTableCell spin={row as unknown as Spin}/>                                        
+                                        <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.multiplier}</TableCell>     
+                                        <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.boardRolls}</TableCell> 
+                                        <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.chanceMultiplier}</TableCell>                                    
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalWinners}</TableCell>
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='left'>{row.totalPayout} €</TableCell>
                                         <TableCell style={{fontFamily : 'Montserrat'}} align='right'>
@@ -285,55 +283,6 @@ interface TablePaginationActionsProps {
     );
   }
 
-// const CrazyTimeTable : FunctionComponent<Props> = ({rows}) => {
-
-//     // opens the video windows on a free Vercel instance
-//     const handleOpenVideo = (url : string) => window.open(`https://crazy-time-scalper.vercel.app/video/${url.split('/').pop()}`)
-
-//     return (
-//         <TableWrapper>
-//             <TableContainer component={Paper}>
-//                 <Table aria-label="simple table">
-//                     <TableHead style={{background : '#db0d30' }}>
-//                         <TableRow>
-//                             <StyledTableCell>Occured at</StyledTableCell>
-//                             <StyledTableCell align="left">Slot Result</StyledTableCell>
-//                             <StyledTableCell align="left">Spin Result</StyledTableCell>
-//                             <StyledTableCell align="left">Multiplier</StyledTableCell>
-//                             <StyledTableCell align="left">Total Winner</StyledTableCell>
-//                             <StyledTableCell align="left">Total Payout</StyledTableCell>
-//                             <StyledTableCell align="right">Watch Video</StyledTableCell>
-//                         </TableRow>
-//                     </TableHead>
-//                     <TableBody>
-//                     {rows.map((row) => (
-//                         <StyledTableRow key={row._id}>
-//                             <TableCell component="th" scope="row">
-//                                 {format(row.timeOfSpin, 'dd/MM HH:mm')}
-//                             </TableCell>
-//                             <TableCell align="left">
-//                                 <SlotResultSpan>
-//                                     {symbolToSlotResultImage(row.slotResultSymbol)}
-//                                     <p>{row.slotResult}</p>
-//                                 </SlotResultSpan>
-//                             </TableCell>
-//                             <TableCell align="left">
-//                                 <SpinResultSpan>
-//                                     {symbolToSpinResultImage(row.spinResultSymbol)}
-//                                 </SpinResultSpan>
-//                             </TableCell>
-//                             <MultiplierTableCell spin={row}/>
-//                             <TableCell align="left">{row.totalWinners}</TableCell>
-//                             <TableCell align="left">{row.totalPayout}€</TableCell>
-//                             <TableCell align="right">{row.watchVideo !== 'no_video' ? <Button onClick={() => handleOpenVideo(row.watchVideo)} color='primary' variant='contained'>Watch</Button> : ''}</TableCell>
-//                         </StyledTableRow>
-//                     ))}
-//                     </TableBody>
-//                 </Table>
-//             </TableContainer>
-//         </TableWrapper>
-//     )
-// }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -369,6 +318,7 @@ export const StyledTableCell = styled(TableCell)`
     font-weight : bold !important;
     color : white !important;
     padding : 16px;
+
 `
 
 const SlotResultSpan = styled.span`

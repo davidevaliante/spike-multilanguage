@@ -263,7 +263,11 @@
           "Watch Video" : "Guarda Video",
           "Rows per page" : "Righe per pagina",
           "Compare legal websites" :  "Comparazione offerte di siti legali",
-          "Watch" : "Guarda"
+          "Watch" : "Guarda",
+          "Board Rolls" : "Lancio Dadi",
+          "Chance Multiplier" : "Moltiplicatore Imprevisti",
+          "Rolls Percentage" : "Percentuale di uscita",
+          "Monopoly Statistics" : "Statistiche monopoly"
       }
     },
     "row": {
@@ -398,7 +402,9 @@
           "Watch Video" : "Watch Video",
           "Rows per page" : "Rows per page",
           "Compare legal websites" :  "Compare legal websites",
-          "Watch" : "Watch"
+          "Watch" : "Watch",
+          "Board Rolls" : "Board Rolls",
+          "Chance Multiplier" : "Chance Multiplier"
       }
     },
     "ca": {
@@ -532,7 +538,9 @@
           "Watch Video" : "Watch Video",
           "Rows per page" : "Rows per page",
           "Compare legal websites" :  "Compare legal websites",
-          "Watch" : "Watch"
+          "Watch" : "Watch",
+          "Board Rolls" : "Board Rolls",
+          "Chance Multiplier" : "Chance Multiplier"
       }
     },
     "nz": {
@@ -666,7 +674,9 @@
           "Watch Video" : "Watch Video",
           "Rows per page" : "Rows per page",
           "Compare legal websites" :  "Compare legal websites",
-          "Watch" : "Watch"
+          "Watch" : "Watch",
+          "Board Rolls" : "Board Rolls",
+          "Chance Multiplier" : "Chance Multiplier"
       }
     },
     "rs": {
