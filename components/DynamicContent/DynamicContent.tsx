@@ -53,7 +53,7 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBak
         })
     }
 
-    const articleBlockRenderer = (key: string, article: string) => <ArticleToMarkdown key={key} content={injectCDN(article)} />
+    const articleBlockRenderer = (key: string, article: string) => <ArticleToMarkdown key={key} content={injectCDN(article)} isBakeca={isBakeca} />
 
     // const bonusListRenderer: FunctionComponent<DynamicBonusList> = (key: string, bonusList: { bonus: Bonus }[], direction: 'vertical' | 'horizontal', tableLabel: string | undefined) => {
 
@@ -81,7 +81,7 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBak
             {tableLabel && <ComparisonContainer>
                 <p>{tableLabel}</p>
             </ComparisonContainer>}
-            {bonus.map(b => <BonusStripe key={b.bonus.name} bonus={b.bonus} />)}
+            {isBakeca ? remapBonusLink().map(b => <BonusStripe key={b.bonus.name} bonus={b.bonus} />) : bonus.map(b => <BonusStripe key={b.bonus.name} bonus={b.bonus} />)}
             {collapsable && <LoadMoreButtonStyle onClick={() => setCollapsed(!collapsed)}>
                 Nascondi
             </LoadMoreButtonStyle>}

@@ -14,11 +14,12 @@ import { tablet } from '../Responsive/Breakpoints';
 
 interface Props {
     content: string
-    style?: CSSProperties
+    style?: CSSProperties,
+    isBakeca? : boolean
 }
 
-const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style }) => {
-
+const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca = false }) => {
+    
 
     const replaceWithCustomElement = (props: any) => {
 
@@ -33,7 +34,7 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style }) => {
         if (elementType === 'spikeCompare') {
             const bonusNames = elementData.split('&')
             return <Wrapper>
-                {bonusNames && bonusNames.map(name => <ArticleBonus style={{ margin: '.7rem auto' }} key={`compare_${name}`} bonusName={name} countryCode={'it'} />)}
+                {bonusNames && bonusNames.map(name => <ArticleBonus style={{ margin: '.7rem auto' }} key={`compare_${name}`} bonusName={name} countryCode={'it'} isBakeca={isBakeca} />)}
             </Wrapper>
         }
 
