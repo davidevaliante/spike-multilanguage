@@ -1,7 +1,7 @@
-import React,{useContext} from 'react'
+import React,{useContext, useState} from 'react'
 import styled from 'styled-components'
 import { FunctionComponent } from 'react'
-import { ApolloBonusCardReveal } from '../../data/models/Bonus'
+import { ApolloBonusCardReveal, Bonus } from '../../data/models/Bonus'
 import { extractTips, injectCDN } from '../../utils/Utils'
 import { AppTheme } from '../../theme/theme'
 import LazyBonusImage from '../Lazy/LazyBonusImage'
@@ -9,16 +9,34 @@ import Link from "next/link"
 import { LocaleContext } from './../../context/LocaleContext';
 
 interface Props {
-	bonus: ApolloBonusCardReveal
+	bonus: ApolloBonusCardReveal,
+	isBakeca?:boolean
 }
 
-const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus }) => {
+const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBakeca = false }) => {
+
+	const remapBonusLink = (b : ApolloBonusCardReveal) => {
+        if(b.name === 'LeoVegas') b.link = 'https://ads.leovegas.com/redirect.aspx?pid=3704891&bid=1496'
+        if(b.name === 'BetFlag') b.link = 'https://adv.betflag.com/redirect.aspx?pid=5268&bid=2680'
+        if(b.name === '888 Casino') b.link = 'https://ic.aff-handler.com/c/43431?sr=1868494'
+        if(b.name === 'PokerStars Casino') b.link = 'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182820b_4095c_&affid=100976968&siteid=182820&adid=4095&c='
+        if(b.name === 'StarCasinò') b.link = 'http://record.affiliatelounge.com/_SEA3QA6bJTMP_fzV1idzxmNd7ZgqdRLk/132/'
+        if(b.name === 'GoldBet') b.link = 'https://media.goldbetpartners.it/redirect.aspx?pid=4641&bid=1495'
+        if(b.name === 'Starvegas') b.link = 'https://www.starvegas.it/gmg/refer/60a2b6ffcb4f5e0001afa975'
+        if(b.name === 'Eurobet') b.link = 'https://record.betpartners.it/_E_C7XwxgprAZV93hC2dJ_GNd7ZgqdRLk/110/'
+        if(b.name === 'Gioco Digitale') b.link = 'https://mediaserver.entainpartners.com/renderBanner.do?zoneId=2022788'
+        return b
+    }
+
 
     const {t, contextCountry} = useContext(LocaleContext)
 
+	const [_bonus, setBonus] = useState(isBakeca ? remapBonusLink(bonus) : bonus)
+
 	const goToBonus = () => {
-		window.open(bonus?.link)
+		window.open(_bonus?.link)
 	}
+
 
 	return (
 		<StyleProvider style={{ marginBottom: '.5rem' }} bgColor={bonus?.backgroundColor}>

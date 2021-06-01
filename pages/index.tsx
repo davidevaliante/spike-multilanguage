@@ -38,6 +38,10 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
     const router = useRouter()
 
+    const [isBakeca, setIsBakeca] = useState(router.asPath.split('from=')[1] === 'bakeca')
+
+    console.log(isBakeca)
+
     const [loading, setLoading] = useState(true)
     const [home, setHome] = useState<Home>(_home)
     const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map(s => s.slot))
@@ -152,7 +156,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                             secondaryColor={appTheme.colors.terziary} />
                     </LazyLoad>}
                     <div style={{ padding: '0rem 1rem' }}>
-                        {home.bottomArticle && <ArticleToMarkdown content={home.bottomArticle} />}
+                        {home.bottomArticle && <ArticleToMarkdown content={home.bottomArticle} isBakeca={isBakeca} />}
                     </div>
                 </MainColumn>
 
@@ -172,7 +176,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                     <h1 style={{paddingTop : '1rem'}} className='bonus-header'>I migliori bonus di benvenuto</h1>
 
                     <div style={{top : '820px'}} className='bonus-column-container'>
-                        {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.name} bonus={bo} />)}
+                        {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.name} bonus={bo} isBakeca={isBakeca} />)}
                     </div>
                 </RightColumn>
 
@@ -184,8 +188,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
     </div>
 }
 
-export async function getServerSideProps({query, req}) {
-  
+export async function getServerSideProps({query, params, req}) {
+ 
     const pageData = await homeDataForCountry('it')
 
     return {
