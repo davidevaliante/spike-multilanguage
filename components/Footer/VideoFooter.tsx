@@ -40,7 +40,7 @@ const VideoFooter = () => {
                         </Header>
                         <div>
                             <LinkContainer>
-                                <a href='/spike'>{t("About")}</a>
+                                <a href='/spike/it'>{t("About")}</a>
                             </LinkContainer>
 
                             <LinkContainer>
@@ -48,7 +48,7 @@ const VideoFooter = () => {
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href='/cookie-privacy-policy'>{t("Privacy and Cookie Policy")}</a>
+                                <a href={`/cookie-privacy-policy/it`}>{t("Privacy and Cookie Policy")}</a>
                             </LinkContainer>
 
                             <LinkContainer>

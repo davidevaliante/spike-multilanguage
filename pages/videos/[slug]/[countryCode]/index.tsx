@@ -320,8 +320,6 @@ export async function getServerSideProps({ query }) {
         if (rs !== undefined) remappedSlots.push(rs.data.data.slot)
     })
 
-    console.log(remappedSlots)
-
     return {
         props: {
             video: videoData,
@@ -330,7 +328,6 @@ export async function getServerSideProps({ query }) {
             relatedVideos: relatedVideos.filter(o => o.data !== undefined).map(res => res.data),
             relatedSlots: remappedSlots,
             countryCode:country
-            
         }
     }
 }

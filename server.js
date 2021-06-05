@@ -18,7 +18,7 @@ const handle = app.getRequestHandler()
 const ssrCache = new Cache({
     max: 30,
     maxAge: dev ? 1 : 1000 * 60 * 60, // 30 secondi
-});
+})
 
 // const ssrCache = new Cache({
 //     max: 30,
@@ -66,14 +66,14 @@ const renderAndCache = (app) => async function (req, res, pagePath, queryParams)
         // // return handle(req,res)
         app.renderError(err, req, res, pagePath, queryParams);
     }
-};
+}
 
 app.prepare().then(() => {
     const server = express()
     server.use(compression());
 
     if (process.env.NODE_ENV === "production") {
-        server.use(compression());
+        server.use(compression())
     }
 
     server.get('/', (req, res) => {
@@ -114,8 +114,15 @@ app.prepare().then(() => {
     })
 
     server.get('/videos/:slug/:countryCode', (req, res) => {
-        const pagePath = `/videos/${req.params.slug}/${req.params.countryCode}`
-        renderAndCache(app)(req, res, pagePath)
+        const { slug, countryCode } = req.params
+
+        if(countryCode !== 'it'){
+            res.set('location', `https://spikeslot.com/videos/${slug}/it`)
+            res.status(301).send()
+        } else {
+            const pagePath = `/videos/${req.params.slug}/${req.params.countryCode}`
+            renderAndCache(app)(req, res, pagePath)
+        }
     })
 
     server.get('/producer/:slug/:countryCode', (req, res) => {

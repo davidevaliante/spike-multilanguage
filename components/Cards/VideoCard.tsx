@@ -15,6 +15,7 @@ interface Props {
 }
 
 const VideoCard: FunctionComponent<Props> = ({ videoData }) => {
+
     const { currentCountry } = useContext(countryContext)
     return (
         <CardContainer headerColor={getColorForType(videoData.slotType)}>

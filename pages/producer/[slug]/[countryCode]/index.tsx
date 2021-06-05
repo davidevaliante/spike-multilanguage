@@ -195,17 +195,6 @@ export const getServerSideProps = async ({ query }) => {
         }
     })
 
-    let producerResponseData1 : any;
-    if(producerResponse.data.data.producers[0] === undefined){
-        producerResponseData1 = await aquaClient.query({
-            query: GET_PRODUCER,
-            variables: {
-                countryCode: "row",
-                slug: slug,
-            }
-        })
-    }
-
     const initialSlotsResponse = await aquaClient.query({
         query: GET_SLOTS_BY_PRODUCER_SLUG,
         variables: {
@@ -217,20 +206,6 @@ export const getServerSideProps = async ({ query }) => {
         }
     })
 
-    let initialSlotsResponseData1 : any 
-    if(initialSlotsResponse.data.data.slots[0] === undefined){
-        initialSlotsResponseData1 = await aquaClient.query({
-            query: GET_SLOTS_BY_PRODUCER_SLUG,
-            variables: {
-                slug: slug,
-                countryCode: "row",
-                start: 0,
-                sorting: "rating:DESC",
-                limit: 12
-            }
-        })
-    }
-
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
         variables: {
@@ -238,19 +213,9 @@ export const getServerSideProps = async ({ query }) => {
         }
     })
 
-    let bonusListResponseData1 : any
-    if(bonusListResponse.data.data.homes[0] === undefined){
-        bonusListResponseData1 = await aquaClient.query({
-            query: HOME_BONUS_LIST,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
-
-    const producer = producerResponse.data.data.producers.length > 0 ? producerResponse.data.data.producers[0]  :producerResponseData1.data.data.producers[0]
-    const initialSlots = initialSlotsResponse.data.data.slots.length > 0 ? initialSlotsResponse.data.data.slots : initialSlotsResponseData1.data.data.slots
-    const bonusList = bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0].bonuses.bonus : bonusListResponseData1.data.data.homes[0].bonuses.bonus
+    const producer = producerResponse.data.data.producers[0]
+    const initialSlots = initialSlotsResponse.data.data.slots
+    const bonusList = bonusListResponse.data.data.homes[0].bonuses.bonus 
 
     return {
         props: {
