@@ -28,6 +28,8 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
         return b
     }
 
+	console.log(bonus.name)
+
 
     const {t, contextCountry} = useContext(LocaleContext)
 
@@ -37,12 +39,16 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 		window.open(_bonus?.link)
 	}
 
+	const visitTC = () =>  {
+		console.log('clicked')
+		window.open('https://ic.aff-handler.com/C/46780?sr=1648815')
+	}
 
 	return (
 		<StyleProvider style={{ marginBottom: '.5rem' }} bgColor={bonus?.backgroundColor}>
 			<div>
 				<div className="card" >
-					<div className="face face1" onClick={() => goToBonus()}	>
+					<div className="face face1" onClick={() => goToBonus()}>
 						<div className="content">
 							<div className='content-custom'>
 								<LazyBonusImage
@@ -62,12 +68,12 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 
 					<div className="face face2">
 						<div className="content">
-							<div onClick={() => goToBonus()}>
-								{extractTips(bonus?.tips).map(t => <div
+							<div >
+								{extractTips(bonus?.tips).map((t, index) => <div
 									key={t}
 									style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', margin: '.7rem' }}>
 									<InfoIcon src='/icons/info_icon.svg' />
-									<p className='tip'>{t}</p>
+									{(index == (extractTips(bonus?.tips).length -1) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={visitTC} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
 								</div>)}
 							</div>
 
@@ -85,6 +91,10 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 		</StyleProvider>
 	)
 }
+
+const EightEightEightClickable = styled.p`
+	cursor : pointer;
+`
 
 interface CircularImageProps {
 	theme: AppTheme,
