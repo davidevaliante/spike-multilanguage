@@ -39,10 +39,14 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 		window.open(_bonus?.link)
 	}
 
-	const visitTC = () =>  {
-		console.log('clicked')
-		window.open('https://ic.aff-handler.com/C/46780?sr=1648815')
+	const visitOne = () =>  {
+		window.open('https://ic.aff-handler.com/C/46788?sr=1648815')
 	}
+
+	const visitTwo = () =>  {
+		window.open('https://ic.aff-handler.com/C/46788?sr=1648815')
+	}
+
 
 	return (
 		<StyleProvider style={{ marginBottom: '.5rem' }} bgColor={bonus?.backgroundColor}>
@@ -73,7 +77,7 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 									key={t}
 									style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', margin: '.7rem' }}>
 									<InfoIcon src='/icons/info_icon.svg' />
-									{(index == (extractTips(bonus?.tips).length -1) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={visitTC} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
+									{((index == 1 || index == 2) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={index == 1 ? visitOne : visitTwo} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
 								</div>)}
 							</div>
 
