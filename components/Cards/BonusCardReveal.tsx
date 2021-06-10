@@ -40,11 +40,11 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 	}
 
 	const visitOne = () =>  {
-		window.open('https://ic.aff-handler.com/C/46788?sr=1648815')
+		window.open('https://www.888casino.it/promozioni/bonus-senza-deposito/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc')
 	}
 
 	const visitTwo = () =>  {
-		window.open('https://ic.aff-handler.com/C/46788?sr=1648815')
+		window.open('https://www.888casino.it/promozioni/bonus-benvenuto/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc')
 	}
 
 
@@ -77,7 +77,7 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 									key={t}
 									style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', margin: '.7rem' }}>
 									<InfoIcon src='/icons/info_icon.svg' />
-									{((index == 1 || index == 2) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={index == 1 ? visitOne : visitTwo} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
+									{((index == 0 || index == 1) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={index == 1 ? visitOne : visitTwo} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
 								</div>)}
 							</div>
 
