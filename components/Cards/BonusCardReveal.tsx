@@ -77,7 +77,7 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 									key={t}
 									style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', margin: '.7rem' }}>
 									<InfoIcon src='/icons/info_icon.svg' />
-									{((index == 0 || index == 1) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={index == 1 ? visitOne : visitTwo} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
+									{((index == 0 || index == 1) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={index == 0 ? visitOne : visitTwo} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
 								</div>)}
 							</div>
 
