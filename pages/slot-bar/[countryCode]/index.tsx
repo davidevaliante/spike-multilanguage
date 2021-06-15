@@ -254,6 +254,18 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                 </meta>
                 <meta httpEquiv="content-language" content={buildContentLanguageString(contextCountry)}></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={translateHeadString(contextCountry,'SPIKE Slot | The number 1 blog on Slot Machines and gambling" :"SPIKE Slot | The number 1 blog on Slot Machines and gambling')}/>
+                <meta itemProp="description" content={barSlotListPage?.seo?.seoDescription} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={translateHeadString(contextCountry,'SPIKE Slot | The number 1 blog on Slot Machines and gambling" :"SPIKE Slot | The number 1 blog on Slot Machines and gambling')} />
+                <meta name="twitter:description" content={barSlotListPage?.seo?.seoDescription} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={contextCountry} />
                 <meta property="og:type" content="article" />

@@ -95,6 +95,18 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
                 </meta>
                 <meta httpEquiv="content-language" content="it-IT"></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta itemProp="description" content={blogList.seo.seoDescription} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta name="twitter:description" content={blogList.seo.seoDescription} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />

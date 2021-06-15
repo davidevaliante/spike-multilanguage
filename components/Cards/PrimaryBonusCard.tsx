@@ -30,8 +30,16 @@ const PrimaryBonusCard: FunctionComponent<Props> = ({ bonus, style, withSuggesti
     }
     const {t, contextCountry, setContextCountry} = useContext(LocaleContext)
 
-    return <Fragment>
+    const visitOne = () =>  {
+		window.open('https://www.888casino.it/promozioni/bonus-senza-deposito/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc')
+	}
 
+	const visitTwo = () =>  {
+		window.open('https://www.888casino.it/promozioni/bonus-benvenuto/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc')
+	}
+
+
+    return <Fragment>
         <Container withSuggestion={withSuggestion} bonus={bonus} style={style}>
             <ImageContainer withSuggestion={withSuggestion} bonus={bonus} onClick={() => window.open(bonus.link)}>
                 {/* {withSuggestion && <h3>Per questa slot suggeriamo</h3>} */}
@@ -44,12 +52,12 @@ const PrimaryBonusCard: FunctionComponent<Props> = ({ bonus, style, withSuggesti
                 <p>{bonus?.description}</p>
 
             </ImageContainer>
-            <TipsContainer onClick={() => window.open(bonus.link)}>
-                {bonus?.tips && extractTips(bonus.tips).map(t => <div
+            <TipsContainer onClick={() => bonus.name !== '888 Casino' && window.open(bonus.link)}>
+                {bonus?.tips && extractTips(bonus.tips).map((t, index) => <div
                     key={t}
                     style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', padding: '.5rem' }}>
                     <InfoIcon src='/icons/info_icon.svg' />
-                    <p className='tip'>{t}</p>
+                    {((index == 0 || index == 1) && bonus.name === '888 Casino') ? <EightEightEightClickable onClick={index == 0 ? visitOne : visitTwo} className='tip'>{t}</EightEightEightClickable> : <p className='tip'>{t}</p>}
                 </div>)}
             </TipsContainer>
 
@@ -67,6 +75,11 @@ const PrimaryBonusCard: FunctionComponent<Props> = ({ bonus, style, withSuggesti
         </Container>
     </Fragment>
 }
+
+
+const EightEightEightClickable = styled.p`
+	cursor : pointer;
+`
 
 
 const HollowButton = styled.div`

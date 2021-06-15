@@ -87,11 +87,11 @@ export const exitFullscreen = () => {
 
     if (elem.exitFullscreen && elem.fullscreen) {
         elem.exitFullscreen();
-    } else if (elem.mozCancelFullScreen) { /* Firefox */
+    } else if (elem.mozCancelFullScreen && elem.fullscreen) { /* Firefox */
         elem.mozCancelFullScreen();
-    } else if (elem.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+    } else if (elem.webkitExitFullscreen && elem.fullscreen) { /* Chrome, Safari and Opera */
         elem.webkitExitFullscreen();
-    } else if (elem.msExitFullscreen) { /* IE/Edge */
+    } else if (elem.msExitFullscreen && elem.fullscreen) { /* IE/Edge */
         elem.msExitFullscreen();
     }
 }

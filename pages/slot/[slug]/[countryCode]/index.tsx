@@ -77,11 +77,23 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                 </meta>
                 <meta httpEquiv="content-language" content="it-IT"></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`} />
+                <meta itemProp="description" content={slot?.seo ? `${slot?.seo.seoDescription}` : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`} />
+                <meta name="twitter:description" content={slot?.seo ? `${slot?.seo.seoDescription}` : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
                 <meta property="og:image" content={slot.image.url} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />
-                <meta property="og:description" content={slot?.seo?.seoDescription} />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta property="og:description" content={slot?.seo ? `${slot?.seo.seoDescription}` : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`} />
+                <meta property="og:site_name" content={slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`} />
                 <meta property="article:tag" content={slot?.seo?.seoTitle} />
             </Head>
 

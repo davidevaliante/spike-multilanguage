@@ -67,8 +67,23 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
             <Head>
                 <title>SPIKE Slot | {video.title} [VIDEO]</title>
                 <meta charSet="utf-8" />
-                <meta property="og:image" content={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`} />
                 <link rel="canonical" href={getCanonicalPath()} />
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={`Slot ${video.title} [VIDEO]`} />
+                <meta itemProp="description"  content={`${truncate(video.description, {
+                        length: 155
+                    })} - ${video.title}`} />
+                <meta itemProp="image" content={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={`Slot ${video.title} [VIDEO]`} />
+                <meta name="twitter:description"  content={`${truncate(video.description, {
+                        length: 155
+                    })} - ${video.title}`} />
+                <meta name="twitter:image" content={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`} />
+
 
                 <meta name="description"
                     content={`${truncate(video.description, {
@@ -80,6 +95,8 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
                 <meta property="article:tag" content={`Slot ${video.title} [VIDEO]`} />
                 <meta property="article:published_time" content={video.time.toString()} />
+                <meta property="og:image" content={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`} />
+
             </Head>
 
             <NavbarWithPlayer
@@ -241,7 +258,14 @@ export async function getServerSideProps({ query }) {
     const slug = query.slug as string
     const country = query.countryCode as string
 
-    const videoId = await axios.get(`${firebaseDatabaseUrl}/AwsVideoMappings/${slug}.json`)
+    let videoId
+
+    if(slug.startsWith('-')) videoId = slug
+    else {
+        const remappedVideoId = await axios.get(`${firebaseDatabaseUrl}/AwsVideoMappings/${slug}.json`)
+        videoId = remappedVideoId
+    }
+
     const videoData = await (await axios.get(`${firebaseDatabaseUrl}/AwsVideosApproved/${videoId.data}.json`)).data as Video
    
 

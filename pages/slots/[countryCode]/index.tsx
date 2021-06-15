@@ -297,6 +297,19 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                 </meta>
                 <meta httpEquiv="content-language" content={buildContentLanguageString(contextCountry)}></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={translateHeadString(contextCountry, 'Free Slot Machine - Play now without downloading |  SPIKE Slot')} />
+                <meta itemProp="description" content={translateHeadString(contextCountry,'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos')} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={translateHeadString(contextCountry, 'Free Slot Machine - Play now without downloading |  SPIKE Slot')}/>
+                <meta name="twitter:description" content={translateHeadString(contextCountry,'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos')} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
+
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={contextCountry} />
                 <meta property="og:type" content="article" />

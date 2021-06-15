@@ -74,11 +74,22 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
                 </meta>
                 <meta httpEquiv="content-language" content="it-IT"></meta>
 
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={t('GuideTextTitlePageTitle')}/>
+                <meta itemProp="description" content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={t('GuideTextTitlePageTitle')} />
+                <meta name="twitter:description" content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`} />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta property="og:site_name" content={t('GuideTextTitlePageTitle')} />
             </Head>
 
             <NavbarProvider currentPage='/guide-e-trucchi' countryCode={contextCountry}>

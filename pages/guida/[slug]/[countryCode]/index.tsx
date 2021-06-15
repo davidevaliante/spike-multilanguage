@@ -45,6 +45,25 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList,countr
                     name="description"
                     content={bonusGuide?.seo ? `${bonusGuide.seo.seoDescription}` : `${bonusGuide?.bonus?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`}>
                 </meta>
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta itemProp="description" content={bonusGuide?.seo?.seoDescription} />
+                <meta itemProp="image" content={bonusGuide?.image?.url}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta name="twitter:description" content={bonusGuide?.seo?.seoDescription} />
+                <meta name="twitter:image" content={bonusGuide?.image?.url} />
+
+                {/* <!-- Facebook Meta Tags --> */}
+                <meta property="og:image" content={bonusGuide?.image?.url} />
+                <meta property="og:locale" content={'it'} />
+                <meta property="og:type" content="article" />
+                <meta property="og:description" content={bonusGuide?.seo?.seoDescription} />
+                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+
                 <meta httpEquiv="content-language" content="it-IT"></meta>
                 <meta property="og:image" content={bonusGuide?.image?.url} />
                 <meta property="og:locale" content={'it'} />

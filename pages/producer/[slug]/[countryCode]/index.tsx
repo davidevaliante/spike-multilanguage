@@ -105,11 +105,22 @@ const ProducerPage: FunctionComponent<Props> = ({ producer, initialSlots, bonusL
                     content={`Guarda tutte le Slot Machine prodotte dalla software house ${producer.name}, cerca quella che ti incuriosisce di più e prova la demo GRATUITA`} />
                 <link rel="canonical" href={getCanonicalPath()} />
 
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={`${producer.name} | SPIKE `} />
+                <meta itemProp="description" content={`Guarda tutte le Slot Machine prodotte dalla software house ${producer.name}, cerca quella che ti incuriosisce di più e prova la demo GRATUITA`} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={`${producer.name} | SPIKE `} />
+                <meta name="twitter:description" content={`Guarda tutte le Slot Machine prodotte dalla software house ${producer.name}, cerca quella che ti incuriosisce di più e prova la demo GRATUITA`} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={`Guarda tutte le Slot Machine prodotte dalla software house ${producer.name}, cerca quella che ti incuriosisce di più e prova la demo GRATUITA`} />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta property="og:site_name" content={`${producer.name} | SPIKE `} />
             </Head>
 
             <NavbarProvider currentPage={`/producer/${producer.name}`} countryCode={countryCode}>

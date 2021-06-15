@@ -159,12 +159,31 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                     name="description"
                     content={_pageContent.seo.seoDescription}>
                 </meta>
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta itemProp="description" content={_pageContent.seo.seoDescription} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta name="twitter:description" content={_pageContent.seo.seoDescription} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
+                {/* <!-- Facebook Meta Tags --> */}
+                <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                <meta property="og:locale" content={'it'} />
+                <meta property="og:type" content="article" />
+                <meta property="og:description" content={_pageContent.seo.seoDescription} />
+                <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
+
                 <meta httpEquiv="content-language" content="it-IT"></meta>
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={_pageContent.seo?.seoDescription} />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
             </Head>
 
             <BodyContainer>
@@ -284,7 +303,7 @@ export const getServerSideProps = async ({query, req, res}) => {
         '888 Casino' : 'https://ic.aff-handler.com/c/43431?sr=1868828',
         'StarCasinò' : 'https://record.starcasino.it/_SEA3QA6bJTNXl890vMAfUGNd7ZgqdRLk/131/',
         'Unibet' : 'https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251',
-        'PokerStars Casino' : 'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_4095c_&affid=100976968&siteid=182773&adid=4095&c='
+        'PokerStars Casino' : 'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_5648c_&affid=100976968&siteid=182773&adid=5648&c=  '
     }
 
     return {

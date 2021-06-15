@@ -87,6 +87,18 @@ const BestBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCo
                     name="description"
                     content="La classifica di SPIKE sui migliori bonus dei Casinò Online italiani">
                 </meta>
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta itemProp="description" content="La classifica di SPIKE sui migliori bonus dei Casinò Online italiani" />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta name="twitter:description" content="La classifica di SPIKE sui migliori bonus dei Casinò Online italiani" />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />   
+
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={contextCountry} />
                 <meta property="og:type" content="article" />

@@ -251,11 +251,22 @@ const Slots: FunctionComponent<Props> = ({_shallow, _initialSlots, _bonusList, _
                 <meta httpEquiv="content-language" content="it-IT"></meta>
                 <link rel="canonical" href={getCanonicalPath()} />
 
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={vltSlotListPage?.seo?.seoTitle} />
+                <meta itemProp="description" content={vltSlotListPage?.seo?.seoDescription} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={vltSlotListPage?.seo?.seoTitle} />
+                <meta name="twitter:description" content={vltSlotListPage?.seo?.seoDescription} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
                 <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={vltSlotListPage?.seo?.seoDescription} />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta property="og:site_name" content={vltSlotListPage?.seo?.seoTitle} />
             </Head>
 
             <NavbarProvider currentPage={`/slot-vlt-list`} countryCode={contextCountry}>

@@ -40,8 +40,6 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
     const [isBakeca, setIsBakeca] = useState(router.asPath.split('from=')[1] === 'bakeca')
 
-    console.log(isBakeca)
-
     const [loading, setLoading] = useState(true)
     const [home, setHome] = useState<Home>(_home)
     const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map(s => s.slot))
@@ -101,14 +99,28 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                 content={home.seo.seoDescription}>
             </meta>
             <meta httpEquiv="content-language" content="it-IT"></meta>
+
+            {/* <!-- Google / Search Engine Tags --> */}
+            <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+            <meta itemProp="description" content={home.seo?.seoDescription} />
+            <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+            
+            {/* <!-- Twitter Meta Tags --> */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+            <meta name="twitter:description" content={home.seo?.seoDescription} />
+            <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
+            {/* <!-- Facebook Meta Tags --> */}
             <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
             <meta property="og:locale" content={'it'} />
             <meta property="og:type" content="article" />
             <meta property="og:description" content={home.seo?.seoDescription} />
             <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+
         </Head>
 
-        <NavbarProvider currentPage='Home' countryCode={contextCountry}>
+        <NavbarProvider currentPage={!isBakeca ? 'Home' : '/bakeca-home'} countryCode={contextCountry}>
             {home.topArticle && <HomeHeader topArticle={home.topArticle}>SPIKE SLOT</HomeHeader>}
             <BodyContainer>
                 {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/${userCountry}`} />}

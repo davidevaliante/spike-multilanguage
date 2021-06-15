@@ -89,10 +89,12 @@ app.prepare().then(() => {
 
         const oldUrls = [
             'sweet_bonanza/row',
+            'cleopatra-vlt/it'
         ]
 
         const newUrls = [
-            '/slot/sweet-bonanza/row'
+            '/slot/sweet-bonanza/row',
+            '/slot/cleopatra/it'
         ]
 
         const oldUrlIndex = oldUrls.indexOf(`${slug}/${countryCode}`)
@@ -116,10 +118,50 @@ app.prepare().then(() => {
     server.get('/videos/:slug/:countryCode', (req, res) => {
         const { slug, countryCode } = req.params
 
+        const oldUrls = [
+            'slot_online_carichiamo_il_bonus_alla_holy_diver_dicembre_di_fuoco_2020',
+            '-LeQROwGnWc38INPJggI',
+            'spike_casino_legend_livello_36_sentiero_degli_antichi_maratona_14',
+            'spike_casino_legend_livello_40_il_tempio_del_mostro_finale_maratona_16',
+            '-LeM6aH1AWfFYL5SjuMT',
+            '-Leav8l8HaJbCBe6kjtu',
+            '-LeQPzCtIHtF8R1QTjDo',
+            '-Lf-4v9D6YtrVl1-NMrZ',
+            '-LgCSZvsxVGfT71o1NzU',
+            'slot_online_pazzia_alla_book_of_ra_magic_fino_a_bet_max_schiattati_ma_non_sepolti_28',
+            'slot_online_partita_pazza_alla_honey_rush_2',
+        ]
+
+        const newUrls = [
+            'slot_online_vinti_4_500_euro_durante_il_caricamento_bonus_alla_holy_diver_dicembre_di_fuoco_2020',
+            'slot_online_provo_la_sultan_octavian_con_300_euro',
+            'casino_legend_livello_36_sentiero_degli_antichi',
+            'casino_legend_livello_40_il_tempio_del_mostro_finale',
+            'slot_online_proviamo_la_hugo_2_con_500_euro',
+            'slot_online_ultima_partita_alla_dead_or_alive_1_pagaaa',
+            'slot_online_blood_suckers_2_quando_non_ci_si_accontenta',
+            'slot_online_white_rabbit_giocate_pazze_comprando_bonus_con_1000_euro_parte_1',
+            'bonus_vlt_book_of_ra_deluxe_libri_dentro_a_libri',
+            'slot_online_vinti_13_000_euro_book_of_ra_magic_schiattati_ma_non_sepolti_28',
+            'slot_online_vinti_6500_euro_con_giocate_pazze_alla_honey_rush_2',
+        ]
+
         if(countryCode !== 'it'){
+
+            if(oldUrls.includes(slug)) {
+                res.set('location', `https://spikeslot.com/videos/${newUrls[oldUrls.indexOf(slug)]}/it`)
+                res.status(301).send()
+            }
+
             res.set('location', `https://spikeslot.com/videos/${slug}/it`)
             res.status(301).send()
         } else {
+
+            if(oldUrls.includes(slug)) {
+                res.set('location', `https://spikeslot.com/videos/${newUrls[oldUrls.indexOf(slug)]}/it`)
+                res.status(301).send()
+            }
+
             const pagePath = `/videos/${req.params.slug}/${req.params.countryCode}`
             renderAndCache(app)(req, res, pagePath)
         }

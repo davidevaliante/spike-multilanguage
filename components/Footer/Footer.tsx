@@ -186,10 +186,11 @@ const Footer = () => {
 
                 <Divider />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <p style={{ textAlign: 'center', padding: '2rem' }}>Copyright ©2020 www.spikeslot.com</p>
+                    <p style={{ textAlign: 'center', padding: '2rem' }}>Slot Online in Italia | Copyright ©2021 www.spikeslot.com</p>
                     <CoFreeImage />
                     <p style={{ textAlign: 'center', paddingLeft: '2rem' }}>GPWA Verification</p>
                     <a href="//www.dmca.com/Protection/Status.aspx?ID=232dd2f5-6e9d-47e7-8826-660e6eade29e" title="DMCA.com Protection Status" className="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca_protected_9_120.png?ID=232dd2f5-6e9d-47e7-8826-660e6eade29e" alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+                    <p style={{ textAlign: 'center', padding: '2rem' }}>Giochi di slot machine gratuiti</p>
                 </div>
             </div>
         </Container>

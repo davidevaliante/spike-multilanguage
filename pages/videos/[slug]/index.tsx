@@ -123,6 +123,18 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
                 <meta property="og:locale" content={contextCountry} />
                 <meta name="description" content={"In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"} />
                 <meta http-equiv="content-language" content={"it-IT"} />
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta itemProp="description" content={"In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"} />
+                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta name="twitter:description" content={"In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"} />
+                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
                 <meta property="article:tag" content={`Slot Online Video`} />
                 <meta property="article:tag" content={`Slot Gratis Video`} />
                 <meta property="article:tag" content={`Slot Machine Video`} />

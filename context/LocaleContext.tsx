@@ -41,5 +41,4 @@ export const LocaleContextProvider : FunctionComponent = ( props : any) => {
             {props.children}
         </LocaleContext.Provider>
     )
-
 }

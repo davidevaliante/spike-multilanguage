@@ -79,6 +79,19 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCo
                 </meta>
                 <link rel="canonical" href={getCanonicalPath()} />
                 <meta httpEquiv="content-language" content="it-IT"></meta>
+
+                {/* <!-- Google / Search Engine Tags --> */}
+                <meta itemProp="name" content={article.seo?.seoTitle} />
+                <meta itemProp="description" content={article.seo?.seoDescription} />
+                <meta itemProp="image" content={article.image?.url}  />
+                
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={article.seo?.seoTitle} />
+                <meta name="twitter:description" content={article.seo?.seoDescription} />
+                <meta name="twitter:image" content={article.image?.url} />
+
+
                 <meta property="og:image" content={article.image?.url} />
                 <meta property="og:locale" content={'it'} />
                 <meta property="og:type" content="article" />
