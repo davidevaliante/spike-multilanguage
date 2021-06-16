@@ -124,22 +124,12 @@ export async function getServerSideProps({ query }) {
         }
     })
 
-    let bonusListResponseData1 : any
-    
-    if(bonusListResponse.data.data.homes[0] === undefined){
-        bonusListResponseData1 =  await aquaClient.query({
-            query: HOME_BONUS_LIST,
-            variables: {
-                countryCode: "row"
-            }
-        })
-    }
 
     return {
         props: {
             query,
             article: articleResponse.data.data.articles[0],
-            bonusList: bonusListResponse.data.data.homes.length > 0 ? bonusListResponse.data.data.homes[0]?.bonuses.bonus : bonusListResponseData1.data.data.homes[0]?.bonuses.bonus,
+            bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
             countryCode:country
         }
     }

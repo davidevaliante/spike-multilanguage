@@ -1,6 +1,6 @@
 export const ARTICLE_BY_SLUG = `
-query ARTICLE_BY_SLUG($slug:String){
-    articles(where: {slug:$slug}){
+query ARTICLE_BY_SLUG($slug:String, $countryCode:String){
+    articles(where: {slug:$slug, country: {code: $countryCode}}){
       title
       seo{
         seoTitle
