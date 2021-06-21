@@ -15,7 +15,7 @@ import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
 import  { CrazyTimeTable } from '../../../../components/CrazyTimeLiveStats/CrazyTimeTable'
 import AquaClient from './../../../../graphql/aquaClient';
 import BonusStripe from '../../../../components/Cards/BonusStripe'
-import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
+import { Bonus, CrazyTimeArticle, MonopolyArticle } from '../../../../graphql/schema'
 import DynamicContent from '../../../../components/DynamicContent/DynamicContent'
 import Head from 'next/head'
 import { format } from 'date-fns';
