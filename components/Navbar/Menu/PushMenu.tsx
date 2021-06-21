@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FunctionComponent } from 'react'
 import Divider from '../../Ui/Divider'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { countryContext } from './../../../context/CountryContext'
 import { useContext } from 'react';
 import { LocaleContext } from '../../../context/LocaleContext'
@@ -15,6 +15,8 @@ interface Props {
 const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
 
     const offset = '80vw'
+
+    const router = useRouter()
 
     const [childrenWrapperPosition, setChildrenWrapperPosition] = useState(false)
 
@@ -40,9 +42,18 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
         <Wrapper>
             <PushMenuContainer isOpen={state} offSet={offset} childrenWrapperPosition={childrenWrapperPosition}>
                 <div>
-                    {tiles.map(tile => <div key={`push_menu_${tile.label}`} onClick={() => navigateTo(tile.link)}>
+                    {tiles.map(tile => tile.label !== 'LiveStats' ? <div key={`push_menu_${tile.label}`} onClick={() => navigateTo(tile.link)}>
                         <p>{t(tile.label)}</p>
                         <Divider />
+                    </div> : <div>
+                        <div key={`push_menu_crazy_time`} onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}>
+                            <p>Crazy Time Stats</p>
+                            <Divider />
+                        </div>
+                            <div key={`push_menu_monopoly`} onClick={() => router.push(`/live-stats/monopoly/${contextCountry}`)}>
+                            <p>Monopoly Stats</p>
+                            <Divider />
+                        </div>
                     </div>)}
                 </div>
             </PushMenuContainer>
@@ -56,6 +67,7 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
 
 const Wrapper = styled.div`
     display : flex;
+    overflow-x : scroll;
 `
 
 const ChildrenWrapper = styled.div`

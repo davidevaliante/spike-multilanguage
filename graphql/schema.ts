@@ -295,6 +295,15 @@ export interface CrazyTimeArticle {
     seo: Seo
 }
 
+export interface MonopolyArticle {
+    topContent: (DynamicArticle | DynamicBonusList | DynamicSlotList | DynamicVideo)[]
+    bottomContent: (DynamicArticle | DynamicBonusList | DynamicSlotList | DynamicVideo)[]
+    country?: {
+        code: string
+    }
+    seo: Seo[]
+}
+
 export interface BlogArticle {
     article: string
     image?: any,

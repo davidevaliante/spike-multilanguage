@@ -23,6 +23,7 @@ import { initializeAnalytics } from '../../analytics/base'
 import CountrySelect from './CountrySelect'
 import { LocaleContext } from '../../context/LocaleContext';
 import NewAnchorTag from '../Singles/NewAnchorTag'
+import { Menu, MenuItem } from '@material-ui/core'
 
 interface Props {
     onDrawerOpen?: Function,
@@ -45,7 +46,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
         { label: 'Free Slot Machine Games', link: '/slots' },
         { label: 'Bar Slot', link: '/slot-bar' },
         { label: 'VLT slot', link: '/slot-vlt' },
-        { label : 'CrazyTimeNavbar', link: '/live-stats/crazy-time' },
+        { label : 'LiveStats', link: '/live-stats' },
         
         { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
         
@@ -53,6 +54,17 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
     ]
     
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
+
+    const [anchorEl, setAnchorEl] = React.useState(null)
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget)
+    }
+    
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
 
     const { t, contextCountry } = useContext(LocaleContext)
     useEffect(() => {
@@ -177,14 +189,32 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
             )
         }
 
-        if (page.link === '/live-stats/crazy-time') {
-            return (
-                <NewAnchorTag
-                    key={key}
-                    href={`${page.link}/${contextCountry}`}
-                    text={t(page.label)} />
+        if(page.link === '/live-stats'){
+            return(
+                <div>
+                    <NewAnchorTag rel='nofollow' href='#' text={t(page.label)} onClick={handleClick}/>
+                    <Menu
+                        id="live-stats-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                        >
+                        <MenuItem onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}>Crazy Time</MenuItem>
+                        <MenuItem onClick={() => router.push(`/live-stats/monopoly/${contextCountry}`)}>Monopoly</MenuItem>
+                    </Menu>
+                </div>
             )
         }
+
+        // if (page.link === '/live-stats/crazy-time') {
+        //     return (
+        //         <NewAnchorTag
+        //             key={key}
+        //             href={`${page.link}/${contextCountry}`}
+        //             text={t(page.label)} />
+        //     )
+        // }
 
         if (page.link === '/migliori-bonus-casino') {
             return (

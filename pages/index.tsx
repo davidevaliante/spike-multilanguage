@@ -93,7 +93,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
     return <div>
         <Head>
             <title>{home.seo.seoTitle}</title>
-            <link rel="canonical" href="https://spikeslot.com" />
+            <link rel="canonical" href="https://www.spikeslot.com" />
             <meta
                 name="description"
                 content={home.seo.seoDescription}>
@@ -101,13 +101,13 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
             <meta httpEquiv="content-language" content="it-IT"></meta>
 
             {/* <!-- Google / Search Engine Tags --> */}
-            <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+            <meta itemProp="name" content={home.seo.seoTitle} />
             <meta itemProp="description" content={home.seo?.seoDescription} />
             <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
             
             {/* <!-- Twitter Meta Tags --> */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+            <meta name="twitter:title" content={home.seo.seoTitle} />
             <meta name="twitter:description" content={home.seo?.seoDescription} />
             <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
@@ -116,7 +116,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
             <meta property="og:locale" content={'it'} />
             <meta property="og:type" content="article" />
             <meta property="og:description" content={home.seo?.seoDescription} />
-            <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+            <meta property="og:site_name" content={home.seo.seoTitle} />
 
         </Head>
 

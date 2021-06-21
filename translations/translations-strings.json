@@ -129,7 +129,9 @@
           "Total Payout" : "Total Payout",
           "Watch Video" : "Watch Video",
           "Rows per page" : "Rows per page",
-          "Compare legal websites" :  "Compare legal websites"
+          "Compare legal websites" :  "Compare legal websites",
+          "LiveStats" : "Live Stats",
+          "You can play at Monopoly here" : "You can play at Monopoly here"
         }
     },
     "it": {
@@ -267,7 +269,9 @@
           "Board Rolls" : "Lancio Dadi",
           "Chance Multiplier" : "Moltiplicatore Imprevisti",
           "Rolls Percentage" : "Percentuale di uscita",
-          "Monopoly Statistics" : "Statistiche monopoly"
+          "Monopoly Statistics" : "Statistiche Monopoly",
+          "LiveStats" : "Statistiche Live",
+          "You can play at Monopoly here" : "Puoi giocare a Monopoly qui:"
       }
     },
     "row": {
@@ -404,7 +408,9 @@
           "Compare legal websites" :  "Compare legal websites",
           "Watch" : "Watch",
           "Board Rolls" : "Board Rolls",
-          "Chance Multiplier" : "Chance Multiplier"
+          "Chance Multiplier" : "Chance Multiplier",
+          "LiveStats" : "Live Stats",
+          "You can play at Monopoly here" : "You can play at Monopoly here"
       }
     },
     "ca": {
@@ -540,7 +546,9 @@
           "Compare legal websites" :  "Compare legal websites",
           "Watch" : "Watch",
           "Board Rolls" : "Board Rolls",
-          "Chance Multiplier" : "Chance Multiplier"
+          "Chance Multiplier" : "Chance Multiplier",
+          "LiveStats" : "Live Stats",
+          "You can play at Monopoly here" : "You can play at Monopoly here"
       }
     },
     "nz": {
@@ -676,7 +684,10 @@
           "Compare legal websites" :  "Compare legal websites",
           "Watch" : "Watch",
           "Board Rolls" : "Board Rolls",
-          "Chance Multiplier" : "Chance Multiplier"
+          "Chance Multiplier" : "Chance Multiplier",
+          "LiveStats" : "Live Stats",
+          "You can play at Monopoly here" : "You can play at Monopoly here"
+
       }
     },
     "rs": {
@@ -810,7 +821,9 @@
           "Watch Video" : "Pogledajte video",
           "Rows per page" : "Redovi po stranici",
           "Compare legal websites" :  "Uporedite legalne veb lokacije",
-          "Watch" : "Watch"
+          "Watch" : "Watch",
+          "LiveStats" : "Live Stats",
+          "You can play at Monopoly here" : "You can play at Monopoly here"
         }
     },
     "me": {
@@ -944,7 +957,9 @@
           "Watch Video" : "Pogledajte video",
           "Rows per page" : "Redovi po stranici",
           "Compare legal websites" :  "Uporedite legalne veb lokacije",
-          "Watch" : "Watch"
+          "Watch" : "Watch",
+          "LiveStats" : "Live Stats",
+          "You can play at Monopoly here" : "You can play at Monopoly here"
         }
     }
 }

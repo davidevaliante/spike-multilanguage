@@ -151,10 +151,10 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
 
     if(loading) return <FullPageLoader />
     return <Fragment>
-        <NavbarProvider  currentPage='Crazy Time Stats' countryCode={contextCountry}>
+        <NavbarProvider currentPage='Crazy Time Stats' countryCode={contextCountry}>
             <Head>
                 <title>{_pageContent.seo?.seoTitle}</title>
-                <link rel="canonical" href="https://spikeslot.com" />
+                <link rel="canonical" href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
                 <meta
                     name="description"
                     content={_pageContent.seo.seoDescription}>

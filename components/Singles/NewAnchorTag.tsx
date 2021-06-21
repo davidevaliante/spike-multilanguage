@@ -4,13 +4,15 @@ import styled from 'styled-components'
 
 interface Props {
     href : string,
-    text : string
+    text : string,
+    rel? : string,
+    onClick? : any
 }
 
-const NewAnchorTag : FunctionComponent<Props> = ({href, text}) => {
+const NewAnchorTag : FunctionComponent<Props> = ({href, text, rel, onClick}) => {
     return (
         <Container>
-            <a href={href}>
+            <a href={href} rel={rel} onClick={onClick}>
                 {text}
             </a>
 

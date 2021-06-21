@@ -38,7 +38,7 @@ interface Props {
     _tables : MonopolyTables
     _lastTenSpins : MonopolySpin[]
     _bonuses : Bonus[]
-    _pageContent : CrazyTimeArticle
+    _pageContent : MonopolyArticle
 }
 
 const SOCKET_ENDPOINT = 'https://monopoly.spike-realtime-api.eu'
@@ -164,12 +164,45 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
     if(loading) return <FullPageLoader />
     return <Fragment>
         <NavbarProvider  currentPage='Monopoly Stats' countryCode={contextCountry}>
+                <Head>
+                  <title>{_pageContent.seo[0]?.seoTitle}</title>
+                  <link rel="canonical" href={`https://www.spikeslot.com/live-stats/monopoly/${contextCountry}`} />
+                  <meta
+                      name="description"
+                      content={_pageContent.seo[0].seoDescription}>
+                  </meta>
+
+                  {/* <!-- Google / Search Engine Tags --> */}
+                  <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                  <meta itemProp="description" content={_pageContent.seo.seoDescription} />
+                  <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
+                  
+                  {/* <!-- Twitter Meta Tags --> */}
+                  <meta name="twitter:card" content="summary_large_image" />
+                  <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                  <meta name="twitter:description" content={_pageContent.seo.seoDescription} />
+                  <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+
+                  {/* <!-- Facebook Meta Tags --> */}
+                  <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                  <meta property="og:locale" content={'it'} />
+                  <meta property="og:type" content="article" />
+                  <meta property="og:description" content={_pageContent.seo.seoDescription} />
+                  <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
+
+                  <meta httpEquiv="content-language" content="it-IT"></meta>
+                  <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                  <meta property="og:locale" content={'it'} />
+                  <meta property="og:type" content="article" />
+                  <meta property="og:description" content={_pageContent.seo?.seoDescription} />
+                  <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
+              </Head>
+
+
                 <BodyContainer>
                 <MainColumn style={{width : '100%', maxWidth : '90%', paddingBottom : '4rem', paddingTop : '2rem'}}>
-
-                    {/* <DynamicContent content={_pageContent.topContent}/>
-
-                    <Divider style={{marginTop : '2rem'}} /> */}
+                    <DynamicContent content={_pageContent.topContent}/>
+                    <Divider style={{marginTop : '2rem'}} />
 
                     <div>
                       <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginTop: '2rem'}}>
@@ -196,10 +229,10 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
                         {stats.map(s => <MonopolyStatCard key={`stats_${s.symbol}`} stat={s} totalSpinsConsidered={totalSpinsInTimeFrame} timeFrame={timeFrame}/>)}    
                     </StatsContainer>}
                     
-                    {/* <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', textAlign : 'center'}}>{`${t('You can play at CRAZY TIME here')}`}</h1>
+                    <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', textAlign : 'center'}}>{`${t('You can play at Monopoly here')}`}</h1>
                     <Paper elevation={6} style={{marginTop : '1rem', marginBottom : '4rem'}}> 
                         {_bonuses && _bonuses.map(b => <BonusStripe key={b.name} bonus={b} />)}
-                    </Paper> */}
+                    </Paper> 
 
                     <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginBottom : '1rem'}}>
                       <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', marginBottom : '1rem'}}>
@@ -234,7 +267,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
                       <MonopolyDiceRollTable type='high' rows={tables.highTierTable.rows}/>   
                     </div>}
 
-                    {/* <DynamicContent content={_pageContent.bottomContent}/> */}
+                    <DynamicContent content={_pageContent.bottomContent}/>
 
                     {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses}  />}
 
@@ -303,7 +336,7 @@ export const getServerSideProps = async ({query, req, res}) => {
                 b.link = bonusRemapping[b.name]
                 return b
             }),
-            _pageContent : pageContent.data.data.crazyTimeArticles[0]
+            _pageContent : pageContent.data.data.monopolyArticles[0]
         }
     }
 }
@@ -341,7 +374,7 @@ const BONUS_QUERY = `
 
 const PAGE_ARTICLE_QUERY = `
 query CRAZY_TIME_PAGE($countryCode:String="it"){
-    crazyTimeArticles(
+    monopolyArticles(
       where:{
         country:{code: $countryCode}
       }
