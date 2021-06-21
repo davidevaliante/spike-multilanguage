@@ -50,8 +50,8 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
                             <p>Crazy Time Stats</p>
                             <Divider />
                         </div>
-                            <div key={`push_menu_monopoly`} onClick={() => router.push(`/live-stats/monopoly/${contextCountry}`)}>
-                            <p>Monopoly Stats</p>
+                            <div key={`push_menu_monopoly`} onClick={() => router.push(`/live-stats/monopoly-live/${contextCountry}`)}>
+                            <p>Monopoly Live Stats</p>
                             <Divider />
                         </div>
                     </div>)}

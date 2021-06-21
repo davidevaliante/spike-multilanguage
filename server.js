@@ -167,6 +167,11 @@ app.prepare().then(() => {
         }
     })
 
+    server.get('/live-stats/monopoly/it', (req,res) =>  {
+        res.set('location', `https://spikeslot.com/live-stats/monopoly-live/it`)
+        res.status(301).send()
+    })
+
     server.get('/producer/:slug/:countryCode', (req, res) => {
 
         const { slug, countryCode } = req.params
