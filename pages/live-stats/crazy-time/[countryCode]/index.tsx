@@ -36,7 +36,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ["888 Casino", "StarCasinò", "PokerStars Casino", "LeoVegas", "BetFlag", "Unibet" ]
+const PAGE_BONUSES = ["888 Casino", "StarCasinò", "PokerStars Casino", "LeoVegas", "Unibet" ]
 
 const SPAM_BONUSES = true
 
