@@ -43,7 +43,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://monopoly.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ["LeoVegas", "888 Casino", "StarCasinò", "Unibet", "PokerStars Casino"]
+const PAGE_BONUSES = ["888 Casino", "StarCasinò", "PokerStars Casino", "LeoVegas", "Unibet" ]
 
 const SPAM_BONUSES = true
 
