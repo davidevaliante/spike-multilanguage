@@ -131,7 +131,12 @@
           "Rows per page" : "Rows per page",
           "Compare legal websites" :  "Compare legal websites",
           "LiveStats" : "Live Stats",
-          "You can play at Monopoly here" : "You can play at Monopoly here"
+          "You can play at Monopoly here" : "You can play at Monopoly here",
+          "Low Rolls" : "Low Rolls",
+          "Mid Rolls" : "Mid Rolls",
+          "High Rolls" : "High Rolls",
+          "Monopoly Statistics" : "Monopoly Live Stats",
+          "Expected" : "Expected"
         }
     },
     "it": {
@@ -271,7 +276,12 @@
           "Rolls Percentage" : "Percentuale di uscita",
           "Monopoly Statistics" : "Statistiche Monopoly Live",
           "LiveStats" : "Statistiche Live",
-          "You can play at Monopoly here" : "Puoi giocare a Monopoly qui:"
+          "You can play at Monopoly here" : "Puoi giocare a Monopoly qui:",
+          "Last Update" : "Ultimo Aggiornamento",
+          "Low Rolls" : "Tiri Bassi",
+          "Mid Rolls" : "Tiri Medi",
+          "High Rolls" : "Tiri Alti",
+          "Rolls" : "Tiri"
       }
     },
     "row": {
@@ -410,7 +420,14 @@
           "Board Rolls" : "Board Rolls",
           "Chance Multiplier" : "Chance Multiplier",
           "LiveStats" : "Live Stats",
-          "You can play at Monopoly here" : "You can play at Monopoly here"
+          "You can play at Monopoly here" : "You can play at Monopoly here",
+          "Last Update" : "Last Update",
+          "Low Rolls" : "Low Rolls",
+          "Mid Rolls" : "Mid Rolls",
+          "High Rolls" : "High Rolls",
+          "Rolls" : "Rolls",
+          "Monopoly Statistics" : "Monopoly Live Stats",
+          "Expected":"Expected"
       }
     },
     "ca": {
@@ -548,7 +565,14 @@
           "Board Rolls" : "Board Rolls",
           "Chance Multiplier" : "Chance Multiplier",
           "LiveStats" : "Live Stats",
-          "You can play at Monopoly here" : "You can play at Monopoly here"
+          "You can play at Monopoly here" : "You can play at Monopoly here",
+          "Last Update" : "Last Update",
+          "Low Rolls" : "Low Rolls",
+          "Mid Rolls" : "Mid Rolls",
+          "High Rolls" : "High Rolls",
+          "Rolls" : "Rolls",
+          "Monopoly Statistics" : "Monopoly Live Stats",
+          "Expected" : "Expected"
       }
     },
     "nz": {
@@ -686,7 +710,14 @@
           "Board Rolls" : "Board Rolls",
           "Chance Multiplier" : "Chance Multiplier",
           "LiveStats" : "Live Stats",
-          "You can play at Monopoly here" : "You can play at Monopoly here"
+          "You can play at Monopoly here" : "You can play at Monopoly here",
+          "Last Update" : "Last Update",
+          "Low Rolls" : "Low Rolls",
+          "Mid Rolls" : "Mid Rolls",
+          "High Rolls" : "High Rolls",
+          "Rolls" : "Rolls",
+          "Monopoly Statistics" : "Monopoly Live Stats",
+          "Expected" : "Expected"
 
       }
     },
@@ -823,7 +854,14 @@
           "Compare legal websites" :  "Uporedite legalne veb lokacije",
           "Watch" : "Watch",
           "LiveStats" : "Live Stats",
-          "You can play at Monopoly here" : "You can play at Monopoly here"
+          "You can play at Monopoly here" : "You can play at Monopoly here",
+          "Last Update" : "Last Update",
+          "Low Rolls" : "Low Rolls",
+          "Mid Rolls" : "Mid Rolls",
+          "High Rolls" : "High Rolls",
+          "Rolls" : "Rolls",
+          "Monopoly Statistics" : "Monopoly Live Stats",
+          "Expected" : "Expected"
         }
     },
     "me": {
@@ -959,7 +997,14 @@
           "Compare legal websites" :  "Uporedite legalne veb lokacije",
           "Watch" : "Watch",
           "LiveStats" : "Live Stats",
-          "You can play at Monopoly here" : "You can play at Monopoly here"
+          "You can play at Monopoly here" : "You can play at Monopoly here",
+          "Last Update" : "Last Update",
+          "Low Rolls" : "Low Rolls",
+          "Mid Rolls" : "Mid Rolls",
+          "High Rolls" : "High Rolls",
+          "Rolls" : "Rolls",
+          "Monopoly Statistics" : "Monopoly Live Stats",
+          "Expected" : "Expected"
         }
     }
 }

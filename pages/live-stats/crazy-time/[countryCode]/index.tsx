@@ -21,6 +21,7 @@ import Head from 'next/head'
 import { format } from 'date-fns';
 import now from 'lodash/now'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
+import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 
 interface Props {
     _requestedCountryCode : string
@@ -31,7 +32,8 @@ interface Props {
     }
     _lastTenSpins : Spin[]
     _bonuses : Bonus[]
-    _pageContent : CrazyTimeArticle
+    _pageContent : CrazyTimeArticle,
+	_countryCode : string
 }
 
 const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
@@ -41,7 +43,7 @@ const PAGE_BONUSES = ["888 Casino", "StarCasinò", "PokerStars Casino", "LeoVega
 const SPAM_BONUSES = true
 
 
-const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent}) => {
+const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent, _countryCode}) => {
 
     const aquaClient = new AquaClient()
 
@@ -126,6 +128,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
 
 
     useEffect(() => {
+		setContextCountry(_countryCode)
         // at first render we initialize socket connection
         const initializedSocket = io(SOCKET_ENDPOINT,  {
             secure:true,  
@@ -209,7 +212,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                               </Select> 
                           </div>   
                       </div>
-                      <p style={{marginTop : '1rem', fontSize : '.9rem'}}>{`Ultimo Aggiornamento ${format(lastUpdate, 'dd/MM HH:mm:ss')}`}</p>
+                      <p style={{marginTop : '1rem', fontSize : '.9rem'}}>{`${t('Last Update')} ${format(lastUpdate, 'dd/MM HH:mm:ss')}`}</p>
                     </div>                    
 
                     <Divider style={{marginTop : '2rem', marginBottom : '2rem'}}/>
@@ -264,6 +267,9 @@ export const mergeWithUpdate = (current : Spin[], update : Spin[]) => {
     // the latest row in the table
     const lastFromCurrent = current[0]
     // slicing up the update array to the last known row based on the _id
+
+    console.log(current, update)
+
     const slicedUpdate = update.slice(0, update.map(u => u._id).indexOf(lastFromCurrent._id))
     // spreading the result so that is automatically ordered by time as returned by the Socket
     return [...slicedUpdate, ...current]
@@ -274,6 +280,8 @@ export const getServerSideProps = async ({query, req, res}) => {
 
     const aquaClient = new AquaClient()
 
+    const {countryCode} = query
+
     const _requestedCountryCode = query.countryCode
     const pageData  = await axios.get('https://crazytime.spike-realtime-api.eu/api/data-for-the-last-hours/24')
    
@@ -281,21 +289,35 @@ export const getServerSideProps = async ({query, req, res}) => {
     const pageContent = await aquaClient.query({
         query : PAGE_ARTICLE_QUERY,
         variables : {
-            countryCode : 'it'
-        }
-    })
-
-    const bonuses = await aquaClient.query({
-        query : BONUS_QUERY,
-        variables : {
-            countryCode : 'it',
-            names : PAGE_BONUSES
+            countryCode : countryCode
         }
     })
 
     const orderedBonusList : Bonus[] = []
 
-    PAGE_BONUSES.forEach(name => orderedBonusList.push(bonuses.data.data.bonuses.find(it => it.name === name)))
+    if(countryCode === 'it') {
+      	const bonuses = await aquaClient.query({
+			query : BONUS_QUERY,
+			variables : {
+				countryCode : countryCode,
+				names : PAGE_BONUSES
+			}
+		})
+
+		PAGE_BONUSES.forEach(name => orderedBonusList.push(bonuses.data.data.bonuses.find(it => it.name === name)))
+    } else {
+		const bonuses = await aquaClient.query({
+			query : HOME_BONUS_LIST,
+			variables : {
+				countryCode : countryCode,
+			}
+		})
+		bonuses.data.data.homes[0].bonuses.bonus.forEach(b => orderedBonusList.push(b.bonus))
+	}
+
+
+
+
 
     const bonusRemapping = {
         'BetFlag' : 'https://adv.betflag.com/redirect.aspx?pid=5262&bid=2690',
@@ -311,11 +333,12 @@ export const getServerSideProps = async ({query, req, res}) => {
             _requestedCountryCode,
             _stats : pageData.data.stats,
             _lastTenSpins : pageData.data.spinsInTimeFrame,
-            _bonuses : orderedBonusList.map(b => {
+            _bonuses : countryCode === 'it' ? orderedBonusList.map(b => {
                 b.link = bonusRemapping[b.name]
                 return b
-            }),
-            _pageContent : pageContent.data.data.crazyTimeArticles[0]
+            }) : orderedBonusList,
+            _pageContent : pageContent.data.data.crazyTimeArticles[0],
+			_countryCode : countryCode
         }
     }
 }

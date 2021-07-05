@@ -27,6 +27,7 @@ import { monopolySymbolToFilterOption } from '../../../../data/models/MonopolySp
 import { MonopolySpin } from './../../../../data/models/MonopolySpin';
 import MonopolyDiceRollTable from '../../../../components/MonopolyLiveStats/MonopolyDiceRollTable'
 import MonopolyStatCard from '../../../../components/Cards/MonopolyStatCard'
+import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 
 interface Props {
     _requestedCountryCode : string
@@ -38,7 +39,8 @@ interface Props {
     _tables : MonopolyTables
     _lastTenSpins : MonopolySpin[]
     _bonuses : Bonus[]
-    _pageContent : MonopolyArticle
+    _pageContent : MonopolyArticle,
+	_countryCode : string
 }
 
 const SOCKET_ENDPOINT = 'https://monopoly.spike-realtime-api.eu'
@@ -48,7 +50,7 @@ const PAGE_BONUSES = ["888 Casino", "StarCasinò", "PokerStars Casino", "LeoVega
 const SPAM_BONUSES = true
 
 
-const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _lastTenSpins, _bonuses, _pageContent, _stats}) => {
+const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _lastTenSpins, _bonuses, _pageContent, _stats, _countryCode}) => {
 
     const aquaClient = new AquaClient()
 
@@ -138,6 +140,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
 
 
     useEffect(() => {
+		setContextCountry(_countryCode)
         // at first render we initialize socket connection
         const initializedSocket = io(SOCKET_ENDPOINT,  {
             secure:true,  
@@ -290,6 +293,11 @@ export const mergeWithUpdate = (current : MonopolySpin[], update : MonopolySpin[
 
 export const getServerSideProps = async ({query, req, res}) => {
 
+    const {countryCode} = query
+
+    console.log(countryCode, 'country code  ')
+
+
     const aquaClient = new AquaClient()
 
     const _requestedCountryCode = query.countryCode
@@ -299,9 +307,32 @@ export const getServerSideProps = async ({query, req, res}) => {
     const pageContent = await aquaClient.query({
         query : PAGE_ARTICLE_QUERY,
         variables : {
-            countryCode : 'it'
+            countryCode : countryCode
         }
     })
+
+	const orderedBonusList : Bonus[] = []
+
+
+	if(countryCode === 'it') {
+		const bonuses = await aquaClient.query({
+		  query : BONUS_QUERY,
+		  variables : {
+			  countryCode : countryCode,
+			  names : PAGE_BONUSES
+		  }
+	  })
+
+	  PAGE_BONUSES.forEach(name => orderedBonusList.push(bonuses.data.data.bonuses.find(it => it.name === name)))
+	} else {
+		const bonuses = await aquaClient.query({
+			query : HOME_BONUS_LIST,
+			variables : {
+				countryCode : countryCode,
+			}
+		})
+		bonuses.data.data.homes[0].bonuses.bonus.forEach(b => orderedBonusList.push(b.bonus))
+	}
 
     const bonuses = await aquaClient.query({
         query : BONUS_QUERY,
@@ -311,9 +342,7 @@ export const getServerSideProps = async ({query, req, res}) => {
         }
     })
 
-    const orderedBonusList : Bonus[] = []
 
-    PAGE_BONUSES.forEach(name => orderedBonusList.push(bonuses.data.data.bonuses.find(it => it.name === name)))
 
     const bonusRemapping = {
         'BetFlag' : 'https://adv.betflag.com/redirect.aspx?pid=5262&bid=2690',
@@ -332,11 +361,12 @@ export const getServerSideProps = async ({query, req, res}) => {
             _tables : pageData.data.tables[0],
             _lastTenSpins : pageData.data.spinsInTimeFrame,
             _stats : pageData.data.stats,
-            _bonuses : orderedBonusList.map(b => {
+			_bonuses : countryCode === 'it' ? orderedBonusList.map(b => {
                 b.link = bonusRemapping[b.name]
                 return b
-            }),
-            _pageContent : pageContent.data.data.monopolyArticles[0]
+            }) : orderedBonusList,
+            _pageContent : pageContent.data.data.monopolyArticles[0],
+			_countryCode : countryCode
         }
     }
 }

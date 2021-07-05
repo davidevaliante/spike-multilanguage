@@ -31,7 +31,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -49,7 +49,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -67,7 +67,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -85,7 +85,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -103,7 +103,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -121,7 +121,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -139,7 +139,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -164,7 +164,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -182,7 +182,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -200,7 +200,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -218,7 +218,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -236,7 +236,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -254,7 +254,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -272,7 +272,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -297,7 +297,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -315,7 +315,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -333,7 +333,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -351,7 +351,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -369,7 +369,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -387,7 +387,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -405,7 +405,7 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
                             </PercentageContainer>
 
                             <RightInfoContainer>
-                                {`${row.lands}/${row.total} Tiri`}
+                                {`${row.lands}/${row.total} ${t('Rolls')}`}
                             </RightInfoContainer>
                         </RowContainer>
                     )
@@ -417,9 +417,9 @@ const MonopolyDiceRollTable : FunctionComponent<Props> = ({ type, rows }) => {
     }
 
     const typeToHeader = () => {
-        if(type === 'low') return 'Tiri Bassi'
-        if(type === 'mid') return 'Tiri Medi'
-        if(type === 'high') return 'Tiri Alti'
+        if(type === 'low') return t('Low Rolls')
+        if(type === 'mid') return t('Mid Rolls')
+        if(type === 'high') return t('High Rolls')
     }
 
     return (

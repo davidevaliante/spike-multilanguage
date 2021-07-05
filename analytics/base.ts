@@ -4,6 +4,8 @@ const davideId = 'UA-132810169-1'
 
 const karloId = 'UA-132816901-1'
 
+const alexId = ''
+
 export const initializeAnalytics = (pageName: string) => {
     ReactGA.initialize([
         {

@@ -96,7 +96,7 @@ export const EnhancedTableHead : FunctionComponent<TableHeadProps> = ({ classes,
         <TableHead style={{background : '#db0d30'}}>
             <TableRow>
                 {headCells.map((headCell, i) => (
-                    headCell.id === 'spinResultSymbol' || headCell.id === 'slotResultSymbol' ? <StyledTableCell>{t(headCell.label)}</StyledTableCell> :
+                    headCell.id === 'spinResultSymbol' || headCell.id === 'slotResultSymbol' ? <StyledTableCell key={headCell.id}>{t(headCell.label)}</StyledTableCell> :
                     <StyledTableCell
                         key={headCell.id}
                         align={i == 0 ? 'center' : 'left'}
