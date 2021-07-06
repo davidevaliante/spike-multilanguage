@@ -18,6 +18,8 @@ const fromLaptop = 'only screen and (min-width : 992px)'
 const fromTablet = 'only screen and (min-width: 768px)'
 
 const Player = ({ highLights, videoLink, bonusId, autoplay, mainBonus, onPlayerReady, _bonuses }) => {
+
+    console.log(videoLink)
    
     const videoRef = useRef()
     
