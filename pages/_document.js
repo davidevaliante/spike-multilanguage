@@ -56,6 +56,7 @@ export default class Document extends NextDocument {
                     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet" />
                     <meta name="google-site-verification" content="UmP-j4RgASnaCO-_OIXFoGoNb1M9xd8a22uMn4T2JiI" />
                     <meta name="google-site-verification" content="_maV3qnMr5AqgbcA7gTfXevByYIF51pIOAz53I7fUT8" />
+                    <meta name="ahrefs-site-verification" content="2fd03c1d788b13e3dcc769b798f8a0e531d15bac894624a407318cf3d32ee33d" />
                     <link rel="shortcut icon" href="/icons/favicon.ico" />
                     <meta name="theme-color" content={`${appTheme.colors.primaryDark}`} />
                     <meta name="trustpilot-one-time-domain-verification-id" content="cf1b3477-d2d7-4301-8bb2-ac990e9d75de"/>
