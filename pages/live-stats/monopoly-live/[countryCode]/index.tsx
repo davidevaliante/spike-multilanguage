@@ -168,7 +168,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
         <NavbarProvider  currentPage='Monopoly Stats' countryCode={contextCountry}>
                 <Head>
                   <title>{_pageContent.seo[0]?.seoTitle}</title>
-                  <link rel="canonical" href={`https://www.spikeslot.com/live-stats/monopoly/${contextCountry}`} />
+                  <link rel="canonical" href={`https://spikeslot.com/live-stats/monopoly/${contextCountry}`} />
                   <meta
                       name="description"
                       content={_pageContent.seo[0].seoDescription}>

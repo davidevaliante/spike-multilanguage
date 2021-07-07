@@ -44,7 +44,10 @@ const index: FunctionComponent<Props> = ({  content }) => {
         <Fragment>
             <Head>
                 <title>Contacts</title>
-                <meta itemProp="description" content={`Contatta SPIKE tramite mail oppure tramite i canali social più utilizzati`} />
+                <meta
+                    name="description"
+                    content={`Contatta SPIKE tramite mail oppure tramite i canali social più utilizzati`}>
+                </meta>
 
                 <link rel="canonical" href={`https://spikeslot.com/contatti`} />
             </Head>

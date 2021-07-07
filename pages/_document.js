@@ -23,6 +23,7 @@ export default class Document extends NextDocument {
 
             if(lang === 'contatti') lang = 'it'
             if(lang === 'migliori-bonus-casino') lang = 'it'
+            if(lang === '[countryCode]') lang = 'it'
         }
         
        
