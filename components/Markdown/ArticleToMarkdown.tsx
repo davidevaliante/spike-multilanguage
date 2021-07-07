@@ -96,7 +96,7 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
 
     const replaceLink = (props : any) => {
         if(props.href === 'https://vincipromo.it/wincasino/?mp=42794b32-7604-49d2-92d0-8adf67a6b173') return <a rel='nofollow' href={props.href}>{props.children[0].props.children}</a>
-        return <a rel='nofollow' href={props.href}>{props.children[0].props.children}</a>
+        return <a href={props.href}>{props.children[0].props.children}</a>
     }
 
     return (
