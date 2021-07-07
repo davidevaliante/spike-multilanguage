@@ -56,7 +56,7 @@ export const getCanonicalPath = () => {
 
     console.log(router.basePath)
 
-    return `https://www.spikeslot.com${router.asPath}`
+    return `https://spikeslot.com${router.asPath}`
 }
 
 export const goFullScreen = () => {
