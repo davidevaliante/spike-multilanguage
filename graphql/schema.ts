@@ -322,8 +322,8 @@ export interface BonusGuide {
     bonus?: Bonus,
     slug?: string,
     country?: SupportedCountry,
-    image?: {
-        url?: string
+    image: {
+        url: string
     }
     seo?: Seo
 }

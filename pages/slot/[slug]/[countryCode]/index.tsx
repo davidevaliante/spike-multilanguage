@@ -66,7 +66,6 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
         setLoading(false)
     }
 
-    if(loading) return <FullPageLoader />
     return (
         <Fragment>
             <Head>

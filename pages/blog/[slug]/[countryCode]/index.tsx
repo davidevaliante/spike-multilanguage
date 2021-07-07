@@ -68,7 +68,6 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCo
         setLoading(false)
     }
 
-    if(loading) return <FullPageLoader />
     return (
         <Fragment>
             <Head>
@@ -77,23 +76,24 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCo
                     name="description"
                     content={article.seo?.seoDescription}>
                 </meta>
-                <link rel="canonical" href={getCanonicalPath()} />
+                <link rel="canonical" href={`https://spikeslot.com/blog/${article.slug}/${_requestedCountryCode}`} />
                 <meta httpEquiv="content-language" content="it-IT"></meta>
 
                 {/* <!-- Google / Search Engine Tags --> */}
                 <meta itemProp="name" content={article.seo?.seoTitle} />
                 <meta itemProp="description" content={article.seo?.seoDescription} />
-                <meta itemProp="image" content={article.image?.url}  />
+                <meta itemProp="image" content={injectCDN(article.image?.url)}  />
                 
                 {/* <!-- Twitter Meta Tags --> */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content={article.seo?.seoTitle} />
                 <meta name="twitter:description" content={article.seo?.seoDescription} />
-                <meta name="twitter:image" content={article.image?.url} />
+                <meta name="twitter:image" content={injectCDN(article.image?.url)} />
 
-
-                <meta property="og:image" content={article.image?.url} />
-                <meta property="og:locale" content={'it'} />
+                <meta property="og:title" content={article.seo?.seoTitle} />
+                <meta property="og:image" content={injectCDN(article.image?.url)} />
+                <meta property="og:url" content={`https://spikeslot.com/blog/${article.slug}/${_requestedCountryCode}`} />
+                <meta property="og:locale" content={_requestedCountryCode} />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={article.seo?.seoDescription} />
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />

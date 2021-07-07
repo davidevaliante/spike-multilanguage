@@ -88,12 +88,10 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
         setLoading(false)
     }
 
-
-    if(loading) return <FullPageLoader />
     return <div>
         <Head>
             <title>{home.seo.seoTitle}</title>
-            <link rel="canonical" href="https://www.spikeslot.com" />
+            <link rel="canonical" href="https://spikeslot.com" />
             <meta
                 name="description"
                 content={home.seo.seoDescription}>
@@ -178,14 +176,12 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                             width={56}
                             height={56}
                             source='/icons/flame_icon.svg' />
-                        <h1 className='video-header'>{t(`Watch SPIKE's latest video`)}</h1>
+                        <h4 className='video-header'>{t(`Watch SPIKE's latest video`)}</h4>
                     </div>
 
                     <LatestVideoCard />
 
                     <Newsletter />
-
-                    <h1 style={{paddingTop : '1rem'}} className='bonus-header'>I migliori bonus di benvenuto</h1>
 
                     <div style={{top : '820px'}} className='bonus-column-container'>
                         {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.name} bonus={bo} isBakeca={isBakeca} />)}

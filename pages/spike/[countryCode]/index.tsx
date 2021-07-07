@@ -65,8 +65,6 @@ const About: FunctionComponent<Props> = ({ seo, content, bonusList, _requestedCo
     }, [_requestedCountryCode])
 
 
-
-    if(loading) return <FullPageLoader />
     return (
         <Fragment>
                 <Head>

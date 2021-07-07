@@ -91,8 +91,6 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
         setLoading(false)
     }
 
-
-    if(loading) return <FullPageLoader />
     return <div>
         <Head>
             <title>{home.seo.seoTitle}</title>
@@ -102,6 +100,10 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
                 content={home.seo.seoDescription}>
             </meta>
             <meta httpEquiv="content-language" content={buildContentLanguageString(contextCountry)}></meta>
+            <link rel="canonical" href={`https://spikeslot.com/${_requestedCountryCode}`} />
+
+            <meta property="og:title" content={home.seo.seoTitle} />
+            <meta property="og:url" content={`https://spikeslot.com/${_requestedCountryCode}`} />
             <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
             <meta property="og:locale" content={contextCountry} />
             <meta property="og:type" content="article" />
@@ -164,15 +166,12 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
                             width={56}
                             height={56}
                             source='/icons/flame_icon.svg' />
-                        <h1 className='video-header'>{"Watch SPIKE's latest video"}</h1>
+                        <h4 className='video-header'>{"Watch SPIKE's latest video"}</h4>
                     </div>
 
                     <LatestVideoCard />
 
                     <Newsletter />
-
-
-                    <h1 style={{paddingTop : '1rem'}} className='bonus-header'>I migliori bonus di benvenuto</h1>
 
                     <div style={{top : '820px'}} className='bonus-column-container'>
                         {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.name} bonus={bo} />)}

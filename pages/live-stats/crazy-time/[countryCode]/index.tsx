@@ -152,7 +152,6 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
       setSelectedFilters(change)
     }
 
-    if(loading) return <FullPageLoader />
     return <Fragment>
         <NavbarProvider currentPage='Crazy Time Stats' countryCode={contextCountry}>
             <Head>

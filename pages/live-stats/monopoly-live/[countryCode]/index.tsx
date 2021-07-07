@@ -164,7 +164,6 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
       setSelectedFilters(change)
     }
 
-    if(loading) return <FullPageLoader />
     return <Fragment>
         <NavbarProvider  currentPage='Monopoly Stats' countryCode={contextCountry}>
                 <Head>

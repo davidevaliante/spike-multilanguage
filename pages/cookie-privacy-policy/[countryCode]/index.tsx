@@ -31,7 +31,6 @@ const index: FunctionComponent<Props> = ({ seo, content, _requestedCountryCode }
     }, [])
 
 
-    if(loading) return <FullPageLoader />
     return (
         <Fragment>
             <Head>
@@ -40,6 +39,7 @@ const index: FunctionComponent<Props> = ({ seo, content, _requestedCountryCode }
                     name="description"
                     content={seo.seoDescription}>
                 </meta>
+                <link rel="canonical" href={`https://spikeslot.com/cookie-privacy-policy/${_requestedCountryCode}`} />
                 <meta httpEquiv="content-language" content="it-IT"></meta>
             </Head>
 

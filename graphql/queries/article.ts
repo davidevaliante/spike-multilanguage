@@ -1,7 +1,9 @@
 export const ARTICLE_BY_SLUG = `
 query ARTICLE_BY_SLUG($slug:String, $countryCode:String){
     articles(where: {slug:$slug, country: {code: $countryCode}}){
+      created_at
       title
+      slug
       seo{
         seoTitle
         seoDescription

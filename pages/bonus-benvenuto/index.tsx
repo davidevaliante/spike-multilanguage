@@ -39,7 +39,7 @@ const index: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCountr
         <NavbarProvider currentPage='/bonus-bakeca' countryCode={contextCountry}>
             <Head>
                 <title>{t("Best Casino Bonuses |  SPIKE")}</title>
-                <link rel="canonical" href={getCanonicalPath()} />
+                <link rel="canonical" href={`https://spikeslot.com/bonus-benvenuto`} />
                 <meta name="robots" content="noindex" />
                 <meta
                     name="description"

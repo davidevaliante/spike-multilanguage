@@ -77,7 +77,6 @@ const BestBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage,_requestedCo
     }
 
 
-    if(loading) return <FullPageLoader />
     return (
         <NavbarProvider currentPage='/migliori-bonus-casino' countryCode={contextCountry}>
             <Head>

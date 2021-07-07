@@ -286,7 +286,6 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
         }
     }
 
-    if(loading) return <FullPageLoader />
     return (
         <StyleProvider>
             <Head>

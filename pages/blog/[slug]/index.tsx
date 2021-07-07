@@ -3,7 +3,7 @@ import NavbarProvider from '../../../components/Navbar/NavbarProvider'
 import AquaClient from './../../../graphql/aquaClient'
 import { BLOG_ARTICLES_BY_COUNTRY } from './../../../graphql/queries/blogarticle'
 import { FunctionComponent } from 'react'
-import { getCanonicalPath, getUserCountryCode } from '../../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode, injectCDN } from '../../../utils/Utils'
 import styled from 'styled-components'
 import { BodyContainer, MainColumn, RightColumn } from '../../../components/Layout/Layout'
 import LatestVideoCard from '../../../components/Cards/LatestVideoCard'
@@ -81,9 +81,6 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
         setContextCountry(_requestedCountryCode)
     }, [_requestedCountryCode])
 
-
-    if(loading) return <FullPageLoader />
-
     return (
         <Fragment>
             
@@ -107,8 +104,11 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
                 <meta name="twitter:description" content={blogList.seo.seoDescription} />
                 <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
-                <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                <meta property="og:locale" content={'it'} />
+
+                <meta property="og:title" content={`SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo`} />
+                <meta property="og:image" content={`https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg`} />
+                <meta property="og:url" content={`https://spikeslot.com/blog/${_requestedCountryCode}`} />
+                <meta property="og:locale" content={_requestedCountryCode} />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={blogList.seo.seoDescription} />
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />

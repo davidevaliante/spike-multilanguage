@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect } from 'react'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import AquaClient from '../../../../graphql/aquaClient'
 import { FunctionComponent } from 'react'
-import { getCanonicalPath } from '../../../../utils/Utils'
+import { getCanonicalPath, injectCDN } from '../../../../utils/Utils'
 import styled from 'styled-components'
 import { BodyContainer, MainColumn, RightColumn } from '../../../../components/Layout/Layout'
 import LatestVideoCard from '../../../../components/Cards/LatestVideoCard'
@@ -27,6 +27,8 @@ const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode 
 
     const { t, setContextCountry} = useContext(LocaleContext)
 
+    console.log(article)
+
     useEffect(() => {
         setContextCountry(countryCode)
     }, [])
@@ -41,6 +43,7 @@ const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode 
                 </meta>
                 <meta httpEquiv="content-language" content="it-IT"></meta>
                 <meta charSet="utf-8" />
+                <link rel="canonical" href={getCanonicalPath()} />
 
                 {/* <!-- Google / Search Engine Tags --> */}
                 <meta itemProp="name" content={article.seo?.seoTitle} />
@@ -53,10 +56,11 @@ const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode 
                 <meta name="twitter:description" content={article.seo?.seoDescription} />
                 <meta name="twitter:image" content={article.image[0].url} />
 
-                <meta property="og:image" content={article.image[0].url} />
-                <meta property="og:locale" content={'it'} />
+                <meta property="og:title" content={article.seo?.seoTitle} />
                 <meta property="og:type" content="article" />
-                <link rel="canonical" href={getCanonicalPath()} />
+                <meta property="og:image" content={injectCDN(article.image[0].url)} />
+                <meta property="og:url" content={`https://spikeslot.com/articoli/${article.slug}/${countryCode}`} />
+                <meta property="og:locale" content={'it'} />
                 <meta property="og:description" content={article.seo?.seoDescription} />
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
                 <meta property="article:tag" content={article.seo?.seoTitle} />

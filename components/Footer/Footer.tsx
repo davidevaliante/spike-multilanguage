@@ -176,7 +176,7 @@ const Footer = () => {
                     </section>
 
                 </Body>
-                <h1 onClick={() => setShow(!show)} className='show-more'>{!show ? t(`Show more`) : t(`Hide`)}</h1>
+                <h4 onClick={() => setShow(!show)} className='show-more'>{!show ? t(`Show more`) : t(`Hide`)}</h4>
 
                 <Body show={show}>
                     {article && show && <div>

@@ -158,7 +158,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
     )
 }
 
-const MainBonusHeader = styled.h1`
+const MainBonusHeader = styled.h3`
     color : ${(props) => props.theme.colors.primary};
     font-family : ${(props) => props.theme.text.secondaryFont};
     font-size : 1.5rem;

@@ -60,9 +60,6 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
         setLoading(false)
     }
 
-
-    
-    if(loading) return <FullPageLoader />
     return (
         <Fragment>
 
@@ -104,7 +101,7 @@ const GuidesList: FunctionComponent<Props> = ({ initialGuides, bonusList, articl
                         {initialGuides.map((guide, index) => <BonusGuideCard key={`guide_${index}`} guide={guide} />)}
                     </BonusGuideContainer>
 
-                    <h1 style={{ margin: '2rem 0rem' }}>{t('Online Slot, Slot Bar and VLT Cheats')} </h1>
+                    <h2 style={{ margin: '2rem 0rem' }}>{t('Online Slot, Slot Bar and VLT Cheats')} </h2>
                     <p>{t("GuidesTextContent2")}</p>
                     <ArticlesContainer>
                         {articles.map((article, index) => <ArticleCard key={`article_${index}`} article={article} />)}

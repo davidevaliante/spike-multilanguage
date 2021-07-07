@@ -40,12 +40,10 @@ const index: FunctionComponent<Props> = ({  content }) => {
 
     }
 
-
-    if(loading) return <FullPageLoader />
     return (
         <Fragment>
             <Head>
-                <link rel="canonical" href={getCanonicalPath()} />
+                <link rel="canonical" href={`https://spikeslot.com/contatti`} />
             </Head>
             <NavbarProvider currentPage='/contacts' countryCode={contextCountry}>
             <BodyContainer>
