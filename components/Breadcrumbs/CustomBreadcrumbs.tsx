@@ -452,7 +452,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                         "@type": "ListItem",
                         "position": 2,
                         "name": `SPIKE`,
-                        "item": `${websiteRoot}/spike`
+                        "item": `${websiteRoot}/spike/${contextCountry}`
                     }]
                 }
             }
@@ -470,7 +470,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/spike`}>
+                <a href={`/spike/${contextCountry}`}>
                     {name}
                 </a>
             </div>
@@ -508,7 +508,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({ from, name, currentPageLink, pr
                     <a>Home</a>
                 </Link>
                 <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                <a href={`/cookie-privacy-policy`}>
+                <a href={`/cookie-privacy-policy/${contextCountry}`}>
                     {name}
                 </a>
             </div>

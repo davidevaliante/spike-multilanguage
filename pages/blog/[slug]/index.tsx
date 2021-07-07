@@ -137,7 +137,7 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
                                 width={56}
                                 height={56}
                                 source='/icons/flame_icon.svg' />
-                            <h1 className='video-header'>{t("Watch SPIKE's latest video")}</h1>
+                            <h3 className='video-header'>{t("Watch SPIKE's latest video")}</h3>
                         </div>
                         <LatestVideoCard />
                  

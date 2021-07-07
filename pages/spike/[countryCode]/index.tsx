@@ -79,7 +79,6 @@ const About: FunctionComponent<Props> = ({ seo, content, bonusList, _requestedCo
                 <NavbarProvider currentPage='about' countryCode={contextCountry}>
                     <div style={{ width: '100%', marginBottom: '6rem', paddingTop : '3rem' }}>
                         {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/spike/${userCountry}`} />}
-
                         <BodyContainer>
                             <MainColumn>
                                 <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='about' name='SPIKE' />

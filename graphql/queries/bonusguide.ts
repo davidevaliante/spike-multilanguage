@@ -7,7 +7,7 @@ query BONUS_GUIDE_BY_SLUG_AND_COUNTRY($slug:String="starvegas", $countryCode:Str
     slug:$slug
   }){
     article
-
+    slug
     image{
       url
     }

@@ -20,6 +20,9 @@ export default class Document extends NextDocument {
 
             if(pathElements.length == 2 && pathElements[0] === '' && pathElements[1] === '') lang ='it'
             else lang = pathElements[pathElements.length - 1] === 'row' ? 'en' : pathElements[pathElements.length - 1]
+
+            if(lang === 'contatti') lang = 'it'
+            if(lang === 'migliori-bonus-casino') lang = 'it'
         }
         
        

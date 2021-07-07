@@ -72,7 +72,7 @@ const SlotMainFeatures: FunctionComponent<Props> = ({
 
     return (
         <Container style={style}>
-            <h1>{t("Main features")}</h1>
+            <p className='header'>{t("Main features")}</p>
             <div style={{ padding: '1rem' }}>
                 <p className='desc'>{t("Return to the player - RTP")}</p>
                 <p className='value'>{rtp}%</p>
@@ -190,7 +190,7 @@ const Container = styled.div`
     border-radius : 7px;
     margin-top : 4rem;
 
-    h1{
+    .header{
         color : white;
         background : ${(props) => props.theme.colors.primary};
         font-weight :bold;
