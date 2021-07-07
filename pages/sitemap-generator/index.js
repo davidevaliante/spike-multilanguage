@@ -228,7 +228,7 @@ const sitemapgenerator = () => {
 
 
   const test = () => {
-    const rootUrl = 'https://www.spikeslot.com'
+    const rootUrl = 'https://spikeslot.com'
 
     const mainUrls = [
       '/videos/it',
