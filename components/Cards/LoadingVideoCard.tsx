@@ -40,7 +40,7 @@ const LoadingVideoCard: FunctionComponent<Props> = ({ videoTitle }) => {
     return (
         <div>
             {videoData && <CardContainer headerColor={getColorForType(videoData.slotType)}>
-                <a href={`/videos/${snakeCase(replaceAll(videoData.title, '€', 'euro'))}/${currentCountry}`}>
+                <a href={`/videos/${snakeCase(replaceAll(videoData.title, '€', 'euro'))}/it`}>
                     <LazyVideoImage
                         alt={`${videoData.title} spike video`}
                         fromTop={100}
@@ -55,7 +55,7 @@ const LoadingVideoCard: FunctionComponent<Props> = ({ videoTitle }) => {
                     </div>
 
                     <div className='header-container'>
-                        <h3>{truncate(videoData.title, { 'length': 60 })}</h3>
+                        <h6>{truncate(videoData.title, { 'length': 60 })}</h6>
                     </div>
 
                     <div className='desc-container'>
@@ -122,7 +122,7 @@ const CardContainer = styled.div`
         }
     }
 
-    h3{
+    h6{
         padding : .5rem;
         font-size : 1rem;
         font-family:  ${(props) => props.theme.text.primaryFont} !important;

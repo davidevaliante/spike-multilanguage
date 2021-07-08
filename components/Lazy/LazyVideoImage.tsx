@@ -65,7 +65,6 @@ const LazyVideoImage: FunctionComponent<Props> = ({
             height={height}>
             {!_inView && withPlaceholder && <div style={style} className='grey-div'></div>}
 
-
             <img
                 style={style}
                 className={`image ${_inView ? 'fade-in' : ''} ${className ? className : ''}`}

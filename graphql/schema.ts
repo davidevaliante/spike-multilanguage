@@ -351,5 +351,6 @@ export interface BarSlotListPage {
 export interface Seo {
     seoTitle: string
     seoDescription: string
+    shareImg?:string
 }
 

@@ -19,6 +19,7 @@ import {useRouter} from 'next/router'
 import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import { LocaleContext } from './../../../../context/LocaleContext';
 import CountryEquivalentPageSnackbar from '../../../../components/Snackbars/CountryEquivalentPageSnackbar'
+import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 
 interface Props {
     article: BG,
@@ -102,12 +103,20 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCo
             </Head>
 
             <NavbarProvider currentPage={`/blog-article/${article.seo?.seoTitle}`} countryCode={contextCountry}>
-                <CustomBreadcrumbs
-                    style={{ padding: '1rem 1rem' }}
-                    name={article.title}
-                    from='blog-article' />
+                <TopRowContainer>
+                    <CustomBreadcrumbs
+                        style={{ padding: '1rem 1rem' }}
+                        name={article.title}
+                        from='blog-article' />
+                    <ShareButtons 
+                        title={article.seo?.seoTitle} 
+                        description={article.seo?.seoDescription} 
+                        url={`https://spikeslot.com/blog/${article.slug}/${_requestedCountryCode}`} 
+                        image={article.seo?.shareImg ? article.seo.shareImg : injectCDN(article.image?.url) }/>
+                </TopRowContainer>
 
                 <BodyContainer>
+
                     <MainColumn>
                         <Wrapper>
                             <ArticleToMarkdown content={article.article} />
@@ -115,6 +124,9 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList,_requestedCo
                     </MainColumn>
 
                     <RightColumn>
+                        
+
+
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <Icon
                                 width={56}

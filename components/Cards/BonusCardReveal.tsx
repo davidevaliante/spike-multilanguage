@@ -28,8 +28,6 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
         return b
     }
 
-	console.log(bonus.name)
-
 
     const {t, contextCountry} = useContext(LocaleContext)
 

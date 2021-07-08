@@ -27,6 +27,7 @@ import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { useRouter }  from 'next/router'
 import { LocaleContext } from './../../../../context/LocaleContext';
 import FullPageLoader from '../../../../components/Layout/FullPageLoader'
+import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 
 interface PageProps extends NextPageContext {
     _shallow : boolean
@@ -100,14 +101,23 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                 {!isPlayingMobile && <NavbarProvider currentPage={`/slot/${slot?.name}`} countryCode={contextCountry}>
                     <Body>
                         <div>
-                            <CustomBreadcrumbs
-                                style={{ padding: '1.5rem 1rem' }}
-                                slotSlug={slot?.slug}
-                                slotName={slot?.name}
-                                producerName={slot?.producer.name}
-                                producerSlug={slot?.producer.slug}
-                                name={slot?.name}
-                                from='slot' />
+                            <TopRowContainer>
+                                <CustomBreadcrumbs
+                                    style={{ padding: '1.5rem 1rem' }}
+                                    slotSlug={slot?.slug}
+                                    slotName={slot?.name}
+                                    producerName={slot?.producer.name}
+                                    producerSlug={slot?.producer.slug}
+                                    name={slot?.name}
+                                    from='slot' />
+
+                                <ShareButtons 
+                                    title={slot.seo?.seoTitle} 
+                                    description={slot.seo?.seoDescription} 
+                                    url={`https://spikeslot.com/slot/${slot.slug}/${contextCountry}`} 
+                                    image={slot.seo?.shareImg ? slot.seo.shareImg : injectCDN(slot.image.url) }/> 
+
+                            </TopRowContainer>
 
                             <Container>
                                 <div style={{ overflow: 'hidden ', border: '1px solid white' }}>

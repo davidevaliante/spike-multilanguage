@@ -16,6 +16,7 @@ import { ARTICLE_BY_SLUG } from './../../../../graphql/queries/article'
 import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { LocaleContext } from '../../../../context/LocaleContext'
+import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 
 interface Props {
     article: Article,
@@ -68,10 +69,20 @@ const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode 
             </Head>
 
             <NavbarProvider currentPage={`/articoli/${article.title}`} countryCode={countryCode}>
-                <CustomBreadcrumbs
-                    style={{ padding: '1rem 1rem' }}
-                    name={article.title}
-                    from='article' />
+                <TopRowContainer>
+                    <CustomBreadcrumbs
+                        style={{ padding: '1rem 1rem' }}
+                        name={article.title}
+                        from='article' />
+
+                    <ShareButtons 
+                        title={article.seo?.seoTitle} 
+                        description={article.seo?.seoDescription} 
+                        url={`https://spikeslot.com/articoli/${article.slug}/${countryCode}`} 
+                        image={article.seo?.shareImg ? article.seo.shareImg : injectCDN(article.image[0].url) }/> 
+                        
+                </TopRowContainer>
+
                 <BodyContainer>
 
                     <MainColumn>

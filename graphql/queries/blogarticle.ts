@@ -10,6 +10,7 @@ query BLOG_ARTICLE_BY_SLUG($slug:String){
       seo{
         seoTitle
         seoDescription
+        shareImg
       }
     }
   }

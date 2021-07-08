@@ -7,6 +7,7 @@ query HOME_FOR_COUNTRY($countryCode : String) {
         seo{
             seoTitle
             seoDescription
+            shareImg
         }
     		
         producerSlots{

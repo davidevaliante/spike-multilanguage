@@ -19,6 +19,8 @@ import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import {useRouter} from 'next/router'
 import {countryContext} from '../../../../context/CountryContext'
 import { LocaleContext } from '../../../../context/LocaleContext'
+import ShareButtons from '../../../../components/Seo/ShareButtons'
+import { TopRowContainer } from './../../../../components/Seo/ShareButtons'
 
 interface Props {
     bonusGuide: BonusGuide,
@@ -74,11 +76,22 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList,countr
             </Head>
 
             <NavbarProvider currentPage={`Guida - ${bonusGuide?.bonus?.name} - ${bonusGuide?.bonus?.country.code}`} countryCode={contextCountry}>
-                <CustomBreadcrumbs
-                    style={{ padding: '1rem 1rem' }}
-                    guideSlug={bonusGuide?.slug}
-                    name={bonusGuide?.bonus?.name}
-                    from='guide' />
+                <TopRowContainer>
+                    
+                    <CustomBreadcrumbs
+                        style={{ padding: '1rem 1rem' }}
+                        guideSlug={bonusGuide?.slug}
+                        name={bonusGuide?.bonus?.name}
+                        from='guide' />
+
+                    <ShareButtons 
+                        title={bonusGuide.seo?.seoTitle} 
+                        description={bonusGuide.seo?.seoDescription} 
+                        url={`https://spikeslot.com/guida/${bonusGuide.slug}/${countryCode}`} 
+                        image={bonusGuide.seo?.shareImg ? bonusGuide.seo.shareImg : injectCDN(bonusGuide.image.url) }/> 
+
+                </TopRowContainer>
+ 
 
                 <BodyContainer>
 
@@ -89,6 +102,8 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList,countr
                     </MainColumn>
 
                     <RightColumn>
+
+
                         <PrimaryBonusCard withSuggestion={false} bonus={bonusGuide?.bonus!} />
                         <div style={{ marginTop: '8rem' }} className='bonus-column-container'>
                             {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />)}

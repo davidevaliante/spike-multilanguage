@@ -39,6 +39,7 @@ query BONUS_GUIDE_BY_SLUG_AND_COUNTRY($slug:String="starvegas", $countryCode:Str
     seo{
       seoTitle
       seoDescription
+      shareImg
     }
     
   }

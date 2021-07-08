@@ -99,6 +99,7 @@ export const SLOT_WITH_SLUG = `
             seo{
               seoTitle
               seoDescription
+              shareImg
             }
 
             producer{
