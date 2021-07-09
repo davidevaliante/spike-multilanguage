@@ -58,7 +58,7 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
                 </div>}
                 <Divider color='#a8a8a8' style={{ marginBottom: '1.5rem' }} />
 
-                <ArticleToMarkdown content={topArticle} />
+                <ArticleToMarkdown style={{marginBottom : '2rem'}} content={topArticle} />
 
             </DescriptionContainer>
         </Fragment >
