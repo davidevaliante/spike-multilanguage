@@ -6,6 +6,7 @@ import AquaClient from './../../graphql/aquaClient'
 import { FOOTER } from '../../graphql/queries/footer'
 import CoFreeImage from '../Singles/CoFreeImage'
 import { LocaleContext } from '../../context/LocaleContext'
+import { laptop } from './../Responsive/Breakpoints'
 
 const Footer = () => {
 
@@ -185,17 +186,32 @@ const Footer = () => {
                 </Body>
 
                 <Divider />
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <p style={{ textAlign: 'center', padding: '2rem' }}>Slot Online in Italia | Copyright ©2021 www.spikeslot.com</p>
+                <LowerFooterContainer>
+                    <div style={{display : 'flex', justifyContent : 'center', alignItems : 'center', padding: '2rem'}}>
+                        <a href={contextCountry === 'it' ? 'https://spikeslot.com' : `https://spikeslot.com/${contextCountry}`} style={{ textAlign: 'center',  }}>Slot Online in Italia </a>
+                        <p style={{marginLeft : '.5rem', textAlign : 'center'}}>Copyright ©2021 www.spikeslot.com</p>
+                    </div>
                     <CoFreeImage />
-                    <p style={{ textAlign: 'center', paddingLeft: '2rem' }}>GPWA Verification</p>
                     <a href="//www.dmca.com/Protection/Status.aspx?ID=232dd2f5-6e9d-47e7-8826-660e6eade29e" title="DMCA.com Protection Status" className="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca_protected_9_120.png?ID=232dd2f5-6e9d-47e7-8826-660e6eade29e" alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
                     <p style={{ textAlign: 'center', padding: '2rem' }}>Giochi di slot machine gratuiti</p>
-                </div>
+                </LowerFooterContainer>
             </div>
         </Container>
     )
 }
+
+const LowerFooterContainer = styled.div`
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    align-items : center;
+
+    ${laptop}{
+        flex-direction : row;
+        justify-content: center;
+        align-items : center;
+    }
+`
 
 const Divider = styled.div`
     height : 2px;

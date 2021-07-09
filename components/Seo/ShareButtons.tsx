@@ -10,20 +10,22 @@ interface IShareButtons {
     description? : string
 }
 
+const iconsDimension = 23
+
 const ShareButtons : FunctionComponent<IShareButtons> = ({title, url, image, description}) => {
 
     return (
         <Container>
             <PinterestShareButton title={title} url={url} media={image} description={description}>
-                <Image width={46} height={46} src={`/icons/pinterest.svg`}/>
+                <Image width={iconsDimension} height={iconsDimension} src={`/icons/pinterest.svg`}/>
             </PinterestShareButton>  
 
             <WhatsappShareButton className='image' title={title} url={url}>
-                <Image width={46} height={46} src={`/icons/whatsapp.svg`}/>
+                <Image width={iconsDimension} height={iconsDimension} src={`/icons/whatsapp.svg`}/>
             </WhatsappShareButton>   
 
             <FacebookShareButton quote={title} url={url} >
-                <Image width={46} height={46} src={`/icons/facebook.svg`}/>
+                <Image width={iconsDimension} height={iconsDimension} src={`/icons/facebook.svg`}/>
             </FacebookShareButton>        
         </Container>
     )

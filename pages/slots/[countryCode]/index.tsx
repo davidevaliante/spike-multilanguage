@@ -24,7 +24,6 @@ import LoadMoreButton from '../../../components/Buttons/LoadMoreButton'
 import ArticleToMarkdown from '../../../components/Markdown/ArticleToMarkdown'
 import Head from 'next/head'
 import usePrevious from '../../../hooks/usePrevious'
-import FullPageLoader from '../../../components/Layout/FullPageLoader'
 import { translateHeadString } from '../../../translations/TranslationsUtils'
 import { LocaleContext } from '../../../context/LocaleContext'
 import ProducersList, { OptionalFiltersContainer, MainFiltersContainer, MoreFiltersWrapper, MoreFiltersList, MoreFiltersButton } from '../../../components/Lists/ProducersList'
@@ -326,11 +325,7 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                             }}
                             from='slot-list' />
 
-                        <ArticleToMarkdown 
-                            style={{ 
-                                padding: '0rem 1rem' 
-                            }} 
-                            content={injectCDN(slotListArticles?.topArticle!)} />
+                        <ArticleToMarkdown style={{ padding: '0rem 1rem' }} content={injectCDN(slotListArticles?.topArticle!)} />
 
                         <SlotListHighlightSlot 
                             style={{ 
@@ -398,7 +393,6 @@ const Slots: FunctionComponent<Props> = ({ _shallow, _initialSlots, _bonusList, 
                         <LoadMoreButton onLoadMore={() => loadNextOrderedBatch(ordering)} />
 
                         <ArticleToMarkdown style={{ padding: '0rem 1rem' }} content={injectCDN(slotListArticles?.bottomArticle!)} />
-
                     </MainColumn>
 
                     <RightColumn>

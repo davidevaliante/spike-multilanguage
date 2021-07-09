@@ -16,7 +16,7 @@ const MarkdownProvider: FunctionComponent<Props> = ({ style, children }) => {
 }
 
 const MarkDownStyleProvider = styled.div`
-    margin-bottom : 1rem;
+    margin-bottom : 6rem;
 
     h1,h2,h3 {
         color : ${(props) => props.theme.colors.primary};
