@@ -54,7 +54,7 @@ const SlotListHighlightSlot: FunctionComponent<Props> = ({ slotData, style,count
                         <div onClick={() => goToHighlightSlot()} style={{ display: 'flex', marginTop: '1rem', justifyContent: 'space-around', width: '100%' }}>
                             <div className='col'>
                                 <img src='/icons/slot_icon.svg' />
-                                <p>{t("95.03% RTP")}</p>
+                                <p>{"95.03% RTP"}</p>
                             </div>
 
                             <div className='col'>
