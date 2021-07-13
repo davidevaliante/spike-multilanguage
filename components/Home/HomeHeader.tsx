@@ -24,11 +24,11 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
                         <h1>SPIKE SLOT</h1>
                         <LazyImage
                             style={{ marginLeft: '1rem', cursor: 'pointer' }}
-                            width={16}
-                            height={16}
+                            width={24}
+                            height={24}
                             onClick={() => setDisclaimerOpen(!disclaimerOpen)}
                             alt='alert icon'
-                            src='/icons/alert.svg' />
+                            src='/icons/info-icon.svg' />
                     </HeaderContainer>
 
                     <Link href={'/slots/[countryCode]'} as={`/slots/${contextCountry}`}>
