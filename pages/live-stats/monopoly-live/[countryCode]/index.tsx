@@ -53,9 +53,6 @@ const SPAM_BONUSES = true
 const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _lastTenSpins, _bonuses, _pageContent, _stats, _countryCode}) => {
 
     const aquaClient = new AquaClient()
-
-    console.log(_lastTenSpins, _tables)
-
     const MenuProps = {
       disableAutoFocusItem : true,
       PaperProps: {
@@ -100,12 +97,15 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
             setTimeFrame(timeFrame)
             // we'll receive updates from the newly joined TimeFrame here
             socket.on(timeFrame, data => {
-                console.log(data, timeFrame)
+                // console.log(data, timeFrame)
                 // this is the update regarding the top cards with percentages
                 const topUpdate = data.stats.stats
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
-                if(rows) setRows(mergeWithUpdate(rows, updatedRows))
+                if(rows) setRows(mergeWithUpdate(rows, updatedRows.map(r => {
+                  r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                  return r
+                })))
                 setTables(data.tables[0])
             })
         }
@@ -120,13 +120,16 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _tables, _last
             socket.emit(timeFrame)
             // whenever the server sends updates to a given TimeFrame subcribers we receive them here
             socket.on(timeFrame, (data) => {
-                console.log(data, timeFrame)
+                // console.log(data, timeFrame)
                 // this is the update regarding the top cards with percentages
                 const topUpdate = data.stats.stats
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
                 // we merge the current rows and the updated rows updating the table afterward
-                if(rows) setRows(mergeWithUpdate(rows, updatedRows))
+                if(rows) setRows(mergeWithUpdate(rows, updatedRows.map(r => {
+                  r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                  return r
+                })))
                 setTables(data.tables[0])
                 setLastUpdate(now())
             })
@@ -358,14 +361,17 @@ export const getServerSideProps = async ({query, req, res}) => {
         props : {
             _requestedCountryCode,
             _tables : pageData.data.tables[0],
-            _lastTenSpins : pageData.data.spinsInTimeFrame,
+            _lastTenSpins : pageData.data.spinsInTimeFrame.map(r => {
+              r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+              return r
+            }),
             _stats : pageData.data.stats,
-			_bonuses : countryCode === 'it' ? orderedBonusList.map(b => {
+			      _bonuses : countryCode === 'it' ? orderedBonusList.map(b => {
                 b.link = bonusRemapping[b.name]
                 return b
             }) : orderedBonusList,
             _pageContent : pageContent.data.data.monopolyArticles[0],
-			_countryCode : countryCode
+			      _countryCode : countryCode
         }
     }
 }

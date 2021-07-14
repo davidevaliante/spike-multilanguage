@@ -93,7 +93,10 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                 const topUpdate = data.stats.stats
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
-                if(rows) setRows(mergeWithUpdate(rows, updatedRows))
+                if(rows) setRows(mergeWithUpdate(rows, updatedRows.map(r => {
+                  r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                  return r
+                })))
                 setStats(topUpdate)
             })
         }
@@ -114,7 +117,10 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
                 // we merge the current rows and the updated rows updating the table afterward
-                if(rows) setRows(mergeWithUpdate(rows, updatedRows))
+                if(rows) setRows(mergeWithUpdate(rows, updatedRows.map(r => {
+                  r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                  return r
+                })))
                 setStats(topUpdate)
                 setLastUpdate(now())
             })
@@ -331,13 +337,16 @@ export const getServerSideProps = async ({query, req, res}) => {
         props : {
             _requestedCountryCode,
             _stats : pageData.data.stats,
-            _lastTenSpins : pageData.data.spinsInTimeFrame,
+            _lastTenSpins : pageData.data.spinsInTimeFrame.map(r => {
+              r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+              return r
+            }),
             _bonuses : countryCode === 'it' ? orderedBonusList.map(b => {
                 b.link = bonusRemapping[b.name]
                 return b
             }) : orderedBonusList,
             _pageContent : pageContent.data.data.crazyTimeArticles[0],
-			_countryCode : countryCode
+			      _countryCode : countryCode
         }
     }
 }

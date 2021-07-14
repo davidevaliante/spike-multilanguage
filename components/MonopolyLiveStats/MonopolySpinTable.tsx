@@ -3,6 +3,8 @@ import { TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell
 import { symbolToSlotResultImage, symbolToSpinResultImage } from '../../utils/ImageUtils'
 import { Spin } from '../../data/models/Spin'
 import format from 'date-fns-tz/format'
+import { zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz'
+
 import styled, { useTheme } from 'styled-components'
 import { orderBy } from 'lodash'
 import { LocaleContext } from '../../context/LocaleContext'
