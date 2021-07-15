@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState, useContext } from 'react'
 import { TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell, Button, withStyles, Theme, createStyles, Checkbox, TableSortLabel, makeStyles, TablePagination, FormControlLabel, Switch, IconButton } from '@material-ui/core'
 import { symbolToSlotResultImage, symbolToSpinResultImage } from '../../utils/ImageUtils'
-import MultiplierTableCell from './MultiplierTableCell'
 import { Spin } from '../../data/models/Spin'
 import format from 'date-fns-tz/format'
 import styled, { useTheme } from 'styled-components'
