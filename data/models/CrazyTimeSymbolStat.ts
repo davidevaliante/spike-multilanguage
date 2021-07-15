@@ -11,3 +11,10 @@ export interface MonopolySymbolStat {
     percentage : number,
     spinSince : number
 }
+
+export interface DreamcatcherSymbolStat {
+    symbol : string,
+    lands : number,
+    percentage : number,
+    spinSince : number
+}

@@ -136,7 +136,8 @@
           "Mid Rolls" : "Mid Rolls",
           "High Rolls" : "High Rolls",
           "Monopoly Statistics" : "Monopoly Live Stats",
-          "Expected" : "Expected"
+          "Expected" : "Expected",
+          "Special Multiplier" : "Special Multiplier"
         }
     },
     "it": {
@@ -281,7 +282,10 @@
           "Low Rolls" : "Tiri Bassi",
           "Mid Rolls" : "Tiri Medi",
           "High Rolls" : "Tiri Alti",
-          "Rolls" : "Tiri"
+          "Rolls" : "Tiri",
+          "Special Multiplier" : "Moltiplicatore Speciale",
+          "Dream Catcher Statistics" : "Statistiche Dream Cacther",
+          "You can play at DREAM CATCHER here" : "Puoi giocare alla DREAM CATCHER qui:"
       }
     },
     "row": {
@@ -427,7 +431,10 @@
           "High Rolls" : "High Rolls",
           "Rolls" : "Rolls",
           "Monopoly Statistics" : "Monopoly Live Stats",
-          "Expected":"Expected"
+          "Expected":"Expected",
+          "Special Multiplier" : "Special Multiplier",
+          "Dream Catcher Statistics" : "Dream Catcher Statistics",
+          "You can play at DREAM CATCHER here" : "You can play at DREAM CATCHER here"
       }
     },
     "ca": {
@@ -572,7 +579,10 @@
           "High Rolls" : "High Rolls",
           "Rolls" : "Rolls",
           "Monopoly Statistics" : "Monopoly Live Stats",
-          "Expected" : "Expected"
+          "Expected" : "Expected",
+          "Special Multiplier" : "Special Multiplier",
+          "Dream Catcher Statistics" : "Dream Catcher Statistics",
+          "You can play at DREAM CATCHER here" : "You can play at DREAM CATCHER here"
       }
     },
     "nz": {
@@ -717,8 +727,10 @@
           "High Rolls" : "High Rolls",
           "Rolls" : "Rolls",
           "Monopoly Statistics" : "Monopoly Live Stats",
-          "Expected" : "Expected"
-
+          "Expected" : "Expected",
+          "Special Multiplier" : "Special Multiplier",
+          "Dream Catcher Statistics" : "Dream Catcher Statistics",
+          "You can play at DREAM CATCHER here" : "You can play at DREAM CATCHER here"
       }
     },
     "rs": {
@@ -861,7 +873,10 @@
           "High Rolls" : "High Rolls",
           "Rolls" : "Rolls",
           "Monopoly Statistics" : "Monopoly Live Stats",
-          "Expected" : "Expected"
+          "Expected" : "Expected",
+          "Special Multiplier" : "Special Multiplier",
+          "Dream Catcher Statistics" : "Dream Catcher Statistics",
+          "You can play at DREAM CATCHER here" : "You can play at DREAM CATCHER here"
         }
     },
     "me": {
@@ -1004,7 +1019,10 @@
           "High Rolls" : "High Rolls",
           "Rolls" : "Rolls",
           "Monopoly Statistics" : "Monopoly Live Stats",
-          "Expected" : "Expected"
+          "Expected" : "Expected",
+          "Special Multiplier" : "Special Multiplier",
+          "Dream Catcher Statistics" : "Dream Catcher Statistics",
+          "You can play at DREAM CATCHER here" : "You can play at DREAM CATCHER here"
         }
     }
 }

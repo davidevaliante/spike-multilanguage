@@ -31,7 +31,7 @@ export const symbolToSlotResultImage = (symbolString : string) => {
 }
 
 
-export const symbolToSpinResultImage = (symbolString : string, game : 'crazy-time' | 'monopoly' = 'crazy-time') => {
+export const symbolToSpinResultImage = (symbolString : string, game : 'crazy-time' | 'monopoly' | 'dreamcatcher' = 'crazy-time') => {
     if(game === 'crazy-time'){
         switch(symbolString){
             case 'one':
@@ -69,6 +69,27 @@ export const symbolToSpinResultImage = (symbolString : string, game : 'crazy-tim
                 return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-2r_ee78ad08f5.png')}/>
             case 'fourrolls':
                 return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly-4r_404d02b0de.png')}/>
+        }
+    }
+
+    if(game === 'dreamcatcher'){
+        switch(symbolString){
+            case 'one':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-1_833467952a.png')}/>
+            case 'two':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-2_56ce403c16.png')}/>
+            case 'five':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-5_c9b1f823b1.png')}/>
+            case 'ten':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-10_45ea179a8c.png')}/>
+            case 'twenty':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-20_25b58433fd.png')}/>
+            case 'fourty':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-40_2d67647708.png')}/>
+            case 'twox':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-2x_ca1958f422.png')}/>
+            case 'sevenx':
+                return <img width={rectWidht} height={rectHeight} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream-7x_710530a00a.png')}/>
         }
     }
 }
