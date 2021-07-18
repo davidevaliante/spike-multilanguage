@@ -13,15 +13,15 @@ const LiveStatsCta : FunctionComponent<Props> = (props: Props) => {
 
     const goToCrazyTime = () => Router.push('/live-stats/crazy-time/it')
     const goToMonopoly = () => Router.push('/live-stats/monopoly/it')
+    const goToDreamCatcher = () => Router.push('/live-stats/dream-catcher/it')
 
     return (
         <Container>
-            <CTAImage onClick={goToCrazyTime} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/crazy_time_cta_27c89931a9.jpeg')}/>
-            <CTAImageAnim className='pointer' onClick={goToMonopoly} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly_active_e9d2a6d505.jpeg')}/>
+            <CTAImage className='pointer' onClick={goToCrazyTime} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/crazy_time_cta_27c89931a9.jpeg')}/>
+            <CTAImage className='pointer' onClick={goToMonopoly} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly_active_e9d2a6d505.jpeg')}/>
 
             <ImgContainer>
-                <CTAImage src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream_catcher_active_e3832ccd0d.jpeg')}/>    
-
+                <CTAImageAnim onClick={goToDreamCatcher} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream_catcher_active_e3832ccd0d.jpeg')}/>    
                 <img className='sticker' src='/icons/new_icon.svg'/>
             </ImgContainer>
 
@@ -34,6 +34,10 @@ const Container = styled.div`
     display : flex;
     justify-content : space-around;
     margin-bottom : 3rem;
+
+    .pointer {
+        cursor : pointer;
+    }
     
 `
 
