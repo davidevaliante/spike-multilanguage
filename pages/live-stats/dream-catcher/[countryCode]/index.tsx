@@ -201,7 +201,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
             <BodyContainer>
                 <MainColumn style={{width : '100%', maxWidth : '90%', paddingBottom : '4rem', paddingTop : '2rem'}}>
 
-                    <DynamicContent content={_pageContent.topContent}/>
+                    {_pageContent.topContent && <DynamicContent content={_pageContent.topContent}/>}
 
                     <Divider style={{marginTop : '2rem'}} />
 
@@ -261,7 +261,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                     </div>
                  
                     {rows && <DreamCatcherTable rows={filteredRows} />}
-                    <DynamicContent content={_pageContent.bottomContent}/>
+                    {_pageContent.bottomContent && <DynamicContent content={_pageContent.bottomContent}/>}
 
                     {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses}  />}
 

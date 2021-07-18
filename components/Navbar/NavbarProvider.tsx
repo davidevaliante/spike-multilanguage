@@ -202,6 +202,7 @@ const NavbarProvider: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen,
                         >
                         <MenuItem onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}>Crazy Time</MenuItem>
                         <MenuItem onClick={() => router.push(`/live-stats/monopoly-live/${contextCountry}`)}>Monopoly</MenuItem>
+                        <MenuItem onClick={() => router.push(`/live-stats/dream-catcher/${contextCountry}`)}>Dream Catcher</MenuItem>
                     </Menu>
                 </div>
             )

@@ -17,13 +17,14 @@ const LiveStatsCta : FunctionComponent<Props> = (props: Props) => {
     return (
         <Container>
             <CTAImage onClick={goToCrazyTime} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/crazy_time_cta_27c89931a9.jpeg')}/>
+            <CTAImageAnim className='pointer' onClick={goToMonopoly} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly_active_e9d2a6d505.jpeg')}/>
 
             <ImgContainer>
-                <CTAImageAnim className='pointer' onClick={goToMonopoly} src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly_active_e9d2a6d505.jpeg')}/>
+                <CTAImage src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream_catcher_active_e3832ccd0d.jpeg')}/>    
+
                 <img className='sticker' src='/icons/new_icon.svg'/>
             </ImgContainer>
 
-            <CTAImage src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/dream_catcher_cta_cs_563ebc35ed.jpeg')}/>    
         </Container>
     )
 }
