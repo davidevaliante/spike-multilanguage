@@ -47,12 +47,13 @@ const generateRssItem = (post: BlogPostRss): string => `
 
 const generateRss = (posts: BlogPostRss[]): string => `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-        <channel>
-        <title>Le Migliori Slot Online | Slot da Bar e VLT | SPIKE SLOT</title>
-        <link>${websiteRoot}/blog/it</link>
-        <description>Nel Blog di SPIKE slot potrai trovare articoli di approfondimento e le rubriche periodiche su vari argomenti oltre le Slot e il Gioco d'azzardo.</description>
-        <language>it</language>
-        <lastBuildDate>${new Date(posts[0].created_at).toUTCString()}</lastBuildDate>
+            <channel>
+            <title>Le Migliori Slot Online | Slot da Bar e VLT | SPIKE SLOT</title>
+            <link>${websiteRoot}/blog/it</link>
+            <description>Nel Blog di SPIKE slot potrai trovare articoli di approfondimento e le rubriche periodiche su vari argomenti oltre le Slot e il Gioco d'azzardo.</description>
+            <language>it</language>
+            <lastBuildDate>${new Date(posts[0].created_at).toUTCString()}</lastBuildDate>
+            <atom:link href="https://spikeslot.com/rss.xml" rel="self" type="application/rss+xml" />
             ${posts.map(generateRssItem).join('')}
         </channel>
     </rss>
