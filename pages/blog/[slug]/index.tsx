@@ -21,7 +21,6 @@ import { tablet } from '../../../components/Responsive/Breakpoints'
 import { HOME_BONUS_LIST } from '../../../graphql/queries/bonus'
 import {useRouter} from 'next/router'
 import { LocaleContext } from '../../../context/LocaleContext'
-import FullPageLoader from '../../../components/Layout/FullPageLoader'
 import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
 
 interface Props {
@@ -112,6 +111,12 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content={blogList.seo.seoDescription} />
                 <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <link
+                    rel="alternate"
+                    type="application/rss+xml"
+                    title="RSS feed for blog posts"
+                    href="https://spikeslot.com/rss.xml"
+                />
             </Head>
 
             <NavbarProvider currentPage='/blog' countryCode={contextCountry}>

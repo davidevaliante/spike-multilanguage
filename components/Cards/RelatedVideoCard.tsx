@@ -25,7 +25,12 @@ const RelatedVideoCard: FunctionComponent<RelatedVideosProps> = ({ videoData }) 
         <a href={`/videos/${snakeCase(replaceAll(videoData.title, '€', 'euro'))}/${currentCountry}`}>
             <Container>
                 <LazyVideoImage width={150} height={'87px'} vid={videoData.videoId} />
-                <div style={{ display: 'flex', flexDirection: 'column', padding: '.5rem', justifyContent: 'space-around' }}>
+                <div style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    padding: '.5rem', 
+                    justifyContent: 'space-around' 
+                }}>
                     <h3>{videoData.title}</h3>
                     <h4>{typeToString(videoData.slotType)}</h4>
                 </div>
