@@ -42,11 +42,6 @@ const generateRssItem = (post: BlogPostRss): string => `
         <link>${websiteRoot}/blog/${post.slug}</link>
         <description>${post.seo.seoDescription}</description>
         <pubDate>${new Date(post.created_at).toUTCString()}</pubDate>
-        <image>
-            <url>${post.image.url}</url>
-            <title>${post.title}</title>
-            <link>${websiteRoot}/blog/${post.slug}/it</link>
-        </image>
     </item>
 `
 
@@ -58,7 +53,6 @@ const generateRss = (posts: BlogPostRss[]): string => `
         <description>Nel Blog di SPIKE slot potrai trovare articoli di approfondimento e le rubriche periodiche su vari argomenti oltre le Slot e il Gioco d'azzardo.</description>
         <language>it</language>
         <lastBuildDate>${new Date(posts[0].created_at).toUTCString()}</lastBuildDate>
-        <atom:link href="${websiteRoot}/rss.xml" rel="self" type="application/rss+xml"/>
             ${posts.map(generateRssItem).join('')}
         </channel>
     </rss>
