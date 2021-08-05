@@ -44,7 +44,6 @@ const generateRssItem = (post: BlogPostRss): string => `
         <pubDate>${new Date(post.created_at).toUTCString()}</pubDate>
     </item>
 `
-
 const generateRss = (posts: BlogPostRss[]): string => `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
             <channel>
