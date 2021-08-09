@@ -151,7 +151,10 @@ const BlogArticle: FunctionComponent<Props> = ({
         <BodyContainer>
           <MainColumn>
             <Wrapper>
-              <ArticleToMarkdown content={article.article} />
+              <ArticleToMarkdown
+                content={article.article}
+                allowBonuses={false}
+              />
             </Wrapper>
           </MainColumn>
 
