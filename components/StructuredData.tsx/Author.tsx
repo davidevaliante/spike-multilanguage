@@ -28,7 +28,7 @@ const Author: FunctionComponent<IAuthor> = ({
         {
           "@type": "Person",
           name: "SPIKE",
-          url: "http://spikeslot.com/spike/it",
+          url: "https://spikeslot.com/spike/it",
         },
       ],
     };
@@ -45,7 +45,7 @@ const Author: FunctionComponent<IAuthor> = ({
       {
         "@type": "Person",
         name: "SPIKE",
-        url: "http://spikeslot.com/spike/it",
+        url: "https://spikeslot.com/spike/it",
       },
     ],
   });

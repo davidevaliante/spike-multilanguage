@@ -47,8 +47,8 @@ export interface Producer {
 
 export interface Slot {
   id: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
   description: string;
   rtp: number;
   winningSpinFrequency: number;
