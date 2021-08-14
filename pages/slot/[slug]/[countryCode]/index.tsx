@@ -58,14 +58,10 @@ const SlotPage: FunctionComponent<PageProps> = ({
     useContext(LocaleContext);
   const [loading, setLoading] = useState(true);
 
-  const [slot, setSlot] = useState<Slot>(_slotData);
   const [primaryBonus, setPrimaryBonus] = useState(_slotData.mainBonus);
   const [auxiliaryBonuses, setAuxiliaryBonuses] = useState(
     _slotData?.bonuses.filter((b: Bonus) => b.name !== primaryBonus?.name)
   );
-
-  const [homeBonuses, setHomeBonuses] =
-    useState<{ bonus: ApolloBonusCardReveal }[]>(_bonusList);
 
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -89,14 +85,16 @@ const SlotPage: FunctionComponent<PageProps> = ({
     <Fragment>
       <Head>
         <title>
-          {slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`}
+          {_slotData?.seo
+            ? `${_slotData?.seo.seoTitle}`
+            : `${_slotData?.name} | SPIKE`}
         </title>
         <meta
           name="description"
           content={
-            slot?.seo
-              ? `${slot?.seo.seoDescription}`
-              : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
+            _slotData?.seo
+              ? `${_slotData?.seo.seoDescription}`
+              : `${_slotData?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
           }
         ></meta>
         <meta httpEquiv="content-language" content="it-IT"></meta>
@@ -106,22 +104,24 @@ const SlotPage: FunctionComponent<PageProps> = ({
         <meta
           itemProp="name"
           content={
-            slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`
+            _slotData?.seo
+              ? `${_slotData?.seo.seoTitle}`
+              : `${_slotData?.name} | SPIKE`
           }
         />
         <meta
           itemProp="description"
           content={
-            slot?.seo
-              ? `${slot?.seo.seoDescription}`
-              : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
+            _slotData?.seo
+              ? `${_slotData?.seo.seoDescription}`
+              : `${_slotData?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
           }
         />
         <meta
           itemProp="image"
           content={
-            slot.image.url
-              ? slot.image.url
+            _slotData.image.url
+              ? _slotData.image.url
               : "https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"
           }
         />
@@ -131,22 +131,24 @@ const SlotPage: FunctionComponent<PageProps> = ({
         <meta
           name="twitter:title"
           content={
-            slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`
+            _slotData?.seo
+              ? `${_slotData?.seo.seoTitle}`
+              : `${_slotData?.name} | SPIKE`
           }
         />
         <meta
           name="twitter:description"
           content={
-            slot?.seo
-              ? `${slot?.seo.seoDescription}`
-              : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
+            _slotData?.seo
+              ? `${_slotData?.seo.seoDescription}`
+              : `${_slotData?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
           }
         />
         <meta
           name="twitter:image"
           content={
-            slot.image.url
-              ? slot.image.url
+            _slotData.image.url
+              ? _slotData.image.url
               : "https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"
           }
         />
@@ -154,8 +156,8 @@ const SlotPage: FunctionComponent<PageProps> = ({
         <meta
           property="og:image"
           content={
-            slot.image.url
-              ? slot.image.url
+            _slotData.image.url
+              ? _slotData.image.url
               : "https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"
           }
         />
@@ -164,55 +166,57 @@ const SlotPage: FunctionComponent<PageProps> = ({
         <meta
           property="og:description"
           content={
-            slot?.seo
-              ? `${slot?.seo.seoDescription}`
-              : `${slot?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
+            _slotData?.seo
+              ? `${_slotData?.seo.seoDescription}`
+              : `${_slotData?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
           }
         />
         <meta
           property="og:site_name"
           content={
-            slot?.seo ? `${slot?.seo.seoTitle}` : `${slot?.name} | SPIKE`
+            _slotData?.seo
+              ? `${_slotData?.seo.seoTitle}`
+              : `${_slotData?.name} | SPIKE`
           }
         />
-        <meta property="article:tag" content={slot?.seo?.seoTitle} />
+        <meta property="article:tag" content={_slotData?.seo?.seoTitle} />
       </Head>
 
       <FadeInOut visible={!isPlayingMobile}>
         {!isPlayingMobile && (
           <NavbarProvider
-            currentPage={`/slot/${slot?.name}`}
+            currentPage={`/slot/${_slotData?.name}`}
             countryCode={contextCountry}
           >
             <Body>
               <div>
                 <Author
                   articleType="NewsArticle"
-                  headLine={slot.seo?.seoTitle}
-                  images={[slot.image.url]}
-                  datePublished={slot.created_at}
-                  dateModified={slot.updated_at}
+                  headLine={_slotData.seo?.seoTitle}
+                  images={[_slotData.image.url]}
+                  datePublished={_slotData.created_at}
+                  dateModified={_slotData.updated_at}
                 />
 
                 <TopRowContainer>
                   <CustomBreadcrumbs
                     style={{ padding: "1.5rem 1rem" }}
-                    slotSlug={slot?.slug}
-                    slotName={slot?.name}
-                    producerName={slot?.producer.name}
-                    producerSlug={slot?.producer.slug}
-                    name={slot?.name}
+                    slotSlug={_slotData?.slug}
+                    slotName={_slotData?.name}
+                    producerName={_slotData?.producer.name}
+                    producerSlug={_slotData?.producer.slug}
+                    name={_slotData?.name}
                     from="slot"
                   />
 
                   <ShareButtons
-                    title={slot.seo?.seoTitle}
-                    description={slot.seo?.seoDescription}
-                    url={`https://spikeslot.com/slot/${slot.slug}/${contextCountry}`}
+                    title={_slotData.seo?.seoTitle}
+                    description={_slotData.seo?.seoDescription}
+                    url={`https://spikeslot.com/slot/${_slotData.slug}/${contextCountry}`}
                     image={
-                      slot.seo?.shareImg
-                        ? slot.seo.shareImg
-                        : injectCDN(slot.image.url)
+                      _slotData.seo?.shareImg
+                        ? _slotData.seo.shareImg
+                        : injectCDN(_slotData.image.url)
                     }
                   />
                 </TopRowContainer>
@@ -223,32 +227,38 @@ const SlotPage: FunctionComponent<PageProps> = ({
                   >
                     <SlotBackgroundImage
                       isMobile={isMobile}
-                      image={injectCDN(slot?.image.url)}
+                      image={injectCDN(_slotData?.image.url)}
                     ></SlotBackgroundImage>
                   </div>
 
                   <div style={{ zIndex: 9 }}>
                     <TitleAndRating>
-                      <h1>{slot?.name}</h1>
+                      <h1>{_slotData?.name}</h1>
                       <StarContainer>
-                        {slot ? (
+                        {_slotData ? (
                           <>
-                            {[...Array(slot.rating).keys()].map((s, i) => (
+                            {[...Array(_slotData.rating).keys()].map((s, i) => (
                               <img
-                                key={`${snakeCase(slot.name)}_${i}_start_full`}
+                                key={`${snakeCase(
+                                  _slotData.name
+                                )}_${i}_start_full`}
                                 alt="full_star_icon"
                                 className="star"
                                 src="/icons/star_full.svg"
                               />
                             ))}
-                            {[...Array(5 - slot.rating).keys()].map((s, i) => (
-                              <img
-                                key={`${snakeCase(slot.name)}_${i}_start_empty`}
-                                alt="empty_star_icon"
-                                className="star"
-                                src="/icons/star_empty.svg"
-                              />
-                            ))}
+                            {[...Array(5 - _slotData.rating).keys()].map(
+                              (s, i) => (
+                                <img
+                                  key={`${snakeCase(
+                                    _slotData.name
+                                  )}_${i}_start_empty`}
+                                  alt="empty_star_icon"
+                                  className="star"
+                                  src="/icons/star_empty.svg"
+                                />
+                              )
+                            )}
                           </>
                         ) : (
                           ""
@@ -259,12 +269,12 @@ const SlotPage: FunctionComponent<PageProps> = ({
 
                   <SmallSlotCard
                     onClick={() => setIsPlayingMobile(true)}
-                    slug={slot?.slug}
-                    image={injectCDN(slot?.image.url)}
+                    slug={_slotData?.slug}
+                    image={injectCDN(_slotData?.image.url)}
                   />
 
                   <PlayArea>
-                    {isPlaying && <iframe src={slot?.playLink} />}
+                    {isPlaying && <iframe src={_slotData?.playLink} />}
                     {!isPlaying && (
                       <NeonButton onClick={() => setIsPlaying(true)} />
                     )}
@@ -286,26 +296,26 @@ const SlotPage: FunctionComponent<PageProps> = ({
               <div style={{ width: "100%", marginBottom: "6rem" }}>
                 <BodyContainer>
                   <MainColumn style={{ maxWidth: "800px", margin: "1rem" }}>
-                    <ArticleToMarkdown content={slot?.description} />
+                    <ArticleToMarkdown content={_slotData?.description} />
                   </MainColumn>
                   <RightColumn>
                     <SlotMainFeatures
-                      rtp={slot?.rtp}
-                      paymentMethods={slot?.mainBonus?.acceptedPayments}
-                      gameMode={slot?.gameMode}
-                      theme={slot?.theme}
-                      volatility={slot?.volatility}
-                      rating={slot?.rating}
-                      bonusName={slot?.mainBonus?.name}
-                      bonusLink={slot?.mainBonus?.link}
-                      winningSpinFrequency={slot?.winningSpinFrequency}
+                      rtp={_slotData?.rtp}
+                      paymentMethods={_slotData?.mainBonus?.acceptedPayments}
+                      gameMode={_slotData?.gameMode}
+                      theme={_slotData?.theme}
+                      volatility={_slotData?.volatility}
+                      rating={_slotData?.rating}
+                      bonusName={_slotData?.mainBonus?.name}
+                      bonusLink={_slotData?.mainBonus?.link}
+                      winningSpinFrequency={_slotData?.winningSpinFrequency}
                     />
                     <div
                       style={{ top: "0", position: "static" }}
                       className="bonus-column-container"
                     >
-                      {homeBonuses &&
-                        homeBonuses.map((bo) => (
+                      {_bonusList &&
+                        _bonusList.map((bo) => (
                           <BonusCardRevealComponent
                             key={bo.bonus.name}
                             bonus={bo.bonus}
@@ -321,7 +331,10 @@ const SlotPage: FunctionComponent<PageProps> = ({
       </FadeInOut>
 
       {isPlayingMobile && (
-        <PlayDimmer onClose={() => setIsPlayingMobile(false)} slotData={slot} />
+        <PlayDimmer
+          onClose={() => setIsPlayingMobile(false)}
+          slotData={_slotData}
+        />
       )}
     </Fragment>
   );
