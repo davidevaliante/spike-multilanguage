@@ -30,6 +30,7 @@ import CountryEquivalentPageSnackbar from "../../../../components/Snackbars/Coun
 import ShareButtons, {
   TopRowContainer,
 } from "../../../../components/Seo/ShareButtons";
+import Author from "../../../../components/StructuredData.tsx/Author";
 
 interface Props {
   article: BG;
@@ -135,6 +136,13 @@ const BlogArticle: FunctionComponent<Props> = ({
             style={{ padding: "1rem 1rem" }}
             name={article.title}
             from="blog-article"
+          />
+          <Author
+            articleType="NewsArticle"
+            headLine={article.seo?.seoTitle}
+            images={[article.image?.url]}
+            datePublished={article.created_at}
+            dateModified={article.updated_at}
           />
           <ShareButtons
             title={article.seo?.seoTitle}

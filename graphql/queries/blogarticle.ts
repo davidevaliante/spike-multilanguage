@@ -2,6 +2,8 @@ export const BLOG_ARTICLE_BY_SLUG = `
 query BLOG_ARTICLE_BY_SLUG($slug:String){
     blogArticles(where:{slug:$slug}){
       article
+      created_at
+      updated_at
       title
       slug
       image{
@@ -14,7 +16,7 @@ query BLOG_ARTICLE_BY_SLUG($slug:String){
       }
     }
   }
-`
+`;
 
 export const BLOG_ARTICLES_BY_COUNTRY = `
 query ARTICLES_BY_COUNTRY($countryCode:String="it"){
@@ -34,4 +36,4 @@ query ARTICLES_BY_COUNTRY($countryCode:String="it"){
 
   }
 }
-`
+`;
