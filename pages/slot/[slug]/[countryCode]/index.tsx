@@ -81,6 +81,8 @@ const SlotPage: FunctionComponent<PageProps> = ({
     setLoading(false);
   };
 
+  const [showProblemForm, setShowProblemForm] = useState(false);
+
   return (
     <Fragment>
       <Head>
@@ -219,6 +221,10 @@ const SlotPage: FunctionComponent<PageProps> = ({
                         : injectCDN(_slotData.image.url)
                     }
                   />
+
+                  {/* <ProblemButton onClick={() => setShowProblemForm(true)}>
+                    <p>Segnala un problema</p>
+                  </ProblemButton> */}
                 </TopRowContainer>
 
                 <Container>
@@ -339,6 +345,18 @@ const SlotPage: FunctionComponent<PageProps> = ({
     </Fragment>
   );
 };
+
+const ProblemButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: ${(props) => props.theme.colors.primary};
+  color: white;
+  text-align: center;
+  height: 30px;
+  padding: 0.5rem;
+`;
 
 const PlayArea = styled.div`
   display: none;

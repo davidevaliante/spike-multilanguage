@@ -1,83 +1,97 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { FunctionComponent, Fragment } from 'react';
-import { LocaleContext } from './../../../../context/LocaleContext';
-import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
-import { BodyContainer, MainColumn } from '../../../../components/Layout/Layout'
-import io, { Socket } from 'socket.io-client'
-import { Select, MenuItem, Paper, Divider, Input, Checkbox, ListItemText} from '@material-ui/core'
-import { TimeFrame } from '../../../../data/models/TimeFrames'
-import styled from 'styled-components'
-import axios from 'axios'
-import { DreamcatcherSymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
-import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
-import  { CrazyTimeTable } from '../../../../components/CrazyTimeLiveStats/CrazyTimeTable'
-import AquaClient from './../../../../graphql/aquaClient';
-import BonusStripe from '../../../../components/Cards/BonusStripe'
-import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
-import DynamicContent from '../../../../components/DynamicContent/DynamicContent'
-import Head from 'next/head'
-import { format } from 'date-fns';
-import now from 'lodash/now'
-import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
-import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
-import { dreamcatcherSymbolToFilterOption } from '../../../../data/models/DreamCatcherSpin'
-import { DreamCatcherSpin } from './../../../../data/models/DreamCatcherSpin'
-import { DreamCatcherTable } from '../../../../components/DramCatcherLiveStats/DreamCatcherTable'
-import DreamCatcherStatCard from './../../../../components/Cards/DreamCatcherStatCard'
+import React, { useContext, useState, useEffect } from "react"
+import { FunctionComponent, Fragment } from "react"
+import { LocaleContext } from "./../../../../context/LocaleContext"
+import NavbarProvider from "../../../../components/Navbar/NavbarProvider"
+import { BodyContainer, MainColumn } from "../../../../components/Layout/Layout"
+import io, { Socket } from "socket.io-client"
+import { Select, MenuItem, Paper, Divider, Input, Checkbox, ListItemText } from "@material-ui/core"
+import { TimeFrame } from "../../../../data/models/TimeFrames"
+import styled from "styled-components"
+import axios from "axios"
+import CrazyTimeStatCard from "../../../../components/Cards/CrazyTimeStatCard"
+import { CrazyTimeTable } from "../../../../components/CrazyTimeLiveStats/CrazyTimeTable"
+import AquaClient from "./../../../../graphql/aquaClient"
+import BonusStripe from "../../../../components/Cards/BonusStripe"
+import { Bonus, CrazyTimeArticle } from "../../../../graphql/schema"
+import DynamicContent from "../../../../components/DynamicContent/DynamicContent"
+import Head from "next/head"
+import { format } from "date-fns"
+import now from "lodash/now"
+import BonusesBackdrop from "../../../../components/Singles/BonusesBackdrop"
+import { HOME_BONUS_LIST } from "../../../../graphql/queries/bonus"
+import { dreamcatcherSymbolToFilterOption } from "../../../../data/models/DreamCatcherSpin"
+import { DreamCatcherSpin } from "./../../../../data/models/DreamCatcherSpin"
+import { DreamCatcherTable } from "../../../../components/DramCatcherLiveStats/DreamCatcherTable"
+import DreamCatcherStatCard from "./../../../../components/Cards/DreamCatcherStatCard"
+import { DreamcatcherSymbolStat } from "./../../../../data/models/CrazyTimeSymbolStat"
 
 interface Props {
-    _requestedCountryCode : string
-    _stats : {
-      totalSpins : number,
-      lastTenSpins : DreamCatcherSpin[]
-      stats : any
+    _requestedCountryCode: string
+    _stats: {
+        totalSpins: number
+        lastTenSpins: DreamCatcherSpin[]
+        stats: any
     }
-    _lastTenSpins : DreamCatcherSpin[]
-    _bonuses : Bonus[]
-    _pageContent : CrazyTimeArticle,
-	_countryCode : string
+    _lastTenSpins: DreamCatcherSpin[]
+    _bonuses: Bonus[]
+    _pageContent: CrazyTimeArticle
+    _countryCode: string
 }
 
-const SOCKET_ENDPOINT = 'https://dreamcatcher.spike-realtime-api.eu'
+const SOCKET_ENDPOINT = "https://dreamcatcher.spike-realtime-api.eu"
 
-const PAGE_BONUSES = ["888 Casino", "StarCasinò", "PokerStars Casino", "LeoVegas", "Unibet" ]
+const PAGE_BONUSES = ["888 Casino", "StarCasinò", "PokerStars Casino", "LeoVegas", "Unibet"]
 
 const SPAM_BONUSES = false
 
-
-const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastTenSpins, _bonuses, _pageContent, _countryCode}) => {
-
+const index: FunctionComponent<Props> = ({
+    _requestedCountryCode,
+    _stats,
+    _lastTenSpins,
+    _bonuses,
+    _pageContent,
+    _countryCode,
+}) => {
     const aquaClient = new AquaClient()
 
     const MenuProps = {
-      disableAutoFocusItem : true,
-      PaperProps: {
-        style: {
-          width: 250,
+        disableAutoFocusItem: true,
+        PaperProps: {
+            style: {
+                width: 250,
+            },
         },
-      },
     }
-
-    console.log(_lastTenSpins)
-
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const filterOptions = ["1", "2", "5", "10", "20", "40", "2x", "7x"]
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
-      setFilteredRows(rows.filter(r => selectedFilters.includes(dreamcatcherSymbolToFilterOption(r.spinResultSymbol))))
+        setFilteredRows(
+            rows.filter((r) => selectedFilters.includes(dreamcatcherSymbolToFilterOption(r.spinResultSymbol)))
+        )
     }, [selectedFilters])
-
 
     // keeps track of rows in the table
     const [rows, setRows] = useState<DreamCatcherSpin[]>(_lastTenSpins)
     useEffect(() => {
-      setFilteredRows(rows.filter(r => selectedFilters.includes(dreamcatcherSymbolToFilterOption(r.spinResultSymbol))))
+        const multipliers = rows
+            .filter((r) => r.spinResultSymbol === "twox" || r.spinResultSymbol === "sevenx")
+            .map((r) => rows.indexOf(r))
+
+        let arr = [...rows]
+
+        multipliers.forEach((index, i) => {
+            if (i != arr.length) swapArrayElements(arr, index, index + 1)
+        })
+
+        setFilteredRows(
+            arr.filter((r) => selectedFilters.includes(dreamcatcherSymbolToFilterOption(r.spinResultSymbol)))
+        )
     }, [rows])
     const [filteredRows, setFilteredRows] = useState<DreamCatcherSpin[]>(_lastTenSpins)
     const [lastUpdate, setLastUpdate] = useState(now())
-
 
     // keeps track of the stats
     const [stats, setStats] = useState<DreamcatcherSymbolStat[] | undefined>(_stats.stats)
@@ -86,21 +100,27 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
     const [timeFrame, setTimeFrame] = useState(TimeFrame.TWENTY_FOUR_HOURS)
     useEffect(() => {
         // see [socket] hook before this
-        if(socket){
+        if (socket) {
             // whenever TimeFrame is changed we ask the socket server to join the new time frame updates (server takes care of leaving the previous TimeFrame updates)
             socket.emit(timeFrame)
             setTimeFrame(timeFrame)
             // we'll receive updates from the newly joined TimeFrame here
-            socket.on(timeFrame, data => {
+            socket.on(timeFrame, (data) => {
                 console.log(data, timeFrame)
                 // this is the update regarding the top cards with percentages
                 const topUpdate = data.stats.stats
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
-                if(rows) setRows(mergeWithUpdate(rows, updatedRows.map(r => {
-                  r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
-                  return r
-                })))
+                if (rows)
+                    setRows(
+                        mergeWithUpdate(
+                            rows,
+                            updatedRows.map((r) => {
+                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                                return r
+                            })
+                        )
+                    )
                 setStats(topUpdate)
             })
         }
@@ -110,7 +130,7 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
     const [socket, setSocket] = useState<Socket | undefined>(undefined)
     useEffect(() => {
         // the socket instance should only really change when it is initialized
-        if(socket) {
+        if (socket) {
             // we send a message to the socket server asking to subscribe a given TimeFrame updates
             socket.emit(timeFrame)
             // whenever the server sends updates to a given TimeFrame subcribers we receive them here
@@ -121,28 +141,33 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
                 // we merge the current rows and the updated rows updating the table afterward
-                if(rows) setRows(mergeWithUpdate(rows, updatedRows.map(r => {
-                  r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
-                  return r
-                })))
+                if (rows)
+                    setRows(
+                        mergeWithUpdate(
+                            rows,
+                            updatedRows.map((r) => {
+                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                                return r
+                            })
+                        )
+                    )
                 setStats(topUpdate)
                 setLastUpdate(now())
             })
         }
     }, [socket])
-  
+
     // table Ordering
-    const [order, setOrder] = useState<'asc' | 'des'>('des')
+    const [order, setOrder] = useState<"asc" | "des">("des")
     // stuff for multilanguage porpouses
     const [loading, setLoading] = useState(false)
 
-
     useEffect(() => {
-		setContextCountry(_countryCode)
+        setContextCountry(_countryCode)
         // at first render we initialize socket connection
-        const initializedSocket = io(SOCKET_ENDPOINT,  {
-            secure:true,  
-            rejectUnauthorized : false
+        const initializedSocket = io(SOCKET_ENDPOINT, {
+            secure: true,
+            rejectUnauthorized: false,
         })
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
@@ -152,204 +177,279 @@ const index : FunctionComponent<Props> = ({_requestedCountryCode, _stats, _lastT
         }
     }, [])
 
-
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-      const change = event.target.value as string[]
-      console.log(change)
-      setSelectedFilters(change)
+        const change = event.target.value as string[]
+        console.log(change)
+        setSelectedFilters(change)
     }
 
-    return <Fragment>
-        <NavbarProvider currentPage='Crazy Time Stats' countryCode={contextCountry}>
-            <Head>
-                <title>{_pageContent.seo?.seoTitle}</title>
-                <link rel="canonical" href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
-                <meta
-                    name="description"
-                    content={_pageContent.seo.seoDescription}>
-                </meta>
+    return (
+        <Fragment>
+            <NavbarProvider currentPage="Crazy Time Stats" countryCode={contextCountry}>
+                <Head>
+                    <title>{_pageContent.seo?.seoTitle}</title>
+                    <link rel="canonical" href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
+                    <meta name="description" content={_pageContent.seo.seoDescription}></meta>
 
-                {/* <!-- Google / Search Engine Tags --> */}
-                <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-                <meta itemProp="description" content={_pageContent.seo.seoDescription} />
-                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
-                
-                {/* <!-- Twitter Meta Tags --> */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-                <meta name="twitter:description" content={_pageContent.seo.seoDescription} />
-                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                    {/* <!-- Google / Search Engine Tags --> */}
+                    <meta
+                        itemProp="name"
+                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                    />
+                    <meta itemProp="description" content={_pageContent.seo.seoDescription} />
+                    <meta itemProp="image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
 
-                {/* <!-- Facebook Meta Tags --> */}
-                <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                <meta property="og:locale" content={'it'} />
-                <meta property="og:type" content="article" />
-                <meta property="og:description" content={_pageContent.seo.seoDescription} />
-                <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
+                    {/* <!-- Twitter Meta Tags --> */}
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta
+                        name="twitter:title"
+                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                    />
+                    <meta name="twitter:description" content={_pageContent.seo.seoDescription} />
+                    <meta name="twitter:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
 
-                <meta httpEquiv="content-language" content="it-IT"></meta>
-                <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                <meta property="og:locale" content={'it'} />
-                <meta property="og:type" content="article" />
-                <meta property="og:description" content={_pageContent.seo?.seoDescription} />
-                <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
-            </Head>
+                    {/* <!-- Facebook Meta Tags --> */}
+                    <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+                    <meta property="og:locale" content={"it"} />
+                    <meta property="og:type" content="article" />
+                    <meta property="og:description" content={_pageContent.seo.seoDescription} />
+                    <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
 
-            <BodyContainer>
-                <MainColumn style={{width : '100%', maxWidth : '90%', paddingBottom : '4rem', paddingTop : '2rem'}}>
+                    <meta httpEquiv="content-language" content="it-IT"></meta>
+                    <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+                    <meta property="og:locale" content={"it"} />
+                    <meta property="og:type" content="article" />
+                    <meta property="og:description" content={_pageContent.seo?.seoDescription} />
+                    <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
+                </Head>
 
-                    {_pageContent.topContent && <DynamicContent content={_pageContent.topContent}/>}
+                <BodyContainer>
+                    <MainColumn
+                        style={{
+                            width: "100%",
+                            maxWidth: "90%",
+                            paddingBottom: "4rem",
+                            paddingTop: "2rem",
+                        }}
+                    >
+                        {_pageContent.topContent && <DynamicContent content={_pageContent.topContent} />}
 
-                    <Divider style={{marginTop : '2rem'}} />
+                        <Divider style={{ marginTop: "2rem" }} />
 
-                    <div>
-                      <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginTop: '2rem'}}>
-                          <div>
-                              <h1 style={{ fontWeight : 'bold', fontSize : '2rem'}}>{t('Dream Catcher Statistics')}</h1>
-                              <h1 style={{marginTop : '.5rem'}}>{`${t('for the past')} ${timeFrame}`}<span style={{marginLeft : '1rem', fontWeight : 'bold', color : 'crimson'}}>In REAL TIME</span></h1>
-                          </div>
+                        <div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    marginTop: "2rem",
+                                }}
+                            >
+                                <div>
+                                    <h1 style={{ fontWeight: "bold", fontSize: "2rem" }}>
+                                        {t("Dream Catcher Statistics")}
+                                    </h1>
+                                    <h1 style={{ marginTop: ".5rem" }}>
+                                        {`${t("for the past")} ${timeFrame}`}
+                                        <span
+                                            style={{
+                                                marginLeft: "1rem",
+                                                fontWeight: "bold",
+                                                color: "crimson",
+                                            }}
+                                        >
+                                            In REAL TIME
+                                        </span>
+                                    </h1>
+                                </div>
 
-                          <div>
-                              <Select
-                                  labelId="demo-simple-select-label"
-                                  value={timeFrame}
-                                  onChange={(e) => handleTimeFrameChange(e)}>
-                                  {Object.values(TimeFrame).map((k, i) => <MenuItem key={k} value={k}>{Object.values(TimeFrame)[i]}</MenuItem>)}
-                              </Select> 
-                          </div>   
-                      </div>
-                      <p style={{marginTop : '1rem', fontSize : '.9rem'}}>{`${t('Last Update')} ${format(lastUpdate, 'dd/MM HH:mm:ss')}`}</p>
-                    </div>                    
+                                <div>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        value={timeFrame}
+                                        onChange={(e) => handleTimeFrameChange(e)}
+                                    >
+                                        {Object.values(TimeFrame).map((k, i) => (
+                                            <MenuItem key={k} value={k}>
+                                                {Object.values(TimeFrame)[i]}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </div>
+                            </div>
+                            <p style={{ marginTop: "1rem", fontSize: ".9rem" }}>{`${t("Last Update")} ${format(
+                                lastUpdate,
+                                "dd/MM HH:mm:ss"
+                            )}`}</p>
+                        </div>
 
-                    <Divider style={{marginTop : '2rem', marginBottom : '2rem'}}/>
+                        <Divider style={{ marginTop: "2rem", marginBottom: "2rem" }} />
 
-                    {stats && <StatsContainer>
-                        {stats.map(s => <DreamCatcherStatCard key={`stats_${s.symbol}`} stat={s} totalSpinsConsidered={totalSpinsInTimeFrame} timeFrame={timeFrame}/>)}    
-                    </StatsContainer>}
-                    
-                    <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', textAlign : 'center'}}>{`${t('You can play at DREAM CATCHER here')}`}</h1>
-                    <Paper elevation={6} style={{marginTop : '1rem', marginBottom : '4rem'}}> 
-                        {_bonuses && _bonuses.map(b => <BonusStripe key={b.name} bonus={b} />)}
-                    </Paper>
+                        {stats && (
+                            <StatsContainer>
+                                {stats.map((s) => (
+                                    <DreamCatcherStatCard
+                                        key={`stats_${s.symbol}`}
+                                        stat={s}
+                                        totalSpinsConsidered={totalSpinsInTimeFrame}
+                                        timeFrame={timeFrame}
+                                    />
+                                ))}
+                            </StatsContainer>
+                        )}
 
-                    <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center', marginBottom : '1rem'}}>
-                      <h1 style={{ marginTop : '2rem', color : 'crimson', fontWeight : 'bold', fontSize : '1.4rem', marginBottom : '1rem'}}>
-                        {`${t('Spin History')}`}
-                      </h1>
+                        <h1
+                            style={{
+                                marginTop: "2rem",
+                                color: "crimson",
+                                fontWeight: "bold",
+                                fontSize: "1.4rem",
+                                textAlign: "center",
+                            }}
+                        >{`${t("You can play at DREAM CATCHER here")}`}</h1>
+                        <Paper elevation={6} style={{ marginTop: "1rem", marginBottom: "4rem" }}>
+                            {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
+                        </Paper>
 
-                      <div>
-                        <Select
-                          labelId="demo-mutiple-checkbox-label"
-                          id="demo-mutiple-checkbox"
-                          multiple
-                          value={selectedFilters}
-                          onChange={handleChange}
-                          input={<Input />}
-                          renderValue={(selected) => 'Filtri'}
-                          MenuProps={MenuProps}>
-                          {filterOptions.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              <Checkbox checked={selectedFilters.indexOf(name) > -1} />
-                              <ListItemText primary={name} />
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </div>                      
-                    </div>
-                 
-                    {rows && <DreamCatcherTable rows={filteredRows} />}
-                    {_pageContent.bottomContent && <DynamicContent content={_pageContent.bottomContent}/>}
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                marginBottom: "1rem",
+                            }}
+                        >
+                            <h1
+                                style={{
+                                    marginTop: "2rem",
+                                    color: "crimson",
+                                    fontWeight: "bold",
+                                    fontSize: "1.4rem",
+                                    marginBottom: "1rem",
+                                }}
+                            >
+                                {`${t("Spin History")}`}
+                            </h1>
 
-                    {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses}  />}
+                            <div>
+                                <Select
+                                    labelId="demo-mutiple-checkbox-label"
+                                    id="demo-mutiple-checkbox"
+                                    multiple
+                                    value={selectedFilters}
+                                    onChange={handleChange}
+                                    input={<Input />}
+                                    renderValue={(selected) => "Filtri"}
+                                    MenuProps={MenuProps}
+                                >
+                                    {filterOptions.map((name) => (
+                                        <MenuItem key={name} value={name}>
+                                            <Checkbox checked={selectedFilters.indexOf(name) > -1} />
+                                            <ListItemText primary={name} />
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </div>
+                        </div>
 
-                </MainColumn>
-            </BodyContainer>
-        </NavbarProvider>
-    </Fragment>
+                        {rows && <DreamCatcherTable rows={filteredRows} />}
+                        {_pageContent.bottomContent && <DynamicContent content={_pageContent.bottomContent} />}
+
+                        {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}
+                    </MainColumn>
+                </BodyContainer>
+            </NavbarProvider>
+        </Fragment>
+    )
+}
+
+const swapArrayElements = (arr, indexA, indexB) => {
+    var temp = arr[indexA]
+    arr[indexA] = arr[indexB]
+    arr[indexB] = temp
 }
 
 // helper function to merge exsisting rows with the update from the Socket
-export const mergeWithUpdate = (current : DreamCatcherSpin[], update : DreamCatcherSpin[]) => {
+export const mergeWithUpdate = (current: DreamCatcherSpin[], update: DreamCatcherSpin[]) => {
     // the latest row in the table
     const lastFromCurrent = current[0]
     // slicing up the update array to the last known row based on the _id
 
-    const slicedUpdate = update.slice(0, update.map(u => u._id).indexOf(lastFromCurrent._id))
+    const slicedUpdate = update.slice(0, update.map((u) => u._id).indexOf(lastFromCurrent._id))
     // spreading the result so that is automatically ordered by time as returned by the Socket
     return [...slicedUpdate, ...current]
-} 
+}
 
-
-export const getServerSideProps = async ({query, req, res}) => {
-
+export const getServerSideProps = async ({ query, req, res }) => {
     const aquaClient = new AquaClient()
 
-    const {countryCode} = query
+    const { countryCode } = query
 
     const _requestedCountryCode = query.countryCode
-    const pageData  = await axios.get('https://dreamcatcher.spike-realtime-api.eu/api/data-for-the-last-hours/24')
-   
-    
+    const pageData = await axios.get("https://dreamcatcher.spike-realtime-api.eu/api/data-for-the-last-hours/24")
+
     const pageContent = await aquaClient.query({
-        query : PAGE_ARTICLE_QUERY,
-        variables : {
-            countryCode : countryCode
-        }
+        query: PAGE_ARTICLE_QUERY,
+        variables: {
+            countryCode: countryCode,
+        },
     })
 
-    const orderedBonusList : Bonus[] = []
+    const orderedBonusList: Bonus[] = []
 
-    if(countryCode === 'it') {
-      	const bonuses = await aquaClient.query({
-			query : BONUS_QUERY,
-			variables : {
-				countryCode : countryCode,
-				names : PAGE_BONUSES
-			}
-		})
+    if (countryCode === "it") {
+        const bonuses = await aquaClient.query({
+            query: BONUS_QUERY,
+            variables: {
+                countryCode: countryCode,
+                names: PAGE_BONUSES,
+            },
+        })
 
-		PAGE_BONUSES.forEach(name => orderedBonusList.push(bonuses.data.data.bonuses.find(it => it.name === name)))
+        PAGE_BONUSES.forEach((name) => orderedBonusList.push(bonuses.data.data.bonuses.find((it) => it.name === name)))
     } else {
-		const bonuses = await aquaClient.query({
-			query : HOME_BONUS_LIST,
-			variables : {
-				countryCode : countryCode,
-			}
-		})
-		bonuses.data.data.homes[0].bonuses.bonus.forEach(b => orderedBonusList.push(b.bonus))
-	}
-
-
-
-
+        const bonuses = await aquaClient.query({
+            query: HOME_BONUS_LIST,
+            variables: {
+                countryCode: countryCode,
+            },
+        })
+        bonuses.data.data.homes[0].bonuses.bonus.forEach((b) => orderedBonusList.push(b.bonus))
+    }
 
     const bonusRemapping = {
-        'BetFlag' : 'https://adv.betflag.com/redirect.aspx?pid=5262&bid=2690',
-        'LeoVegas' : 'https://ads.leovegas.com/redirect.aspx?pid=3704489&bid=14965',
-        '888 Casino' : 'https://ic.aff-handler.com/c/43431?sr=1868828',
-        'StarCasinò' : 'https://record.starcasino.it/_SEA3QA6bJTNXl890vMAfUGNd7ZgqdRLk/131/',
-        'Unibet' : 'https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251',
-        'PokerStars Casino' : 'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_5648c_&affid=100976968&siteid=182773&adid=5648&c=  '
+        BetFlag: "https://adv.betflag.com/redirect.aspx?pid=5262&bid=2690",
+        LeoVegas: "https://ads.leovegas.com/redirect.aspx?pid=3704489&bid=14965",
+        "888 Casino": "https://ic.aff-handler.com/c/43431?sr=1868828",
+        StarCasinò: "https://record.starcasino.it/_SEA3QA6bJTNXl890vMAfUGNd7ZgqdRLk/131/",
+        Unibet: "https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251",
+        "PokerStars Casino":
+            "https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_5648c_&affid=100976968&siteid=182773&adid=5648&c=  ",
     }
 
     return {
-        props : {
+        props: {
             _requestedCountryCode,
-            _stats : pageData.data.stats,
-            _lastTenSpins : pageData.data.spinsInTimeFrame.map(r => {
-              r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
-              return r
+            _stats: pageData.data.stats,
+            _lastTenSpins: pageData.data.spinsInTimeFrame.map((r) => {
+                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                return r
             }),
-            _bonuses : countryCode === 'it' ? orderedBonusList.map(b => {
-                b.link = bonusRemapping[b.name]
-                return b
-            }) : orderedBonusList,
-            _pageContent : pageContent.data.data.dreamCatcherArticles[0] ? pageContent.data.data.dreamCatcherArticles[0] : null,
-			_countryCode : countryCode
-        }
+            _bonuses:
+                countryCode === "it"
+                    ? orderedBonusList.map((b) => {
+                          b.link = bonusRemapping[b.name]
+                          return b
+                      })
+                    : orderedBonusList,
+            _pageContent: pageContent.data.data.dreamCatcherArticles[0]
+                ? pageContent.data.data.dreamCatcherArticles[0]
+                : null,
+            _countryCode: countryCode,
+        },
     }
 }
 
@@ -498,27 +598,23 @@ query DREAM_CATCHER_ARTICLE($countryCode:String="it"){
   }
 `
 
-
-
 // styling stuff
 export const StatsContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap;
-    justify-content : space-around;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 `
 
 export const VerticalDivider = styled.div`
-    width : 1px;
-    height : 100%;
+    width: 1px;
+    height: 100%;
 `
-
 
 const TimeFrameContainer = styled.div`
-    display : flex;
-    width : 100%;
-    justify-content : flex-end;
-    margin : 2rem 0rem;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 2rem 0rem;
 `
-
 
 export default index
