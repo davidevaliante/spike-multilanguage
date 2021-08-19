@@ -19,7 +19,7 @@ import VideoRelatedSlots from "../../../../components/Lists/VideoRelatedSlots"
 import { OnlyBigScreens } from "../../../../components/Responsive/Only"
 import VideoDiscalimer from "../../../../components/Singles/VideoDiscalimer"
 import Divider from "../../../../components/Ui/Divider"
-import NavbarWithPlayer from "../../../../components/Navbar/NavbarWithPlayer"
+import NavbarWithPlayer, { getMp4CDNZone } from "../../../../components/Navbar/NavbarWithPlayer"
 import BonusStripe from "./../../../../components/Cards/BonusStripe"
 import truncate from "lodash/truncate"
 import { useRouter } from "next/router"
@@ -125,6 +125,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                     name={video.title}
                     uploadDate={new Date(video.time).toISOString()}
                     description={video.description}
+                    embedUrl={getMp4CDNZone(video)}
                     thumbnailUrl={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
                 <Body>

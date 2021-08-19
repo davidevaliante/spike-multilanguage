@@ -6,9 +6,10 @@ interface IVideo {
     thumbnailUrl: string
     description: string
     uploadDate: string
+    embedUrl: string
 }
 
-const VideoMeta: FunctionComponent<IVideo> = ({ name, thumbnailUrl, description, uploadDate }) => {
+const VideoMeta: FunctionComponent<IVideo> = ({ name, thumbnailUrl, description, uploadDate, embedUrl }) => {
     const VideoObject = () => ({
         "@context": "https://schema.org",
         "@type": "VideoObject",
@@ -16,6 +17,7 @@ const VideoMeta: FunctionComponent<IVideo> = ({ name, thumbnailUrl, description,
         name: name,
         thumbnailUrl: [thumbnailUrl],
         uploadDate: uploadDate,
+        embedUrl: embedUrl,
     })
 
     console.log(VideoObject())
