@@ -40,9 +40,13 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
     return (
         <Wrapper>
             <PushMenuContainer isOpen={state} offSet={offset} childrenWrapperPosition={childrenWrapperPosition}>
-                {tiles.map((tile) =>
+                {tiles.map((tile, index) =>
                     tile.label !== "LiveStats" ? (
-                        <div key={`push_menu_${tile.label}`} onClick={() => navigateTo(tile.link)}>
+                        <div
+                            style={{ marginBottom: index == tiles.length - 1 ? "12rem" : "0rem" }}
+                            key={`push_menu_${tile.label}`}
+                            onClick={() => navigateTo(tile.link)}
+                        >
                             <p>{t(tile.label)}</p>
                             <Divider />
                         </div>
