@@ -26,7 +26,7 @@ export const ALL_SLOTS = `
             type
         }
     }
-`;
+`
 
 export const SLOTS_NAME = `
     query Slots {
@@ -54,7 +54,7 @@ export const SLOTS_NAME = `
             # },
         }
     }
-`;
+`
 
 export const DEMO_FOR_SLOT_WITH_SLUG = `
         query DemoBySlug($slug:String, $countryCode:String){
@@ -74,7 +74,7 @@ export const DEMO_FOR_SLOT_WITH_SLUG = `
             }
         }
     }
-`;
+`
 
 export const SLOT_WITH_SLUG = `
     query SlotBySlug($slug:String, $countryCode:String){
@@ -107,11 +107,13 @@ export const SLOT_WITH_SLUG = `
               slug
               image{
                 url
+                alternativeText
               }
             }
 
             image{
               url
+              alternativeText
             }
 
             mainBonus{
@@ -128,6 +130,7 @@ export const SLOT_WITH_SLUG = `
                 tips
                 circular_image{
                   url
+                  alternativeText
                 }
                 country{
                   code
@@ -152,6 +155,7 @@ export const SLOT_WITH_SLUG = `
                 tips
                 circular_image{
                   url
+                  alternativeText
                 }
                 country{
                   code
@@ -159,7 +163,7 @@ export const SLOT_WITH_SLUG = `
               }
           }
     }
-`;
+`
 
 export const PAGINATED_SLOTS = `
 query PAGINATED_SLOTS(
@@ -196,7 +200,7 @@ query PAGINATED_SLOTS(
               }
           }
   }
-`;
+`
 
 export const PAGINATED_BAR_SLOTS = `
 query PAGINATED_SLOTS(
@@ -234,7 +238,7 @@ query PAGINATED_SLOTS(
             }
         }
 }
-`;
+`
 
 export const HIGHLIGHT_SLOT = `
     query{
@@ -248,7 +252,7 @@ export const HIGHLIGHT_SLOT = `
             rating
         }
     }
-`;
+`
 
 export const GET_SLOTS_BY_PRODUCER_SLUG = `
     query GET_SLOTS_BY_PRODUCER_SLUG(
@@ -280,7 +284,7 @@ export const GET_SLOTS_BY_PRODUCER_SLUG = `
             }
         }
     }
-`;
+`
 
 export const GET_SLOT_BY_LEGACY_ID = `
 query SLOT_BY_LEGACY_ID($legacyId:String){
@@ -299,7 +303,7 @@ query SLOT_BY_LEGACY_ID($legacyId:String){
       }
     }
   }
-`;
+`
 
 export const GET_SLOT_CARD_BY_ID = `
 query SLOT_CARD_BY_ID($id:ID=2171){
@@ -318,7 +322,7 @@ query SLOT_CARD_BY_ID($id:ID=2171){
       }
   }
 }
-`;
+`
 
 export const SLOT_BY_NAME = `
 query SLOT_BY_NAME($countryCode:String="it", $name:String){
@@ -331,4 +335,4 @@ query SLOT_BY_NAME($countryCode:String="it", $name:String){
     }
   }
 }
-`;
+`
