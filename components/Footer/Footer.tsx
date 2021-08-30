@@ -7,6 +7,7 @@ import { FOOTER } from "../../graphql/queries/footer"
 import CoFreeImage from "../Singles/CoFreeImage"
 import { LocaleContext } from "../../context/LocaleContext"
 import { laptop } from "./../Responsive/Breakpoints"
+import NavbarAams from "../Banners/NavbarAams"
 
 const Footer = () => {
     const [show, setShow] = useState(false)
@@ -180,6 +181,10 @@ const Footer = () => {
                 </h4>
 
                 <Body show={show}>
+                    <div style={{ display: "flex", justifyContent: "center", margin: "1.5rem 0rem" }}>
+                        {contextCountry === "it" && <NavbarAams />}
+                    </div>
+
                     {article && show && (
                         <div>
                             <ArticleToMarkdown content={article} />

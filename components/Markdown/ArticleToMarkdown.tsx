@@ -28,11 +28,15 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
         const elementData = parts[1]
 
         if (elementType === "spikeBonusCard") {
-            if (allowBonuses) return <ArticleBonus bonusName={elementData} countryCode={"it"} />
-            else return <div></div>
+            // if (allowBonuses) return <ArticleBonus bonusName={elementData} countryCode={"it"} />
+            return <ArticleBonus bonusName={elementData} countryCode={"it"} />
         }
 
         if (elementType === "spikeCompare") {
+            // to remove bonuses we need this prop
+            // if (allowBonuses) {
+
+            // } else return <div></div>;
             const bonusNames = elementData.split("&")
             return (
                 <Wrapper>
