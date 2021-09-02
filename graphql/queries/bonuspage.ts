@@ -39,6 +39,7 @@ query BONUS_PAGE_BY_COUNTRY($countryCode:String){
                 tips
                 circular_image{
                   url
+                  alternativeText
                 }
               }
             }
@@ -53,6 +54,7 @@ query BONUS_PAGE_BY_COUNTRY($countryCode:String){
                 slug
                 image{
                   url
+                  alternativeText
                 }
               }
             }

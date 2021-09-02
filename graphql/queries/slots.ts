@@ -70,6 +70,7 @@ export const DEMO_FOR_SLOT_WITH_SLUG = `
                     tips
                     circular_image{
                     url
+                    alternativeText
                 }                    
             }
         }
@@ -191,6 +192,7 @@ query PAGINATED_SLOTS(
               slug
               image{
                   url
+                  alternativeText
               }
               bonuses(limit:1, start: 0){
                 link
@@ -229,6 +231,7 @@ query PAGINATED_SLOTS(
             slug
             image{
                 url
+                alternativeText
             }
             bonuses(limit:1, start: 0){
               link
@@ -248,6 +251,7 @@ export const HIGHLIGHT_SLOT = `
             slug
             image{
                 url
+                alternativeText
             }
             rating
         }
@@ -275,6 +279,7 @@ export const GET_SLOTS_BY_PRODUCER_SLUG = `
             }
             image{
                 url
+                alternativeText
             }
             producer{
                 id
@@ -297,6 +302,7 @@ query SLOT_BY_LEGACY_ID($legacyId:String){
       }
       image{
         url
+        alternativeText
       }
       mainBonus{
         link
@@ -316,6 +322,7 @@ query SLOT_CARD_BY_ID($id:ID=2171){
       }
       image{
         url
+        alternativeText
       }
       mainBonus{
         link
@@ -332,6 +339,7 @@ query SLOT_BY_NAME($countryCode:String="it", $name:String){
     slug
     image{
       url
+      alternativeText
     }
   }
 }

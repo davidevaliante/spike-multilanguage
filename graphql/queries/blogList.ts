@@ -29,6 +29,7 @@ query BLOG_LIST_BY_COUNTRY($countryCode:String){
                 tips
                 circular_image{
                   url
+                  alternativeText
                 }
               }
             }
@@ -43,6 +44,7 @@ query BLOG_LIST_BY_COUNTRY($countryCode:String){
                 slug
                 image{
                   url
+                  alternativeText
                 }
               }
             }

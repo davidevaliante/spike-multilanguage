@@ -24,7 +24,7 @@ query ABOUT_PAGE($countryCode:String="it"){
                 withDeposit
                 noDeposit
                 link
-                              borderColor
+                borderColor
                 backgroundColor
                 tips
                 circular_image{

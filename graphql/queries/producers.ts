@@ -1,4 +1,3 @@
-
 export const ALL_PRODUCER_NAMES = `
     query Producers {
         producers {
@@ -17,7 +16,7 @@ export const ALL_PRODUCERS = `
             website
             legacyId
             country{
-                name
+            name
             }
         }
     }
@@ -46,9 +45,8 @@ export const GET_PRODUCER = `
             bottomArticle
             image{
                 url
+                alternativeText
             }
         }
     }
 `
-
-

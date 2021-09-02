@@ -3,7 +3,6 @@ import NavbarProvider from "../components/Navbar/NavbarProvider"
 import HomeHeader from "./../components/Home/HomeHeader"
 import { appTheme } from "./../theme/theme"
 import LazyLoad from "react-lazyload"
-import Head from "next/head"
 import LatestVideoCard from "../components/Cards/LatestVideoCard"
 import Icon from "../components/Icons/Icon"
 import { Home } from "./../graphql/schema"
@@ -15,7 +14,6 @@ import { BodyContainer, MainColumn, RightColumn } from "../components/Layout/Lay
 import { HOME } from "../graphql/queries/home"
 import ArticleToMarkdown from "../components/Markdown/ArticleToMarkdown"
 import { OnlyMobile } from "../components/Responsive/Only"
-import FullPageLoader from "../components/Layout/FullPageLoader"
 import { ApolloSlotCard } from "../data/models/Slot"
 import { ApolloBonusCardReveal } from "../data/models/Bonus"
 import { getUserCountryCode } from "../utils/Utils"
@@ -28,7 +26,6 @@ import LiveStatsCta from "./../components/Singles/LiveStatsCta"
 import Metatags from "../components/Seo/Metatags"
 import { websiteRoot } from "../constants/constants"
 import { defaultShareImage } from "./../constants/constants"
-import ShareButtons from "../components/Seo/ShareButtons"
 import Logo from "../components/StructuredData.tsx/Logo"
 
 interface PageProps {
@@ -103,7 +100,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
             <Logo />
 
             <NavbarProvider currentPage={!isBakeca ? "Home" : "/bakeca-home"} countryCode={contextCountry}>
-                {home.topArticle && <HomeHeader topArticle={home.topArticle}>SPIKE SLOT</HomeHeader>}
+                {home.topArticle && <HomeHeader topArticle={home.topArticle}>Slot Online SPIKE SLOT</HomeHeader>}
                 <BodyContainer>
                     {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/${userCountry}`} />}
                     <MainColumn>
@@ -165,7 +162,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
                     <RightColumn>
                         <div style={{ display: "flex", alignItems: "center" }}>
-                            <Icon width={56} height={56} source="/icons/flame_icon.svg" />
+                            <Icon width={56} height={56} source="/icons/flame_icon.svg" alt={"flame icon"} />
                             <h4 className="video-header">{t(`Watch SPIKE's latest video`)}</h4>
                         </div>
 

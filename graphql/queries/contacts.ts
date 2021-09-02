@@ -25,7 +25,7 @@ query CONTACTS{
                 withDeposit
                 noDeposit
                 link
-                              borderColor
+                borderColor
                 backgroundColor
                 tips
                 circular_image{

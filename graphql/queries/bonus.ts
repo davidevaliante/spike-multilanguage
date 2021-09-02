@@ -1,4 +1,3 @@
-
 export const ALL_BONUS = `
     query AllBonus($countryCode : String) {
         bonuses(where : {country : {code : $countryCode}}){
@@ -35,7 +34,8 @@ query HOME_BONUS_LIST($countryCode:String){
           }
           link
           circular_image{
-          url
+            url
+            alternativeText
           }
           borderColor
           backgroundColor
@@ -72,6 +72,7 @@ export const GET_BONUS_BY_LEGACY_ID = `
         legacyId
         circular_image{
             url
+            alternativeText
         }
         }   
     }
@@ -98,6 +99,7 @@ export const GET_BONUS_BY_SLUG = `
         legacyId
         circular_image{
             url
+            alternativeText
         }
         }   
     }
@@ -123,6 +125,7 @@ query BONUS_BY_NAME_AND_COUNTRY($name:String, $countryCode:String){
       borderColor
       circular_image{
         url
+        alternativeText
       }
     }
   }
@@ -155,6 +158,7 @@ query BONUS_BY_NAME($names:[String]=["StarCasinò","Starvegas", "888 Casino"], $
       legacyId
       circular_image{
           url
+          alternativeText
       }
   }
 }

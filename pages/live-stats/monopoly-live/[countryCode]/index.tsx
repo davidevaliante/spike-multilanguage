@@ -130,6 +130,7 @@ const index: FunctionComponent<Props> = ({
             socket.emit(timeFrame)
             // whenever the server sends updates to a given TimeFrame subcribers we receive them here
             socket.on(timeFrame, (data) => {
+                console.log(data)
                 // console.log(data, timeFrame)
                 // this is the update regarding the top cards with percentages
                 const topUpdate = data.stats.stats

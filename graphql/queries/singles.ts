@@ -34,6 +34,7 @@ query PAGE_BY_COUNTRY($countryCode:String="it"){
               tips
               circular_image{
                 url
+                alternativeText
               }
             }
           }
@@ -48,6 +49,7 @@ query PAGE_BY_COUNTRY($countryCode:String="it"){
               slug
               image{
                 url
+                alternativeText
               }
             }
           }

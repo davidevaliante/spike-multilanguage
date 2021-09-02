@@ -16,11 +16,15 @@ const ArticleBonusCard: FunctionComponent<Props> = ({ bonus, style }) => {
     const { t } = useContext(LocaleContext)
     return (
         <Fragment>
-            <Container style={style} bonus={bonus} onClick={() => window.open(bonus.link)}>
+            <Container rel="nofollow" style={style} bonus={bonus} href={`/go?to=${bonus.link}`}>
                 <ImageContainer bonus={bonus}>
                     <LazyLoad>
                         <img
-                            alt={bonus.circular_image.alternativeText}
+                            alt={
+                                bonus.circular_image.alternativeText
+                                    ? bonus.circular_image.alternativeText
+                                    : `${bonus.name}-logo`
+                            }
                             src={injectCDN(bonus.circular_image.url)}
                             className="circular-image"
                         />
@@ -68,7 +72,8 @@ const DepositTextContainer = styled.div`
         }
     }
 `
-const Container = styled.div`
+const Container = styled.a`
+    all: unset;
     cursor: pointer;
     width: 100%;
     max-width: 550px;
@@ -94,6 +99,8 @@ const Container = styled.div`
     p {
         font-size: 0.8rem !important;
         line-height: 0.9rem !important;
+        font-weight: normal !important;
+        font-family: "Raleway", sans-serif;
     }
 
     .circular-image {

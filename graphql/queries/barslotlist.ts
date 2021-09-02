@@ -16,6 +16,7 @@ query BAR_SLOT_LIST($countryCode:String){
               rating
               image{
                 url
+                alternativeText
               }
         }
       }

@@ -10,6 +10,7 @@ query BONUS_GUIDE_BY_SLUG_AND_COUNTRY($slug:String="starvegas", $countryCode:Str
     slug
     image{
       url
+      alternativeText
     }
 
     bonus{
@@ -33,6 +34,7 @@ query BONUS_GUIDE_BY_SLUG_AND_COUNTRY($slug:String="starvegas", $countryCode:Str
       slug
       circular_image{
         url
+        alternativeText
       }
     }
 
@@ -57,11 +59,13 @@ query GUIDES_BY_COUNTRY($countryCode:String="it"){
       backgroundColor
       borderColor
       circular_image{
-        url   
+        url
+        alternativeText   
       }
     }
     image{
       url
+      alternativeText
     }
     country{
       code

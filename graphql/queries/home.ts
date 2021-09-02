@@ -1,4 +1,3 @@
-
 export const HOME = `
 query HOME_FOR_COUNTRY($countryCode : String) {
     homes(where:{country:{code:$countryCode}}){
@@ -17,6 +16,7 @@ query HOME_FOR_COUNTRY($countryCode : String) {
               name
               image{
                   url
+                  alternativeText
               }
               slug
               type
@@ -32,6 +32,7 @@ query HOME_FOR_COUNTRY($countryCode : String) {
               name
               image{
                   url
+                  alternativeText
               }
               slug
               type
@@ -47,6 +48,7 @@ query HOME_FOR_COUNTRY($countryCode : String) {
               name
               image{
                   url
+                  alternativeText
               }
               slug
               type
@@ -62,6 +64,7 @@ query HOME_FOR_COUNTRY($countryCode : String) {
               name
               image{
                   url
+                  alternativeText
               }
               slug
               type
@@ -80,6 +83,7 @@ query HOME_FOR_COUNTRY($countryCode : String) {
               }
               circular_image{
                   url
+                  alternativeText
               }
               bonus_guide{
                   slug

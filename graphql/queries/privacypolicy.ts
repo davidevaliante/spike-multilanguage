@@ -25,11 +25,12 @@ query PRIVACY_POLICY{
                 withDeposit
                 noDeposit
                 link
-                              borderColor
+                borderColor
                 backgroundColor
                 tips
                 circular_image{
                   url
+                  alternativeText
                 }
               }
             }
@@ -44,6 +45,7 @@ query PRIVACY_POLICY{
                 slug
                 image{
                   url
+                  alternativeText
                 }
               }
             }

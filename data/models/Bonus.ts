@@ -15,15 +15,15 @@ export class Bonus {
         public time: number,
         public tips: string,
         public withDepositText: string,
-        public status: 'public' | 'hidden'
-    ) { }
+        public status: "public" | "hidden"
+    ) {}
 }
 
 export class ApolloBonusCardReveal {
     constructor(
         public id: string | undefined | number,
         public name: string,
-        public circular_image: { url: string },
+        public circular_image: { url: string; alternativeText: string },
         public borderColor: string,
         public backgroundColor: string,
         public noDeposit: string,
@@ -34,8 +34,6 @@ export class ApolloBonusCardReveal {
         public bonus_guide: {
             slug: string
         },
-        public description?: string,
-
-    ) { }
+        public description?: string
+    ) {}
 }
-

@@ -12,14 +12,14 @@ export class SlotCard {
         public rating: string,
         public specialBonusLink: string,
         public time: number,
-        public type: 'GRATIS' | 'BAR' | 'VLT'
+        public type: "GRATIS" | "BAR" | "VLT"
     ) {}
 }
 
 export class ApolloSlotCard {
     constructor(
         public id: string | undefined,
-        public image: { url: string },
+        public image: { url: string; alternativeText?: string },
         public name: string,
         public rating: number,
         public slug: string,
@@ -48,7 +48,7 @@ export class OldSlot {
         public tecnicals: string,
         public time: number,
         public tips: string,
-        public type: 'GRATIS' | 'BAR' | 'VLT'
+        public type: "GRATIS" | "BAR" | "VLT"
     ) {}
 }
 
@@ -70,6 +70,6 @@ export class Slot {
         public slug: string,
         public producer: Producer,
         public relatedSlots: number[],
-        public status: 'published' | 'draft' | 'archive'
+        public status: "published" | "draft" | "archive"
     ) {}
 }

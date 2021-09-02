@@ -8,6 +8,7 @@ query BLOG_ARTICLE_BY_SLUG($slug:String){
       slug
       image{
         url
+        alternativeText
       }
       seo{
         seoTitle
@@ -16,7 +17,7 @@ query BLOG_ARTICLE_BY_SLUG($slug:String){
       }
     }
   }
-`;
+`
 
 export const BLOG_ARTICLES_BY_COUNTRY = `
 query ARTICLES_BY_COUNTRY($countryCode:String="it"){
@@ -28,6 +29,7 @@ query ARTICLES_BY_COUNTRY($countryCode:String="it"){
 
     image{
       url
+      alternativeText
     }
 
     country{
@@ -36,4 +38,4 @@ query ARTICLES_BY_COUNTRY($countryCode:String="it"){
 
   }
 }
-`;
+`

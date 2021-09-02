@@ -9,6 +9,7 @@ query VLT_SLOT_LIST_BY_COUNTRY($countryCode:String){
         rating
         image{
           url
+          alternativeText
         }
       }
       seo{

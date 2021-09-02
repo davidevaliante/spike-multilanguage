@@ -208,7 +208,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
     // console.log('hello world')
 
-    // if(requestedCountryCode === 'it') serverSideRedirect(res, '/', 301)
+    if (requestedCountryCode === "") serverSideRedirect(res, "/", 301)
     if (somethingIsUndefined([data.data.data.homes[0]])) serverSideRedirect(res, `/row`)
     return {
         props: {

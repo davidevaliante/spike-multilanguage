@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useContext } from 'react'
-import { FunctionComponent } from 'react'
-import styled from 'styled-components'
-import Divider from '../Ui/Divider'
-import Link from 'next/link'
-import LazyImage from '../Lazy/LazyImage'
-import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
-import { LocaleContext } from './../../context/LocaleContext';
+import React, { Fragment, useState, useContext } from "react"
+import { FunctionComponent } from "react"
+import styled from "styled-components"
+import Divider from "../Ui/Divider"
+import Link from "next/link"
+import LazyImage from "../Lazy/LazyImage"
+import ArticleToMarkdown from "../Markdown/ArticleToMarkdown"
+import { LocaleContext } from "./../../context/LocaleContext"
 
 interface Props {
     topArticle: string
@@ -21,177 +21,181 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
             <DescriptionContainer>
                 <HeaderAndButtonContainer>
                     <HeaderContainer>
-                        <h1>SPIKE SLOT</h1>
+                        <h1>Slot Online SPIKE SLOT</h1>
                         <LazyImage
-                            style={{ marginLeft: '1rem', cursor: 'pointer' }}
+                            style={{ marginLeft: "1rem", cursor: "pointer" }}
                             width={24}
                             height={24}
                             onClick={() => setDisclaimerOpen(!disclaimerOpen)}
-                            alt='alert icon'
-                            src='/icons/info-icon.svg' />
+                            alt="alert icon"
+                            src="/icons/info-icon.svg"
+                        />
                     </HeaderContainer>
 
-                    <Link href={'/slots/[countryCode]'} as={`/slots/${contextCountry}`}>
+                    <Link href={"/slots/[countryCode]"} as={`/slots/${contextCountry}`}>
                         <a>
                             <div>
                                 <GoToFullSlotListButton>
-                                    <h2>{t('Go to the full list of slots')}</h2>
+                                    <h2>{t("Go to the full list of slots")}</h2>
                                     <LazyImage
-                                        style={{ marginLeft: '1rem' }}
+                                        style={{ marginLeft: "1rem" }}
                                         width={36}
                                         height={36}
-                                        alt='777_slot_icon'
-                                        src='/icons/jackpot_slot_icon.svg' />
+                                        alt="777_slot_icon"
+                                        src="/icons/jackpot_slot_icon.svg"
+                                    />
                                     <LazyImage
-                                        style={{ marginLeft: '1rem' }}
+                                        style={{ marginLeft: "1rem" }}
                                         width={26}
                                         height={26}
-                                        alt='arrow_right_icon'
-                                        src='/icons/cheveron_right_white.svg' />
+                                        alt="arrow_right_icon"
+                                        src="/icons/cheveron_right_white.svg"
+                                    />
                                 </GoToFullSlotListButton>
                             </div>
                         </a>
                     </Link>
                 </HeaderAndButtonContainer>
-                {disclaimerOpen && <div>
-                    <p className='disclaimer'>{t("HomeHeaderDisclaimer")}</p>
-                </div>}
-                <Divider color='#a8a8a8' style={{ marginBottom: '1.5rem' }} />
+                {disclaimerOpen && (
+                    <div>
+                        <p className="disclaimer">{t("HomeHeaderDisclaimer")}</p>
+                    </div>
+                )}
+                <Divider color="#a8a8a8" style={{ marginBottom: "1.5rem" }} />
 
-                <ArticleToMarkdown style={{marginBottom : '2rem'}} content={topArticle} />
-
+                <ArticleToMarkdown style={{ marginBottom: "2rem" }} content={topArticle} />
             </DescriptionContainer>
-        </Fragment >
+        </Fragment>
     )
 }
 
 const DescriptionContainer = styled.div`
-    padding : 1rem 1rem;
+    padding: 1rem 1rem;
 
-    h1{
-        color : ${(props) => props.theme.colors.primary};
+    h1 {
+        color: ${(props) => props.theme.colors.primary};
         font-family: ${(props) => props.theme.text.secondaryFont};
-        font-size : 2rem;
-        letter-spacing : .1rem; 
+        font-size: 2rem;
+        letter-spacing: 0.1rem;
     }
 
-    p{
-        margin-bottom : 1rem;
-        font-size : 90%;
+    p {
+        margin-bottom: 1rem;
+        font-size: 90%;
     }
 
     .disclaimer {
-        font-size : 80%;
+        font-size: 80%;
     }
-    
+
     .header-desc {
-        margin : 1rem 0rem;
-        line-height : 1.3rem;
+        margin: 1rem 0rem;
+        line-height: 1.3rem;
 
-        strong{
-            font-family : ${(props) => props.theme.text.secondaryFont};
-            color : ${(props) => props.theme.colors.primaryDark};
-            font-size : 1rem;
-        }
-     
-        .bolder{
-            font-weight : bold;
+        strong {
+            font-family: ${(props) => props.theme.text.secondaryFont};
+            color: ${(props) => props.theme.colors.primaryDark};
+            font-size: 1rem;
         }
 
-        .strong-secondary{
-            cursor : pointer;
-            font-family : ${(props) => props.theme.text.secondaryFont};
-            color : ${(props) => props.theme.colors.secondary};
-            font-size : 1rem;
+        .bolder {
+            font-weight: bold;
         }
 
-        .strong-terziary{
-            cursor : pointer;
-            font-family : ${(props) => props.theme.text.secondaryFont};
+        .strong-secondary {
+            cursor: pointer;
+            font-family: ${(props) => props.theme.text.secondaryFont};
+            color: ${(props) => props.theme.colors.secondary};
+            font-size: 1rem;
+        }
+
+        .strong-terziary {
+            cursor: pointer;
+            font-family: ${(props) => props.theme.text.secondaryFont};
             /* color : ${(props) => props.theme.colors.fourth}; */
-            color : #ab3aa2;
-            font-size : 1rem;
+            color: #ab3aa2;
+            font-size: 1rem;
         }
 
-        .video-link{
-            cursor : pointer;
-            font-family : ${(props) => props.theme.text.secondaryFont};
-            color : ${(props) => props.theme.colors.primaryDark};
-            font-size : 1rem;
+        .video-link {
+            cursor: pointer;
+            font-family: ${(props) => props.theme.text.secondaryFont};
+            color: ${(props) => props.theme.colors.primaryDark};
+            font-size: 1rem;
         }
     }
 `
 
 const HeaderContainer = styled.div`
-    display : flex;
-    align-items : center;
-    margin-bottom : 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
 `
 
 const HeaderAndButtonContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap;
-    justify-content : space-between;
-    
-    h2{
-        font-weight : bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    h2 {
+        font-weight: bold;
     }
 `
 
 const GoToFullSlotListButton = styled.div`
-    cursor : pointer;
-    display : flex;
-    padding : 1rem;
-    background : ${(props) => props.theme.colors.primaryDark};
-    margin-bottom : 1rem;
-    border-radius : 4px;
-    align-items : center;
-    color : #fff;
-    font-weight : bold;
-    justify-content : space-between;
-    max-width : 450px;
-    transition : background .2s ease-in;
+    cursor: pointer;
+    display: flex;
+    padding: 1rem;
+    background: ${(props) => props.theme.colors.primaryDark};
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    justify-content: space-between;
+    max-width: 450px;
+    transition: background 0.2s ease-in;
 
-    :hover{
-        background : ${(props) => props.theme.colors.primary};
+    :hover {
+        background: ${(props) => props.theme.colors.primary};
     }
 `
 
 const GoToCrazyTimeStatsButton = styled.div`
-    cursor : pointer;
-    display : flex;
-    padding : 1rem;
-    background : ${(props) => props.theme.colors.primaryDark};
-    margin-bottom : 1rem;
-    border-radius : 4px;
-    align-items : center;
-    color : #fff;
-    font-weight : bold;
-    justify-content : space-between;
-    max-width : 450px;
-    transition : background .2s ease-in;
+    cursor: pointer;
+    display: flex;
+    padding: 1rem;
+    background: ${(props) => props.theme.colors.primaryDark};
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    justify-content: space-between;
+    max-width: 450px;
+    transition: background 0.2s ease-in;
 
-    :hover{
-        background : ${(props) => props.theme.colors.primary};
+    :hover {
+        background: ${(props) => props.theme.colors.primary};
     }
 `
 
 const NewsLetterCTAButton = styled.div`
-    cursor : pointer;
-    display : flex;
-    padding : 1rem;
-    background : #5290f2;
-    margin-bottom : 1rem;
-    border-radius : 4px;
-    align-items : center;
-    color : #fff;
-    font-weight : bold;
-    justify-content : space-between;
-    max-width : 450px;
-    transition : background .2s ease-in;
+    cursor: pointer;
+    display: flex;
+    padding: 1rem;
+    background: #5290f2;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    justify-content: space-between;
+    max-width: 450px;
+    transition: background 0.2s ease-in;
 
-    :hover{
-        background : ${(props) => props.theme.colors.primary};
+    :hover {
+        background: ${(props) => props.theme.colors.primary};
     }
 `
 

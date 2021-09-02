@@ -6,7 +6,14 @@ import CustomBreadcrumbs from "../../../../components/Breadcrumbs/CustomBreadcru
 import { Slot, Bonus } from "./../../../../graphql/schema"
 import AquaClient from "../../../../graphql/aquaClient"
 import { SLOT_WITH_SLUG } from "./../../../../graphql/queries/slots"
-import { injectCDN, goFullScreen, exitFullscreen, getCanonicalPath } from "./../../../../utils/Utils"
+import {
+    injectCDN,
+    goFullScreen,
+    exitFullscreen,
+    getCanonicalPath,
+    serverSideRedirect,
+    serverSide404,
+} from "./../../../../utils/Utils"
 import SmallSlotCard from "../../../../components/Cards/SmallSlotCard"
 import snakeCase from "lodash/snakeCase"
 import { isMobile } from "react-device-detect"
@@ -416,32 +423,37 @@ const StarContainer = styled.div`
 `
 
 export async function getServerSideProps({ query, res }) {
-    const slug = query.slug as string
-    const country = query.countryCode as string
-    const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
+    try {
+        const slug = query.slug as string
+        const country = query.countryCode as string
+        const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const response = await aquaClient.query({
-        query: SLOT_WITH_SLUG,
-        variables: { slug: slug, countryCode: country },
-    })
+        const response = await aquaClient.query({
+            query: SLOT_WITH_SLUG,
+            variables: { slug: slug, countryCode: country },
+        })
 
-    const bonusListResponse = await aquaClient.query({
-        query: HOME_BONUS_LIST,
-        variables: {
-            countryCode: country,
-        },
-    })
+        const bonusListResponse = await aquaClient.query({
+            query: HOME_BONUS_LIST,
+            variables: {
+                countryCode: country,
+            },
+        })
 
-    const bonusList = bonusListResponse.data.data.homes[0].bonuses.bonus
+        const bonusList = bonusListResponse.data.data.homes[0].bonuses.bonus
 
-    return {
-        props: {
-            query,
-            _slotData: response.data.data.slots[0],
-            _bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
-            _countryCode: country,
-        },
+        return {
+            props: {
+                query,
+                _slotData: response.data.data.slots[0],
+                _bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
+                _countryCode: country,
+            },
+        }
+    } catch (error) {
+        serverSide404(res)
     }
+    return {}
 }
 
 export default SlotPage

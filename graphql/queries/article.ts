@@ -10,6 +10,7 @@ query ARTICLE_BY_SLUG($slug:String, $countryCode:String){
       }
       image{
         url
+        alternativeText
       }
 
       country{
@@ -18,7 +19,7 @@ query ARTICLE_BY_SLUG($slug:String, $countryCode:String){
 
       content{
         
-            ...on ComponentArticleArticle{
+          ...on ComponentArticleArticle{
             type
             article
           }
@@ -35,17 +36,18 @@ query ARTICLE_BY_SLUG($slug:String, $countryCode:String){
                 withDeposit
                 noDeposit
                 link
-                              borderColor
+                borderColor
                 backgroundColor
                 tips
                 circular_image{
                   url
+                  alternativeText
                 }
               }
             }
           }
         
-            ...on ComponentSlotListSlotList{
+          ...on ComponentSlotListSlotList{
             type
             slot{
               slot{
@@ -54,6 +56,7 @@ query ARTICLE_BY_SLUG($slug:String, $countryCode:String){
                 slug
                 image{
                   url
+                  alternativeText
                 }
               }
             }
@@ -81,13 +84,12 @@ query ARTICLE_BY_SLUG($countryCode:String){
     created_at
     image{
       url
+      alternativeText
     }
 
     country{
       code
-    }
-
-    
+    }   
   }
 }
 `
