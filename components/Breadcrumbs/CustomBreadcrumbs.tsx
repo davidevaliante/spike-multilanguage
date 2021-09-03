@@ -107,7 +107,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                         <a>{producerName}</a>
                     </Link>
                     <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
-                    <Link href={`/slots/${slotSlug}/${contextCountry}`}>
+                    <Link href={`/slot/${slotSlug}/${contextCountry}`}>
                         <a>{capitalize(lowerCase(name))}</a>
                     </Link>
                 </div>
@@ -360,7 +360,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <a
                         href={
                             contextCountry === "it"
-                                ? `/guid-e-trucchi/${contextCountry}`
+                                ? `/guide-e-trucchi/${contextCountry}`
                                 : `/guides-and-tricks/${contextCountry}`
                         }
                     >
