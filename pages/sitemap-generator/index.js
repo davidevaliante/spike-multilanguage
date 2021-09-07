@@ -1,13 +1,13 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import styled from 'styled-components'
-import axios from 'axios'
-const { create } = require('xmlbuilder2')
-import { format } from 'date-fns'
-import snakeCase from 'lodash/snakeCase'
-import XMLViewer from 'react-xml-viewer'
-import { replaceAll, mapJsonToArray } from '../../utils/Utils'
-import { firebaseDatabaseUrl } from '../../data/firebaseConfig'
-import AquaClient from './../../graphql/aquaClient'
+import React, { Fragment, useState, useEffect } from "react"
+import styled from "styled-components"
+import axios from "axios"
+const { create } = require("xmlbuilder2")
+import { format } from "date-fns"
+import snakeCase from "lodash/snakeCase"
+import XMLViewer from "react-xml-viewer"
+import { replaceAll, mapJsonToArray } from "../../utils/Utils"
+import { firebaseDatabaseUrl } from "../../data/firebaseConfig"
+import AquaClient from "./../../graphql/aquaClient"
 
 const ALL_SLOTS = `
 query{
@@ -97,293 +97,310 @@ query{
 `
 
 const sitemapgenerator = () => {
+    const [map, setMap] = useState(undefined)
 
-  const [map, setMap] = useState(undefined)
+    const aquaClient = new AquaClient()
 
-  const aquaClient = new AquaClient()
+    const [approved, setApproved] = useState(undefined)
 
-  const [approved, setApproved] = useState(undefined)
+    useEffect(() => {
+        console.log(approved, "approved")
+    }, [approved])
 
-  useEffect(() => {
-    console.log(approved, 'approved')
-  }, [approved])
+    const [slots, setSlots] = useState(undefined)
 
-  const [slots, setSlots] = useState(undefined)
+    useEffect(() => {
+        if (slots !== undefined) {
+            // setOnlineSlots(slots.filter(s => s.type === 'GRATIS'))
+            // setBarSlots(slots.filter(s => s.type === 'BAR'))
+            // setVltSlots(slots.filter(s => s.type === 'VLT'))
+        }
+    }, [slots])
 
-  useEffect(() => {
-    if (slots !== undefined) {
-      // setOnlineSlots(slots.filter(s => s.type === 'GRATIS'))
-      // setBarSlots(slots.filter(s => s.type === 'BAR'))
-      // setVltSlots(slots.filter(s => s.type === 'VLT'))
+    const [barSlots, setBarSlots] = useState(undefined)
+
+    useEffect(() => {
+        if (barSlots !== undefined) {
+            console.log(barSlots, "barSlots")
+        }
+    }, [barSlots])
+
+    const [onlineSlots, setOnlineSlots] = useState(undefined)
+
+    useEffect(() => {
+        if (onlineSlots !== undefined) {
+            console.log(onlineSlots, "onlineSlots")
+        }
+    }, [onlineSlots])
+
+    const [vltSlots, setVltSlots] = useState(undefined)
+
+    useEffect(() => {
+        if (vltSlots !== undefined) {
+            console.log(vltSlots, "vltSlots")
+        }
+    }, [vltSlots])
+
+    const [articles, setArticles] = useState(undefined)
+
+    useEffect(() => {
+        if (articles !== undefined) {
+            console.log(articles, "articles")
+        }
+    }, [articles])
+
+    const [producers, setProducers] = useState(undefined)
+
+    useEffect(() => {
+        if (producers !== undefined) {
+            console.log(producers, "producers")
+        }
+    }, [producers])
+
+    const [allSlots, setAllSlots] = useState(undefined)
+
+    const getVideos = async () => {
+        const videoResponse = await axios.get(`${firebaseDatabaseUrl}/AwsVideosApproved.json`)
+        const data = mapJsonToArray(videoResponse.data)
+
+        const raw = data.filter((v) => v.title === undefined)
+        const filled = data.filter((v) => v.title !== undefined)
+
+        setApproved(mapJsonToArray([...raw, ...filled]))
     }
-  }, [slots])
 
-  const [barSlots, setBarSlots] = useState(undefined)
+    const getSlots = async () => {
+        const slotResponse = await aquaClient.query({
+            query: ALL_SLOTS,
+            variables: {},
+        })
 
-  useEffect(() => {
-    if (barSlots !== undefined) {
-      console.log(barSlots, 'barSlots')
+        setAllSlots(slotResponse.data.data.slots)
     }
-  }, [barSlots])
 
-  const [onlineSlots, setOnlineSlots] = useState(undefined)
+    const [guides, setGuides] = useState(undefined)
 
-  useEffect(() => {
-    if (onlineSlots !== undefined) {
-      console.log(onlineSlots, 'onlineSlots')
+    const getGuides = async () => {
+        const guideResponse = await aquaClient.query({
+            query: BONUS_GUIDES,
+            variables: {},
+        })
+
+        setGuides(guideResponse.data.data.bonusGuides)
     }
-  }, [onlineSlots])
 
-  const [vltSlots, setVltSlots] = useState(undefined)
+    const getArticles = async () => {
+        const articleResponse = await aquaClient.query({
+            query: ARTICLES,
+            variables: {},
+        })
 
-  useEffect(() => {
-    if (vltSlots !== undefined) {
-      console.log(vltSlots, 'vltSlots')
+        setArticles(articleResponse.data.data.articles)
     }
-  }, [vltSlots])
 
-  const [articles, setArticles] = useState(undefined)
+    const [blogArticles, setBlogArticles] = useState(undefined)
 
-  useEffect(() => {
-    if (articles !== undefined) {
-      console.log(articles, 'articles')
+    const getBlogArticles = async () => {
+        const blogArticleResponse = await aquaClient.query({
+            query: BLOG_ARTICLES,
+            variables: {},
+        })
+        setBlogArticles(blogArticleResponse.data.data.blogArticles)
     }
-  }, [articles])
 
-  const [producers, setProducers] = useState(undefined)
-
-  useEffect(() => {
-    if (producers !== undefined) {
-      console.log(producers, 'producers')
+    const getProducers = async () => {
+        const producersResponse = await aquaClient.query({
+            query: PRODUCERS,
+            variables: {},
+        })
+        setProducers(producersResponse.data.data.producers)
     }
-  }, [producers])
 
-  const [allSlots, setAllSlots] = useState(undefined)
+    useEffect(() => {
+        getSlots()
+        getVideos()
+        getGuides()
+        getArticles()
+        getBlogArticles()
+        getProducers()
+    }, [])
 
-  const getVideos = async () => {
-    const videoResponse = await axios.get(`${firebaseDatabaseUrl}/AwsVideosApproved.json`)
-    const data = mapJsonToArray(videoResponse.data)
+    const test = () => {
+        const rootUrl = "https://spikeslot.com"
 
-    const raw = data.filter(v => v.title === undefined)
-    const filled = data.filter(v => v.title !== undefined)
+        const mainUrls = [
+            "/videos/it",
+            "/slots/it",
+            "/slot-bar/it",
+            "/slot-vlt/it",
+            "/migliori-bonus-casino",
+            "/guide-e-trucchi/it",
+            "/blog/it",
+        ]
 
-    setApproved(mapJsonToArray([...raw, ...filled]))
-  }
+        const singleUrls = ["/live-stats/crazy-time/it", "/live-stats/monopoly-live/it", "/live-stats/dream-catcher/it"]
 
-  const getSlots = async () => {
-    const slotResponse = await aquaClient.query({
-      query: ALL_SLOTS,
-      variables: {}
-    })
+        const r = create().ele("urlset", {
+            xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9",
+            "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+            "xsi:schemaLocation":
+                "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd",
+        })
 
-    setAllSlots(slotResponse.data.data.slots)
-  }
+        r.com("Main Urls START")
 
-  const [guides, setGuides] = useState(undefined)
+        const mUrl = r.ele("url")
 
-  const getGuides = async () => {
-    const guideResponse = await aquaClient.query({
-      query: BONUS_GUIDES,
-      variables: {}
-    })
+        mUrl.ele("loc").txt(`${rootUrl}`)
+        mUrl.ele("lastmod").txt(`${format(new Date(), "yyyy-MM-dd")}`)
+        mUrl.ele("priority").txt(`1`)
 
-    setGuides(guideResponse.data.data.bonusGuides)
-  }
+        singleUrls.forEach((urlToAdd) => {
+            const url = r.ele("url")
+            url.ele("loc").txt(`${rootUrl}${urlToAdd}`)
+            url.ele("lastmod").txt(`${format(new Date(), "yyyy-MM-dd")}`)
+            url.ele("priority").txt(`0.8`)
+        })
 
-  const getArticles = async () => {
-    const articleResponse = await aquaClient.query({
-      query: ARTICLES,
-      variables: {}
-    })
+        mainUrls.forEach((urlToAdd) => {
+            const url = r.ele("url")
+            url.ele("loc").txt(`${rootUrl}${urlToAdd}`)
+            url.ele("lastmod").txt(`${format(new Date(), "yyyy-MM-dd")}`)
+            url.ele("priority").txt(`0.8`)
+        })
 
-    setArticles(articleResponse.data.data.articles)
-  }
+        r.com("Main Urls END")
 
-  const [blogArticles, setBlogArticles] = useState(undefined)
+        r.com("Videos Urls START")
 
-  const getBlogArticles = async () => {
-    const blogArticleResponse = await aquaClient.query({
-      query: BLOG_ARTICLES,
-      variables: {}
-    })
-    setBlogArticles(blogArticleResponse.data.data.blogArticles)
-  }
+        approved
+            .filter(({ title, time }) => title !== undefined && time !== undefined)
+            .forEach((video) => {
+                const url = r.ele("url")
+                url.ele("loc").txt(`${rootUrl}/videos/${replaceAll(snakeCase(video.title), "€", "euro")}/it`)
+                url.ele("lastmod").txt(`${format(new Date(video.time), "yyyy-MM-dd")}`)
+                url.ele("priority").txt(`0.8`)
+            })
 
-  const getProducers = async () => {
-    const producersResponse = await aquaClient.query({
-      query: PRODUCERS,
-      variables: {}
-    })
-    setProducers(producersResponse.data.data.producers)
-  }
+        r.com("Videos Urls END")
 
-  useEffect(() => {
-    getSlots()
-    getVideos()
-    getGuides()
-    getArticles()
-    getBlogArticles()
-    getProducers()
-  }, [])
+        r.com("Slots Urls START")
 
+        allSlots.forEach((slot) => {
+            const url = r.ele("url")
+            url.ele("loc").txt(`${rootUrl}/slot/${slot.slug}/it`)
+            url.ele("lastmod").txt(`${format(new Date(slot.updated_at), "yyyy-MM-dd")}`)
+            url.ele("priority").txt(`0.8`)
+        })
 
-  const test = () => {
-    const rootUrl = 'https://spikeslot.com'
+        r.com("Slots Urls END")
 
-    const mainUrls = [
-      '/videos/it',
-      '/slots/it',
-      '/slot-bar/it',
-      '/slot-vlt/it',
-      '/migliori-bonus-casino',
-      '/guide-e-trucchi/it',
-      '/blog/it'
-    ]
+        r.com("Guides Urls START")
 
-    const r = create().ele('urlset', {
-      'xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9',
-      'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd',
-    });
+        guides.forEach((guide) => {
+            const url = r.ele("url")
+            url.ele("loc").txt(`${rootUrl}/guida/${guide.slug}/it`)
+            url.ele("lastmod").txt(`${format(new Date(guide.updated_at), "yyyy-MM-dd")}`)
+            url.ele("priority").txt(`0.8`)
+        })
 
-    r.com('Main Urls START')
+        r.com("Articles Urls END")
 
-    mainUrls.forEach(urlToAdd => {
-      const url = r.ele('url')
-      url.ele('loc').txt(`${rootUrl}${urlToAdd}`)
-      url.ele('lastmod').txt(`${format(new Date(), 'yyyy-MM-dd')}`)
-      url.ele('priority').txt(`0.8`)
-    })
+        articles.forEach((article) => {
+            const url = r.ele("url")
+            url.ele("loc").txt(`${rootUrl}/articoli/${article.slug}/it`)
+            url.ele("lastmod").txt(`${format(new Date(article.updated_at), "yyyy-MM-dd")}`)
+            url.ele("priority").txt(`0.8`)
+        })
 
-    r.com('Main Urls END')
+        r.com("Articles Urls END")
 
-    r.com('Videos Urls START')
+        r.com("Blog Articles Urls START")
 
-    approved.filter(({ title, time }) => title !== undefined && time !== undefined).forEach(video => {
-      const url = r.ele('url')
-      url.ele('loc').txt(`${rootUrl}/videos/${replaceAll(snakeCase(video.title), '€', 'euro')}/it`)
-      url.ele('lastmod').txt(`${format(new Date(video.time), 'yyyy-MM-dd')}`)
-      url.ele('priority').txt(`0.8`)
-    })
+        blogArticles.forEach((article) => {
+            const url = r.ele("url")
+            url.ele("loc").txt(`${rootUrl}/blog/${article.slug}/it`)
+            url.ele("lastmod").txt(`${format(new Date(article.updated_at), "yyyy-MM-dd")}`)
+            url.ele("priority").txt(`0.8`)
+        })
 
-    r.com('Videos Urls END')
+        r.com("Blog Articles Urls END")
 
-    r.com('Slots Urls START')
+        r.com("Producers Urls START")
 
-    allSlots.forEach(slot => {
-      const url = r.ele('url')
-      url.ele('loc').txt(`${rootUrl}/slot/${slot.slug}/it`)
-      url.ele('lastmod').txt(`${format(new Date(slot.updated_at), 'yyyy-MM-dd')}`)
-      url.ele('priority').txt(`0.8`)
-    })
+        producers.forEach((prod) => {
+            const url = r.ele("url")
+            url.ele("loc").txt(`${rootUrl}/producer/${prod.slug}/it`)
+            url.ele("lastmod").txt(`${format(new Date(prod.updated_at), "yyyy-MM-dd")}`)
+            url.ele("priority").txt(`0.8`)
+        })
 
-    r.com('Slots Urls END')
+        r.com("Producers Urls END")
 
-    r.com('Guides Urls START')
+        // r.com('Bar Slot Urls START')
 
-    guides.forEach(guide => {
-      const url = r.ele('url')
-      url.ele('loc').txt(`${rootUrl}/guida/${guide.slug}/it`)
-      url.ele('lastmod').txt(`${format(new Date(guide.updated_at), 'yyyy-MM-dd')}`)
-      url.ele('priority').txt(`0.8`)
-    })
+        // barSlots.filter(({ name, time }) => name !== undefined && time !== undefined).forEach(slot => {
+        //     const url = r.ele('url')
+        //     url.ele('loc').txt(`${rootUrl}/slot-bar/${snakeCase(slot.name)}/it`)
+        //     url.ele('lastmod').txt(`${format(new Date(slot.time), 'yyyy-MM-dd')}`)
+        //     url.ele('priority').txt(`0.8`)
+        // })
 
-    r.com('Articles Urls END')
+        // r.com('Bar Slot Urls END')
 
-    articles.forEach(article => {
-      const url = r.ele('url')
-      url.ele('loc').txt(`${rootUrl}/articoli/${article.slug}/it`)
-      url.ele('lastmod').txt(`${format(new Date(article.updated_at), 'yyyy-MM-dd')}`)
-      url.ele('priority').txt(`0.8`)
-    })
+        // r.com('VLT Slot Urls START')
 
-    r.com('Articles Urls END')
+        // vltSlots.filter(({ name, time }) => name !== undefined && time !== undefined).forEach(slot => {
+        //     const url = r.ele('url')
+        //     url.ele('loc').txt(`${rootUrl}/slot-vlt/${snakeCase(slot.name)}/it`)
+        //     url.ele('lastmod').txt(`${format(new Date(slot.time), 'yyyy-MM-dd')}`)
+        //     url.ele('priority').txt(`0.8`)
+        // })
 
-    r.com('Blog Articles Urls START')
+        // r.com('VLT Slot Urls END')
 
-    blogArticles.forEach(article => {
-      const url = r.ele('url')
-      url.ele('loc').txt(`${rootUrl}/blog/${article.slug}/it`)
-      url.ele('lastmod').txt(`${format(new Date(article.updated_at), 'yyyy-MM-dd')}`)
-      url.ele('priority').txt(`0.8`)
-    })
+        // r.com('Articles Urls START')
 
-    r.com('Blog Articles Urls END')
+        // articles.filter(({ title, time }) => title !== undefined && time !== undefined).forEach(article => {
+        //     const url = r.ele('url')
+        //     url.ele('loc').txt(`${rootUrl}/article/${snakeCase(article.title)}/it`)
+        //     url.ele('lastmod').txt(`${format(new Date(article.time), 'yyyy-MM-dd')}`)
+        //     url.ele('priority').txt(`0.8`)
+        // })
 
-    r.com('Producers Urls START')
+        // r.com('Articles Urls END')
 
-    producers.forEach(prod => {
-      const url = r.ele('url')
-      url.ele('loc').txt(`${rootUrl}/producer/${prod.slug}/it`)
-      url.ele('lastmod').txt(`${format(new Date(prod.updated_at), 'yyyy-MM-dd')}`)
-      url.ele('priority').txt(`0.8`)
-    })
+        // r.com('Producers Urls START')
 
-    r.com('Producers Urls END')
+        // producers.filter(({ name, time }) => name !== undefined && time !== undefined).forEach(producer => {
+        //     const url = r.ele('url')
+        //     url.ele('loc').txt(`${rootUrl}/producer/${producer.name}/it`)
+        //     url.ele('lastmod').txt(`${format(new Date(producer.time), 'yyyy-MM-dd')}`)
+        //     url.ele('priority').txt(`0.8`)
+        // })
 
-    // r.com('Bar Slot Urls START')
+        // r.com('Producers Urls END')
 
-    // barSlots.filter(({ name, time }) => name !== undefined && time !== undefined).forEach(slot => {
-    //     const url = r.ele('url')
-    //     url.ele('loc').txt(`${rootUrl}/slot-bar/${snakeCase(slot.name)}/it`)
-    //     url.ele('lastmod').txt(`${format(new Date(slot.time), 'yyyy-MM-dd')}`)
-    //     url.ele('priority').txt(`0.8`)
-    // })
+        const xml = r.end({ prettyPrint: true })
+        console.log(xml)
+        setMap(xml)
+    }
 
-    // r.com('Bar Slot Urls END')
-
-    // r.com('VLT Slot Urls START')
-
-    // vltSlots.filter(({ name, time }) => name !== undefined && time !== undefined).forEach(slot => {
-    //     const url = r.ele('url')
-    //     url.ele('loc').txt(`${rootUrl}/slot-vlt/${snakeCase(slot.name)}/it`)
-    //     url.ele('lastmod').txt(`${format(new Date(slot.time), 'yyyy-MM-dd')}`)
-    //     url.ele('priority').txt(`0.8`)
-    // })
-
-    // r.com('VLT Slot Urls END')
-
-    // r.com('Articles Urls START')
-
-    // articles.filter(({ title, time }) => title !== undefined && time !== undefined).forEach(article => {
-    //     const url = r.ele('url')
-    //     url.ele('loc').txt(`${rootUrl}/article/${snakeCase(article.title)}/it`)
-    //     url.ele('lastmod').txt(`${format(new Date(article.time), 'yyyy-MM-dd')}`)
-    //     url.ele('priority').txt(`0.8`)
-    // })
-
-    // r.com('Articles Urls END')
-
-    // r.com('Producers Urls START')
-
-    // producers.filter(({ name, time }) => name !== undefined && time !== undefined).forEach(producer => {
-    //     const url = r.ele('url')
-    //     url.ele('loc').txt(`${rootUrl}/producer/${producer.name}/it`)
-    //     url.ele('lastmod').txt(`${format(new Date(producer.time), 'yyyy-MM-dd')}`)
-    //     url.ele('priority').txt(`0.8`)
-    // })
-
-    // r.com('Producers Urls END')
-
-    const xml = r.end({ prettyPrint: true });
-    console.log(xml);
-    setMap(xml)
-  }
-
-
-  return <Fragment>
-    <StyleProvider>
-      {approved && <button onClick={() => test()}>Genera Sitemap</button>}
-      {map && <XMLViewer xml={map} />}
-    </StyleProvider>
-  </Fragment>
+    return (
+        <Fragment>
+            <StyleProvider>
+                {approved && <button onClick={() => test()}>Genera Sitemap</button>}
+                {map && <XMLViewer xml={map} />}
+            </StyleProvider>
+        </Fragment>
+    )
 }
 
 const StyleProvider = styled.div`
-    background : white;
-    min-height : 100vh;
-    width : 100%;
-    color : black;
+    background: white;
+    min-height: 100vh;
+    width: 100%;
+    color: black;
 `
 
 export default sitemapgenerator

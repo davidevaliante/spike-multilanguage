@@ -492,7 +492,10 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                             "@type": "ListItem",
                             position: 2,
                             name: `Guide e Trucchi`,
-                            item: `${websiteRoot}/guides/${contextCountry}`,
+                            item:
+                                contextCountry === "it"
+                                    ? `${websiteRoot}/guide-e-trucchi/${contextCountry}`
+                                    : `${websiteRoot}/guides-and-tricks/${contextCountry}`,
                         },
                     ],
                 }
@@ -518,7 +521,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <a
                         href={
                             contextCountry === "it"
-                                ? `/guid-e-trucchi/${contextCountry}`
+                                ? `/guide-e-trucchi/${contextCountry}`
                                 : `/guides-and-tricks/${contextCountry}`
                         }
                     >

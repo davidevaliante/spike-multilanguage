@@ -120,15 +120,16 @@ const VideoFooter = () => {
                     {!show ? t(`Show more`) : t(`Hide`)}
                 </h1>
                 <Body show={show}>
-                    <div style={{ display: "flex", justifyContent: "center", margin: "1.5rem 0rem" }}>
-                        {contextCountry === "it" && <NavbarAams />}
-                    </div>
                     {article && show && (
                         <div>
                             <ArticleToMarkdown content={article} />
                         </div>
                     )}
                 </Body>
+
+                <div style={{ display: "flex", justifyContent: "center", margin: "1.5rem 0rem" }}>
+                    {contextCountry === "it" && <NavbarAams />}
+                </div>
 
                 <Divider />
                 <p style={{ textAlign: "center", padding: "2rem" }}>Copyright ©2020 www.spikeslot.com</p>

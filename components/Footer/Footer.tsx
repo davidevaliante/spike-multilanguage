@@ -181,16 +181,16 @@ const Footer = () => {
                 </h4>
 
                 <Body show={show}>
-                    <div style={{ display: "flex", justifyContent: "center", margin: "1.5rem 0rem" }}>
-                        {contextCountry === "it" && <NavbarAams />}
-                    </div>
-
                     {article && show && (
                         <div>
                             <ArticleToMarkdown content={article} />
                         </div>
                     )}
                 </Body>
+
+                <div style={{ display: "flex", justifyContent: "center", margin: "1.5rem 0rem" }}>
+                    {contextCountry === "it" && <NavbarAams />}
+                </div>
 
                 <Divider />
                 <LowerFooterContainer>
@@ -204,12 +204,11 @@ const Footer = () => {
                         title="DMCA.com Protection Status"
                         className="dmca-badge"
                     >
-                        {" "}
                         <img
                             src="https://images.dmca.com/Badges/dmca_protected_9_120.png?ID=232dd2f5-6e9d-47e7-8826-660e6eade29e"
                             alt="DMCA.com Protection Status"
                         />
-                    </a>{" "}
+                    </a>
                     <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
                     <p style={{ marginLeft: "1rem" }}>Giochi di slot machine gratuiti</p>
                 </LowerFooterContainer>

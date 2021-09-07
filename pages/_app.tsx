@@ -33,6 +33,8 @@ class MyApp extends App {
                     <ThemeProvider theme={styledTheme}>
                         <Head>
                             <script async src="https://www.googletagmanager.com/gtag/js?id=G-VW9JVLDQEM" />
+                            <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+
                             <script
                                 dangerouslySetInnerHTML={{
                                     __html: `
