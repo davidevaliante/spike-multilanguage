@@ -70,6 +70,10 @@ export default class Document extends NextDocument {
             href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap"
             rel="stylesheet"
           />
+                    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+            rel="stylesheet"
+          />
           <meta
             name="google-site-verification"
             content="UmP-j4RgASnaCO-_OIXFoGoNb1M9xd8a22uMn4T2JiI"
