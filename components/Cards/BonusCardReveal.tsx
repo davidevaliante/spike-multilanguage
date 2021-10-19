@@ -27,6 +27,8 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
         if (b.name === "Eurobet") b.link = "https://record.betpartners.it/_E_C7XwxgprAZV93hC2dJ_GNd7ZgqdRLk/110/"
         if (b.name === "Gioco Digitale")
             b.link = "https://mediaserver.entainpartners.com/renderBanner.do?zoneId=2022788"
+        if (b.name === "WinCasino") b.link = "https://www.wincasinopromo.it/?mp=20f65900-3c5c-4ac2-a5ee-17aac6ccf2be"
+        if (b.name === "NetBet") b.link = "https://banners.livepartners.com/view.php?z=139081&source=bakeca"
         return b
     }
 
