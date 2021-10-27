@@ -36,6 +36,7 @@ import { LocaleContext } from "./../../../../context/LocaleContext"
 import FullPageLoader from "../../../../components/Layout/FullPageLoader"
 import ShareButtons, { TopRowContainer } from "../../../../components/Seo/ShareButtons"
 import Author from "../../../../components/StructuredData.tsx/Author"
+import axios from "axios"
 
 interface PageProps extends NextPageContext {
     _shallow: boolean
@@ -47,6 +48,12 @@ interface PageProps extends NextPageContext {
 const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusList, _countryCode }) => {
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
     const [loading, setLoading] = useState(true)
+
+    const [playLink, setPlayLink] = useState(_slotData.playLink)
+
+    useEffect(() => {
+        console.log(playLink, "playlink changed")
+    }, [playLink])
 
     const [primaryBonus, setPrimaryBonus] = useState(_slotData.mainBonus)
     const [auxiliaryBonuses, setAuxiliaryBonuses] = useState(
@@ -66,7 +73,24 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
         setup()
     }, [])
 
+    const checkForCrystaltech = async () => {
+        console.log("retriving cristaltec play url")
+        try {
+            const url = `https://cristaltecdemo.piattaforma97.it/${_slotData.name}`
+            console.log(url)
+            const request = await axios.get(url)
+            setPlayLink(request.data)
+
+            console.log(request.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const setup = () => {
+        console.log(_slotData)
+        if (_slotData.producer.name === "Cristaltec") checkForCrystaltech()
+        else console.log("not a cristaltec slot")
         setContextCountry(_countryCode)
         setLoading(false)
     }
@@ -243,7 +267,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                     />
 
                                     <PlayArea>
-                                        {isPlaying && <iframe src={_slotData?.playLink} />}
+                                        {isPlaying && <iframe src={playLink} />}
                                         {!isPlaying && <NeonButton onClick={() => setIsPlaying(true)} />}
                                     </PlayArea>
                                     {primaryBonus && <PrimaryBonusCard bonus={primaryBonus} />}
@@ -292,7 +316,9 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                 )}
             </FadeInOut>
 
-            {isPlayingMobile && <PlayDimmer onClose={() => setIsPlayingMobile(false)} slotData={_slotData} />}
+            {isPlayingMobile && (
+                <PlayDimmer onClose={() => setIsPlayingMobile(false)} slotData={_slotData} playLink={playLink} />
+            )}
         </Fragment>
     )
 }
