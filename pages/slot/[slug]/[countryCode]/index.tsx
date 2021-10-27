@@ -73,24 +73,9 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
         setup()
     }, [])
 
-    const checkForCrystaltech = async () => {
-        console.log("retriving cristaltec play url")
-        try {
-            const url = `https://cristaltecdemo.piattaforma97.it/${_slotData.name}`
-            console.log(url)
-            const request = await axios.get(url)
-            setPlayLink(request.data)
-
-            console.log(request.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const setup = () => {
         console.log(_slotData)
-        if (_slotData.producer.name === "Cristaltec") checkForCrystaltech()
-        else console.log("not a cristaltec slot")
+        if (_slotData.name === "Arizona") setPlayLink(ArizonaPlayLink)
         setContextCountry(_countryCode)
         setLoading(false)
     }
@@ -481,5 +466,8 @@ export async function getServerSideProps({ query, res }) {
     }
     return {}
 }
+
+const ArizonaPlayLink =
+    "https://d3fzpomthik49y.cloudfront.net/457284b0-3019-11ec-96c6-cd642f14185d/index.html?sid=FUN1a6a277f-046f-4de4-9dcf-042ad711e2e4&mode=fun&q=2&coins=100000&gameName=arizona_vlt&inactivityTime=20&purl=https://play.gai.cristent.it&rurl=null&token=BearerFuneyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX3N0YXJ0IjoxLCJpYXQiOjE2MzUzMzI2NzMsImV4cCI6MTYzNTMzMjk3M30.9W6tMdpAvi_f0QOnDtVpCCte8QCsuRuWmyIsxF9q9K0"
 
 export default SlotPage
