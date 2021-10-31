@@ -40,7 +40,7 @@ const SOCKET_ENDPOINT = "https://crazytime.spike-realtime-api.eu"
 
 const PAGE_BONUSES = ["888 Casino", "StarCasinò", "LeoVegas", "PokerStars Casino", "Unibet"]
 
-const SPAM_BONUSES = true
+const SPAM_BONUSES = false
 
 const index: FunctionComponent<Props> = ({
     _requestedCountryCode,
@@ -100,7 +100,7 @@ const index: FunctionComponent<Props> = ({
                         mergeWithUpdate(
                             rows,
                             updatedRows.map((r) => {
-                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                                 return r
                             })
                         )
@@ -130,7 +130,7 @@ const index: FunctionComponent<Props> = ({
                         mergeWithUpdate(
                             rows,
                             updatedRows.map((r) => {
-                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                                 return r
                             })
                         )
@@ -402,7 +402,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
             _requestedCountryCode,
             _stats: pageData.data.stats,
             _lastTenSpins: pageData.data.spinsInTimeFrame.map((r) => {
-                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                 return r
             }),
             _bonuses:

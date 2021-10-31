@@ -111,7 +111,7 @@ const index: FunctionComponent<Props> = ({
                         mergeWithUpdate(
                             rows,
                             updatedRows.map((r) => {
-                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                                 return r
                             })
                         )
@@ -142,7 +142,7 @@ const index: FunctionComponent<Props> = ({
                         mergeWithUpdate(
                             rows,
                             updatedRows.map((r) => {
-                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                                 return r
                             })
                         )
@@ -436,7 +436,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
             _requestedCountryCode,
             _tables: pageData.data.tables[0],
             _lastTenSpins: pageData.data.spinsInTimeFrame.map((r) => {
-                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 2
+                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                 return r
             }),
             _stats: pageData.data.stats,
