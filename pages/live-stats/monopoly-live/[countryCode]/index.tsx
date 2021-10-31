@@ -47,7 +47,7 @@ const SOCKET_ENDPOINT = "https://monopoly.spike-realtime-api.eu"
 
 const PAGE_BONUSES = ["888 Casino", "StarCasinò", "LeoVegas", "PokerStars Casino", "Unibet"]
 
-const SPAM_BONUSES = true
+const SPAM_BONUSES = false
 
 const index: FunctionComponent<Props> = ({
     _requestedCountryCode,
