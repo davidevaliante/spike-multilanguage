@@ -117,12 +117,20 @@ query BONUS_BY_NAME_AND_COUNTRY($name:String, $countryCode:String){
       country{
         code
       }
+      description
       name
       withDeposit
       noDeposit
       link
       backgroundColor
       borderColor
+      tips
+      acceptedPayments{
+                  methodName
+                }
+      bonus_guide{
+        slug
+      }
       circular_image{
         url
         alternativeText

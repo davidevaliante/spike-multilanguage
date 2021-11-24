@@ -30,7 +30,7 @@ import BonusCardRevealComponent from "./../../../../components/Cards/BonusCardRe
 import SlotMainFeatures from "../../../../components/Cards/SlotMainFeatures"
 import Head from "next/head"
 import { ApolloBonusCardReveal } from "../../../../data/models/Bonus"
-import { HOME_BONUS_LIST } from "../../../../graphql/queries/bonus"
+import { BONUSES_BY_NAME, GET_BONUS_BY_NAME_AND_COUNTRY, HOME_BONUS_LIST } from "../../../../graphql/queries/bonus"
 import { useRouter } from "next/router"
 import { LocaleContext } from "./../../../../context/LocaleContext"
 import FullPageLoader from "../../../../components/Layout/FullPageLoader"
@@ -216,10 +216,6 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                                 : injectCDN(_slotData.image.url)
                                         }
                                     />
-
-                                    {/* <ProblemButton onClick={() => setShowProblemForm(true)}>
-                    <p>Segnala un problema</p>
-                  </ProblemButton> */}
                                 </TopRowContainer>
 
                                 <Container>
@@ -459,6 +455,31 @@ export async function getServerSideProps({ query, res }) {
             variables: { slug: slug, countryCode: country },
         })
 
+        let slot = response.data.data.slots[0] as Slot
+
+        if (slot.mainBonus.name === "BetFlag") {
+            const wincasinoBonus = await aquaClient.query({
+                query: GET_BONUS_BY_NAME_AND_COUNTRY,
+                variables: {
+                    name: "WinCasino",
+                    countryCode: country,
+                },
+            })
+
+            slot.mainBonus = wincasinoBonus.data.data.bonuses[0]
+        }
+
+        const bonusesNames = slot.bonuses.map((b) => b.name)
+
+        if (bonusesNames.includes("BetFlag")) {
+            const indextoRemove = slot.bonuses.findIndex((it) => it.name === "BetFlag")
+            console.log("Bet flag spotted", indextoRemove)
+
+            const placeholder = [...slot.bonuses]
+            placeholder.splice(indextoRemove, 1)
+            slot.bonuses = placeholder
+        }
+
         const bonusListResponse = await aquaClient.query({
             query: HOME_BONUS_LIST,
             variables: {
@@ -471,7 +492,7 @@ export async function getServerSideProps({ query, res }) {
         return {
             props: {
                 query,
-                _slotData: response.data.data.slots[0],
+                _slotData: slot,
                 _bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
                 _countryCode: country,
             },

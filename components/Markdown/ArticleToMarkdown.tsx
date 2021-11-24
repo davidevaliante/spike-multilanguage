@@ -118,7 +118,7 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
                     width={"100%"}
                     height={"1450px"}
                     style={{ marginTop: "2rem" }}
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSdcTMybOWdvHooCcICxNPREZZHSbfH05UxrfXFwufjYkKLmDg/viewform?embedded=true"
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSeBOYGD66e_zs29HG36OJjFe2851Yiqh0cveG3BvU5pOSTh0Q/viewform"
                 />
             )
         }
