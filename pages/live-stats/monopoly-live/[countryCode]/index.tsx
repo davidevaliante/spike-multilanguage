@@ -45,7 +45,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = "https://monopoly.spike-realtime-api.eu"
 
-const PAGE_BONUSES = ["888 Casino", "PokerStars Casino", "StarCasinò", "LeoVegas", "Unibet"]
+const PAGE_BONUSES = ["888 Casino", "PokerStars Casino", "StarCasinò", "WinCasino", "LeoVegas"]
 
 const SPAM_BONUSES = true
 
@@ -443,7 +443,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
             _bonuses:
                 countryCode === "it"
                     ? orderedBonusList.map((b) => {
-                          b.link = bonusRemapping[b.name]
+                          if (b.name !== "WinCasino") b.link = bonusRemapping[b.name]
                           return b
                       })
                     : orderedBonusList,
