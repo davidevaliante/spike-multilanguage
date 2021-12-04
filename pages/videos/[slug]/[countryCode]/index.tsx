@@ -43,6 +43,8 @@ const palette = {
 }
 
 const getCdnZone = (video) => {
+    if (video.title === "LIVE IMPROVVISATA! SPIKE SLOT ONLINE - 02/12/2021")
+        return "https://d1t5qgqnsyejwx.cloudfront.net/-Mpzu-t4GBpw9M2ksScB/Default/HLS/-Mpzu-t4GBpw9M2ksScB.m3u8"
     if (!video.conversionType)
         return `https://spikeconvertedcomplete.b-cdn.net/${video.videoId}/Default/HLS/${video.videoId}.m3u8`
     else return `https://spikeconverted720.b-cdn.net/${video.videoId}/Default/HLS/${video.videoId}.m3u8`
