@@ -137,7 +137,12 @@
             "High Rolls": "High Rolls",
             "Monopoly Statistics": "Monopoly Live Stats",
             "Expected": "Expected",
-            "Special Multiplier": "Special Multiplier"
+            "Special Multiplier": "Special Multiplier",
+            "Dice": "Dice",
+            "Total": "Total",
+            "Lightning Numbers": "Lightning Numbers",
+            "Lightning Dice Statistics": "Lightning Dice Statistics",
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
         }
     },
     "it": {
@@ -285,7 +290,13 @@
             "Rolls": "Tiri",
             "Special Multiplier": "Moltiplicatore Speciale",
             "Dream Catcher Statistics": "Statistiche Dream Catcher",
-            "You can play at DREAM CATCHER here": "Puoi giocare alla DREAM CATCHER qui:"
+            "You can play at DREAM CATCHER here": "Puoi giocare alla DREAM CATCHER qui:",
+            "Dice": "Dadi",
+            "Total": "Totale",
+            "Lightning Numbers": "Lightning Numbers",
+            "Lightning Dice Statistics": "Statistiche Lightning Dice",
+            "Round History": "Storico dei Round",
+            "You can play at LIGHTNING DICE here": "Puoi giocare a LIGHTNING DICE qui"
         }
     },
     "row": {
@@ -434,7 +445,13 @@
             "Expected": "Expected",
             "Special Multiplier": "Special Multiplier",
             "Dream Catcher Statistics": "Dream Catcher Statistics",
-            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here"
+            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here",
+            "Dice": "Dice",
+            "Total": "Total",
+            "Lightning Numbers": "Lightning Numbers",
+            "Lightning Dice Statistics": "Lightning Dice Statistics",
+            "Round History": "Round History",
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
         }
     },
     "ca": {
@@ -582,7 +599,13 @@
             "Expected": "Expected",
             "Special Multiplier": "Special Multiplier",
             "Dream Catcher Statistics": "Dream Catcher Statistics",
-            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here"
+            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here",
+            "Dice": "Dice",
+            "Total": "Total",
+            "Lightning Numbers": "Lightning Numbers",
+            "Lightning Dice Statistics": "Lightning Dice Statistics",
+            "Round History": "Round History",
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
         }
     },
     "nz": {
@@ -730,7 +753,13 @@
             "Expected": "Expected",
             "Special Multiplier": "Special Multiplier",
             "Dream Catcher Statistics": "Dream Catcher Statistics",
-            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here"
+            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here",
+            "Dice": "Dice",
+            "Total": "Total",
+            "Lightning Numbers": "Lightning Numbers",
+            "Lightning Dice Statistics": "Lightning Dice Statistics",
+            "Round History": "Round History",
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
         }
     },
     "rs": {
@@ -876,7 +905,13 @@
             "Expected": "Expected",
             "Special Multiplier": "Special Multiplier",
             "Dream Catcher Statistics": "Dream Catcher Statistics",
-            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here"
+            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here",
+            "Dice": "Dice",
+            "Total": "Total",
+            "Lightning Numbers": "Lightning Numbers",
+            "Lightning Dice Statistics": "Lightning Dice Statistics",
+            "Round History": "Round History",
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
         }
     },
     "me": {
@@ -1022,7 +1057,13 @@
             "Expected": "Expected",
             "Special Multiplier": "Special Multiplier",
             "Dream Catcher Statistics": "Dream Catcher Statistics",
-            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here"
+            "You can play at DREAM CATCHER here": "You can play at DREAM CATCHER here",
+            "Dice": "Dice",
+            "Total": "Total",
+            "Lightning Numbers": "Lightning Numbers",
+            "Lightning Dice Statistics": "Lightning Dice Statistics",
+            "Round History": "Round History",
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
         }
     }
 }
