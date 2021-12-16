@@ -151,7 +151,7 @@ const Container = styled.div`
     position: relative;
     width: 300px;
     box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.73);
-    margin-left: 0.8rem;
+    /* margin-left: 0.8rem; */
 
     /* classe del contenitore più esterno da modificare per l'offset dello swiper */
     .swiper-container {

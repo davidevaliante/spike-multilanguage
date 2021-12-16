@@ -50,7 +50,7 @@ const LiveStatsCta: FunctionComponent<Props> = (props: Props) => {
 
 const Container = styled.div`
     display: flex;
-    max-width: 350px;
+    max-width: 95vw;
     margin-bottom: 3rem;
     padding-top: 1.5rem;
     padding-bottom: 0.3rem;
@@ -59,6 +59,8 @@ const Container = styled.div`
     gap: 0.2rem;
     overflow-x: auto;
     scrollbar-width: thin;
+
+    box-sizing: border-box;
 
     ${laptop} {
         max-width: 880px;

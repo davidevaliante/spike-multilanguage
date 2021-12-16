@@ -32,6 +32,10 @@ export const BodyContainer = styled.div`
 
 export const MainColumn = styled.div`
     max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 export const RightColumn = styled.div`
     display: none;
