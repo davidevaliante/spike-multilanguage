@@ -3,7 +3,7 @@ import { FunctionComponent, Fragment } from "react"
 import { LocaleContext } from "./../../../../context/LocaleContext"
 import FullPageLoader from "../../../../components/Layout/FullPageLoader"
 import NavbarProvider from "../../../../components/Navbar/NavbarProvider"
-import { BodyContainer, MainColumn } from "../../../../components/Layout/Layout"
+import { BodyContainer, MainColumn, MainColumnScroll } from "../../../../components/Layout/Layout"
 import io, { Socket } from "socket.io-client"
 import { Select, MenuItem, Paper, Divider, Backdrop, Input, Checkbox, ListItemText } from "@material-ui/core"
 import { TimeFrame } from "../../../../data/models/TimeFrames"
@@ -223,7 +223,9 @@ const index: FunctionComponent<Props> = ({
                 </Head>
 
                 <BodyContainer>
-                    <MainColumn style={{ width: "100%", maxWidth: "90%", paddingBottom: "4rem", paddingTop: "2rem" }}>
+                    <MainColumnScroll
+                        style={{ width: "100%", maxWidth: "90%", paddingBottom: "4rem", paddingTop: "2rem" }}
+                    >
                         <DynamicContent content={_pageContent.topContent} />
                         <Divider style={{ marginTop: "2rem" }} />
 
@@ -355,7 +357,7 @@ const index: FunctionComponent<Props> = ({
                         <DynamicContent content={_pageContent.bottomContent} />
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}
-                    </MainColumn>
+                    </MainColumnScroll>
                 </BodyContainer>
             </NavbarProvider>
         </Fragment>

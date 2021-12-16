@@ -29,6 +29,9 @@ export const BodyContainer = styled.div`
         color: #2a6aeb;
     }
 `
+export const MainColumnScroll = styled.div`
+    max-width: 900px;
+`
 
 export const MainColumn = styled.div`
     max-width: 900px;
