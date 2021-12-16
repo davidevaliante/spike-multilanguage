@@ -66,6 +66,20 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
                                 <p>Monopoly Live Stats</p>
                                 <Divider />
                             </div>
+                            <div
+                                key={`push_menu_dream`}
+                                onClick={() => router.push(`/live-stats/dream-catcher/${contextCountry}`)}
+                            >
+                                <p>Dream Catcher</p>
+                                <Divider />
+                            </div>
+                            <div
+                                key={`push_menu_lightning-dice`}
+                                onClick={() => router.push(`/live-stats/lightning-dice/${contextCountry}`)}
+                            >
+                                <p>Lightning Dice</p>
+                                <Divider />
+                            </div>
                         </div>
                     )
                 )}

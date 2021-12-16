@@ -212,6 +212,9 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
                         <MenuItem onClick={() => router.push(`/live-stats/dream-catcher/${contextCountry}`)}>
                             Dream Catcher
                         </MenuItem>
+                        <MenuItem onClick={() => router.push(`/live-stats/lightning-dice/${contextCountry}`)}>
+                            Lightning Dice
+                        </MenuItem>
                     </Menu>
                 </div>
             )

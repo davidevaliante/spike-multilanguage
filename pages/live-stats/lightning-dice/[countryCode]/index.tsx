@@ -218,8 +218,6 @@ const index: FunctionComponent<Props> = ({
                     <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
                     <meta property="og:locale" content={"it"} />
                     <meta property="og:type" content="article" />
-                    {/* <meta property="og:description" content={_pageContent.seo?.seoDescription} />
-                    <meta property="og:site_name" content={_pageContent.seo?.seoTitle} /> */}
                 </Head>
 
                 <BodyContainer>
@@ -231,8 +229,6 @@ const index: FunctionComponent<Props> = ({
                             paddingTop: "2rem",
                         }}
                     >
-                        {/* {_pageContent.topContent && <DynamicContent content={_pageContent.topContent} />} */}
-
                         <Divider style={{ marginTop: "2rem" }} />
 
                         <div>
