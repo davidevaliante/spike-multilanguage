@@ -15,7 +15,7 @@ import { BONUS_GUIDE_BY_SLUG_AND_COUNTRY } from "../../../../graphql/queries/bon
 import PrimaryBonusCard from "./../../../../components/Cards/PrimaryBonusCard"
 import Head from "next/head"
 import { ApolloBonusCardReveal } from "../../../../data/models/Bonus"
-import { HOME_BONUS_LIST } from "../../../../graphql/queries/bonus"
+import { GET_BONUS_BY_NAME_AND_COUNTRY, HOME_BONUS_LIST } from "../../../../graphql/queries/bonus"
 import { useRouter } from "next/router"
 import { countryContext } from "../../../../context/CountryContext"
 import { LocaleContext } from "../../../../context/LocaleContext"
@@ -174,6 +174,21 @@ export async function getServerSideProps({ query, res }) {
         })
     }
 
+    if (bonusGuideResponse.data.data.bonusGuides[0]) {
+        if (bonusGuideResponse.data.data.bonusGuides[0].bonus.name === "BetFlag") {
+            console.log("swapping bonus with wincasino")
+
+            const wincasinoBonus = await aquaClient.query({
+                query: GET_BONUS_BY_NAME_AND_COUNTRY,
+                variables: {
+                    name: "WinCasino",
+                    countryCode: "it",
+                },
+            })
+
+            bonusGuideResponse.data.data.bonusGuides[0].bonus = wincasinoBonus.data.data.bonuses[0]
+        }
+    }
     const bonusList = bonusListResponse.data.data.homes[0]?.bonuses.bonus
         ? bonusListResponse.data.data.homes[0]?.bonuses.bonus
         : data1.data.data.homes[0]?.bonuses.bonus

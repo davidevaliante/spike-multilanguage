@@ -17,7 +17,7 @@ const BonusGuideCard: FunctionComponent<BonusGuideCardProps> = ({ guide }) => {
         <StyleProvider>
             <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${guide.slug}/${contextCountry}`}>
                 <a>
-                    <CardContainer backgroundColor={guide.bonus!.backgroundColor!}>
+                    <CardContainer backgroundColor={guide.bonus!.backgroundColor}>
                         <LazyBonusImage
                             alt={`${guide.bonus?.name}-logo`}
                             width={60}

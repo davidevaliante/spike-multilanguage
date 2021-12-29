@@ -43,6 +43,8 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
     const [bonusList, setBonusList] = useState<Bonus[]>(_bonusList)
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
+    console.log(initialGuides)
+
     useEffect(() => {
         getCountryData()
     }, [])
@@ -218,6 +220,7 @@ export async function getServerSideProps({ query, res }) {
             },
         }
     } catch (error) {
+        // console.log(error, "ERROR")
         serverSide404(res)
     }
 }
