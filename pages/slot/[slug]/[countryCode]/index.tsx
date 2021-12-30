@@ -280,7 +280,14 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
                             <div style={{ width: "100%", marginBottom: "6rem" }}>
                                 <BodyContainer>
-                                    <MainColumn style={{ maxWidth: "800px", margin: "1rem" }}>
+                                    <MainColumn
+                                        style={{
+                                            maxWidth: "800px",
+                                            margin: "1rem",
+                                            justifyContent: "flex-start",
+                                            marginTop: "2.5rem",
+                                        }}
+                                    >
                                         <ArticleToMarkdown content={_slotData?.description} />
                                     </MainColumn>
                                     <RightColumn>
