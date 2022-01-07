@@ -13,13 +13,24 @@ interface Props {
 }
 
 const SearchResults: FunctionComponent<Props> = ({ show, searchResults }) => {
+    const handleEntityClick = (result: AlgoliaSearchResult) => {
+        console.log("click", result.type)
+        if (result.type === "slot") Router.push(`/slot/${result.slug}/${result.country}`)
+        if (result.type === "bonus") {
+            if (result.slug) Router.push(`/guida/${result.slug}/${result.country}`)
+            else window.open(result.link)
+        }
+        if (result.type === "producer") Router.push(`/producer/${result.slug}/${result.country}`)
+        else console.log(result.type)
+    }
+
     return (
         <div>
-            <FadeInOut visible={show}>
+            {show && (
                 <SearchResultsContainer>
                     {searchResults ? (
                         searchResults?.map((r: AlgoliaSearchResult, index: number) => (
-                            <div key={`search_res_${index}`}>
+                            <div key={`search_res_${index}`} onClick={() => handleEntityClick(r)}>
                                 <SearchTile result={r} />
                                 <Divider color="grey" />
                             </div>
@@ -28,7 +39,7 @@ const SearchResults: FunctionComponent<Props> = ({ show, searchResults }) => {
                         <SuggestedSearchs />
                     )}
                 </SearchResultsContainer>
-            </FadeInOut>
+            )}
         </div>
     )
 }
@@ -48,7 +59,6 @@ const SearchTile: FunctionComponent<{ result: AlgoliaSearchResult }> = ({ result
     }
 
     const handleEntityClick = () => {
-        console.log("click", result.type)
         if (result.type === "slot") Router.push(`/slot/${result.slug}/${result.country}`)
         if (result.type === "bonus") {
             if (result.slug) Router.push(`/guida/${result.slug}/${result.country}`)
@@ -65,7 +75,7 @@ const SearchTile: FunctionComponent<{ result: AlgoliaSearchResult }> = ({ result
 
     return (
         <ResultTileStyleProvider type={result.type}>
-            <div className="tile-container" onClick={() => handleEntityClick()}>
+            <div className="tile-container">
                 <img style={{ width: "36px", height: "36px" }} src={injectCDN(getImageUrl())} />
                 <h3>{result.name}</h3>
                 <h3 className="type">{typeToString(result.type)}</h3>
