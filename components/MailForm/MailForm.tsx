@@ -96,7 +96,7 @@ const MailForm = (props) => {
         if (email && message) {
             setErrors([])
             await axios.post(
-                "https://hooks.slack.com/services/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",
+                "https://hooks.slack.com/services/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",
                 JSON.stringify(buildSlackPayload(email, message))
             )
 
