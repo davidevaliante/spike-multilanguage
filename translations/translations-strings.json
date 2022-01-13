@@ -142,7 +142,10 @@
             "Total": "Total",
             "Lightning Numbers": "Lightning Numbers",
             "Lightning Dice Statistics": "Lightning Dice Statistics",
-            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
+            "Email Not Valid": "Email Not Valid",
+            "Message Too Short": "Message Too Short",
+            "Email Sent": "Email Sent"
         }
     },
     "it": {
@@ -296,7 +299,10 @@
             "Lightning Numbers": "Lightning Numbers",
             "Lightning Dice Statistics": "Statistiche Lightning Dice",
             "Round History": "Storico dei Round",
-            "You can play at LIGHTNING DICE here": "Puoi giocare a LIGHTNING DICE qui"
+            "You can play at LIGHTNING DICE here": "Puoi giocare a LIGHTNING DICE qui",
+            "Email Not Valid": "Inserisci una Email valida",
+            "Message Too Short": "Messaggio non valido",
+            "Email Sent": "Messaggio Inviato"
         }
     },
     "row": {
@@ -451,7 +457,10 @@
             "Lightning Numbers": "Lightning Numbers",
             "Lightning Dice Statistics": "Lightning Dice Statistics",
             "Round History": "Round History",
-            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
+            "Email Not Valid": "Email Not Valid",
+            "Message Too Short": "Message Too Short",
+            "Email Sent": "Email Sent"
         }
     },
     "ca": {
@@ -605,7 +614,10 @@
             "Lightning Numbers": "Lightning Numbers",
             "Lightning Dice Statistics": "Lightning Dice Statistics",
             "Round History": "Round History",
-            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
+            "Email Not Valid": "Email Not Valid",
+            "Message Too Short": "Message Too Short",
+            "Email Sent": "Email Sent"
         }
     },
     "nz": {
@@ -759,7 +771,10 @@
             "Lightning Numbers": "Lightning Numbers",
             "Lightning Dice Statistics": "Lightning Dice Statistics",
             "Round History": "Round History",
-            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
+            "Email Not Valid": "Email Not Valid",
+            "Message Too Short": "Message Too Short",
+            "Email Sent": "Email Sent"
         }
     },
     "rs": {
@@ -911,7 +926,10 @@
             "Lightning Numbers": "Lightning Numbers",
             "Lightning Dice Statistics": "Lightning Dice Statistics",
             "Round History": "Round History",
-            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
+            "Email Not Valid": "Email Not Valid",
+            "Message Too Short": "Message Too Short",
+            "Email Sent": "Email Sent"
         }
     },
     "me": {
@@ -1063,7 +1081,10 @@
             "Lightning Numbers": "Lightning Numbers",
             "Lightning Dice Statistics": "Lightning Dice Statistics",
             "Round History": "Round History",
-            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here"
+            "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
+            "Email Not Valid": "Email Not Valid",
+            "Message Too Short": "Message Too Short",
+            "Email Sent": "Email Sent"
         }
     }
 }

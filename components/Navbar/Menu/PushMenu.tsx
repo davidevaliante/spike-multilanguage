@@ -13,6 +13,8 @@ interface Props {
 }
 
 const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
+    console.log("here")
+
     const offset = "80vw"
 
     const router = useRouter()
@@ -26,6 +28,8 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
         else updateStateDelayed()
     }, [state])
 
+    const [liveStatsMenuOpen, setLiveStatsMenuOpen] = useState(false)
+
     const updateStateDelayed = () => {
         setTimeout(() => {
             setChildrenWrapperPosition(false)
@@ -35,6 +39,37 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
     const navigateTo = (link: string) => {
         if (link === "/" || link === "/migliori-bonus-casino") Router.push(link)
         else Router.push(`${link}/${contextCountry}`)
+    }
+
+    const LiveStatsSubMenu = () => {
+        return (
+            <div style={{ marginLeft: "2rem" }}>
+                <div
+                    key={`push_menu_crazy_time`}
+                    onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}
+                >
+                    <p>Crazy Time Stats</p>
+                    <Divider />
+                </div>
+                <div
+                    key={`push_menu_monopoly`}
+                    onClick={() => router.push(`/live-stats/monopoly-live/${contextCountry}`)}
+                >
+                    <p>Monopoly Live Stats</p>
+                    <Divider />
+                </div>
+                <div key={`push_menu_dream`} onClick={() => router.push(`/live-stats/dream-catcher/${contextCountry}`)}>
+                    <p>Dream Catcher Stats</p>
+                    <Divider />
+                </div>
+                <div
+                    key={`push_menu_lightning-dice`}
+                    onClick={() => router.push(`/live-stats/lightning-dice/${contextCountry}`)}
+                >
+                    <p>Lightning Dice Stats</p>
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -53,33 +88,24 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
                     ) : (
                         <div>
                             <div
-                                key={`push_menu_crazy_time`}
-                                onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}
+                                onClick={() => setLiveStatsMenuOpen(!liveStatsMenuOpen)}
+                                style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
                             >
-                                <p>Crazy Time Stats</p>
-                                <Divider />
+                                <p>Live Stats</p>
+                                <span>
+                                    <img
+                                        width={20}
+                                        height={20}
+                                        src={
+                                            liveStatsMenuOpen
+                                                ? "/icons/chevron_up_white.svg"
+                                                : "/icons/chevron_down_white.svg"
+                                        }
+                                    />
+                                </span>
                             </div>
-                            <div
-                                key={`push_menu_monopoly`}
-                                onClick={() => router.push(`/live-stats/monopoly-live/${contextCountry}`)}
-                            >
-                                <p>Monopoly Live Stats</p>
-                                <Divider />
-                            </div>
-                            <div
-                                key={`push_menu_dream`}
-                                onClick={() => router.push(`/live-stats/dream-catcher/${contextCountry}`)}
-                            >
-                                <p>Dream Catcher</p>
-                                <Divider />
-                            </div>
-                            <div
-                                key={`push_menu_lightning-dice`}
-                                onClick={() => router.push(`/live-stats/lightning-dice/${contextCountry}`)}
-                            >
-                                <p>Lightning Dice</p>
-                                <Divider />
-                            </div>
+                            {liveStatsMenuOpen && <LiveStatsSubMenu />}
+                            <Divider />
                         </div>
                     )
                 )}
