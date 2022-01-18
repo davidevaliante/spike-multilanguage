@@ -1,41 +1,44 @@
-import React, { Fragment, useEffect, useState, useContext } from 'react'
-import styled from 'styled-components'
-import { FunctionComponent } from 'react'
-import NavbarProvider from '../../../components/Navbar/NavbarProvider'
-import { Video, AlgoliaVideo } from '../../../graphql/schema'
-import { getInitialVideos } from '../../../data/api/video'
-import { getCanonicalPath } from '../../../utils/Utils'
-import { loadNextVideoListChunk } from '../../../data/api/video'
-import { orderBy, pickBy, delay } from 'lodash'
-import VideoListSearchInput from '../../../components/Search/VideoListSearch'
-import  { SearchIndex } from 'algoliasearch'
-import VideoListComponent from '../../../components/Lists/VideoListComponent'
-import LatestVideoCardList from '../../../components/Cards/LatestVideoCardList'
-import Head from 'next/head'
-import { laptop } from '../../../components/Responsive/Breakpoints'
-import {useRouter} from 'next/router'
-import { LocaleContext } from '../../../context/LocaleContext'
+import React, { Fragment, useEffect, useState, useContext } from "react"
+import styled from "styled-components"
+import { FunctionComponent } from "react"
+import NavbarProvider from "../../../components/Navbar/NavbarProvider"
+import { Video, AlgoliaVideo } from "../../../graphql/schema"
+import { getInitialVideos } from "../../../data/api/video"
+import { getCanonicalPath } from "../../../utils/Utils"
+import { loadNextVideoListChunk } from "../../../data/api/video"
+import { orderBy, pickBy, delay } from "lodash"
+import VideoListSearchInput from "../../../components/Search/VideoListSearch"
+import { SearchIndex } from "algoliasearch"
+import VideoListComponent from "../../../components/Lists/VideoListComponent"
+import LatestVideoCardList from "../../../components/Cards/LatestVideoCardList"
+import Head from "next/head"
+import { laptop } from "../../../components/Responsive/Breakpoints"
+import { useRouter } from "next/router"
+import { LocaleContext } from "../../../context/LocaleContext"
 
 interface Props {
     latestVideo: AlgoliaVideo
     initialVideos: AlgoliaVideo[]
-    initialLatestVideoInListTime: number,
-    countryCode:string
+    initialLatestVideoInListTime: number
+    countryCode: string
 }
 
-const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initialLatestVideoInListTime,countryCode }) => {
-
+const VideoList: FunctionComponent<Props> = ({
+    latestVideo,
+    initialVideos,
+    initialLatestVideoInListTime,
+    countryCode,
+}) => {
     const [videoList, setVideoList] = useState<AlgoliaVideo[] | undefined>(initialVideos)
     const [lastVideoTime, setLastVideoTime] = useState<number>(initialLatestVideoInListTime)
     const [showNewest, setShowNewest] = useState(true)
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
     // search
-    const [searchValue, setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState("")
     const [algoliaVideoIndex, setAlgoliaVideoIndex] = useState<SearchIndex | undefined>(undefined)
     const [searchTimerId, setSearchTimerId] = useState<number | undefined>(undefined)
     const [searchResults, setsearchResults] = useState<AlgoliaVideo[] | undefined>(undefined)
     const router = useRouter()
-
 
     useEffect(() => {
         if (searchValue !== undefined && searchValue.length !== 0) searchVideo(searchValue)
@@ -45,8 +48,7 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
         }
     }, [searchValue])
 
-    useEffect(() => {
-    }, [videoList])
+    useEffect(() => {}, [videoList])
 
     const searchVideo = (query: string) => {
         clearTimeout(searchTimerId)
@@ -61,7 +63,7 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
                             title: hit.title,
                             description: hit.description,
                             time: hit.time,
-                            slotType: hit.type
+                            slotType: hit.type,
                         }
                     })
                     setsearchResults(converted)
@@ -70,9 +72,9 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
             setSearchTimerId(newTimer)
         } else {
             // fallback nel caso in cui per qualche strano motivo non sia stato importato algolia
-            import('algoliasearch').then(algoliasearch => {
-                const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
-                const index = client.initIndex('videos');
+            import("algoliasearch").then((algoliasearch) => {
+                const client = algoliasearch.default("92GGCDET16", "fcbd92dd892fe6dc9b67fce3bf44fa04")
+                const index = client.initIndex("videos")
                 setAlgoliaVideoIndex(index)
                 const newTimer = delay(() => {
                     index.search(query).then(({ hits }) => {
@@ -82,7 +84,7 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
                                 title: hit.title,
                                 description: hit.description,
                                 time: hit.time,
-                                slotType: hit.type
+                                slotType: hit.type,
                             }
                         })
                         setsearchResults(converted)
@@ -94,8 +96,12 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
     }
 
     const loadMore = async () => {
-        loadNextVideoListChunk(lastVideoTime, nextChunk => {
-            const onlyVisibleAndOrdered = orderBy(pickBy(nextChunk, video => video.visibility === 'VISIBLE'), ['time'], ['desc'])
+        loadNextVideoListChunk(lastVideoTime, (nextChunk) => {
+            const onlyVisibleAndOrdered = orderBy(
+                pickBy(nextChunk, (video) => video.visibility === "VISIBLE"),
+                ["time"],
+                ["desc"]
+            )
             const lastVideoInChunk: AlgoliaVideo | undefined = onlyVisibleAndOrdered.pop()
             setVideoList([...videoList!, ...onlyVisibleAndOrdered])
             if (lastVideoInChunk) setLastVideoTime(lastVideoInChunk.time)
@@ -106,9 +112,9 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
 
     const handleSearchFocusChange = (hasFocus: boolean) => {
         if (hasFocus && algoliaVideoIndex === undefined) {
-            import('algoliasearch').then(algoliasearch => {
-                const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04');
-                const index = client.initIndex('videos');
+            import("algoliasearch").then((algoliasearch) => {
+                const client = algoliasearch.default("92GGCDET16", "fcbd92dd892fe6dc9b67fce3bf44fa04")
+                const index = client.initIndex("videos")
                 setAlgoliaVideoIndex(index)
             })
         }
@@ -116,47 +122,78 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
 
     return (
         <Fragment>
-
             <Head>
                 <title>Video Slot | SPIKE</title>
                 <meta charSet="utf-8" />
                 <meta property="og:locale" content={contextCountry} />
-                <meta name="description" content={"In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"} />
+                <meta
+                    name="description"
+                    content={
+                        "In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"
+                    }
+                />
                 <meta http-equiv="content-language" content={"it-IT"} />
 
                 {/* <!-- Google / Search Engine Tags --> */}
                 <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-                <meta itemProp="description" content={"In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"} />
-                <meta itemProp="image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'}  />
-                
+                <meta
+                    itemProp="description"
+                    content={
+                        "In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"
+                    }
+                />
+                <meta itemProp="image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+
                 {/* <!-- Twitter Meta Tags --> */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-                <meta name="twitter:description" content={"In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"} />
-                <meta name="twitter:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                <meta
+                    name="twitter:title"
+                    content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                />
+                <meta
+                    name="twitter:description"
+                    content={
+                        "In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"
+                    }
+                />
+                <meta name="twitter:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
 
                 <meta property="article:tag" content={`Slot Online Video`} />
                 <meta property="article:tag" content={`Slot Gratis Video`} />
                 <meta property="article:tag" content={`Slot Machine Video`} />
                 <link rel="canonical" href={getCanonicalPath()} />
-                <meta property="og:image" content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                <meta property="og:locale" content={'it'} />
+                <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+                <meta property="og:locale" content={"it"} />
                 <meta property="og:type" content="article" />
-                <meta property="og:description" content="In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità" />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta
+                    property="og:description"
+                    content="In questa pagina troverete TUTTI i video di SPIKE! Cerca la tua slot preferiti, mettiti comodo e goditi lo spettacolo senza pubblicità"
+                />
+                <meta
+                    property="og:site_name"
+                    content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                />
             </Head>
 
-
-            <NavbarProvider currentPage='/videolist' countryCode={countryCode}>
+            <NavbarProvider currentPage="/videolist" countryCode={countryCode}>
                 <Body>
                     <HeaderContainer>
-                        <div style={{ maxWidth: '450px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                            <h1 className='header-title'>{t("VideoTextContent1")}</h1>
-                            <p>{t("VideoTextContent2")}</p>
+                        <div
+                            style={{
+                                maxWidth: "450px",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
+                            <h1 className="header-title">{t("VideoTextContent1")}</h1>
+                            <p className="inner-p" dangerouslySetInnerHTML={{ __html: t("VideoTextContent2") }}>
+                                {}
+                            </p>
                         </div>
 
-                        <img className='big-spike' alt='spike-cartoon' src='/images/spike-diamond.png' />
-
+                        <img className="big-spike" alt="spike-cartoon" src="/images/spike-diamond.png" />
                     </HeaderContainer>
 
                     <LatestVideoCardList videoData={latestVideo} />
@@ -165,10 +202,9 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
                         countryCode={contextCountry}
                         onSearchChange={handleSearchChange}
                         onSearchFocusChange={handleSearchFocusChange}
-                        value={searchValue} />
-                    <VideoListComponent
-                        showNewest={showNewest}
-                        videoList={searchResults ? searchResults : videoList} />
+                        value={searchValue}
+                    />
+                    <VideoListComponent showNewest={showNewest} videoList={searchResults ? searchResults : videoList} />
                     {!searchResults && <button onClick={() => loadMore()}>{t("Upload more videos")}</button>}
                 </Body>
             </NavbarProvider>
@@ -177,64 +213,71 @@ const VideoList: FunctionComponent<Props> = ({ latestVideo, initialVideos, initi
 }
 
 const HeaderContainer = styled.div`
-    display : flex;
-    flex-wrap : wrap-reverse;
-    justify-content : space-around;
-    .header-title{
-        font-family :${(props) => props.theme.text.secondaryFont};
-        color : ${(props) => props.theme.colors.primary};           
-        font-size : 1.5rem;
-        padding : 1rem;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+    .header-title {
+        font-family: ${(props) => props.theme.text.secondaryFont};
+        color: ${(props) => props.theme.colors.primary};
+        font-size: 1.5rem;
+        padding: 1rem;
     }
 
-    p{
-        padding : 1rem;
-        padding-top : 0;
+    p {
+        padding: 1rem;
+        padding-top: 0;
     }
 
-    .big-spike{
-        width : 100%;
-        
+    .inner-p {
+        a {
+            color: #b5099b;
+            font-family: Kanit;
+        }
+    }
 
-        ${laptop}{
-            width : 30%;
+    .big-spike {
+        width: 100%;
+
+        ${laptop} {
+            width: 30%;
         }
     }
 `
 
 const Body = styled.div`
-    display : flex;
-    flex-direction : column;
-    justify-content : center;
-    align-items : center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  
-
-    h1{
-        padding : 1rem;
+    h1 {
+        padding: 1rem;
     }
 
-    button{
-        cursor : pointer;
-        padding : 1rem 2rem;
-        margin : 1rem;
-        font-family : ${(props) => props.theme.text.primaryFont};
-        color : white;
-        background : ${(props) => props.theme.colors.primary};
-        border : none;  
-        border-radius : 4px;
-        transition : all .3s ease-in-out;
-        :hover{
+    button {
+        cursor: pointer;
+        padding: 1rem 2rem;
+        margin: 1rem;
+        font-family: ${(props) => props.theme.text.primaryFont};
+        color: white;
+        background: ${(props) => props.theme.colors.primary};
+        border: none;
+        border-radius: 4px;
+        transition: all 0.3s ease-in-out;
+        :hover {
             filter: brightness(1.2);
         }
     }
 `
 
-export async function getServerSideProps({query}) {
-
+export async function getServerSideProps({ query }) {
     const country = query.slug as string
-    const initialVideos = await getInitialVideos()    
-    const onlyVisibleAndOrdered = orderBy(pickBy(initialVideos, video => video.visibility === 'VISIBLE'), ['time'], ['desc'])
+    const initialVideos = await getInitialVideos()
+    const onlyVisibleAndOrdered = orderBy(
+        pickBy(initialVideos, (video) => video.visibility === "VISIBLE"),
+        ["time"],
+        ["desc"]
+    )
     const lastVideoInChunk: Video | undefined = onlyVisibleAndOrdered.pop()
 
     return {
@@ -242,8 +285,8 @@ export async function getServerSideProps({query}) {
             latestVideo: onlyVisibleAndOrdered.shift(),
             initialVideos: onlyVisibleAndOrdered,
             initialLatestVideoInListTime: lastVideoInChunk?.time,
-            countryCode:country
-        }
+            countryCode: country,
+        },
     }
 }
 
