@@ -3,18 +3,14 @@ import { FunctionComponent } from "react"
 import styled from "styled-components"
 
 interface Props {
-    href: string
     text: string
-    rel?: string
     onClick?: any
 }
 
-const NewAnchorTag: FunctionComponent<Props> = ({ href, text, rel, onClick }) => {
+const NewAnchorTag: FunctionComponent<Props> = ({ text, onClick }) => {
     return (
         <Container>
-            <a href={href} rel={rel} onClick={onClick}>
-                {text}
-            </a>
+            <a onClick={onClick}>{text}</a>
 
             <img src="/icons/new_icon.svg" alt="new icon" />
         </Container>

@@ -195,7 +195,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
         if (page.link === "/live-stats") {
             return (
                 <div>
-                    <NewAnchorTag rel="nofollow" href="#" text={"Statistiche Live"} onClick={handleClick} />
+                    <NewAnchorTag text={"Statistiche Live"} onClick={handleClick} />
                     <Menu
                         id="live-stats-menu"
                         anchorEl={anchorEl}

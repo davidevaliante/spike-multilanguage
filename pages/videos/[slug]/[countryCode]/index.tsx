@@ -34,8 +34,6 @@ interface Props {
     relatedSlots: AlgoliaSearchResult[]
 }
 
-const slug = "giochiamo_alla_sheriff_of_nottingham_della_i_soft_bet"
-
 const palette = {
     darkBg: "#2e2e2e",
     extraDarkBg: "#1c1c1c",
@@ -135,11 +133,6 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                 <Body>
                     <div style={{ margin: "0rem 1rem", fontFamily: "Raleway" }}>
                         <VideoMainData title={video.title} time={video.time} description={video.description} />
-
-                        {/* <VideoMainBonusCard
-                            style={{ marginTop: '2rem' }}
-                            onClick={link => goToBonus(link)}
-                            bonusData={mainBonus} /> */}
 
                         <MainBonusHeader>{t("Compare legal websites")}</MainBonusHeader>
                         <BonusStripe bonus={mainBonus} />

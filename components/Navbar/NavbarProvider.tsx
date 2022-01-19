@@ -191,7 +191,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
         if (page.link === "/live-stats") {
             return (
                 <div>
-                    <NewAnchorTag rel="nofollow" href="#" text={t(page.label)} onClick={handleClick} />
+                    <NewAnchorTag text={t(page.label)} onClick={handleClick} />
                     <Menu
                         id="live-stats-menu"
                         anchorEl={anchorEl}
