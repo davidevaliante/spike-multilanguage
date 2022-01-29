@@ -23,7 +23,7 @@ const BonusesBackdrop: FunctionComponent<Props> = ({ bonuses }) => {
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const [timeout, setTimeout] = useState<NodeJS.Timeout | undefined>(undefined)
-    const [showSpamBonuses, setShowSpamBonuses] = useState(true)
+    const [showSpamBonuses, setShowSpamBonuses] = useState(false)
 
     const handleCloseSpamBonuses = () => {
         timeout && clearInterval(timeout)
