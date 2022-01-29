@@ -11,7 +11,6 @@ const NewAnchorTag: FunctionComponent<Props> = ({ text, onClick }) => {
     return (
         <Container>
             <a onClick={onClick}>{text}</a>
-
             <img src="/icons/new_icon.svg" alt="new icon" />
         </Container>
     )

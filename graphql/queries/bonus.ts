@@ -43,6 +43,7 @@ query HOME_BONUS_LIST($countryCode:String){
           withDeposit
           tips
           rating
+          description
         }
       }
       
