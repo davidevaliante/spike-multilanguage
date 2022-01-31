@@ -40,7 +40,7 @@ const SOCKET_ENDPOINT = "https://lightningdice.spike-realtime-api.eu"
 
 const PAGE_BONUSES = ["888 Casino", "PokerStars Casino", "StarCasinò", "WinCasino", "LeoVegas"]
 
-const SPAM_BONUSES = false
+const SPAM_BONUSES = true
 
 const index: FunctionComponent<Props> = ({
     _requestedCountryCode,
@@ -420,6 +420,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
         Unibet: "https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251",
         "PokerStars Casino":
             "https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_5648c_&affid=100976968&siteid=182773&adid=5648&c=  ",
+        WinCasino: "https://www.wincasinopromo.it/?=registration&mp=cd6cb4e9-42cc-4d51-bc95-46bbb80844a2",
     }
 
     return {
@@ -433,7 +434,8 @@ export const getServerSideProps = async ({ query, req, res }) => {
             _bonuses:
                 countryCode === "it"
                     ? orderedBonusList.map((b) => {
-                          if (b.name !== "WinCasino") b.link = bonusRemapping[b.name]
+                          const remap = bonusRemapping[b.name]
+                          if (remap) b.link = bonusRemapping[b.name]
                           return b
                       })
                     : orderedBonusList,
