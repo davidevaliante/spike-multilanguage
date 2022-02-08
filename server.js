@@ -87,9 +87,9 @@ app.prepare().then(() => {
 
         const websiteRoot = "https://spikeslot.com"
 
-        const oldUrls = ["sweet_bonanza/row", "cleopatra-vlt/it"]
+        const oldUrls = ["sweet_bonanza/row", "cleopatra-vlt/it", 'contact/it']
 
-        const newUrls = ["/slot/sweet-bonanza/row", "/slot/cleopatra/it"]
+        const newUrls = ["/slot/sweet-bonanza/row", "/slot/cleopatra/it", "/slot/slot-contact/it"]
 
         const oldUrlIndex = oldUrls.indexOf(`${slug}/${countryCode}`)
         const newUrl = newUrls[oldUrlIndex]
