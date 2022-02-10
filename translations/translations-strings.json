@@ -18,7 +18,7 @@
             "See the full list of Bar Slots": "See the full list of Bar Slots",
             "See the full list of VLT Slots": "See the full list of VLT Slots",
             "The best Novomatic selected for you": "The best Novomatic selected for you",
-            "The Online Slots of the moment": "The Online Slots of the moment",
+            "The Online Slots of the moment": "Trending online slots",
             "Watch SPIKE's latest video": "Watch SPIKE's latest video",
             "The best welcome bonuses": "The best welcome bonuses",
             "Guides to the best bonuses of Italian casinos": "Guides to the best bonuses of Italian casinos",
@@ -145,7 +145,8 @@
             "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
-            "Email Sent": "Email Sent"
+            "Email Sent": "Email Sent",
+            "footer-bottom" : "Online Slots | Best FREE Slot Games"
         }
     },
     "it": {
@@ -302,7 +303,9 @@
             "You can play at LIGHTNING DICE here": "Puoi giocare a LIGHTNING DICE qui",
             "Email Not Valid": "Inserisci una Email valida",
             "Message Too Short": "Messaggio non valido",
-            "Email Sent": "Messaggio Inviato"
+            "Email Sent": "Messaggio Inviato",
+            "footer-bottom" : "Online Slots | Best FREE Slot Games"
+
         }
     },
     "row": {
@@ -324,7 +327,7 @@
             "See the full list of Bar Slots": "See the full list of Bar Slots",
             "See the full list of VLT Slots": "See the full list of VLT Slots",
             "The best Novomatic selected for you": "The best Novomatic selected for you",
-            "The Online Slots of the moment": "The Online Slots of the moment",
+            "The Online Slots of the moment": "Trending online slots",
             "Watch SPIKE's latest video": "Watch SPIKE's latest video",
             "The best welcome bonuses": "The best welcome bonuses",
             "Guides to the best bonuses of Italian casinos": "Guides to the best bonuses of Italian casinos",
@@ -460,7 +463,9 @@
             "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
-            "Email Sent": "Email Sent"
+            "Email Sent": "Email Sent",
+            "footer-bottom" : "Online Slots | Best FREE Slot Games"
+
         }
     },
     "ca": {
@@ -618,7 +623,9 @@
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
             "Email Sent": "Email Sent",
-            "Search for a Slot or a Software House": "Search for a Slot or a Software House"
+            "Search for a Slot or a Software House": "Search for a Slot or a Software House",
+            "footer-bottom" : "Online Slots Canada | Best FREE Slot Games"
+
         }
     },
     "nz": {
@@ -775,7 +782,8 @@
             "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
-            "Email Sent": "Email Sent"
+            "Email Sent": "Email Sent",
+            "footer-bottom" : "Online Slots | Best FREE Slot Games"
         }
     },
     "rs": {
@@ -930,7 +938,8 @@
             "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
-            "Email Sent": "Email Sent"
+            "Email Sent": "Email Sent",
+            "footer-bottom" : "Online Slots | Best FREE Slot Games"
         }
     },
     "me": {
@@ -1085,7 +1094,8 @@
             "You can play at LIGHTNING DICE here": "You can play at LIGHTNING DICE here",
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
-            "Email Sent": "Email Sent"
+            "Email Sent": "Email Sent",
+            "footer-bottom" : "Online Slots | Best FREE Slot Games"
         }
     }
 }

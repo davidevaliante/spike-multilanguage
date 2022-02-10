@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { desktop } from "../Responsive/Breakpoints"
+import styled from 'styled-components'
+import { desktop } from '../Responsive/Breakpoints'
 
 export const BodyContainer = styled.div`
     position: relative;
@@ -37,8 +37,8 @@ export const MainColumn = styled.div`
     max-width: 900px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    min-height: 3300px;
 `
 export const RightColumn = styled.div`
     display: none;

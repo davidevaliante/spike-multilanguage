@@ -1,20 +1,57 @@
-import React, { useContext, useEffect } from "react"
-import styled from "styled-components"
-import { FunctionComponent } from "react"
-import { Bonus } from "./../../graphql/schema"
-import LazyBonusImage from "../Lazy/LazyBonusImage"
-import { injectCDN } from "./../../utils/Utils"
-import snakeCase from "lodash"
-import LazyImage from "../Lazy/LazyImage"
-import Link from "next/link"
-import { LocaleContext } from "../../context/LocaleContext"
+import React, { useContext, useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { FunctionComponent } from 'react'
+import { Bonus } from './../../graphql/schema'
+import LazyBonusImage from '../Lazy/LazyBonusImage'
+import { injectCDN } from './../../utils/Utils'
+import snakeCase from 'lodash'
+import LazyImage from '../Lazy/LazyImage'
+import Link from 'next/link'
+import { LocaleContext } from '../../context/LocaleContext'
+import Image from 'next/image'
 
 interface Props {
     bonus: Bonus
 }
 
+const getFlagFromCountry = (country: string) => {
+    const baseLine = '/flags'
+    let s = ''
+    switch (country) {
+        case 'ca':
+            s = `${baseLine}/ca.svg`
+            break
+
+        case 'it':
+            s = `${baseLine}/it.svg`
+            break
+
+        case 'es':
+            s = `${baseLine}/es.svg`
+            break
+
+        case 'mt':
+            s = `${baseLine}/mt.svg`
+            break
+
+        case 'row':
+            s = `${baseLine}/row.svg`
+            break
+
+        default:
+            s = '/flags/ca.svg'
+            break
+    }
+    return s
+}
+
 const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
     const { t, contextCountry } = useContext(LocaleContext)
+    const [flagSrc, setFlagSrc] = useState('/flags/it.svg')
+
+    useEffect(() => {
+        setFlagSrc(getFlagFromCountry(contextCountry))
+    }, [contextCountry])
 
     const visit = () => {
         window.open(bonus.link)
@@ -29,57 +66,57 @@ const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
                     borderColor={bonus.borderColor}
                     src={injectCDN(bonus.circular_image.url)}
                 />
-                <div className="name-container">
+                <div className='name-container'>
                     <h2>{bonus.name}</h2>
                     <StarContainer>
                         {[...Array(bonus.rating).keys()].map((s, i) => (
                             <img
                                 key={`${snakeCase(bonus.name)}_${i}_start_full`}
-                                alt="full_star_icon"
-                                className="star"
-                                src="/icons/star_full.svg"
+                                alt='full_star_icon'
+                                className='star'
+                                src='/icons/star_full.svg'
                             />
                         ))}
                         {[...Array(5 - bonus.rating).keys()].map((s, i) => (
                             <img
                                 key={`${snakeCase(bonus.name)}_${i}_start_empty`}
-                                alt="empty_star_icon"
-                                className="star"
-                                src="/icons/star_empty.svg"
+                                alt='empty_star_icon'
+                                className='star'
+                                src='/icons/star_empty.svg'
                             />
                         ))}
                     </StarContainer>
                 </div>
-                <LazyImage width={30} height={30} src="/icons/italy_flag.svg" />
+                <Image width={30} height={30} src={flagSrc ? flagSrc : ''} />
             </Row>
 
             <RowDeposit onClick={() => visit()}>
-                <div className="deposit-container">
-                    <h3>{t("Without Deposit")}</h3>
+                <div className='deposit-container'>
+                    <h3>{t('Without Deposit')}</h3>
                     <p>{bonus.noDeposit}</p>
                 </div>
 
-                <div className="deposit-container">
-                    <h3>{t("With Deposit")}</h3>
+                <div className='deposit-container'>
+                    <h3>{t('With Deposit')}</h3>
                     <p>{bonus.withDeposit}</p>
                 </div>
             </RowDeposit>
 
-            <Row style={{ marginTop: ".5rem" }}>
+            <Row style={{ marginTop: '.5rem' }}>
                 {bonus.bonus_guide && (
                     <GuideButton>
                         <Link
                             href={`/guida/[slug]/[countryCode]`}
                             as={`/guida/${bonus.bonus_guide.slug}/${contextCountry}`}
                         >
-                            <a>{t("READ THE GUIDE")}</a>
+                            <a>{t('READ THE GUIDE')}</a>
                         </Link>
                     </GuideButton>
                 )}
 
                 <WebSiteButton>
-                    <a className="link" rel="nofollow" href={`/go?to=${bonus.link}`}>
-                        {t("VISIT THE SITE")}
+                    <a className='link' rel='nofollow' href={`/go?to=${bonus.link}`}>
+                        {t('VISIT THE SITE')}
                     </a>
                 </WebSiteButton>
             </Row>
