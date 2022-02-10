@@ -1,16 +1,17 @@
-import React from "react"
-import MarkdownProvider from "./MarkdownProvider"
-import ReactMarkdown from "react-markdown"
-import { injectCDN } from "../../utils/Utils"
-import { FunctionComponent, Children } from "react"
-import ArticleBonus from "./ArticleBonus"
-import styled from "styled-components"
-import { CSSProperties } from "@material-ui/core/styles/withStyles"
-import ArticleTable from "./ArticleTable"
-import SocialBanner from "./../Banners/SocialBanner"
-import LoadingSlotCard from "./../Cards/LoadingSlotCard"
-import LoadingVideoCard from "./../Cards/LoadingVideoCard"
-import { tablet } from "../Responsive/Breakpoints"
+import React, { useContext } from 'react'
+import MarkdownProvider from './MarkdownProvider'
+import ReactMarkdown from 'react-markdown'
+import { injectCDN } from '../../utils/Utils'
+import { FunctionComponent, Children } from 'react'
+import ArticleBonus from './ArticleBonus'
+import styled from 'styled-components'
+import { CSSProperties } from '@material-ui/core/styles/withStyles'
+import ArticleTable from './ArticleTable'
+import SocialBanner from './../Banners/SocialBanner'
+import LoadingSlotCard from './../Cards/LoadingSlotCard'
+import LoadingVideoCard from './../Cards/LoadingVideoCard'
+import { tablet } from '../Responsive/Breakpoints'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     content: string
@@ -22,31 +23,32 @@ interface Props {
 const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca = false, allowBonuses }) => {
     const replaceWithCustomElement = (props: any) => {
         const customCode = props.children[0].props.children[0].props.value
-        const parts = customCode.toString().split("@")
+        const parts = customCode.toString().split('@')
         const elementType = parts[0]
 
         const elementData = parts[1]
+        const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-        if (elementType === "spikeBonusCard") {
+        if (elementType === 'spikeBonusCard') {
             // if (allowBonuses) return <ArticleBonus bonusName={elementData} countryCode={"it"} />
-            return <ArticleBonus bonusName={elementData} countryCode={"it"} />
+            return <ArticleBonus bonusName={elementData} countryCode={'it'} />
         }
 
-        if (elementType === "spikeCompare") {
+        if (elementType === 'spikeCompare') {
             // to remove bonuses we need this prop
             // if (allowBonuses) {
 
             // } else return <div></div>;
-            const bonusNames = elementData.split("&")
+            const bonusNames = elementData.split('&')
             return (
                 <Wrapper>
                     {bonusNames &&
                         bonusNames.map((name) => (
                             <ArticleBonus
-                                style={{ margin: ".7rem auto" }}
+                                style={{ margin: '.7rem auto' }}
                                 key={`compare_${name}`}
                                 bonusName={name}
-                                countryCode={"it"}
+                                countryCode={contextCountry ? contextCountry : 'it'}
                                 isBakeca={isBakeca}
                             />
                         ))}
@@ -54,26 +56,26 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
             )
         }
 
-        if (elementType === "spikeVideo") {
+        if (elementType === 'spikeVideo') {
             console.log(props.children[0].props.children[0].props.children)
-            const videoLink = props.children[0].props.children[0].props.children.split("@")[1]
+            const videoLink = props.children[0].props.children[0].props.children.split('@')[1]
             return (
-                <video controls preload="metadata">
-                    <source src={`${videoLink}#t=0.5`} type="video/mp4"></source>
+                <video controls preload='metadata'>
+                    <source src={`${videoLink}#t=0.5`} type='video/mp4'></source>
                 </video>
             )
         }
 
-        if (elementType === "spikeTable") {
+        if (elementType === 'spikeTable') {
             return <ArticleTable tableString={elementData} />
         }
 
-        if (elementType === "spikeSocialBanner") {
+        if (elementType === 'spikeSocialBanner') {
             return <SocialBanner />
         }
 
-        if (elementType === "spikeSlotCards") {
-            const slotNames = elementData.split("&")
+        if (elementType === 'spikeSlotCards') {
+            const slotNames = elementData.split('&')
             return (
                 <SlotNameContainer>
                     {slotNames.map((name) => (
@@ -83,8 +85,8 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
             )
         }
 
-        if (elementType === "spikeVideoCards") {
-            const videoNames = elementData.split("&")
+        if (elementType === 'spikeVideoCards') {
+            const videoNames = elementData.split('&')
             return (
                 <SlotNameContainer>
                     {videoNames.map((title) => (
@@ -94,31 +96,31 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
             )
         }
 
-        if (elementType === "imageButton") {
-            const imageButtonData = elementData.split(",")
+        if (elementType === 'imageButton') {
+            const imageButtonData = elementData.split(',')
 
-            const imageLink = imageButtonData.find((d) => d.includes("img="))?.split("img=")[1]
-            const link = imageButtonData.find((d) => d.includes("link="))?.split("link=")[1]
-            const width = imageButtonData.find((d) => d.includes("width="))
+            const imageLink = imageButtonData.find((d) => d.includes('img='))?.split('img=')[1]
+            const link = imageButtonData.find((d) => d.includes('link='))?.split('link=')[1]
+            const width = imageButtonData.find((d) => d.includes('width='))
 
             return (
-                <div style={{ textAlign: "center", margin: "2rem 0rem" }}>
+                <div style={{ textAlign: 'center', margin: '2rem 0rem' }}>
                     <a href={`https://${link}`}>
-                        <ImageButton width={`${width.split("width=")[1]}px`} src={`https://${imageLink}`} />
+                        <ImageButton width={`${width.split('width=')[1]}px`} src={`https://${imageLink}`} />
                     </a>
                 </div>
             )
         }
 
-        if (elementType === "googleForm") {
+        if (elementType === 'googleForm') {
             console.log(elementData)
             const link = elementData
             return (
                 <iframe
-                    width={"100%"}
-                    height={"1450px"}
-                    style={{ marginTop: "2rem" }}
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSeBOYGD66e_zs29HG36OJjFe2851Yiqh0cveG3BvU5pOSTh0Q/viewform"
+                    width={'100%'}
+                    height={'1450px'}
+                    style={{ marginTop: '2rem' }}
+                    src='https://docs.google.com/forms/d/e/1FAIpQLSeBOYGD66e_zs29HG36OJjFe2851Yiqh0cveG3BvU5pOSTh0Q/viewform'
                 />
             )
         }
@@ -127,9 +129,9 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
     }
 
     const replaceLink = (props: any) => {
-        if (props.href === "https://vincipromo.it/wincasino/?mp=42794b32-7604-49d2-92d0-8adf67a6b173")
+        if (props.href === 'https://vincipromo.it/wincasino/?mp=42794b32-7604-49d2-92d0-8adf67a6b173')
             return (
-                <a rel="nofollow" href={props.href}>
+                <a rel='nofollow' href={props.href}>
                     {props.children[0].props.children}
                 </a>
             )
