@@ -8,6 +8,7 @@ import CoFreeImage from '../Singles/CoFreeImage'
 import { LocaleContext } from '../../context/LocaleContext'
 import { laptop } from './../Responsive/Breakpoints'
 import NavbarAams from '../Banners/NavbarAams'
+import MarkdownProvider from '../Markdown/MarkdownProvider'
 
 const Footer = () => {
     const [show, setShow] = useState(false)
@@ -183,7 +184,12 @@ const Footer = () => {
                 <Body show={show}>
                     {article && show && (
                         <div>
-                            <ArticleToMarkdown content={article} />
+                            {contextCountry === 'it' ? (
+                                <ArticleToMarkdown content={article} />
+                            ) : (
+                                // <ArticleToMarkdown content={article} />
+                                getArticleForCountry(contextCountry)
+                            )}
                         </div>
                     )}
                 </Body>
@@ -216,6 +222,67 @@ const Footer = () => {
                 </LowerFooterContainer>
             </div>
         </Container>
+    )
+}
+
+const getArticleForCountry = (country: string) => {
+    return (
+        <MarkdownProvider>
+            <h2>Welcome to SPIKE Slots, the best site about free slot machines, slots information and tips</h2>
+            <p>
+                SPIKE Slots since years is the best site in Italy about Slot Machine and Online Casino, you will find
+                guides, slots tips and casino games. You will discover many slot machines playable for free without
+                downloading apps or software, totally free. You will find videos about slot machine games played by
+                SPIKE and Moreno, and videos explaining the Welcome Bonuses of online casinos, how to unlock them and
+                withdraw money. Also, you will discover all the information you need to convert bonuses into real money.
+                You will find various welcome offers, including No Deposit Bonuses from the best Italian online casinos.
+                Plus, you will discover many exclusive offers. That means you can only get through the links on this
+                site, and not directly by registering at the online casino in question. All this and much more on
+                spikeslot.com! Save the page among the favorites of your Home, to have direct access to the n.1 portal
+                in Italy about slot machines, both bar and online and vlt!
+            </p>
+            <h2>Are online slot machines safe?</h2>
+            <p>
+                On this site you will only find slots offered by online casinos with an AAMS license, the
+                Amministrazione Autonoma dei Monopoli di Stato. For this reason, if you want to play as a simple
+                pastime, but at the same time be sure and have the guarantee that you're playing safely, only choose
+                casinos that have a regular license in Italy. You can't go wrong if you choose the online slot machines
+                we review for you. We only choose legal casinos and slots produced by the most renowned software houses,
+                so you can try them out in demo mode, before evaluating the welcome bonus that suits you best. The
+                welcome bonuses are updated often, if you want to stay up to date on the best welcome offers of legal
+                casinos in Italy, we suggest you to subscribe to the Newsletter.
+            </p>
+            <h2>Become part of the largest community dedicated to Slots in Italy</h2>
+            <p>
+                Over the years, SPIKE has earned the respect and affection of over 70000 followers who follow his
+                irreverent irony, but also the professional analysis of each slot machine he tries. Become part of the
+                largest community dedicated to slot machines and stay up to date on the latest videos published and the
+                best offers available.
+            </p>
+            <h2>Why choose Online Casinos?</h2>
+            <p>
+                You're a gambler, you like the thrill of the spinning ball in Roulette, or the cascade of coins in the
+                slot machine, and you've never considered playing in an online casino. It's not strange, there are many
+                nostalgic players who prefer the atmosphere in casinos, or even in VLT rooms and bars, although they are
+                much less well maintained and luxurious environments. I will briefly explain why the Online Casino will
+                soon be the future of gaming and replace the traditional environment. First of all, we are living in
+                such a technological age, where you can do anything with your smartphone, from daily shopping to train
+                tickets and entertainment. I challenge any gambler, even the most loyal to the bookies, the totalizer
+                and the betting slips, to admit that Betting Online has completely revolutionized the world of betting.
+                You don't have to keep the till busy for minutes to fill in your slip, you can consult all the odds at
+                your leisure directly from your mobile phone, avoiding typing errors that will have happened to
+                everyone. How many of you have not been the victim of poorly compiled betting slips from the betting
+                agency terminal? In addition, there is the risk of losing the slip. On the other hand, on your online
+                gambling account, all bets and movements are tracked without any possibility of error. In addition, you
+                do not have to go to the betting agency, but you are allowed to place a bet directly from the place
+                where you are. As far as the Casino and Slots are concerned, there is no problem of privacy as there is
+                in the Vlt rooms, with the slots all close together and various peeping toms (condors) passing behind
+                the players to look around. Finally, Online Casino Slots have a payout that is close to 95%, compared to
+                65% for bar slots. In other words, they pay much more than Italian slots; a feature that makes it easy
+                to forget the sound of coins, replaced by a more convenient deposit into a bank account or rechargeable
+                card.
+            </p>
+        </MarkdownProvider>
     )
 }
 
