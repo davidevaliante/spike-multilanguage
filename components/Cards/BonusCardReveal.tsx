@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react"
-import styled from "styled-components"
-import { FunctionComponent } from "react"
-import { ApolloBonusCardReveal, Bonus } from "../../data/models/Bonus"
-import { extractTips, injectCDN } from "../../utils/Utils"
-import { AppTheme } from "../../theme/theme"
-import LazyBonusImage from "../Lazy/LazyBonusImage"
-import Link from "next/link"
-import { LocaleContext } from "./../../context/LocaleContext"
+import React, { useContext, useState } from 'react'
+import styled from 'styled-components'
+import { FunctionComponent } from 'react'
+import { ApolloBonusCardReveal, Bonus } from '../../data/models/Bonus'
+import { extractTips, injectCDN } from '../../utils/Utils'
+import { AppTheme } from '../../theme/theme'
+import LazyBonusImage from '../Lazy/LazyBonusImage'
+import Link from 'next/link'
+import { LocaleContext } from './../../context/LocaleContext'
 
 interface Props {
     bonus: ApolloBonusCardReveal
@@ -15,20 +15,20 @@ interface Props {
 
 const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBakeca = false }) => {
     const remapBonusLink = (b: ApolloBonusCardReveal) => {
-        if (b.name === "LeoVegas") b.link = "https://ads.leovegas.com/redirect.aspx?pid=3704891&bid=1496"
-        if (b.name === "BetFlag") b.link = "https://adv.betflag.com/redirect.aspx?pid=5268&bid=2680"
-        if (b.name === "888 Casino") b.link = "https://ic.aff-handler.com/c/43431?sr=1868494"
-        if (b.name === "PokerStars Casino")
+        if (b.name === 'LeoVegas') b.link = 'https://ads.leovegas.com/redirect.aspx?pid=3704891&bid=1496'
+        if (b.name === 'BetFlag') b.link = 'https://adv.betflag.com/redirect.aspx?pid=5268&bid=2680'
+        if (b.name === '888 Casino') b.link = 'https://ic.aff-handler.com/c/43431?sr=1868494'
+        if (b.name === 'PokerStars Casino')
             b.link =
-                "https://secure.starsaffiliateclub.com/C.ashx?btag=a_182820b_5648c_&affid=100976968&siteid=182820&adid=5648&c="
-        if (b.name === "StarCasinò") b.link = "http://record.affiliatelounge.com/_SEA3QA6bJTMP_fzV1idzxmNd7ZgqdRLk/132/"
-        if (b.name === "GoldBet") b.link = "https://media.goldbetpartners.it/redirect.aspx?pid=4641&bid=1495"
-        if (b.name === "Starvegas") b.link = "https://www.starvegas.it/gmg/refer/60a2b6ffcb4f5e0001afa975"
-        if (b.name === "Eurobet") b.link = "https://record.betpartners.it/_E_C7XwxgprAZV93hC2dJ_GNd7ZgqdRLk/110/"
-        if (b.name === "Gioco Digitale")
-            b.link = "https://mediaserver.entainpartners.com/renderBanner.do?zoneId=2022788"
-        if (b.name === "WinCasino") b.link = "https://www.wincasinopromo.it/?mp=20f65900-3c5c-4ac2-a5ee-17aac6ccf2be"
-        if (b.name === "NetBet") b.link = "https://banners.livepartners.com/view.php?z=139081&source=bakeca"
+                'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_6258c_&affid=100976968&siteid=182773&adid=6258&c='
+        if (b.name === 'StarCasinò') b.link = 'http://record.affiliatelounge.com/_SEA3QA6bJTMP_fzV1idzxmNd7ZgqdRLk/132/'
+        if (b.name === 'GoldBet') b.link = 'https://media.goldbetpartners.it/redirect.aspx?pid=4641&bid=1495'
+        if (b.name === 'Starvegas') b.link = 'https://www.starvegas.it/gmg/refer/60a2b6ffcb4f5e0001afa975'
+        if (b.name === 'Eurobet') b.link = 'https://record.betpartners.it/_E_C7XwxgprAZV93hC2dJ_GNd7ZgqdRLk/110/'
+        if (b.name === 'Gioco Digitale')
+            b.link = 'https://mediaserver.entainpartners.com/renderBanner.do?zoneId=2022788'
+        if (b.name === 'WinCasino') b.link = 'https://www.wincasinopromo.it/?mp=20f65900-3c5c-4ac2-a5ee-17aac6ccf2be'
+        if (b.name === 'NetBet') b.link = 'https://banners.livepartners.com/view.php?z=139081&source=bakeca'
         return b
     }
 
@@ -42,86 +42,86 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 
     const visitOne = () => {
         window.open(
-            "https://www.888casino.it/promozioni/bonus-senza-deposito/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc"
+            'https://www.888casino.it/promozioni/bonus-senza-deposito/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc'
         )
     }
 
     const visitTwo = () => {
         window.open(
-            "https://www.888casino.it/promozioni/bonus-benvenuto/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc"
+            'https://www.888casino.it/promozioni/bonus-benvenuto/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc'
         )
     }
 
     return (
-        <StyleProvider style={{ marginBottom: ".5rem" }} bgColor={bonus?.backgroundColor}>
+        <StyleProvider style={{ marginBottom: '.5rem' }} bgColor={bonus?.backgroundColor}>
             <div>
-                <div className="card">
-                    <div className="face face1">
-                        <div className="content">
-                            <div className="content-custom">
+                <div className='card'>
+                    <div className='face face1'>
+                        <div className='content'>
+                            <div className='content-custom'>
                                 <LazyBonusImage
                                     fromTop={100}
                                     width={60}
                                     height={60}
-                                    style={{ marginBottom: ".3rem" }}
+                                    style={{ marginBottom: '.3rem' }}
                                     borderColor={bonus?.borderColor}
                                     alt={
                                         bonus.circular_image.alternativeText
                                             ? bonus.circular_image.alternativeText
                                             : `${bonus.name}-image`
                                     }
-                                    src={bonus.circular_image ? injectCDN(bonus.circular_image.url) : ""}
+                                    src={bonus.circular_image ? injectCDN(bonus.circular_image.url) : ''}
                                 />
-                                <h4 className="deposit-header">{t("Without Deposit")}</h4>
-                                <p className="deposit-text">{bonus?.noDeposit}</p>
-                                <h4 className="deposit-header">{t("With Deposit")}</h4>
-                                <p className="deposit-text">{bonus?.withDeposit}</p>
+                                <h4 className='deposit-header'>{t('Without Deposit')}</h4>
+                                <p className='deposit-text'>{bonus?.noDeposit}</p>
+                                <h4 className='deposit-header'>{t('With Deposit')}</h4>
+                                <p className='deposit-text'>{bonus?.withDeposit}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="face face2">
-                        <div className="content">
+                    <div className='face face2'>
+                        <div className='content'>
                             <div>
                                 {extractTips(bonus?.tips).map((t, index) => (
                                     <div
                                         key={t}
                                         style={{
-                                            display: "flex",
-                                            justifyContent: "start",
-                                            alignItems: "center",
-                                            margin: ".7rem",
+                                            display: 'flex',
+                                            justifyContent: 'start',
+                                            alignItems: 'center',
+                                            margin: '.7rem',
                                         }}
                                     >
-                                        <InfoIcon src="/icons/info_icon.svg" />
-                                        {(index == 0 || index == 1) && bonus.name === "888 Casino" ? (
+                                        <InfoIcon src='/icons/info_icon.svg' />
+                                        {(index == 0 || index == 1) && bonus.name === '888 Casino' ? (
                                             <EightEightEightClickable
-                                                rel="nofollow"
+                                                rel='nofollow'
                                                 href={
                                                     index == 0
-                                                        ? "/go?to=https://www.888casino.it/promozioni/bonus-senza-deposito/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc"
-                                                        : "/go?to=https://www.888casino.it/promozioni/bonus-benvenuto/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc"
+                                                        ? '/go?to=https://www.888casino.it/promozioni/bonus-senza-deposito/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc'
+                                                        : '/go?to=https://www.888casino.it/promozioni/bonus-benvenuto/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc'
                                                 }
-                                                className="tip"
+                                                className='tip'
                                             >
                                                 {t}
                                             </EightEightEightClickable>
                                         ) : (
-                                            <p className="tip">{t}</p>
+                                            <p className='tip'>{t}</p>
                                         )}
                                     </div>
                                 ))}
                             </div>
 
-                            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                <a rel="nofollow" className="visit-website link" href={`/go?to=${_bonus.link}`}>
-                                    {t("VISIT THE SITE")}
+                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <a rel='nofollow' className='visit-website link' href={`/go?to=${_bonus.link}`}>
+                                    {t('VISIT THE SITE')}
                                 </a>
                                 <Link
                                     href={`/guida/[slug]/[countryCode]`}
                                     as={`/guida/${bonus?.bonus_guide?.slug}/${contextCountry}`}
                                 >
-                                    <a className="read-guide link">{t("READ THE GUIDE")}</a>
+                                    <a className='read-guide link'>{t('READ THE GUIDE')}</a>
                                 </Link>
                             </div>
                         </div>

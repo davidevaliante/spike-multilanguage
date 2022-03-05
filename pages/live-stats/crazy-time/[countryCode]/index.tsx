@@ -1,27 +1,27 @@
-import React, { useContext, useState, useEffect } from "react"
-import { FunctionComponent, Fragment } from "react"
-import { LocaleContext } from "./../../../../context/LocaleContext"
-import FullPageLoader from "../../../../components/Layout/FullPageLoader"
-import NavbarProvider from "../../../../components/Navbar/NavbarProvider"
-import { BodyContainer, MainColumn, MainColumnScroll } from "../../../../components/Layout/Layout"
-import io, { Socket } from "socket.io-client"
-import { Select, MenuItem, Paper, Divider, Backdrop, Input, Checkbox, ListItemText } from "@material-ui/core"
-import { TimeFrame } from "../../../../data/models/TimeFrames"
-import styled from "styled-components"
-import { Spin, crazyTimeSymbolToFilterOption } from "../../../../data/models/Spin"
-import axios from "axios"
-import { CrazyTimeSymbolStat } from "../../../../data/models/CrazyTimeSymbolStat"
-import CrazyTimeStatCard from "../../../../components/Cards/CrazyTimeStatCard"
-import { CrazyTimeTable } from "../../../../components/CrazyTimeLiveStats/CrazyTimeTable"
-import AquaClient from "./../../../../graphql/aquaClient"
-import BonusStripe from "../../../../components/Cards/BonusStripe"
-import { Bonus, CrazyTimeArticle } from "../../../../graphql/schema"
-import DynamicContent from "../../../../components/DynamicContent/DynamicContent"
-import Head from "next/head"
-import { format } from "date-fns"
-import now from "lodash/now"
-import BonusesBackdrop from "../../../../components/Singles/BonusesBackdrop"
-import { HOME_BONUS_LIST } from "../../../../graphql/queries/bonus"
+import React, { useContext, useState, useEffect } from 'react'
+import { FunctionComponent, Fragment } from 'react'
+import { LocaleContext } from './../../../../context/LocaleContext'
+import FullPageLoader from '../../../../components/Layout/FullPageLoader'
+import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
+import { BodyContainer, MainColumn, MainColumnScroll } from '../../../../components/Layout/Layout'
+import io, { Socket } from 'socket.io-client'
+import { Select, MenuItem, Paper, Divider, Backdrop, Input, Checkbox, ListItemText } from '@material-ui/core'
+import { TimeFrame } from '../../../../data/models/TimeFrames'
+import styled from 'styled-components'
+import { Spin, crazyTimeSymbolToFilterOption } from '../../../../data/models/Spin'
+import axios from 'axios'
+import { CrazyTimeSymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
+import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
+import { CrazyTimeTable } from '../../../../components/CrazyTimeLiveStats/CrazyTimeTable'
+import AquaClient from './../../../../graphql/aquaClient'
+import BonusStripe from '../../../../components/Cards/BonusStripe'
+import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
+import DynamicContent from '../../../../components/DynamicContent/DynamicContent'
+import Head from 'next/head'
+import { format } from 'date-fns'
+import now from 'lodash/now'
+import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
+import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 
 interface Props {
     _requestedCountryCode: string
@@ -36,9 +36,9 @@ interface Props {
     _countryCode: string
 }
 
-const SOCKET_ENDPOINT = "https://crazytime.spike-realtime-api.eu"
+const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ["888 Casino", "PokerStars Casino", "StarCasinò", "WinCasino", "LeoVegas"]
+const PAGE_BONUSES = ['888 Casino', 'PokerStars Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
 
 const SPAM_BONUSES = true
 
@@ -63,7 +63,7 @@ const index: FunctionComponent<Props> = ({
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const filterOptions = ["1", "2", "5", "10", "Pachinko", "Cash Hunt", "Coin Flip", "Crazy Time"]
+    const filterOptions = ['1', '2', '5', '10', 'Pachinko', 'Cash Hunt', 'Coin Flip', 'Crazy Time']
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
         setFilteredRows(rows.filter((r) => selectedFilters.includes(crazyTimeSymbolToFilterOption(r.spinResultSymbol))))
@@ -142,7 +142,7 @@ const index: FunctionComponent<Props> = ({
     }, [socket])
 
     // table Ordering
-    const [order, setOrder] = useState<"asc" | "des">("des")
+    const [order, setOrder] = useState<'asc' | 'des'>('des')
     // stuff for multilanguage porpouses
     const [loading, setLoading] = useState(false)
 
@@ -172,68 +172,68 @@ const index: FunctionComponent<Props> = ({
 
     return (
         <Fragment>
-            <NavbarProvider currentPage="Crazy Time Stats" countryCode={contextCountry}>
+            <NavbarProvider currentPage='Crazy Time Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{_pageContent.seo?.seoTitle}</title>
-                    <link rel="canonical" href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
-                    <meta name="description" content={_pageContent.seo.seoDescription}></meta>
+                    <link rel='canonical' href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
+                    <meta name='description' content={_pageContent.seo.seoDescription}></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}
                     <meta
-                        itemProp="name"
+                        itemProp='name'
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
-                    <meta itemProp="description" content={_pageContent.seo.seoDescription} />
-                    <meta itemProp="image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+                    <meta itemProp='description' content={_pageContent.seo.seoDescription} />
+                    <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                     {/* <!-- Twitter Meta Tags --> */}
-                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name='twitter:card' content='summary_large_image' />
                     <meta
-                        name="twitter:title"
+                        name='twitter:title'
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
-                    <meta name="twitter:description" content={_pageContent.seo.seoDescription} />
-                    <meta name="twitter:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+                    <meta name='twitter:description' content={_pageContent.seo.seoDescription} />
+                    <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                     {/* <!-- Facebook Meta Tags --> */}
-                    <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
-                    <meta property="og:locale" content={"it"} />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:description" content={_pageContent.seo.seoDescription} />
-                    <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
+                    <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:type' content='article' />
+                    <meta property='og:description' content={_pageContent.seo.seoDescription} />
+                    <meta property='og:site_name' content={_pageContent.seo?.seoTitle} />
 
-                    <meta httpEquiv="content-language" content="it-IT"></meta>
-                    <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
-                    <meta property="og:locale" content={"it"} />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:description" content={_pageContent.seo?.seoDescription} />
-                    <meta property="og:site_name" content={_pageContent.seo?.seoTitle} />
+                    <meta httpEquiv='content-language' content='it-IT'></meta>
+                    <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:type' content='article' />
+                    <meta property='og:description' content={_pageContent.seo?.seoDescription} />
+                    <meta property='og:site_name' content={_pageContent.seo?.seoTitle} />
                 </Head>
 
                 <BodyContainer>
                     <MainColumnScroll
-                        style={{ width: "100%", maxWidth: "90%", paddingBottom: "4rem", paddingTop: "2rem" }}
+                        style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >
                         <DynamicContent content={_pageContent.topContent} />
 
-                        <Divider style={{ marginTop: "2rem" }} />
+                        <Divider style={{ marginTop: '2rem' }} />
 
                         <div>
                             <div
                                 style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                    marginTop: "2rem",
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    marginTop: '2rem',
                                 }}
                             >
                                 <div>
-                                    <h1 style={{ fontWeight: "bold", fontSize: "2rem" }}>
-                                        {t("Crazy Time Statistics")}
+                                    <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>
+                                        {t('Crazy Time Statistics')}
                                     </h1>
-                                    <h1 style={{ marginTop: ".5rem" }}>
-                                        {`${t("for the past")} ${timeFrame}`}
-                                        <span style={{ marginLeft: "1rem", fontWeight: "bold", color: "crimson" }}>
+                                    <h1 style={{ marginTop: '.5rem' }}>
+                                        {`${t('for the past')} ${timeFrame}`}
+                                        <span style={{ marginLeft: '1rem', fontWeight: 'bold', color: 'crimson' }}>
                                             In REAL TIME
                                         </span>
                                     </h1>
@@ -241,7 +241,7 @@ const index: FunctionComponent<Props> = ({
 
                                 <div>
                                     <Select
-                                        labelId="demo-simple-select-label"
+                                        labelId='demo-simple-select-label'
                                         value={timeFrame}
                                         onChange={(e) => handleTimeFrameChange(e)}
                                     >
@@ -253,13 +253,13 @@ const index: FunctionComponent<Props> = ({
                                     </Select>
                                 </div>
                             </div>
-                            <p style={{ marginTop: "1rem", fontSize: ".9rem" }}>{`${t("Last Update")} ${format(
+                            <p style={{ marginTop: '1rem', fontSize: '.9rem' }}>{`${t('Last Update')} ${format(
                                 lastUpdate,
-                                "dd/MM HH:mm:ss"
+                                'dd/MM HH:mm:ss'
                             )}`}</p>
                         </div>
 
-                        <Divider style={{ marginTop: "2rem", marginBottom: "2rem" }} />
+                        <Divider style={{ marginTop: '2rem', marginBottom: '2rem' }} />
 
                         {stats && (
                             <StatsContainer>
@@ -276,46 +276,46 @@ const index: FunctionComponent<Props> = ({
 
                         <h1
                             style={{
-                                marginTop: "2rem",
-                                color: "crimson",
-                                fontWeight: "bold",
-                                fontSize: "1.4rem",
-                                textAlign: "center",
+                                marginTop: '2rem',
+                                color: 'crimson',
+                                fontWeight: 'bold',
+                                fontSize: '1.4rem',
+                                textAlign: 'center',
                             }}
-                        >{`${t("You can play at CRAZY TIME here")}`}</h1>
-                        <Paper elevation={6} style={{ marginTop: "1rem", marginBottom: "4rem" }}>
+                        >{`${t('You can play at CRAZY TIME here')}`}</h1>
+                        <Paper elevation={6} style={{ marginTop: '1rem', marginBottom: '4rem' }}>
                             {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
                         </Paper>
 
                         <div
                             style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                marginBottom: "1rem",
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginBottom: '1rem',
                             }}
                         >
                             <h1
                                 style={{
-                                    marginTop: "2rem",
-                                    color: "crimson",
-                                    fontWeight: "bold",
-                                    fontSize: "1.4rem",
-                                    marginBottom: "1rem",
+                                    marginTop: '2rem',
+                                    color: 'crimson',
+                                    fontWeight: 'bold',
+                                    fontSize: '1.4rem',
+                                    marginBottom: '1rem',
                                 }}
                             >
-                                {`${t("Spin History")}`}
+                                {`${t('Spin History')}`}
                             </h1>
 
                             <div>
                                 <Select
-                                    labelId="demo-mutiple-checkbox-label"
-                                    id="demo-mutiple-checkbox"
+                                    labelId='demo-mutiple-checkbox-label'
+                                    id='demo-mutiple-checkbox'
                                     multiple
                                     value={selectedFilters}
                                     onChange={handleChange}
                                     input={<Input />}
-                                    renderValue={(selected) => "Filtri"}
+                                    renderValue={(selected) => 'Filtri'}
                                     MenuProps={MenuProps}
                                 >
                                     {filterOptions.map((name) => (
@@ -358,7 +358,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
     const { countryCode } = query
 
     const _requestedCountryCode = query.countryCode
-    const pageData = await axios.get("https://crazytime.spike-realtime-api.eu/api/data-for-the-last-hours/24")
+    const pageData = await axios.get('https://crazytime.spike-realtime-api.eu/api/data-for-the-last-hours/24')
 
     const pageContent = await aquaClient.query({
         query: PAGE_ARTICLE_QUERY,
@@ -369,7 +369,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
 
     const orderedBonusList: Bonus[] = []
 
-    if (countryCode === "it") {
+    if (countryCode === 'it') {
         const bonuses = await aquaClient.query({
             query: BONUS_QUERY,
             variables: {
@@ -390,14 +390,14 @@ export const getServerSideProps = async ({ query, req, res }) => {
     }
 
     const bonusRemapping = {
-        BetFlag: "https://adv.betflag.com/redirect.aspx?pid=5262&bid=2690",
-        LeoVegas: "https://ads.leovegas.com/redirect.aspx?pid=3704489&bid=14965",
-        "888 Casino": "https://ic.aff-handler.com/c/43431?sr=1868828",
-        StarCasinò: "https://record.starcasino.it/_SEA3QA6bJTNXl890vMAfUGNd7ZgqdRLk/131/",
-        Unibet: "https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251",
-        "PokerStars Casino":
-            "https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_5648c_&affid=100976968&siteid=182773&adid=5648&c=  ",
-        WinCasino: "https://www.wincasinopromo.it/?=registration&mp=cd6cb4e9-42cc-4d51-bc95-46bbb80844a2",
+        BetFlag: 'https://adv.betflag.com/redirect.aspx?pid=5262&bid=2690',
+        LeoVegas: 'https://ads.leovegas.com/redirect.aspx?pid=3704489&bid=14965',
+        '888 Casino': 'https://ic.aff-handler.com/c/43431?sr=1868828',
+        StarCasinò: 'https://record.starcasino.it/_SEA3QA6bJTNXl890vMAfUGNd7ZgqdRLk/131/',
+        Unibet: 'https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251',
+        'PokerStars Casino':
+            'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_6258c_&affid=100976968&siteid=182773&adid=6258&c=',
+        WinCasino: 'https://www.wincasinopromo.it/?=registration&mp=cd6cb4e9-42cc-4d51-bc95-46bbb80844a2',
     }
 
     return {
@@ -409,7 +409,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
                 return r
             }),
             _bonuses:
-                countryCode === "it"
+                countryCode === 'it'
                     ? orderedBonusList.map((b) => {
                           const remap = bonusRemapping[b.name]
                           if (remap) b.link = bonusRemapping[b.name]
