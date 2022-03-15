@@ -381,7 +381,11 @@ export const getServerSideProps = async ({ query, req, res }) => {
     const { countryCode } = query
 
     const _requestedCountryCode = query.countryCode
+    console.time('alldata')
     const pageData = await axios.get('https://www.lightningdice.spike-realtime-api.eu/api/data-for-the-last-hours/24')
+    // const pageData = await axios.get('http://localhost:5006/api/data-for-the-last-hours/24')
+
+    console.timeEnd('alldata')
 
     // const pageContent = await aquaClient.query({
     //     query: PAGE_ARTICLE_QUERY,
