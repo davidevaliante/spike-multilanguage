@@ -1,11 +1,11 @@
-import { ApolloSlotCard } from "../data/models/Slot"
+import { ApolloSlotCard } from '../data/models/Slot'
 import {
     DynamicArticle,
     DynamicBonusList,
     DynamicSlotList,
     DynamicVideo,
-} from "../components/DynamicContent/DynamicContent"
-import { ApolloBonusCardReveal } from "../data/models/Bonus"
+} from '../components/DynamicContent/DynamicContent'
+import { ApolloBonusCardReveal } from '../data/models/Bonus'
 
 export interface Bonus {
     id: number
@@ -116,8 +116,8 @@ export interface Home {
 }
 
 export enum PRODUCER_STATUS {
-    VISIBLE = "public",
-    HIDDEN = "hidden",
+    VISIBLE = 'public',
+    HIDDEN = 'hidden',
 }
 
 export interface ProducerInput {
@@ -134,8 +134,8 @@ export interface ProducerInput {
 }
 
 export enum BONUS_STATUS {
-    VISIBLE = "public",
-    HIDDEN = "hidden",
+    VISIBLE = 'public',
+    HIDDEN = 'hidden',
 }
 
 export interface BonusInput {
@@ -157,15 +157,15 @@ export interface BonusInput {
 }
 
 export enum SLOT_STATUS {
-    PUBLISHED = "published",
-    DRAFT = "draft",
-    ARCHIVE = "archive",
+    PUBLISHED = 'published',
+    DRAFT = 'draft',
+    ARCHIVE = 'archive',
 }
 
 export enum SLOT_TYPE {
-    ONLINE = "online",
-    BAR = "bar",
-    VLT = "vlt",
+    ONLINE = 'online',
+    BAR = 'bar',
+    VLT = 'vlt',
 }
 
 export interface SlotInput {
@@ -233,7 +233,7 @@ export interface InputID {
 
 export interface AlgoliaSearchResult {
     name: string
-    type: "slot" | "bonus" | "producer"
+    type: 'slot' | 'bonus' | 'producer'
     slug: string
     country: string
     image: { url: string }
@@ -259,11 +259,11 @@ export interface Video {
     relatedSlots: string[]
     newRelatedSlots: string[]
     relatedVideos: string[]
-    slotType: "GRATIS" | "BAR" | "VLT"
+    slotType: 'GRATIS' | 'BAR' | 'VLT'
     time: number
     title: string
     videoId: string
-    visibility: "VISIBLE" | "HIDDEN"
+    visibility: 'VISIBLE' | 'HIDDEN'
 }
 
 export interface AlgoliaVideo {
@@ -271,7 +271,7 @@ export interface AlgoliaVideo {
     title: string
     description: string
     time: number
-    slotType: "GRATIS" | "BAR" | "VLT"
+    slotType: 'GRATIS' | 'BAR' | 'VLT'
 }
 
 export interface VideoHighlight {
@@ -281,6 +281,7 @@ export interface VideoHighlight {
 
 export interface Article {
     content: (DynamicArticle | DynamicBonusList | DynamicSlotList | DynamicVideo)[]
+    id?: string
     image?: any
     tags?: string
     slug?: string

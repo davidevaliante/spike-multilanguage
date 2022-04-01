@@ -22,6 +22,7 @@ query BLOG_ARTICLE_BY_SLUG($slug:String){
 export const BLOG_ARTICLES_BY_COUNTRY = `
 query ARTICLES_BY_COUNTRY($countryCode:String="it"){
   blogArticles(where: {country:{code:$countryCode}}, sort: "created_at:desc"){
+    id
  		title
     tags
     slug
