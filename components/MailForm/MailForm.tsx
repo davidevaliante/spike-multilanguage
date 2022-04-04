@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react"
-import delay from "lodash/delay"
-import TextField from "@material-ui/core/TextField"
-import styled from "styled-components"
-import { LocaleContext } from "../../context/LocaleContext"
-import axios from "axios"
+import React, { useState, useContext } from 'react'
+import delay from 'lodash/delay'
+import TextField from '@material-ui/core/TextField'
+import styled from 'styled-components'
+import { LocaleContext } from '../../context/LocaleContext'
+import axios from 'axios'
 
 const MailForm = (props) => {
     const [email, setEmail] = useState<string | undefined>(undefined)
@@ -15,61 +15,68 @@ const MailForm = (props) => {
     const { t } = useContext(LocaleContext)
 
     const buildSlackPayload = (email: string, message: string) => ({
-        channel: "G016R4W4H25",
-        text: "Contatti su spikeslot.com ha appena ricevuto un messaggio",
+        channel: 'G016R4W4H25',
+        text: 'Contatti su spikeslot.com ha appena ricevuto un messaggio',
         blocks: [
             {
-                type: "header",
+                type: 'header',
                 text: {
-                    type: "plain_text",
-                    text: "Nuovo Messaggio su spikeslot.com",
+                    type: 'plain_text',
+                    text: 'Nuovo Messaggio su spikeslot.com',
                     emoji: true,
                 },
             },
             {
-                type: "section",
+                type: 'section',
                 text: {
-                    type: "mrkdwn",
+                    type: 'mrkdwn',
                     text: `Mittente : ${email}`,
                 },
             },
             {
-                type: "section",
+                type: 'section',
                 text: {
-                    type: "mrkdwn",
+                    type: 'mrkdwn',
                     text: message,
                 },
             },
             {
-                type: "divider",
+                type: 'divider',
             },
             {
-                type: "input",
+                type: 'input',
                 element: {
-                    type: "plain_text_input",
-                    action_id: "plain_text_input-action",
+                    type: 'plain_text_input',
+                    action_id: 'plain_text_input-action',
                 },
                 label: {
-                    type: "plain_text",
-                    text: "Aggiungi Nota",
+                    type: 'plain_text',
+                    text: 'Aggiungi Nota',
                     emoji: true,
                 },
             },
             {
-                type: "actions",
+                type: 'actions',
                 elements: [
                     {
-                        type: "checkboxes",
-                        options: [
-                            {
-                                text: {
-                                    type: "mrkdwn",
-                                    text: "*Ho gia' risposto*",
-                                },
-                                value: "value-0",
-                            },
-                        ],
-                        action_id: "actionId-1",
+                        type: 'button',
+                        text: {
+                            type: 'plain_text',
+                            text: 'Rispondi',
+                            emoji: true,
+                        },
+                        value: 'click_me_123',
+                        url: `mailto:${email}?Subject=Re:Ciao%20${email}`,
+                    },
+                    {
+                        type: 'button',
+                        text: {
+                            type: 'plain_text',
+                            text: 'Rispondi con testo',
+                            emoji: true,
+                        },
+                        value: 'click_me_123',
+                        url: `mailto:${email}?Subject=Re:Ciao%20${email}&body=%0A%0A%0A${message.replace(/ /g, '%20')}`,
                     },
                 ],
             },
@@ -79,13 +86,13 @@ const MailForm = (props) => {
     const sendMessageToSlack = async () => {
         const err: string[] = []
 
-        if (!email || !validateEmail(email)) err.push("email")
+        if (!email || !validateEmail(email)) err.push('email')
         else {
-            if (errors.includes("email")) errors.splice(errors.indexOf("email"), 1)
+            if (errors.includes('email')) errors.splice(errors.indexOf('email'), 1)
         }
-        if (!message || message.length == 0) err.push("message")
+        if (!message || message.length == 0) err.push('message')
         else {
-            if (errors.includes("message")) errors.splice(errors.indexOf("message"), 1)
+            if (errors.includes('message')) errors.splice(errors.indexOf('message'), 1)
         }
 
         if (err.length > 0) {
@@ -96,15 +103,18 @@ const MailForm = (props) => {
         if (email && message) {
             setErrors([])
             await axios.post(
-                "https://hooks.slack.com/services/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",
+                // 'https://hooks.slack.com/services/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',
+                'https://hooks.slack.com/services/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',
                 JSON.stringify(buildSlackPayload(email, message))
             )
 
             setMessageSent(true)
 
+            console.log(`mailto:${email}?Subject=Re:Ciao%20${email}&body=%0A%0A%0A${message.replace(/ /g, '%20')}`)
+
             delay(() => {
-                setEmail("")
-                setMessage("")
+                // setEmail('')
+                // setMessage('')
                 setMessageSent(false)
             }, 2000)
         }
@@ -123,39 +133,39 @@ const MailForm = (props) => {
     }
 
     return (
-        <div style={{ width: "100%" }}>
+        <div style={{ width: '100%' }}>
             <TextField
-                label={errors.includes("email") ? t("Email Not Valid") : t("Your email")}
-                style={{ marginBottom: "2rem", width: "100%" }}
-                placeholder={t("Write your email address here")}
+                label={errors.includes('email') ? t('Email Not Valid') : t('Your email')}
+                style={{ marginBottom: '2rem', width: '100%' }}
+                placeholder={t('Write your email address here')}
                 onChange={handleMailChange}
                 multiline
                 fullWidth
                 value={email}
-                error={errors.includes("email")}
-                margin="normal"
+                error={errors.includes('email')}
+                margin='normal'
                 InputLabelProps={{
                     shrink: true,
                 }}
             />
             <TextField
-                label={errors.includes("message") ? t("Message Too Short") : t("Content")}
-                placeholder={t("Write your message here")}
-                style={{ width: "100%" }}
+                label={errors.includes('message') ? t('Message Too Short') : t('Content')}
+                placeholder={t('Write your message here')}
+                style={{ width: '100%' }}
                 multiline
                 fullWidth
                 onChange={handleMessageChange}
-                rows="10"
+                rows='10'
                 value={message}
-                margin="normal"
-                error={errors.includes("message")}
+                margin='normal'
+                error={errors.includes('message')}
                 InputLabelProps={{
                     shrink: true,
                 }}
             />
 
-            <SendButton color={messageSent ? "#3feb6d" : undefined} onClick={(e) => handleOnSubmit(e)}>
-                {messageSent ? t("Email Sent") : t("Send email")}
+            <SendButton color={messageSent ? '#3feb6d' : undefined} onClick={(e) => handleOnSubmit(e)}>
+                {messageSent ? t('Email Sent') : t('Send email')}
             </SendButton>
         </div>
     )
