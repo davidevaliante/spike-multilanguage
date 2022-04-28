@@ -102,11 +102,15 @@ const MailForm = (props) => {
 
         if (email && message) {
             setErrors([])
-            await axios.post(
-                // 'https://hooks.slack.com/services/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',
-                'https://hooks.slack.com/services/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',
-                JSON.stringify(buildSlackPayload(email, message))
-            )
+
+            const bannedEmails = ['xyz, sandeep', 'paulaestebancopy']
+
+            if (!bannedEmails.includes(email.split('@')[0]))
+                await axios.post(
+                    // 'https://hooks.slack.com/services/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',
+                    'https://hooks.slack.com/services/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',
+                    JSON.stringify(buildSlackPayload(email, message))
+                )
 
             setMessageSent(true)
 
