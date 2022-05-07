@@ -187,7 +187,7 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Monopoly Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{_pageContent.seo[0]?.seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/monopoly/${contextCountry}`} />
+                    <link rel='canonical' href={`https://spikeslot.com/live-stats/monopoly-live/${contextCountry}`} />
                     <meta name='description' content={_pageContent.seo[0].seoDescription}></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}

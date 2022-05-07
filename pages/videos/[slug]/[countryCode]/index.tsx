@@ -1,30 +1,30 @@
-import React, { Fragment, useState, useEffect, useContext, FunctionComponent } from "react"
-import axios from "axios"
-import { firebaseDatabaseUrl } from "../../../../data/firebaseConfig"
-import Head from "next/head"
-import styled from "styled-components"
-import { Video } from "../../../../graphql/schema"
-import VideoMainData from "../../../../components/Video/VideoMainData"
-import AquaClient from "../../../../graphql/aquaClient"
-import { GET_BONUS_BY_LEGACY_ID } from "../../../../graphql/queries/bonus"
-import { Bonus, Slot, AlgoliaSearchResult } from "../../../../graphql/schema"
-import { getCanonicalPath } from "../../../../utils/Utils"
-import { OnlyMobile, OnlyDesktop } from "../../../../components/Responsive/Only"
-import { bigscreens } from "../../../../components/Responsive/Breakpoints"
-import RelatedVideoCard from "../../../../components/Cards/RelatedVideoCard"
-import VideoSecondaryBonusCard from "../../../../components/Cards/VideoSecondaryBonusCard"
-import { GET_SLOT_BY_LEGACY_ID } from "../../../../graphql/queries/slots"
-import { GET_SLOT_CARD_BY_ID } from "../../../../graphql/queries/slots"
-import VideoRelatedSlots from "../../../../components/Lists/VideoRelatedSlots"
-import { OnlyBigScreens } from "../../../../components/Responsive/Only"
-import VideoDiscalimer from "../../../../components/Singles/VideoDiscalimer"
-import Divider from "../../../../components/Ui/Divider"
-import NavbarWithPlayer, { getMp4CDNZone } from "../../../../components/Navbar/NavbarWithPlayer"
-import BonusStripe from "./../../../../components/Cards/BonusStripe"
-import truncate from "lodash/truncate"
-import { useRouter } from "next/router"
-import { LocaleContext } from "../../../../context/LocaleContext"
-import VideoMeta from "./../../../../components/StructuredData.tsx/Video"
+import React, { Fragment, useState, useEffect, useContext, FunctionComponent } from 'react'
+import axios from 'axios'
+import { firebaseDatabaseUrl } from '../../../../data/firebaseConfig'
+import Head from 'next/head'
+import styled from 'styled-components'
+import { Video } from '../../../../graphql/schema'
+import VideoMainData from '../../../../components/Video/VideoMainData'
+import AquaClient from '../../../../graphql/aquaClient'
+import { GET_BONUS_BY_LEGACY_ID } from '../../../../graphql/queries/bonus'
+import { Bonus, Slot, AlgoliaSearchResult } from '../../../../graphql/schema'
+import { getCanonicalPath } from '../../../../utils/Utils'
+import { OnlyMobile, OnlyDesktop } from '../../../../components/Responsive/Only'
+import { bigscreens } from '../../../../components/Responsive/Breakpoints'
+import RelatedVideoCard from '../../../../components/Cards/RelatedVideoCard'
+import VideoSecondaryBonusCard from '../../../../components/Cards/VideoSecondaryBonusCard'
+import { GET_SLOT_BY_LEGACY_ID } from '../../../../graphql/queries/slots'
+import { GET_SLOT_CARD_BY_ID } from '../../../../graphql/queries/slots'
+import VideoRelatedSlots from '../../../../components/Lists/VideoRelatedSlots'
+import { OnlyBigScreens } from '../../../../components/Responsive/Only'
+import VideoDiscalimer from '../../../../components/Singles/VideoDiscalimer'
+import Divider from '../../../../components/Ui/Divider'
+import NavbarWithPlayer, { getMp4CDNZone } from '../../../../components/Navbar/NavbarWithPlayer'
+import BonusStripe from './../../../../components/Cards/BonusStripe'
+import truncate from 'lodash/truncate'
+import { useRouter } from 'next/router'
+import { LocaleContext } from '../../../../context/LocaleContext'
+import VideoMeta from './../../../../components/StructuredData.tsx/Video'
 
 interface Props {
     video: Video
@@ -35,15 +35,15 @@ interface Props {
 }
 
 const palette = {
-    darkBg: "#2e2e2e",
-    extraDarkBg: "#1c1c1c",
-    red: "#f95565",
+    darkBg: '#2e2e2e',
+    extraDarkBg: '#1c1c1c',
+    red: '#f95565',
 }
 
 const getCdnZone = (video) => {
-    if (video.title === "LIVE IMPROVVISATA! SPIKE SLOT ONLINE - 02/12/2021") {
-        console.log("live")
-        return "https://d1t5qgqnsyejwx.cloudfront.net/-Mpzu-t4GBpw9M2ksScB/Default/HLS/-Mpzu-t4GBpw9M2ksScB.m3u8"
+    if (video.title === 'LIVE IMPROVVISATA! SPIKE SLOT ONLINE - 02/12/2021') {
+        console.log('live')
+        return 'https://d1t5qgqnsyejwx.cloudfront.net/-Mpzu-t4GBpw9M2ksScB/Default/HLS/-Mpzu-t4GBpw9M2ksScB.m3u8'
     }
     if (!video.conversionType)
         return `https://spikeconvertedcomplete.b-cdn.net/${video.videoId}/Default/HLS/${video.videoId}.m3u8`
@@ -59,60 +59,60 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
     const { t } = useContext(LocaleContext)
 
     const goToBonus = (link: string) => {
-        window.open(link, "_self")
+        window.open(link, '_self')
     }
 
     return (
         <Fragment>
             <Head>
                 <title>SPIKE Slot | {video.title} [VIDEO]</title>
-                <meta charSet="utf-8" />
-                <link rel="canonical" href={getCanonicalPath()} />
+                <meta charSet='utf-8' />
+                <link rel='canonical' href={getCanonicalPath()} />
 
                 {/* <!-- Google / Search Engine Tags --> */}
-                <meta itemProp="name" content={`Slot ${video.title} [VIDEO]`} />
+                <meta itemProp='name' content={`Slot ${video.title} [VIDEO]`} />
                 <meta
-                    itemProp="description"
+                    itemProp='description'
                     content={`${truncate(video.description, {
                         length: 155,
                     })} - ${video.title}`}
                 />
                 <meta
-                    itemProp="image"
+                    itemProp='image'
                     content={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
 
                 {/* <!-- Twitter Meta Tags --> */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={`Slot ${video.title} [VIDEO]`} />
+                <meta name='twitter:card' content='summary_large_image' />
+                <meta name='twitter:title' content={`Slot ${video.title} [VIDEO]`} />
                 <meta
-                    name="twitter:description"
+                    name='twitter:description'
                     content={`${truncate(video.description, {
                         length: 155,
                     })} - ${video.title}`}
                 />
                 <meta
-                    name="twitter:image"
+                    name='twitter:image'
                     content={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
 
                 <meta
-                    name="description"
+                    name='description'
                     content={`${truncate(video.description, {
                         length: 155,
                     })} - ${video.title}`}
                 />
-                <meta property="og:locale" content={"it"} />
-                <meta property="og:type" content="video.movie" />
-                <meta property="og:description" content={video.description} />
+                <meta property='og:locale' content={'it'} />
+                <meta property='og:type' content='video.movie' />
+                <meta property='og:description' content={video.description} />
                 <meta
-                    property="og:site_name"
+                    property='og:site_name'
                     content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                 />
-                <meta property="article:tag" content={`Slot ${video.title} [VIDEO]`} />
-                <meta property="article:published_time" content={video.time.toString()} />
+                <meta property='article:tag' content={`Slot ${video.title} [VIDEO]`} />
+                <meta property='article:published_time' content={video.time.toString()} />
                 <meta
-                    property="og:image"
+                    property='og:image'
                     content={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
             </Head>
@@ -131,10 +131,10 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                     thumbnailUrl={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
                 <Body>
-                    <div style={{ margin: "0rem 1rem", fontFamily: "Raleway" }}>
+                    <div style={{ margin: '0rem 1rem', fontFamily: 'Raleway' }}>
                         <VideoMainData title={video.title} time={video.time} description={video.description} />
 
-                        <MainBonusHeader>{t("Compare legal websites")}</MainBonusHeader>
+                        <MainBonusHeader>{t('Compare legal websites')}</MainBonusHeader>
                         <BonusStripe bonus={mainBonus} />
 
                         {auxiliaryBonuses.map((b) => (
@@ -143,7 +143,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
 
                         <OnlyDesktop>
                             <DesktopRelatedVideoContainer>
-                                <RelatedVideosHeader>{t("Related Videos")}</RelatedVideosHeader>
+                                <RelatedVideosHeader>{t('Related Videos')}</RelatedVideosHeader>
                                 {relatedVideos
                                     .filter((v) => v !== null)
                                     .map((relatedVideo, index) => (
@@ -154,10 +154,10 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
 
                         <OnlyBigScreens>
                             <RelatedBonusContainer>
-                                <RelatedBonusHeader>{t("Recommended Bonuses")}</RelatedBonusHeader>
+                                <RelatedBonusHeader>{t('Recommended Bonuses')}</RelatedBonusHeader>
                                 {[mainBonus, ...auxiliaryBonuses].map((b, index) => (
                                     <div
-                                        style={{ marginBottom: "1rem", width: "100%" }}
+                                        style={{ marginBottom: '1rem', width: '100%' }}
                                         key={`${b.name}_side_${index}`}
                                     >
                                         <VideoSecondaryBonusCard bonus={b} />
@@ -168,7 +168,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
 
                         <OnlyMobile>
                             <MobileRelatedVideoContainer>
-                                <CompareHeader>{t("Related Videos")}</CompareHeader>
+                                <CompareHeader>{t('Related Videos')}</CompareHeader>
                                 {relatedVideos
                                     .filter((v) => v !== null)
                                     .map((relatedVideo, index) => (
@@ -177,7 +177,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                             </MobileRelatedVideoContainer>
                         </OnlyMobile>
                         <VideoRelatedSlots slotList={relatedSlots} />
-                        <Divider style={{ margin: "2rem 0rem" }} color={"red"} />
+                        <Divider style={{ margin: '2rem 0rem' }} color={'red'} />
                         <VideoDiscalimer />
                     </div>
                 </Body>
@@ -286,7 +286,7 @@ export async function getServerSideProps({ query }) {
 
     let videoId
 
-    if (slug.startsWith("-")) videoId = slug
+    if (slug.startsWith('-')) videoId = slug
     else {
         const remappedVideoId = await axios.get(`${firebaseDatabaseUrl}/AwsVideoMappings/${slug}.json`)
         videoId = remappedVideoId
@@ -296,8 +296,14 @@ export async function getServerSideProps({ query }) {
         await axios.get(`${firebaseDatabaseUrl}/AwsVideosApproved/${videoId.data}.json`)
     ).data) as Video
 
-    const mainBonusId = videoData.mainBonus
-    const auxiliaryBonusesId = videoData.auxiliaryBonuses
+    let mainBonusId = videoData.mainBonus
+    let auxiliaryBonusesId = videoData.auxiliaryBonuses
+
+    if (mainBonusId === '-MWZEr0i50xob0KQjDg-') mainBonusId = '-MdSpUnHqLArOEBb2xf6'
+    if (auxiliaryBonusesId.includes('-MWZEr0i50xob0KQjDg-'))
+        auxiliaryBonusesId.splice(auxiliaryBonusesId.indexOf('-MWZEr0i50xob0KQjDg-'), 1, '-MdSpUnHqLArOEBb2xf6')
+
+    console.log(mainBonusId, auxiliaryBonusesId, 'BONUSES ids')
 
     const mainBonusRequest = aquaClient.query({
         query: GET_BONUS_BY_LEGACY_ID,
@@ -322,7 +328,7 @@ export async function getServerSideProps({ query }) {
     let relatedSlotsRequest
     if (videoData.relatedSlots !== undefined) {
         relatedSlotsRequest = videoData.relatedSlots.map((relatedSlotId) => {
-            if (relatedSlotId.startsWith("-"))
+            if (relatedSlotId.startsWith('-'))
                 return aquaClient.query({
                     query: GET_SLOT_BY_LEGACY_ID,
                     variables: {
@@ -368,10 +374,9 @@ export async function getServerSideProps({ query }) {
 
     const remappedSlots: Slot[] = []
 
-    if (relatedSlots)
-        relatedSlots.forEach((rs) => {
-            if (rs !== undefined) remappedSlots.push(rs.data.data.slots[0])
-        })
+    relatedSlots.forEach((rs) => {
+        if (rs !== undefined) remappedSlots.push(rs.data.data.slots[0])
+    })
 
     if (newRelatedSlots)
         newRelatedSlots.forEach((rs) => {
@@ -384,7 +389,7 @@ export async function getServerSideProps({ query }) {
             mainBonus: mainBonus,
             auxiliaryBonuses: auxiliaryBonuses,
             relatedVideos: relatedVideos.filter((o) => o.data !== undefined).map((res) => res.data),
-            relatedSlots: remappedSlots,
+            relatedSlots: remappedSlots.filter((it) => it !== null),
             countryCode: country,
         },
     }
