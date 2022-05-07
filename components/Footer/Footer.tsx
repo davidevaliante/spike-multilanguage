@@ -226,9 +226,98 @@ const Footer = () => {
 }
 
 const getArticleForCountry = (country: string) => {
+    if (country === 'ca')
+        return (
+            <MarkdownProvider>
+                <h2>
+                    Welcome to SPIKE Slot, the best website about slot machines, information and tips available for free
+                </h2>
+                <p style={{ marginBottom: '1rem' }}>
+                    SPIKE Slot Canada is the best site on Slot Machines and Online Casinos, you will find slot guides
+                    and tips and casino games. You will find all free slots to play without registration and without
+                    downloading apps or software, totally free. You could find slot machine game videos played by SPIKE
+                    and Moreno, as well as videos explaining online casino welcome bonuses, how to wager them and
+                    withdraw money.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    All the information you need to convert bonuses into real money. You will find various welcome
+                    offers, including no deposit bonuses from the best International online casinos. You will also find
+                    many exclusive offers, i.e. obtainable only through this site links, and not by registering directly
+                    at the online casino in question.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    All this and much more on spikeslot.com! Bookmark the page among your favorites to get direct access
+                    to the n.1 international slot machine portal!
+                </p>
+
+                <h2>Are online slot machines safe?</h2>
+                <p style={{ marginBottom: '1rem' }}>
+                    On this site you will only find slots offered by Certified operators well-known globally for their
+                    reliability.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    For this reason, if you want to play as a simple pastime but at the same time you want to be sure
+                    and guaranteed that you are playing safely, choose only licensed casinos listed here.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    If you want to play online, choose only legal casinos and slots produced by the most renowned
+                    software houses, you can try them in demo mode before evaluating the welcome bonus that suits you
+                    best. Welcome bonuses are often updated, if you want to stay up to date on best certified Casino
+                    welcome offers we suggest you to subscribe to our newsletter.
+                </p>
+
+                <h2>Join the largest International community dedicated to Slots</h2>
+                <p style={{ marginBottom: '1rem' }}>
+                    Over the years, SPIKE has earned the respect and affection of over 70000 followers who enjoy his
+                    irreverent irony but also the professional analysis of each slot machine he tries. Become part of
+                    the largest community dedicated to slot machines and stay up to date on latest videos published and
+                    the best offers available.
+                </p>
+
+                <h2>Why choose Online Casinos?</h2>
+                <p style={{ marginBottom: '1rem' }}>
+                    You're a gambler, you like the thrill of the spinning ball in Roulette, or coin cascades in slot
+                    machines, and you've never considered playing in an online casino. It's not strange, there are many
+                    nostalgic players who prefer the atmosphere in casinos, or even in club rooms, even though they are
+                    much less refined and luxurious environments.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    I will briefly explain why the Online Casino has become the future of gaming and replaced the
+                    traditional environment. First of all, we are living in such a technological age, where you can do
+                    anything with your smartphone, from daily shopping to train tickets and entertainment.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    I challenge any gambler, even the most loyal to land bookies, to deny that online betting has
+                    completely revolutionised the betting world. You don't have to wait at the cashier to fill in your
+                    bets, you can consult all odds at your leisure directly from your mobile phone, avoiding typing
+                    errors that everyone may have experienced.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    How many of you have not been the victim of poorly filled out betting tickets by the betting agency
+                    terminal?
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    On the other hand, on your online gambling account all bets and movements are tracked without any
+                    possibility of error. In addition, you do not have to go to the betting agency, but you can place
+                    your bet directly in the place where you are.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    As far as Casino and Slots are concerned, there is no problem of privacy as there is in club rooms,
+                    with slots next to each other and people passing behind players to look around.
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                    Finally, online casino slots have a payout that is close to 95%, compared to much lower amounts of
+                    cabinet slots. This means that they pay much more than cabinet slots; a feature that makes it easy
+                    to forget the sound of coins, replaced by a more convenient deposit into a bank account or pre-paid
+                    card.
+                </p>
+            </MarkdownProvider>
+        )
     return (
         <MarkdownProvider>
-            <h2>Welcome to SPIKE Slots, the best site about free slot machines, slots information and tips</h2>
+            <h2>
+                Welcome to SPIKE Slot, the best website about slot machines, information and tips available for free
+            </h2>
             <p>
                 SPIKE Slots since years is the best site in Italy about Slot Machine and Online Casino, you will find
                 guides, slots tips and casino games. You will discover many slot machines playable for free without
