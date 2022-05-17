@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useContext } from "react"
+import React, { FunctionComponent, useState, useContext } from 'react'
 import {
     TableContainer,
     Paper,
@@ -18,18 +18,18 @@ import {
     FormControlLabel,
     Switch,
     IconButton,
-} from "@material-ui/core"
-import { symbolToSlotResultImage, symbolToSpinResultImage } from "../../utils/ImageUtils"
-import { Spin } from "../../data/models/Spin"
-import format from "date-fns-tz/format"
-import styled, { useTheme } from "styled-components"
-import { LocaleContext } from "../../context/LocaleContext"
-import FirstPageIcon from "@material-ui/icons/FirstPage"
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft"
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
-import LastPageIcon from "@material-ui/icons/LastPage"
-import { DreamCatcherSpin } from "../../data/models/DreamCatcherSpin"
-import { LightningDiceSpin } from "../../data/models/LightningDiceSpin"
+} from '@material-ui/core'
+import { symbolToSlotResultImage, symbolToSpinResultImage } from '../../utils/ImageUtils'
+import { Spin } from '../../data/models/Spin'
+import format from 'date-fns-tz/format'
+import styled, { useTheme } from 'styled-components'
+import { LocaleContext } from '../../context/LocaleContext'
+import FirstPageIcon from '@material-ui/icons/FirstPage'
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
+import LastPageIcon from '@material-ui/icons/LastPage'
+import { DreamCatcherSpin } from '../../data/models/DreamCatcherSpin'
+import { LightningDiceSpin } from '../../data/models/LightningDiceSpin'
 
 interface Props {
     rows: LightningDiceSpin[]
@@ -38,7 +38,7 @@ interface Props {
 const StyledTableRow = withStyles((theme: Theme) =>
     createStyles({
         root: {
-            "&:nth-of-type(odd)": {
+            '&:nth-of-type(odd)': {
                 backgroundColor: theme.palette.action.hover,
             },
         },
@@ -55,13 +55,13 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     return 0
 }
 
-type Order = "asc" | "desc"
+type Order = 'asc' | 'desc'
 
 function getComparator<Key extends keyof any>(
     order: Order,
     orderBy: Key
 ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-    return order === "desc"
+    return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy)
 }
@@ -93,13 +93,13 @@ interface HeadCell {
 }
 
 const headCells: HeadCell[] = [
-    { id: "date", numeric: true, disablePadding: true, label: "Occurred At" },
-    { id: "multiplier", numeric: true, disablePadding: false, label: "Multiplier" },
-    { id: "dices", numeric: false, disablePadding: true, label: "Dice" },
-    { id: "total", numeric: true, disablePadding: true, label: "Total" },
-    { id: "lightningNumbers", numeric: true, disablePadding: true, label: "Lightning Numbers" },
-    { id: "totalWinners", numeric: true, disablePadding: false, label: "Total Winners" },
-    { id: "totalPayout", numeric: true, disablePadding: false, label: "Total Payout" },
+    { id: 'date', numeric: true, disablePadding: true, label: 'Occurred At' },
+    { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
+    { id: 'dices', numeric: false, disablePadding: true, label: 'Dice' },
+    { id: 'total', numeric: true, disablePadding: true, label: 'Total' },
+    { id: 'lightningNumbers', numeric: true, disablePadding: true, label: 'Lightning Numbers' },
+    { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
+    { id: 'totalPayout', numeric: true, disablePadding: false, label: 'Total Payout' },
 ]
 
 export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
@@ -117,23 +117,23 @@ export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     return (
-        <TableHead style={{ background: "#db0d30" }}>
+        <TableHead style={{ background: '#db0d30' }}>
             <TableRow>
                 {headCells.map((headCell, i) => (
                     <StyledTableCell
                         key={headCell.id}
-                        align={i == 0 ? "center" : "left"}
+                        align={i == 0 ? 'center' : 'left'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
                         <TableSortLabel
                             active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : "asc"}
+                            direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
                         >
                             {t(headCell.label)}
                             {orderBy === headCell.id ? (
                                 <span className={classes.visuallyHidden}>
-                                    {order === "desc" ? "sorted descending" : "sorted ascending"}
+                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                                 </span>
                             ) : null}
                         </TableSortLabel>
@@ -150,8 +150,8 @@ interface EnhancedTableProps {
 
 export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows }) => {
     const classes = useStyles()
-    const [order, setOrder] = useState<Order>("desc")
-    const [orderBy, setOrderBy] = useState<keyof LightningDiceSpin>("date")
+    const [order, setOrder] = useState<Order>('desc')
+    const [orderBy, setOrderBy] = useState<keyof LightningDiceSpin>('date')
     const [selected, setSelected] = useState<string[]>([])
     const [page, setPage] = useState(0)
     const [dense, setDense] = useState(false)
@@ -160,8 +160,8 @@ export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof LightningDiceSpin) => {
-        const isAsc = orderBy === property && order === "asc"
-        setOrder(isAsc ? "desc" : "asc")
+        const isAsc = orderBy === property && order === 'asc'
+        setOrder(isAsc ? 'desc' : 'asc')
         setOrderBy(property)
     }
 
@@ -175,7 +175,7 @@ export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows
     }
 
     const diceToImage = (dice: string) => {
-        const ds = dice.split(",").map((s) => parseInt(s))
+        const ds = dice.split(',').map((s) => parseInt(s))
 
         const first = ds[0]
         const second = ds[1]
@@ -186,31 +186,31 @@ export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows
         const numberToImage = (n: number) => {
             switch (n) {
                 case 1:
-                    return "/icons/dice/dice_1.svg"
+                    return '/icons/dice/dice_1.svg'
                 case 2:
-                    return "/icons/dice/dice_2.svg"
+                    return '/icons/dice/dice_2.svg'
                 case 3:
-                    return "/icons/dice/dice_3.svg"
+                    return '/icons/dice/dice_3.svg'
                 case 4:
-                    return "/icons/dice/dice_4.svg"
+                    return '/icons/dice/dice_4.svg'
                 case 5:
-                    return "/icons/dice/dice_5.svg"
+                    return '/icons/dice/dice_5.svg'
                 case 6:
-                    return "/icons/dice/dice_6.svg"
+                    return '/icons/dice/dice_6.svg'
             }
         }
 
         return (
             <div>
-                <img style={{ height: "42px", marginRight: ".2rem" }} src={numberToImage(first)} />
-                <img style={{ height: "42px", marginRight: ".2rem" }} src={numberToImage(second)} />
-                <img style={{ height: "42px" }} src={numberToImage(third)} />
+                <img style={{ height: '42px', marginRight: '.2rem' }} src={numberToImage(first)} />
+                <img style={{ height: '42px', marginRight: '.2rem' }} src={numberToImage(second)} />
+                <img style={{ height: '42px' }} src={numberToImage(third)} />
             </div>
         )
     }
 
     const lightningNumbers = (arr: any) => {
-        return <div style={{ fontSize: ".75rem" }}>{arr.map((e) => `${e.value}(${e.multiplier}X) `)}</div>
+        return <div style={{ fontSize: '.75rem' }}>{arr.map((e) => `${e.value}(${e.multiplier}X) `)}</div>
     }
 
     return (
@@ -220,9 +220,9 @@ export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows
                     <TableContainer>
                         <Table
                             className={classes.table}
-                            aria-labelledby="tableTitle"
-                            size={dense ? "small" : "medium"}
-                            aria-label="enhanced table"
+                            aria-labelledby='tableTitle'
+                            size={dense ? 'small' : 'medium'}
+                            aria-label='enhanced table'
                         >
                             <EnhancedTableHead
                                 classes={classes}
@@ -241,39 +241,39 @@ export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows
                                         return (
                                             <StyledTableRow hover tabIndex={-1} key={`orderable_${index}`}>
                                                 <TableCell
-                                                    style={{ fontFamily: "Montserrat" }}
-                                                    align="center"
-                                                    component="th"
+                                                    style={{ fontFamily: 'Montserrat' }}
+                                                    align='center'
+                                                    component='th'
                                                     id={labelId}
-                                                    scope="row"
-                                                    padding="none"
+                                                    scope='row'
+                                                    padding='none'
                                                 >
-                                                    {format(row.timeOfSpin, "dd/MM HH:mm")}
+                                                    {format((row.timeOfSpin as number) - 3600 * 1000, 'dd/MM HH:mm')}
                                                 </TableCell>
-                                                <TableCell align="center">
+                                                <TableCell align='center'>
                                                     <SpinResultSpan>
                                                         {row.multiplier}
                                                         {row.isLightning && (
                                                             <span>
-                                                                <svg viewBox="0 0 320 512" style={{ width: ".6rem" }}>
+                                                                <svg viewBox='0 0 320 512' style={{ width: '.6rem' }}>
                                                                     <path
-                                                                        fill="black"
-                                                                        d="M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z"
+                                                                        fill='black'
+                                                                        d='M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z'
                                                                     />
                                                                 </svg>
                                                             </span>
                                                         )}
                                                     </SpinResultSpan>
                                                 </TableCell>
-                                                <TableCell align="left">{diceToImage(row.dices.toString())}</TableCell>
-                                                <TableCell align="center">{row.total}</TableCell>
-                                                <TableCell style={{ fontFamily: "Montserrat" }} align="left">
+                                                <TableCell align='left'>{diceToImage(row.dices.toString())}</TableCell>
+                                                <TableCell align='center'>{row.total}</TableCell>
+                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='left'>
                                                     {lightningNumbers(row.lightningNumbers)}
                                                 </TableCell>
-                                                <TableCell style={{ fontFamily: "Montserrat" }} align="center">
+                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='center'>
                                                     {row.totalWinners}
                                                 </TableCell>
-                                                <TableCell style={{ fontFamily: "Montserrat" }} align="center">
+                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='center'>
                                                     {row.totalPayout}
                                                 </TableCell>
                                             </StyledTableRow>
@@ -284,8 +284,8 @@ export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows
                     </TableContainer>
                     <TablePagination
                         rowsPerPageOptions={[5, 10, 25, 50, 100]}
-                        component="div"
-                        labelRowsPerPage={<p>{t("Rows per page")}</p>}
+                        component='div'
+                        labelRowsPerPage={<p>{t('Rows per page')}</p>}
                         labelDisplayedRows={({ from, to, count }) => ``}
                         count={rows.length}
                         rowsPerPage={rowsPerPage}
@@ -329,23 +329,23 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
     return (
         <div>
-            <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
+            <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label='first page'>
                 <FirstPageIcon />
             </IconButton>
-            <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+            <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label='previous page'>
                 <KeyboardArrowLeft />
             </IconButton>
             <IconButton
                 onClick={handleNextButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
+                aria-label='next page'
             >
                 <KeyboardArrowRight />
             </IconButton>
             <IconButton
                 onClick={handleLastPageButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
+                aria-label='last page'
             >
                 <LastPageIcon />
             </IconButton>
@@ -356,10 +356,10 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            width: "100%",
+            width: '100%',
         },
         paper: {
-            width: "100%",
+            width: '100%',
             marginBottom: theme.spacing(2),
         },
         table: {
@@ -367,12 +367,12 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         visuallyHidden: {
             border: 0,
-            clip: "rect(0 0 0 0)",
+            clip: 'rect(0 0 0 0)',
             height: 1,
             margin: -1,
-            overflow: "hidden",
+            overflow: 'hidden',
             padding: 0,
-            position: "absolute",
+            position: 'absolute',
             top: 20,
             width: 1,
         },

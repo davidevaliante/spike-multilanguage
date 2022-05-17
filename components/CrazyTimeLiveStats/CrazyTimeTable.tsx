@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useContext } from "react"
+import React, { FunctionComponent, useState, useContext } from 'react'
 import {
     TableContainer,
     Paper,
@@ -18,18 +18,18 @@ import {
     FormControlLabel,
     Switch,
     IconButton,
-} from "@material-ui/core"
-import { symbolToSlotResultImage, symbolToSpinResultImage } from "../../utils/ImageUtils"
-import MultiplierTableCell from "./MultiplierTableCell"
-import { Spin } from "../../data/models/Spin"
-import format from "date-fns-tz/format"
-import styled, { useTheme } from "styled-components"
-import { orderBy } from "lodash"
-import { LocaleContext } from "../../context/LocaleContext"
-import FirstPageIcon from "@material-ui/icons/FirstPage"
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft"
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
-import LastPageIcon from "@material-ui/icons/LastPage"
+} from '@material-ui/core'
+import { symbolToSlotResultImage, symbolToSpinResultImage } from '../../utils/ImageUtils'
+import MultiplierTableCell from './MultiplierTableCell'
+import { Spin } from '../../data/models/Spin'
+import format from 'date-fns-tz/format'
+import styled, { useTheme } from 'styled-components'
+import { orderBy } from 'lodash'
+import { LocaleContext } from '../../context/LocaleContext'
+import FirstPageIcon from '@material-ui/icons/FirstPage'
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
+import LastPageIcon from '@material-ui/icons/LastPage'
 
 interface Props {
     rows: Spin[]
@@ -38,7 +38,7 @@ interface Props {
 const StyledTableRow = withStyles((theme: Theme) =>
     createStyles({
         root: {
-            "&:nth-of-type(odd)": {
+            '&:nth-of-type(odd)': {
                 backgroundColor: theme.palette.action.hover,
             },
         },
@@ -55,13 +55,13 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     return 0
 }
 
-type Order = "asc" | "desc"
+type Order = 'asc' | 'desc'
 
 function getComparator<Key extends keyof any>(
     order: Order,
     orderBy: Key
 ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-    return order === "desc"
+    return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy)
 }
@@ -93,13 +93,13 @@ interface HeadCell {
 }
 
 const headCells: HeadCell[] = [
-    { id: "date", numeric: true, disablePadding: true, label: "Occurred At" },
-    { id: "spinResultSymbol", numeric: false, disablePadding: false, label: "Spin Result" },
-    { id: "slotResultSymbol", numeric: false, disablePadding: true, label: "Slot Result" },
-    { id: "multiplier", numeric: true, disablePadding: false, label: "Multiplier" },
-    { id: "totalWinners", numeric: true, disablePadding: false, label: "Total Winners" },
-    { id: "totalPayout", numeric: true, disablePadding: false, label: "Total Payout" },
-    { id: "watchVideo", numeric: false, disablePadding: false, label: "Watch Video" },
+    { id: 'date', numeric: true, disablePadding: true, label: 'Occurred At' },
+    { id: 'spinResultSymbol', numeric: false, disablePadding: false, label: 'Spin Result' },
+    { id: 'slotResultSymbol', numeric: false, disablePadding: true, label: 'Slot Result' },
+    { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
+    { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
+    { id: 'totalPayout', numeric: true, disablePadding: false, label: 'Total Payout' },
+    { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
 ]
 
 export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
@@ -117,26 +117,26 @@ export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     return (
-        <TableHead style={{ background: "#db0d30" }}>
+        <TableHead style={{ background: '#db0d30' }}>
             <TableRow>
                 {headCells.map((headCell, i) =>
-                    headCell.id === "spinResultSymbol" || headCell.id === "slotResultSymbol" ? (
+                    headCell.id === 'spinResultSymbol' || headCell.id === 'slotResultSymbol' ? (
                         <StyledTableCell key={headCell.id}>{t(headCell.label)}</StyledTableCell>
                     ) : (
                         <StyledTableCell
                             key={headCell.id}
-                            align={i == 0 ? "center" : "left"}
+                            align={i == 0 ? 'center' : 'left'}
                             sortDirection={orderBy === headCell.id ? order : false}
                         >
                             <TableSortLabel
                                 active={orderBy === headCell.id}
-                                direction={orderBy === headCell.id ? order : "asc"}
+                                direction={orderBy === headCell.id ? order : 'asc'}
                                 onClick={createSortHandler(headCell.id)}
                             >
                                 {t(headCell.label)}
                                 {orderBy === headCell.id ? (
                                     <span className={classes.visuallyHidden}>
-                                        {order === "desc" ? "sorted descending" : "sorted ascending"}
+                                        {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                                     </span>
                                 ) : null}
                             </TableSortLabel>
@@ -154,8 +154,8 @@ interface EnhancedTableProps {
 
 export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) => {
     const classes = useStyles()
-    const [order, setOrder] = useState<Order>("desc")
-    const [orderBy, setOrderBy] = useState<keyof Spin>("date")
+    const [order, setOrder] = useState<Order>('desc')
+    const [orderBy, setOrderBy] = useState<keyof Spin>('date')
     const [selected, setSelected] = useState<string[]>([])
     const [page, setPage] = useState(0)
     const [dense, setDense] = useState(false)
@@ -164,8 +164,8 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Spin) => {
-        const isAsc = orderBy === property && order === "asc"
-        setOrder(isAsc ? "desc" : "asc")
+        const isAsc = orderBy === property && order === 'asc'
+        setOrder(isAsc ? 'desc' : 'asc')
         setOrderBy(property)
     }
 
@@ -179,7 +179,7 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
     }
 
     const handleOpenVideo = (url: string) =>
-        window.open(`https://crazy-time-scalper.vercel.app/video/${url.split("/").pop()}`)
+        window.open(`https://crazy-time-scalper.vercel.app/video/${url.split('/').pop()}`)
 
     return (
         <TableWrapper>
@@ -188,9 +188,9 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                     <TableContainer>
                         <Table
                             className={classes.table}
-                            aria-labelledby="tableTitle"
-                            size={dense ? "small" : "medium"}
-                            aria-label="enhanced table"
+                            aria-labelledby='tableTitle'
+                            size={dense ? 'small' : 'medium'}
+                            aria-label='enhanced table'
                         >
                             <EnhancedTableHead
                                 classes={classes}
@@ -209,54 +209,54 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                                         return (
                                             <StyledTableRow hover tabIndex={-1} key={`orderable_${index}`}>
                                                 <TableCell
-                                                    style={{ fontFamily: "Montserrat" }}
-                                                    align="center"
-                                                    component="th"
+                                                    style={{ fontFamily: 'Montserrat' }}
+                                                    align='center'
+                                                    component='th'
                                                     id={labelId}
-                                                    scope="row"
-                                                    padding="none"
+                                                    scope='row'
+                                                    padding='none'
                                                 >
-                                                    {format(row.timeOfSpin, "dd/MM HH:mm")}
+                                                    {format((row.timeOfSpin as number) - 3600 * 1000, 'dd/MM HH:mm')}
                                                 </TableCell>
-                                                <TableCell align="left">
+                                                <TableCell align='left'>
                                                     <SpinResultSpan>
                                                         {symbolToSpinResultImage(row.spinResultSymbol as string)}
                                                     </SpinResultSpan>
                                                 </TableCell>
-                                                <TableCell align="left">
+                                                <TableCell align='left'>
                                                     <SlotResultSpan>
                                                         {symbolToSlotResultImage(row.slotResultSymbol as string)}
                                                         <p
                                                             style={{
-                                                                fontFamily: "Montserrat",
+                                                                fontFamily: 'Montserrat',
                                                                 fontWeight: row.sameSlotAndSpinResult
-                                                                    ? "bold"
-                                                                    : "normal",
-                                                                fontSize: row.sameSlotAndSpinResult ? "1.1rem" : "",
+                                                                    ? 'bold'
+                                                                    : 'normal',
+                                                                fontSize: row.sameSlotAndSpinResult ? '1.1rem' : '',
                                                             }}
                                                         >
-                                                            {row.slotResult === "Miss" ? "Nullo" : row.slotResult}
+                                                            {row.slotResult === 'Miss' ? 'Nullo' : row.slotResult}
                                                         </p>
                                                     </SlotResultSpan>
                                                 </TableCell>
                                                 <MultiplierTableCell spin={row as unknown as Spin} />
-                                                <TableCell style={{ fontFamily: "Montserrat" }} align="left">
+                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='left'>
                                                     {row.totalWinners}
                                                 </TableCell>
-                                                <TableCell style={{ fontFamily: "Montserrat" }} align="left">
+                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='left'>
                                                     {row.totalPayout} €
                                                 </TableCell>
-                                                <TableCell style={{ fontFamily: "Montserrat" }} align="right">
-                                                    {row.watchVideo !== "no_video" ? (
+                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='right'>
+                                                    {row.watchVideo !== 'no_video' ? (
                                                         <Button
                                                             onClick={() => handleOpenVideo(row.watchVideo as string)}
-                                                            color="primary"
-                                                            variant="contained"
+                                                            color='primary'
+                                                            variant='contained'
                                                         >
-                                                            {t("Watch")}
+                                                            {t('Watch')}
                                                         </Button>
                                                     ) : (
-                                                        ""
+                                                        ''
                                                     )}
                                                 </TableCell>
                                             </StyledTableRow>
@@ -267,8 +267,8 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                     </TableContainer>
                     <TablePagination
                         rowsPerPageOptions={[5, 10, 25, 50, 100]}
-                        component="div"
-                        labelRowsPerPage={<p>{t("Rows per page")}</p>}
+                        component='div'
+                        labelRowsPerPage={<p>{t('Rows per page')}</p>}
                         labelDisplayedRows={({ from, to, count }) => ``}
                         count={rows.length}
                         rowsPerPage={rowsPerPage}
@@ -312,23 +312,23 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
     return (
         <div>
-            <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
+            <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label='first page'>
                 <FirstPageIcon />
             </IconButton>
-            <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+            <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label='previous page'>
                 <KeyboardArrowLeft />
             </IconButton>
             <IconButton
                 onClick={handleNextButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
+                aria-label='next page'
             >
                 <KeyboardArrowRight />
             </IconButton>
             <IconButton
                 onClick={handleLastPageButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
+                aria-label='last page'
             >
                 <LastPageIcon />
             </IconButton>
@@ -389,10 +389,10 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            width: "100%",
+            width: '100%',
         },
         paper: {
-            width: "100%",
+            width: '100%',
             marginBottom: theme.spacing(2),
         },
         table: {
@@ -400,12 +400,12 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         visuallyHidden: {
             border: 0,
-            clip: "rect(0 0 0 0)",
+            clip: 'rect(0 0 0 0)',
             height: 1,
             margin: -1,
-            overflow: "hidden",
+            overflow: 'hidden',
             padding: 0,
-            position: "absolute",
+            position: 'absolute',
             top: 20,
             width: 1,
         },
