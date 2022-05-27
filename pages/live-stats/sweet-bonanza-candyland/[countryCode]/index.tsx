@@ -73,13 +73,27 @@ const index: FunctionComponent<Props> = ({
     const filterOptions = ['1', '2', '5', 'Bubble Surprise', 'Sweet Spins', 'Candy Drop']
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
-        setFilteredRows(rows.filter((r) => selectedFilters.includes(r.result)))
+        setFilteredRows(
+            rows.filter((r) => {
+                if (selectedFilters.includes('Candy Drop')) {
+                    return r.result === 'Bubble Surprise' && r.payout.length > 1
+                }
+                return selectedFilters.includes(r.result)
+            })
+        )
     }, [selectedFilters])
 
     // keeps track of rows in the table
     const [rows, setRows] = useState<SweetBonanzaSpin[]>(_lastTenSpins)
     useEffect(() => {
-        setFilteredRows(rows.filter((r) => selectedFilters.includes(r.result)))
+        setFilteredRows(
+            rows.filter((r) => {
+                if (r.result === 'Bubble Surprise' && selectedFilters.includes('Candy Drop')) {
+                    return r.payout.length > 1
+                }
+                return selectedFilters.includes(r.result)
+            })
+        )
         // console.log(filteredRows, 'fitlered rows')
     }, [rows])
     const [filteredRows, setFilteredRows] = useState<SweetBonanzaSpin[]>(_lastTenSpins)
@@ -231,7 +245,9 @@ const index: FunctionComponent<Props> = ({
                             `## Statistiche delle Estrazioni in Tempo Reale Sweet Bonanza Candyland
 
 Puoi trovare qui tutte le informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Sweet Bonanza Candyland.<br>
-È da sottolineare come a prescindere da come si interpretano i dati, il gioco a Sweet Bonanza Candyland farà sempre perdere gli utenti nel lungo periodo.<br><br>
+È da sottolineare come a prescindere da come si interpretano i dati, il gioco a Sweet Bonanza Candyland farà sempre perdere gli utenti nel lungo periodo, avendo un **RTP** variabile tra **91.59%** e **96.95%**
+
+<br><br>
 
 Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioco, e **potrai verificare la frequenza dell’uscita dei numeri**, in modo tale da pensare a una tua strategia responsabile.<br>
 **Giocate sempre responsabilmente e solo se avete compiuto i 18 anni**.`
@@ -392,7 +408,7 @@ Tutti gli user del settore e in particolare del Casinò Live, hanno l’opportun
 Ispezionare alcuni di questi dati può essere uno strumento in più per **monitorare come sta andando la sessione dal vivo** e scegliere eventualmente di usare una puntata piuttosto che un’altra.<br><br>
 
 A lungo termine il gioco porterà ad una perdita di credito, come è già possibile intuire considerando il Return to Player, ossia Ritorno al Giocatore da **91.59%** a **96.95%**.<br>
-In ogni caso, per avere maggiori informazioni concernenti questo titolo gioco Live e per verificare le possibili strategie da utilizzare, puoi visitare la [guida dedicata a Sweet Bonanza Candyland](https://spikeslot.com/articoli/guida-sweet-bonanza-candyland-live-pragmatic-play/it).<br><br>
+In ogni caso, per avere maggiori informazioni concernenti questo titolo gioco Live e per verificare le possibili strategie da utilizzare, puoi visitare la [guida Sweet Bonanza Candy Land](https://spikeslot.com/articoli/guida-sweet-bonanza-candyland-live-pragmatic-play/it).<br><br>
 
 ![Sweet Bonanza Candyland Stats Live Card](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland_2ba18b4723.jpeg)
 

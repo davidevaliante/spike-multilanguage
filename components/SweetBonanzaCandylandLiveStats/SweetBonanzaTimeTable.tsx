@@ -204,19 +204,19 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
     const resultToWinMultiplier = (result: string, row: any) => {
         switch (result) {
             case '1':
-                return <div>{row.payout[0] - 1}</div>
+                return <div>{row.payout[0] - 1}x</div>
 
             case '2':
-                return <div>{row.payout[0] - 1}</div>
+                return <div>{row.payout[0] - 1}x</div>
 
             case '5':
-                return <div>{row.payout[0] - 1}</div>
+                return <div>{row.payout[0] - 1}x</div>
 
             case 'Bubble Surprise':
-                return row.payout[0]
+                return `${row.payout[0]}x`
 
             case 'Sweet Spin':
-                return row.payout[0]
+                return `${row.payout[0]}x`
 
             case 'Candy Drop':
                 return <CandyDrop data={row.payout} rowId={row._id as string} />
@@ -268,13 +268,28 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
                                                 </TableCell>
                                                 <TableCell align='left'>
                                                     <SpinResultSpan>
-                                                        {symbolToStatImage2(row.result as string)}
+                                                        {row.result !== 'Bubble Surprise' ? (
+                                                            symbolToStatImage2(row.result as string)
+                                                        ) : (row.payout as any).length > 1 ? (
+                                                            <div style={{ display: 'flex' }}>
+                                                                {symbolToStatImage2('Bubble Surprise')}
+                                                                {symbolToStatImage2('Candy Drop')}
+                                                            </div>
+                                                        ) : (
+                                                            symbolToStatImage2(row.result as string)
+                                                        )}
                                                     </SpinResultSpan>
                                                 </TableCell>
 
                                                 <TableCell align='center'>
                                                     <SpinResultSpan>
-                                                        {resultToWinMultiplier(row.result as string, row)}
+                                                        {row.result !== 'Bubble Surprise' ? (
+                                                            resultToWinMultiplier(row.result as string, row)
+                                                        ) : (row.payout as any).length > 1 ? (
+                                                            <CandyDrop data={row.payout} rowId={row._id as string} />
+                                                        ) : (
+                                                            resultToWinMultiplier(row.result as string, row)
+                                                        )}
                                                     </SpinResultSpan>
                                                 </TableCell>
 
