@@ -41,20 +41,20 @@ export interface DynamicContentProps {
     isBakeca?: boolean
 }
 
+export const articleBlockRenderer = (key: string, article: string, isBakeca?: boolean) => (
+    <ArticleToMarkdown key={key} content={injectCDN(article)} isBakeca={isBakeca} />
+)
+
 const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBakeca }) => {
     const contentToBlocks = () => {
         return content?.map((dynamicContent, index) => {
             if (dynamicContent.type === 'article')
-                return articleBlockRenderer(`dynamic_${index}`, dynamicContent.article)
+                return articleBlockRenderer(`dynamic_${index}`, dynamicContent.article, isBakeca)
             if (dynamicContent.type === 'bonusList') return bonusListRenderer(dynamicContent)
             if (dynamicContent.type === 'video') return videoRenderer(`dynamic_${index}`, dynamicContent.videoUrl)
             if (dynamicContent.type === 'slotList') return slotListRenderer(`dynamic_${index}`, dynamicContent.slot)
         })
     }
-
-    const articleBlockRenderer = (key: string, article: string) => (
-        <ArticleToMarkdown key={key} content={injectCDN(article)} isBakeca={isBakeca} />
-    )
 
     // const bonusListRenderer: FunctionComponent<DynamicBonusList> = (key: string, bonusList: { bonus: Bonus }[], direction: 'vertical' | 'horizontal', tableLabel: string | undefined) => {
 

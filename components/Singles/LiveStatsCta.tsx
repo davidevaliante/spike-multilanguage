@@ -1,48 +1,58 @@
-import React from "react"
-import { FunctionComponent } from "react"
-import styled from "styled-components"
-import { injectCDN } from "../../utils/Utils"
-import { laptop, tablet } from "./../Responsive/Breakpoints"
-import Router from "next/router"
+import React from 'react'
+import { FunctionComponent } from 'react'
+import styled from 'styled-components'
+import { injectCDN } from '../../utils/Utils'
+import { laptop, tablet } from './../Responsive/Breakpoints'
+import Router from 'next/router'
 
 interface Props {}
 
 const LiveStatsCta: FunctionComponent<Props> = (props: Props) => {
-    const goToCrazyTime = () => Router.push("/live-stats/crazy-time/it")
-    const goToMonopoly = () => Router.push("/live-stats/monopoly/it")
-    const goToDreamCatcher = () => Router.push("/live-stats/dream-catcher/it")
-    const gotToLightning = () => Router.push("/live-stats/lightning-dice/it")
+    const goToCrazyTime = () => Router.push('/live-stats/crazy-time/it')
+    const goToMonopoly = () => Router.push('/live-stats/monopoly/it')
+    const goToDreamCatcher = () => Router.push('/live-stats/dream-catcher/it')
+    const gotToLightning = () => Router.push('/live-stats/lightning-dice/it')
+    const gotToSweet = () => Router.push('/live-stats/sweet-bonanza-candyland/it')
     return (
         <Container>
             <ImgContainer>
                 <CTAImage
-                    alt="dreamcatcher live stats image"
-                    onClick={gotToLightning}
+                    alt='dreamcatcher live stats image'
+                    onClick={gotToSweet}
                     src={injectCDN(
-                        "https://spike-images.s3.eu-central-1.amazonaws.com/lightning_dice_on_air-min_dae6d575d8.jpeg"
+                        'https://spike-images.s3.eu-central-1.amazonaws.com/Sweet-Bonanza-Candyland-min.jpg'
                     )}
                 />
-                <img className="sticker" src="/icons/new_icon.svg" alt="big new icon" />
+                <img className='sticker' src='/icons/new_icon.svg' alt='big new icon' />
             </ImgContainer>
+
             <CTAImage
-                className="pointer"
-                onClick={goToCrazyTime}
-                alt="crazy time live stats image"
+                className='pointer'
+                onClick={gotToLightning}
+                alt='lightning dice live stats image'
                 src={injectCDN(
-                    "https://spike-images.s3.eu-central-1.amazonaws.com/dream_catcher_active_e3832ccd0d.jpeg"
+                    'https://spike-images.s3.eu-central-1.amazonaws.com/lightning_dice_on_air-min_dae6d575d8.jpeg'
                 )}
             />
             <CTAImage
-                className="pointer"
-                onClick={goToCrazyTime}
-                alt="crazy time live stats image"
-                src={injectCDN("https://spike-images.s3.eu-central-1.amazonaws.com/crazy_time_cta_27c89931a9.jpeg")}
+                className='pointer'
+                onClick={goToDreamCatcher}
+                alt='dream catcher live stats image'
+                src={injectCDN(
+                    'https://spike-images.s3.eu-central-1.amazonaws.com/dream_catcher_active_e3832ccd0d.jpeg'
+                )}
             />
             <CTAImage
-                className="pointer"
+                className='pointer'
+                onClick={goToCrazyTime}
+                alt='crazy time live stats image'
+                src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/crazy_time_cta_27c89931a9.jpeg')}
+            />
+            <CTAImage
+                className='pointer'
                 onClick={goToMonopoly}
-                alt="monopoly live stats image"
-                src={injectCDN("https://spike-images.s3.eu-central-1.amazonaws.com/monopoly_active_e9d2a6d505.jpeg")}
+                alt='monopoly live stats image'
+                src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/monopoly_active_e9d2a6d505.jpeg')}
             />
         </Container>
     )
@@ -128,7 +138,7 @@ const ImgContainer = styled.div`
 `
 
 const CTAImage = styled.img`
-    width: 200px;
+    width: 170px;
     border-radius: 6px;
     cursor: pointer;
     display: block;

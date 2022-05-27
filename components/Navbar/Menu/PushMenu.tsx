@@ -44,6 +44,13 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
             <div style={{ marginLeft: '2rem' }}>
                 <div
                     key={`push_menu_crazy_time`}
+                    onClick={() => router.push(`/live-stats/sweet-bonanza-candyland/${contextCountry}`)}
+                >
+                    <p>Sweet Bonanza Candyland</p>
+                    <Divider />
+                </div>
+                <div
+                    key={`push_menu_crazy_time`}
                     onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}
                 >
                     <p>Crazy Time Stats</p>
