@@ -80,7 +80,7 @@ const index: FunctionComponent<Props> = ({
     const [rows, setRows] = useState<SweetBonanzaSpin[]>(_lastTenSpins)
     useEffect(() => {
         setFilteredRows(rows.filter((r) => selectedFilters.includes(r.result)))
-        console.log(filteredRows, 'fitlered rows')
+        // console.log(filteredRows, 'fitlered rows')
     }, [rows])
     const [filteredRows, setFilteredRows] = useState<SweetBonanzaSpin[]>(_lastTenSpins)
     const [lastUpdate, setLastUpdate] = useState(now())
@@ -99,7 +99,7 @@ const index: FunctionComponent<Props> = ({
             setTimeFrame(timeFrame)
             // we'll receive updates from the newly joined TimeFrame here
             socket.on(timeFrame, (data) => {
-                console.log(data, timeFrame)
+                // console.log(data, timeFrame)
                 // this is the update regarding the top cards with percentages
                 const topUpdate = data.stats.stats.stats
                 // this is the update regarding the rows of the table
@@ -128,7 +128,7 @@ const index: FunctionComponent<Props> = ({
             socket.emit(timeFrame)
             // whenever the server sends updates to a given TimeFrame subcribers we receive them here
             socket.on(timeFrame, (data) => {
-                console.log(data, timeFrame)
+                // console.log(data, timeFrame)
                 // this is the update regarding the top cards with percentages
                 const topUpdate = data.stats.stats.stats
                 // this is the update regarding the rows of the table
@@ -183,9 +183,11 @@ const index: FunctionComponent<Props> = ({
     const seoDescription =
         'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲'
 
+    const imageSocial = 'https://spike-images.s3.eu-central-1.amazonaws.com/Sweet-Bonanza-Candyland-min.jpg'
+
     return (
         <Fragment>
-            <NavbarProvider currentPage='Crazy Time Stats' countryCode={contextCountry}>
+            <NavbarProvider currentPage='Sweet Bonanza Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{seoTitle}</title>
                     <link rel='canonical' href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
@@ -196,7 +198,7 @@ const index: FunctionComponent<Props> = ({
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
                     <meta itemProp='description' content={seoDescription} />
-                    <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                    <meta itemProp='image' content={imageSocial} />
 
                     <meta name='twitter:card' content='summary_large_image' />
                     <meta
@@ -204,16 +206,16 @@ const index: FunctionComponent<Props> = ({
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
                     <meta name='twitter:description' content={seoDescription} />
-                    <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                    <meta name='twitter:image' content={imageSocial} />
 
-                    <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                    <meta property='og:image' content={imageSocial} />
                     <meta property='og:locale' content={'it'} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={seoDescription} />
                     <meta property='og:site_name' content={seoTitle} />
 
                     <meta httpEquiv='content-language' content='it-IT'></meta>
-                    <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                    <meta property='og:image' content={imageSocial} />
                     <meta property='og:locale' content={'it'} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={seoDescription} />
@@ -427,7 +429,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
 
     const _requestedCountryCode = query.countryCode
     const pageData = await axios.get('https://sbcandyland.topadsservices.com/api/data-in-the-last-hours/24')
-    console.log(pageData.data)
+    // console.log(pageData.data)
 
     // const pageContent = await aquaClient.query({
     //     query: PAGE_ARTICLE_QUERY,
