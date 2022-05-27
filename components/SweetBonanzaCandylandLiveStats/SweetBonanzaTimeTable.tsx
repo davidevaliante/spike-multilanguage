@@ -215,7 +215,7 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
             case 'Bubble Surprise':
                 return `${row.payout[0]}x`
 
-            case 'Sweet Spin':
+            case 'Sweet Spins':
                 return `${row.payout[0]}x`
 
             case 'Candy Drop':
