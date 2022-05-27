@@ -245,9 +245,8 @@ const index: FunctionComponent<Props> = ({
                             `## Statistiche delle Estrazioni in Tempo Reale Sweet Bonanza Candyland
 
 Puoi trovare qui tutte le informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Sweet Bonanza Candyland.<br>
-È da sottolineare come a prescindere da come si interpretano i dati, il gioco a Sweet Bonanza Candyland farà sempre perdere gli utenti nel lungo periodo, avendo un **RTP** variabile tra **91.59%** e **96.95%**
-
-<br><br>
+Spikeslot.com è il primo sito al mondo ad ospitare le statistiche di Sweet Bonanza Candyland.<br>
+È da sottolineare come a prescindere da come si interpretano i dati, il gioco a Sweet Bonanza Candyland farà sempre perdere gli utenti nel lungo periodo, avendo un RTP variabile tra **91.59%** e **96.95%**.<br><br>
 
 Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioco, e **potrai verificare la frequenza dell’uscita dei numeri**, in modo tale da pensare a una tua strategia responsabile.<br>
 **Giocate sempre responsabilmente e solo se avete compiuto i 18 anni**.`
@@ -369,9 +368,7 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
 
                         {articleBlockRenderer(
                             'bottom',
-                            `<br>
-
-## Verifica gli ultimi numeri estratti al gioco Live Sweet Bonanza Candyland
+                            `## Verifica gli ultimi numeri estratti al gioco Live Sweet Bonanza Candyland
 
 Sweet Bonanza Candyland è un gioco nel panorama del Casinò Live che permette di vivere un’esperienza prudente in un atmosfera piena di caramelle.<br>
 In breve, c’è una ruota della fortuna con 54 settori che viene girata dal croupier presente all’interno dello studio, e il compito dei giocatori è quello di indovinare il valore di dove finirà il giro.<br>
@@ -414,7 +411,10 @@ In ogni caso, per avere maggiori informazioni concernenti questo titolo gioco Li
 
 <br>
 
-Non dimenticare che il divertimento deve essere figlio soltanto di un gioco moderato e prudente.`
+Non dimenticare che il divertimento deve essere figlio soltanto di un gioco moderato e prudente.<br><br><br>
+
+
+Ultimo aggiornamento: **27 Maggio 2022**`
                         )}
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}
