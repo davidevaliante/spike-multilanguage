@@ -201,6 +201,31 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
         )
     }
 
+    const resultToWinMultiplier = (result: string, row: any) => {
+        switch (result) {
+            case '1':
+                return <div>{row.payout[0] - 1}</div>
+
+            case '2':
+                return <div>{row.payout[0] - 1}</div>
+
+            case '5':
+                return <div>{row.payout[0] - 1}</div>
+
+            case 'Bubble Surprise':
+                return row.payout[0]
+
+            case 'Sweet Spin':
+                return row.payout[0]
+
+            case 'Candy Drop':
+                return <CandyDrop data={row.payout} rowId={row._id as string} />
+
+            default:
+                return <div>{row.multiplier}</div>
+        }
+    }
+
     return (
         <TableWrapper>
             <div className={classes.root}>
@@ -249,11 +274,7 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
 
                                                 <TableCell align='center'>
                                                     <SpinResultSpan>
-                                                        {row.result !== 'Candy Drop' ? (
-                                                            row.multiplier
-                                                        ) : (
-                                                            <CandyDrop data={row.payout} rowId={row._id as string} />
-                                                        )}
+                                                        {resultToWinMultiplier(row.result as string, row)}
                                                     </SpinResultSpan>
                                                 </TableCell>
 
