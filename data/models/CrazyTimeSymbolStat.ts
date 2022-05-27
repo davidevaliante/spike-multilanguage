@@ -25,3 +25,10 @@ export interface SweetBonanzaCandylandStat {
     percentage: number
     spinSince: number
 }
+
+export interface MegaWheelStat {
+    symbol: number
+    lands: number
+    percentage: number
+    spinSince: number
+}

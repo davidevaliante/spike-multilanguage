@@ -202,6 +202,9 @@ const NavbarProvider: FunctionComponent<Props> = ({
                         <MenuItem onClick={() => router.push(`/live-stats/sweet-bonanza-candyland/${contextCountry}`)}>
                             Sweet Bonanza Candyland
                         </MenuItem>
+                        <MenuItem onClick={() => router.push(`/live-stats/mega-wheel/${contextCountry}`)}>
+                            Mega Wheel
+                        </MenuItem>
                         <MenuItem onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}>
                             Crazy Time
                         </MenuItem>

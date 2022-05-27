@@ -13,8 +13,19 @@ const LiveStatsCta: FunctionComponent<Props> = (props: Props) => {
     const goToDreamCatcher = () => Router.push('/live-stats/dream-catcher/it')
     const gotToLightning = () => Router.push('/live-stats/lightning-dice/it')
     const gotToSweet = () => Router.push('/live-stats/sweet-bonanza-candyland/it')
+    const goToMegaWheel = () => Router.push('/live-stats/mega-wheel/it')
+
     return (
         <Container>
+            <ImgContainer>
+                <CTAImage
+                    alt='mega wheel live stats image'
+                    onClick={goToMegaWheel}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/megawheel.webp')}
+                />
+                <img className='sticker' src='/icons/new_icon.svg' alt='big new icon' />
+            </ImgContainer>
+
             <ImgContainer>
                 <CTAImage
                     alt='dreamcatcher live stats image'
@@ -138,7 +149,7 @@ const ImgContainer = styled.div`
 `
 
 const CTAImage = styled.img`
-    width: 170px;
+    width: 140px;
     border-radius: 6px;
     cursor: pointer;
     display: block;

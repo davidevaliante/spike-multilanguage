@@ -28,13 +28,13 @@ import FirstPageIcon from '@material-ui/icons/FirstPage'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
-import MultiplierTableCell from './MultiplierTableCell'
-import { SweetBonanzaSpin } from '../../data/models/SweetBonanzaSpin'
 import { injectCDN } from '../../utils/Utils'
-import { symbolToStatImage, symbolToStatImage2 } from '../Cards/SweetBonanzaCandylandCard'
+import { symbolToStatImage2 } from '../Cards/SweetBonanzaCandylandCard'
+import { MegaWheelSpin } from '../../data/models/MegaWheelSpin'
+import { symbolToStatImage } from '../Cards/MegaWheelCard'
 
 interface Props {
-    rows: SweetBonanzaSpin[]
+    rows: MegaWheelSpin[]
 }
 
 const StyledTableRow = withStyles((theme: Theme) =>
@@ -81,7 +81,7 @@ function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
 interface TableHeadProps {
     classes: ReturnType<typeof useStyles>
     numSelected: number
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof SweetBonanzaSpin) => void
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof MegaWheelSpin) => void
     order: Order
     orderBy: string
     rowCount: number
@@ -89,17 +89,16 @@ interface TableHeadProps {
 
 interface HeadCell {
     disablePadding: boolean
-    id: keyof SweetBonanzaSpin
+    id: keyof MegaWheelSpin
     label: string
     numeric: boolean
 }
 
 const headCells: HeadCell[] = [
     { id: 'timeMillis', numeric: true, disablePadding: true, label: 'Occurred At' },
-    { id: 'result', numeric: false, disablePadding: false, label: 'Result' },
+    { id: 'result', numeric: false, disablePadding: false, label: 'Wheel Result' },
+    { id: 'slot', numeric: true, disablePadding: true, label: 'Slot Result' },
     { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multipliersb' },
-    { id: 'sugarbomb', numeric: false, disablePadding: true, label: 'Sugarbomb' },
-    { id: 'sbmul', numeric: true, disablePadding: false, label: 'Bomb Multiplier' },
     { id: 'dealer', numeric: false, disablePadding: false, label: 'Dealer' },
     { id: 'players', numeric: true, disablePadding: false, label: 'Players' },
 ]
@@ -112,7 +111,7 @@ export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
     rowCount,
     onRequestSort,
 }) => {
-    const createSortHandler = (property: keyof SweetBonanzaSpin) => (event: React.MouseEvent<unknown>) => {
+    const createSortHandler = (property: keyof MegaWheelSpin) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property)
     }
 
@@ -143,13 +142,13 @@ export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
 }
 
 interface EnhancedTableProps {
-    rows: SweetBonanzaSpin[]
+    rows: MegaWheelSpin[]
 }
 
-export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows }) => {
+export const MegaWheelTable: FunctionComponent<EnhancedTableProps> = ({ rows }) => {
     const classes = useStyles()
     const [order, setOrder] = useState<Order>('desc')
-    const [orderBy, setOrderBy] = useState<keyof SweetBonanzaSpin>('timeMillis')
+    const [orderBy, setOrderBy] = useState<keyof MegaWheelSpin>('timeMillis')
     const [selected, setSelected] = useState<string[]>([])
     const [page, setPage] = useState(0)
     const [dense, setDense] = useState(false)
@@ -157,7 +156,7 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof SweetBonanzaSpin) => {
+    const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof MegaWheelSpin) => {
         const isAsc = orderBy === property && order === 'asc'
         setOrder(isAsc ? 'desc' : 'asc')
         setOrderBy(property)
@@ -171,64 +170,6 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
         setRowsPerPage(parseInt(event.target.value, 10))
         setPage(0)
     }
-
-    const CandyDrop: FunctionComponent<{ data: any; rowId: string; sbmul: number }> = ({ data, sbmul }) => {
-        const indexToImage = (i: number) => {
-            switch (i) {
-                case 0:
-                    return injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sw-drop-blue-min.png')
-
-                case 1:
-                    return injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sw-drop-red-min.png')
-
-                case 2:
-                    return injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sw-drop-yellow-min.png')
-
-                default:
-                    return injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sw-drop-blue-min.png')
-            }
-        }
-
-        return (
-            <div style={{ display: 'flex', gap: '6px', justifyContent: 'space-evenly' }}>
-                {data.map((d, i) => (
-                    <div style={{ display: 'flex' }}>
-                        <div style={{ minWidth: '30px' }}>{`${(d as number) * sbmul}x `}</div>
-                        <img width={25} height={25} src={indexToImage(i)} />
-                    </div>
-                ))}
-            </div>
-        )
-    }
-
-    const resultToWinMultiplier = (result: string, row: any) => {
-        console.log(row)
-        const sbMul = row.sugarbomb ? row.sbmul[0] : 1
-
-        switch (result) {
-            case '1':
-                return <div>{(row.payout[0] - 1) * sbMul}x</div>
-
-            case '2':
-                return <div>{(row.payout[0] - 1) * sbMul}x</div>
-
-            case '5':
-                return <div>{(row.payout[0] - 1) * sbMul}x</div>
-
-            case 'Bubble Surprise':
-                return `${row.payout[0] * sbMul}x`
-
-            case 'Sweet Spins':
-                return `${row.payout[0] * sbMul}x`
-
-            case 'Candy Drop':
-                return <CandyDrop data={row.payout} rowId={row._id as string} sbmul={sbMul} />
-
-            default:
-                return <div>{row.multiplier}</div>
-        }
-    }
-
     return (
         <TableWrapper>
             <div className={classes.root}>
@@ -269,79 +210,35 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
                                                         'dd/MM HH:mm'
                                                     )}
                                                 </TableCell>
-                                                <TableCell align='left'>
-                                                    <SpinResultSpan>
-                                                        {row.result !== 'Bubble Surprise' ? (
-                                                            symbolToStatImage2(row.result as string)
-                                                        ) : (row.payout as any).length > 1 ? (
-                                                            <div style={{ display: 'flex' }}>
-                                                                {/* {symbolToStatImage2('Bubble Surprise')}
-                                                                {symbolToStatImage2('Candy Drop')} */}
-                                                                <img
-                                                                    width={90}
-                                                                    height={50}
-                                                                    src={injectCDN(
-                                                                        'https://spike-images.s3.eu-central-1.amazonaws.com/cucciolone.png'
-                                                                    )}
-                                                                />
-                                                            </div>
-                                                        ) : (
-                                                            symbolToStatImage2(row.result as string)
-                                                        )}
-                                                    </SpinResultSpan>
-                                                </TableCell>
-
-                                                <TableCell align='center'>
-                                                    <SpinResultSpan>
-                                                        {row.result !== 'Bubble Surprise' ? (
-                                                            resultToWinMultiplier(row.result as string, row)
-                                                        ) : (row.payout as any).length > 1 ? (
-                                                            <CandyDrop
-                                                                data={row.payout}
-                                                                rowId={row._id as string}
-                                                                sbmul={row.sugarbomb ? row.sbmul[0] : 1}
-                                                            />
-                                                        ) : (
-                                                            resultToWinMultiplier(row.result as string, row)
-                                                        )}
-                                                    </SpinResultSpan>
-                                                </TableCell>
 
                                                 <TableCell align='left'>
-                                                    <SlotResultSpan>
-                                                        {(row as unknown as SweetBonanzaSpin).sugarbomb == true ? (
-                                                            <img
-                                                                style={{
-                                                                    width: '30px',
-                                                                    height: '30px',
-                                                                    margin: 'auto auto',
-                                                                }}
-                                                                src={injectCDN(
-                                                                    'https://spike-images.s3.eu-central-1.amazonaws.com/sb-bomb.png'
-                                                                )}
-                                                            />
-                                                        ) : (
-                                                            <img
-                                                                style={{
-                                                                    width: '30px',
-                                                                    height: '30px',
-                                                                    margin: 'auto auto',
-                                                                }}
-                                                                src={injectCDN(
-                                                                    'https://spike-images.s3.eu-central-1.amazonaws.com/sb-bomb-gs-2.png'
-                                                                )}
-                                                            />
-                                                        )}
-                                                    </SlotResultSpan>
+                                                    {symbolToStatImage(row.result as number, true)}
                                                 </TableCell>
-                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='center'>
-                                                    {(row.sbmul as any).length == 0 ? (
-                                                        <div></div>
-                                                    ) : (
-                                                        (row.sbmul as any).map((value, index) => (
-                                                            <div key={`${row._id}-${index}`}>{value}</div>
-                                                        ))
-                                                    )}
+
+                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='left'>
+                                                    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                                                        {symbolToStatImage(row.slot as number, true)}
+                                                        <div
+                                                            style={{
+                                                                fontWeight: row.slot === row.result ? 'bold' : 'normal',
+                                                                fontSize: row.slot === row.result ? '1.5rem' : '1rem',
+                                                            }}
+                                                        >
+                                                            {row.multiplier}x
+                                                        </div>
+                                                    </div>
+                                                </TableCell>
+
+                                                <TableCell
+                                                    align='left'
+                                                    style={{
+                                                        fontWeight: row.slot === row.result ? 'bold' : 'normal',
+                                                        fontSize: row.slot === row.result ? '1.5rem' : '1rem',
+                                                    }}
+                                                >
+                                                    {row.result === row.slot
+                                                        ? `${(row.multiplier as number) * (row.result as number)}x`
+                                                        : `${row.result}x`}
                                                 </TableCell>
 
                                                 <TableCell style={{ fontFamily: 'Montserrat' }} align='left'>

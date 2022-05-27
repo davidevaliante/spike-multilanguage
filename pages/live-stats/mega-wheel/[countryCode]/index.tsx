@@ -1,45 +1,43 @@
+import { Divider, Select, MenuItem, Paper, Input, Checkbox, ListItemText } from '@material-ui/core'
+import axios from 'axios'
+import { format } from 'date-fns'
+import { now } from 'lodash'
+import Head from 'next/head'
 import React, { useContext, useState, useEffect } from 'react'
 import { FunctionComponent, Fragment } from 'react'
-import { LocaleContext } from '../../../../context/LocaleContext'
-import FullPageLoader from '../../../../components/Layout/FullPageLoader'
-import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
-import { BodyContainer, MainColumn, MainColumnScroll } from '../../../../components/Layout/Layout'
-import io, { Socket } from 'socket.io-client'
-import { Select, MenuItem, Paper, Divider, Backdrop, Input, Checkbox, ListItemText } from '@material-ui/core'
-import { TimeFrame } from '../../../../data/models/TimeFrames'
+import { Socket, io } from 'socket.io-client'
 import styled from 'styled-components'
-import { crazyTimeSymbolToFilterOption } from '../../../../data/models/Spin'
-import axios from 'axios'
-import { CrazyTimeSymbolStat, SweetBonanzaCandylandStat } from '../../../../data/models/CrazyTimeSymbolStat'
-import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
-import { CrazyTimeTable } from '../../../../components/CrazyTimeLiveStats/CrazyTimeTable'
-import AquaClient from '../../../../graphql/aquaClient'
 import BonusStripe from '../../../../components/Cards/BonusStripe'
-import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
-import DynamicContent, { articleBlockRenderer } from '../../../../components/DynamicContent/DynamicContent'
-import Head from 'next/head'
-import { format } from 'date-fns'
-import now from 'lodash/now'
-import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
-import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
-import { SweetBonanzaSpin } from '../../../../data/models/SweetBonanzaSpin'
+import MegaWheelCard from '../../../../components/Cards/MegaWheelCard'
 import SweetBonanzaCandylandCard from '../../../../components/Cards/SweetBonanzaCandylandCard'
+import { articleBlockRenderer } from '../../../../components/DynamicContent/DynamicContent'
+import { BodyContainer, MainColumnScroll } from '../../../../components/Layout/Layout'
+import { MegaWheelTable } from '../../../../components/MegaWheelStats/MegaWheelTable'
+import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
+import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
+import { LocaleContext } from '../../../../context/LocaleContext'
+import { MegaWheelStat, SweetBonanzaCandylandStat } from '../../../../data/models/CrazyTimeSymbolStat'
+import { MegaWheelSpin } from '../../../../data/models/MegaWheelSpin'
+import { TimeFrame } from '../../../../data/models/TimeFrames'
+import AquaClient from '../../../../graphql/aquaClient'
+import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
+import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
 
 interface Props {
     _requestedCountryCode: string
     _stats: {
         totalSpins: number
-        lastTenSpins: SweetBonanzaSpin[]
+        lastTenSpins: MegaWheelSpin[]
         stats: any
     }
-    _lastTenSpins: SweetBonanzaSpin[]
+    _lastTenSpins: MegaWheelSpin[]
     _bonuses: Bonus[]
     _pageContent: CrazyTimeArticle
     _countryCode: string
 }
 
-const SOCKET_ENDPOINT = 'https://sbcandyland.topadsservices.com'
+const SOCKET_ENDPOINT = 'https://megaball.topadsservices.com'
 
 // const SOCKET_ENDPOINT = 'localhost:5000'
 
@@ -70,37 +68,23 @@ const index: FunctionComponent<Props> = ({
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const filterOptions = ['1', '2', '5', 'Bubble Surprise', 'Sweet Spins', 'Candy Drop']
+    const filterOptions = [1, 2, 5, 8, 10, 15, 20, 30, 40]
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
-        setFilteredRows(
-            rows.filter((r) => {
-                if (selectedFilters.includes('Candy Drop')) {
-                    return r.result === 'Bubble Surprise' && r.payout.length > 1
-                }
-                return selectedFilters.includes(r.result)
-            })
-        )
+        setFilteredRows(rows.filter((r) => selectedFilters.includes(r.result)))
     }, [selectedFilters])
 
     // keeps track of rows in the table
-    const [rows, setRows] = useState<SweetBonanzaSpin[]>(_lastTenSpins)
+    const [rows, setRows] = useState<MegaWheelSpin[]>(_lastTenSpins)
     useEffect(() => {
-        setFilteredRows(
-            rows.filter((r) => {
-                if (r.result === 'Bubble Surprise' && selectedFilters.includes('Candy Drop')) {
-                    return r.payout.length > 1
-                }
-                return selectedFilters.includes(r.result)
-            })
-        )
+        setFilteredRows(rows.filter((r) => selectedFilters.includes(r.result)))
         // console.log(filteredRows, 'fitlered rows')
     }, [rows])
-    const [filteredRows, setFilteredRows] = useState<SweetBonanzaSpin[]>(_lastTenSpins)
+    const [filteredRows, setFilteredRows] = useState<MegaWheelSpin[]>(_lastTenSpins)
     const [lastUpdate, setLastUpdate] = useState(now())
 
     // keeps track of the stats
-    const [stats, setStats] = useState<SweetBonanzaCandylandStat[] | undefined>(_stats.stats)
+    const [stats, setStats] = useState<MegaWheelStat[] | undefined>(_stats.stats)
 
     const [totalSpinsInTimeFrame, setTotalSpinsInTimeFrame] = useState(_stats.totalSpins)
     // the time frame currently selected
@@ -166,8 +150,6 @@ const index: FunctionComponent<Props> = ({
 
     // table Ordering
     const [order, setOrder] = useState<'asc' | 'des'>('des')
-    // stuff for multilanguage porpouses
-    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setContextCountry(_countryCode)
@@ -188,20 +170,20 @@ const index: FunctionComponent<Props> = ({
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const change = event.target.value as string[]
+        const change = event.target.value as number[]
         // console.log(change)
         setSelectedFilters(change)
     }
 
-    const seoTitle = 'Diretta Estrazioni | Sweet Bonanza Candyland | SPIKE Slot'
+    const seoTitle = 'Diretta Estrazioni | Mega Wheel | SPIKE Slot'
     const seoDescription =
         'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲'
 
-    const imageSocial = 'https://spike-images.s3.eu-central-1.amazonaws.com/Sweet-Bonanza-Candyland-min.jpg'
+    const imageSocial = 'https://spike-images.s3.eu-central-1.amazonaws.com/megawheel.webp'
 
     return (
         <Fragment>
-            <NavbarProvider currentPage='Sweet Bonanza Stats' countryCode={contextCountry}>
+            <NavbarProvider currentPage='Mega Wheel Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{seoTitle}</title>
                     <link rel='canonical' href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
@@ -240,7 +222,7 @@ const index: FunctionComponent<Props> = ({
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >
-                        {articleBlockRenderer(
+                        {/* {articleBlockRenderer(
                             'top',
                             `## Statistiche delle Estrazioni in Tempo Reale Sweet Bonanza Candyland
 
@@ -250,7 +232,7 @@ Spikeslot.com è il primo sito al mondo ad ospitare le statistiche di Sweet Bona
 
 Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioco, e **potrai verificare la frequenza dell’uscita dei numeri**, in modo tale da pensare a una tua strategia responsabile.<br>
 **Giocate sempre responsabilmente e solo se avete compiuto i 18 anni**.`
-                        )}
+                        )} */}
 
                         <Divider style={{ marginTop: '2rem' }} />
 
@@ -264,9 +246,7 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
                                 }}
                             >
                                 <div>
-                                    <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>
-                                        {t('Sweet Bonanza Candyland Stats')}
-                                    </h1>
+                                    <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>{`Mega Wheel Stats`}</h1>
                                     <h1 style={{ marginTop: '.5rem' }}>
                                         {`${t('for the past')} ${timeFrame}`}
                                         <span style={{ marginLeft: '1rem', fontWeight: 'bold', color: 'crimson' }}>
@@ -298,29 +278,16 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
                         <Divider style={{ marginTop: '2rem', marginBottom: '2rem' }} />
 
                         {stats && (
-                            <div>
-                                <StatsContainer>
-                                    {[stats[0], stats[1], stats[2]].map((s) => (
-                                        <SweetBonanzaCandylandCard
-                                            key={`stats_${s.symbol}`}
-                                            stat={s}
-                                            totalSpinsConsidered={totalSpinsInTimeFrame}
-                                            timeFrame={timeFrame}
-                                        />
-                                    ))}
-                                </StatsContainer>
-
-                                <StatsContainer>
-                                    {[stats[3], stats[4], stats[5]].map((s) => (
-                                        <SweetBonanzaCandylandCard
-                                            key={`stats_${s.symbol}`}
-                                            stat={s}
-                                            totalSpinsConsidered={totalSpinsInTimeFrame}
-                                            timeFrame={timeFrame}
-                                        />
-                                    ))}
-                                </StatsContainer>
-                            </div>
+                            <StatsContainer>
+                                {stats.map((s) => (
+                                    <MegaWheelCard
+                                        key={`stats_${s.symbol}`}
+                                        stat={s}
+                                        totalSpinsConsidered={totalSpinsInTimeFrame}
+                                        timeFrame={timeFrame}
+                                    />
+                                ))}
+                            </StatsContainer>
                         )}
 
                         <h1
@@ -331,7 +298,7 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
                                 fontSize: '1.4rem',
                                 textAlign: 'center',
                             }}
-                        >{`${t('You can play at Sweet Bonanza Candyland HERE')}`}</h1>
+                        >{`Puoi giocare alla Mega Wheel QUI`}</h1>
                         <Paper elevation={6} style={{ marginTop: '1rem', marginBottom: '4rem' }}>
                             {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
                         </Paper>
@@ -377,9 +344,9 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
                             </div>
                         </div>
 
-                        {rows && <SweetBonanzaTable rows={filteredRows} />}
+                        {rows && <MegaWheelTable rows={filteredRows} />}
 
-                        {articleBlockRenderer(
+                        {/* {articleBlockRenderer(
                             'bottom',
                             `## Verifica gli ultimi numeri estratti al gioco Live Sweet Bonanza Candyland
 
@@ -428,7 +395,7 @@ Non dimenticare che il divertimento deve essere figlio soltanto di un gioco mode
 
 
 Ultimo aggiornamento: **27 Maggio 2022**`
-                        )}
+                        )} */}
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}
                     </MainColumnScroll>
@@ -439,7 +406,7 @@ Ultimo aggiornamento: **27 Maggio 2022**`
 }
 
 // helper function to merge exsisting rows with the update from the Socket
-export const mergeWithUpdate = (current: SweetBonanzaSpin[], update: SweetBonanzaSpin[]) => {
+export const mergeWithUpdate = (current: MegaWheelSpin[], update: MegaWheelSpin[]) => {
     // the latest row in the table
     const lastFromCurrent = current[0]
     // slicing up the update array to the last known row based on the _id
@@ -457,7 +424,10 @@ export const getServerSideProps = async ({ query, req, res }) => {
     const { countryCode } = query
 
     const _requestedCountryCode = query.countryCode
-    const pageData = await axios.get('https://sbcandyland.topadsservices.com/api/data-in-the-last-hours/24')
+    // const pageData = await axios.get('https://sbcandyland.topadsservices.com/api/data-in-the-last-hours/24')
+
+    const pageData = await axios.get('https://megaball.topadsservices.com/api/data-in-the-last-hours/24')
+
     // console.log(pageData.data)
 
     // const pageContent = await aquaClient.query({

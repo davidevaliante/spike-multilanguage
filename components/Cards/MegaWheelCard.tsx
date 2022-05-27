@@ -1,42 +1,42 @@
 import { FunctionComponent, useContext } from 'react'
 import { Card, CardContent } from '@material-ui/core'
-import { CrazyTimeSymbolStat, SweetBonanzaCandylandStat } from '../../data/models/CrazyTimeSymbolStat'
+import { CrazyTimeSymbolStat, MegaWheelStat, SweetBonanzaCandylandStat } from '../../data/models/CrazyTimeSymbolStat'
 import Image from 'next/image'
 import { injectCDN } from '../../utils/Utils'
 import { LocaleContext } from '../../context/LocaleContext'
 import Divider from '../Ui/Divider'
 
 interface CardProps {
-    stat: SweetBonanzaCandylandStat
+    stat: MegaWheelStat
     totalSpinsConsidered: number
     timeFrame: string
 }
 
-const SweetBonanzaCandylandCard: FunctionComponent<CardProps> = ({ stat, totalSpinsConsidered, timeFrame }) => {
+const MegaWheelCard: FunctionComponent<CardProps> = ({ stat, totalSpinsConsidered, timeFrame }) => {
     console.log(stat)
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const expectation = (s: string) => {
-        if (s === '1')
+    const expectation = (s: number) => {
+        if (s === 1)
             return (
                 <div style={{ marginTop: '1rem' }}>
                     <span style={{ fontSize: '.7rem', display: 'flex' }}>
-                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>23 / 54</p>
-                        <p>(42.59%) {`${t('Expected')}`}</p>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>20 / 54</p>
+                        <p>(37.03%) {`${t('Expected')}`}</p>
                     </span>
                 </div>
             )
-        if (s === '2')
+        if (s === 2)
             return (
                 <div style={{ marginTop: '1rem' }}>
                     <span style={{ fontSize: '.7rem', display: 'flex' }}>
-                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>15 / 54</p>
-                        <p>(27.78%) {`${t('Expected')}`}</p>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>13 / 54</p>
+                        <p>(24.07%) {`${t('Expected')}`}</p>
                     </span>
                 </div>
             )
-        if (s === '5')
+        if (s === 5)
             return (
                 <div style={{ marginTop: '1rem' }}>
                     <span style={{ fontSize: '.7rem', display: 'flex' }}>
@@ -45,30 +45,57 @@ const SweetBonanzaCandylandCard: FunctionComponent<CardProps> = ({ stat, totalSp
                     </span>
                 </div>
             )
-        if (s === 'Candy Drop')
+        if (s === 8)
             return (
                 <div style={{ marginTop: '1rem' }}>
                     <span style={{ fontSize: '.7rem', display: 'flex' }}>
-                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>3 / 54</p>
-                        <p>(5.55%) {`${t('Expected')}`}</p>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>4 / 54</p>
+                        <p>(7.41%) {`${t('Expected')}`}</p>
                     </span>
                 </div>
             )
-        if (s === 'Bubble Surprise')
+        if (s === 10)
             return (
                 <div style={{ marginTop: '1rem' }}>
                     <span style={{ fontSize: '.7rem', display: 'flex' }}>
-                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>3 / 54</p>
-                        <p>(5.55%) {`${t('Expected')}`}</p>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>4 / 54</p>
+                        <p>(7.41%) {`${t('Expected')}`}</p>
                     </span>
                 </div>
             )
-        if (s === 'Sweet Spins')
+        if (s === 15)
             return (
                 <div style={{ marginTop: '1rem' }}>
                     <span style={{ fontSize: '.7rem', display: 'flex' }}>
                         <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>2 / 54</p>
                         <p>(3.70%) {`${t('Expected')}`}</p>
+                    </span>
+                </div>
+            )
+        if (s === 20)
+            return (
+                <div style={{ marginTop: '1rem' }}>
+                    <span style={{ fontSize: '.7rem', display: 'flex' }}>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>2 / 54</p>
+                        <p>(3.70%) {`${t('Expected')}`}</p>
+                    </span>
+                </div>
+            )
+        if (s === 30)
+            return (
+                <div style={{ marginTop: '1rem' }}>
+                    <span style={{ fontSize: '.7rem', display: 'flex' }}>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>1 / 54</p>
+                        <p>(1.85%) {`${t('Expected')}`}</p>
+                    </span>
+                </div>
+            )
+        if (s === 40)
+            return (
+                <div style={{ marginTop: '1rem' }}>
+                    <span style={{ fontSize: '.7rem', display: 'flex' }}>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>1 / 54</p>
+                        <p>(1.85%) {`${t('Expected')}`}</p>
                     </span>
                 </div>
             )
@@ -113,64 +140,92 @@ const SweetBonanzaCandylandCard: FunctionComponent<CardProps> = ({ stat, totalSp
     )
 }
 
-export default SweetBonanzaCandylandCard
+export default MegaWheelCard
 
 const root = '/icons/crazy-time/'
 
 const _squareLength = '100px'
 
+const _smallSquare = '40px'
+
 const _rectWidht = '150px'
 
 const _rectHeight = '80px'
 
-export const symbolToStatImage = (symbolString: string) => {
+export const symbolToStatImage = (symbolString: number, small: boolean = false) => {
     switch (symbolString) {
-        case '1':
+        case 1:
             return (
                 <img
-                    width={_squareLength}
-                    height={_squareLength}
-                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sb-1-min.png')}
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-1.png')}
                 />
             )
-        case '2':
+        case 2:
             return (
                 <img
-                    width={_squareLength}
-                    height={_squareLength}
-                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sb-2-min.png')}
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-2.png')}
                 />
             )
-        case '5':
+
+        case 5:
             return (
                 <img
-                    width={_squareLength}
-                    height={_squareLength}
-                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sb-5-min.png')}
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-5.png')}
                 />
             )
-        case 'Candy Drop':
+        case 8:
             return (
                 <img
-                    width={_squareLength}
-                    height={_squareLength}
-                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sb-cd-min.png')}
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-8.png')}
                 />
             )
-        case 'Bubble Surprise':
+        case 10:
             return (
                 <img
-                    width={_squareLength}
-                    height={_squareLength}
-                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sb-bs-min.png')}
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-10.png')}
                 />
             )
-        case 'Sweet Spins':
+        case 15:
             return (
                 <img
-                    width={_squareLength}
-                    height={_squareLength}
-                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/sb-sp-min.png')}
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-15.png')}
+                />
+            )
+        case 20:
+            return (
+                <img
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-20.png')}
+                />
+            )
+        case 30:
+            return (
+                <img
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-30.png')}
+                />
+            )
+
+        case 40:
+            return (
+                <img
+                    width={small ? _smallSquare : _squareLength}
+                    height={small ? _smallSquare : _squareLength}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mw-40.png')}
                 />
             )
     }

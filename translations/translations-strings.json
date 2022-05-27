@@ -154,7 +154,8 @@
             "Bomb Multiplier": "Bomb Multiplier",
             "Dealer": "Dealer",
             "Players": "Players",
-            "You can play at Sweet Bonanza Candyland HERE": "You can play at Sweet Bonanza Candyland HERE"
+            "You can play at Sweet Bonanza Candyland HERE": "You can play at Sweet Bonanza Candyland HERE",
+            "Wheel Result": "Wheel Result"
         }
     },
     "it": {
@@ -320,7 +321,8 @@
             "Dealer": "Dealer",
             "Players": "Giocatori",
             "You can play at Sweet Bonanza Candyland HERE": "Puoi giocare alla Sweet Bonanza Candyland QUI",
-            "Multipliersb": "Moltiplicatore Vincita"
+            "Multipliersb": "Moltiplicatore Vincita",
+            "Wheel Result": "Risultato Ruota"
         }
     },
     "row": {
