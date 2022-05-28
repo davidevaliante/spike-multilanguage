@@ -202,8 +202,38 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
     }
 
     const resultToWinMultiplier = (result: string, row: any) => {
-        console.log(row)
-        const sbMul = row.sugarbomb ? row.sbmul[0] : 1
+        let sbMul = 1
+
+        if (row.sbmul.length > 0) {
+            if (row.sbmul.length == 1) sbMul = row.sbmul[0]
+            if (row.sbmul.length == 2) sbMul = row.sbmul[0] * row.sbmul[1]
+            if (row.sbmul.length == 3) sbMul = row.sbmul[0] * row.sbmul[1] * row.sbmul[2]
+            if (row.sbmul.length == 4) sbMul = row.sbmul[0] * row.sbmul[1] * row.sbmul[2] * row.sbmul[3]
+            if (row.sbmul.length == 5) sbMul = row.sbmul[0] * row.sbmul[1] * row.sbmul[2] * row.sbmul[3] * row.sbmul[4]
+            if (row.sbmul.length == 6)
+                sbMul = row.sbmul[0] * row.sbmul[1] * row.sbmul[2] * row.sbmul[3] * row.sbmul[4] * row.sbmul[5]
+            if (row.sbmul.length == 7)
+                sbMul =
+                    row.sbmul[0] *
+                    row.sbmul[1] *
+                    row.sbmul[2] *
+                    row.sbmul[3] *
+                    row.sbmul[4] *
+                    row.sbmul[5] *
+                    row.sbmul[6]
+            if (row.sbmul.length == 7)
+                sbMul =
+                    row.sbmul[0] *
+                    row.sbmul[1] *
+                    row.sbmul[2] *
+                    row.sbmul[3] *
+                    row.sbmul[4] *
+                    row.sbmul[5] *
+                    row.sbmul[6] *
+                    row.sbmul[7]
+
+            console.log('hello there', row.sbmul.length, sbMul, row)
+        }
 
         switch (result) {
             case '1':
@@ -310,16 +340,21 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
                                                 <TableCell align='left'>
                                                     <SlotResultSpan>
                                                         {(row as unknown as SweetBonanzaSpin).sugarbomb == true ? (
-                                                            <img
-                                                                style={{
-                                                                    width: '30px',
-                                                                    height: '30px',
-                                                                    margin: 'auto auto',
-                                                                }}
-                                                                src={injectCDN(
-                                                                    'https://spike-images.s3.eu-central-1.amazonaws.com/sb-bomb.png'
-                                                                )}
-                                                            />
+                                                            <div>
+                                                                {(row.sbmul as any).map((pay, index) => (
+                                                                    <img
+                                                                        key={`${row._id}-bomb-${index}`}
+                                                                        style={{
+                                                                            width: '30px',
+                                                                            height: '30px',
+                                                                            margin: 'auto auto',
+                                                                        }}
+                                                                        src={injectCDN(
+                                                                            'https://spike-images.s3.eu-central-1.amazonaws.com/sb-bomb.png'
+                                                                        )}
+                                                                    />
+                                                                ))}
+                                                            </div>
                                                         ) : (
                                                             <img
                                                                 style={{
@@ -334,6 +369,7 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
                                                         )}
                                                     </SlotResultSpan>
                                                 </TableCell>
+
                                                 <TableCell style={{ fontFamily: 'Montserrat' }} align='center'>
                                                     {(row.sbmul as any).length == 0 ? (
                                                         <div></div>

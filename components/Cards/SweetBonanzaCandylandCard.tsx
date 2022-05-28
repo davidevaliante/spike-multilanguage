@@ -67,8 +67,8 @@ const SweetBonanzaCandylandCard: FunctionComponent<CardProps> = ({ stat, totalSp
             return (
                 <div style={{ marginTop: '1rem' }}>
                     <span style={{ fontSize: '.7rem', display: 'flex' }}>
-                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>2 / 54</p>
-                        <p>(3.70%) {`${t('Expected')}`}</p>
+                        <p style={{ fontWeight: 'bold', marginRight: '.5rem' }}>1 / 54</p>
+                        <p>(1.85%) {`${t('Expected')}`}</p>
                     </span>
                 </div>
             )
