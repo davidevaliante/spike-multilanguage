@@ -45,7 +45,7 @@ const SOCKET_ENDPOINT = 'https://sbcandyland.topadsservices.com'
 
 // const PAGE_BONUSES = ['888 Casino', 'PokerStars Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
 
-const PAGE_BONUSES = ['WinCasino', 'LeoVegas', 'StarCasinò', '888 Casino', 'Eurobet']
+const PAGE_BONUSES = ['WinCasino', 'LeoVegas', 'StarCasinò', '888 Casino', 'King Casino']
 
 const SPAM_BONUSES = false
 
@@ -204,7 +204,10 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Sweet Bonanza Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
+                    <link
+                        rel='canonical'
+                        href={`https://spikeslot.com/live-stats/sweet-bonanza-candyland/${contextCountry}`}
+                    />
                     <meta name='description' content={seoDescription}></meta>
 
                     <meta
@@ -499,6 +502,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
             'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_6258c_&affid=100976968&siteid=182773&adid=6258&c=',
         WinCasino: 'https://www.wincasinopromo.it/?=registration&mp=cd6cb4e9-42cc-4d51-bc95-46bbb80844a2',
         Eurobet: 'https://record.betpartners.it/_E_C7XwxgprAZV93hC2dJ_GNd7ZgqdRLk/165',
+        'King Casino': 'https://spikestats.kingcasino.it/',
     }
 
     return {

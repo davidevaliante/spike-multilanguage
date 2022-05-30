@@ -6,6 +6,7 @@ import { laptop, tablet } from './../Responsive/Breakpoints'
 import Router from 'next/router'
 
 interface Props {}
+//https:spike-images.s3.eu-central-1.amazonaws.com/mega_roulette_thumbnail.png
 
 const LiveStatsCta: FunctionComponent<Props> = (props: Props) => {
     const goToCrazyTime = () => Router.push('/live-stats/crazy-time/it')
@@ -14,9 +15,19 @@ const LiveStatsCta: FunctionComponent<Props> = (props: Props) => {
     const gotToLightning = () => Router.push('/live-stats/lightning-dice/it')
     const gotToSweet = () => Router.push('/live-stats/sweet-bonanza-candyland/it')
     const goToMegaWheel = () => Router.push('/live-stats/mega-wheel/it')
+    const goToMegaRoulette = () => Router.push('/live-stats/mega-roulette/it')
 
     return (
         <Container>
+            <ImgContainer>
+                <CTAImage
+                    alt='mega roulette live stats image'
+                    onClick={goToMegaRoulette}
+                    src={injectCDN('https://spike-images.s3.eu-central-1.amazonaws.com/mega_roulette_thumbnail.png')}
+                />
+                <img className='sticker' src='/icons/new_icon.svg' alt='big new icon' />
+            </ImgContainer>
+
             <ImgContainer>
                 <CTAImage
                     alt='mega wheel live stats image'
@@ -149,7 +160,8 @@ const ImgContainer = styled.div`
 `
 
 const CTAImage = styled.img`
-    width: 140px;
+    width: 120px;
+    height: 70px;
     border-radius: 6px;
     cursor: pointer;
     display: block;

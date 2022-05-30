@@ -32,3 +32,10 @@ export interface MegaWheelStat {
     percentage: number
     spinSince: number
 }
+
+export interface MegaRouletteStat {
+    symbol: number
+    lands: number
+    percentage: number
+    spinSince: number
+}

@@ -1,25 +1,25 @@
-import React, { Fragment, FunctionComponent, useContext, useEffect, useState } from "react"
-import { BonusGuide, Bonus, Article } from "../../../graphql/schema"
-import AquaClient from "../../../graphql/aquaClient"
-import { BONUS_GUIDES_BY_COUNTRY } from "../../../graphql/queries/bonusguide"
-import NavbarProvider from "../../../components/Navbar/NavbarProvider"
-import { HOME_BONUS_LIST } from "../../../graphql/queries/bonus"
-import CustomBreadcrumbs from "../../../components/Breadcrumbs/CustomBreadcrumbs"
-import styled from "styled-components"
-import BonusGuideCard from "../../../components/Cards/BonusGuideCard"
-import Head from "next/head"
-import { ARTICLES_BY_COUNTRY } from "../../../graphql/queries/article"
-import ArticleCard from "./../../../components/Cards/ArticleCard"
-import { tablet } from "../../../components/Responsive/Breakpoints"
-import { useRouter } from "next/router"
+import React, { Fragment, FunctionComponent, useContext, useEffect, useState } from 'react'
+import { BonusGuide, Bonus, Article } from '../../../graphql/schema'
+import AquaClient from '../../../graphql/aquaClient'
+import { BONUS_GUIDES_BY_COUNTRY } from '../../../graphql/queries/bonusguide'
+import NavbarProvider from '../../../components/Navbar/NavbarProvider'
+import { HOME_BONUS_LIST } from '../../../graphql/queries/bonus'
+import CustomBreadcrumbs from '../../../components/Breadcrumbs/CustomBreadcrumbs'
+import styled from 'styled-components'
+import BonusGuideCard from '../../../components/Cards/BonusGuideCard'
+import Head from 'next/head'
+import { ARTICLES_BY_COUNTRY } from '../../../graphql/queries/article'
+import ArticleCard from './../../../components/Cards/ArticleCard'
+import { tablet } from '../../../components/Responsive/Breakpoints'
+import { useRouter } from 'next/router'
 import {
     getCanonicalPath,
     getUserCountryCode,
     getBGuidePageRedirectUrlForCountry,
     serverSide404,
-} from "../../../utils/Utils"
-import { LocaleContext } from "./../../../context/LocaleContext"
-import CountryEquivalentPageSnackbar from "../../../components/Snackbars/CountryEquivalentPageSnackbar"
+} from '../../../utils/Utils'
+import { LocaleContext } from './../../../context/LocaleContext'
+import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
 
 interface Props {
     _initialGuides: BonusGuide[]
@@ -72,68 +72,70 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
         <Fragment>
             <Head>
                 <title>{t(`Bonus Guides and Slot Tricks |  SPIKE`)}</title>
-                <link rel="canonical" href={getCanonicalPath()} />
+                <link rel='canonical' href={getCanonicalPath()} />
                 <meta
-                    name="description"
+                    name='description'
                     content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
                 ></meta>
-                <meta httpEquiv="content-language" content="it-IT"></meta>
+                <meta httpEquiv='content-language' content='it-IT'></meta>
 
                 {/* <!-- Google / Search Engine Tags --> */}
-                <meta itemProp="name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
+                <meta itemProp='name' content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
                 <meta
-                    itemProp="description"
+                    itemProp='description'
                     content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
                 />
-                <meta itemProp="image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+                <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                 {/* <!-- Twitter Meta Tags --> */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
+                <meta name='twitter:card' content='summary_large_image' />
+                <meta name='twitter:title' content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
                 <meta
-                    name="twitter:description"
+                    name='twitter:description'
                     content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
                 />
-                <meta name="twitter:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
+                <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                 {/* <!-- Facebook Meta Tags --> */}
-                <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
-                <meta property="og:locale" content={"it"} />
-                <meta property="og:type" content="article" />
+                <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                <meta property='og:locale' content={'it'} />
+                <meta property='og:type' content='article' />
                 <meta
-                    property="og:description"
+                    property='og:description'
                     content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
                 />
-                <meta property="og:site_name" content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
+                <meta property='og:site_name' content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
 
-                <meta property="og:image" content={"https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"} />
-                <meta property="og:locale" content={"it"} />
-                <meta property="og:type" content="article" />
+                <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
+                <meta property='og:locale' content={'it'} />
+                <meta property='og:type' content='article' />
                 <meta
-                    property="og:description"
+                    property='og:description'
                     content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
                 />
-                <meta property="og:site_name" content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
+                <meta property='og:site_name' content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
             </Head>
 
-            <NavbarProvider currentPage="/guide-e-trucchi" countryCode={contextCountry}>
+            <NavbarProvider currentPage='/guide-e-trucchi' countryCode={contextCountry}>
                 {userCountryEquivalentExists && (
                     <CountryEquivalentPageSnackbar path={getBGuidePageRedirectUrlForCountry(userCountry)} />
                 )}
 
                 <StyleProvider>
-                    <CustomBreadcrumbs style={{ margin: "1rem 0rem" }} from="guide-list" name="Guides and Tricks" />
+                    <CustomBreadcrumbs style={{ margin: '1rem 0rem' }} from='guide-list' name='Guides and Tricks' />
 
-                    <h1>{t("Guides to the best bonuses of Italian casinos")} </h1>
-                    <p>{t("GuidesTextContent1")}</p>
+                    <h1>{t('Guides to the best bonuses of Italian casinos')} </h1>
+                    <p>{t('GuidesTextContent1')}</p>
                     <BonusGuideContainer>
-                        {initialGuides.map((guide, index) => (
-                            <BonusGuideCard key={`guide_${index}`} guide={guide} />
-                        ))}
+                        {initialGuides
+                            .filter((it) => it.slug !== 'casino-betflag-bonus-benvenuto')
+                            .map((guide, index) => (
+                                <BonusGuideCard key={`guide_${index}`} guide={guide} />
+                            ))}
                     </BonusGuideContainer>
 
-                    <h1 style={{ margin: "2rem 0rem" }}>{t("Online Slot, Slot Bar and VLT Cheats")} </h1>
-                    <p>{t("GuidesTextContent2")}</p>
+                    <h1 style={{ margin: '2rem 0rem' }}>{t('Online Slot, Slot Bar and VLT Cheats')} </h1>
+                    <p>{t('GuidesTextContent2')}</p>
                     <ArticlesContainer>
                         {articles.map((article, index) => (
                             <ArticleCard key={`article_${index}`} article={article} />
@@ -216,7 +218,7 @@ export async function getServerSideProps({ query, res }) {
                 _initialGuides: initialGuidesResponse.data.data.bonusGuides,
                 _articles: initialArticlesResponse.data.data.articles,
                 _bonusList: bonusListResponse.data.data.homes[0]?.bonuses || null,
-                _requestedCountryCode: "it",
+                _requestedCountryCode: 'it',
             },
         }
     } catch (error) {

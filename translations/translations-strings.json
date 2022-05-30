@@ -155,7 +155,9 @@
             "Dealer": "Dealer",
             "Players": "Players",
             "You can play at Sweet Bonanza Candyland HERE": "You can play at Sweet Bonanza Candyland HERE",
-            "Wheel Result": "Wheel Result"
+            "Wheel Result": "Wheel Result",
+            "Missing Since": "Missing since",
+            "Mega Multipliers": "Mega Multipliers"
         }
     },
     "it": {
@@ -322,7 +324,9 @@
             "Players": "Giocatori",
             "You can play at Sweet Bonanza Candyland HERE": "Puoi giocare alla Sweet Bonanza Candyland QUI",
             "Multipliersb": "Moltiplicatore Vincita",
-            "Wheel Result": "Risultato Ruota"
+            "Wheel Result": "Risultato Ruota",
+            "Missing Since": "Non esce da",
+            "Mega Multipliers": "Mega Moltiplicatori"
         }
     },
     "row": {

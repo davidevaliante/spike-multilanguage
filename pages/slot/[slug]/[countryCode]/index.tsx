@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useEffect, useContext } from "react"
-import styled from "styled-components"
-import NavbarProvider from "../../../../components/Navbar/NavbarProvider"
-import { NextPageContext } from "next"
-import CustomBreadcrumbs from "../../../../components/Breadcrumbs/CustomBreadcrumbs"
-import { Slot, Bonus } from "./../../../../graphql/schema"
-import AquaClient from "../../../../graphql/aquaClient"
-import { SLOT_WITH_SLUG } from "./../../../../graphql/queries/slots"
+import React, { Fragment, useState, useEffect, useContext } from 'react'
+import styled from 'styled-components'
+import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
+import { NextPageContext } from 'next'
+import CustomBreadcrumbs from '../../../../components/Breadcrumbs/CustomBreadcrumbs'
+import { Slot, Bonus } from './../../../../graphql/schema'
+import AquaClient from '../../../../graphql/aquaClient'
+import { SLOT_WITH_SLUG } from './../../../../graphql/queries/slots'
 import {
     injectCDN,
     goFullScreen,
@@ -13,30 +13,30 @@ import {
     getCanonicalPath,
     serverSideRedirect,
     serverSide404,
-} from "./../../../../utils/Utils"
-import SmallSlotCard from "../../../../components/Cards/SmallSlotCard"
-import snakeCase from "lodash/snakeCase"
-import { isMobile } from "react-device-detect"
-import { laptop } from "./../../../../components/Responsive/Breakpoints"
-import PrimaryBonusCard from "../../../../components/Cards/PrimaryBonusCard"
-import SecondaryBonusCard from "./../../../../components/Cards/SecondaryBonusCard"
-import NeonButton from "./../../../../components/NeonButton/NeonButton"
-import PlayDimmer from "../../../../components/PlayDimmer/PlayDimmer"
-import FadeInOut from "../../../../components/Ui/FadeInOut"
-import ArticleToMarkdown from "./../../../../components/Markdown/ArticleToMarkdown"
-import { MainColumn, RightColumn, BodyContainer } from "../../../../components/Layout/Layout"
-import { FunctionComponent } from "react"
-import BonusCardRevealComponent from "./../../../../components/Cards/BonusCardReveal"
-import SlotMainFeatures from "../../../../components/Cards/SlotMainFeatures"
-import Head from "next/head"
-import { ApolloBonusCardReveal } from "../../../../data/models/Bonus"
-import { BONUSES_BY_NAME, GET_BONUS_BY_NAME_AND_COUNTRY, HOME_BONUS_LIST } from "../../../../graphql/queries/bonus"
-import { useRouter } from "next/router"
-import { LocaleContext } from "./../../../../context/LocaleContext"
-import FullPageLoader from "../../../../components/Layout/FullPageLoader"
-import ShareButtons, { TopRowContainer } from "../../../../components/Seo/ShareButtons"
-import Author from "../../../../components/StructuredData.tsx/Author"
-import axios from "axios"
+} from './../../../../utils/Utils'
+import SmallSlotCard from '../../../../components/Cards/SmallSlotCard'
+import snakeCase from 'lodash/snakeCase'
+import { isMobile } from 'react-device-detect'
+import { laptop } from './../../../../components/Responsive/Breakpoints'
+import PrimaryBonusCard from '../../../../components/Cards/PrimaryBonusCard'
+import SecondaryBonusCard from './../../../../components/Cards/SecondaryBonusCard'
+import NeonButton from './../../../../components/NeonButton/NeonButton'
+import PlayDimmer from '../../../../components/PlayDimmer/PlayDimmer'
+import FadeInOut from '../../../../components/Ui/FadeInOut'
+import ArticleToMarkdown from './../../../../components/Markdown/ArticleToMarkdown'
+import { MainColumn, RightColumn, BodyContainer } from '../../../../components/Layout/Layout'
+import { FunctionComponent } from 'react'
+import BonusCardRevealComponent from './../../../../components/Cards/BonusCardReveal'
+import SlotMainFeatures from '../../../../components/Cards/SlotMainFeatures'
+import Head from 'next/head'
+import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
+import { BONUSES_BY_NAME, GET_BONUS_BY_NAME_AND_COUNTRY, HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
+import { useRouter } from 'next/router'
+import { LocaleContext } from './../../../../context/LocaleContext'
+import FullPageLoader from '../../../../components/Layout/FullPageLoader'
+import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
+import Author from '../../../../components/StructuredData.tsx/Author'
+import axios from 'axios'
 
 interface PageProps extends NextPageContext {
     _shallow: boolean
@@ -52,7 +52,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
     const [playLink, setPlayLink] = useState(_slotData.playLink)
 
     useEffect(() => {
-        console.log(playLink, "playlink changed")
+        console.log(playLink, 'playlink changed')
     }, [playLink])
 
     const [primaryBonus, setPrimaryBonus] = useState(_slotData.mainBonus)
@@ -73,8 +73,16 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
         setup()
     }, [])
 
+    useEffect(() => {
+        if (_slotData) {
+            setPrimaryBonus(_slotData.mainBonus)
+            setAuxiliaryBonuses(_slotData?.bonuses.filter((b: Bonus) => b.name !== primaryBonus?.name))
+            setPlayLink(_slotData.playLink)
+        }
+    }, [_slotData])
+
     const checkForCrystaltech = async () => {
-        console.log("retriving cristaltec play url")
+        console.log('retriving cristaltec play url')
         try {
             const url = `https://cristaltecdemo.piattaforma97.it/${_slotData.name}`
             console.log(url)
@@ -89,8 +97,8 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
     const setup = () => {
         console.log(_slotData)
-        if (_slotData.producer.name === "Cristaltec") checkForCrystaltech()
-        else console.log("not a cristaltec slot")
+        if (_slotData.producer.name === 'Cristaltec') checkForCrystaltech()
+        else console.log('not a cristaltec slot')
         setContextCountry(_countryCode)
         setLoading(false)
     }
@@ -102,23 +110,23 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
             <Head>
                 <title>{_slotData?.seo ? `${_slotData?.seo.seoTitle}` : `${_slotData?.name} | SPIKE`}</title>
                 <meta
-                    name="description"
+                    name='description'
                     content={
                         _slotData?.seo
                             ? `${_slotData?.seo.seoDescription}`
                             : `${_slotData?.name} Le migliori slot online selezionate per te con trucchi consigli e demo gratuite. Prova le slot online in modalità gratuita, scegli quella che ti incuriosisce di più e leggi la guida approfondita prima di passare alla versione a soldi veri`
                     }
                 ></meta>
-                <meta httpEquiv="content-language" content="it-IT"></meta>
-                <link rel="canonical" href={getCanonicalPath()} />
+                <meta httpEquiv='content-language' content='it-IT'></meta>
+                <link rel='canonical' href={getCanonicalPath()} />
 
                 {/* <!-- Google / Search Engine Tags --> */}
                 <meta
-                    itemProp="name"
+                    itemProp='name'
                     content={_slotData?.seo ? `${_slotData?.seo.seoTitle}` : `${_slotData?.name} | SPIKE`}
                 />
                 <meta
-                    itemProp="description"
+                    itemProp='description'
                     content={
                         _slotData?.seo
                             ? `${_slotData?.seo.seoDescription}`
@@ -126,22 +134,22 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                     }
                 />
                 <meta
-                    itemProp="image"
+                    itemProp='image'
                     content={
                         _slotData.image.url
                             ? _slotData.image.url
-                            : "https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"
+                            : 'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'
                     }
                 />
 
                 {/* <!-- Twitter Meta Tags --> */}
-                <meta name="twitter:card" content="summary_large_image" />
+                <meta name='twitter:card' content='summary_large_image' />
                 <meta
-                    name="twitter:title"
+                    name='twitter:title'
                     content={_slotData?.seo ? `${_slotData?.seo.seoTitle}` : `${_slotData?.name} | SPIKE`}
                 />
                 <meta
-                    name="twitter:description"
+                    name='twitter:description'
                     content={
                         _slotData?.seo
                             ? `${_slotData?.seo.seoDescription}`
@@ -149,26 +157,26 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                     }
                 />
                 <meta
-                    name="twitter:image"
+                    name='twitter:image'
                     content={
                         _slotData.image.url
                             ? _slotData.image.url
-                            : "https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"
+                            : 'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'
                     }
                 />
 
                 <meta
-                    property="og:image"
+                    property='og:image'
                     content={
                         _slotData.image.url
                             ? _slotData.image.url
-                            : "https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg"
+                            : 'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'
                     }
                 />
-                <meta property="og:locale" content={"it"} />
-                <meta property="og:type" content="article" />
+                <meta property='og:locale' content={'it'} />
+                <meta property='og:type' content='article' />
                 <meta
-                    property="og:description"
+                    property='og:description'
                     content={
                         _slotData?.seo
                             ? `${_slotData?.seo.seoDescription}`
@@ -176,10 +184,10 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                     }
                 />
                 <meta
-                    property="og:site_name"
+                    property='og:site_name'
                     content={_slotData?.seo ? `${_slotData?.seo.seoTitle}` : `${_slotData?.name} | SPIKE`}
                 />
-                <meta property="article:tag" content={_slotData?.seo?.seoTitle} />
+                <meta property='article:tag' content={_slotData?.seo?.seoTitle} />
             </Head>
 
             <FadeInOut visible={!isPlayingMobile}>
@@ -188,7 +196,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                         <Body>
                             <div>
                                 <Author
-                                    articleType="NewsArticle"
+                                    articleType='NewsArticle'
                                     headLine={_slotData.seo?.seoTitle}
                                     images={[_slotData.image.url]}
                                     datePublished={_slotData.created_at}
@@ -197,13 +205,13 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
                                 <TopRowContainer>
                                     <CustomBreadcrumbs
-                                        style={{ padding: "1.5rem 1rem" }}
+                                        style={{ padding: '1.5rem 1rem' }}
                                         slotSlug={_slotData?.slug}
                                         slotName={_slotData?.name}
                                         producerName={_slotData?.producer.name}
                                         producerSlug={_slotData?.producer.slug}
                                         name={_slotData?.name}
-                                        from="slot"
+                                        from='slot'
                                     />
 
                                     <ShareButtons
@@ -219,7 +227,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                 </TopRowContainer>
 
                                 <Container>
-                                    <div style={{ overflow: "hidden ", border: "1px solid white" }}>
+                                    <div style={{ overflow: 'hidden ', border: '1px solid white' }}>
                                         <SlotBackgroundImage
                                             isMobile={isMobile}
                                             image={injectCDN(_slotData?.image.url)}
@@ -235,22 +243,22 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                                         {[...Array(_slotData.rating).keys()].map((s, i) => (
                                                             <img
                                                                 key={`${snakeCase(_slotData.name)}_${i}_start_full`}
-                                                                alt="full_star_icon"
-                                                                className="star"
-                                                                src="/icons/star_full.svg"
+                                                                alt='full_star_icon'
+                                                                className='star'
+                                                                src='/icons/star_full.svg'
                                                             />
                                                         ))}
                                                         {[...Array(5 - _slotData.rating).keys()].map((s, i) => (
                                                             <img
                                                                 key={`${snakeCase(_slotData.name)}_${i}_start_empty`}
-                                                                alt="empty_star_icon"
-                                                                className="star"
-                                                                src="/icons/star_empty.svg"
+                                                                alt='empty_star_icon'
+                                                                className='star'
+                                                                src='/icons/star_empty.svg'
                                                             />
                                                         ))}
                                                     </>
                                                 ) : (
-                                                    ""
+                                                    ''
                                                 )}
                                             </StarContainer>
                                         </TitleAndRating>
@@ -269,7 +277,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                     {primaryBonus && <PrimaryBonusCard bonus={primaryBonus} />}
                                 </Container>
 
-                                <h2 className="alternative-bonus-list">{t("You can also find it on these sites")}</h2>
+                                <h2 className='alternative-bonus-list'>{t('You can also find it on these sites')}</h2>
 
                                 <SecondaryBonusListContainer>
                                     {auxiliaryBonuses?.map((bonus) => (
@@ -278,14 +286,14 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                 </SecondaryBonusListContainer>
                             </div>
 
-                            <div style={{ width: "100%", marginBottom: "6rem" }}>
+                            <div style={{ width: '100%', marginBottom: '6rem' }}>
                                 <BodyContainer>
                                     <MainColumn
                                         style={{
-                                            maxWidth: "800px",
-                                            margin: "1rem",
-                                            justifyContent: "flex-start",
-                                            marginTop: "2.5rem",
+                                            maxWidth: '800px',
+                                            margin: '1rem',
+                                            justifyContent: 'flex-start',
+                                            marginTop: '2.5rem',
                                         }}
                                     >
                                         <ArticleToMarkdown content={_slotData?.description} />
@@ -303,8 +311,8 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                             winningSpinFrequency={_slotData?.winningSpinFrequency}
                                         />
                                         <div
-                                            style={{ top: "0", position: "static" }}
-                                            className="bonus-column-container"
+                                            style={{ top: '0', position: 'static' }}
+                                            className='bonus-column-container'
                                         >
                                             {_bonusList &&
                                                 _bonusList.map((bo) => (
@@ -464,11 +472,11 @@ export async function getServerSideProps({ query, res }) {
 
         let slot = response.data.data.slots[0] as Slot
 
-        if (slot.mainBonus.name === "BetFlag") {
+        if (slot.mainBonus.name === 'BetFlag') {
             const wincasinoBonus = await aquaClient.query({
                 query: GET_BONUS_BY_NAME_AND_COUNTRY,
                 variables: {
-                    name: "WinCasino",
+                    name: 'WinCasino',
                     countryCode: country,
                 },
             })
@@ -478,9 +486,9 @@ export async function getServerSideProps({ query, res }) {
 
         const bonusesNames = slot.bonuses.map((b) => b.name)
 
-        if (bonusesNames.includes("BetFlag")) {
-            const indextoRemove = slot.bonuses.findIndex((it) => it.name === "BetFlag")
-            console.log("Bet flag spotted", indextoRemove)
+        if (bonusesNames.includes('BetFlag')) {
+            const indextoRemove = slot.bonuses.findIndex((it) => it.name === 'BetFlag')
+            console.log('Bet flag spotted', indextoRemove)
 
             const placeholder = [...slot.bonuses]
             placeholder.splice(indextoRemove, 1)

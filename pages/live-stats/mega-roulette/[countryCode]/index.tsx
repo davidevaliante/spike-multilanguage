@@ -8,16 +8,21 @@ import { FunctionComponent, Fragment } from 'react'
 import { Socket, io } from 'socket.io-client'
 import styled from 'styled-components'
 import BonusStripe from '../../../../components/Cards/BonusStripe'
+import MegaRouletteCard from '../../../../components/Cards/MegaRouletteCard'
+import MegaRouletteCardZero from '../../../../components/Cards/MegaRouletteCardZero'
 import MegaWheelCard from '../../../../components/Cards/MegaWheelCard'
 import SweetBonanzaCandylandCard from '../../../../components/Cards/SweetBonanzaCandylandCard'
 import { articleBlockRenderer } from '../../../../components/DynamicContent/DynamicContent'
 import { BodyContainer, MainColumnScroll } from '../../../../components/Layout/Layout'
+import { MegaRouletteTable } from '../../../../components/MegaRouletteStats/MegaRouletteTable'
 import { MegaWheelTable } from '../../../../components/MegaWheelStats/MegaWheelTable'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
+import { OnlyDesktop, OnlyMobile } from '../../../../components/Responsive/Only'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
 import { LocaleContext } from '../../../../context/LocaleContext'
 import { MegaWheelStat, SweetBonanzaCandylandStat } from '../../../../data/models/CrazyTimeSymbolStat'
+import { MegaRouletteSpin } from '../../../../data/models/MegaRouletteSpin'
 import { MegaWheelSpin } from '../../../../data/models/MegaWheelSpin'
 import { TimeFrame } from '../../../../data/models/TimeFrames'
 import AquaClient from '../../../../graphql/aquaClient'
@@ -28,18 +33,18 @@ interface Props {
     _requestedCountryCode: string
     _stats: {
         totalSpins: number
-        lastTenSpins: MegaWheelSpin[]
+        lastTenSpins: MegaRouletteSpin[]
         stats: any
     }
-    _lastTenSpins: MegaWheelSpin[]
+    _lastTenSpins: MegaRouletteSpin[]
     _bonuses: Bonus[]
     _pageContent: CrazyTimeArticle
     _countryCode: string
 }
 
-const SOCKET_ENDPOINT = 'https://megaball.topadsservices.com'
+const SOCKET_ENDPOINT = 'https://megaroulette.topadsservices.com'
 
-// const SOCKET_ENDPOINT = 'localhost:5000'
+// const DATA_ENDPOINT = 'localhost:5000'
 
 // const PAGE_BONUSES = ['888 Casino', 'PokerStars Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
 
@@ -68,19 +73,23 @@ const index: FunctionComponent<Props> = ({
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const filterOptions = [1, 2, 5, 8, 10, 15, 20, 30, 40]
+    const filterOptions = [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+        30, 31, 32, 33, 34, 35, 36,
+    ]
+
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
         setFilteredRows(rows.filter((r) => selectedFilters.includes(r.result)))
     }, [selectedFilters])
 
     // keeps track of rows in the table
-    const [rows, setRows] = useState<MegaWheelSpin[]>(_lastTenSpins)
+    const [rows, setRows] = useState<MegaRouletteSpin[]>(_lastTenSpins)
     useEffect(() => {
         setFilteredRows(rows.filter((r) => selectedFilters.includes(r.result)))
         // console.log(filteredRows, 'fitlered rows')
     }, [rows])
-    const [filteredRows, setFilteredRows] = useState<MegaWheelSpin[]>(_lastTenSpins)
+    const [filteredRows, setFilteredRows] = useState<MegaRouletteSpin[]>(_lastTenSpins)
     const [lastUpdate, setLastUpdate] = useState(now())
 
     // keeps track of the stats
@@ -154,7 +163,7 @@ const index: FunctionComponent<Props> = ({
     useEffect(() => {
         setContextCountry(_countryCode)
         // at first render we initialize socket connection
-        const initializedSocket = io(SOCKET_ENDPOINT, {
+        const initializedSocket = io('https://megaroulette.topadsservices.com', {
             secure: true,
             rejectUnauthorized: false,
         })
@@ -175,7 +184,7 @@ const index: FunctionComponent<Props> = ({
         setSelectedFilters(change)
     }
 
-    const seoTitle = 'Diretta Estrazioni | Mega Wheel | SPIKE Slot'
+    const seoTitle = 'Diretta Estrazioni | Mega Roulette | SPIKE Slot'
     const seoDescription =
         'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲'
 
@@ -183,10 +192,10 @@ const index: FunctionComponent<Props> = ({
 
     return (
         <Fragment>
-            <NavbarProvider currentPage='Mega Wheel Stats' countryCode={contextCountry}>
+            <NavbarProvider currentPage='Mega Roulette Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-wheel/${contextCountry}`} />
+                    <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-roulette/${contextCountry}`} />
                     <meta name='description' content={seoDescription}></meta>
 
                     <meta
@@ -222,18 +231,17 @@ const index: FunctionComponent<Props> = ({
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >
-                        {articleBlockRenderer(
+                        {/* {articleBlockRenderer(
                             'top',
-                            `## Statistiche delle Estrazioni in Tempo Reale Mega Wheel
+                            `## Statistiche delle Estrazioni in Tempo Reale Sweet Bonanza Candyland
 
-Questa pagina è dedicata alle informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Mega Wheel.<br>
-Spikeslot.com è il primo sito al mondo in cui poter verificare le statistiche live di Mega Wheel.<br><br>
+Puoi trovare qui tutte le informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Sweet Bonanza Candyland.<br>
+Spikeslot.com è il primo sito al mondo ad ospitare le statistiche di Sweet Bonanza Candyland.<br>
+È da sottolineare come a prescindere da come si interpretano i dati, il gioco a Sweet Bonanza Candyland farà sempre perdere gli utenti nel lungo periodo, avendo un RTP variabile tra **91.59%** e **96.95%**.<br><br>
 
-Prima di considerare nello specifico tali dati, è fondamentale sottolineare che il gioco da casinò in generale porta a perdere a lungo andare, e che pertanto bisogna giocare sempre responsabilmente e con moderazione.<br>Anche Mega Wheel non fa eccezione avendo un **RTP del 96,51%**.<br>
-In aggiunta, il gioco da casinò è vietato ai minori di diciotto anni.<br><br>
-
-Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzionamento del gioco, e di **verificare la frequenza dell’estrazione dei singoli numeri di Mega Wheel**.<br>In questo modo, avrai anche la possibilità di definire una strategia consapevole e prudente.`
-                        )}
+Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioco, e **potrai verificare la frequenza dell’uscita dei numeri**, in modo tale da pensare a una tua strategia responsabile.<br>
+**Giocate sempre responsabilmente e solo se avete compiuto i 18 anni**.`
+                        )} */}
 
                         <Divider style={{ marginTop: '2rem' }} />
 
@@ -247,7 +255,7 @@ Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzi
                                 }}
                             >
                                 <div>
-                                    <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>{`Mega Wheel Stats`}</h1>
+                                    <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>{`Mega Roulette Stats`}</h1>
                                     <h1 style={{ marginTop: '.5rem' }}>
                                         {`${t('for the past')} ${timeFrame}`}
                                         <span style={{ marginLeft: '1rem', fontWeight: 'bold', color: 'crimson' }}>
@@ -279,16 +287,108 @@ Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzi
                         <Divider style={{ marginTop: '2rem', marginBottom: '2rem' }} />
 
                         {stats && (
-                            <StatsContainer>
-                                {stats.map((s) => (
-                                    <MegaWheelCard
-                                        key={`stats_${s.symbol}`}
-                                        stat={s}
-                                        totalSpinsConsidered={totalSpinsInTimeFrame}
-                                        timeFrame={timeFrame}
-                                    />
-                                ))}
-                            </StatsContainer>
+                            <div>
+                                <OnlyDesktop>
+                                    <div
+                                        style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8 }}
+                                    >
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                minHeight: '545px',
+                                                backgroundColor: 'green',
+                                                borderRadius: '6px',
+                                            }}
+                                        >
+                                            {[...stats].splice(0, 1).map((s) => (
+                                                <MegaRouletteCardZero
+                                                    key={`stats_${s.symbol}`}
+                                                    stat={s}
+                                                    totalSpinsConsidered={totalSpinsInTimeFrame}
+                                                    timeFrame={timeFrame}
+                                                />
+                                            ))}
+                                        </div>
+
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                            <div style={{ display: 'flex', gap: 4 }}>
+                                                {[...stats]
+                                                    .splice(1, stats.length - 1)
+                                                    .filter((it) => firstLineIndeces.includes(it.symbol))
+                                                    .map((s) => (
+                                                        <MegaRouletteCard
+                                                            key={`stats_${s.symbol}`}
+                                                            stat={s}
+                                                            totalSpinsConsidered={totalSpinsInTimeFrame}
+                                                            timeFrame={timeFrame}
+                                                        />
+                                                    ))}
+                                            </div>
+
+                                            <div style={{ display: 'flex', gap: 4 }}>
+                                                {[...stats]
+                                                    .splice(1, stats.length - 1)
+                                                    .filter((it) => secondLineIndeces.includes(it.symbol))
+                                                    .map((s) => (
+                                                        <MegaRouletteCard
+                                                            key={`stats_${s.symbol}`}
+                                                            stat={s}
+                                                            totalSpinsConsidered={totalSpinsInTimeFrame}
+                                                            timeFrame={timeFrame}
+                                                        />
+                                                    ))}
+                                            </div>
+
+                                            <div style={{ display: 'flex', gap: 4 }}>
+                                                {[...stats]
+                                                    .splice(1, stats.length - 1)
+                                                    .filter((it) => thirdLineIndeces.includes(it.symbol))
+                                                    .map((s) => (
+                                                        <MegaRouletteCard
+                                                            key={`stats_${s.symbol}`}
+                                                            stat={s}
+                                                            totalSpinsConsidered={totalSpinsInTimeFrame}
+                                                            timeFrame={timeFrame}
+                                                        />
+                                                    ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </OnlyDesktop>
+
+                                <OnlyMobile>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            flexWrap: 'wrap',
+                                            gap: 4,
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        {[...stats].splice(1, stats.length - 1).map((s) => (
+                                            <MegaRouletteCard
+                                                key={`stats_${s.symbol}`}
+                                                stat={s}
+                                                totalSpinsConsidered={totalSpinsInTimeFrame}
+                                                timeFrame={timeFrame}
+                                            />
+                                        ))}
+                                        {[...stats].splice(0, 1).map((s) => (
+                                            <MegaRouletteCardZero
+                                                key={`stats_${s.symbol}`}
+                                                stat={s}
+                                                totalSpinsConsidered={totalSpinsInTimeFrame}
+                                                timeFrame={timeFrame}
+                                            />
+                                        ))}
+                                    </div>
+                                </OnlyMobile>
+                            </div>
                         )}
 
                         <h1
@@ -299,7 +399,7 @@ Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzi
                                 fontSize: '1.4rem',
                                 textAlign: 'center',
                             }}
-                        >{`Puoi giocare alla Mega Wheel QUI`}</h1>
+                        >{`Puoi giocare alla Mega Roulette QUI`}</h1>
                         <Paper elevation={6} style={{ marginTop: '1rem', marginBottom: '4rem' }}>
                             {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
                         </Paper>
@@ -345,57 +445,58 @@ Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzi
                             </div>
                         </div>
 
-                        {rows && <MegaWheelTable rows={filteredRows} />}
+                        {rows && <MegaRouletteTable rows={filteredRows} />}
 
-                        {articleBlockRenderer(
+                        {/* {articleBlockRenderer(
                             'bottom',
-                            `<br>
+                            `## Verifica gli ultimi numeri estratti al gioco Live Sweet Bonanza Candyland
 
-## Controlla gli ultimi numeri estratti al gioco Live Mega Wheel
+Sweet Bonanza Candyland è un gioco nel panorama del Casinò Live che permette di vivere un’esperienza prudente in un atmosfera piena di caramelle.<br>
+In breve, c’è una ruota della fortuna con 54 settori che viene girata dal croupier presente all’interno dello studio, e il compito dei giocatori è quello di indovinare il valore di dove finirà il giro.<br>
+Tuttavia, all’interno della sessione di gioco sono presenti delle funzioni danno più o meno un modo diversificato di intrattenersi.<br><br>
 
-Mega Wheel è un gioco Live che viene condotto in diretta dagli studi di Pragmatic Play, per garantire agli appassionati un’esperienza di gioco dinamica, interattiva e sempre moderata.<br><br>
+Scoprire, quindi, quali sono gli ultimi numeri estratti a questo gioco Live, può essere discretamente utile per creare **una propria strategia** e per avere un’idea generale su quali valori scommettere in maniera moderata.<br><br>
 
-Gli utenti si ritrovano infatti all’interno di un vero e proprio show, caratterizzato dalla presenza di una ruota colorata composta da cinquantaquattro segmenti, a ciascuno dei quali viene associato un premio differente.<br>La ruota è girata direttamente dal croupier presente all’interno dello studio, e il compito principale dei giocatori è quello di riuscire ad indovinare il numero esatto su cui si fermerà la ruota di Mega Wheel.<br><br>
+Più precisamente, nella parte in alto a destra, l’utente può **selezionare l’arco temporale durante cui vuole consultare le statistiche**.<br>
+Su ogni numero sono presenti diverse informazioni concernenti la sua probabilità di uscita e l’ultima uscita nel corso dell’arco temporale considerato.<br>
+In questo modo, si può rimanere aggiornati sull’andamento del gioco Live.<br><br>
 
-Tuttavia, durante il gioco si alternano anche svariate funzioni speciali, come ad esempio Mega Lucky Number, che rappresenta un numero casuale selezionato prima di ogni giro e che può contribuire ad incrementare l’eventuale vincita potenziale.<br><br>
-
-Avere quindi la possibilità di consultare gli **ultimi numeri estratti**, può rappresentare forse una comodità per gli appassionati che intendono effettuare una sessione di gioco a Mega Wheel, in quanto **si può definire una propria strategia e nel contempo si ha un’idea più consapevole e approfondita** sui valori che vengono estratti in maniera più frequente.<br><br>
-
-Per essere più precisi, in alto a destra dello schermo di gioco, l’utente ha la possibilità di selezionare l’arco temporale durante cui intende visualizzare le statistiche.<br>Ogni numero presenta una serie di informazioni relative alla sua probabilità di uscita, e nel contempo alla sua ultima estrazione nell’arco temporale considerato.<br>In questo modo, si ha la possibilità di essere sempre **aggiornati in tempo reale sul gioco Live Mega Wheel**.<br><br>
-
-In aggiunta, è anche possibile visualizzare il numero di volte in cui un singolo numero è stato estratto nel corso della giornata, e successivamente consultare una tabella posizionata nella parte bassa dello schermo, per visionare il risultato di ogni singolo spin.<br><br>
-
-Ricordiamo però ancora una volta l’importanza del gioco responsabile e consapevole, in quanto questo gioco Live è stato creato per far perdere i giocatori con il passare del tempo, e per questo non bisogna mai perdere il controllo.<br><br>
+Inoltre, si può contare quante volte è stato estratto un determinato numero nel corso della giornata, per chi volesse saperlo.<br>
+Infine, riguardo allo storico, è stata messa a disposizione **nella parte in basso una tabella con i dati dei singolo spin**, in modo da dare un facile accesso ad essi.<br>
+Ricordiamo comunque che il gioco è stato creato da Pragmatic per far perdere soldi a chi partecipa alla sessione.<br><br>
 
 
-## Quali sono i vantaggi o gli svantaggi che derivano dalla possibilità di consultare le statistiche di Mega Wheel in tempo reale?
+## Ci sono vantaggi  con possibilità di consultare le statistiche di Sweet Bonanza Candyland in tempo reale o solo svantaggi?
 
-I giocatori hanno la possibilità di paragonare le probabilità teoriche di uscita dei vari segmenti della ruota con la realtà, avendo quindi una conoscenza più approfondita del **gioco Live** considerato.<br>Generalmente infatti, i provider di giochi digitali dichiarano un valore approssimativo dell’uscita di un determinato numero, e per questo è già chiaro che nel corso della partita i valori dei numeri ruoteranno attorno a determinate probabilità.<br><br>
+Consideriamo dapprima che i giocatori hanno la chance di **valutare le probabilità teoriche di uscita dei settori della ruota con la realtà**, e quindi con le uscite praticate durante la live.<br>
+I provider dei giochi in genere dichiarano un valore teorico medio delle probabilità di uscita di un singolo numero.<br>
+Per questo già si sa a priori che durante la partita i valori dei numeri ruoteranno intorno a certi valori di probabilità.<br><br>
 
-Tuttavia, possono esserci sempre dei colpi di scena durante una sessione di gioco, poiché la fortuna gioca un ruolo fondamentale.<br>Per questa ragione, le **statistiche** fornite in questa pagina web di spikeslot.com, possono essere molto utili per definire una strategia valida e prudente.<br><br>
+Però ci possono essere delle piccole oscillazioni locali.<br>
+Quindi, tenendo saldo il concetto per cui la fortuna svolge sempre il ruolo predominante in quanto tutti i giri sono indipendenti, le statistiche fornite in questa webpage di spikeslot.com possono dare una strada più facile per individuare una propria strategia.<br><br>
 
-Per esempio, nel caso in cui un segmento non venga estratto per un notevole numero di giri, si potrebbe pensare di puntare proprio su quel determinato valore, tenendo in considerazione però che non ci sono garanzie che venga recuperato il **Budget** investito inizialmente dai singoli utenti.<br><br>
+Nel caso in cui un certo valore non esca da un certo numero di giri, si potrebbe pensare di puntare proprio  su quel numero, anche se **non ci sono garanzie che venga recuperato il Budget iniziale dei giocatori**.<br><br>
 
-Per questo, bisogna riconoscere ancora una volta quanto sia importante giocare con prudenza, al fine di vivere al meglio la sessione di gioco e di non essere protagonisti di situazioni spiacevoli, come quella della dipendenza patologica.<br><br>
+Per questo, diciamo ancora una volta di giocare in maniera responsabile e consapevole, in quanto per la stragrande maggioranza degli utenti non si avrà un incremento delle scommesse all’interno del Casinò Live.<br><br>
 
 
-## Intrattenimento responsabile con le statistiche di Mega Wheel
+## Intrattenimento responsabile con le statistiche di Sweet Bonanza Candyland
 
-**Le statistiche di Mega Wheel sono sempre disponibili sul sito di SPIKE Slot, e sono accessibili in qualsiasi momento in maniera totalmente gratuita**, al fine di permettere agli utenti di avere un’idea chiara della situazione.<br><br>
+Tutti gli user del settore e in particolare del Casinò Live, hanno l’opportunità di consultare le statistiche di Sweet Bonanza Candyland consapevolmente in tempo reale, durante tutta la giornata e in maniera totalmente gratuita sul sito di SPIKE Slot.<br>
+Ispezionare alcuni di questi dati può essere uno strumento in più per **monitorare come sta andando la sessione dal vivo** e scegliere eventualmente di usare una puntata piuttosto che un’altra.<br><br>
 
-Avere la possibilità di seguire l’andamento della sessione di gioco in tempo reale, può essere molto utile per comprendere al meglio il funzionamento di Mega Wheel, e nel contempo per decidere di effettuare una puntata piuttosto che un’altra.<br>Maggiori informazioni sulle tipologie di strategie che si possono scegliere sono disponibili nella nostra guida Mega Wheel.<br><br>
+A lungo termine il gioco porterà ad una perdita di credito, come è già possibile intuire considerando il Return to Player, ossia Ritorno al Giocatore da **91.59%** a **96.95%**.<br>
+In ogni caso, per avere maggiori informazioni concernenti questo titolo gioco Live e per verificare le possibili strategie da utilizzare, puoi visitare la [guida Sweet Bonanza Candy Land](https://spikeslot.com/articoli/guida-sweet-bonanza-candyland-live-pragmatic-play/it).<br><br>
 
-A lungo termine il gioco porterà ad una perdita di credito, come è già possibile notare consultando il valore del Ritorno al Giocatore o RTP di Mega Wheel; tale valore teorico infatti corrisponde a 96.51%.<br><br>
-
-![Statistiche Live Mega Wheel Casino](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-mega-wheel_738b160bf9.jpeg)
+![Sweet Bonanza Candyland Stats Live Card](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland_2ba18b4723.jpeg)
 
 <br>
 
-Non dimenticare che il gioco da casinò è soltanto semplice e puro divertimento, e non deve mai trasformarsi in una dipendenza.<br><br><br>
+Non dimenticare che il divertimento deve essere figlio soltanto di un gioco moderato e prudente.<br><br><br>
 
 
-Ultimo aggiornamento: **30 Maggio 2022**`
-                        )}
+Ultimo aggiornamento: **27 Maggio 2022**`
+                        )} */}
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}
                     </MainColumnScroll>
@@ -405,8 +506,12 @@ Ultimo aggiornamento: **30 Maggio 2022**`
     )
 }
 
+export const firstLineIndeces = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]
+export const secondLineIndeces = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
+export const thirdLineIndeces = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
+
 // helper function to merge exsisting rows with the update from the Socket
-export const mergeWithUpdate = (current: MegaWheelSpin[], update: MegaWheelSpin[]) => {
+export const mergeWithUpdate = (current: MegaRouletteSpin[], update: MegaRouletteSpin[]) => {
     // the latest row in the table
     const lastFromCurrent = current[0]
     // slicing up the update array to the last known row based on the _id
@@ -424,9 +529,9 @@ export const getServerSideProps = async ({ query, req, res }) => {
     const { countryCode } = query
 
     const _requestedCountryCode = query.countryCode
-    // const pageData = await axios.get('https://sbcandyland.topadsservices.com/api/data-in-the-last-hours/24')
+    const pageData = await axios.get('https://megaroulette.topadsservices.com/api/data-in-the-last-hours/24')
 
-    const pageData = await axios.get('https://megaball.topadsservices.com/api/data-in-the-last-hours/24')
+    // const pageData = await axios.get(`http://localhost:5000/api/data-in-the-last-hours/24`)
 
     // console.log(pageData.data)
 
@@ -436,6 +541,8 @@ export const getServerSideProps = async ({ query, req, res }) => {
     //         countryCode: countryCode,
     //     },
     // })
+
+    console.log(pageData)
 
     const orderedBonusList: Bonus[] = []
 

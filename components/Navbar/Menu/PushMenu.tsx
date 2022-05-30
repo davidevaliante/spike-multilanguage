@@ -57,6 +57,15 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
                     <p>Mega Wheel</p>
                     <Divider />
                 </div>
+
+                <div
+                    key={`push_menu_crazy_time`}
+                    onClick={() => router.push(`/live-stats/mega-roulette/${contextCountry}`)}
+                >
+                    <p>Mega Roulette</p>
+                    <Divider />
+                </div>
+
                 <div
                     key={`push_menu_crazy_time`}
                     onClick={() => router.push(`/live-stats/crazy-time/${contextCountry}`)}
