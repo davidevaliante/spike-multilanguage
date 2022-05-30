@@ -188,7 +188,7 @@ const index: FunctionComponent<Props> = ({
     const seoDescription =
         'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲'
 
-    const imageSocial = 'https://spike-images.s3.eu-central-1.amazonaws.com/megawheel.webp'
+    const imageSocial = 'https://spike-images.s3.eu-central-1.amazonaws.com/mega_roulette_thumbnail.png'
 
     return (
         <Fragment>
