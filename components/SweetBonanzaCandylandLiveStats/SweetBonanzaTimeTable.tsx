@@ -259,6 +259,11 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
         }
     }
 
+    const isBubbleAndSweet = (payout: any) => {
+        if (![1, 2, 5, 10, 25].includes(payout[0])) return true
+        return false
+    }
+
     return (
         <TableWrapper>
             <div className={classes.root}>
@@ -315,6 +320,14 @@ export const SweetBonanzaTable: FunctionComponent<EnhancedTableProps> = ({ rows 
                                                                     )}
                                                                 />
                                                             </div>
+                                                        ) : isBubbleAndSweet(row.payout) ? (
+                                                            <img
+                                                                width={90}
+                                                                height={50}
+                                                                src={injectCDN(
+                                                                    'https://spike-images.s3.eu-central-1.amazonaws.com/bubblesweet.png'
+                                                                )}
+                                                            />
                                                         ) : (
                                                             symbolToStatImage2(row.result as string)
                                                         )}

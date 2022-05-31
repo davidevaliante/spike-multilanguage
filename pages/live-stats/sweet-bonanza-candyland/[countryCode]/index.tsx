@@ -70,12 +70,12 @@ const index: FunctionComponent<Props> = ({
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    const filterOptions = ['1', '2', '5', 'Bubble Surprise', 'Sweet Spins', 'Candy Drop']
+    const filterOptions = ['1', '2', '5', 'Bubble Surprise', 'Candy Drop', 'Sweet Spins']
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
         setFilteredRows(
             rows.filter((r) => {
-                if (selectedFilters.includes('Candy Drop')) {
+                if (r.result === 'Bubble Surprise' && selectedFilters.includes('Candy Drop')) {
                     return r.result === 'Bubble Surprise' && r.payout.length > 1
                 }
                 return selectedFilters.includes(r.result)
@@ -89,7 +89,7 @@ const index: FunctionComponent<Props> = ({
         setFilteredRows(
             rows.filter((r) => {
                 if (r.result === 'Bubble Surprise' && selectedFilters.includes('Candy Drop')) {
-                    return r.payout.length > 1
+                    return r.result === 'Bubble Surprise' && r.payout.length > 1
                 }
                 return selectedFilters.includes(r.result)
             })
@@ -313,8 +313,9 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
                                     ))}
                                 </StatsContainer>
 
+                                {/* Its 4,3,5 for requested ordering */}
                                 <StatsContainer>
-                                    {[stats[3], stats[4], stats[5]].map((s) => (
+                                    {[stats[4], stats[3], stats[5]].map((s) => (
                                         <SweetBonanzaCandylandCard
                                             key={`stats_${s.symbol}`}
                                             stat={s}
