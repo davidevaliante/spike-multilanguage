@@ -93,6 +93,7 @@ const index: FunctionComponent<Props> = ({
                 console.log(data, timeFrame)
                 // this is the update regarding the top cards with percentages
                 const topUpdate = data.stats.stats
+                console.log(topUpdate)
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
                 if (rows)

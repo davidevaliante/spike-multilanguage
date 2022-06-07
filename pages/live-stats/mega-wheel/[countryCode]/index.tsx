@@ -185,15 +185,15 @@ const index: FunctionComponent<Props> = ({
         <Fragment>
             <NavbarProvider currentPage='Mega Wheel Stats' countryCode={contextCountry}>
                 <Head>
-                    <title>{seoTitle}</title>
+                    <title>{MegaWheelArticles(contextCountry, 'title')}</title>
                     <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-wheel/${contextCountry}`} />
-                    <meta name='description' content={seoDescription}></meta>
+                    <meta name='description' content={MegaWheelArticles(contextCountry, 'desc')}></meta>
 
                     <meta
                         itemProp='name'
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
-                    <meta itemProp='description' content={seoDescription} />
+                    <meta itemProp='description' content={MegaWheelArticles(contextCountry, 'desc')} />
                     <meta itemProp='image' content={imageSocial} />
 
                     <meta name='twitter:card' content='summary_large_image' />
@@ -201,39 +201,28 @@ const index: FunctionComponent<Props> = ({
                         name='twitter:title'
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
-                    <meta name='twitter:description' content={seoDescription} />
+                    <meta name='twitter:description' content={MegaWheelArticles(contextCountry, 'desc')} />
                     <meta name='twitter:image' content={imageSocial} />
 
                     <meta property='og:image' content={imageSocial} />
                     <meta property='og:locale' content={'it'} />
                     <meta property='og:type' content='article' />
-                    <meta property='og:description' content={seoDescription} />
-                    <meta property='og:site_name' content={seoTitle} />
+                    <meta property='og:description' content={MegaWheelArticles(contextCountry, 'desc')} />
+                    <meta property='og:site_name' content={MegaWheelArticles(contextCountry, 'title')} />
 
                     <meta httpEquiv='content-language' content='it-IT'></meta>
                     <meta property='og:image' content={imageSocial} />
                     <meta property='og:locale' content={'it'} />
                     <meta property='og:type' content='article' />
-                    <meta property='og:description' content={seoDescription} />
-                    <meta property='og:site_name' content={seoTitle} />
+                    <meta property='og:description' content={MegaWheelArticles(contextCountry, 'desc')} />
+                    <meta property='og:site_name' content={MegaWheelArticles(contextCountry, 'title')} />
                 </Head>
 
                 <BodyContainer>
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >
-                        {articleBlockRenderer(
-                            'top',
-                            `## Statistiche delle Estrazioni in Tempo Reale Mega Wheel
-
-Questa pagina è dedicata alle informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Mega Wheel.<br>
-Spikeslot.com è il primo sito al mondo in cui poter verificare le statistiche live di Mega Wheel.<br><br>
-
-Prima di considerare nello specifico tali dati, è fondamentale sottolineare che il gioco da casinò in generale porta a perdere a lungo andare, e che pertanto bisogna giocare sempre responsabilmente e con moderazione.<br>Anche Mega Wheel non fa eccezione avendo un **RTP del 96,51%**.<br>
-In aggiunta, il gioco da casinò è vietato ai minori di diciotto anni.<br><br>
-
-Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzionamento del gioco, e di **verificare la frequenza dell’estrazione dei singoli numeri di Mega Wheel**.<br>In questo modo, avrai anche la possibilità di definire una strategia consapevole e prudente.`
-                        )}
+                        {articleBlockRenderer('top', MegaWheelArticles(contextCountry, 'top'))}
 
                         <Divider style={{ marginTop: '2rem' }} />
 
@@ -299,7 +288,11 @@ Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzi
                                 fontSize: '1.4rem',
                                 textAlign: 'center',
                             }}
-                        >{`Puoi giocare alla Mega Wheel QUI`}</h1>
+                        >
+                            {contextCountry === 'it'
+                                ? `Puoi giocare alla Mega Wheel QUI`
+                                : `You can play at MegaWheel HERE`}
+                        </h1>
                         <Paper elevation={6} style={{ marginTop: '1rem', marginBottom: '4rem' }}>
                             {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
                         </Paper>
@@ -347,55 +340,7 @@ Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzi
 
                         {rows && <MegaWheelTable rows={filteredRows} />}
 
-                        {articleBlockRenderer(
-                            'bottom',
-                            `<br>
-
-## Controlla gli ultimi numeri estratti al gioco Live Mega Wheel
-
-Mega Wheel è un gioco Live che viene condotto in diretta dagli studi di Pragmatic Play, per garantire agli appassionati un’esperienza di gioco dinamica, interattiva e sempre moderata.<br><br>
-
-Gli utenti si ritrovano infatti all’interno di un vero e proprio show, caratterizzato dalla presenza di una ruota colorata composta da cinquantaquattro segmenti, a ciascuno dei quali viene associato un premio differente.<br>La ruota è girata direttamente dal croupier presente all’interno dello studio, e il compito principale dei giocatori è quello di riuscire ad indovinare il numero esatto su cui si fermerà la ruota di Mega Wheel.<br><br>
-
-Tuttavia, durante il gioco si alternano anche svariate funzioni speciali, come ad esempio Mega Lucky Number, che rappresenta un numero casuale selezionato prima di ogni giro e che può contribuire ad incrementare l’eventuale vincita potenziale.<br><br>
-
-Avere quindi la possibilità di consultare gli **ultimi numeri estratti**, può rappresentare forse una comodità per gli appassionati che intendono effettuare una sessione di gioco a Mega Wheel, in quanto **si può definire una propria strategia e nel contempo si ha un’idea più consapevole e approfondita** sui valori che vengono estratti in maniera più frequente.<br><br>
-
-Per essere più precisi, in alto a destra dello schermo di gioco, l’utente ha la possibilità di selezionare l’arco temporale durante cui intende visualizzare le statistiche.<br>Ogni numero presenta una serie di informazioni relative alla sua probabilità di uscita, e nel contempo alla sua ultima estrazione nell’arco temporale considerato.<br>In questo modo, si ha la possibilità di essere sempre **aggiornati in tempo reale sul gioco Live Mega Wheel**.<br><br>
-
-In aggiunta, è anche possibile visualizzare il numero di volte in cui un singolo numero è stato estratto nel corso della giornata, e successivamente consultare una tabella posizionata nella parte bassa dello schermo, per visionare il risultato di ogni singolo spin.<br><br>
-
-Ricordiamo però ancora una volta l’importanza del gioco responsabile e consapevole, in quanto questo gioco Live è stato creato per far perdere i giocatori con il passare del tempo, e per questo non bisogna mai perdere il controllo.<br><br>
-
-
-## Quali sono i vantaggi o gli svantaggi che derivano dalla possibilità di consultare le statistiche di Mega Wheel in tempo reale?
-
-I giocatori hanno la possibilità di paragonare le probabilità teoriche di uscita dei vari segmenti della ruota con la realtà, avendo quindi una conoscenza più approfondita del **gioco Live** considerato.<br>Generalmente infatti, i provider di giochi digitali dichiarano un valore approssimativo dell’uscita di un determinato numero, e per questo è già chiaro che nel corso della partita i valori dei numeri ruoteranno attorno a determinate probabilità.<br><br>
-
-Tuttavia, possono esserci sempre dei colpi di scena durante una sessione di gioco, poiché la fortuna gioca un ruolo fondamentale.<br>Per questa ragione, le **statistiche** fornite in questa pagina web di spikeslot.com, possono essere molto utili per definire una strategia valida e prudente.<br><br>
-
-Per esempio, nel caso in cui un segmento non venga estratto per un notevole numero di giri, si potrebbe pensare di puntare proprio su quel determinato valore, tenendo in considerazione però che non ci sono garanzie che venga recuperato il **Budget** investito inizialmente dai singoli utenti.<br><br>
-
-Per questo, bisogna riconoscere ancora una volta quanto sia importante giocare con prudenza, al fine di vivere al meglio la sessione di gioco e di non essere protagonisti di situazioni spiacevoli, come quella della dipendenza patologica.<br><br>
-
-
-## Intrattenimento responsabile con le statistiche di Mega Wheel
-
-**Le statistiche di Mega Wheel sono sempre disponibili sul sito di SPIKE Slot, e sono accessibili in qualsiasi momento in maniera totalmente gratuita**, al fine di permettere agli utenti di avere un’idea chiara della situazione.<br><br>
-
-Avere la possibilità di seguire l’andamento della sessione di gioco in tempo reale, può essere molto utile per comprendere al meglio il funzionamento di Mega Wheel, e nel contempo per decidere di effettuare una puntata piuttosto che un’altra.<br>Maggiori informazioni sulle tipologie di strategie che si possono scegliere sono disponibili nella nostra guida Mega Wheel.<br><br>
-
-A lungo termine il gioco porterà ad una perdita di credito, come è già possibile notare consultando il valore del Ritorno al Giocatore o RTP di Mega Wheel; tale valore teorico infatti corrisponde a 96.51%.<br><br>
-
-![Statistiche Live Mega Wheel Casino](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-mega-wheel_738b160bf9.jpeg)
-
-<br>
-
-Non dimenticare che il gioco da casinò è soltanto semplice e puro divertimento, e non deve mai trasformarsi in una dipendenza.<br><br><br>
-
-
-Ultimo aggiornamento: **30 Maggio 2022**`
-                        )}
+                        {articleBlockRenderer('bottom', MegaWheelArticles(contextCountry, 'bottom'))}
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}
                     </MainColumnScroll>
@@ -659,3 +604,325 @@ const TimeFrameContainer = styled.div`
 `
 
 export default index
+
+const MegaWheelArticles = (country: string, type: 'top' | 'bottom' | 'title' | 'desc') => {
+    const text = {
+        it: {
+            title: 'Diretta Estrazioni | Mega Wheel | SPIKE Slot',
+            desc: 'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲',
+            top: `## Statistiche delle Estrazioni in Tempo Reale Mega Wheel
+
+Questa pagina è dedicata alle informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Mega Wheel.<br>
+Spikeslot.com è il primo sito al mondo in cui poter verificare le statistiche live di Mega Wheel.<br><br>
+
+Prima di considerare nello specifico tali dati, è fondamentale sottolineare che il gioco da casinò in generale porta a perdere a lungo andare, e che pertanto bisogna giocare sempre responsabilmente e con moderazione.<br>Anche Mega Wheel non fa eccezione avendo un **RTP del 96,51%**.<br>
+In aggiunta, il gioco da casinò è vietato ai minori di diciotto anni.<br><br>
+
+Attraverso questa guida, avrai la possibilità di comprendere al meglio il funzionamento del gioco, e di **verificare la frequenza dell’estrazione dei singoli numeri di Mega Wheel**.<br>In questo modo, avrai anche la possibilità di definire una strategia consapevole e prudente.`,
+            bottom: `<br>
+
+## Controlla gli ultimi numeri estratti al gioco Live Mega Wheel
+
+Mega Wheel è un gioco Live che viene condotto in diretta dagli studi di Pragmatic Play, per garantire agli appassionati un’esperienza di gioco dinamica, interattiva e sempre moderata.<br><br>
+
+Gli utenti si ritrovano infatti all’interno di un vero e proprio show, caratterizzato dalla presenza di una ruota colorata composta da cinquantaquattro segmenti, a ciascuno dei quali viene associato un premio differente.<br>La ruota è girata direttamente dal croupier presente all’interno dello studio, e il compito principale dei giocatori è quello di riuscire ad indovinare il numero esatto su cui si fermerà la ruota di Mega Wheel.<br><br>
+
+Tuttavia, durante il gioco si alternano anche svariate funzioni speciali, come ad esempio Mega Lucky Number, che rappresenta un numero casuale selezionato prima di ogni giro e che può contribuire ad incrementare l’eventuale vincita potenziale.<br><br>
+
+Avere quindi la possibilità di consultare gli **ultimi numeri estratti**, può rappresentare forse una comodità per gli appassionati che intendono effettuare una sessione di gioco a Mega Wheel, in quanto **si può definire una propria strategia e nel contempo si ha un’idea più consapevole e approfondita** sui valori che vengono estratti in maniera più frequente.<br><br>
+
+Per essere più precisi, in alto a destra dello schermo di gioco, l’utente ha la possibilità di selezionare l’arco temporale durante cui intende visualizzare le statistiche.<br>Ogni numero presenta una serie di informazioni relative alla sua probabilità di uscita, e nel contempo alla sua ultima estrazione nell’arco temporale considerato.<br>In questo modo, si ha la possibilità di essere sempre **aggiornati in tempo reale sul gioco Live Mega Wheel**.<br><br>
+
+In aggiunta, è anche possibile visualizzare il numero di volte in cui un singolo numero è stato estratto nel corso della giornata, e successivamente consultare una tabella posizionata nella parte bassa dello schermo, per visionare il risultato di ogni singolo spin.<br><br>
+
+Ricordiamo però ancora una volta l’importanza del gioco responsabile e consapevole, in quanto questo gioco Live è stato creato per far perdere i giocatori con il passare del tempo, e per questo non bisogna mai perdere il controllo.<br><br>
+
+
+## Quali sono i vantaggi o gli svantaggi che derivano dalla possibilità di consultare le statistiche di Mega Wheel in tempo reale?
+
+I giocatori hanno la possibilità di paragonare le probabilità teoriche di uscita dei vari segmenti della ruota con la realtà, avendo quindi una conoscenza più approfondita del **gioco Live** considerato.<br>Generalmente infatti, i provider di giochi digitali dichiarano un valore approssimativo dell’uscita di un determinato numero, e per questo è già chiaro che nel corso della partita i valori dei numeri ruoteranno attorno a determinate probabilità.<br><br>
+
+Tuttavia, possono esserci sempre dei colpi di scena durante una sessione di gioco, poiché la fortuna gioca un ruolo fondamentale.<br>Per questa ragione, le **statistiche** fornite in questa pagina web di spikeslot.com, possono essere molto utili per definire una strategia valida e prudente.<br><br>
+
+Per esempio, nel caso in cui un segmento non venga estratto per un notevole numero di giri, si potrebbe pensare di puntare proprio su quel determinato valore, tenendo in considerazione però che non ci sono garanzie che venga recuperato il **Budget** investito inizialmente dai singoli utenti.<br><br>
+
+Per questo, bisogna riconoscere ancora una volta quanto sia importante giocare con prudenza, al fine di vivere al meglio la sessione di gioco e di non essere protagonisti di situazioni spiacevoli, come quella della dipendenza patologica.<br><br>
+
+
+## Intrattenimento responsabile con le statistiche di Mega Wheel
+
+**Le statistiche di Mega Wheel sono sempre disponibili sul sito di SPIKE Slot, e sono accessibili in qualsiasi momento in maniera totalmente gratuita**, al fine di permettere agli utenti di avere un’idea chiara della situazione.<br><br>
+
+Avere la possibilità di seguire l’andamento della sessione di gioco in tempo reale, può essere molto utile per comprendere al meglio il funzionamento di Mega Wheel, e nel contempo per decidere di effettuare una puntata piuttosto che un’altra.<br>Maggiori informazioni sulle tipologie di strategie che si possono scegliere sono disponibili nella nostra guida Mega Wheel.<br><br>
+
+A lungo termine il gioco porterà ad una perdita di credito, come è già possibile notare consultando il valore del Ritorno al Giocatore o RTP di Mega Wheel; tale valore teorico infatti corrisponde a 96.51%.<br><br>
+
+![Statistiche Live Mega Wheel Casino](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-mega-wheel_738b160bf9.jpeg)
+
+<br>
+
+Non dimenticare che il gioco da casinò è soltanto semplice e puro divertimento, e non deve mai trasformarsi in una dipendenza.<br><br><br>
+
+
+Ultimo aggiornamento: **30 Maggio 2022**`,
+        },
+        row: {
+            title: 'Live Drawings | Mega Wheel | SPIKE Slot',
+            desc: 'Live draws, Pragmatic Play game show. Check all the draws details. Easily create a unique strategy to manage your budget.🎡🎲',
+            top: `## Real-Time Mega Wheel Drawing Statistics
+
+This page is mainly dedicated to information relating to the Pragmatic Play Live Game: Mega Wheel Live Draw. <br>
+Spikeslot.com is the first world site where you can check Mega Wheel's live stats. <br><br>
+
+Before considering specifically such data, it is essential to underline that casino gambling in general leads to a loss in the long run, and therefore you must always play responsibly and with moderation.<br>
+Mega Wheel makes no exception having a **96.51% RTP** value. <br>
+In addition, casino gambling is prohibited in some jurisdictions where there are no laws regulating it.<br><br>
+
+Through this guide, you will have the opportunity to better understand how the game works, and to **check the drawing frequency of individual Mega Wheel numbers**. <br>
+In this way, you will also have the possibility to define a satisfying strategy.`,
+            bottom: `<br>
+
+## Check out the latest numbers drawn in the Live Mega Wheel game
+
+Mega Wheel is a Live game conducted by Pragmatic Play studios, to guarantee fans a dynamic, interactive and fun gaming experience. <br><br>
+
+In fact, users find themselves inside a real show, characterized by the presence of a colored wheel made up of 54 segments, each of which is associated with a different prize. <br>
+The wheel is turned directly by the croupier present  inside the studio, and the main task of the players is to guess the exact number on which the wheel of Mega Wheel will stop.<br><br>
+
+However, various special functions also alternate during the game, such as Mega Lucky Number, which represents a random number selected before each spin and which can help increase any potential winnings. <br><br>
+
+Therefore, having the possibility to consult the **latest drawn numbers**, can represent a convenience for fans who intend to carry out a game session at Mega Wheel, as **you can define your own strategy and at the same time you have a cleare idea** about the values ​​that most frequently come out.<br><br>
+
+To be more precise, at the game screen top right, the user has the possibility to select the time span during which he intends to view the statistics. <br>
+Each number presents a series of information relating to its drawing probability and last extractions in the considered time frame. <br>
+In this way, you are always **updated in real time on the Live Mega Wheel game**. <br><br>
+
+In addition, it is also possible to view the number of times a single number has been drawn during the day, and subsequently consult a table located at the bottom of the screen, to view each single spin result. <br><br>
+
+However, we remind you once again the importance of responsible and conscious gaming, as you must never lose control in this Live game.<br><br>
+
+
+## What are advantages of consulting real time Mega Wheel stats?
+
+Players have the opportunity to compare the theoretical drawing odds of the wheel various segments with reality, thus having a deeper knowledge of the considered **Live game**. <br>
+Generally, digital game providers declare an average value for a certain number drawing chance, and for this reason it is already known that in the course of the game the number values will revolve around certain probabilities. <br><br>
+
+However, there can always be twists and turns during a game session, as luck plays a huge role. <br>
+For this reason, the **statistics** provided on this spikeslot.com webpage can be very useful to define a valid strategy. <br><br>
+
+For example, in the event that a sector is not drawn for a considerable spin numbers, one could think of betting on that particular value. In this way, hopefully, the session can be optimized and the odds of recovering the Budget are increased.<br><br>
+
+
+## Awesome entertainment with Mega Wheel stats
+
+**Mega Wheel statistics are always available on the SPIKE Slot website, and they are accessible at any time for free from any device**. In this way all the users will have a clear idea about the current situation in the Live game session. <br><br>
+
+Following the progress of the game session in real time can be very useful to better understand how Mega Wheel works, and at the same time to decide about placing a bet rather than another. <br>
+More information among the types of strategies you can choose is available in our [Mega Wheel guide](/articoli/mega-wheel-live-guide/row). <br><br>
+
+The Mega Wheel Return to Player (or RTP) value corresponds to **96.51%**. <br><br>
+
+![Live Statistics Mega Wheel Real Time Casino](https://spike-images.s3.eu-central-1.amazonaws.com/live-statistics-mega-wheel_e43c522bb2.jpeg)
+
+<br>
+
+Always be gamble aware and play responsibly.<br><br><br>
+`,
+        },
+        ca: {
+            title: 'Live Drawings | Mega Wheel | SPIKE Slot',
+            desc: 'Live draws, Pragmatic Play game show. Check all the draws details. Easily create a unique strategy to manage your budget.🎡🎲',
+            top: `## Real-Time Mega Wheel Drawing Statistics for All CA Users
+
+This page is mainly dedicated to information relating to the Pragmatic Play Live Game: Mega Wheel Live Draw. <br>
+Spikeslot.com is the first world site where you can check Mega Wheel's live stats. <br><br>
+
+Before considering specifically such data, it is essential to underline that casino gambling in general leads to a loss in the long run, and therefore you must always play responsibly and with moderation.<br>
+Mega Wheel makes no exception having a **96.51% RTP** value. <br>
+In addition, casino gambling is prohibited in some jurisdictions where there are no laws regulating it.<br><br>
+
+Through this guide, you will have the opportunity to better understand how the game works, and to **check the drawing frequency of individual Mega Wheel numbers**. <br>
+In this way, you will also have the possibility to define a satisfying strategy.`,
+            bottom: `<br>
+
+## Check out the latest numbers drawn in the Live Mega Wheel game
+
+Mega Wheel is a Live game conducted by Pragmatic Play studios, to guarantee fans a dynamic, interactive and fun gaming experience. <br><br>
+
+In fact, users find themselves inside a real show, characterized by the presence of a colored wheel made up of 54 segments, each of which is associated with a different prize. <br>
+The wheel is turned directly by the croupier present  inside the studio, and the main task of the players is to guess the exact number on which the wheel of Mega Wheel will stop.<br><br>
+
+However, various special functions also alternate during the game, such as Mega Lucky Number, which represents a random number selected before each spin and which can help increase any potential winnings. <br><br>
+
+Therefore, having the possibility to consult the **latest drawn numbers**, can represent a convenience for fans who intend to carry out a game session at Mega Wheel, as **you can define your own strategy and at the same time you have a cleare idea** about the values ​​that most frequently come out.<br><br>
+
+To be more precise, at the game screen top right, the user has the possibility to select the time span during which he intends to view the statistics. <br>
+Each number presents a series of information relating to its drawing probability and last extractions in the considered time frame. <br>
+In this way, you are always **updated in real time on the Live Mega Wheel game**. <br><br>
+
+In addition, it is also possible to view the number of times a single number has been drawn during the day, and subsequently consult a table located at the bottom of the screen, to view each single spin result. <br><br>
+
+However, we remind you once again the importance of responsible and conscious gaming, as you must never lose control in this Live game.<br><br>
+
+
+## What are advantages of consulting real time Mega Wheel stats?
+
+Canadian players have the opportunity to compare the theoretical drawing odds of the wheel various segments with reality, thus having a deeper knowledge of the considered **Live game**. <br>
+Generally, digital game providers declare an average value for a certain number drawing chance, and for this reason it is already known that in the course of the game the number values will revolve around certain probabilities. <br><br>
+
+However, there can always be twists and turns during a game session, as luck plays a huge role. <br>
+For this reason, the **statistics** provided on this spikeslot.com webpage can be very useful to define a valid strategy. <br><br>
+
+For example, in the event that a sector is not drawn for a considerable spin numbers, one could think of betting on that particular value. In this way, hopefully, the session can be optimized and the odds of recovering the Budget are increased.<br><br>
+
+
+## Awesome entertainment with Mega Wheel stats
+
+**Mega Wheel statistics are always available on the SPIKE Slot website, and they are accessible at any time for free from any device**. In this way all the users will have a clear idea about the current situation in the Live game session. <br><br>
+
+Following the progress of the game session in real time can be very useful to better understand how Mega Wheel works, and at the same time to decide about placing a bet rather than another. <br>
+More information among the types of strategies you can choose is available in our [Mega Wheel guide](/articoli/mega-wheel-live-guide/ca). <br><br>
+
+The Mega Wheel Return to Player (or RTP) value corresponds to **96.51%**. <br><br>
+
+![Live Statistics Mega Wheel Real Time Casino](https://spike-images.s3.eu-central-1.amazonaws.com/live-statistics-mega-wheel_e43c522bb2.jpeg)
+
+<br>
+
+Always be gamble aware and play responsibly.<br><br><br>
+
+`,
+        },
+        gb: {
+            title: 'Live Drawings | Mega Wheel | SPIKE Slot',
+            desc: 'Live draws, Pragmatic Play game show. Check all the draws details. Easily create a unique strategy to manage your budget.🎡🎲',
+            top: `## Real-Time Mega Wheel Drawing Statistics for All UK Users
+
+This page is mainly dedicated to information relating to the Pragmatic Play Live Game: Mega Wheel Live Draw. <br>
+Spikeslot.com is the first world site where you can check Mega Wheel's live stats. <br><br>
+
+Before considering specifically such data, it is essential to underline that casino gambling in general leads to a loss in the long run, and therefore you must always play responsibly and with moderation.<br>
+Mega Wheel makes no exception having a **96.51% RTP** value. <br>
+In addition, casino gambling is prohibited in some jurisdictions where there are no laws regulating it.<br><br>
+
+Through this guide, you will have the opportunity to better understand how the game works, and to **check the drawing frequency of individual Mega Wheel numbers**. <br>
+In this way, you will also have the possibility to define a satisfying strategy.`,
+            bottom: `<br>
+
+## Check out the latest numbers drawn in the Live Mega Wheel game
+
+Mega Wheel is a Live game conducted by Pragmatic Play studios, to guarantee fans a dynamic, interactive and fun gaming experience. <br><br>
+
+In fact, users find themselves inside a real show, characterized by the presence of a colored wheel made up of 54 segments, each of which is associated with a different prize. <br>
+The wheel is turned directly by the croupier present  inside the studio, and the main task of the players is to guess the exact number on which the wheel of Mega Wheel will stop.<br><br>
+
+However, various special functions also alternate during the game, such as Mega Lucky Number, which represents a random number selected before each spin and which can help increase any potential winnings. <br><br>
+
+Therefore, having the possibility to consult the **latest drawn numbers**, can represent a convenience for fans who intend to carry out a game session at Mega Wheel, as **you can define your own strategy and at the same time you have a cleare idea** about the values ​​that most frequently come out.<br><br>
+
+To be more precise, at the game screen top right, the user has the possibility to select the time span during which he intends to view the statistics. <br>
+Each number presents a series of information relating to its drawing probability and last extractions in the considered time frame. <br>
+In this way, you are always **updated in real time on the Live Mega Wheel game**. <br><br>
+
+In addition, it is also possible to view the number of times a single number has been drawn during the day, and subsequently consult a table located at the bottom of the screen, to view each single spin result. <br><br>
+
+However, we remind you once again the importance of responsible and conscious gaming, as you must never lose control in this Live game.<br><br>
+
+
+## What are advantages of consulting real time Mega Wheel stats?
+
+New Zealander players have the opportunity to compare the theoretical drawing odds of the wheel various segments with reality, thus having a deeper knowledge of the considered **Live game**. <br>
+Generally, digital game providers declare an average value for a certain number drawing chance, and for this reason it is already known that in the course of the game the number values will revolve around certain probabilities. <br><br>
+
+However, there can always be twists and turns during a game session, as luck plays a huge role. <br>
+For this reason, the **statistics** provided on this spikeslot.com webpage can be very useful to define a valid strategy. <br><br>
+
+For example, in the event that a sector is not drawn for a considerable spin numbers, one could think of betting on that particular value. In this way, hopefully, the session can be optimized and the odds of recovering the Budget are increased.<br><br>
+
+
+## Awesome entertainment with Mega Wheel stats
+
+**Mega Wheel statistics are always available on the SPIKE Slot website, and they are accessible at any time for free from any device**. In this way all the users will have a clear idea about the current situation in the Live game session. <br><br>
+
+Following the progress of the game session in real time can be very useful to better understand how Mega Wheel works, and at the same time to decide about placing a bet rather than another. <br>
+More information among the types of strategies you can choose is available in our [Mega Wheel guide](/articoli/mega-wheel-live-guide/nz). <br><br>
+
+The Mega Wheel Return to Player (or RTP) value corresponds to **96.51%**. <br><br>
+
+![Live Statistics Mega Wheel Real Time Casino](https://spike-images.s3.eu-central-1.amazonaws.com/live-statistics-mega-wheel_e43c522bb2.jpeg)
+
+<br>
+
+Always be gamble aware and play responsibly.<br><br><br>
+
+`,
+        },
+        nz: {
+            title: 'Live Drawings | Mega Wheel | SPIKE Slot',
+            desc: 'Live draws, Pragmatic Play game show. Check all the draws details. Easily create a unique strategy to manage your budget.🎡🎲',
+            top: `## Real-Time Mega Wheel Drawing Statistics for All NZ Users
+
+This page is mainly dedicated to information relating to the Pragmatic Play Live Game: Mega Wheel Live Draw. <br>
+Spikeslot.com is the first world site where you can check Mega Wheel's live stats. <br><br>
+
+Before considering specifically such data, it is essential to underline that casino gambling in general leads to a loss in the long run, and therefore you must always play responsibly and with moderation.<br>
+Mega Wheel makes no exception having a **96.51% RTP** value. <br>
+In addition, casino gambling is prohibited in some jurisdictions where there are no laws regulating it.<br><br>
+
+Through this guide, you will have the opportunity to better understand how the game works, and to **check the drawing frequency of individual Mega Wheel numbers**. <br>
+In this way, you will also have the possibility to define a satisfying strategy.`,
+            bottom: `<br>
+
+## Check out the latest numbers drawn in the Live Mega Wheel game
+
+Mega Wheel is a Live game conducted by Pragmatic Play studios, to guarantee fans a dynamic, interactive and fun gaming experience. <br><br>
+
+In fact, users find themselves inside a real show, characterized by the presence of a colored wheel made up of 54 segments, each of which is associated with a different prize. <br>
+The wheel is turned directly by the croupier present  inside the studio, and the main task of the players is to guess the exact number on which the wheel of Mega Wheel will stop.<br><br>
+
+However, various special functions also alternate during the game, such as Mega Lucky Number, which represents a random number selected before each spin and which can help increase any potential winnings. <br><br>
+
+Therefore, having the possibility to consult the **latest drawn numbers**, can represent a convenience for fans who intend to carry out a game session at Mega Wheel, as **you can define your own strategy and at the same time you have a cleare idea** about the values ​​that most frequently come out.<br><br>
+
+To be more precise, at the game screen top right, the user has the possibility to select the time span during which he intends to view the statistics. <br>
+Each number presents a series of information relating to its drawing probability and last extractions in the considered time frame. <br>
+In this way, you are always **updated in real time on the Live Mega Wheel game**. <br><br>
+
+In addition, it is also possible to view the number of times a single number has been drawn during the day, and subsequently consult a table located at the bottom of the screen, to view each single spin result. <br><br>
+
+However, we remind you once again the importance of responsible and conscious gaming, as you must never lose control in this Live game.<br><br>
+
+
+## What are advantages of consulting real time Mega Wheel stats?
+
+British players have the opportunity to compare the theoretical drawing odds of the wheel various segments with reality, thus having a deeper knowledge of the considered **Live game**. <br>
+Generally, digital game providers declare an average value for a certain number drawing chance, and for this reason it is already known that in the course of the game the number values will revolve around certain probabilities. <br><br>
+
+However, there can always be twists and turns during a game session, as luck plays a huge role. <br>
+For this reason, the **statistics** provided on this spikeslot.com webpage can be very useful to define a valid strategy. <br><br>
+
+For example, in the event that a sector is not drawn for a considerable spin numbers, one could think of betting on that particular value. In this way, hopefully, the session can be optimized and the odds of recovering the Budget are increased.<br><br>
+
+
+## Awesome entertainment with Mega Wheel stats
+
+**Mega Wheel statistics are always available on the SPIKE Slot website, and they are accessible at any time for free from any device**. In this way all the users will have a clear idea about the current situation in the Live game session. <br><br>
+
+Following the progress of the game session in real time can be very useful to better understand how Mega Wheel works, and at the same time to decide about placing a bet rather than another. <br>
+More information among the types of strategies you can choose is available in our Mega Wheel guide. <br><br>
+
+The Mega Wheel Return to Player (or RTP) value corresponds to **96.51%**. <br><br>
+
+![Live Statistics Mega Wheel Real Time Casino](https://spike-images.s3.eu-central-1.amazonaws.com/live-statistics-mega-wheel_e43c522bb2.jpeg)
+
+<br>
+
+Always be gamble aware and play responsibly.<br><br><br>
+
+`,
+        },
+    }
+
+    if (text[country]) return text[country][type]
+    else return text['row'][type]
+}

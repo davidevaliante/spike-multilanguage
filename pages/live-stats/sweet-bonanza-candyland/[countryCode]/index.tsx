@@ -193,28 +193,24 @@ const index: FunctionComponent<Props> = ({
         setSelectedFilters(change)
     }
 
-    const seoTitle = 'Diretta Estrazioni | Sweet Bonanza Candyland | SPIKE Slot'
-    const seoDescription =
-        'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲'
-
     const imageSocial = 'https://spike-images.s3.eu-central-1.amazonaws.com/Sweet-Bonanza-Candyland-min.jpg'
 
     return (
         <Fragment>
             <NavbarProvider currentPage='Sweet Bonanza Stats' countryCode={contextCountry}>
                 <Head>
-                    <title>{seoTitle}</title>
+                    <title>{SweetBonanzaCandyLandArticle(contextCountry, 'title')}</title>
                     <link
                         rel='canonical'
                         href={`https://spikeslot.com/live-stats/sweet-bonanza-candyland/${contextCountry}`}
                     />
-                    <meta name='description' content={seoDescription}></meta>
+                    <meta name='description' content={SweetBonanzaCandyLandArticle(contextCountry, 'desc')}></meta>
 
                     <meta
                         itemProp='name'
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
-                    <meta itemProp='description' content={seoDescription} />
+                    <meta itemProp='description' content={SweetBonanzaCandyLandArticle(contextCountry, 'desc')} />
                     <meta itemProp='image' content={imageSocial} />
 
                     <meta name='twitter:card' content='summary_large_image' />
@@ -222,38 +218,28 @@ const index: FunctionComponent<Props> = ({
                         name='twitter:title'
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
                     />
-                    <meta name='twitter:description' content={seoDescription} />
+                    <meta name='twitter:description' content={SweetBonanzaCandyLandArticle(contextCountry, 'desc')} />
                     <meta name='twitter:image' content={imageSocial} />
 
                     <meta property='og:image' content={imageSocial} />
                     <meta property='og:locale' content={'it'} />
                     <meta property='og:type' content='article' />
-                    <meta property='og:description' content={seoDescription} />
-                    <meta property='og:site_name' content={seoTitle} />
+                    <meta property='og:description' content={SweetBonanzaCandyLandArticle(contextCountry, 'desc')} />
+                    <meta property='og:site_name' content={SweetBonanzaCandyLandArticle(contextCountry, 'title')} />
 
                     <meta httpEquiv='content-language' content='it-IT'></meta>
                     <meta property='og:image' content={imageSocial} />
                     <meta property='og:locale' content={'it'} />
                     <meta property='og:type' content='article' />
-                    <meta property='og:description' content={seoDescription} />
-                    <meta property='og:site_name' content={seoTitle} />
+                    <meta property='og:description' content={SweetBonanzaCandyLandArticle(contextCountry, 'desc')} />
+                    <meta property='og:site_name' content={SweetBonanzaCandyLandArticle(contextCountry, 'title')} />
                 </Head>
 
                 <BodyContainer>
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >
-                        {articleBlockRenderer(
-                            'top',
-                            `## Statistiche delle Estrazioni in Tempo Reale Sweet Bonanza Candyland
-
-Puoi trovare qui tutte le informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Sweet Bonanza Candyland.<br>
-Spikeslot.com è il primo sito al mondo ad ospitare le statistiche di Sweet Bonanza Candyland.<br>
-È da sottolineare come a prescindere da come si interpretano i dati, il gioco a Sweet Bonanza Candyland farà sempre perdere gli utenti nel lungo periodo, avendo un RTP variabile tra **91.59%** e **96.95%**.<br><br>
-
-Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioco, e **potrai verificare la frequenza dell’uscita dei numeri**, in modo tale da pensare a una tua strategia responsabile.<br>
-**Giocate sempre responsabilmente e solo se avete compiuto i 18 anni**.`
-                        )}
+                        {articleBlockRenderer('top', SweetBonanzaCandyLandArticle(contextCountry, 'top'))}
 
                         <Divider style={{ marginTop: '2rem' }} />
 
@@ -268,7 +254,7 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
                             >
                                 <div>
                                     <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>
-                                        {t('Sweet Bonanza Candyland Stats')}
+                                        {'Sweet Bonanza Candyland Stats'}
                                     </h1>
                                     <h1 style={{ marginTop: '.5rem' }}>
                                         {`${t('for the past')} ${timeFrame}`}
@@ -335,7 +321,11 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
                                 fontSize: '1.4rem',
                                 textAlign: 'center',
                             }}
-                        >{`${t('You can play at Sweet Bonanza Candyland HERE')}`}</h1>
+                        >{`${
+                            t('You can play at Sweet Bonanza Candyland HERE')
+                                ? t('You can play at Sweet Bonanza Candyland HERE')
+                                : 'You can play at Sweet Bonanza Candyland HERE'
+                        }`}</h1>
                         <Paper elevation={6} style={{ marginTop: '1rem', marginBottom: '4rem' }}>
                             {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
                         </Paper>
@@ -383,56 +373,9 @@ Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioc
 
                         {rows && <SweetBonanzaTable rows={filteredRows} />}
 
-                        {articleBlockRenderer(
-                            'bottom',
-                            `## Verifica gli ultimi numeri estratti al gioco Live Sweet Bonanza Candyland
+                        <div style={{ marginTop: '4rem' }} />
 
-Sweet Bonanza Candyland è un gioco nel panorama del Casinò Live che permette di vivere un’esperienza prudente in un atmosfera piena di caramelle.<br>
-In breve, c’è una ruota della fortuna con 54 settori che viene girata dal croupier presente all’interno dello studio, e il compito dei giocatori è quello di indovinare il valore di dove finirà il giro.<br>
-Tuttavia, all’interno della sessione di gioco sono presenti delle funzioni danno più o meno un modo diversificato di intrattenersi.<br><br>
-
-Scoprire, quindi, quali sono gli ultimi numeri estratti a questo gioco Live, può essere discretamente utile per creare **una propria strategia** e per avere un’idea generale su quali valori scommettere in maniera moderata.<br><br>
-
-Più precisamente, nella parte in alto a destra, l’utente può **selezionare l’arco temporale durante cui vuole consultare le statistiche**.<br>
-Su ogni numero sono presenti diverse informazioni concernenti la sua probabilità di uscita e l’ultima uscita nel corso dell’arco temporale considerato.<br>
-In questo modo, si può rimanere aggiornati sull’andamento del gioco Live.<br><br>
-
-Inoltre, si può contare quante volte è stato estratto un determinato numero nel corso della giornata, per chi volesse saperlo.<br>
-Infine, riguardo allo storico, è stata messa a disposizione **nella parte in basso una tabella con i dati dei singolo spin**, in modo da dare un facile accesso ad essi.<br>
-Ricordiamo comunque che il gioco è stato creato da Pragmatic per far perdere soldi a chi partecipa alla sessione.<br><br>
-
-
-## Ci sono vantaggi  con possibilità di consultare le statistiche di Sweet Bonanza Candyland in tempo reale o solo svantaggi?
-
-Consideriamo dapprima che i giocatori hanno la chance di **valutare le probabilità teoriche di uscita dei settori della ruota con la realtà**, e quindi con le uscite praticate durante la live.<br>
-I provider dei giochi in genere dichiarano un valore teorico medio delle probabilità di uscita di un singolo numero.<br>
-Per questo già si sa a priori che durante la partita i valori dei numeri ruoteranno intorno a certi valori di probabilità.<br><br>
-
-Però ci possono essere delle piccole oscillazioni locali.<br>
-Quindi, tenendo saldo il concetto per cui la fortuna svolge sempre il ruolo predominante in quanto tutti i giri sono indipendenti, le statistiche fornite in questa webpage di spikeslot.com possono dare una strada più facile per individuare una propria strategia.<br><br>
-
-Nel caso in cui un certo valore non esca da un certo numero di giri, si potrebbe pensare di puntare proprio  su quel numero, anche se **non ci sono garanzie che venga recuperato il Budget iniziale dei giocatori**.<br><br>
-
-Per questo, diciamo ancora una volta di giocare in maniera responsabile e consapevole, in quanto per la stragrande maggioranza degli utenti non si avrà un incremento delle scommesse all’interno del Casinò Live.<br><br>
-
-
-## Intrattenimento responsabile con le statistiche di Sweet Bonanza Candyland
-
-Tutti gli user del settore e in particolare del Casinò Live, hanno l’opportunità di consultare le statistiche di Sweet Bonanza Candyland consapevolmente in tempo reale, durante tutta la giornata e in maniera totalmente gratuita sul sito di SPIKE Slot.<br>
-Ispezionare alcuni di questi dati può essere uno strumento in più per **monitorare come sta andando la sessione dal vivo** e scegliere eventualmente di usare una puntata piuttosto che un’altra.<br><br>
-
-A lungo termine il gioco porterà ad una perdita di credito, come è già possibile intuire considerando il Return to Player, ossia Ritorno al Giocatore da **91.59%** a **96.95%**.<br>
-In ogni caso, per avere maggiori informazioni concernenti questo titolo gioco Live e per verificare le possibili strategie da utilizzare, puoi visitare la [guida Sweet Bonanza Candy Land](https://spikeslot.com/articoli/guida-sweet-bonanza-candyland-live-pragmatic-play/it).<br><br>
-
-![Sweet Bonanza Candyland Stats Live Card](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland_2ba18b4723.jpeg)
-
-<br>
-
-Non dimenticare che il divertimento deve essere figlio soltanto di un gioco moderato e prudente.<br><br><br>
-
-
-Ultimo aggiornamento: **27 Maggio 2022**`
-                        )}
+                        {articleBlockRenderer('bottom', SweetBonanzaCandyLandArticle(contextCountry, 'bottom'))}
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}
                     </MainColumnScroll>
@@ -693,3 +636,302 @@ const TimeFrameContainer = styled.div`
 `
 
 export default index
+
+const SweetBonanzaCandyLandArticle = (country: string, type: 'top' | 'bottom' | 'title' | 'desc') => {
+    const text = {
+        it: {
+            title: 'Diretta Estrazioni | Sweet Bonanza Candyland | SPIKE Slot',
+            desc: 'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲',
+            top: `## Statistiche delle Estrazioni in Tempo Reale Sweet Bonanza Candyland
+
+Puoi trovare qui tutte le informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Sweet Bonanza Candyland.<br>
+Spikeslot.com è il primo sito al mondo ad ospitare le statistiche di Sweet Bonanza Candyland.<br>
+È da sottolineare come a prescindere da come si interpretano i dati, il gioco a Sweet Bonanza Candyland farà sempre perdere gli utenti nel lungo periodo, avendo un RTP variabile tra **91.59%** e **96.95%**.<br><br>
+
+Usufruendo degli strumenti qui forniti, potrai avere un’idea generale sul gioco, e **potrai verificare la frequenza dell’uscita dei numeri**, in modo tale da pensare a una tua strategia responsabile.<br>
+**Giocate sempre responsabilmente e solo se avete compiuto i 18 anni**.`,
+            bottom: `## Verifica gli ultimi numeri estratti al gioco Live Sweet Bonanza Candyland
+
+Sweet Bonanza Candyland è un gioco nel panorama del Casinò Live che permette di vivere un’esperienza prudente in un atmosfera piena di caramelle.<br>
+In breve, c’è una ruota della fortuna con 54 settori che viene girata dal croupier presente all’interno dello studio, e il compito dei giocatori è quello di indovinare il valore di dove finirà il giro.<br>
+Tuttavia, all’interno della sessione di gioco sono presenti delle funzioni danno più o meno un modo diversificato di intrattenersi.<br><br>
+
+Scoprire, quindi, quali sono gli ultimi numeri estratti a questo gioco Live, può essere discretamente utile per creare **una propria strategia** e per avere un’idea generale su quali valori scommettere in maniera moderata.<br><br>
+
+Più precisamente, nella parte in alto a destra, l’utente può **selezionare l’arco temporale durante cui vuole consultare le statistiche**.<br>
+Su ogni numero sono presenti diverse informazioni concernenti la sua probabilità di uscita e l’ultima uscita nel corso dell’arco temporale considerato.<br>
+In questo modo, si può rimanere aggiornati sull’andamento del gioco Live.<br><br>
+
+Inoltre, si può contare quante volte è stato estratto un determinato numero nel corso della giornata, per chi volesse saperlo.<br>
+Infine, riguardo allo storico, è stata messa a disposizione **nella parte in basso una tabella con i dati dei singolo spin**, in modo da dare un facile accesso ad essi.<br>
+Ricordiamo comunque che il gioco è stato creato da Pragmatic per far perdere soldi a chi partecipa alla sessione.<br><br>
+
+
+## Ci sono vantaggi  con possibilità di consultare le statistiche di Sweet Bonanza Candyland in tempo reale o solo svantaggi?
+
+Consideriamo dapprima che i giocatori hanno la chance di **valutare le probabilità teoriche di uscita dei settori della ruota con la realtà**, e quindi con le uscite praticate durante la live.<br>
+I provider dei giochi in genere dichiarano un valore teorico medio delle probabilità di uscita di un singolo numero.<br>
+Per questo già si sa a priori che durante la partita i valori dei numeri ruoteranno intorno a certi valori di probabilità.<br><br>
+
+Però ci possono essere delle piccole oscillazioni locali.<br>
+Quindi, tenendo saldo il concetto per cui la fortuna svolge sempre il ruolo predominante in quanto tutti i giri sono indipendenti, le statistiche fornite in questa webpage di spikeslot.com possono dare una strada più facile per individuare una propria strategia.<br><br>
+
+Nel caso in cui un certo valore non esca da un certo numero di giri, si potrebbe pensare di puntare proprio  su quel numero, anche se **non ci sono garanzie che venga recuperato il Budget iniziale dei giocatori**.<br><br>
+
+Per questo, diciamo ancora una volta di giocare in maniera responsabile e consapevole, in quanto per la stragrande maggioranza degli utenti non si avrà un incremento delle scommesse all’interno del Casinò Live.<br><br>
+
+
+## Intrattenimento responsabile con le statistiche di Sweet Bonanza Candyland
+
+Tutti gli user del settore e in particolare del Casinò Live, hanno l’opportunità di consultare le statistiche di Sweet Bonanza Candyland consapevolmente in tempo reale, durante tutta la giornata e in maniera totalmente gratuita sul sito di SPIKE Slot.<br>
+Ispezionare alcuni di questi dati può essere uno strumento in più per **monitorare come sta andando la sessione dal vivo** e scegliere eventualmente di usare una puntata piuttosto che un’altra.<br><br>
+
+A lungo termine il gioco porterà ad una perdita di credito, come è già possibile intuire considerando il Return to Player, ossia Ritorno al Giocatore da **91.59%** a **96.95%**.<br>
+In ogni caso, per avere maggiori informazioni concernenti questo titolo gioco Live e per verificare le possibili strategie da utilizzare, puoi visitare la [guida Sweet Bonanza Candy Land](https://spikeslot.com/articoli/guida-sweet-bonanza-candyland-live-pragmatic-play/it).<br><br>
+
+![Sweet Bonanza Candyland Stats Live Card](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland_2ba18b4723.jpeg)
+
+<br>
+
+Non dimenticare che il divertimento deve essere figlio soltanto di un gioco moderato e prudente.<br><br><br>
+
+
+Ultimo aggiornamento: **27 Maggio 2022**`,
+        },
+        row: {
+            title: 'Live Draws | Sweet Bonanza Candyland | SPIKE Slot',
+            desc: 'Live draws, game show by Pragmatic Play. Check details of all of the draws. Easily create a unique strategy to manage your Budget.🎡🎲',
+            top: `## Sweet Bonanza Candyland Real-Time Game Statistics
+
+Here you can find all the key information about Pragmatic Play: Sweet Bonanza Candyland Live Game Live Draws.<br>
+Spikeslot.com is the first world site to show Sweet Bonanza Candyland stats. <br>
+You should always be responsible while playing Sweet Bonanza Candyland as it has a variable RTP between **91.59%** and **96.95%**.<br><br>
+
+By taking advantage of the tools provided here, you will be able to get a general idea of ​​the game, and **you will be able to check the frequency of the numbers**, in order to think about your own responsible strategy. <br>
+**Always play responsibly and only if you are over 18**.`,
+            bottom: `<br>
+
+## Check the latest numbers drawn in the Live Sweet Bonanza Candyland game
+
+Sweet Bonanza Candyland is a game in the Live Casino landscape that allows you to live a fun experience in an atmosphere full of candy. <br>
+In short, there is a wheel of fortune with 54 sectors that is spun by the dealer present in the studio, and the players' task is to guess the value of where the spin will end. <br>
+However, within the game session there are functions that give great chances of entertainment. <br>br>
+
+Finding out, therefore, what are the latest numbers drawn in this Live game, can be quite useful for creating **your own strategy** and for having a general idea of ​​which values you can bet. <br><br>
+
+More precisely, in the upper right part, the user can **select the time frame during which he wants to consult statistics**. <br>
+Each number contains various information concerning its drawing probability and the last drawings during the time frame considered. <br>
+In this way, you can stay updated on the Live game-show progress.<br><br>
+
+Furthermore, you can count how many times a certain number has been drawn during the day, as many want to know. <br>
+Finally, regarding hystorical drawings, a table with the data of the individual spins **has been made available** in the lower part, in order to give easy access to them.<br><br>
+
+
+## What are advantages of consulting the statistics of Sweet Bonanza Candyland in real time?
+
+Let's first consider that New Zealanders players have the chance to **evaluate the theoretical wheel sector drawing probabilities with the real deal**, and therefore with drawings happened during the live session.<br>
+Game providers typically declare a theoretical average value of the odds of a single number to come out. <br>
+For this reason it is already expected that during the game the values of the numbers will fall around certain probability values. <br><br>
+
+However, there may be small local fluctuations. <br>
+So, keeping in mind the notion that luck always plays the predominant role as all spins are independent, the statistics provided on this spikeslot.com webpage can give you an easier way to find your own strategy. <br><br>
+
+In the event that a certain value isn’t drawn after a certain number of spins, one could think of betting on that number, which **may enhance the chances of the player initial budget to be recovered**. <br><br>
+
+
+## Incredible entertainment with Sweet Bonanza Candyland stats
+
+All the Live Casino fans have the opportunity to consult the statistics of Sweet Bonanza Candyland in real time, anytime during the day and totally for free on SPIKE Slot website. <br>
+Collecting some of this data can be an additional tool to **monitor how the live session is going** and possibly choose to use one strategy rather than another. <br><br>
+
+This game can be rewarding for the luckiest users with its Return to Player ranging from **91.59%** to **96.95%**. <br>
+In any case, to get more information about this Live game title and to check the possible strategies to use, you can visit the Sweet Bonanza Candy Land guide.<br><br>
+
+![Live Statistics Sweet Bonanza Candyland](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland-real-time_2db25f05f6.jpeg)
+
+<br>
+
+Play responsibly. <br><br><br>
+
+
+Last update: **30 May 2022**`,
+        },
+        ca: {
+            title: 'Live Draws | Sweet Bonanza Candyland | SPIKE Slot',
+            desc: 'Live draws, game show by Pragmatic Play. Check details of all of the draws. Easily create a unique strategy to manage your Budget.🎡🎲',
+            top: `## Sweet Bonanza Candyland Real-Time Game Statistics for All CA Users
+
+Here you can find all the key information about Pragmatic Play: Sweet Bonanza Candyland Live Game Draws in Canada.<br>
+Spikeslot.com is the first world site to show Sweet Bonanza Candyland stats. <br>
+You should always be responsible while playing Sweet Bonanza Candyland as it has a variable RTP between **91.59%** and **96.95%**.<br><br>
+
+By taking advantage of the tools provided here, you will be able to get a general idea of ​​the game, and **you will be able to check the frequency of the numbers**, in order to think about your own responsible strategy. <br>
+**Always play responsibly and only if you are over 18**.`,
+            bottom: `<br>
+
+## Check the latest numbers drawn in the Live Sweet Bonanza Candyland game
+
+Sweet Bonanza Candyland is a game in the Live Casino landscape that allows you to live a fun experience in an atmosphere full of candy. <br>
+In short, there is a wheel of fortune with 54 sectors that is spun by the dealer present in the studio, and the players' task is to guess the value of where the spin will end. <br>
+However, within the game session there are functions that give great chances of entertainment. <br>br>
+
+Finding out, therefore, what are the latest numbers drawn in this Live game, can be quite useful for creating **your own strategy** and for having a general idea of ​​which values you can bet. <br><br>
+
+More precisely, in the upper right part, the user can **select the time frame during which he wants to consult statistics**. <br>
+Each number contains various information concerning its drawing probability and the last drawings during the time frame considered. <br>
+In this way, you can stay updated on the Live game-show progress.<br><br>
+
+Furthermore, you can count how many times a certain number has been drawn during the day, as many want to know. <br>
+Finally, regarding hystorical drawings, a table with the data of the individual spins **has been made available** in the lower part, in order to give easy access to them.<br><br>
+
+
+## What are advantages of consulting the statistics of Sweet Bonanza Candyland in real time?
+
+Let's first consider that the Canadian players have the chance to **evaluate the theoretical wheel sector drawing probabilities with the real deal**, and therefore with drawings happened during the live session.<br>
+Game providers typically declare a theoretical average value of the odds of a single number to come out. <br>
+For this reason it is already expected that during the game the values of the numbers will fall around certain probability values. <br><br>
+
+However, there may be small local fluctuations. <br>
+So, keeping in mind the notion that luck always plays the predominant role as all spins are independent, the statistics provided on this spikeslot.com webpage can give you an easier way to find your own strategy. <br><br>
+
+In the event that a certain value isn’t drawn after a certain number of spins, one could think of betting on that number, which **may enhance the chances of the player initial budget to be recovered**. <br><br>
+
+
+## Incredible entertainment with Sweet Bonanza Candyland stats
+
+All the Live Casino fans have the opportunity to consult the statistics of Sweet Bonanza Candyland in real time, anytime during the day and totally for free on SPIKE Slot website. <br>
+Collecting some of this data can be an additional tool to **monitor how the live session is going** and possibly choose to use one strategy rather than another. <br><br>
+
+This game can be rewarding for the luckiest users with its Return to Player ranging from **91.59%** to **96.95%**. <br>
+In any case, to get more information about this Live game title and to check the possible strategies to use, you can visit the Sweet Bonanza Candy Land guide.<br><br>
+
+![Live Statistics Sweet Bonanza Candyland](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland-real-time_2db25f05f6.jpeg)
+
+<br>
+
+Play responsibly. <br><br><br>
+
+
+Last update: **30 May 2022**`,
+        },
+        gb: {
+            title: 'Live Draws | Sweet Bonanza Candyland | SPIKE Slot',
+            desc: 'Live draws, game show by Pragmatic Play. Check details of all of the draws. Easily create a unique strategy to manage your Budget.🎡🎲',
+            top: `## Sweet Bonanza Candyland Real-Time Game Statistics for All GB Users
+
+Here you can find all the key information about Pragmatic Play: Sweet Bonanza Candyland Live Game Draws in United Kingdom.<br>
+Spikeslot.com is the first world site to show Sweet Bonanza Candyland stats. <br>
+You should always be responsible while playing Sweet Bonanza Candyland as it has a variable RTP between **91.59%** and **96.95%**.<br><br>
+
+By taking advantage of the tools provided here, you will be able to get a general idea of ​​the game, and **you will be able to check the frequency of the numbers**, in order to think about your own responsible strategy. <br>
+**Always play responsibly and only if you are over 18**.`,
+            bottom: `<br>
+
+## Check the latest numbers drawn in the Live Sweet Bonanza Candyland game
+
+Sweet Bonanza Candyland is a game in the Live Casino landscape that allows you to live a fun experience in an atmosphere full of candy. <br>
+In short, there is a wheel of fortune with 54 sectors that is spun by the dealer present in the studio, and the players' task is to guess the value of where the spin will end. <br>
+However, within the game session there are functions that give great chances of entertainment. <br>br>
+
+Finding out, therefore, what are the latest numbers drawn in this Live game, can be quite useful for creating **your own strategy** and for having a general idea of ​​which values you can bet. <br><br>
+
+More precisely, in the upper right part, the user can **select the time frame during which he wants to consult statistics**. <br>
+Each number contains various information concerning its drawing probability and the last drawings during the time frame considered. <br>
+In this way, you can stay updated on the Live game-show progress.<br><br>
+
+Furthermore, you can count how many times a certain number has been drawn during the day, as many want to know. <br>
+Finally, regarding hystorical drawings, a table with the data of the individual spins **has been made available** in the lower part, in order to give easy access to them.<br><br>
+
+
+## What are advantages of consulting the statistics of Sweet Bonanza Candyland in real time?
+
+Let's first consider that British players have the chance to **evaluate the theoretical wheel sector drawing probabilities with the real deal**, and therefore with drawings happened during the live session.<br>
+Game providers typically declare a theoretical average value of the odds of a single number to come out. <br>
+For this reason it is already expected that during the game the values of the numbers will fall around certain probability values. <br><br>
+
+However, there may be small local fluctuations. <br>
+So, keeping in mind the notion that luck always plays the predominant role as all spins are independent, the statistics provided on this spikeslot.com webpage can give you an easier way to find your own strategy. <br><br>
+
+In the event that a certain value isn’t drawn after a certain number of spins, one could think of betting on that number, which **may enhance the chances of the player initial budget to be recovered**. <br><br>
+
+
+## Incredible entertainment with Sweet Bonanza Candyland stats
+
+All the Live Casino fans have the opportunity to consult the statistics of Sweet Bonanza Candyland in real time, anytime during the day and totally for free on SPIKE Slot website. <br>
+Collecting some of this data can be an additional tool to **monitor how the live session is going** and possibly choose to use one strategy rather than another. <br><br>
+
+This game can be rewarding for the luckiest users with its Return to Player ranging from **91.59%** to **96.95%**. <br>
+In any case, to get more information about this Live game title and to check the possible strategies to use, you can visit the Sweet Bonanza Candy Land guide.<br><br>
+
+![Live Statistics Sweet Bonanza Candyland](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland-real-time_2db25f05f6.jpeg)
+
+<br>
+
+Play responsibly. <br><br><br>
+
+
+Last update: **30 May 2022**`,
+        },
+        nz: {
+            title: 'Live Draws | Sweet Bonanza Candyland | SPIKE Slot',
+            desc: 'Live draws, game show by Pragmatic Play. Check details of all of the draws. Easily create a unique strategy to manage your Budget.🎡🎲',
+            top: `## Sweet Bonanza Candyland Real-Time Game Statistics for All NZ Users
+
+Here you can find all the key information about Pragmatic Play: Sweet Bonanza Candyland Live Game Draws in New Zealand.<br>
+Spikeslot.com is the first world site to show Sweet Bonanza Candyland stats. <br>
+You should always be responsible while playing Sweet Bonanza Candyland as it has a variable RTP between **91.59%** and **96.95%**.<br><br>
+
+By taking advantage of the tools provided here, you will be able to get a general idea of ​​the game, and **you will be able to check the frequency of the numbers**, in order to think about your own responsible strategy. <br>
+**Always play responsibly and only if you are over 18**.`,
+            bottom: `<br>
+
+## Check the latest numbers drawn in the Live Sweet Bonanza Candyland game
+
+Sweet Bonanza Candyland is a game in the Live Casino landscape that allows you to live a fun experience in an atmosphere full of candy. <br>
+In short, there is a wheel of fortune with 54 sectors that is spun by the dealer present in the studio, and the players' task is to guess the value of where the spin will end. <br>
+However, within the game session there are functions that give great chances of entertainment. <br>br>
+
+Finding out, therefore, what are the latest numbers drawn in this Live game, can be quite useful for creating **your own strategy** and for having a general idea of ​​which values you can bet. <br><br>
+
+More precisely, in the upper right part, the user can **select the time frame during which he wants to consult statistics**. <br>
+Each number contains various information concerning its drawing probability and the last drawings during the time frame considered. <br>
+In this way, you can stay updated on the Live game-show progress.<br><br>
+
+Furthermore, you can count how many times a certain number has been drawn during the day, as many want to know. <br>
+Finally, regarding hystorical drawings, a table with the data of the individual spins **has been made available** in the lower part, in order to give easy access to them.<br><br>
+
+
+## What are advantages of consulting the statistics of Sweet Bonanza Candyland in real time?
+
+Let's first consider that New Zealanders players have the chance to **evaluate the theoretical wheel sector drawing probabilities with the real deal**, and therefore with drawings happened during the live session.<br>
+Game providers typically declare a theoretical average value of the odds of a single number to come out. <br>
+For this reason it is already expected that during the game the values of the numbers will fall around certain probability values. <br><br>
+
+However, there may be small local fluctuations. <br>
+So, keeping in mind the notion that luck always plays the predominant role as all spins are independent, the statistics provided on this spikeslot.com webpage can give you an easier way to find your own strategy. <br><br>
+
+In the event that a certain value isn’t drawn after a certain number of spins, one could think of betting on that number, which **may enhance the chances of the player initial budget to be recovered**. <br><br>
+
+
+## Incredible entertainment with Sweet Bonanza Candyland stats
+
+All the Live Casino fans have the opportunity to consult the statistics of Sweet Bonanza Candyland in real time, anytime during the day and totally for free on SPIKE Slot website. <br>
+Collecting some of this data can be an additional tool to **monitor how the live session is going** and possibly choose to use one strategy rather than another. <br><br>
+
+This game can be rewarding for the luckiest users with its Return to Player ranging from **91.59%** to **96.95%**. <br>
+In any case, to get more information about this Live game title and to check the possible strategies to use, you can visit the Sweet Bonanza Candy Land guide.<br><br>
+
+![Live Statistics Sweet Bonanza Candyland](https://spike-images.s3.eu-central-1.amazonaws.com/live-stats-sweet-bonanza-candyland-real-time_2db25f05f6.jpeg)
+
+<br>
+
+Play responsibly. <br><br><br>
+
+
+Last update: **30 May 2022**`,
+        },
+    }
+
+    if (text[country]) return text[country][type]
+    else return text['row'][type]
+}
