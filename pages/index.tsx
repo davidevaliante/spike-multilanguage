@@ -27,6 +27,7 @@ import Metatags from '../components/Seo/Metatags'
 import { websiteRoot } from '../constants/constants'
 import { defaultShareImage } from './../constants/constants'
 import Logo from '../components/StructuredData.tsx/Logo'
+import SidebarBonusHeader from '../components/Text/SidebarBonusHeader'
 
 interface PageProps {
     _shallow: boolean
@@ -170,7 +171,9 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
                         <Newsletter />
 
-                        <div style={{ top: '820px' }} className='bonus-column-container'>
+                        <div style={{ top: '0', position: 'relative' }} className='bonus-column-container'>
+                            <SidebarBonusHeader />
+
                             {bonusList &&
                                 bonusList.map((bo) => (
                                     <BonusCardRevealComponent key={bo.name} bonus={bo} isBakeca={isBakeca} />

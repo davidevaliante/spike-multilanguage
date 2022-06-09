@@ -204,6 +204,90 @@ query PAGINATED_SLOTS(
   }
 `
 
+export const PRODUCER_SLOTS = `
+query PRODUCER_SLOTS(
+    $countryCode:String, 
+    $sortingField:String, 
+    $start:Int, 
+    $type:String="online"
+  	$producerName:String="Novomatic"
+  ){
+      slots(
+          where:{
+              country:{
+                code:$countryCode
+              }
+            producer:{
+              name:$producerName
+            }
+              status:"published"
+              type:$type
+          }
+          sort:$sortingField
+          start:$start
+          ){
+              created_at
+              name
+              rating
+              slug
+              image{
+                  url
+                  alternativeText
+              }
+              bonuses(limit:1, start: 0){
+                link
+              }
+      				producer{
+                name
+              }
+              mainBonus{
+                link
+              }
+          }
+  }
+`
+
+export const THEME_SLOTS = `
+query THEME_SLOTS(
+    $countryCode:String, 
+    $sortingField:String, 
+    $start:Int, 
+    $type:String="online"
+  	$theme:String="western"
+  ){
+      slots(
+          where:{
+              country:{
+                code:$countryCode
+              }
+            	theme:$theme
+              status:"published"
+              type:$type
+          }
+          sort:$sortingField
+          start:$start
+          ){
+              created_at
+              name
+              rating
+              slug
+              image{
+                  url
+                  alternativeText
+              }
+              bonuses(limit:1, start: 0){
+                link
+              }
+      				producer{
+                name
+              }
+              mainBonus{
+                link
+              }
+          }
+  }
+`
+
 export const PAGINATED_BAR_SLOTS = `
 query PAGINATED_SLOTS(
   $countryCode:String, 

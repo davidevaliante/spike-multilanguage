@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useContext } from "react"
-import { BonusGuide } from "../../graphql/schema"
-import styled from "styled-components"
-import LazyBonusImage from "../Lazy/LazyBonusImage"
-import LazyImage from "../Lazy/LazyImage"
-import Link from "next/link"
-import { LocaleContext } from "../../context/LocaleContext"
+import React, { FunctionComponent, useContext } from 'react'
+import { BonusGuide } from '../../graphql/schema'
+import styled from 'styled-components'
+import LazyBonusImage from '../Lazy/LazyBonusImage'
+import LazyImage from '../Lazy/LazyImage'
+import Link from 'next/link'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface BonusGuideCardProps {
     guide: BonusGuide
@@ -26,13 +26,17 @@ const BonusGuideCard: FunctionComponent<BonusGuideCardProps> = ({ guide }) => {
                             src={guide.bonus?.circular_image.url}
                         />
 
-                        <div style={{ display: "flex" }}>
+                        <div style={{ display: 'flex', justifyContent: 'flex-start', flexGrow: 1 }}>
                             <div>
-                                <h2 className="card-header">{`${t("Bonus Guide")} ${guide.bonus?.name}`}</h2>
-                                <div style={{ display: "flex", alignItems: "center" }}>
-                                    <p className="card-subheader">{t("With video explanation by SPIKE")}</p>
-                                    <LazyImage width={30} height={30} src={"/icons/ciak.svg"} alt="ciak" />
-                                </div>
+                                <h2 className='card-header'>{`${t('Bonus Guide')} ${guide.bonus?.name}`}</h2>
+                                {['StarCasinò', 'Starvegas', 'LeoVegas', 'Unibet'].includes(
+                                    guide.bonus?.name as string
+                                ) && (
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <p className='card-subheader'>{t('With video explanation by SPIKE')}</p>
+                                        <LazyImage width={30} height={30} src={'/icons/ciak.svg'} alt='ciak' />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </CardContainer>
@@ -55,16 +59,16 @@ const StyleProvider = styled.div`
 
 const CardContainer = styled.div`
     cursor: pointer;
-    background: ${(props: ICardContainer) => (props ? props.backgroundColor : "white")};
+    background: ${(props: ICardContainer) => (props ? props.backgroundColor : 'white')};
     color: #ffffff;
     padding: 1rem;
     margin-bottom: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-radius: 6px;
 
-    max-width: 320px;
+    width: 320px;
 
     .card-header {
         color: #ffffff;

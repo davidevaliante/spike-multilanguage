@@ -38,7 +38,7 @@ export const MainColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 3300px;
+    min-height: 2400px;
 `
 export const RightColumn = styled.div`
     display: none;

@@ -24,6 +24,7 @@ import { DreamCatcherSpin } from './../../../../data/models/DreamCatcherSpin'
 import { DreamCatcherTable } from '../../../../components/DramCatcherLiveStats/DreamCatcherTable'
 import DreamCatcherStatCard from './../../../../components/Cards/DreamCatcherStatCard'
 import { DreamcatcherSymbolStat } from './../../../../data/models/CrazyTimeSymbolStat'
+import StatsCta from '../../../../components/Singles/StatsCta'
 
 interface Props {
     _requestedCountryCode: string
@@ -356,6 +357,8 @@ const index: FunctionComponent<Props> = ({
                         </div>
 
                         {rows && <DreamCatcherTable rows={filteredRows} />}
+                        <StatsCta exclude={'dreamcatcher'} />
+
                         {_pageContent.bottomContent && <DynamicContent content={_pageContent.bottomContent} />}
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}

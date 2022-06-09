@@ -15,6 +15,7 @@ import { BodyContainer, MainColumnScroll } from '../../../../components/Layout/L
 import { MegaWheelTable } from '../../../../components/MegaWheelStats/MegaWheelTable'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
+import StatsCta from '../../../../components/Singles/StatsCta'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
 import { LocaleContext } from '../../../../context/LocaleContext'
 import { MegaWheelStat, SweetBonanzaCandylandStat } from '../../../../data/models/CrazyTimeSymbolStat'
@@ -45,7 +46,7 @@ const SOCKET_ENDPOINT = 'https://megaball.topadsservices.com'
 
 const PAGE_BONUSES = ['WinCasino', 'LeoVegas', 'StarCasinò', '888 Casino', 'King Casino']
 
-const SPAM_BONUSES = false
+const SPAM_BONUSES = true
 
 const index: FunctionComponent<Props> = ({
     _requestedCountryCode,
@@ -339,6 +340,8 @@ const index: FunctionComponent<Props> = ({
                         </div>
 
                         {rows && <MegaWheelTable rows={filteredRows} />}
+
+                        <StatsCta exclude={'megawheel'} />
 
                         {articleBlockRenderer('bottom', MegaWheelArticles(contextCountry, 'bottom'))}
 

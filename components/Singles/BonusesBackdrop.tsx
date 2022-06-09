@@ -1,14 +1,14 @@
-import React, { FunctionComponent, useRef, useState, useEffect, useContext } from "react"
-import { Backdrop, Paper } from "@material-ui/core"
-import PrimaryBonusCard from "../Cards/PrimaryBonusCard"
-import useOnClickOutside from "../../hooks/useOnClickOutside"
-import { isMobile, isDesktop, isTablet } from "react-device-detect"
-import { Bonus } from "../../graphql/schema"
-import BonusStripe from "./../Cards/BonusStripe"
-import SecondaryBonusCard from "../Cards/SecondaryBonusCard"
-import styled from "styled-components"
-import { tablet, desktop } from "../Responsive/Breakpoints"
-import { LocaleContext } from "../../context/LocaleContext"
+import React, { FunctionComponent, useRef, useState, useEffect, useContext } from 'react'
+import { Backdrop, Paper } from '@material-ui/core'
+import PrimaryBonusCard from '../Cards/PrimaryBonusCard'
+import useOnClickOutside from '../../hooks/useOnClickOutside'
+import { isMobile, isDesktop, isTablet } from 'react-device-detect'
+import { Bonus } from '../../graphql/schema'
+import BonusStripe from './../Cards/BonusStripe'
+import SecondaryBonusCard from '../Cards/SecondaryBonusCard'
+import styled from 'styled-components'
+import { tablet, desktop } from '../Responsive/Breakpoints'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     bonuses: Bonus[]
@@ -41,55 +41,80 @@ const BonusesBackdrop: FunctionComponent<Props> = ({ bonuses }) => {
         }
     }, [])
 
+    const countryCodeToString = (countryCode: string) => {
+        switch (countryCode) {
+            case 'it':
+                return 'Comparazione offerte di siti legali'
+
+            case 'ca':
+                return 'Claim Bonuses from the Best Casino in Canada!'
+
+            case 'gb':
+                return 'Claim Bonuses from the Best Casino in United Kingdom!'
+
+            case 'nz':
+                return 'Claim Bonuses from the Best Casino in New Zeland!'
+
+            case 'rs':
+                return 'Claim Bonuses from the Best Casino in Serbia!'
+
+            case 'me':
+                return 'Claim Bonuses from the Best Casino in Montenegro!'
+
+            default:
+                'Claim Bonuses from the Best Casinos'
+        }
+    }
+
     return (
         <div>
             <Backdrop style={{ zIndex: 10 }} open={showSpamBonuses}>
                 <DesktopContainer>
-                    <Paper ref={bonusRef} elevation={3} style={{ padding: "2rem" }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "space-around" }}>
+                    <Paper ref={bonusRef} elevation={3} style={{ padding: '2rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'space-around' }}>
                             <h1
                                 style={{
-                                    marginLeft: "1rem",
-                                    fontWeight: "bold",
-                                    fontSize: "1.5rem",
-                                    color: "crimson",
-                                    marginBottom: "2rem",
+                                    marginLeft: '1rem',
+                                    fontWeight: 'bold',
+                                    fontSize: '1.5rem',
+                                    color: 'crimson',
+                                    marginBottom: '2rem',
                                 }}
                             >
-                                {t("Compare legal websites")}
+                                {countryCodeToString(contextCountry)}
                             </h1>
                             <img
                                 onClick={() => handleCloseSpamBonuses()}
-                                style={{ width: "36px", height: "36px", cursor: "pointer" }}
-                                src="/icons/close_red.svg"
+                                style={{ width: '36px', height: '36px', cursor: 'pointer' }}
+                                src='/icons/close_red.svg'
                             />
                         </div>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             {[...bonuses.slice(0, 3)].map((b) => (
-                                <PrimaryBonusCard key={b.name} style={{ margin: "1rem" }} bonus={b} />
+                                <PrimaryBonusCard key={b.name} style={{ margin: '1rem' }} bonus={b} />
                             ))}
                         </div>
                     </Paper>
                 </DesktopContainer>
 
                 <MobileContainer>
-                    <Paper ref={bonusRef} elevation={3} style={{ padding: "2rem" }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "space-around" }}>
+                    <Paper ref={bonusRef} elevation={3} style={{ padding: '2rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'space-around' }}>
                             <h1
                                 style={{
-                                    marginLeft: "1rem",
-                                    fontWeight: "bold",
-                                    fontSize: "1.5rem",
-                                    color: "crimson",
-                                    marginBottom: "2rem",
+                                    marginLeft: '1rem',
+                                    fontWeight: 'bold',
+                                    fontSize: '1.5rem',
+                                    color: 'crimson',
+                                    marginBottom: '2rem',
                                 }}
                             >
-                                {t("Compare legal websites")}
+                                {t('Compare legal websites')}
                             </h1>
                             <img
                                 onClick={() => handleCloseSpamBonuses()}
-                                style={{ width: "36px", height: "36px", cursor: "pointer" }}
-                                src="/icons/close_red.svg"
+                                style={{ width: '36px', height: '36px', cursor: 'pointer' }}
+                                src='/icons/close_red.svg'
                             />
                         </div>
                         <div style={{}}>

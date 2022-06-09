@@ -19,6 +19,7 @@ import { MegaWheelTable } from '../../../../components/MegaWheelStats/MegaWheelT
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import { OnlyDesktop, OnlyMobile } from '../../../../components/Responsive/Only'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
+import StatsCta from '../../../../components/Singles/StatsCta'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
 import { LocaleContext } from '../../../../context/LocaleContext'
 import { MegaWheelStat, SweetBonanzaCandylandStat } from '../../../../data/models/CrazyTimeSymbolStat'
@@ -50,7 +51,7 @@ const SOCKET_ENDPOINT = 'https://megaroulette.topadsservices.com'
 
 const PAGE_BONUSES = ['WinCasino', 'LeoVegas', 'StarCasinò', '888 Casino', 'King Casino']
 
-const SPAM_BONUSES = false
+const SPAM_BONUSES = true
 
 const index: FunctionComponent<Props> = ({
     _requestedCountryCode,
@@ -445,6 +446,8 @@ Grazie a questa semplice guida, avrai la possibilità di capire in maniera appro
                         </div>
 
                         {rows && <MegaRouletteTable rows={filteredRows} />}
+
+                        <StatsCta exclude={'megaroulette'} />
 
                         {articleBlockRenderer(
                             'bottom',

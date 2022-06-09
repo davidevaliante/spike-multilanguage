@@ -98,7 +98,7 @@ const headCells: HeadCell[] = [
     { id: 'specialMultiplier', numeric: true, disablePadding: true, label: 'Special Multiplier' },
     { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
     { id: 'totalPayout', numeric: true, disablePadding: false, label: 'Total Payout' },
-    { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
+    // { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
 ]
 
 export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
@@ -233,7 +233,7 @@ export const DreamCatcherTable: FunctionComponent<EnhancedTableProps> = ({ rows 
                                                 <TableCell style={{ fontFamily: 'Montserrat' }} align='left'>
                                                     {row.totalPayout} €
                                                 </TableCell>
-                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='right'>
+                                                {/* <TableCell style={{ fontFamily: 'Montserrat' }} align='right'>
                                                     {row.watchVideo !== 'no_video' ? (
                                                         <Button
                                                             onClick={() => handleOpenVideo(row.watchVideo as string)}
@@ -245,7 +245,7 @@ export const DreamCatcherTable: FunctionComponent<EnhancedTableProps> = ({ rows 
                                                     ) : (
                                                         ''
                                                     )}
-                                                </TableCell>
+                                                </TableCell> */}
                                             </StyledTableRow>
                                         )
                                     })}

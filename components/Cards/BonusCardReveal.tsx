@@ -113,7 +113,7 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
                                 ))}
                             </div>
 
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
                                 <a rel='nofollow' className='visit-website link' href={`/go?to=${_bonus.link}`}>
                                     {t('VISIT THE SITE')}
                                 </a>
@@ -175,7 +175,7 @@ const StyleProvider = styled.div`
             font-size: 80%;
             padding: 0.3rem;
             font-family: ${(props) => props.theme.text.secondaryFont};
-            color: ${(props) => props.theme.colors.fourth};
+            /* color: ${(props) => props.theme.colors.fourth}; */
             transition: all 0.3s ease-in-out;
         }
     }

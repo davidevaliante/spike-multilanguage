@@ -25,6 +25,7 @@ import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { SweetBonanzaSpin } from '../../../../data/models/SweetBonanzaSpin'
 import SweetBonanzaCandylandCard from '../../../../components/Cards/SweetBonanzaCandylandCard'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
+import StatsCta from '../../../../components/Singles/StatsCta'
 
 interface Props {
     _requestedCountryCode: string
@@ -47,7 +48,7 @@ const SOCKET_ENDPOINT = 'https://sbcandyland.topadsservices.com'
 
 const PAGE_BONUSES = ['WinCasino', 'LeoVegas', 'StarCasinò', '888 Casino', 'King Casino']
 
-const SPAM_BONUSES = false
+const SPAM_BONUSES = true
 
 const index: FunctionComponent<Props> = ({
     _requestedCountryCode,
@@ -372,6 +373,8 @@ const index: FunctionComponent<Props> = ({
                         </div>
 
                         {rows && <SweetBonanzaTable rows={filteredRows} />}
+
+                        <StatsCta exclude={'sweet-bonanza'} />
 
                         <div style={{ marginTop: '4rem' }} />
 

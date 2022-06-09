@@ -99,7 +99,7 @@ const headCells: HeadCell[] = [
     { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
     { id: 'totalWinners', numeric: true, disablePadding: false, label: 'Total Winners' },
     { id: 'totalPayout', numeric: true, disablePadding: false, label: 'Total Payout' },
-    { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
+    // { id: 'watchVideo', numeric: false, disablePadding: false, label: 'Watch Video' },
 ]
 
 export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
@@ -246,7 +246,7 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                                                 <TableCell style={{ fontFamily: 'Montserrat' }} align='left'>
                                                     {row.totalPayout} €
                                                 </TableCell>
-                                                <TableCell style={{ fontFamily: 'Montserrat' }} align='right'>
+                                                {/* <TableCell style={{ fontFamily: 'Montserrat' }} align='right'>
                                                     {row.watchVideo !== 'no_video' ? (
                                                         <Button
                                                             onClick={() => handleOpenVideo(row.watchVideo as string)}
@@ -258,7 +258,7 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                                                     ) : (
                                                         ''
                                                     )}
-                                                </TableCell>
+                                                </TableCell> */}
                                             </StyledTableRow>
                                         )
                                     })}

@@ -157,7 +157,8 @@
             "You can play at Sweet Bonanza Candyland HERE": "You can play at Sweet Bonanza Candyland HERE",
             "Wheel Result": "Wheel Result",
             "Missing Since": "Missing since",
-            "Mega Multipliers": "Mega Multipliers"
+            "Mega Multipliers": "Mega Multipliers",
+            "Bonus comparation": "Welcome Bonuses"
         }
     },
     "it": {
@@ -326,7 +327,8 @@
             "Multipliersb": "Moltiplicatore Vincita",
             "Wheel Result": "Risultato Ruota",
             "Missing Since": "Non esce da",
-            "Mega Multipliers": "Mega Moltiplicatori"
+            "Mega Multipliers": "Mega Moltiplicatori",
+            "Bonus comparation": "Comparazione offerte di Benvenuto"
         }
     },
     "row": {
@@ -485,7 +487,8 @@
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
             "Email Sent": "Email Sent",
-            "footer-bottom": "Online Slots | Best FREE Slot Games"
+            "footer-bottom": "Online Slots | Best FREE Slot Games",
+            "Bonus comparation": "Welcome Bonuses"
         }
     },
     "ca": {
@@ -644,7 +647,8 @@
             "Message Too Short": "Message Too Short",
             "Email Sent": "Email Sent",
             "Search for a Slot or a Software House": "Search for a Slot or a Software House",
-            "footer-bottom": "Online Slots Canada | Best FREE Slot Games"
+            "footer-bottom": "Online Slots Canada | Best FREE Slot Games",
+            "Bonus comparation": "Welcome Bonuses"
         }
     },
     "nz": {
@@ -802,7 +806,8 @@
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
             "Email Sent": "Email Sent",
-            "footer-bottom": "Online Slots | Best FREE Slot Games"
+            "footer-bottom": "Online Slots | Best FREE Slot Games",
+            "Bonus comparation": "Welcome Bonuses"
         }
     },
     "rs": {
@@ -958,7 +963,8 @@
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
             "Email Sent": "Email Sent",
-            "footer-bottom": "Online Slots | Best FREE Slot Games"
+            "footer-bottom": "Online Slots | Best FREE Slot Games",
+            "Bonus comparation": "Welcome Bonuses"
         }
     },
     "me": {
@@ -1114,7 +1120,8 @@
             "Email Not Valid": "Email Not Valid",
             "Message Too Short": "Message Too Short",
             "Email Sent": "Email Sent",
-            "footer-bottom": "Online Slots | Best FREE Slot Games"
+            "footer-bottom": "Online Slots | Best FREE Slot Games",
+            "Bonus comparation": "Welcome Bonuses"
         }
     }
 }

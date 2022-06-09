@@ -22,6 +22,7 @@ import { format } from 'date-fns'
 import now from 'lodash/now'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
+import StatsCta from '../../../../components/Singles/StatsCta'
 
 interface Props {
     _requestedCountryCode: string
@@ -330,6 +331,9 @@ const index: FunctionComponent<Props> = ({
                         </div>
 
                         {rows && <CrazyTimeTable rows={filteredRows} />}
+
+                        <StatsCta exclude={'crazy-time'} />
+
                         <DynamicContent content={_pageContent.bottomContent} />
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}

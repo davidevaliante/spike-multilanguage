@@ -28,6 +28,7 @@ import { MonopolySpin } from './../../../../data/models/MonopolySpin'
 import MonopolyDiceRollTable from '../../../../components/MonopolyLiveStats/MonopolyDiceRollTable'
 import MonopolyStatCard from '../../../../components/Cards/MonopolyStatCard'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
+import StatsCta from '../../../../components/Singles/StatsCta'
 
 interface Props {
     _requestedCountryCode: string
@@ -262,7 +263,7 @@ const index: FunctionComponent<Props> = ({
                                     </Select>
                                 </div>
                             </div>
-                            <p style={{ marginTop: '1rem', fontSize: '.9rem' }}>{`Ultimo Aggiornamento ${format(
+                            <p style={{ marginTop: '1rem', fontSize: '.9rem' }}>{`${t('Last Update')} ${format(
                                 lastUpdate,
                                 'dd/MM HH:mm:ss'
                             )}`}</p>
@@ -353,6 +354,8 @@ const index: FunctionComponent<Props> = ({
                                 <MonopolyDiceRollTable type='high' rows={tables.highTierTable.rows} />
                             </div>
                         )}
+
+                        <StatsCta exclude={'monopoly'} />
 
                         <DynamicContent content={_pageContent.bottomContent} />
 

@@ -22,6 +22,7 @@ import { DreamcatcherSymbolStat } from '../../../../data/models/CrazyTimeSymbolS
 import { LightningDiceSpin } from '../../../../data/models/LightningDiceSpin'
 import { LightningDiceTable } from '../../../../components/LightningDiceLiveStats/LightningDiceTable'
 import LightningDiceStats from '../../../../components/LightningDiceLiveStats/LightningDiceStats'
+import StatsCta from '../../../../components/Singles/StatsCta'
 
 interface Props {
     _requestedCountryCode: string
@@ -348,6 +349,8 @@ const index: FunctionComponent<Props> = ({
                         </div>
 
                         {rows && <LightningDiceTable rows={filteredRows} />}
+                        <StatsCta exclude={'lightningdice'} />
+
                         {/* {_pageContent.bottomContent && <DynamicContent content={_pageContent.bottomContent} />} */}
 
                         {SPAM_BONUSES && <BonusesBackdrop bonuses={_bonuses} />}

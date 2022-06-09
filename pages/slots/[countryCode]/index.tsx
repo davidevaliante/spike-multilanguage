@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, FunctionComponent } from 'react'
 import AquaClient from '../../../graphql/aquaClient'
-import { PAGINATED_SLOTS, HIGHLIGHT_SLOT } from '../../../graphql/queries/slots'
+import { PAGINATED_SLOTS, HIGHLIGHT_SLOT, PRODUCER_SLOTS, THEME_SLOTS } from '../../../graphql/queries/slots'
 import { AlgoliaSearchResult, Producer } from '../../../graphql/schema'
 import NavbarProvider from '../../../components/Navbar/NavbarProvider'
 import { BodyContainer, MainColumn, RightColumn } from '../../../components/Layout/Layout'
@@ -227,7 +227,29 @@ const Slots: FunctionComponent<Props> = ({
     const getCategoriesAndProducers = () => {
         setProducers(producersQuery)
         // mock query
-        const categories = ['#Egypt', '#Fantasy', '#Horror', t('#Film'), '#Animals', '#Classic', t('#Diamonds')]
+        const categories = [
+            'adventure',
+            'animals',
+            'arabian',
+            'candy',
+            'classic',
+            'circus',
+            'diamonds',
+            'egypt',
+            'fantasy',
+            'film',
+            'history',
+            'horror',
+            'luck',
+            'mythology',
+            'mexican',
+            'music',
+            'noir',
+            'pirates',
+            'western',
+            'science',
+            'sport',
+        ]
 
         setCategories(categories)
     }
@@ -291,6 +313,32 @@ const Slots: FunctionComponent<Props> = ({
             setShowCategories(false)
             setShowProducers(true)
         }
+    }
+
+    const handleProducerSelected = async (producerName: string) => {
+        const slotListResponse = await aquaClient.query({
+            query: PRODUCER_SLOTS,
+            variables: {
+                countryCode: contextCountry,
+                producerName: producerName,
+                start: 0,
+            },
+        })
+        setSearchResults(slotListResponse.data.data.slots)
+        setShowMoreFilter(false)
+    }
+
+    const handleThemeSelected = async (themeName: string) => {
+        const slotListResponse = await aquaClient.query({
+            query: THEME_SLOTS,
+            variables: {
+                countryCode: contextCountry,
+                theme: themeName,
+                start: 0,
+            },
+        })
+        setSearchResults(slotListResponse.data.data.slots)
+        setShowMoreFilter(false)
     }
 
     return (
@@ -433,12 +481,14 @@ const Slots: FunctionComponent<Props> = ({
                                         {showMoreFilter && (
                                             <div>
                                                 <ProducersList
+                                                    onProducerSelected={handleProducerSelected}
                                                     showMoreFilter={showMoreFilter}
                                                     showProducers={showProducers}
                                                     producers={producers}
                                                 />
 
                                                 <CategoriesList
+                                                    onThemeSelected={handleThemeSelected}
                                                     categories={categories}
                                                     showCategories={showCategories}
                                                 />
