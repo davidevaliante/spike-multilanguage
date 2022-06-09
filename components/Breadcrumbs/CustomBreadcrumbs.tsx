@@ -1,29 +1,29 @@
-import React, { Fragment, useContext } from "react"
-import styled from "styled-components"
-import { countryContext } from "./../../context/CountryContext"
-import { FunctionComponent, CSSProperties } from "react"
-import Link from "next/link"
-import Icon from "../Icons/Icon"
-import lowerCase from "lodash/lowerCase"
-import capitalize from "lodash/capitalize"
-import { LocaleContext } from "../../context/LocaleContext"
+import React, { Fragment, useContext } from 'react'
+import styled from 'styled-components'
+import { countryContext } from './../../context/CountryContext'
+import { FunctionComponent, CSSProperties } from 'react'
+import Link from 'next/link'
+import Icon from '../Icons/Icon'
+import lowerCase from 'lodash/lowerCase'
+import capitalize from 'lodash/capitalize'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     from:
-        | "slot"
-        | "article"
-        | "slot-list"
-        | "producer"
-        | "blog"
-        | "guide"
-        | "guide-list"
-        | "vlt-slot-list"
-        | "article"
-        | "about"
-        | "privacy-policy"
-        | "contacts"
-        | "blog-article"
-        | "bar-slot-list"
+        | 'slot'
+        | 'article'
+        | 'slot-list'
+        | 'producer'
+        | 'blog'
+        | 'guide'
+        | 'guide-list'
+        | 'vlt-slot-list'
+        | 'article'
+        | 'about'
+        | 'privacy-policy'
+        | 'contacts'
+        | 'blog-article'
+        | 'bar-slot-list'
     producerName?: string
     producerSlug?: string
     slotName?: string
@@ -34,7 +34,7 @@ interface Props {
     style?: CSSProperties
 }
 
-const websiteRoot = "https://spikeslot.com"
+const websiteRoot = 'https://spikeslot.com'
 
 const Breadcrumbs: FunctionComponent<Props> = ({
     from,
@@ -50,32 +50,32 @@ const Breadcrumbs: FunctionComponent<Props> = ({
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const breadCrumbRenderer = () => {
-        if (from === "slot") {
+        if (from === 'slot') {
             const SlotBreadCrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
-                            name: "Slots",
+                            name: 'Slots',
                             item: `${websiteRoot}/slots/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 3,
                             name: `${producerName}`,
                             item: `${websiteRoot}/producer/${producerSlug}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 4,
                             name: `${slotName}`,
                             item: `${websiteRoot}/slot/${slotSlug}/${contextCountry}`,
@@ -88,25 +88,25 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(SlotBreadCrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`slot_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                     <SlotBreadCrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/slots/${contextCountry}`}>Slots</a>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <Link href={`/producer/[slug]/[countryCode]`} as={`/producer/${producerSlug}/${contextCountry}`}>
                         <a>{producerName}</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <Link href={`/slot/${slotSlug}/${contextCountry}`}>
                         <a>{capitalize(lowerCase(name))}</a>
                     </Link>
@@ -114,22 +114,22 @@ const Breadcrumbs: FunctionComponent<Props> = ({
             )
         }
 
-        if (from === "slot-list") {
+        if (from === 'slot-list') {
             const SlotListBreadCrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
-                            name: "Slots",
+                            name: 'Slots',
                             item: `${websiteRoot}/slots/${contextCountry}`,
                         },
                     ],
@@ -140,19 +140,19 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(SlotListBreadCrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`slot_list_breadcrumbs`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', margin: '0rem 1rem' }}>
                     <SlotListBreadCrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/slots/${contextCountry}`}>
                         <a>Slots</a>
                     </a>
@@ -160,22 +160,22 @@ const Breadcrumbs: FunctionComponent<Props> = ({
             )
         }
 
-        if (from === "vlt-slot-list") {
+        if (from === 'vlt-slot-list') {
             const VltSlotListBreadCrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
-                            name: "Vlt Slots",
+                            name: 'Vlt Slots',
                             item: `${websiteRoot}/vlt-slots/${contextCountry}`,
                         },
                     ],
@@ -186,42 +186,42 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(VltSlotListBreadCrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`slot_list_breadcrumbs`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', margin: '0rem 1rem' }}>
                     <VltSlotListBreadCrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
-                    <Link href="#">
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Link href='#'>
                         <a>Vlt Slots</a>
                     </Link>
                 </div>
             )
         }
 
-        if (from === "bar-slot-list") {
+        if (from === 'bar-slot-list') {
             const VltSlotListBreadCrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
-                            name: "Vlt Slots",
+                            name: 'Vlt Slots',
                             item: `${websiteRoot}/slot-bar/${contextCountry}`,
                         },
                     ],
@@ -232,40 +232,40 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(VltSlotListBreadCrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`slot_list_breadcrumbs`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', margin: '0rem 1rem' }}>
                     <VltSlotListBreadCrumb />
-                    <Link href={contextCountry === "it" ? "/" : `/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? '/' : `/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
-                    <Link href="#">
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Link href='#'>
                         <a>Bar Slots</a>
                     </Link>
                 </div>
             )
         }
 
-        if (from === "producer") {
+        if (from === 'producer') {
             const ProducerCrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `${producerName}`,
                             item: `${websiteRoot}/producer/${producerSlug}/${contextCountry}`,
@@ -278,60 +278,60 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(ProducerCrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`slot_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ProducerCrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
                     {/* <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                 <p>
                     {Translations.producersSlug[currentCountry]}
                 </p> */}
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={currentPageLink}>{name}</a>
                 </div>
             )
         }
 
-        if (from === "blog") {
+        if (from === 'blog') {
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/blog/${contextCountry}`}>Blog</a>
                 </div>
             )
         }
 
-        if (from === "guide") {
+        if (from === 'guide') {
             const GuideBreadcrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `Guide e Trucchi`,
                             item: `${websiteRoot}/guide-e-trucchi/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 3,
                             name: `${name}`,
                             item: `${websiteRoot}/guida/${guideSlug}/${contextCountry}`,
@@ -344,54 +344,54 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(GuideBreadcrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`slot_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <GuideBreadcrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a
                         href={
-                            contextCountry === "it"
+                            contextCountry === 'it'
                                 ? `/guide-e-trucchi/${contextCountry}`
                                 : `/guides-and-tricks/${contextCountry}`
                         }
                     >
-                        {t("Guides and Tricks")}
+                        {t('Guides and Tricks')}
                     </a>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <p>{name}</p>
                 </div>
             )
         }
 
-        if (from === "article") {
+        if (from === 'article') {
             const ArticleBreadcrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `Guide e Trucchi`,
                             item: `${websiteRoot}/guide-e-trucchi/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 3,
                             name: `${name}`,
                             item: `${websiteRoot}/articoli/${guideSlug}/${contextCountry}`,
@@ -404,46 +404,46 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(ArticleBreadcrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`article_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ArticleBreadcrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
-                    <a href={`/guide-e-trucchi/${contextCountry}`}>{t("Guides and Tricks")}</a>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <a href={`/guide-e-trucchi/${contextCountry}`}>{t('Guides and Tricks')}</a>
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <p>{name}</p>
                 </div>
             )
         }
 
-        if (from === "blog-article") {
+        if (from === 'blog-article') {
             const BlogArticleBreadcrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `Guide e Trucchi`,
                             item: `${websiteRoot}/guide-e-trucchi/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 3,
                             name: `${name}`,
                             item: `${websiteRoot}/articoli/${guideSlug}/${contextCountry}`,
@@ -456,44 +456,44 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(BlogArticleBreadcrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`article_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ArticleBreadcrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/blog/${contextCountry}`}>Blog</a>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <p>{name}</p>
                 </div>
             )
         }
 
-        if (from === "guide-list") {
+        if (from === 'guide-list') {
             const GuideListBreadcrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `Guide e Trucchi`,
                             item:
-                                contextCountry === "it"
+                                contextCountry === 'it'
                                     ? `${websiteRoot}/guide-e-trucchi/${contextCountry}`
                                     : `${websiteRoot}/guides-and-tricks/${contextCountry}`,
                         },
@@ -505,22 +505,22 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(GuideListBreadcrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`slot_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <GuideListBreadcrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a
                         href={
-                            contextCountry === "it"
+                            contextCountry === 'it'
                                 ? `/guide-e-trucchi/${contextCountry}`
                                 : `/guides-and-tricks/${contextCountry}`
                         }
@@ -531,20 +531,20 @@ const Breadcrumbs: FunctionComponent<Props> = ({
             )
         }
 
-        if (from === "about") {
+        if (from === 'about') {
             const AboutBreadcrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `SPIKE`,
                             item: `${websiteRoot}/spike/${contextCountry}`,
@@ -557,38 +557,38 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(AboutBreadcrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`about_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <AboutListBreadcrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/spike/${contextCountry}`}>{name}</a>
                 </div>
             )
         }
 
-        if (from === "privacy-policy") {
+        if (from === 'privacy-policy') {
             const PrivacyPolicyBreadcrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `Privacy Policy`,
                             item: `${websiteRoot}/cookie-privacy-policy`,
@@ -601,38 +601,38 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(PrivacyPolicyBreadcrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`privacy_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <PrivacyPolicyBreadcrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/cookie-privacy-policy/${contextCountry}`}>{name}</a>
                 </div>
             )
         }
 
-        if (from === "contacts") {
+        if (from === 'contacts') {
             const ContactsBreadcrumbObject = () => {
                 return {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
                     itemListElement: [
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 1,
-                            name: "Home",
-                            item: contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
+                            name: 'Home',
+                            item: contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`,
                         },
                         {
-                            "@type": "ListItem",
+                            '@type': 'ListItem',
                             position: 2,
                             name: `Contatti`,
                             item: `${websiteRoot}/contatti`,
@@ -645,19 +645,19 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 return (
                     <script
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(ContactsBreadcrumbObject()) }}
-                        type="application/ld+json"
+                        type='application/ld+json'
                         key={`contacts_breadcrumb`}
                     />
                 )
             }
 
             return (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ContactsBreadcrumb />
-                    <Link href={contextCountry === "it" ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         <a>Home</a>
                     </Link>
-                    <Icon style={{ margin: "0 .5rem" }} width={16} height={16} source="/icons/chevron_colored.svg" />
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <p>{name}</p>
                 </div>
             )
@@ -674,6 +674,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
 const Container = styled.div`
     display: flex;
     color: ${(props) => props.theme.colors.primary};
+    width: 100%;
 
     a {
         cursor: pointer;
