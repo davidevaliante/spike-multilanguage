@@ -17,7 +17,7 @@ const LabCard: FunctionComponent<Props> = ({ article }) => {
 
     return (
         <StyleProvider>
-            <Link href={`/guida/lab/[slug]`} as={`/guida/lab/${article.slug}`}>
+            <Link href={`/guide/lab/[slug]`} as={`/guide/lab/${article.slug}`}>
                 <a>
                     <CardContainer>
                         <LazyImage width='100%' height='200px' src={injectCDN(article.image?.url!)} />

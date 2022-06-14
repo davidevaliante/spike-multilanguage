@@ -1,13 +1,13 @@
-import React, { Fragment, useState, useEffect } from "react"
-import styled from "styled-components"
-import axios from "axios"
-const { create } = require("xmlbuilder2")
-import { format } from "date-fns"
-import snakeCase from "lodash/snakeCase"
-import XMLViewer from "react-xml-viewer"
-import { replaceAll, mapJsonToArray } from "../../utils/Utils"
-import { firebaseDatabaseUrl } from "../../data/firebaseConfig"
-import AquaClient from "./../../graphql/aquaClient"
+import React, { Fragment, useState, useEffect } from 'react'
+import styled from 'styled-components'
+import axios from 'axios'
+const { create } = require('xmlbuilder2')
+import { format } from 'date-fns'
+import snakeCase from 'lodash/snakeCase'
+import XMLViewer from 'react-xml-viewer'
+import { replaceAll, mapJsonToArray } from '../../utils/Utils'
+import { firebaseDatabaseUrl } from '../../data/firebaseConfig'
+import AquaClient from './../../graphql/aquaClient'
 
 const ALL_SLOTS = `
 query{
@@ -104,7 +104,7 @@ const sitemapgenerator = () => {
     const [approved, setApproved] = useState(undefined)
 
     useEffect(() => {
-        console.log(approved, "approved")
+        console.log(approved, 'approved')
     }, [approved])
 
     const [slots, setSlots] = useState(undefined)
@@ -121,7 +121,7 @@ const sitemapgenerator = () => {
 
     useEffect(() => {
         if (barSlots !== undefined) {
-            console.log(barSlots, "barSlots")
+            console.log(barSlots, 'barSlots')
         }
     }, [barSlots])
 
@@ -129,7 +129,7 @@ const sitemapgenerator = () => {
 
     useEffect(() => {
         if (onlineSlots !== undefined) {
-            console.log(onlineSlots, "onlineSlots")
+            console.log(onlineSlots, 'onlineSlots')
         }
     }, [onlineSlots])
 
@@ -137,7 +137,7 @@ const sitemapgenerator = () => {
 
     useEffect(() => {
         if (vltSlots !== undefined) {
-            console.log(vltSlots, "vltSlots")
+            console.log(vltSlots, 'vltSlots')
         }
     }, [vltSlots])
 
@@ -145,7 +145,7 @@ const sitemapgenerator = () => {
 
     useEffect(() => {
         if (articles !== undefined) {
-            console.log(articles, "articles")
+            console.log(articles, 'articles')
         }
     }, [articles])
 
@@ -153,7 +153,7 @@ const sitemapgenerator = () => {
 
     useEffect(() => {
         if (producers !== undefined) {
-            console.log(producers, "producers")
+            console.log(producers, 'producers')
         }
     }, [producers])
 
@@ -216,6 +216,35 @@ const sitemapgenerator = () => {
         setProducers(producersResponse.data.data.producers)
     }
 
+    const [labGuide, setlabGuide] = useState(undefined)
+    const getLabGuides = async () => {
+        const labGuideResponse = await aquaClient.query({
+            query: /* GraphQL */ `
+                query {
+                    spikeStocksArticles {
+                        title
+                        article
+                        updated_at
+                        slug
+                        image {
+                            url
+                            alternativeText
+                        }
+
+                        seo {
+                            seoTitle
+                            seoDescription
+                            shareImg
+                        }
+                    }
+                }
+            `,
+            variables: {},
+        })
+
+        setlabGuide(labGuideResponse.data.data.spikeStocksArticles)
+    }
+
     useEffect(() => {
         getSlots()
         getVideos()
@@ -223,119 +252,140 @@ const sitemapgenerator = () => {
         getArticles()
         getBlogArticles()
         getProducers()
+        getLabGuides()
     }, [])
 
     const test = () => {
-        const rootUrl = "https://spikeslot.com"
+        const rootUrl = 'https://spikeslot.com'
 
         const mainUrls = [
-            "/videos/it",
-            "/slots/it",
-            "/slot-bar/it",
-            "/slot-vlt/it",
-            "/migliori-bonus-casino",
-            "/guide-e-trucchi/it",
-            "/blog/it",
+            '/videos/it',
+            '/slots/it',
+            '/slot-bar/it',
+            '/slot-vlt/it',
+            '/migliori-bonus-casino',
+            '/guide-e-trucchi/it',
+            '/blog/it',
         ]
 
-        const singleUrls = ["/live-stats/crazy-time/it", "/live-stats/monopoly-live/it", "/live-stats/dream-catcher/it"]
+        const singleUrls = [
+            '/live-stats/crazy-time/it',
+            '/live-stats/monopoly-live/it',
+            '/live-stats/dream-catcher/it',
+            '/live-stats/mega-wheel/it',
+            '/live-stats/mega-roulette/it',
+            '/live-stats/sweet-bonanza-candyland/it',
+            '/live-stats/lightning-dice/it',
+            '/guide/lab',
+        ]
 
-        const r = create().ele("urlset", {
-            xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9",
-            "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-            "xsi:schemaLocation":
-                "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd",
+        const r = create().ele('urlset', {
+            xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9',
+            'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+            'xsi:schemaLocation':
+                'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd',
         })
 
-        r.com("Main Urls START")
+        r.com('Main Urls START')
 
-        const mUrl = r.ele("url")
+        const mUrl = r.ele('url')
 
-        mUrl.ele("loc").txt(`${rootUrl}`)
-        mUrl.ele("lastmod").txt(`${format(new Date(), "yyyy-MM-dd")}`)
-        mUrl.ele("priority").txt(`1`)
+        mUrl.ele('loc').txt(`${rootUrl}`)
+        mUrl.ele('lastmod').txt(`${format(new Date(), 'yyyy-MM-dd')}`)
+        mUrl.ele('priority').txt(`1`)
 
         singleUrls.forEach((urlToAdd) => {
-            const url = r.ele("url")
-            url.ele("loc").txt(`${rootUrl}${urlToAdd}`)
-            url.ele("lastmod").txt(`${format(new Date(), "yyyy-MM-dd")}`)
-            url.ele("priority").txt(`0.8`)
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}${urlToAdd}`)
+            url.ele('lastmod').txt(`${format(new Date(), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
         })
 
         mainUrls.forEach((urlToAdd) => {
-            const url = r.ele("url")
-            url.ele("loc").txt(`${rootUrl}${urlToAdd}`)
-            url.ele("lastmod").txt(`${format(new Date(), "yyyy-MM-dd")}`)
-            url.ele("priority").txt(`0.8`)
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}${urlToAdd}`)
+            url.ele('lastmod').txt(`${format(new Date(), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
         })
 
-        r.com("Main Urls END")
+        r.com('Main Urls END')
 
-        r.com("Videos Urls START")
+        r.com('Videos Urls START')
 
         approved
             .filter(({ title, time }) => title !== undefined && time !== undefined)
             .forEach((video) => {
-                const url = r.ele("url")
-                url.ele("loc").txt(`${rootUrl}/videos/${replaceAll(snakeCase(video.title), "€", "euro")}/it`)
-                url.ele("lastmod").txt(`${format(new Date(video.time), "yyyy-MM-dd")}`)
-                url.ele("priority").txt(`0.8`)
+                const url = r.ele('url')
+                url.ele('loc').txt(`${rootUrl}/videos/${replaceAll(snakeCase(video.title), '€', 'euro')}/it`)
+                url.ele('lastmod').txt(`${format(new Date(video.time), 'yyyy-MM-dd')}`)
+                url.ele('priority').txt(`0.8`)
             })
 
-        r.com("Videos Urls END")
+        r.com('Videos Urls END')
 
-        r.com("Slots Urls START")
+        r.com('Slots Urls START')
 
         allSlots.forEach((slot) => {
-            const url = r.ele("url")
-            url.ele("loc").txt(`${rootUrl}/slot/${slot.slug}/it`)
-            url.ele("lastmod").txt(`${format(new Date(slot.updated_at), "yyyy-MM-dd")}`)
-            url.ele("priority").txt(`0.8`)
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}/slot/${slot.slug}/it`)
+            url.ele('lastmod').txt(`${format(new Date(slot.updated_at), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
         })
 
-        r.com("Slots Urls END")
+        r.com('Slots Urls END')
 
-        r.com("Guides Urls START")
+        r.com('Guides Urls START')
 
         guides.forEach((guide) => {
-            const url = r.ele("url")
-            url.ele("loc").txt(`${rootUrl}/guida/${guide.slug}/it`)
-            url.ele("lastmod").txt(`${format(new Date(guide.updated_at), "yyyy-MM-dd")}`)
-            url.ele("priority").txt(`0.8`)
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}/guida/${guide.slug}/it`)
+            url.ele('lastmod').txt(`${format(new Date(guide.updated_at), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
         })
 
-        r.com("Articles Urls END")
+        r.com('Articles Urls END')
 
         articles.forEach((article) => {
-            const url = r.ele("url")
-            url.ele("loc").txt(`${rootUrl}/articoli/${article.slug}/it`)
-            url.ele("lastmod").txt(`${format(new Date(article.updated_at), "yyyy-MM-dd")}`)
-            url.ele("priority").txt(`0.8`)
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}/articoli/${article.slug}/it`)
+            url.ele('lastmod').txt(`${format(new Date(article.updated_at), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
         })
 
-        r.com("Articles Urls END")
+        r.com('Articles Urls END')
 
-        r.com("Blog Articles Urls START")
+        r.com('Blog Articles Urls START')
 
         blogArticles.forEach((article) => {
-            const url = r.ele("url")
-            url.ele("loc").txt(`${rootUrl}/blog/${article.slug}/it`)
-            url.ele("lastmod").txt(`${format(new Date(article.updated_at), "yyyy-MM-dd")}`)
-            url.ele("priority").txt(`0.8`)
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}/blog/${article.slug}/it`)
+            url.ele('lastmod').txt(`${format(new Date(article.updated_at), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
         })
 
-        r.com("Blog Articles Urls END")
+        r.com('Blog Articles Urls END')
 
-        r.com("Producers Urls START")
+        r.com('Producers Urls START')
 
         producers.forEach((prod) => {
-            const url = r.ele("url")
-            url.ele("loc").txt(`${rootUrl}/producer/${prod.slug}/it`)
-            url.ele("lastmod").txt(`${format(new Date(prod.updated_at), "yyyy-MM-dd")}`)
-            url.ele("priority").txt(`0.8`)
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}/producer/${prod.slug}/it`)
+            url.ele('lastmod').txt(`${format(new Date(prod.updated_at), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
         })
 
-        r.com("Producers Urls END")
+        r.com('Producers Urls END')
+
+        r.com('Lab Urls Start')
+
+        labGuide.forEach((lab) => {
+            const url = r.ele('url')
+            url.ele('loc').txt(`${rootUrl}/guide/lab/${lab.slug}`)
+            url.ele('lastmod').txt(`${format(new Date(lab.updated_at), 'yyyy-MM-dd')}`)
+            url.ele('priority').txt(`0.8`)
+        })
+
+        r.com('Lab Urls END')
 
         // r.com('Bar Slot Urls START')
 

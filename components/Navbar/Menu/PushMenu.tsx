@@ -35,8 +35,19 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
     }
 
     const navigateTo = (link: string) => {
-        if (link === '/' || link === '/migliori-bonus-casino') Router.push(link)
-        else Router.push(`${link}/${contextCountry}`)
+        switch (link) {
+            case '/guide/lab':
+                Router.push('/guide/lab')
+                break
+            case '/':
+                Router.push(link)
+                break
+            case '/migliori-bonus-casino':
+                Router.push(link)
+                break
+            default:
+                Router.push(`${link}/${contextCountry}`)
+        }
     }
 
     const LiveStatsSubMenu = () => {

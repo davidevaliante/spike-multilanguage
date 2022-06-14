@@ -2,10 +2,12 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { AffiliateServiceCard, SpikeStocksContainer } from '..'
 import CustomBreadcrumbs from '../../../../components/Breadcrumbs/CustomBreadcrumbs'
-import { BodyContainer, RightColumn } from '../../../../components/Layout/Layout'
+import { BodyContainer } from '../../../../components/Layout/Layout'
 import ArticleToMarkdown from '../../../../components/Markdown/ArticleToMarkdown'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
-import { laptop } from '../../../../components/Responsive/Breakpoints'
+import { desktop, laptop } from '../../../../components/Responsive/Breakpoints'
+import Metatags from '../../../../components/Seo/Metatags'
+import { websiteRoot } from '../../../../constants/constants'
 import AquaClient from '../../../../graphql/aquaClient'
 import { serverSide404 } from '../../../../utils/Utils'
 
@@ -19,6 +21,13 @@ const index: FunctionComponent<Iindex> = ({ article }) => {
 
     return (
         <NavbarProvider countryCode='it' currentPage='lab'>
+            <Metatags
+                title={`${article.seo.seoTitle} | SPIKE Lab`}
+                url={`${websiteRoot}/guide/lab/${article.slug}`}
+                description={article.seo.seoDescription}
+                image={article.image.url}
+                locale={'it'}
+            />
             <BodyContainer>
                 <CustomBreadcrumbs
                     style={{ padding: '1rem 1rem' }}
@@ -50,6 +59,7 @@ const index: FunctionComponent<Iindex> = ({ article }) => {
 
                         <AffiliateServiceCard
                             serviceName='Etoro'
+                            tagline='La forza del social investing'
                             serviceImage='https://spike-crypto.s3.eu-central-1.amazonaws.com/etoro_6cbdaefe07.png?updated_at=2022-05-11T13:38:08.662Z'
                             desc='Etoro è una delle piattaforme di copy trading più famose e sicure al mondo e rappresenta la scelta migliore per chiunque si voglia affacciare sul mercato degli investimenti per la prima volta anche con piccole somme.'
                             snippets={[
@@ -62,6 +72,7 @@ const index: FunctionComponent<Iindex> = ({ article }) => {
 
                         <AffiliateServiceCard
                             serviceName='Binance'
+                            tagline='Exchange the world'
                             serviceImage='https://spike-crypto.s3.eu-central-1.amazonaws.com/binance_9af46db2ce.png?updated_at=2022-06-07T11:15:38.725Z'
                             desc={`Binance è la piattaforma per le crypto numero uno al mondo ed è senza dubbio l\' exchange da consigliare a chiunque si stia affacciando per la prima volta sul mondo delle cryptovalute.`}
                             snippets={[
@@ -88,6 +99,7 @@ export async function getServerSideProps({ query, params, req, res }) {
                 title
                 article
                 updated_at
+                slug
                 image {
                     url
                     alternativeText
@@ -95,7 +107,7 @@ export async function getServerSideProps({ query, params, req, res }) {
 
                 seo {
                     seoTitle
-                    seoTitle
+                    seoDescription
                     shareImg
                 }
             }
@@ -136,6 +148,18 @@ const MainColumn = styled.div`
 
     b {
         font-weight: bold;
+    }
+`
+
+export const RightColumn = styled.div`
+    width: 300px;
+    /* background : blueviolet; */
+    position: relative;
+
+    ${desktop} {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
     }
 `
 

@@ -1,11 +1,16 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
+import CustomBreadcrumbs from '../../../components/Breadcrumbs/CustomBreadcrumbs'
 import LabCard from '../../../components/Cards/LabCard'
-import { BodyContainer, RightColumn } from '../../../components/Layout/Layout'
+import { BodyContainer } from '../../../components/Layout/Layout'
 import NavbarProvider from '../../../components/Navbar/NavbarProvider'
-import { laptop, tablet } from '../../../components/Responsive/Breakpoints'
+import { desktop, laptop, tablet } from '../../../components/Responsive/Breakpoints'
 import AquaClient from '../../../graphql/aquaClient'
 import { serverSide404 } from '../../../utils/Utils'
+import Head from 'next/head'
+import Metatags from '../../../components/Seo/Metatags'
+import { defaultShareImage, websiteRoot } from '../../../constants/constants'
+import { OnlyMobile } from '../../../components/Responsive/Only'
 
 interface Iindex {
     articles: any
@@ -18,21 +23,56 @@ const index: FunctionComponent<Iindex> = ({ articles }) => {
 
     return (
         <NavbarProvider countryCode='it' currentPage='lab-list'>
+            <Metatags
+                title={'Investimenti intelligenti e cryptovalute | SPIKE Lab'}
+                url={websiteRoot}
+                description={
+                    'SPIKE Lab è la sezione di spikeslot.com dedicata al mondo degli investimenti online e delle cryptovalute. Impara oggi ad investire i tuoi soldi in maniera intelligente e programmata.'
+                }
+                image={defaultShareImage}
+                locale={'it'}
+            />
             <StyleProvider>
                 <BodyContainer>
+                    <CustomBreadcrumbs style={{ padding: '1rem 1rem' }} name={'Lab'} from='lab' />
                     <MainColumn>
                         <Header>SPIKE Lab</Header>
+
+                        <OnlyMobile>
+                            <div style={{ margin: '0rem 1rem' }}>
+                                <SpikeStocksContainer onClick={handleSpikeStocksClick}>
+                                    <img
+                                        width={50}
+                                        height={78}
+                                        src='https://spike-images.s3.eu-central-1.amazonaws.com/spike-stocks-logo_a17a5550e1.png'
+                                    />
+
+                                    <div className='container'>
+                                        <div className='title'>SPIKEstocks.com</div>
+                                        <div className='desc'>
+                                            Visita il <b>nuovo</b> sito dedicato agli investimenti !
+                                        </div>
+                                    </div>
+                                </SpikeStocksContainer>
+                            </div>
+                        </OnlyMobile>
 
                         <HeaderTwo>Guide al mondo crypto ed investimenti</HeaderTwo>
                         <p>
                             Come conoscere le migliori possibilità di investimento per il proprio capitale in modo da
                             ottimizzare i guadagni? In questa sezione, <b>SPIKE lab</b> vi porterà a comprendere che
                             investire risorse finanziarie, non deve essere necessariamente solo un progetto di tipo
-                            pensionistico. Esistono possibilità di investimenti intelligenti, davvero vantaggiose nella
+                            pensionistico.
+                        </p>
+
+                        <p>
+                            Esistono possibilità di <b>investimenti intelligenti</b>, davvero vantaggiose nella
                             prospettiva di benessere finanziario sul lungo periodo, con dividendi più convenienti,
                             rispetto alle classiche forme di risparmio. Per trovare informazioni dedicate al mondo del
-                            trading puoi visitare il nuovo sito dedicato{' '}
-                            <a href='https://spikestocks.com/'>SPIKEstocks</a>
+                            trading puoi visitare{' '}
+                            <a className='spike-stocks-link' href='https://spikestocks.com/'>
+                                il nuovo sito dedicato agli investimenti SPIKEstocks.
+                            </a>
                         </p>
 
                         <p>
@@ -41,11 +81,12 @@ const index: FunctionComponent<Iindex> = ({ articles }) => {
                         </p>
 
                         <ul>
-                            <li>contanti ed equivalenti</li>
-                            <li>azioni</li>
-                            <li>obbligazioni</li>
-                            <li>fondi</li>
-                            <li>prodotti assicurativi</li>
+                            <li>Contanti ed equivalenti</li>
+                            <li>Azioni</li>
+                            <li>Prodotti assicurativi</li>
+                            <li>Obbligazioni</li>
+                            <li>Fondi</li>
+                            <li>Prodotti assicurativi</li>
                         </ul>
 
                         <ArticlesContainer>
@@ -54,14 +95,16 @@ const index: FunctionComponent<Iindex> = ({ articles }) => {
                             ))}
                         </ArticlesContainer>
 
+                        <HeaderTwo>Cos'è il Lab di SPIKE</HeaderTwo>
                         <p>
                             Una particolare attenzione è riservata alle diverse forme di investimento dei cinque ambiti
-                            fondamentali. Inoltre, la rubrica discute argomenti imprescindibili come l'importanza di
-                            avere un portafoglio equilibrato per una buona esperienza di investimento; ma anche la
+                            fondamentali. Inoltre, la rubrica discute argomenti <b>imprescindibili</b> come l'importanza
+                            di avere un portafoglio equilibrato per una buona esperienza di investimento; ma anche la
                             comprensione e la gestione del rischio. In più, si parla di come identificare i valori nel
                             mercato e come costruire un robusto portafoglio di investimenti nel tempo.
                         </p>
 
+                        <HeaderTwo>Cos'è il Lab di SPIKE</HeaderTwo>
                         <p>
                             Tecnicamente, troverai informazioni su come imparare a calcolare il tasso di rendimento di
                             un portafoglio rispetto all'andamento generale del mercato. Infine, sono spiegate opzioni
@@ -69,7 +112,7 @@ const index: FunctionComponent<Iindex> = ({ articles }) => {
                             è importante avvalersi di un consulente.
                         </p>
 
-                        <p>Scopo di questa rubrica:</p>
+                        <HeaderTwo>Scopo di questa rubrica:</HeaderTwo>
 
                         <ul>
                             <li>Analizzare la nozione di valore temporale del denaro.</li>
@@ -111,6 +154,7 @@ const index: FunctionComponent<Iindex> = ({ articles }) => {
 
                             <AffiliateServiceCard
                                 serviceName='Etoro'
+                                tagline='La forza del social investing'
                                 serviceImage='https://spike-crypto.s3.eu-central-1.amazonaws.com/etoro_6cbdaefe07.png?updated_at=2022-05-11T13:38:08.662Z'
                                 desc='Etoro è una delle piattaforme di copy trading più famose e sicure al mondo e rappresenta la scelta migliore per chiunque si voglia affacciare sul mercato degli investimenti per la prima volta anche con piccole somme.'
                                 snippets={[
@@ -123,6 +167,7 @@ const index: FunctionComponent<Iindex> = ({ articles }) => {
 
                             <AffiliateServiceCard
                                 serviceName='Binance'
+                                tagline='Exchange the world'
                                 serviceImage='https://spike-crypto.s3.eu-central-1.amazonaws.com/binance_9af46db2ce.png?updated_at=2022-06-07T11:15:38.725Z'
                                 desc={`Binance è la piattaforma per le crypto numero uno al mondo ed è senza dubbio l\' exchange da consigliare a chiunque si stia affacciando per la prima volta sul mondo delle cryptovalute.`}
                                 snippets={[
@@ -236,7 +281,8 @@ export const AffiliateServiceCard: FunctionComponent<{
     snippets: string[]
     desc: string
     affiliateLink: string
-}> = ({ serviceImage, serviceName, snippets, desc, affiliateLink }) => {
+    tagline: string
+}> = ({ serviceImage, serviceName, snippets, desc, affiliateLink, tagline }) => {
     const handleClick = () => window.open(affiliateLink)
 
     return (
@@ -244,7 +290,10 @@ export const AffiliateServiceCard: FunctionComponent<{
             <div className='content'>
                 <img width={70} height={70} src={serviceImage} />
 
-                <div className='service-name'>{serviceName}</div>
+                <div className='header-text-container'>
+                    <div className='service-name'>{serviceName}</div>
+                    <div className='tagline'>"{tagline}"</div>
+                </div>
             </div>
 
             <div className='desc'>{desc}</div>
@@ -266,10 +315,6 @@ const Header = styled.h1`
     font-family: 'Kanit';
     font-size: 3rem;
     margin: 1rem 0rem;
-
-    ${laptop} {
-        margin: 2rem 0rem;
-    }
 `
 
 const HeaderTwo = styled.h1`
@@ -297,10 +342,10 @@ const AffiliateCardContainer = styled.div`
 
     .service-name {
         font-weight: bold;
-        color: black;
+        color: #2b2b2b;
         font-family: 'Kanit';
         font-size: 1.7rem;
-        margin-left: 0.8rem;
+        letter-spacing: 0.1rem;
     }
 
     img {
@@ -312,7 +357,8 @@ const AffiliateCardContainer = styled.div`
     }
 
     ul {
-        margin-top: 0.8rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     li {
@@ -331,11 +377,23 @@ const AffiliateCardContainer = styled.div`
     }
 
     .desc {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         margin: 1rem 0rem;
+        line-height: 1.1rem;
     }
 
     margin-bottom: 2rem;
+
+    .header-text-container {
+        margin-left: 0.8rem;
+    }
+
+    .tagline {
+        font-style: italic;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        color: #7a7a7a;
+    }
 `
 
 export const StyleProvider = styled.div`
@@ -357,6 +415,12 @@ export const StyleProvider = styled.div`
     li {
         margin-bottom: 0.3rem;
     }
+
+    .spike-stocks-link {
+        all: unset;
+        color: blue;
+        cursor: pointer;
+    }
 `
 
 const MainColumn = styled.div`
@@ -373,6 +437,18 @@ const MainColumn = styled.div`
 
     b {
         font-weight: bold;
+    }
+`
+
+export const RightColumn = styled.div`
+    width: 300px;
+    /* background : blueviolet; */
+    position: relative;
+
+    ${desktop} {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
     }
 `
 

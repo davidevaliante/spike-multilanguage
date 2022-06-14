@@ -55,6 +55,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
         { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
 
         { label: 'Blogs and Articles', link: '/blog' },
+        { label: 'Investimenti Online', link: '/guide/lab' },
     ]
 
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
@@ -236,6 +237,14 @@ const NavbarProvider: FunctionComponent<Props> = ({
         if (page.link === '/videolist') {
             return (
                 <a key={key} href={`${page.link}/${countryCode}`}>
+                    {t(page.label)}
+                </a>
+            )
+        }
+
+        if (page.link === '/guide/lab') {
+            return (
+                <a key={key} href={`${page.link}`}>
                     {t(page.label)}
                 </a>
             )

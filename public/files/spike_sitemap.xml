@@ -3,57 +3,82 @@
   <!-- Main Urls START -->
   <url>
     <loc>https://spikeslot.com</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/live-stats/crazy-time/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/live-stats/monopoly-live/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/live-stats/dream-catcher/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/live-stats/mega-wheel/it</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/live-stats/mega-roulette/it</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/live-stats/sweet-bonanza-candyland/it</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/live-stats/lightning-dice/it</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab</loc>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/videos/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slots/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot-bar/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot-vlt/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/migliori-bonus-casino</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guide-e-trucchi/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/it</loc>
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Main Urls END -->
@@ -1656,6 +1681,11 @@
   <url>
     <loc>https://spikeslot.com/videos/alla_conquista_del_valhalla_con_la_battle_maidens/it</loc>
     <lastmod>2020-04-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/schiattiamo_i_pianeti_della_big_bang_🎇_vincita_1400_euro/it</loc>
+    <lastmod>2018-09-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -3673,11 +3703,671 @@
     <lastmod>2022-01-16</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_cashzuma_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-01-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_solar_nova_con_acquisti_bonus_spike_slot_online/it</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_alice_cooper_and_the_tome_of_madness_fino_a_bet_40_spike_slot_online/it</loc>
+    <lastmod>2022-01-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_book_of_the_fallen_col_super_spin_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-01-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_empty_the_bank_spike_slot_online/it</loc>
+    <lastmod>2022-01-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/vediamo_la_cygnus_spike_slot_online/it</loc>
+    <lastmod>2022-01-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_a_mayan_misteries_della_fire_al_65_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-01-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_e_compriamo_bonus_alla_john_hunter_and_the_quest_for_bermuda_riches_spike_slot_online/it</loc>
+    <lastmod>2022-01-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_book_of_kingdoms_fino_a_bet_max_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-01-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_merlin_and_the_ice_queen_morgana_spike_slot_online/it</loc>
+    <lastmod>2022-02-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquistiamo_bonus_alla_bonus_bunnies_fino_a_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-02-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_the_barber_slot_lucky_7_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-02-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_kiss_reels_of_rock_spike_slot_online/it</loc>
+    <lastmod>2022-02-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_grande_partita_alla_book_of_sheba_3_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-02-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/caccia_al_jackpot_da_455_570_euro_alla_pharaohs_treasure_deluxe_spike_slot_online/it</loc>
+    <lastmod>2022-02-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_aztec_explorer_sognando_il_jackpot_da_755_747_euro_spike_slot_online/it</loc>
+    <lastmod>2022-02-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/a_lezione_di_story_da_moreno_spiegata_la_fowl_play_gold_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-02-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/speciale_san_valentino_bonus_hunt_54_spike_slot_online/it</loc>
+    <lastmod>2022-02-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/il_ritorno_della_book_of_dead_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-02-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/le_vostre_vincite_migliori_di_gennaio_7_spike_slot_online/it</loc>
+    <lastmod>2022-02-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_wwe_legends_anche_con_acquisti_bonus_spike_slot_online/it</loc>
+    <lastmod>2022-02-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/nuovi_acquisti_bonus_alla_300_shields_extreme_5_spike_slot_online/it</loc>
+    <lastmod>2022-02-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/vediamo_wild_billy_2_slot_optimus_prize_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-02-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_dragon_tribe_spike_slot_online/it</loc>
+    <lastmod>2022-02-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_alla_book_of_legends_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-02-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_encharmed_quattro_spike_slot_online/it</loc>
+    <lastmod>2022-02-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/provo_la_jammin_jars_2_spike_slot_online/it</loc>
+    <lastmod>2022-02-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/torniamo_a_caccia_del_mega_jackpot_alla_divine_fortune_8_spike_slot_online/it</loc>
+    <lastmod>2022-02-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_book_of_maya_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-02-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alle_vlt_della_novomatic_book_of_ra_lucky_lady_dolphins_pearl_ecc_slot_italia/it</loc>
+    <lastmod>2022-02-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/le_big_win_delle_ultime_live_highlights_spike_slot_online/it</loc>
+    <lastmod>2022-03-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_cash_bonanza_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-02-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/gioco_alla_bigger_bass_bonanza_fino_a_bet_54_spike_slot_online/it</loc>
+    <lastmod>2022-03-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_gold_digger_megaways_e_acquistiamo_bonus_spike_slot_online/it</loc>
+    <lastmod>2022-03-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/reactoonz_e_poi_reactoonz_2_fino_a_bet_max_buon_compleanno_spike_spike_slot_online/it</loc>
+    <lastmod>2022-03-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_infiniti_alla_solar_nova_2_il_ritorno_spike_slot_online/it</loc>
+    <lastmod>2022-03-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_book_of_adventure_super_stake_edition_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-03-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_rodeo_girls_slot_dream_set_universe_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-03-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/moreno_sceglie_play_n_go_col_batuocio_wild_frames_honey_rush_ecc_spike_slot_online/it</loc>
+    <lastmod>2022-03-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/caccia_al_jackpot_da_22_389_36_euro_alla_dynamite_riches_megaways_a_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-03-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquistiamo_bonus_alla_magicians_secrets_spike_slot_online/it</loc>
+    <lastmod>2022-03-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_ivanhoe_spike_slot_online/it</loc>
+    <lastmod>2022-03-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alle_nuovissime_vlt_della_igt_slot_italia/it</loc>
+    <lastmod>2022-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_nuova_nft_megaways_spike_slot_online/it</loc>
+    <lastmod>2022-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/il_ritorno_della_book_of_ra_magic_a_bet_max_38_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-03-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/gioco_alla_razor_shark_spike_slot_online/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/le_vostre_migliori_vincite_di_febbraio_8_spike_slot_online/it</loc>
+    <lastmod>2022-03-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_the_bandit_and_the_baron_spike_slot_online/it</loc>
+    <lastmod>2022-03-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_alla_forgotten_island_megaways_spike_slot_online/it</loc>
+    <lastmod>2022-03-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_mexicaner_slot_dream_set_red_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-03-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_el_dorado_the_city_of_gold_spike_slot_online/it</loc>
+    <lastmod>2022-03-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_book_of_oziris_a_bet_30_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-03-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_rise_of_athena_fino_a_bet_30_spike_slot_online/it</loc>
+    <lastmod>2022-03-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_knight_rider_spike_slot_online/it</loc>
+    <lastmod>2022-03-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_massimi_alla_fire_in_the_hole_con_moreno_e_basculo_spike_slot_online/it</loc>
+    <lastmod>2022-03-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/a_caccia_del_jackpot_da_32_415_51_euro_alla_ray_of_light_spike_slot_online/it</loc>
+    <lastmod>2022-03-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_scroll_of_dead_fino_a_bet_40_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-03-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alle_vlt_della_igt_the_big_easy_the_wild_life_sphinx_e_altro_slot_italia/it</loc>
+    <lastmod>2022-03-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/caccia_ai_jackpot_giornalieri_a_greedy_dragon_dragons_fire_e_ray_of_light_spike_slot_online/it</loc>
+    <lastmod>2022-03-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_a_hugo_carts_fino_a_bet_max_bet_100_spike_slot_online/it</loc>
+    <lastmod>2022-03-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_fino_a_bet_max_alla_cat_clans_con_moreno_e_basculo_spike_slot_online/it</loc>
+    <lastmod>2022-03-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_hammerfall_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-04-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_hot_fiesta_spike_slot_online/it</loc>
+    <lastmod>2022-03-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_a_bet_max_con_100_000_euro_alla_gems_bonanza_spike_slot_online/it</loc>
+    <lastmod>2022-04-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/come_funziona_la_4_fowl_play_slot_fowl_play_story_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-04-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_book_of_ra_twin_spinner_a_bet_max_39_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-04-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquistiamo_super_bonus_alla_fate_of_fortune_spike_slot_online/it</loc>
+    <lastmod>2022-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_lanterns_lions_fino_a_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-04-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/gioco_alla_magic_mirror_deluxe_2_fino_a_bet_100_spike_slot_online/it</loc>
+    <lastmod>2022-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_amulet_of_dead_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-04-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_alla_gates_of_oylmpus_2_spike_slot_online/it</loc>
+    <lastmod>2022-04-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_book_of_charms_quattro_fino_a_bet_200_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-04-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_a_guardie_e_ladri_slot_lucky_7_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-04-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_the_wild_machine_fino_a_bet_100_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-04-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_pimped_fino_a_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-04-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/le_vostre_big_win_di_marzo_9_spike_slot_online/it</loc>
+    <lastmod>2022-04-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_secret_of_dead_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-04-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/jackpot_a_165_000_euro_alla_divine_fortune_proviamoci_ancora_9_spike_slot_online/it</loc>
+    <lastmod>2022-04-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_book_of_toro_con_acquisti_bonus_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-04-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_a_fireballs_slot_dream_set_red_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-04-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_sisters_of_the_sun_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_jammin_jars_spike_slot_online/it</loc>
+    <lastmod>2022-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_a_bull_in_a_china_shop_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-04-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquistiamo_bonus_alla_gates_of_valhalla_spike_slot_online/it</loc>
+    <lastmod>2022-04-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/vediamo_il_gioco_mexican_party_slot_fire_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-04-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_safari_of_wealth_fino_a_bet_100_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_book_of_tombs_con_j_fino_a_bet_max_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-04-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_tombstone_a_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-04-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/vediamo_la_captain_xenos_earth_adventure_fino_a_bet_40_spike_slot_online/it</loc>
+    <lastmod>2022-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquistiamo_bonus_alla_crystal_caverns_megaways_spike_slot_online/it</loc>
+    <lastmod>2022-04-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_tales_of_asgard_freyas_wedding_fino_a_bet_60_spike_slot_online/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_nuova_partita_alle_vlt_spielo_the_big_easy_the_wild_life_e_altro_slot_italia/it</loc>
+    <lastmod>2022-04-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_book_of_spells_deluxe_fino_a_bet_max_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-05-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_buffalo_hunter_con_acquisti_bonus_spike_slot_online/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_odins_gamble_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-05-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_a_ali_baba_e_ali_baba_jackpot_fino_a_bet_60_spike_slot_online/it</loc>
+    <lastmod>2022-05-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/le_vostre_migliori_vincite_di_aprile_10_spike_slot_online/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_book_of_ra_10_win_ways_fino_a_bet_max_40_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-05-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/vediamo_la_fowl_play_diamond_slot_fowl_play_story_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_dance_with_the_devil_spike_slot_online/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_pop_spike_slot_online/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_luxor_a_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-05-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/vediamo_la_baron_bloodmore_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/nuove_e_classiche_vlt_novomatic_roll_on_fire_book_of_ra_lucky_lady_dolphins_pearl_slot_italia/it</loc>
+    <lastmod>2022-05-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_nitropolis_3_con_acquisti_bonus_spike_slot_online/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_pazzi_alla_book_of_vikings_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-05-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_alla_deadwood_spike_slot_online/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_crypt_of_the_dead_spike_slot_online/it</loc>
+    <lastmod>2022-05-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_rage_to_riches_spike_slot_online/it</loc>
+    <lastmod>2022-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_visitors_spike_slot_online/it</loc>
+    <lastmod>2022-05-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_toucans_london_vacation_slot_optimus_prize/it</loc>
+    <lastmod>2022-05-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_book_of_immortals_spike_slot_online/it</loc>
+    <lastmod>2022-05-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_reef_riders_della_net_ent_spike_slot_online/it</loc>
+    <lastmod>2022-05-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/a_caccia_del_jackpot_da_526_588_99_euro_alla_epic_ape_2_spike_slot_online/it</loc>
+    <lastmod>2022-05-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_fat_frankies_spike_slot_online/it</loc>
+    <lastmod>2022-05-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_mythic_maiden_fino_a_bet_54_spike_slot_online/it</loc>
+    <lastmod>2022-05-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_king_zeus_slot_dream_set_tornado_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-05-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_e_giocate_pazze_alla_wild_beach_party_spike_slot_online/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_book_of_shadows_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-05-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/proviamo_la_raging_rex_2_spike_slot_online/it</loc>
+    <lastmod>2022-05-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_viking_hoard_spike_slot_online/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_animal_madness_fino_a_bet_40_spike_slot_online/it</loc>
+    <lastmod>2022-06-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/la_nuova_super_haunted_house_slot_haunted_house_cemetery_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/compriamo_bonus_alla_chicken_drop_spike_slot_online/it</loc>
+    <lastmod>2022-06-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_nuova_partita_alla_book_of_ra_magic_a_bet_max_41_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-06-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_alla_papa_paolos_pizzeria_spike_slot_online/it</loc>
+    <lastmod>2022-06-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/le_migliori_vincite_degli_iscritti_fatte_a_maggio_11_spike_slot_online/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_gator_gold_gigablox_spike_slot_online/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/una_partita_alla_floating_dragon_fino_a_bet_50_spike_slot_online/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/scopriamo_la_book_of_99_domenica_di_book_spike_slot_online/it</loc>
+    <lastmod>2022-06-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/giochiamo_a_las_vegas_slot_fire_spike_slot_machine_da_bar/it</loc>
+    <lastmod>2022-06-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/videos/acquisti_bonus_pazzi_alla_fruit_storm_fino_a_bet_max_spike_slot_online/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
   <!-- Videos Urls END -->
   <!-- Slots Urls START -->
   <url>
     <loc>https://spikeslot.com/slot/drift-king/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-06-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -3712,12 +4402,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cavernicoli/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/i-pirati-del-bounty/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -3772,22 +4462,22 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/blood-suckers/it</loc>
-    <lastmod>2022-01-06</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/ulisse/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wolf-cub/it</loc>
-    <lastmod>2021-09-07</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/mayan-temple-revenge/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -3852,7 +4542,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/starburst/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -3887,7 +4577,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/mythic-maiden/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-05-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -3902,7 +4592,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/jungle-spirit-call-of-the-wild/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-05-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -3927,7 +4617,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/hotline/it</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4002,7 +4692,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/dead-or-alive/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4012,7 +4702,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/copy-cats/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4022,7 +4712,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/blood-suckers-2/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4037,22 +4727,22 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/extra-chilli/it</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/white-rabbit/it</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2022-06-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/bonanza/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/danger-high-voltage/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-03-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4062,7 +4752,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/terminator-2/it</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4082,12 +4772,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/karate-pig/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-05-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/immortal-romance/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4102,52 +4792,52 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/haunted-house-rest-in-paradise/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/witch-hunter/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/gallina-fowl-play-gold/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/4-fowl-play/it</loc>
-    <lastmod>2021-09-23</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cash-bunny/it</loc>
-    <lastmod>2021-10-20</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/fowl-play-london/it</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/haunted-house/it</loc>
-    <lastmod>2021-10-22</lastmod>
+    <lastmod>2022-06-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-ra-deluxe/it</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/dolphins-pearl-deluxe/it</loc>
-    <lastmod>2021-11-26</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/fowl-play-story/it</loc>
-    <lastmod>2021-09-23</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4167,7 +4857,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/mayan-temple-revenge-bar-slot/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-03-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4332,7 +5022,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/re-mida/it</loc>
-    <lastmod>2021-12-02</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4362,12 +5052,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-ra-magic/it</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/lord-of-the-ocean/it</loc>
-    <lastmod>2021-09-28</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4387,12 +5077,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/lucky-ladys-charm-deluxe/it</loc>
-    <lastmod>2021-10-28</lastmod>
+    <lastmod>2022-03-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/shooting-stars-supernova/it</loc>
-    <lastmod>2021-09-28</lastmod>
+    <lastmod>2022-06-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4407,12 +5097,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/power-stars/it</loc>
-    <lastmod>2021-09-28</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/sizzling-hot-deluxe/it</loc>
-    <lastmod>2021-09-28</lastmod>
+    <lastmod>2022-03-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4422,7 +5112,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/big-ghoulies/it</loc>
-    <lastmod>2021-09-12</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4432,7 +5122,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/reactoonz/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4442,7 +5132,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-dead/it</loc>
-    <lastmod>2021-09-12</lastmod>
+    <lastmod>2022-02-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4452,7 +5142,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-ra-deluxe-6/it</loc>
-    <lastmod>2021-09-12</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4462,27 +5152,27 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/buffalo-blitz/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-05-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/age-of-the-gods-king-of-olympus/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-29</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/age-of-the-gods-furious-4/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/age-of-the-gods/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-29</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/gladiator-road-to-rome/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4507,12 +5197,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-big-easy/it</loc>
-    <lastmod>2021-12-14</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-dark-knight/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4532,7 +5222,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/montezumas-treasure/it</loc>
-    <lastmod>2021-09-28</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4572,12 +5262,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/magic-frog/it</loc>
-    <lastmod>2021-09-28</lastmod>
+    <lastmod>2022-06-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/great-blue-jackpot/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4622,17 +5312,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/frankie-dettori-sporting-legends-jackpot/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-wild-life/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/justice-league/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4662,17 +5352,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/ronnie-o-sullivan-sporting-legends/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-mask-of-zorro/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/legacy-of-the-wild/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4687,7 +5377,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/birds/it</loc>
-    <lastmod>2020-10-23</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4712,7 +5402,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/john-hunter-and-the-secrets-of-da-vincis-treasure/it</loc>
-    <lastmod>2020-11-26</lastmod>
+    <lastmod>2022-03-28</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4747,7 +5437,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/space-wars/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-06-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4782,7 +5472,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/dead-or-alive-2/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4792,7 +5482,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/aztec-idols/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-03-01</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4827,12 +5517,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/ted/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-03-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/rise-of-olympus/it</loc>
-    <lastmod>2022-01-17</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4847,12 +5537,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/300-shields-extreme/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/terminator-genisys/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4882,7 +5572,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-dog-house/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-03-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4932,7 +5622,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/incinerator/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4957,7 +5647,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/pinocchio/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-05-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5007,7 +5697,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/sweet-bonanza/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5027,7 +5717,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/rise-of-merlin/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5072,7 +5762,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/ranch-to-riches/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5092,22 +5782,22 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/kingdoms-rise-guardians-of-the-abyss/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/kingdoms-rise-forbidden-forest/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/kingdoms-rise-sands-of-fury/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/kingdoms-rise-reign-of-ice/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-03-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5132,12 +5822,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/king-kong-cash/it</loc>
-    <lastmod>2021-09-29</lastmod>
+    <lastmod>2022-03-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/pirate-gold/it</loc>
-    <lastmod>2021-09-29</lastmod>
+    <lastmod>2022-03-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5147,7 +5837,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/midas-golden-touch/it</loc>
-    <lastmod>2021-09-29</lastmod>
+    <lastmod>2022-02-28</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5167,7 +5857,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/coins-of-egypt/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5197,7 +5887,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/john-hunter-and-the-aztec-treasure/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-03-01</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5227,7 +5917,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/jammin-jars/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5242,17 +5932,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/donuts/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/aztec-gold-megaways/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/pimped/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-04-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5262,7 +5952,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/john-hunter-and-the-tomb-of-the-scarab-queen/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-03-28</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5282,7 +5972,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cashzuma/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-01-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5306,18 +5996,18 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://spikeslot.com/slot/contact/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <loc>https://spikeslot.com/slot/slot-contact/it</loc>
+    <lastmod>2022-02-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/pirate-kingdom-megaways/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-03-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/dragon-horn/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-03-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5342,7 +6032,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/honey-rush/it</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2022-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5367,7 +6057,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/pirate-from-the-east/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-03-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5377,7 +6067,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/mount-mazuma/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5392,7 +6082,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/medusa-megaways/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5442,7 +6132,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/oceans-treasure/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5462,7 +6152,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/dragon-stone/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-03-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5507,7 +6197,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/easter-eggs/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-04-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5572,7 +6262,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-big-easy-2/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5612,12 +6302,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/money-train/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-04-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/perfect-gems/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-05-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5637,12 +6327,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/euphoria/it</loc>
-    <lastmod>2020-06-29</lastmod>
+    <lastmod>2022-06-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/sahara/it</loc>
-    <lastmod>2021-09-17</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5672,12 +6362,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cat-wilde-and-the-doom-of-dead/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-05-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/mike-tyson-knockout/it</loc>
-    <lastmod>2021-09-30</lastmod>
+    <lastmod>2022-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5707,7 +6397,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/sphinx/it</loc>
-    <lastmod>2021-05-25</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5717,7 +6407,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/john-hunter-and-the-book-of-tut/it</loc>
-    <lastmod>2020-11-23</lastmod>
+    <lastmod>2022-03-28</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5757,7 +6447,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/divine-lotus/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5767,7 +6457,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wild-frames/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-05-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5787,7 +6477,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/gold-digger/it</loc>
-    <lastmod>2020-09-04</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5812,7 +6502,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-sheba/it</loc>
-    <lastmod>2020-10-20</lastmod>
+    <lastmod>2022-02-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5827,7 +6517,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-ra-10/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5857,7 +6547,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/golden-ticket-2/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-05-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5907,7 +6597,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/golden-ticket/it</loc>
-    <lastmod>2020-10-23</lastmod>
+    <lastmod>2022-05-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5937,12 +6627,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/eye-of-horus-megaways/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-03-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/mega-moolah/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-02-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5952,7 +6642,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/starz-megaways/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5967,7 +6657,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/curse-of-the-werewolf-megaways/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5977,7 +6667,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/reactoonz-2/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -5997,12 +6687,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/money-train-2/it</loc>
-    <lastmod>2021-10-01</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/dream-set-maverick/it</loc>
-    <lastmod>2021-10-01</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6017,12 +6707,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/irish-pot-luck/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-03-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/lord-of-the-ocean-magic/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-05-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6037,7 +6727,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/mega-joker/it</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6132,7 +6822,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-goonies/it</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2022-03-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6157,12 +6847,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/24k-dragon/it</loc>
-    <lastmod>2021-10-01</lastmod>
+    <lastmod>2022-03-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/inspector-gadget/it</loc>
-    <lastmod>2021-10-01</lastmod>
+    <lastmod>2022-03-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6197,7 +6887,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/chinese-new-year/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-02-01</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6212,7 +6902,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-demon-code/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-01-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6227,7 +6917,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-immortals/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6256,8 +6946,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://spikeslot.com/slot/esqueleto-explosivo 2/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <loc>https://spikeslot.com/slot/esqueleto-explosivo-2/it</loc>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6287,7 +6977,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/coils-of-cash/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6307,7 +6997,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/john-hunter-and-the-mayan-gods/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6322,12 +7012,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/gems-bonanza/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-05-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/eggomatic/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6347,12 +7037,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/vikings-unleashed-megaways/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/great-rhino-megaways/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6362,7 +7052,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cat-wilde-in-the-eclipse-of-the-sun-god/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6372,12 +7062,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/big-bass-bonanza/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-06-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/star-bounty/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6387,42 +7077,42 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/thunder-shields/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/riders-of-the-storm/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/monster-pop/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/yggdrasil/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/night-queen/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/autumn-queen/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/spring-queen/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/dragons-queen/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6432,47 +7122,47 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wild-ape/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/macau-high-roller/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/venetia/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/bubble-fruits/it</loc>
-    <lastmod>2021-10-04</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/fire-strike/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/fire-88/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/fire-department/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/flame-dancer/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wild-walker/it</loc>
-    <lastmod>2021-11-23</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6482,32 +7172,32 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/thunderbird/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/black-black/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/chilli-chilli-bang-bang/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/chili-heat/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/chilli-pop/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/chili-quest/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6517,7 +7207,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/sword-of-khans/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6532,32 +7222,32 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cowboys-go-west/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wild-west-hi-roller/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cowboys-gold/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/bandit-saloon/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/show-me-the-mummy/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/yeti-battle-of-greenhat-peak/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6567,7 +7257,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/scudamores-super-stakes/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6582,22 +7272,22 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/rocky/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/gates-of-olympus/it</loc>
-    <lastmod>2021-10-28</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/1million-megaways/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/golden-osiris/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6612,7 +7302,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/diego-el-pibe-de-oro/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6637,17 +7327,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wild-toro/it</loc>
-    <lastmod>2021-09-17</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/thunderstruck-wild-lightning/it</loc>
-    <lastmod>2021-11-09</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/piggy-bank-megaways/it</loc>
-    <lastmod>2021-09-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6667,7 +7357,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/io/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6677,7 +7367,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/rise-of-giza-powernudge/it</loc>
-    <lastmod>2022-01-17</lastmod>
+    <lastmod>2022-01-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6692,12 +7382,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/eye-of-the-dragon-and-mystic-ball/it</loc>
-    <lastmod>2021-09-23</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/power-of-thor-megaways/it</loc>
-    <lastmod>2022-01-09</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6717,7 +7407,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/prism-of-gems/it</loc>
-    <lastmod>2021-10-08</lastmod>
+    <lastmod>2022-05-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6732,7 +7422,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/myth/it</loc>
-    <lastmod>2021-10-13</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6742,22 +7432,22 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wild-warriors/it</loc>
-    <lastmod>2021-10-11</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/golden-sevens/it</loc>
-    <lastmod>2021-10-13</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/rosh-immortality-cube-megaways/it</loc>
-    <lastmod>2021-11-30</lastmod>
+    <lastmod>2022-06-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/nitropolis/it</loc>
-    <lastmod>2021-10-20</lastmod>
+    <lastmod>2022-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6767,12 +7457,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-gold-double-chance/it</loc>
-    <lastmod>2021-10-19</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/alice-cooper-and-the-tome-of-madness/it</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2022-01-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -6802,7 +7492,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/vampire/it</loc>
-    <lastmod>2021-11-05</lastmod>
+    <lastmod>2022-06-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7032,7 +7722,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/wild-circus-256/it</loc>
-    <lastmod>2021-11-11</lastmod>
+    <lastmod>2022-05-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7082,12 +7772,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/nitropolis-2/it</loc>
-    <lastmod>2021-11-15</lastmod>
+    <lastmod>2022-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/agent-of-hearts/it</loc>
-    <lastmod>2021-11-17</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7097,7 +7787,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/divine-showdown/it</loc>
-    <lastmod>2021-11-23</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7217,12 +7907,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/lucky-grace-and-charm/it</loc>
-    <lastmod>2021-12-03</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/legend-of-the-ice-dragon/it</loc>
-    <lastmod>2021-12-14</lastmod>
+    <lastmod>2022-03-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7237,17 +7927,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/cat-wilde-and-the-lost-chapter/it</loc>
-    <lastmod>2021-12-08</lastmod>
+    <lastmod>2022-05-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/age-of-the-gods-mighty-midas/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-03-29</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/big-bass-bonanza-megaways/it</loc>
-    <lastmod>2021-12-06</lastmod>
+    <lastmod>2022-06-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7262,7 +7952,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/tombstone/it</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2022-04-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7317,12 +8007,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/parthenon-quest-for-immortality/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-05-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/christmas-big-bass-bonanza/it</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-06-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7372,7 +8062,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/deadwood/it</loc>
-    <lastmod>2022-01-10</lastmod>
+    <lastmod>2022-05-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7382,7 +8072,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-shadows/it</loc>
-    <lastmod>2022-01-05</lastmod>
+    <lastmod>2022-05-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7437,12 +8127,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/sisters-of-the-sun/it</loc>
-    <lastmod>2022-01-10</lastmod>
+    <lastmod>2022-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-fallen/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-01-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7457,7 +8147,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/the-bandit-and-the-baron/it</loc>
-    <lastmod>2022-01-10</lastmod>
+    <lastmod>2022-03-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7467,7 +8157,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/jurassic-world/it</loc>
-    <lastmod>2022-01-10</lastmod>
+    <lastmod>2022-04-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7482,7 +8172,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/beasts-of-fire/it</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-04-05</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7497,7 +8187,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/chicken-drop/it</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-06-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7517,7 +8207,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/astro-newts-megaways/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7542,7 +8232,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/solar-nova/it</loc>
-    <lastmod>2022-01-14</lastmod>
+    <lastmod>2022-06-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7557,7 +8247,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-charms-quattro/it</loc>
-    <lastmod>2022-01-17</lastmod>
+    <lastmod>2022-04-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7577,14 +8267,1209 @@
   </url>
   <url>
     <loc>https://spikeslot.com/slot/book-of-adventure-super-stake-edition/it</loc>
-    <lastmod>2022-01-17</lastmod>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/archangels-salvation/it</loc>
+    <lastmod>2022-01-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/spinata-grande/it</loc>
+    <lastmod>2022-01-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wild-water/it</loc>
+    <lastmod>2022-01-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/asgardian-stones/it</loc>
+    <lastmod>2022-01-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/moon-princess-christmas-kingdom/it</loc>
+    <lastmod>2022-01-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/bigger-bass-bonanza/it</loc>
+    <lastmod>2022-06-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cygnus/it</loc>
+    <lastmod>2022-01-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/empty-the-bank/it</loc>
+    <lastmod>2022-01-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-kingdoms/it</loc>
+    <lastmod>2022-01-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/a-nightmare-on-elm-streed/it</loc>
+    <lastmod>2022-01-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/super-wolf/it</loc>
+    <lastmod>2022-01-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/the-amazing-money-machine/it</loc>
+    <lastmod>2022-01-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/panda-panda/it</loc>
+    <lastmod>2022-01-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/juicy-fruits/it</loc>
+    <lastmod>2022-01-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/merlin-and-the-ice-queen-morgana/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dr-jekyll-and-mr-hyde/it</loc>
+    <lastmod>2022-01-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/majestic-gold-megaways/it</loc>
+    <lastmod>2022-01-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/bonus-bunnies/it</loc>
+    <lastmod>2022-02-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/zeus-wild-thunder/it</loc>
+    <lastmod>2022-01-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/john-hunter-and-the-quest-for-bermuda-riches/it</loc>
+    <lastmod>2022-01-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/kiss-reels-of-rock/it</loc>
+    <lastmod>2022-02-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/rock-the-reels-megaways/it</loc>
+    <lastmod>2022-05-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/piggy-holmes/it</loc>
+    <lastmod>2022-01-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/gordon-ramsay-hells-kitchen/it</loc>
+    <lastmod>2022-01-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/pharaohs-treasure-deluxe/it</loc>
+    <lastmod>2022-03-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/gigantoonz/it</loc>
+    <lastmod>2022-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/aztec-explorer-classic/it</loc>
+    <lastmod>2022-02-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/plunderland/it</loc>
+    <lastmod>2022-02-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wwe-legends/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-legends/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/81-vegas-multi-fruits/it</loc>
+    <lastmod>2022-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/beauty-and-the-beast/it</loc>
+    <lastmod>2022-02-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/sugar-pop/it</loc>
+    <lastmod>2022-02-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/hot-fiesta/it</loc>
+    <lastmod>2022-04-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dragon-tribe/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/jammin-jars-2/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/encharmed-quattro/it</loc>
+    <lastmod>2022-02-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/pirate-armada/it</loc>
+    <lastmod>2022-02-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/paranormal-activity/it</loc>
+    <lastmod>2022-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dawn-of-egypt/it</loc>
+    <lastmod>2022-02-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/rock-vegas/it</loc>
+    <lastmod>2022-02-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dragon-match-megaways/it</loc>
+    <lastmod>2022-02-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cash-bonanza/it</loc>
+    <lastmod>2022-03-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/gods-of-time/it</loc>
+    <lastmod>2022-02-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wild-depths/it</loc>
+    <lastmod>2022-02-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/mega-fortune/it</loc>
+    <lastmod>2022-05-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/heisenberg/it</loc>
+    <lastmod>2022-03-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/the-hive/it</loc>
+    <lastmod>2022-03-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/ivanhoe/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/magicians-secrets/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dynamite-riches/it</loc>
+    <lastmod>2022-03-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/skull-bonanza/it</loc>
+    <lastmod>2022-03-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/gold-digger-megaways/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/forgotten-island-megaways/it</loc>
+    <lastmod>2022-03-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/razor-shark/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-oziris/it</loc>
+    <lastmod>2022-04-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/nft-megaways/it</loc>
+    <lastmod>2022-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/el-dorado-the-city-of-gold/it</loc>
+    <lastmod>2022-03-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/ray-of-light/it</loc>
+    <lastmod>2022-03-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/boom-pirates/it</loc>
+    <lastmod>2022-03-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/rise-of-athena/it</loc>
+    <lastmod>2022-04-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/scroll-of-dead/it</loc>
+    <lastmod>2022-03-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/knight-rider/it</loc>
+    <lastmod>2022-03-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/hugo-carts/it</loc>
+    <lastmod>2022-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/greedy-dragon/it</loc>
+    <lastmod>2022-03-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dragons-fire-megaways/it</loc>
+    <lastmod>2022-03-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/twin-spinner-book-of-ra-deluxe/it</loc>
+    <lastmod>2022-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/hammerfall/it</loc>
+    <lastmod>2022-04-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cat-clans/it</loc>
+    <lastmod>2022-05-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/creepy-circus/it</loc>
+    <lastmod>2022-05-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/marlin-catch/it</loc>
+    <lastmod>2022-03-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dynamite-riches-megaways/it</loc>
+    <lastmod>2022-03-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cricket-heroes/it</loc>
+    <lastmod>2022-03-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/gates-of-valhalla/it</loc>
+    <lastmod>2022-04-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/lucky-lightning/it</loc>
+    <lastmod>2022-03-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cricket-star/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/lucky-7/it</loc>
+    <lastmod>2022-03-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/legacy-of-vlad/it</loc>
+    <lastmod>2022-04-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/rich-wilde-and-the-amulet-of-dead/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/magic-mirror-deluxe-2/it</loc>
+    <lastmod>2022-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fate-of-fortune/it</loc>
+    <lastmod>2022-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/lanterns-and-lions/it</loc>
+    <lastmod>2022-04-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/27-joker-fruits/it</loc>
+    <lastmod>2022-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/nitropolis-3/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/the-wild-machine/it</loc>
+    <lastmod>2022-04-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/secret-of-dead/it</loc>
+    <lastmod>2022-05-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-toro/it</loc>
+    <lastmod>2022-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/easter-fortune/it</loc>
+    <lastmod>2022-04-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/bull-in-a-china-shop/it</loc>
+    <lastmod>2022-04-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-tombs/it</loc>
+    <lastmod>2022-04-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/safari-of-wealth/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/crystal-caverns-megaways/it</loc>
+    <lastmod>2022-04-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-spells/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/captain-xenos-earth-adventure/it</loc>
+    <lastmod>2022-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/lucky-leprechaun/it</loc>
+    <lastmod>2022-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/royal-masquerade/it</loc>
+    <lastmod>2022-04-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-gates/it</loc>
+    <lastmod>2022-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fibonacci/it</loc>
+    <lastmod>2022-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/lucky-tropics/it</loc>
+    <lastmod>2022-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fortunes-of-ali-baba/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/tales-of-asgard-freyas-wedding/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/buffalo-hunter/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/ali-baba-and-the-40-thieves/it</loc>
+    <lastmod>2022-05-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cave-of-fortune/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/buffalo-trail/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/squid-from-the-deep/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/odins-gamble-mimirs-well/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/pharaohs-and-aliens/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/vintage-win/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/steam-punk-big-city/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/rome-warrior/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wild-jack/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/ocean-reef/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/mad-men-and-nuclear-war/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/riches-from-the-deep/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/jewels-world/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/81st-cabaret/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/golden-new-world/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fruitastic/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/energy-stars/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/voodoo-candy-shop/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/stunning-27/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/golden-lamp/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dance-with-the-devil/it</loc>
+    <lastmod>2022-06-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/pop/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-vikings/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/baron-bloodmore-and-the-crimson-castle/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/luxor/it</loc>
+    <lastmod>2022-05-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/james-dean/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/reel-thunder/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/slots-angels/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/boxing-arena/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/energy-fruits/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/transylvanian-beauty/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/alice-in-wonderland/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/easy-rider/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/solar-queen-megaways/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/doggy-riches-megaways/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/tyrant-king-megaways/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cold-as-ice/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fresh-fortune/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/royal-crown/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/jazz-spin/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dark-carnivale/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/pyramid-treasure/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/brilliant-diamonds-hold-and-win/it</loc>
+    <lastmod>2022-05-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/visitors/it</loc>
+    <lastmod>2022-05-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/epic-ape-2/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/crypt-of-the-dead/it</loc>
+    <lastmod>2022-05-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fat-frankies/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/hooligan-hustle/it</loc>
+    <lastmod>2022-05-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wild-beach-party/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/raging-rex/it</loc>
+    <lastmod>2022-05-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/raging-rex-2/it</loc>
+    <lastmod>2022-05-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-ra-deluxe-10-win-ways/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/rage-to-riches/it</loc>
+    <lastmod>2022-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/om-nom/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/miami-multiplier/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cubes/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cash-compass/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/stick-em/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/robbin-robin/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/dream-diver/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/hippo-pop/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cosmic-voyager/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/king-of-cats/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/raptor-doublemax/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/nefertitis-riches/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/moon-princess-100/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cash-pig/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wild-bounty/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of darkness/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/super-sweets/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/beavis-and-butthead/it</loc>
+    <lastmod>2022-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/reef-raider/it</loc>
+    <lastmod>2022-05-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/viking-hoard/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/baccarat-live-sa-gaming/it</loc>
+    <lastmod>2022-05-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/magic-queens/it</loc>
+    <lastmod>2022-05-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/animal-madness/it</loc>
+    <lastmod>2022-06-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/frozen-gems/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/forge-of-gems/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/bankin-bacon/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/4-haunted-house/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/floating-dragon/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/summer-jam/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/mega-bunny-hyperways/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/diamonds-of-the-realm/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/papa-paolos-pizzeria/it</loc>
+    <lastmod>2022-06-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/van-helsings-book-of-the-undead/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-the-irish/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-cleopatra/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/take-the-bank/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wild-bazaar/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/seasons/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/miami-nights/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/surfin-reels/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/def-leppard-hysteria/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/masters-of-eclipse/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/gator-gold-gigablox/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-baal/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/puebla-parade/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/chicken-madness/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/stunning-cubes/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/star-settler/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/bonnie-and-clyde/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/hot-sunrise/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/ramses-rising/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/taste-of-china/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/cosmic-dream/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/magic-hunter/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/best-new-york-food/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/star-fortune/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fiesta-tequila/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/ancient-secret/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/rich-castle/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/burning-slots/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-99/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/fruit-storm/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/extra-juicy-megaways/it</loc>
+    <lastmod>2022-06-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/pacific-gold/it</loc>
+    <lastmod>2022-06-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/eye-of-atum/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/drill-that-gold/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/might-of-ra/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/jumbo-jellies/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/tombstone-rip/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/the-hand-of-midas/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/barn-festival/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/golden-genie-and-the-walking-wilds/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/the-phantom-of-the-opera/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/the-magic-orb-hold-and-win/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/itero/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/hand-of-anubis/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/gladiator-legends/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/double-rainbow/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/the-bowery-boys/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/wanted-dead-or-a-wild/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/book-of-poseidon/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/harvest-wilds/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/slot/king-carrot/it</loc>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Slots Urls END -->
   <!-- Guides Urls START -->
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-starcasino/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7594,82 +9479,82 @@
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-casino-leovegas/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-03-31</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-casino-slotyes/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-04-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-casino-snai/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-04-12</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/guida-bonus-benvenuto-eurobet/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-casino-gioco-digitale/it</loc>
-    <lastmod>2021-12-17</lastmod>
+    <lastmod>2022-04-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-casino-com/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-04-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-888-casino/it</loc>
-    <lastmod>2021-11-18</lastmod>
+    <lastmod>2022-03-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-betfair-casino/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-lottomatica-casino/it</loc>
-    <lastmod>2021-12-16</lastmod>
+    <lastmod>2022-04-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/netbet-casino-bonus-benvenuto/it</loc>
-    <lastmod>2021-12-13</lastmod>
+    <lastmod>2022-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/guida-bonus-unibet-casino/it</loc>
-    <lastmod>2022-01-14</lastmod>
+    <lastmod>2022-04-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-casino-betway/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-04-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-casino-bwin/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/guida-al-bonus-di-benvenuto-pokerstars/it</loc>
-    <lastmod>2021-11-18</lastmod>
+    <lastmod>2022-03-31</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/bonus-benvenuto-kingcasino/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-04-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/guida-bonus-goldbet/it</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2022-02-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7679,12 +9564,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/guida/casino-betflag-bonus-benvenuto/it</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/guida/recensione-wincasino-bonus/it</loc>
-    <lastmod>2022-01-10</lastmod>
+    <lastmod>2022-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7694,13 +9579,18 @@
   </url>
   <url>
     <loc>https://spikeslot.com/guida/recensione-codere-bonus/it</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-04-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guida/big-casino-bestingames/it</loc>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Articles Urls END -->
   <url>
     <loc>https://spikeslot.com/articoli/trucchi-per-le-slot-machine/it</loc>
-    <lastmod>2021-07-21</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7710,7 +9600,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/trucchi-slot-bar-stelle-e-cubi/it</loc>
-    <lastmod>2021-07-19</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7725,7 +9615,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/ludopatia-come-smettere-di-giocare/it</loc>
-    <lastmod>2021-05-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7755,7 +9645,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/guida-blackjack-puntate/it</loc>
-    <lastmod>2021-01-25</lastmod>
+    <lastmod>2022-02-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7780,7 +9670,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/bonus-casino-senza-deposito/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7805,12 +9695,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/come-funzionano-slot-machine/it</loc>
-    <lastmod>2021-07-21</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/convalida-documenti-casino/it</loc>
-    <lastmod>2021-01-25</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7835,7 +9725,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/casino-online-italiani-residenti-estero/it</loc>
-    <lastmod>2021-11-26</lastmod>
+    <lastmod>2022-06-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7850,12 +9740,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/guida-crazy-time/it</loc>
-    <lastmod>2021-07-22</lastmod>
+    <lastmod>2022-03-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/migliori-bonus-sport/it</loc>
-    <lastmod>2021-11-03</lastmod>
+    <lastmod>2022-05-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7880,7 +9770,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/trucchi-slot-bar-cristaltec/it</loc>
-    <lastmod>2021-08-25</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7900,7 +9790,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/migliori-slot-volatilita/it</loc>
-    <lastmod>2021-08-27</lastmod>
+    <lastmod>2022-03-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7965,7 +9855,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/guida-lightning-roulette/it</loc>
-    <lastmod>2021-07-14</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -7985,7 +9875,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/slot-online-soldi-veri/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-03-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8005,12 +9895,42 @@
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/big-casino-bestingames/it</loc>
-    <lastmod>2021-07-22</lastmod>
+    <lastmod>2022-05-05</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/articoli/casino-live-evolution-gaming/it</loc>
-    <lastmod>2021-07-22</lastmod>
+    <lastmod>2022-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/articoli/guida-sweet-bonanza-candyland-live-pragmatic-play/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/articoli/guida-lightning-baccarat/it</loc>
+    <lastmod>2022-04-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/articoli/guida-lightning-blackjack/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/articoli/sa-gaming-live-casino-online/it</loc>
+    <lastmod>2022-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/articoli/guida-mega-wheel-live-pragmatic-play/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/articoli/guida-mega-roulette-live-pragmatic-play/it</loc>
+    <lastmod>2022-06-07</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Articles Urls END -->
@@ -8087,7 +10007,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-slot-a-tema-egizio/it</loc>
-    <lastmod>2021-09-03</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8107,7 +10027,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/scegliere-miglior-slot-online/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8172,7 +10092,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/riapertura-casino-campione-italia/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8182,7 +10102,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/gioco-azzardo-criptovalute-twitch/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-01-28</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8227,7 +10147,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/guide-bonus-casino-online-migliori/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8272,7 +10192,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/quali-giochi-sono-casino-online/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8307,12 +10227,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/video-spike-piu-visti-su-youtube/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/android-app-giochi-casino/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8327,12 +10247,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/simboli-principali-slot-online/it</loc>
-    <lastmod>2021-09-03</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-dolphins-pearl-deluxe/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8342,12 +10262,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/big-easy-slot-online-ritmo-jazz/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/strategie-gioco-fruit-party-slot/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8377,7 +10297,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-siti-slot-online/it</loc>
-    <lastmod>2022-01-04</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8387,7 +10307,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-15-slot-online-gratis/it</loc>
-    <lastmod>2021-08-12</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8407,7 +10327,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/capire-quando-si-vince-alle-slot-online/it</loc>
-    <lastmod>2021-08-14</lastmod>
+    <lastmod>2022-05-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8452,12 +10372,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/nuovi-giochi-gratis-casino-online/it</loc>
-    <lastmod>2021-08-18</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-si-gioca-alla-slot-grand-spinn/it</loc>
-    <lastmod>2021-08-19</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8467,7 +10387,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-extra-chilli-megaways/it</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8507,7 +10427,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/perche-divertente-giocare-casino/it</loc>
-    <lastmod>2021-08-24</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8517,7 +10437,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/nuova-slot-pragmatic-play-rise-of-giza/it</loc>
-    <lastmod>2021-09-27</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8537,7 +10457,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-give-me-five-bar-macchinetta/it</loc>
-    <lastmod>2021-09-09</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8557,17 +10477,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/macchinette-bar-informazioni-termini/it</loc>
-    <lastmod>2021-08-29</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/book-of-stars-evoluzione-book-of-ra/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/300-shields-extreme-slot-spartana/it</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8592,7 +10512,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-who-wants-to-be-a-millionaire-megapays/it</loc>
-    <lastmod>2021-09-27</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8602,7 +10522,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-24k-dragon-come-funziona/it</loc>
-    <lastmod>2021-09-02</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8627,27 +10547,27 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/rick-e-morty-slot-come-funziona/it</loc>
-    <lastmod>2021-09-05</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/nuove-frontiere-giochi-novomatic/it</loc>
-    <lastmod>2021-09-27</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/sicilia-forte-tendenza-gioco-online/it</loc>
-    <lastmod>2021-09-06</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-re-mida-segreti-svelati/it</loc>
-    <lastmod>2021-09-07</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-sphinx-come-funziona/it</loc>
-    <lastmod>2021-09-07</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8697,22 +10617,22 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-giocare-alla-golden-goddess/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-giocare-alla-sabres-and-swords-charge/it</loc>
-    <lastmod>2021-09-14</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-royale-with-cheese/it</loc>
-    <lastmod>2021-09-15</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-1-million-megaways-come-funziona/it</loc>
-    <lastmod>2021-09-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8742,12 +10662,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/determinare-volatilita-slot-machine/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/aggiornamento-best-in-game-casino/it</loc>
-    <lastmod>2021-09-22</lastmod>
+    <lastmod>2022-05-05</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8777,7 +10697,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/bonus-benvenuto-migliori-piattaforme-digitali/it</loc>
-    <lastmod>2021-09-27</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8827,7 +10747,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-online-codex-of-fortune/it</loc>
-    <lastmod>2021-10-05</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8837,7 +10757,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/divine-showdown-slot-digitale-come-funziona/it</loc>
-    <lastmod>2021-11-23</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8847,12 +10767,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/quando-sfruttare-come-ottenere-bonus-benvenuto/it</loc>
-    <lastmod>2021-10-06</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-giochi-casino-principianti/it</loc>
-    <lastmod>2021-10-06</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8892,7 +10812,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/nuova-uscita-relax-gaming-helios-fury/it</loc>
-    <lastmod>2021-11-19</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8907,7 +10827,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-golden-sevens/it</loc>
-    <lastmod>2021-10-13</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8937,7 +10857,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-alice-cooper-tome-of-madness/it</loc>
-    <lastmod>2021-10-28</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8952,12 +10872,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/caratteristiche-slot-lucky-ladys-charm-deluxe/it</loc>
-    <lastmod>2021-10-19</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-prism-of-gems/it</loc>
-    <lastmod>2021-10-19</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8977,12 +10897,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-fruit-million-halloween/it</loc>
-    <lastmod>2021-10-22</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/importanza-affidabilita-piattaforme-casino-digitali/it</loc>
-    <lastmod>2021-10-23</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -8992,17 +10912,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/ultimi-giochi-rilasciati-2021/it</loc>
-    <lastmod>2021-12-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/mondo-casino-digitali-lucha-legends/it</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/titoli-pragmatic-play-day-of-dead-mystic-chief/it</loc>
-    <lastmod>2021-10-26</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9017,7 +10937,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/attuali-tendenze-mondo-gioco-digitale/it</loc>
-    <lastmod>2021-10-28</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9027,7 +10947,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/lanciata-slot-pirate-pays-megaways/it</loc>
-    <lastmod>2021-10-29</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9037,22 +10957,22 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-slot-digitali-2021-a-tema-halloween/it</loc>
-    <lastmod>2021-10-31</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-giochi-live-disponibili-piattaforme-casino-digitali/it</loc>
-    <lastmod>2021-11-01</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/disavventura-in-punto-gioco-brindisi/it</loc>
-    <lastmod>2021-11-01</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-jaguar-princess/it</loc>
-    <lastmod>2021-11-01</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9062,12 +10982,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-golden-fish-tank-2-gigablox/it</loc>
-    <lastmod>2021-11-19</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/quattro-slot-popolari-tema-ice-hockey/it</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9077,7 +10997,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-giochi-da-tavolo-da-provare-versione-online/it</loc>
-    <lastmod>2021-11-05</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9087,12 +11007,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/principali-motivi-svago-italiani/it</loc>
-    <lastmod>2021-11-07</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/incredibile-novita-pragmatic-sweet-bonanza-candyland/it</loc>
-    <lastmod>2021-11-08</lastmod>
+    <lastmod>2022-05-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9112,7 +11032,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/ultime-uscite-playn-go-odin-protector-of-the-realms/it</loc>
-    <lastmod>2021-11-10</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9127,7 +11047,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/cosa-sono-come-funzionano-giochi-slingo/it</loc>
-    <lastmod>2021-11-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9142,7 +11062,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/imperdibili-slot-online-pragmatic-play/it</loc>
-    <lastmod>2021-11-15</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9157,12 +11077,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-machine-popolari-tema-bufalo/it</loc>
-    <lastmod>2021-11-17</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-slot-machine-online-tema-supereroi/it</loc>
-    <lastmod>2021-11-19</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9172,7 +11092,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/fenomenali-slot-online-sviluppate-da-microgaming/it</loc>
-    <lastmod>2021-11-21</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9182,12 +11102,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/softwarehouse-netent-e-slot-machine-online/it</loc>
-    <lastmod>2021-11-22</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/aggiornamento-starburst-xtreme-arriva-su-wincasino/it</loc>
-    <lastmod>2021-11-25</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9197,12 +11117,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-online-wild-walker-tutto-quello-che-serve-sapere/it</loc>
-    <lastmod>2021-11-23</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/quattro-popolari-slot-machine-online-con-jackpot-progressivo/it</loc>
-    <lastmod>2021-11-24</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9222,7 +11142,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/tutte-le-info-big-bass-bonanza-megaways/it</loc>
-    <lastmod>2021-12-06</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9232,12 +11152,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-legend-of-the-ice-dragon/it</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/tre-slot-machine-piu-giocate-mondo-intero/it</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9247,7 +11167,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/popolarita-serie-slot-machine-aventi-protagonista-rich-wilde/it</loc>
-    <lastmod>2021-11-30</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9257,17 +11177,17 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-tema-joker-piu-conosciute/it</loc>
-    <lastmod>2021-12-02</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-fire-in-the-hole/it</loc>
-    <lastmod>2021-12-03</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/perche-casino-sempre-musica/it</loc>
-    <lastmod>2021-12-04</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9277,12 +11197,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-machine-online-popolari-natale-2021/it</loc>
-    <lastmod>2021-12-06</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/simbolo-lupo-slot-machine/it</loc>
-    <lastmod>2021-12-06</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9292,7 +11212,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-machine-barbarian-fury-nolimit-city/it</loc>
-    <lastmod>2021-12-07</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9322,12 +11242,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/giochi-colonne-sonore-prodotte-da-star-metal/it</loc>
-    <lastmod>2021-12-13</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/calcio-slot-machine-online-migliori/it</loc>
-    <lastmod>2021-12-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9342,12 +11262,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-machine-online-riders-of-the-storm/it</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-segreti-misteriosi-book-of-secrets-6/it</loc>
-    <lastmod>2021-12-16</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9362,7 +11282,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-slot-machine-2022/it</loc>
-    <lastmod>2021-12-19</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9377,12 +11297,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-christmas-big-bass-bonanza/it</loc>
-    <lastmod>2021-12-21</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-santas-village-tutte-le-info/it</loc>
-    <lastmod>2021-12-22</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9407,7 +11327,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-rise-of-merlin/it</loc>
-    <lastmod>2021-12-27</lastmod>
+    <lastmod>2022-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9417,12 +11337,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/gioco-digitale-monopoly-casino/it</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/perche-casino-digitali-sono-popolari-quelli-tradizionali/it</loc>
-    <lastmod>2021-12-29</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9437,7 +11357,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-machine-columbus/it</loc>
-    <lastmod>2022-01-03</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9447,12 +11367,12 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-cleopatra-gratis/it</loc>
-    <lastmod>2022-01-03</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://spikeslot.com/blog/incremento-siti-gioco-casino-illegali/it</loc>
-    <lastmod>2022-01-04</lastmod>
+    <lastmod>2022-06-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9462,7 +11382,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/volatilita-slot-machine-online/it</loc>
-    <lastmod>2022-01-05</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9482,7 +11402,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/slot-machine-online-amate-appassionati/it</loc>
-    <lastmod>2022-01-09</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9492,7 +11412,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/migliori-slot-machine-ambientate-italia/it</loc>
-    <lastmod>2022-01-10</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9502,7 +11422,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/guns-n-roses-kiss-reels-of-rock-migliori-slot-rock/it</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9512,7 +11432,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/provider-microgaming-strategia-prevenire-ludopatia/it</loc>
-    <lastmod>2022-01-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9527,7 +11447,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-utilizzare-meglio-bonus-casino-digitali/it</loc>
-    <lastmod>2022-01-16</lastmod>
+    <lastmod>2022-05-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9537,7 +11457,952 @@
   </url>
   <url>
     <loc>https://spikeslot.com/blog/come-funziona-slot-merlin-and-the-ice-queen-morgana/it</loc>
-    <lastmod>2022-01-17</lastmod>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/successo-gioco-digitale-america/it</loc>
+    <lastmod>2022-01-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/incremento-gioco-online-calo-erario-italia/it</loc>
+    <lastmod>2022-01-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/miti-leggende-casino-tradizionali-online/it</loc>
+    <lastmod>2022-01-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/book-of-shadows-nuova-slot-online-nolimit-city/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-lucky-grace-and-charm-slot-machine-online/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/slot-machine-gioco-live-dedicati-conquistatore-gonzo/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/incredibili-avventure-slot-machine-online-rise-of-giza-powernudge/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-diventare-giocatore-professionista/it</loc>
+    <lastmod>2022-01-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/hells-kitchen-gordon-ramsay-diventa-protagonisa-gioco-digitale/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/strategie-utili-ottimizzare-budget-durante-sessione-slot-machine/it</loc>
+    <lastmod>2022-01-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/intrattenimento-online-social-media-casino/it</loc>
+    <lastmod>2022-01-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/piu-ricercate-slot-online-protagoniste-principesse/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/cinque-giochi-roulette-amati-appassionati-casino-online/it</loc>
+    <lastmod>2022-01-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/cosa-significa-essere-dipendenti-gioco-casino/it</loc>
+    <lastmod>2022-01-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/quattro-casino-tradizionali-italiani-loro-pecularieta/it</loc>
+    <lastmod>2022-01-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/errori-evitare-durante-sessioni-gioco-migliori-slot-machine/it</loc>
+    <lastmod>2022-01-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-wild-depths-nuovissima-produzione-pragmatic/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-chinese-new-year/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-plunderland-innovativa-relax-gaming/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/perche-verificando-incremento-gioco-online-versione-demo/it</loc>
+    <lastmod>2022-02-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/fattori-non-possono-mancare-casino-online-germania/it</loc>
+    <lastmod>2022-02-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/successo-slot-machine-online-book-of-ra-irrefrenabile/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-20-articoli-blog-spike/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/cosa-serve-diventare-operatore-avanguardia/it</loc>
+    <lastmod>2022-02-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-john-hunter-quest-for-bermuda-riches/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/dream-catcher-vs-sweet-bonanza-candyland/it</loc>
+    <lastmod>2022-05-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-imparare-giocare-slot-machine-online/it</loc>
+    <lastmod>2022-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/sport-incredibile-esperienza-migliori-casino-online/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/classifica-incassi-casino-online-italiani-gennaio-2022/it</loc>
+    <lastmod>2022-02-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/sessione-gioco-piccantissima-slot-online-extra-chilli/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/giochi-digitali-piu-popolari-in-australia/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/nuove-collaborazioni-pokerstars-red-bull-racing/it</loc>
+    <lastmod>2022-04-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-book-of-sheba/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/momenti-chiave-espansione-industria-casino-online/it</loc>
+    <lastmod>2022-02-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-online-the-amazing-money-machine/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-machine-online-san-valentino/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/citta-industria-gioco-casino-assume-importanza/it</loc>
+    <lastmod>2022-02-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/bingo-versione-online/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/tecnologie-casino-online-crescono/it</loc>
+    <lastmod>2022-02-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/software-houses-mercato-internazionale-casino/it</loc>
+    <lastmod>2022-02-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/classifica-10-giochi-digitali-piu-popolari-mondo-2021/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/cosa-e-rtp/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-pharaohs-treasure-deluxe/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/storia-evoluzione-gioco-casino-canada/it</loc>
+    <lastmod>2022-02-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-dr-jekyll-mr-hide-slot-incredibile/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/blackjack-e-sue-varianti/it</loc>
+    <lastmod>2022-02-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/gioco-casino-illegalita-mondo/it</loc>
+    <lastmod>2022-02-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/intelligenza-artificiale-casino-online/it</loc>
+    <lastmod>2022-02-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/slot-online-jackpot-elevati/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/quali-sono-principali-interessi-generazione-z/it</loc>
+    <lastmod>2022-02-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/thunderkick-produzione-midas-golden-touch/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-dragon-tribe-gioco-online-gratis/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-giochi-online-gratis-tema-azteco/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/texas-holdem-piu-ricercato-gioco-poker/it</loc>
+    <lastmod>2022-03-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/popolari-giochi-online-blueprint-gaming-gratis/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/deal-no-deal-side-bet-city/it</loc>
+    <lastmod>2022-03-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-gigantoonz/it</loc>
+    <lastmod>2022-04-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/gioco-casino-popolarita-film/it</loc>
+    <lastmod>2022-03-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/classifica-incassi-casino-online-italiani-febbraio-2022/it</loc>
+    <lastmod>2022-03-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-juicy-fruits/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/poker-cash-quote-mercato-febbraio-2022/it</loc>
+    <lastmod>2022-03-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-encharmed-quattro/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/evoluzione-industria-slot-gratis/it</loc>
+    <lastmod>2022-03-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/normative-gioco-casino-italia-parti-mondo/it</loc>
+    <lastmod>2022-03-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/live-beneficenza-raccolta-fondi-cri-ucraina/it</loc>
+    <lastmod>2022-05-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/scommesse-sportive-quote-mercato-febbraio-2022/it</loc>
+    <lastmod>2022-03-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-online-nemesis-provider/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/creazione-slot-machine-online-narrazione/it</loc>
+    <lastmod>2022-03-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-paranormal-activity/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/fattori-chiave-design-slot-machine-online/it</loc>
+    <lastmod>2022-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-wild-toro/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/impatto-criptovalute-gioco-casino-online/it</loc>
+    <lastmod>2022-03-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-giochi-slot-gratis-tema-fortuna/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/perche-giocare-sempre-casino-certificato-adm/it</loc>
+    <lastmod>2022-03-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-cash-bonanza/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/vantaggi-effettuare-partita-migliori-giochi-live/it</loc>
+    <lastmod>2022-03-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-giochi-slot-tema-pirati-consigliati/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/casino-online-plasmano-industria-giochi-azzardo/it</loc>
+    <lastmod>2022-03-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/drago-migliori-slot-machine-online/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-novomatic-titoli-imperdibili/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/giocare-responsabilmente-senza-perdere-controllo/it</loc>
+    <lastmod>2022-03-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/industria-gioco-casino-regno-unito/it</loc>
+    <lastmod>2022-03-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-gold-digger-megaways/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/trend-hanno-plasmato-settore-scommesse-sportive/it</loc>
+    <lastmod>2022-03-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-danger-high-voltage/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-forgotten-island-megaways/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/john-hunter-avventure-mondo-gioco-digitale/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/vincite-settore-slot-machine/it</loc>
+    <lastmod>2022-03-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-online-gratis-age-of-the-gods/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/slot-online-tema-cricket/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/successo-scommesse-sportive-online-australia/it</loc>
+    <lastmod>2022-03-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/blocco-piattaforme-casino-online/it</loc>
+    <lastmod>2022-04-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/sicurezza-vigore-migliori-piattaforme-casino-online/it</loc>
+    <lastmod>2022-04-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-bac-bo-live-evolution/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-aprire-canale-slot-youtube-twitch/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/cash-or-crash-mega-ball-gioco-evolution-gaming/it</loc>
+    <lastmod>2022-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-jurassic-world/it</loc>
+    <lastmod>2022-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/slot-machine-online-popolarita-nel-mondo/it</loc>
+    <lastmod>2022-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-beasts-of-fire/it</loc>
+    <lastmod>2022-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-riconoscere-profilo-falso/it</loc>
+    <lastmod>2022-04-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/roulette-continua-crescita-casino-gioco-online/it</loc>
+    <lastmod>2022-04-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/introduzione-spid-verifica-conti-gioco/it</loc>
+    <lastmod>2022-04-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/classifica-incassi-casino-online-italiani-marzo-2022/it</loc>
+    <lastmod>2022-04-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/reimpostare-password-casino-online/it</loc>
+    <lastmod>2022-04-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-easter-eggs/it</loc>
+    <lastmod>2022-04-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-sviluppare-sito-web-senza-esperienza/it</loc>
+    <lastmod>2022-04-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/bonus-benvenuto-migliori-piattaforme-casino-online/it</loc>
+    <lastmod>2022-04-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-hot-fiesta/it</loc>
+    <lastmod>2022-04-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-rise-of-athena/it</loc>
+    <lastmod>2022-04-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/grandi-industrie-online-sviluppate-2022/it</loc>
+    <lastmod>2022-04-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/cosa-garantisce-equita-siti-gioco/it</loc>
+    <lastmod>2022-04-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/scommesse-sportive-quote-mercato-marzo-2022/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-tema-moto/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/parti-mondo-blackjack-giocato-molto/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-hugo-carts/it</loc>
+    <lastmod>2022-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/mike-tyson-giochi-gratis-online-boxing/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/nuove-super-slot-gratis-casino-online-legali/it</loc>
+    <lastmod>2022-05-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-honey-rush/it</loc>
+    <lastmod>2022-04-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-book-of-oziris/it</loc>
+    <lastmod>2022-04-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/casino-europei-online-quali-paesi-gioco/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/settori-metodi-pagamento-paypal-preferito/it</loc>
+    <lastmod>2022-04-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-giochi-live-versione-lightning/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/bonus-buy-feature-sette-slot-online/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-hotline/it</loc>
+    <lastmod>2022-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/dalla-reactoonz-alla-gigantoonz-slot-playn-go/it</loc>
+    <lastmod>2022-04-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/innovazione-tecnologica-vantaggi-mondo-intrattenimento/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/sezioni-disponibili-siti-casino-online/it</loc>
+    <lastmod>2022-04-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/errori-evitare-siti-casino-online/it</loc>
+    <lastmod>2022-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/borsa-quote-azioni-mercato-gioco-casino/it</loc>
+    <lastmod>2022-04-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-gems-bonanza/it</loc>
+    <lastmod>2022-04-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/caricatore-universale-smartphone-casino/it</loc>
+    <lastmod>2022-05-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/giochi-online-gratis-tema-mago-merlino/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-gates-of-valhalla/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/revoca-autoesclusione-principali-informazioni/it</loc>
+    <lastmod>2022-05-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/seo-casino-siti-gioco-online/it</loc>
+    <lastmod>2022-05-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-rich-wilde-amulet-of-dead/it</loc>
+    <lastmod>2022-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/malta-casino-tradizionali-gioco/it</loc>
+    <lastmod>2022-05-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/tecnologie-gioco-quattro-influenze-casino-online/it</loc>
+    <lastmod>2022-05-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/protezione-dati-casino-online-modi/it</loc>
+    <lastmod>2022-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/scommesse-ippica-giochi-scudamore-online/it</loc>
+    <lastmod>2022-05-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-coils-of-cash/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/metaverso-casino-online-legali-futuro/it</loc>
+    <lastmod>2022-05-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/classifica-incassi-casino-online-italiani-aprile-2022/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/scommesse-sportive-quote-mercato-aprile-2022/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-medusa-megaways/it</loc>
+    <lastmod>2022-05-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/casino-mobile-online-perche-operatori-promuovono-gioco/it</loc>
+    <lastmod>2022-05-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-giochi-digitali-slot-synot-games/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/ragioni-popolarita-gioco-canada-casino-online/it</loc>
+    <lastmod>2022-05-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/baccarat-varianti-gioco-casino-principali/it</loc>
+    <lastmod>2022-05-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/termini-condizioni-casino-online-legali/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/licenza-gioco-casino-online-legali/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/rebet-24-casino-online-informazioni-portale/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-wild-frames/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-donuts/it</loc>
+    <lastmod>2022-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-online-gratis-tema-gemme-preziose/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/poker-gioco-informazioni-dettagli/it</loc>
+    <lastmod>2022-05-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/sport-popolari-mondo-consigli-scommesse/it</loc>
+    <lastmod>2022-05-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/skill-games-casino-online-siti-legali-adm/it</loc>
+    <lastmod>2022-05-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-secret-of-dead/it</loc>
+    <lastmod>2022-05-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/cat-wilde-sue-avventure-slot/it</loc>
+    <lastmod>2022-05-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/5-industrie-casino-crescita-unione-europea/it</loc>
+    <lastmod>2022-05-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/consigli-gioco-mobile-viaggio-sessione-online/it</loc>
+    <lastmod>2022-05-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-cat-clans/it</loc>
+    <lastmod>2022-05-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/big-data-casino-analisi-mondo-gioco-online/it</loc>
+    <lastmod>2022-05-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-tema-circo/it</loc>
+    <lastmod>2022-05-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-machine-online-tema-mitologia/it</loc>
+    <lastmod>2022-05-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/fattori-bookmaker-sport-online-2022/it</loc>
+    <lastmod>2022-05-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/vincitori-poker-grandi-storia-world-poker/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-odins-gamble/it</loc>
+    <lastmod>2022-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/roulette-consigli-sei-curiosita/it</loc>
+    <lastmod>2022-05-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/lotterie-giochi-popolari-mondo/it</loc>
+    <lastmod>2022-05-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/gioco-carte-simboli-storia/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/mercato-casino-online-segni-particolari/it</loc>
+    <lastmod>2022-06-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-tema-spazio/it</loc>
+    <lastmod>2022-06-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-dance-with-the-devil/it</loc>
+    <lastmod>2022-06-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-rosh-immortality-cube-megaways/it</loc>
+    <lastmod>2022-06-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/scommessa-double-chance-cosa-e/it</loc>
+    <lastmod>2022-06-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/bass-slot-machine-pesca-pragmatic-play/it</loc>
+    <lastmod>2022-06-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/fattori-esports-chiave-bookmaker/it</loc>
+    <lastmod>2022-06-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-euphoria/it</loc>
+    <lastmod>2022-06-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/casino-tradizionali-europei-datati-storici/it</loc>
+    <lastmod>2022-06-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/casino-belgio-siti-gioco-online/it</loc>
+    <lastmod>2022-06-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/stanley-ho-fatti-interessanti-curiosita/it</loc>
+    <lastmod>2022-06-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/classifica-incassi-casino-online-italiani-maggio-2022/it</loc>
+    <lastmod>2022-06-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/come-funziona-slot-white-rabbit/it</loc>
+    <lastmod>2022-06-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/migliori-slot-tema-vampiro/it</loc>
+    <lastmod>2022-06-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/giochi-gratis-mondo-casino-online-legali/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/gambling-online-e-commerce-europa/it</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/blog/tasse-casino-online-europa/it</loc>
+    <lastmod>2022-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Blog Articles Urls END -->
@@ -9589,7 +12454,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/producer/bakoo/it</loc>
-    <lastmod>2021-10-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9599,7 +12464,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/producer/elettronica-video-games/it</loc>
-    <lastmod>2021-10-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9694,7 +12559,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/producer/world-match/it</loc>
-    <lastmod>2021-10-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9724,7 +12589,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/producer/synot/it</loc>
-    <lastmod>2021-11-05</lastmod>
+    <lastmod>2022-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9769,7 +12634,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/producer/high-5-games/it</loc>
-    <lastmod>2021-10-13</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9819,7 +12684,7 @@
   </url>
   <url>
     <loc>https://spikeslot.com/producer/nemesis-game-studio/it</loc>
-    <lastmod>2022-01-03</lastmod>
+    <lastmod>2022-06-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -9832,5 +12697,122 @@
     <lastmod>2022-01-05</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://spikeslot.com/producer/section-8-studio/it</loc>
+    <lastmod>2022-01-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/skywind-group/it</loc>
+    <lastmod>2022-01-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/red-tiger-gaming/it</loc>
+    <lastmod>2022-03-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/tom-horn-gaming/it</loc>
+    <lastmod>2022-04-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/bf-games/it</loc>
+    <lastmod>2022-05-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/leander-games/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/fazi/it</loc>
+    <lastmod>2022-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/pariplay/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/dreamtech-gaming/it</loc>
+    <lastmod>2022-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/hacksaw-gaming/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/avatar-ux/it</loc>
+    <lastmod>2022-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/redrake-gaming/it</loc>
+    <lastmod>2022-05-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/sa-gaming/it</loc>
+    <lastmod>2022-05-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/simple-play/it</loc>
+    <lastmod>2022-05-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/producer/core-gaming/it</loc>
+    <lastmod>2022-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
   <!-- Producers Urls END -->
+  <!-- Lab Urls Start -->
+  <url>
+    <loc>https://spikeslot.com/guide/lab/aave-criptovaluta-tutto-quello-da-sapere</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab/cosa-e-il-valore-temporale-della-moneta</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab/virtual-coin-benefici-monete-virtuali</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab/block-chain-settore-energetico</loc>
+    <lastmod>2022-06-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab/tutto-quello-che-ce-da-sapere-sul-copy-trading</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab/quali-sono-le-materie-prime-da-inserire-in-portafoglio</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab/i-benefici-delle-monete-virtuali-secondo-il-rapporto-deloitte</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://spikeslot.com/guide/lab/chainlink-e-le-previsioni-di-mercato</loc>
+    <lastmod>2022-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <!-- Lab Urls END -->
 </urlset>

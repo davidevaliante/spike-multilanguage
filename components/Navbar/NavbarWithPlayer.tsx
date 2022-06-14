@@ -1,28 +1,28 @@
-import React, { useState, FunctionComponent, useEffect, useContext } from "react"
-import styled from "styled-components"
-import { appTheme, AppTheme } from "../../theme/theme"
-import SearchBox from "./SearchBox"
-import { laptop, desktop } from "./../Responsive/Breakpoints"
-import SearchInput from "../Input/SearchInput"
-import Link from "next/link"
-import NavbarAams from "../Banners/NavbarAams"
-import PushMenu from "./Menu/PushMenu"
-import BurgerMenuIcon from "./BurgerMenuIcon"
-import { SearchIndex } from "algoliasearch"
-import delay from "lodash/delay"
-import MobileSearchResults from "./MobileSearchResults"
-import { AlgoliaSearchResult, Video, Bonus } from "../../graphql/schema"
-import FadeInOut from "../Ui/FadeInOut"
-import LazyImage from "../Lazy/LazyImage"
-import Player from "../Video/Player"
-import VideoFooter from "../Footer/VideoFooter"
-import Router from "next/router"
-import { cookieContext } from "../../context/CookieContext"
-import { initializeAnalytics } from "../../analytics/base"
-import { LocaleContext } from "../../context/LocaleContext"
-import NewAnchorTag from "../Singles/NewAnchorTag"
-import { Menu, MenuItem } from "@material-ui/core"
-import router from "next/router"
+import React, { useState, FunctionComponent, useEffect, useContext } from 'react'
+import styled from 'styled-components'
+import { appTheme, AppTheme } from '../../theme/theme'
+import SearchBox from './SearchBox'
+import { laptop, desktop } from './../Responsive/Breakpoints'
+import SearchInput from '../Input/SearchInput'
+import Link from 'next/link'
+import NavbarAams from '../Banners/NavbarAams'
+import PushMenu from './Menu/PushMenu'
+import BurgerMenuIcon from './BurgerMenuIcon'
+import { SearchIndex } from 'algoliasearch'
+import delay from 'lodash/delay'
+import MobileSearchResults from './MobileSearchResults'
+import { AlgoliaSearchResult, Video, Bonus } from '../../graphql/schema'
+import FadeInOut from '../Ui/FadeInOut'
+import LazyImage from '../Lazy/LazyImage'
+import Player from '../Video/Player'
+import VideoFooter from '../Footer/VideoFooter'
+import Router from 'next/router'
+import { cookieContext } from '../../context/CookieContext'
+import { initializeAnalytics } from '../../analytics/base'
+import { LocaleContext } from '../../context/LocaleContext'
+import NewAnchorTag from '../Singles/NewAnchorTag'
+import { Menu, MenuItem } from '@material-ui/core'
+import router from 'next/router'
 
 interface Props {
     onDrawerOpen?: Function
@@ -39,9 +39,9 @@ export interface NavbarPage {
 }
 
 const getCdnZone = (video) => {
-    if (video.title === "LIVE IMPROVVISATA! SPIKE SLOT ONLINE - 02/12/2021") {
-        console.log("live")
-        return "https://d1t5qgqnsyejwx.cloudfront.net/-Mpzu-t4GBpw9M2ksScB/Default/HLS/-Mpzu-t4GBpw9M2ksScB.m3u8"
+    if (video.title === 'LIVE IMPROVVISATA! SPIKE SLOT ONLINE - 02/12/2021') {
+        console.log('live')
+        return 'https://d1t5qgqnsyejwx.cloudfront.net/-Mpzu-t4GBpw9M2ksScB/Default/HLS/-Mpzu-t4GBpw9M2ksScB.m3u8'
     }
     if (!video.conversionType)
         return `https://spikeconvertedcomplete.b-cdn.net/${video.videoId}/Default/HLS/${video.videoId}.m3u8`
@@ -54,16 +54,17 @@ export const getMp4CDNZone = (video) => {
 
 //TODO da tradurre
 const drawerPages = [
-    { label: "Home", link: "/" },
-    { label: "Video", link: "/videos" },
-    { label: "Free Slot Machine Games", link: "/slots" },
-    { label: "Bar Slot", link: "/slot-bar" },
-    { label: "VLT slot", link: "/slot-vlt" },
-    { label: "LiveStats", link: "/live-stats" },
-    { label: "Welcome bonus", link: "/migliori-bonus-casino" },
-    { label: "Book of Ra Online", link: "/slot/book-of-ra-deluxe" },
-    { label: "Guides and Tricks", link: "/guide-e-trucchi" },
-    { label: "Blogs and Articles", link: "/blog" },
+    { label: 'Home', link: '/' },
+    { label: 'Video', link: '/videos' },
+    { label: 'Free Slot Machine Games', link: '/slots' },
+    { label: 'Bar Slot', link: '/slot-bar' },
+    { label: 'VLT slot', link: '/slot-vlt' },
+    { label: 'LiveStats', link: '/live-stats' },
+    { label: 'Welcome bonus', link: '/migliori-bonus-casino' },
+    { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
+    { label: 'Guides and Tricks', link: '/guide-e-trucchi' },
+    { label: 'Blogs and Articles', link: '/blog' },
+    { label: 'Investimenti Online', link: '/guide/lab' },
 ]
 
 const NavbarWithPlayer: FunctionComponent<Props> = ({
@@ -95,12 +96,12 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
     const { t, contextCountry } = useContext(LocaleContext)
 
     useEffect(() => {
-        if (cookiesAccepted === "accepted") {
+        if (cookiesAccepted === 'accepted') {
             initializeAnalytics(currentPage)
         }
     }, [cookiesAccepted])
 
-    const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState('')
 
     useEffect(() => {
         if (searchValue.length !== 0) {
@@ -168,9 +169,9 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
 
     const handleSearchChange = async (t: string) => {
         if (algoliaIndex === undefined) {
-            import("algoliasearch").then().then((algoliasearch) => {
-                const client = algoliasearch.default("92GGCDET16", "fcbd92dd892fe6dc9b67fce3bf44fa04")
-                const index = client.initIndex("entities")
+            import('algoliasearch').then().then((algoliasearch) => {
+                const client = algoliasearch.default('92GGCDET16', 'fcbd92dd892fe6dc9b67fce3bf44fa04')
+                const index = client.initIndex('entities')
                 setAlgoliaIndex(index)
             })
         }
@@ -184,7 +185,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
     const remapNavbarLink = (page: NavbarPage) => {
         const key = `drawer_page_${page.label}`
 
-        if (page.link === "/") {
+        if (page.link === '/') {
             return (
                 <Link key={key} href={`/`}>
                     <a>{t(page.label)}</a>
@@ -192,12 +193,12 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
             )
         }
 
-        if (page.link === "/live-stats") {
+        if (page.link === '/live-stats') {
             return (
                 <div>
-                    <NewAnchorTag text={"Statistiche Live"} onClick={handleClick} />
+                    <NewAnchorTag text={'Statistiche Live'} onClick={handleClick} />
                     <Menu
-                        id="live-stats-menu"
+                        id='live-stats-menu'
                         anchorEl={anchorEl}
                         keepMounted
                         open={Boolean(anchorEl)}
@@ -229,7 +230,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
         //     )
         // }
 
-        if (page.link === "/migliori-bonus-casino") {
+        if (page.link === '/migliori-bonus-casino') {
             return (
                 <Link key={key} href={`/migliori-bonus-casino`}>
                     <a>{t(page.label)}</a>
@@ -237,7 +238,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
             )
         }
 
-        if (page.link === "/videolist") {
+        if (page.link === '/videolist') {
             return (
                 <Link key={key} href={`${page.link}`}>
                     <a>{t(page.label)}</a>
@@ -245,8 +246,16 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
             )
         }
 
+        if (page.link === '/guide/lab') {
+            return (
+                <a key={key} href={`${page.link}`}>
+                    {t(page.label)}
+                </a>
+            )
+        }
+
         return (
-            <Link key={key} href={page.link === "/" ? `${page.link}` : `${page.link}/${contextCountry}`}>
+            <Link key={key} href={page.link === '/' ? `${page.link}` : `${page.link}/${contextCountry}`}>
                 <a>{t(page.label)}</a>
             </Link>
         )
@@ -264,15 +273,15 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
                                 onDrawerClose={() => setDrawerOpen(false)}
                             />
 
-                            <LazyImage width={60} height={60} alt="spike_slot_logo" src={`${appTheme.brand.icon}`} />
+                            <LazyImage width={60} height={60} alt='spike_slot_logo' src={`${appTheme.brand.icon}`} />
 
                             <LazyImage
                                 width={30}
                                 height={30}
-                                style={{ marginRight: "16px" }}
-                                alt="search_icon"
+                                style={{ marginRight: '16px' }}
+                                alt='search_icon'
                                 onClick={() => handleSearchOpen()}
-                                src="/icons/search_white.svg"
+                                src='/icons/search_white.svg'
                             />
                         </SearchClosedContainer>
                     )}
@@ -288,14 +297,14 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
                 </MobileAndTablet>
 
                 <BigScreens>
-                    <div className="top-row">
+                    <div className='top-row'>
                         <LazyImage
-                            onClick={() => Router.push("/")}
-                            className="slot-icon"
+                            onClick={() => Router.push('/')}
+                            className='slot-icon'
                             width={180}
                             height={60}
-                            alt="spike icon"
-                            src="/icons/logo_spike_no_ombra.png"
+                            alt='spike icon'
+                            src='/icons/logo_spike_no_ombra.png'
                         />
 
                         <NavbarAams />
@@ -308,7 +317,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
                         />
                     </div>
 
-                    <div className="bottom-row">{drawerPages.map((page) => remapNavbarLink(page))}</div>
+                    <div className='bottom-row'>{drawerPages.map((page) => remapNavbarLink(page))}</div>
                 </BigScreens>
             </NavbarWrapper>
 
@@ -343,7 +352,7 @@ const OnlyPortrait = styled.div`
     display: block;
 
     @media (orientation: landscape) and (max-height: 450px) {
-        display: ${() => "none"};
+        display: ${() => 'none'};
     }
 `
 const ChildrenWrapper = styled.div`
@@ -372,7 +381,7 @@ const NavbarWrapper = styled.div`
     height: 96px;
     transition: background 0.4s ease-in;
     color: white;
-    font-family: "Raleway", sans-serif !important;
+    font-family: 'Raleway', sans-serif !important;
 
     ${laptop} {
         display: flex;
@@ -385,7 +394,7 @@ const NavbarWrapper = styled.div`
     }
 
     @media (orientation: landscape) and (max-height: 450px) {
-        display: ${() => "none"};
+        display: ${() => 'none'};
     }
 `
 

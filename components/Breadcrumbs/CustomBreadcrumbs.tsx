@@ -25,6 +25,7 @@ interface Props {
         | 'blog-article'
         | 'bar-slot-list'
         | 'lab-article'
+        | 'lab'
     producerName?: string
     producerSlug?: string
     labSlug?: string
@@ -53,6 +54,66 @@ const Breadcrumbs: FunctionComponent<Props> = ({
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const breadCrumbRenderer = () => {
+        if (from === 'lab') {
+            const SlotListBreadCrumbObject = () => {
+                return {
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        {
+                            '@type': 'ListItem',
+                            position: 1,
+                            name: 'Home',
+                            item: `${websiteRoot}`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 2,
+                            name: 'guide',
+                            item: `${websiteRoot}/guide-e-trucchi/it`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 3,
+                            name: 'lab',
+                            item: `${websiteRoot}/guide/lab`,
+                        },
+                    ],
+                }
+            }
+
+            const SlotListBreadCrumb = () => {
+                return (
+                    <script
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(SlotListBreadCrumbObject()) }}
+                        type='application/ld+json'
+                        key={`slot_list_breadcrumbs`}
+                    />
+                )
+            }
+
+            return (
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                    }}
+                >
+                    <SlotListBreadCrumb />
+                    <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
+                        <a>Home</a>
+                    </Link>
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <a href={`/guide-e-trucchi/${contextCountry}`}>
+                        <a>Guide</a>
+                    </a>
+                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <p style={{ margin: '0' }}>Lab</p>
+                </div>
+            )
+        }
+
         if (from === 'lab-article') {
             const SlotListBreadCrumbObject = () => {
                 return {
@@ -114,7 +175,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                         <a>Guide</a>
                     </a>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                    <a href={`/guida/lab`}>
+                    <a href={`/guide/lab`}>
                         <a>Lab</a>
                     </a>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />

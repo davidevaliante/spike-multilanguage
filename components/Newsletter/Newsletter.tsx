@@ -32,7 +32,7 @@ const Newsletter = (props: Props) => {
                     }}
                     className={'sib-form'}
                     width='500'
-                    height='560'
+                    height='600'
                     src={src}
                     frameBorder='0'
                     scrolling='auto'
