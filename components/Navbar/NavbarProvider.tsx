@@ -362,7 +362,12 @@ const NavbarProvider: FunctionComponent<Props> = ({
                         {contextCountry === 'it'
                             ? drawerPages.map((page) => remapNavbarLink(page))
                             : drawerPages
-                                  .filter((p) => p.label !== 'Bar Slot' && p.label !== 'VLT slot')
+                                  .filter(
+                                      (p) =>
+                                          p.label !== 'Bar Slot' &&
+                                          p.label !== 'VLT slot' &&
+                                          p.label !== 'Investimenti Online'
+                                  )
                                   .map((page) => remapNavbarLink(page))}
                     </div>
                 </BigScreens>
