@@ -187,9 +187,14 @@ const index: FunctionComponent<Props> = ({
         <Fragment>
             <NavbarProvider currentPage='Lightning Dice Stats' countryCode={contextCountry}>
                 <Head>
-                    {/* <title>{_pageContent.seo?.seoTitle}</title> */}
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
-                    {/* <meta name="description" content={_pageContent.seo.seoDescription}></meta> */}
+                    <title>Lightining Dice Stats | SPIKE Slot</title>
+                    <link rel='canonical' href={`https://spikeslot.com/live-stats/lightning-dice/${contextCountry}`} />
+                    <meta
+                        name='description'
+                        content={
+                            'Estrazioni in tempo reale per Lightning Dice. Controlla i dettagli di tutte le estrazioni di questo game show di Evolution Gaming'
+                        }
+                    ></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}
                     <meta
