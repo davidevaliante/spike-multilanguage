@@ -1,18 +1,18 @@
-import React, { Fragment, useContext } from "react"
-import { FunctionComponent } from "react"
-import styled from "styled-components"
-import { ApolloSlotCard } from "../../data/models/Slot"
-import { laptop, desktop, tablet } from "../Responsive/Breakpoints"
-import SlotCardComponent from "../Cards/SlotCardComponent"
-import Carousel from "react-multi-carousel"
-import LazyLoad from "react-lazyload"
-import { LocaleContext } from "../../context/LocaleContext"
+import React, { Fragment, useContext } from 'react'
+import { FunctionComponent } from 'react'
+import styled from 'styled-components'
+import { ApolloSlotCard } from '../../data/models/Slot'
+import { laptop, desktop, tablet } from '../Responsive/Breakpoints'
+import SlotCardComponent from '../Cards/SlotCardComponent'
+import Carousel from 'react-multi-carousel'
+import LazyLoad from 'react-lazyload'
+import { LocaleContext } from '../../context/LocaleContext'
 
 interface Props {
     producerSlots: ApolloSlotCard[]
 }
 
-const ApolloHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerSlots }) => {
+const NovomaticHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerSlots }) => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -39,9 +39,9 @@ const ApolloHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerSl
         <Fragment>
             <Container>
                 <LazyLoad>
-                    <ProducerLogo src="/icons/logo_novomatic.png" alt="novomatic logo" />
+                    <ProducerLogo src='/icons/logo_novomatic.png' alt='novomatic logo' />
                 </LazyLoad>
-                <h1>{t("The best Novomatic selected for you")}</h1>
+                <h1>{t('The best Novomatic selected for you')}</h1>
                 {producerSlots.length > 0 ? (
                     <Carousel
                         swipeable={true}
@@ -75,10 +75,10 @@ const params = {
         disableOnInteraction: false,
     },
     pagination: {
-        el: ".swiper-pagination",
+        el: '.swiper-pagination',
         clickable: true,
         renderBullet: (index, className) => {
-            return "<div />"
+            return '<div />'
         },
     },
     // navigation: {
@@ -182,4 +182,4 @@ const Container = styled.div`
     }
 `
 
-export default ApolloHighlightProducerSlideShow
+export default NovomaticHighlightProducerSlideShow

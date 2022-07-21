@@ -7,7 +7,7 @@ import LatestVideoCard from '../components/Cards/LatestVideoCard'
 import Icon from '../components/Icons/Icon'
 import { Home } from './../graphql/schema'
 import SlideShow from '../components/SlideShow/SlideShow'
-import HighlightProducerSlideShow from '../components/SlideShow/HighlightProducerSlideShow'
+import HighlightProducerSlideShow from '../components/SlideShow/NovomaticHighlightProducerSlideShow'
 import BonusCardRevealComponent from '../components/Cards/BonusCardReveal'
 import AquaClient from './../graphql/aquaClient'
 import { BodyContainer, MainColumn, RightColumn } from '../components/Layout/Layout'
@@ -28,6 +28,7 @@ import { websiteRoot } from '../constants/constants'
 import { defaultShareImage } from './../constants/constants'
 import Logo from '../components/StructuredData.tsx/Logo'
 import SidebarBonusHeader from '../components/Text/SidebarBonusHeader'
+import NoLimitHighlightProducerSlideShow from '../components/SlideShow/NoLimitHighlightProducerSlideShow'
 
 interface PageProps {
     _shallow: boolean
@@ -45,6 +46,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
     const [loading, setLoading] = useState(true)
     const [home, setHome] = useState<Home>(_home)
+    // const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map((s) => s.slot))
+
     const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map((s) => s.slot))
     const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[]>(_home.onlineSlots.slot.map((s) => s.slot))
     const [barSlots, setBarSlots] = useState<ApolloSlotCard[]>(_home.barSlots.slot.map((s) => s.slot))
@@ -107,7 +110,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                     <MainColumn>
                         <LiveStatsCta />
 
-                        {producerSlots && <HighlightProducerSlideShow producerSlots={producerSlots} />}
+                        {producerSlots && <NoLimitHighlightProducerSlideShow producerSlots={producerSlots} />}
 
                         <LazyLoad height={450} once>
                             <SlideShow

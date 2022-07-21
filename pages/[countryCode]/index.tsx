@@ -8,7 +8,7 @@ import { BodyContainer, MainColumn, RightColumn } from '../../components/Layout/
 import ArticleToMarkdown from '../../components/Markdown/ArticleToMarkdown'
 import NavbarProvider from '../../components/Navbar/NavbarProvider'
 import { OnlyMobile } from '../../components/Responsive/Only'
-import HighlightProducerSlideShow from '../../components/SlideShow/HighlightProducerSlideShow'
+import HighlightProducerSlideShow from '../../components/SlideShow/NovomaticHighlightProducerSlideShow'
 import SlideShow from '../../components/SlideShow/SlideShow'
 import { ApolloBonusCardReveal } from '../../data/models/Bonus'
 import { ApolloSlotCard } from '../../data/models/Slot'
