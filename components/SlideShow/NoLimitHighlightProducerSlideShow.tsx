@@ -44,7 +44,7 @@ const NoLimitHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerS
                         alt='novomatic logo'
                     />
                 </LazyLoad>
-                <h1>{'Le migliori No Limit City selezionate per te'}</h1>
+                <h1>{'Le migliori NoLimit City selezionate per te'}</h1>
                 {producerSlots.length > 0 ? (
                     <Carousel
                         swipeable={true}
