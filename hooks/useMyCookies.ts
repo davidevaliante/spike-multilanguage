@@ -1,16 +1,15 @@
 import { useState, useCallback, useEffect } from 'react'
-import { CookieContext } from '../context/CookieContext';
+import { CookieContext } from '../context/CookieContext'
 import { useCookies } from 'react-cookie'
 
 export const useMyCookies = (): CookieContext => {
-
-    const [cookies, setCookie, removeCookie] = useCookies(['accepted']);
+    const [cookies, setCookie, removeCookie] = useCookies(['accepted'])
     const [cookieAcceptedStatus, setCookiesAccepted] = useState<'accepted' | 'not_accepted' | 'unknown'>('accepted')
 
-    useEffect(() => {
-    }, [cookieAcceptedStatus])
+    useEffect(() => {}, [cookieAcceptedStatus])
 
     useEffect(() => {
+        console.log(cookies)
         if (cookies.accepted && cookies.accepted === 'accepted') setCookiesAccepted('accepted')
         else {
             if (!cookies || cookies.accepted === undefined) {
@@ -23,12 +22,12 @@ export const useMyCookies = (): CookieContext => {
     const updateCookiesAccepted = useCallback((updatedCookieStatus: boolean): void => {
         if (updatedCookieStatus === true) {
             setCookie('accepted', 'accepted', {
-                maxAge: 60 * 60 * 24 * 365
+                maxAge: 60 * 60 * 24 * 365,
             })
             setCookiesAccepted('accepted')
         } else {
             setCookie('accepted', 'not_accepted', {
-                maxAge: 60 * 60 * 24 * 365
+                maxAge: 60 * 60 * 24 * 365,
             })
             setCookiesAccepted('not_accepted')
         }
@@ -36,6 +35,6 @@ export const useMyCookies = (): CookieContext => {
 
     return {
         cookiesAccepted: cookieAcceptedStatus,
-        updateCookiesAccepted
+        updateCookiesAccepted,
     }
 }
