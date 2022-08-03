@@ -396,7 +396,15 @@ app.prepare().then(() => {
         res.status(301).send()
     })
 
-    server.get('*', (req, res) => handle(req, res))
+    server.get('*', (req, res) => {
+        if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
+            res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
+
+            res.status(301).send()
+        } else {
+            handle(req, res)
+        }
+    })
 
     server.post('*', (req, res) => {
         return handle(req, res)
