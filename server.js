@@ -266,6 +266,14 @@ app.prepare().then(() => {
         res.status(301).send()
     })
 
+    server.get('/guida/bonus-benvenuto-casino-betway/it', (req, res) => {
+        res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
+
+        console.log('hello world')
+
+        res.status(301).send()
+    })
+
     server.get('/slot-gratis/:slotName/:requestedCountry', async (req, res) => {
         const legacySlug = req.params.slotName
 
