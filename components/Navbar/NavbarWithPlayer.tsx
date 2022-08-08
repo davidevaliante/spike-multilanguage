@@ -331,7 +331,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
                             highLights={video.highLights}
                             onPlayerReady={handlePlayerReady}
                             videoLink={videoLink}
-                            autoplay={true}
+                            autoplay={false}
                         />
 
                         <OnlyPortrait>
