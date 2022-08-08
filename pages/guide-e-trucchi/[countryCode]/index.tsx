@@ -131,7 +131,9 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
                             .filter(
                                 (it) =>
                                     it.slug !== 'casino-betflag-bonus-benvenuto' &&
-                                    it.slug !== 'bonus-benvenuto-casino-betway'
+                                    it.slug !== 'bonus-benvenuto-casino-betway' &&
+                                    it.slug !== 'recensione-william-hill-bonus' &&
+                                    it.slug !== 'bonus-benvenuto-betfair-casino'
                             )
                             .map((guide, index) => (
                                 <BonusGuideCard key={`guide_${index}`} guide={guide} />

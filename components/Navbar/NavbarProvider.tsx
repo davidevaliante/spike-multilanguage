@@ -403,7 +403,7 @@ interface IWrapper {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-
+    position: relative;
     background: ${(props: IWrapper) => props.currentPage === 'video' && '#3b3b3b'};
     font-family: 'Raleway', sans-serif;
 `

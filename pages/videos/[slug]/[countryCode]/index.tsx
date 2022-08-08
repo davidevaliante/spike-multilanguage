@@ -8,7 +8,7 @@ import VideoMainData from '../../../../components/Video/VideoMainData'
 import AquaClient from '../../../../graphql/aquaClient'
 import { GET_BONUS_BY_LEGACY_ID } from '../../../../graphql/queries/bonus'
 import { Bonus, Slot, AlgoliaSearchResult } from '../../../../graphql/schema'
-import { getCanonicalPath } from '../../../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode } from '../../../../utils/Utils'
 import { OnlyMobile, OnlyDesktop } from '../../../../components/Responsive/Only'
 import { bigscreens } from '../../../../components/Responsive/Breakpoints'
 import RelatedVideoCard from '../../../../components/Cards/RelatedVideoCard'
@@ -55,6 +55,16 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
 
     const [videoLink, setVideoLink] = useState(getCdnZone(video))
     const [descriptionOpen, setDescriptionOpen] = useState(false)
+
+    const [userCountry, setUserCountry] = useState('it')
+    useEffect(() => {
+        geolocate()
+    }, [])
+
+    const geolocate = async () => {
+        const country = await getUserCountryCode()
+        setUserCountry(country)
+    }
 
     const { t } = useContext(LocaleContext)
 
@@ -131,6 +141,58 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                     thumbnailUrl={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
                 <Body>
+                    {userCountry === 'it' && (
+                        <div
+                            style={{
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: '100vh',
+                                zIndex: 30,
+                                backdropFilter: 'blur(16px)',
+                                userSelect: 'none',
+                            }}
+                        >
+                            <div
+                                style={{
+                                    fontFamily: 'Montserrat',
+                                    display: 'flex',
+                                    backgroundColor: 'white',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    margin: 'auto auto',
+                                    width: '300px',
+                                    textAlign: 'center',
+                                    height: '200px',
+                                    padding: '2rem',
+                                    borderRadius: '6px',
+                                }}
+                            >
+                                <div style={{ marginBottom: '1rem' }}>
+                                    Questa pagina è temporaneamente inaccessibile dall'Italia
+                                </div>
+                                <div style={{ marginBottom: '1rem' }}>Stiamo lavorando per risolvere il problema</div>
+                                <div
+                                    onClick={() => router.push('/')}
+                                    style={{
+                                        background: 'red',
+                                        borderRadius: '6px',
+                                        color: 'white',
+                                        padding: '1rem',
+                                        cursor: 'pointer',
+                                        marginTop: '3rem',
+                                    }}
+                                >
+                                    Torna alla Home
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <div style={{ margin: '0rem 1rem', fontFamily: 'Raleway' }}>
                         <VideoMainData title={video.title} time={video.time} description={video.description} />
 
