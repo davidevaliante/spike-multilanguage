@@ -116,6 +116,25 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
 
     useEffect(() => {}, [searchResults])
 
+    const searchExclusion = [
+        '20Bet',
+        '22Bet',
+        '7BitCasino',
+        'Buran Casino',
+        'Cadoola',
+        'Wazamba',
+        'Casinia',
+        'Casino Empire',
+        'Casino Intense',
+        'Casinomia',
+        'Cobra Casino',
+        'Malina',
+        'PlayAmo',
+        'Rabona',
+        'SlotsPalace',
+        'WildTornado',
+    ]
+
     const algoliaSearch = async (s: string) => {
         clearTimeout(searchTimerId)
         const newTimer = delay(async () => {
@@ -124,20 +143,22 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
             })
 
             setSearchResults(
-                results.hits.map((obj: any) => {
-                    return {
-                        name: obj.name,
-                        type: obj.type,
-                        slug: obj.slug,
-                        country: obj.country,
-                        image: obj.image,
-                        bonuses: obj.link,
-                        rating: obj.rating,
-                        mainBonus: {
-                            link: obj.link,
-                        },
-                    }
-                })
+                results.hits
+                    .map((obj: any) => {
+                        return {
+                            name: obj.name,
+                            type: obj.type,
+                            slug: obj.slug,
+                            country: obj.country,
+                            image: obj.image,
+                            bonuses: obj.link,
+                            rating: obj.rating,
+                            mainBonus: {
+                                link: obj.link,
+                            },
+                        }
+                    })
+                    .filter((obj: any) => !searchExclusion.includes(obj.name))
             )
         }, 400)
         setSearchTimerId(newTimer)
@@ -220,15 +241,6 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
                 </div>
             )
         }
-
-        // if (page.link === '/live-stats/crazy-time') {
-        //     return (
-        //         <NewAnchorTag
-        //             key={key}
-        //             href={`${page.link}/${contextCountry}`}
-        //             text={t("CrazyTimeNavbar")} />
-        //     )
-        // }
 
         if (page.link === '/migliori-bonus-casino') {
             return (

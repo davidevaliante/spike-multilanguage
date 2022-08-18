@@ -113,6 +113,25 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
     useEffect(() => {}, [searchResults])
 
+    const searchExclusion = [
+        '20Bet',
+        '22Bet',
+        '7BitCasino',
+        'Buran Casino',
+        'Cadoola',
+        'Wazamba',
+        'Casinia',
+        'Casino Empire',
+        'Casino Intense',
+        'Casinomia',
+        'Cobra Casino',
+        'Malina',
+        'PlayAmo',
+        'Rabona',
+        'SlotsPalace',
+        'WildTornado',
+    ]
+
     const algoliaSearch = async (s: string) => {
         clearTimeout(searchTimerId)
         const newTimer = delay(async () => {
@@ -121,21 +140,23 @@ const NavbarProvider: FunctionComponent<Props> = ({
             })
 
             setSearchResults(
-                results.hits.map((obj: any) => {
-                    return {
-                        name: obj.name,
-                        type: obj.type,
-                        slug: obj.slug,
-                        country: obj.country,
-                        link: obj.link,
-                        image: obj.image,
-                        bonuses: obj.link,
-                        rating: obj.rating,
-                        mainBonus: {
+                results.hits
+                    .map((obj: any) => {
+                        return {
+                            name: obj.name,
+                            type: obj.type,
+                            slug: obj.slug,
+                            country: obj.country,
                             link: obj.link,
-                        },
-                    }
-                })
+                            image: obj.image,
+                            bonuses: obj.link,
+                            rating: obj.rating,
+                            mainBonus: {
+                                link: obj.link,
+                            },
+                        }
+                    })
+                    .filter((obj: any) => !searchExclusion.includes(obj.name))
             )
         }, 400)
         setSearchTimerId(newTimer)
