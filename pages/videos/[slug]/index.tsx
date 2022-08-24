@@ -188,7 +188,7 @@ const VideoList: FunctionComponent<Props> = ({
             </Head>
 
             <NavbarProvider currentPage='/videolist' countryCode={countryCode}>
-                {/* {uc === 'it' && (
+                {uc === 'it' && (
                     <div
                         style={{
                             position: 'fixed',
@@ -239,7 +239,7 @@ const VideoList: FunctionComponent<Props> = ({
                             </div>
                         </div>
                     </div>
-                )} */}
+                )}
                 <Body>
                     <HeaderContainer>
                         <div
