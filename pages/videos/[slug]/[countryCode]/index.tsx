@@ -53,6 +53,10 @@ const getCdnZone = (video) => {
 const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuses, relatedVideos, relatedSlots }) => {
     const router = useRouter()
 
+    console.log(video)
+
+    const [showOverlay, setshowOverlay] = useState(video.time > 1660740000000 ? false : true)
+
     const [videoLink, setVideoLink] = useState(getCdnZone(video))
     const [descriptionOpen, setDescriptionOpen] = useState(false)
 
@@ -141,7 +145,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                     thumbnailUrl={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
                 <Body>
-                    {userCountry === 'it' && (
+                    {userCountry === 'it' && showOverlay == true && (
                         <div
                             style={{
                                 position: 'fixed',
