@@ -237,7 +237,7 @@ export const MegaWheelTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                                                     }}
                                                 >
                                                     {row.result === row.slot
-                                                        ? `${(row.multiplier as number) * (row.result as number)}x`
+                                                        ? `${row.multiplier as number}x`
                                                         : `${row.result}x`}
                                                 </TableCell>
 
