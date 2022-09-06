@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { desktop } from '../Responsive/Breakpoints'
+import { desktop, laptop } from '../Responsive/Breakpoints'
 
 export const BodyContainer = styled.div`
     position: relative;

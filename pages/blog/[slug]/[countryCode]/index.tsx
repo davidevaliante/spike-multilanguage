@@ -125,9 +125,9 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList, _requestedC
 
                 <BodyContainer>
                     <MainColumn>
-                        <Wrapper>
+                        <div style={{ padding: '0rem 1rem' }}>
                             <ArticleToMarkdown content={article.article} allowBonuses={false} />
-                        </Wrapper>
+                        </div>
                     </MainColumn>
 
                     <RightColumn>
@@ -150,10 +150,6 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList, _requestedC
         </Fragment>
     )
 }
-
-const Wrapper = styled.div`
-    padding: 1rem 1rem;
-`
 
 export async function getServerSideProps({ query }) {
     const slug = query.slug as string
