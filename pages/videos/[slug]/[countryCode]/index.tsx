@@ -25,6 +25,7 @@ import truncate from 'lodash/truncate'
 import { useRouter } from 'next/router'
 import { LocaleContext } from '../../../../context/LocaleContext'
 import VideoMeta from './../../../../components/StructuredData.tsx/Video'
+import { substituteLegacyId } from '../../../../config'
 
 interface Props {
     video: Video
@@ -364,8 +365,15 @@ export async function getServerSideProps({ query }) {
     let auxiliaryBonusesId = videoData.auxiliaryBonuses
 
     if (mainBonusId === '-MWZEr0i50xob0KQjDg-') mainBonusId = '-MdSpUnHqLArOEBb2xf6'
+
+    // SSR substitution for pokerstars
+    if (mainBonusId === '-MMLWVbpWopWE72ZoTz_') mainBonusId = substituteLegacyId
     if (auxiliaryBonusesId.includes('-MWZEr0i50xob0KQjDg-'))
         auxiliaryBonusesId.splice(auxiliaryBonusesId.indexOf('-MWZEr0i50xob0KQjDg-'), 1, '-MdSpUnHqLArOEBb2xf6')
+
+    // SSR substitution for pokerstars
+    if (auxiliaryBonusesId.includes('-MMLWVbpWopWE72ZoTz_'))
+        auxiliaryBonusesId.splice(auxiliaryBonusesId.indexOf('-MMLWVbpWopWE72ZoTz_'), 1, substituteLegacyId)
 
     console.log(mainBonusId, auxiliaryBonusesId, 'BONUSES ids')
 

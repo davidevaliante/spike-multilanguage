@@ -37,6 +37,7 @@ import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 import Author from '../../../../components/StructuredData.tsx/Author'
 import axios from 'axios'
+import { substituteName, bonusToExclude } from '../../../../config'
 
 interface PageProps extends NextPageContext {
     _shallow: boolean
@@ -95,10 +96,25 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
         }
     }
 
-    const setup = () => {
-        console.log(_slotData)
+    const fetchSubstitute = async () => {
+        const data = await axios.get(`https://spikeapistaging.tech/bonuses?country.code=it&name=${substituteName}`)
+        setPrimaryBonus(data.data[0])
+    }
+
+    const setup = async () => {
         if (_slotData.producer.name === 'Cristaltec') checkForCrystaltech()
-        else console.log('not a cristaltec slot')
+        if (_slotData.mainBonus.name === bonusToExclude) fetchSubstitute()
+        if (_slotData.bonuses.map((b) => b.name).includes(bonusToExclude)) {
+            const substituteReq = await axios.get(
+                `https://spikeapistaging.tech/bonuses?country.code=it&name=${substituteName}`
+            )
+
+            const substitute = substituteReq.data[0]
+            const copy = [..._slotData.bonuses]
+            const filtered = copy.filter((it) => it.name !== bonusToExclude)
+            filtered.push(substitute)
+            setAuxiliaryBonuses(filtered)
+        }
         setContextCountry(_countryCode)
         setLoading(false)
     }

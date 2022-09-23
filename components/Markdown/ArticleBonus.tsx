@@ -5,6 +5,7 @@ import { GET_BONUS_BY_NAME_AND_COUNTRY } from '../../graphql/queries/bonus'
 import { Bonus } from '../../graphql/schema'
 import ArticleBonusCard from './../Cards/ArticleBonusCard'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
+import { substituteName, bonusToExclude } from '../../config'
 
 interface Props {
     bonusName: string
@@ -41,10 +42,12 @@ const ArticleBonus: FunctionComponent<Props> = ({ bonusName, countryCode, style,
     }, [])
 
     const getBonusData = async () => {
+        let bname = bonusName
+        if (bname === bonusToExclude) bname = substituteName
         const bonusResponse = await aquaClient.query({
             query: GET_BONUS_BY_NAME_AND_COUNTRY,
             variables: {
-                name: bonusName,
+                name: bname,
                 countryCode: countryCode,
             },
         })

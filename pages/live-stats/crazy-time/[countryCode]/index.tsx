@@ -23,6 +23,7 @@ import now from 'lodash/now'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import StatsCta from '../../../../components/Singles/StatsCta'
+import { substituteName } from '../../../../config'
 
 interface Props {
     _requestedCountryCode: string
@@ -39,7 +40,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ['888 Casino', 'PokerStars Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
+const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
 
 const SPAM_BONUSES = true
 
