@@ -130,6 +130,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
         'Rabona',
         'SlotsPalace',
         'WildTornado',
+        'PokerStars Casino',
     ]
 
     const algoliaSearch = async (s: string) => {
