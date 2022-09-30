@@ -77,6 +77,19 @@ app.prepare().then(() => {
         server.use(compression())
     }
 
+    server.get('*', (req, res) => {
+        console.log(`The URL is ${req.url}`)
+        res.set('location', `https://spikeslot.com${req.url}`)
+        res.status(301).send()
+        // if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
+        //     res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
+
+        //     res.status(301).send()
+        // } else {
+        //     handle(req, res)
+        // }
+    })
+
     server.get('/', (req, res) => {
         // since we don't use next's requestHandler, we lose compression, so we manually add it
         renderAndCache(app)(req, res, '/')
@@ -394,16 +407,6 @@ app.prepare().then(() => {
 
         res.set('location', `${websiteRoot}${newUrl}`)
         res.status(301).send()
-    })
-
-    server.get('*', (req, res) => {
-        if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
-            res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
-
-            res.status(301).send()
-        } else {
-            handle(req, res)
-        }
     })
 
     server.post('*', (req, res) => {
