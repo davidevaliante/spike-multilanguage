@@ -41,6 +41,8 @@ interface PageProps {
 const automaticRedirect = false
 
 const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountryCode }) => {
+    console.log('country code page')
+
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
@@ -201,12 +203,14 @@ export const getServerSideProps = async ({ params, res }) => {
 
     const requestedCountryCode = params?.countryCode
 
+    console.log(`REQUESTED COUNTRY CODE: ${requestedCountryCode}`)
+
     const data = await aquaClient.query({
         query: HOME,
         variables: { countryCode: requestedCountryCode },
     })
 
-    // console.log('hello world')
+    console.log('hello world')
 
     if (requestedCountryCode === '') serverSideRedirect(res, '/', 301)
     if (somethingIsUndefined([data.data.data.homes[0]])) serverSideRedirect(res, `/row`)
@@ -218,12 +222,5 @@ export const getServerSideProps = async ({ params, res }) => {
         },
     }
 }
-
-const Provider = styled.div`
-    .sib-form {
-        padding: 0px !important;
-        margin: 0px !important;
-    }
-`
 
 export default Index

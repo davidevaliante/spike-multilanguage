@@ -38,6 +38,7 @@ interface PageProps {
 const automaticRedirect = false
 
 const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
+    console.log('index')
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const router = useRouter()
@@ -195,6 +196,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
 export async function getServerSideProps({ query, params, req }) {
     const pageData = await homeDataForCountry('it')
+    console.log('inside index')
 
     return {
         props: {

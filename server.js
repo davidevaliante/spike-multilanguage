@@ -69,6 +69,8 @@ const renderAndCache = (app) =>
         }
     }
 
+const redirectSlugs = ['migliori-bonus-casino', '/']
+
 app.prepare().then(() => {
     const server = express()
     server.use(compression())
@@ -79,18 +81,25 @@ app.prepare().then(() => {
 
     server.get('*', (req, res) => {
         console.log(`The URL is ${req.url}`)
-        res.set('location', `https://spikeslot.com${req.url}`)
-        res.status(301).send()
-        // if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
-        //     res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
 
-        //     res.status(301).send()
-        // } else {
-        //     handle(req, res)
-        // }
+        if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
+            res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
+
+            res.status(301).send()
+        }
+
+        const pieces = req.url.split('/')
+        const last = pieces[pieces.length - 1]
+        if (last == 'it' || req.url === '/' || (redirectSlugs.includes(last) && !req.url.includes['robots.txt'])) {
+            res.set('location', `https://spike1slot.com${req.url}`)
+            console.log('here inside')
+            res.status(307).send()
+        }
+        handle(req, res)
     })
 
     server.get('/', (req, res) => {
+        console.log('here /')
         // since we don't use next's requestHandler, we lose compression, so we manually add it
         renderAndCache(app)(req, res, '/')
     })
@@ -258,9 +267,9 @@ app.prepare().then(() => {
         }
     })
 
-    server.get('/robots.txt', (req, res) => {
-        res.status(200).sendFile(path.join(__dirname, './public/files/robots.txt'))
-    })
+    // server.get('/robots.txt', (req, res) => {
+    //     res.status(200).sendFile(path.join(__dirname, './public/files/robots.txt'))
+    // })
 
     server.get('/spike_sitemap.xml', (req, res) => {
         res.status(200).sendFile(path.join(__dirname, './public/files/spike_sitemap.xml'))
