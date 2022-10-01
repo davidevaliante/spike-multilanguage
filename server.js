@@ -91,8 +91,7 @@ app.prepare().then(() => {
         const pieces = req.url.split('/')
         const last = pieces[pieces.length - 1]
         if (last == 'it' || req.url === '/' || (redirectSlugs.includes(last) && !req.url.includes['robots.txt'])) {
-            res.set('location', `https://spike1slot.com${req.url}`)
-            console.log('here inside')
+            res.set('location', `https://spikeslotgratis.com${req.url}`)
             res.status(307).send()
         }
         handle(req, res)
