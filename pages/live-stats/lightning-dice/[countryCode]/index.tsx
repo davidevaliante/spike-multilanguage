@@ -188,7 +188,10 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Lightning Dice Stats' countryCode={contextCountry}>
                 <Head>
                     <title>Lightining Dice Stats | SPIKE Slot</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/lightning-dice/${contextCountry}`} />
+                    <link
+                        rel='canonical'
+                        href={`https://spikeslotgratis.com/live-stats/lightning-dice/${contextCountry}`}
+                    />
                     <meta
                         name='description'
                         content={

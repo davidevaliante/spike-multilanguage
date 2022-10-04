@@ -203,7 +203,7 @@ const index: FunctionComponent<Props> = ({
                     <title>{SweetBonanzaCandyLandArticle(contextCountry, 'title')}</title>
                     <link
                         rel='canonical'
-                        href={`https://spikeslot.com/live-stats/sweet-bonanza-candyland/${contextCountry}`}
+                        href={`https://spikeslotgratis.com/live-stats/sweet-bonanza-candyland/${contextCountry}`}
                     />
                     <meta name='description' content={SweetBonanzaCandyLandArticle(contextCountry, 'desc')}></meta>
 

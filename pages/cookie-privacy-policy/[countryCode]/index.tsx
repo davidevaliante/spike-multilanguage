@@ -15,63 +15,64 @@ import { ABOUT_PAGE } from '../../../graphql/queries/about'
 import FullPageLoader from '../../../components/Layout/FullPageLoader'
 
 interface Props extends DynamicContentProps {
-    seo: Seo,
-    content : any,
-    _requestedCountryCode : string
+    seo: Seo
+    content: any
+    _requestedCountryCode: string
 }
 
 const index: FunctionComponent<Props> = ({ seo, content, _requestedCountryCode }) => {
-
     const [loading, setLoading] = useState(true)
     const { t, contextCountry, userCountry, setUserCountry, setContextCountry } = useContext(LocaleContext)
-    
-    useEffect(() => {
-        setContextCountry(_requestedCountryCode)     
-        setLoading(false)      
-    }, [])
 
+    useEffect(() => {
+        setContextCountry(_requestedCountryCode)
+        setLoading(false)
+    }, [])
 
     return (
         <Fragment>
             <Head>
                 <title>{seo.seoTitle}</title>
-                <meta
-                    name="description"
-                    content={seo.seoDescription}>
-                </meta>
-                <link rel="canonical" href={`https://spikeslot.com/cookie-privacy-policy/${_requestedCountryCode}`} />
-                <meta httpEquiv="content-language" content="it-IT"></meta>
+                <meta name='description' content={seo.seoDescription}></meta>
+                <link
+                    rel='canonical'
+                    href={`https://spikeslotgratis.com/cookie-privacy-policy/${_requestedCountryCode}`}
+                />
+                <meta httpEquiv='content-language' content='it-IT'></meta>
             </Head>
 
             <NavbarProvider currentPage='/privacy-policy' countryCode={contextCountry}>
                 <BodyContainer>
                     <div style={{ padding: '1rem' }}>
-                        <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='privacy-policy' name='Privacy Policy' />
+                        <CustomBreadcrumbs
+                            style={{ marginBottom: '2rem' }}
+                            from='privacy-policy'
+                            name='Privacy Policy'
+                        />
                         <DynamicContent content={content} />
                     </div>
                 </BodyContainer>
             </NavbarProvider>
-        </Fragment >
+        </Fragment>
     )
 }
 
-export const getServerSideProps : GetServerSideProps = async ({query}) => {
-
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const aquaClient = new AquaClient()
 
-    const {countryCode} = query
+    const { countryCode } = query
 
     const privacyPageResponse = await aquaClient.query({
         query: PRIVACY_POLICY,
-        variables: {}
+        variables: {},
     })
 
     return {
         props: {
             seo: privacyPageResponse.data.data.cookiePolicy.seo,
             content: privacyPageResponse.data.data.cookiePolicy.content,
-            _requestedCountryCode : countryCode
-        }
+            _requestedCountryCode: countryCode,
+        },
     }
 }
 
