@@ -188,10 +188,13 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Monopoly Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{_pageContent.seo[0]?.seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/monopoly-live/${contextCountry}`} />
+                    <link
+                        rel='canonical'
+                        href={`https://spikeslotgratis.com/live-stats/monopoly-live/${contextCountry}`}
+                    />
                     <meta name='description' content={_pageContent.seo[0].seoDescription}></meta>
 
-                    {/* <!-- Google / Search Engine Tags --> */}
+                    {/* <!-- Google / Search Enginei Tags --> */}
                     <meta
                         itemProp='name'
                         content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"

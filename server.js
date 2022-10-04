@@ -80,10 +80,10 @@ app.prepare().then(() => {
     }
 
     server.get('*', (req, res) => {
-        console.log(`The URL is ${req.url}`)
+        // console.log(`The URL is ${req.url}`)
 
         if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
-            res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
+            res.set('location', 'https://spikeslotgratis.com/guide-e-trucchi/it')
 
             res.status(301).send()
         }
@@ -91,8 +91,9 @@ app.prepare().then(() => {
         const pieces = req.url.split('/')
         const last = pieces[pieces.length - 1]
         if (last == 'it' || req.url === '/' || (redirectSlugs.includes(last) && !req.url.includes['robots.txt'])) {
+            console.log('redirecting')
             res.set('location', `https://spikeslotgratis.com${req.url}`)
-            res.status(307).send()
+            res.status(301).send()
         }
         handle(req, res)
     })

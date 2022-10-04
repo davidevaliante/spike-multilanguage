@@ -64,7 +64,7 @@ export const buildContentLanguageString = (countryCode: string) => `${countryCod
 
 export const getCanonicalPath = () => {
     const router = useRouter()
-    return `https://spikeslot.com${router.asPath}`
+    return `https://spikeslotgratis.com${router.asPath}`
 }
 
 export const goFullScreen = () => {
