@@ -329,6 +329,8 @@ app.prepare().then(() => {
         return handle(req, res)
     })
 
+    // small change
+
     server.get('/blog', (req, res) => {
         res.set('location', 'https://spikeslot.com/blog/it')
         res.status(301).send()
