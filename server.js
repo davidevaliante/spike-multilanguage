@@ -266,10 +266,18 @@ app.prepare().then(() => {
         res.status(301).send()
     })
 
+    server.get('/guida/bonus-benvenuto-casino-slotyes/it', async (req, res) => {
+        res.set('location', 'https://spikeslotgratis.com/guida/bonus-benvenuto-casino-admiral-bet/it')
+
+        console.log('redirecting slotyes guide')
+
+        res.status(301).send()
+    })
+
     server.get('/guida/bonus-benvenuto-casino-betway/it', (req, res) => {
         res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
 
-        console.log('hello world')
+        console.log('redirecting betway guide')
 
         res.status(301).send()
     })
