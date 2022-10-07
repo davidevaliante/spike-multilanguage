@@ -181,7 +181,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                                 </div>
                                 <div style={{ marginBottom: '1rem' }}>Stiamo lavorando per risolvere il problema</div>
                                 <div
-                                    onClick={() => router.push('/')}
+                                    onClick={() => window.open('https://spikeslotgratis.com')}
                                     style={{
                                         background: 'red',
                                         borderRadius: '6px',
