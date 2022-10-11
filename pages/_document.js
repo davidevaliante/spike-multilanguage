@@ -67,7 +67,7 @@ export default class Document extends NextDocument {
                     <meta name='p:domain_verify' content='a7b2e062354fa66c7fb685954f19b59c' />
                     <meta name='google-site-verification' content='_maV3qnMr5AqgbcA7gTfXevByYIF51pIOAz53I7fUT8' />
 
-                    <meta name='google-site-verification' content='_maV3qnMr5AqgbcA7gTfXevByYIF51pIOAz53I7fUT8' />
+                    <meta name='google-site-verification' content='kU73ZYb-Ba00h5JjmFvafeGVULp8CliZ2iISLaqpZQU' />
                     <meta
                         name='ahrefs-site-verification'
                         content='2fd03c1d788b13e3dcc769b798f8a0e531d15bac894624a407318cf3d32ee33d'
