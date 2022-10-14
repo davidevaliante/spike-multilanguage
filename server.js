@@ -80,22 +80,21 @@ app.prepare().then(() => {
     }
 
     server.get('*', (req, res) => {
-        // console.log(`The URL is ${req.url}`)
-
+        console.log(`The URL is ${req.url}`)
         if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
             res.set('location', 'https://spikeslotgratis.com/guide-e-trucchi/it')
-
             res.status(301).send()
         }
-
-        const pieces = req.url.split('/')
-        const last = pieces[pieces.length - 1]
-        if (last == 'it' || req.url === '/' || (redirectSlugs.includes(last) && !req.url.includes['robots.txt'])) {
-            console.log('redirecting')
-            res.set('location', `https://spikeslotgratis.com${req.url}`)
-            res.status(301).send()
-        }
-        handle(req, res)
+        // const pieces = req.url.split('/')
+        // const last = pieces[pieces.length - 1]
+        // if (last == 'it' || req.url === '/' || (redirectSlugs.includes(last) && !req.url.includes['robots.txt'])) {
+        //     console.log('redirecting')
+        //     res.set('location', `https://spikeslotgratis.com${req.url}`)
+        //     res.status(301).send()
+        // }
+        res.set('location', `https://spikeslotgratis.com${req.url}`)
+        res.status(301).send()
+        // handle(req, res)
     })
 
     server.get('/', (req, res) => {
@@ -288,10 +287,18 @@ app.prepare().then(() => {
         res.status(301).send()
     })
 
+    server.get('/guida/bonus-benvenuto-casino-slotyes/it', async (req, res) => {
+        res.set('location', 'https://spikeslotgratis.com/guida/bonus-benvenuto-casino-admiral-bet/it')
+
+        console.log('redirecting slotyes guide')
+
+        res.status(301).send()
+    })
+
     server.get('/guida/bonus-benvenuto-casino-betway/it', (req, res) => {
         res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
 
-        console.log('hello world')
+        console.log('redirecting betway guide')
 
         res.status(301).send()
     })
@@ -350,6 +357,8 @@ app.prepare().then(() => {
 
         return handle(req, res)
     })
+
+    // small change
 
     server.get('/blog', (req, res) => {
         res.set('location', 'https://spikeslot.com/blog/it')

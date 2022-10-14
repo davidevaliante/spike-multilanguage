@@ -38,7 +38,6 @@ interface PageProps {
 const automaticRedirect = false
 
 const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
-    console.log('index')
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     const router = useRouter()
@@ -67,8 +66,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
 
     const getCountryData = async () => {
         const geoLocatedCountryCode = await getUserCountryCode()
+        console.log(`country code is ${geoLocatedCountryCode}`)
         setUserCountry(geoLocatedCountryCode)
-        setContextCountry('it')
 
         if (geoLocatedCountryCode !== 'it') {
             const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
@@ -83,8 +82,11 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                     return
                 } else {
                     setUserCountryEquivalentExists(true)
-                    setContextCountry('it')
+                    setContextCountry(geoLocatedCountryCode)
                 }
+            } else {
+                setUserCountryEquivalentExists(true)
+                setContextCountry('row')
             }
         } else {
             setContextCountry('it')
