@@ -72,6 +72,10 @@ export default class Document extends NextDocument {
                         name='ahrefs-site-verification'
                         content='2fd03c1d788b13e3dcc769b798f8a0e531d15bac894624a407318cf3d32ee33d'
                     />
+
+                    {/* bing */}
+                    <meta name='msvalidate.01' content='CE86F0A0304551BBC9E14834122107F6' />
+
                     <link rel='shortcut icon' href='/icons/favicon.ico' />
                     <meta name='theme-color' content={`${appTheme.colors.primaryDark}`} />
                     <meta

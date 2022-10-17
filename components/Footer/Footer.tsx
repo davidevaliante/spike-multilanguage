@@ -219,6 +219,9 @@ const Footer = () => {
                     </a>
                     <script src='https://images.dmca.com/Badges/DMCABadgeHelper.min.js'> </script>
                     {contextCountry === 'it' && <p style={{ marginLeft: '1rem' }}>Giochi di slot machine gratuiti</p>}
+                    <a href='https://spikeslotgratis.com/spike_sitemap.xml' style={{ marginLeft: '1rem' }}>
+                        Sitemap
+                    </a>
                 </LowerFooterContainer>
             </div>
         </Container>
