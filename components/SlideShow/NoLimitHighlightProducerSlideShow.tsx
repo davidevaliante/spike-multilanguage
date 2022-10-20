@@ -40,8 +40,8 @@ const NoLimitHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerS
             <Container>
                 <LazyLoad>
                     <ProducerLogo
-                        src='https://media-exp1.licdn.com/dms/image/C4D0BAQE-Je4F7zSLFw/company-logo_200_200/0/1602670033611?e=1666224000&v=beta&t=DjcfkVgH6Bb1pC1kOZJDpOUy-Bv5sMtaY7T0G8Osh8g'
-                        alt='novomatic logo'
+                        src='https://media-exp1.licdn.com/dms/image/C4D0BAQE-Je4F7zSLFw/company-logo_200_200/0/1602670033611?e=1674086400&v=beta&t=p8ujkFpMlFPWAghIZl_InFVNhs357GpzoaUEy7T7Q4g'
+                        alt='no limit logo'
                     />
                 </LazyLoad>
                 <h1>{'Le migliori NoLimit City selezionate per te'}</h1>
