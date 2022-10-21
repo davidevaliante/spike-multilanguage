@@ -144,58 +144,56 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                     thumbnailUrl={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
                 <Body>
-                    {userCountry === 'it' && (
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            height: '100vh',
+                            zIndex: 30,
+                            backdropFilter: 'blur(16px)',
+                            userSelect: 'none',
+                        }}
+                    >
                         <div
                             style={{
-                                position: 'fixed',
-                                top: 0,
-                                left: 0,
-                                right: 0,
+                                fontFamily: 'Montserrat',
                                 display: 'flex',
+                                backgroundColor: 'white',
                                 flexDirection: 'column',
-                                alignItems: 'center',
                                 justifyContent: 'center',
-                                height: '100vh',
-                                zIndex: 30,
-                                backdropFilter: 'blur(16px)',
-                                userSelect: 'none',
+                                margin: 'auto auto',
+                                width: '300px',
+                                textAlign: 'center',
+                                height: '200px',
+                                padding: '2rem',
+                                borderRadius: '6px',
                             }}
                         >
+                            <div style={{ marginBottom: '1rem' }}>
+                                Questa pagina è temporaneamente inaccessibile dall'Italia
+                            </div>
+                            <div style={{ marginBottom: '1rem' }}>Stiamo lavorando per risolvere il problema</div>
                             <div
+                                onClick={() => router.push('/')}
                                 style={{
-                                    fontFamily: 'Montserrat',
-                                    display: 'flex',
-                                    backgroundColor: 'white',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                    margin: 'auto auto',
-                                    width: '300px',
-                                    textAlign: 'center',
-                                    height: '200px',
-                                    padding: '2rem',
+                                    background: 'red',
                                     borderRadius: '6px',
+                                    color: 'white',
+                                    padding: '1rem',
+                                    cursor: 'pointer',
+                                    marginTop: '3rem',
                                 }}
                             >
-                                <div style={{ marginBottom: '1rem' }}>
-                                    Questa pagina è temporaneamente inaccessibile dall'Italia
-                                </div>
-                                <div style={{ marginBottom: '1rem' }}>Stiamo lavorando per risolvere il problema</div>
-                                <div
-                                    onClick={() => router.push('/')}
-                                    style={{
-                                        background: 'red',
-                                        borderRadius: '6px',
-                                        color: 'white',
-                                        padding: '1rem',
-                                        cursor: 'pointer',
-                                        marginTop: '3rem',
-                                    }}
-                                >
-                                    Torna alla Home
-                                </div>
+                                Torna alla Home
                             </div>
                         </div>
-                    )}
+                    </div>
                     <div style={{ margin: '0rem 1rem', fontFamily: 'Raleway' }}>
                         <VideoMainData title={video.title} time={video.time} description={video.description} />
 
