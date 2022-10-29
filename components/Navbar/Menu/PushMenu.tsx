@@ -10,6 +10,7 @@ import { LocaleContext } from '../../../context/LocaleContext'
 interface Props {
     state: boolean
     tiles: any
+    children: React.ReactNode
 }
 
 const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {

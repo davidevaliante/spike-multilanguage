@@ -24,12 +24,14 @@ import CountrySelect from './CountrySelect'
 import { LocaleContext } from '../../context/LocaleContext'
 import NewAnchorTag from '../Singles/NewAnchorTag'
 import { Menu, MenuItem } from '@material-ui/core'
+import Link from 'next/link'
 
 interface Props {
     onDrawerOpen?: Function
     onDrawerClose?: Function
     currentPage: string
     countryCode: string
+    children: React.ReactNode
 }
 
 export interface NavbarPage {
@@ -205,9 +207,9 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/') {
             return (
-                <a key={key} href={contextCountry === 'it' ? `/` : `/${contextCountry}`}>
-                    {t('Home')}
-                </a>
+                <Link passHref href={contextCountry === 'it' ? `/` : `/${contextCountry}`}>
+                    <a key={key}>{t('Home')}</a>
+                </Link>
             )
         }
 
@@ -250,25 +252,25 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/migliori-bonus-casino') {
             return (
-                <a key={key} href={`/migliori-bonus-casino`}>
-                    {t(page.label)}
-                </a>
+                <Link passHref href={`/migliori-bonus-casino`}>
+                    <a key={key}>{t(page.label)}</a>
+                </Link>
             )
         }
 
         if (page.link === '/videolist') {
             return (
-                <a key={key} href={`${page.link}/${countryCode}`}>
-                    {t(page.label)}
-                </a>
+                <Link passHref href={`${page.link}/${countryCode}`}>
+                    <a key={key}>{t(page.label)}</a>
+                </Link>
             )
         }
 
         if (page.link === '/guide/lab') {
             return (
-                <a key={key} href={`${page.link}`}>
-                    {t(page.label)}
-                </a>
+                <Link passHref href={`${page.link}`}>
+                    <a key={key}>{t(page.label)}</a>
+                </Link>
             )
         }
 
@@ -289,9 +291,9 @@ const NavbarProvider: FunctionComponent<Props> = ({
         }
 
         return (
-            <a key={key} href={page.link === '/' ? `${page.link}` : `${page.link}/${countryCode}`}>
-                {t(page.label)}
-            </a>
+            <Link passHref href={page.link === '/' ? `${page.link}` : `${page.link}/${countryCode}`}>
+                <a key={key}>{t(page.label)}</a>
+            </Link>
         )
     }
 

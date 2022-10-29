@@ -20,7 +20,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "incremental": true
   },
   "exclude": [
     "node_modules"
@@ -33,6 +34,6 @@
     "components/Schema/Website.tsx",
     "pages/api/send.js",
     "pages/sitemap-generator/index.js",
-    "graphql/aquaClient.js",
+    "graphql/aquaClient.js"
   ]
 }

@@ -104,7 +104,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
             <Logo />
 
             <NavbarProvider currentPage={!isBakeca ? 'Home' : '/bakeca-home'} countryCode={contextCountry}>
-                {home.topArticle && <HomeHeader topArticle={home.topArticle}>Slot Online SPIKE SLOT</HomeHeader>}
+                {home.topArticle && <HomeHeader topArticle={home.topArticle} />}
                 <BodyContainer>
                     {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/${userCountry}`} />}
                     <MainColumn>

@@ -1,16 +1,17 @@
-import App from "next/app"
-import React, { FunctionComponent, Fragment } from "react"
-import { ThemeProvider } from "styled-components"
-import { styledTheme, GlobalStyle } from "../theme/theme"
-import { Reset } from "styled-reset"
-import Head from "next/head"
-import { ThemeProvider as MaterialThemeProvider } from "@material-ui/core/styles"
-import { materialTheme } from "./../theme/theme"
-import "react-multi-carousel/lib/styles.css"
-import "video.js/dist/video-js.css"
-import { cookieContext } from "../context/CookieContext"
-import { useMyCookies } from "../hooks/useMyCookies"
-import { LocaleContextProvider } from "../context/LocaleContext"
+import App from 'next/app'
+import React, { FunctionComponent, Fragment } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { styledTheme, GlobalStyle } from '../theme/theme'
+import { Reset } from 'styled-reset'
+import Head from 'next/head'
+import { ThemeProvider as MaterialThemeProvider } from '@material-ui/core/styles'
+import { materialTheme } from './../theme/theme'
+import 'react-multi-carousel/lib/styles.css'
+import 'video.js/dist/video-js.css'
+import { cookieContext } from '../context/CookieContext'
+import { useMyCookies } from '../hooks/useMyCookies'
+import { LocaleContextProvider } from '../context/LocaleContext'
+import NextNProgress from 'nextjs-progressbar'
 
 const ContextProvider: FunctionComponent = ({ children }) => {
     const cookieAcceptedStatus = useMyCookies()
@@ -32,8 +33,8 @@ class MyApp extends App {
                 <MaterialThemeProvider theme={materialTheme}>
                     <ThemeProvider theme={styledTheme}>
                         <Head>
-                            <script async src="https://www.googletagmanager.com/gtag/js?id=G-VW9JVLDQEM" />
-                            <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+                            <script async src='https://www.googletagmanager.com/gtag/js?id=G-VW9JVLDQEM' />
+                            <script type='text/javascript' src='https://cdn.ywxi.net/js/1.js' async></script>
 
                             <script
                                 dangerouslySetInnerHTML={{
@@ -72,6 +73,7 @@ class MyApp extends App {
                         </Head>
                         <Reset />
                         <GlobalStyle />
+                        <NextNProgress />
                         <Component {...pageProps} />
                     </ThemeProvider>
                 </MaterialThemeProvider>

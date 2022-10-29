@@ -8,10 +8,10 @@ interface Props {
     visible: boolean
     duration?: number
     style?: CSSProperties
+    children: React.ReactNode
 }
 
 const FadeInOut: FunctionComponent<Props> = ({ duration, visible, children }) => {
-
     const [show, setShow] = useState(true)
 
     useEffect(() => {
@@ -38,9 +38,9 @@ interface IFadeInOutWrapper {
 }
 
 const FadeInOutWrapper = styled.div`
-    display : ${(props: IFadeInOutWrapper) => props.show ? 'block' : 'none'};
-    transition : opacity ${(props: IFadeInOutWrapper) => `${props.duration ? props.duration : '.3'}s`} ease-in-out;
-    opacity : ${(props: IFadeInOutWrapper) => props.visible ? 1 : 0};
+    display: ${(props: IFadeInOutWrapper) => (props.show ? 'block' : 'none')};
+    transition: opacity ${(props: IFadeInOutWrapper) => `${props.duration ? props.duration : '.3'}s`} ease-in-out;
+    opacity: ${(props: IFadeInOutWrapper) => (props.visible ? 1 : 0)};
 `
 
 export default FadeInOut
