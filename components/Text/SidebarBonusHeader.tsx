@@ -6,7 +6,13 @@ import { LocaleContext } from '../../context/LocaleContext'
 interface ISidebarBonusHeader {}
 
 const SidebarBonusHeader: FunctionComponent<ISidebarBonusHeader> = () => {
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const countryToString = (cc: string) => {
         switch (cc) {

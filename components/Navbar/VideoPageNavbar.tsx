@@ -181,9 +181,9 @@ const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen
                 <Link
                     key={key}
                     href={`/`}>
-                    <a>{page.label}</a>
+                    {page.label}
                 </Link>
-            )
+            );
         }
 
         if (page.link === '/migliori-bonus-casino') {
@@ -191,9 +191,9 @@ const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen
                 <Link
                     key={key}
                     href={`/migliori-bonus-casino`}>
-                    <a>{page.label}</a>
+                    {page.label}
                 </Link>
-            )
+            );
         }
 
         if (page.link === '/videolist') {
@@ -201,9 +201,9 @@ const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen
                 <Link
                     key={key}
                     href={`${page.link}/it`}>
-                    <a>{page.label}</a>
+                    {page.label}
                 </Link>
-            )
+            );
         }
 
         if (page.link === '/altro') {
@@ -223,13 +223,12 @@ const VideoPageNavbar: FunctionComponent<Props> = ({ onDrawerClose, onDrawerOpen
         }
 
         return (
-
             <Link
                 key={key}
                 href={page.link === '/' ? `${page.link}` : `${page.link}/${currentCountry}`}>
-                <a>{page.label}</a>
+                {page.label}
             </Link>
-        )
+        );
     }
 
     const [showExitBonuses, setShowExitBonuses] = useState(false)

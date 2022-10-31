@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ProducersList: FunctionComponent<Props> = ({ producers, showProducers, showMoreFilter, onProducerSelected }) => {
-    const { contextCountry } = useContext(LocaleContext)
+    const { appCountry: contextCountry } = useContext(LocaleContext)
     const router = useRouter()
 
     const goToProducer = (slug: string) => router.push(`/producer/${slug}/${contextCountry}`)

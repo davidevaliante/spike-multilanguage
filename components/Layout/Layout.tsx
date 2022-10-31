@@ -1,79 +1,17 @@
-import styled from 'styled-components'
-import { desktop, laptop } from '../Responsive/Breakpoints'
+import { FunctionComponent, ReactNode } from 'react'
 
-export const BodyContainer = styled.div`
-    position: relative;
-    /* display flex qui rompe lo slideshow */
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+export const BodyContainer: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+    return <div className='relative flex justify-around flex-wrap'>{children}</div>
+}
 
-    strong {
-        font-weight: bold;
-    }
+export const MainColumnScroll: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+    return <div className='max-w-[900px]'>{children}</div>
+}
 
-    strong.red {
-        color: ${(props) => props.theme.colors.primary};
-        font-family: ${(props) => props.theme.text.secondaryFont};
-    }
+export const MainColumn: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+    return <div className='max-w-[900px] flex flex-col items-center min-h-[2400px]'>{children}</div>
+}
 
-    strong.secondary {
-        color: ${(props) => props.theme.colors.secondary};
-        font-family: ${(props) => props.theme.text.secondaryFont};
-    }
-
-    .newsletter {
-        all: unset;
-        cursor: pointer;
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        color: #2a6aeb;
-    }
-`
-export const MainColumnScroll = styled.div`
-    max-width: 900px;
-`
-
-export const MainColumn = styled.div`
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 2400px;
-`
-export const RightColumn = styled.div`
-    display: none;
-
-    width: 200px;
-    /* background : blueviolet; */
-    position: relative;
-
-    ${desktop} {
-        display: flex;
-        flex-direction: column;
-        min-width: 300px;
-    }
-
-    .bonus-column-container {
-        position: absolute;
-        left: 0;
-        top: 320px;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-
-    .bonus-header {
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        font-size: 1.5rem;
-        color: ${(props) => props.theme.colors.primary};
-        padding: 2rem 1rem;
-    }
-
-    .video-header {
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        font-size: 1.5rem;
-        color: ${(props) => props.theme.colors.primary};
-        padding: 1rem;
-    }
-`
+export const RightColumn: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+    return <div className='hidden w-[200px] relative lg:flex lg:flex-col lg:min-w-[300px]'>{children}</div>
+}

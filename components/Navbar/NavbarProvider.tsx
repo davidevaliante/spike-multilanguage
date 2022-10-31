@@ -25,6 +25,8 @@ import { LocaleContext } from '../../context/LocaleContext'
 import NewAnchorTag from '../Singles/NewAnchorTag'
 import { Menu, MenuItem } from '@material-ui/core'
 import Link from 'next/link'
+import { useNavbarItems } from '../../hooks/useNavbarItems'
+import { useAnalytics } from '../../hooks/useAnalytics'
 
 interface Props {
     onDrawerOpen?: Function
@@ -46,22 +48,6 @@ const NavbarProvider: FunctionComponent<Props> = ({
     children,
     countryCode,
 }) => {
-    const p = [
-        { label: 'Home', link: '/' },
-        { label: 'Video', link: '/videos' },
-        { label: 'Free Slot Machine Games', link: '/slots' },
-        { label: 'Bar Slot', link: '/slot-bar' },
-        { label: 'VLT slot', link: '/slot-vlt' },
-        { label: 'LiveStats', link: '/live-stats' },
-
-        { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
-
-        { label: 'Blogs and Articles', link: '/blog' },
-        { label: 'Investimenti Online', link: '/guide/lab' },
-    ]
-
-    const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
-
     const [anchorEl, setAnchorEl] = React.useState(null)
 
     const handleClick = (event) => {
@@ -72,30 +58,14 @@ const NavbarProvider: FunctionComponent<Props> = ({
         setAnchorEl(null)
     }
 
-    const { t, contextCountry } = useContext(LocaleContext)
-    useEffect(() => {
-        let copy = [...p]
-        if (contextCountry === 'it') {
-            copy.splice(6, 0, { label: 'Welcome bonus', link: '/migliori-bonus-casino' })
-            copy.splice(8, 0, { label: 'Guides and Tricks', link: '/guide-e-trucchi' })
-        }
-        if (contextCountry === 'row' || contextCountry === 'ca') {
-            copy.splice(6, 0, { label: 'Welcome bonus', link: `/best-casino-bonus` })
-            copy.splice(8, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
-            copy.splice(1, 1)
-        }
-        setDrawerPages(copy)
-    }, [contextCountry])
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
+
+    const drawerPages = useNavbarItems()
 
     const router = useRouter()
 
-    useEffect(() => {
-        if (cookiesAccepted === 'accepted') {
-            initializeAnalytics(currentPage)
-        }
-    }, [cookiesAccepted])
+    const analytics = useAnalytics(currentPage)
 
-    const [drawerPages, setDrawerPages] = useState<{ label: string; link: string }[]>([])
     const [algoliaIndex, setAlgoliaIndex] = useState<SearchIndex | undefined>(undefined)
     const [searchOpen, setSearchOpen] = useState(false)
     const [searchTimerId, setSearchTimerId] = useState<number | undefined>(undefined)
@@ -207,8 +177,8 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/') {
             return (
-                <Link passHref href={contextCountry === 'it' ? `/` : `/${contextCountry}`}>
-                    <a key={key}>{t('Home')}</a>
+                <Link passHref href={contextCountry === 'it' ? `/` : `/${contextCountry}`} key={key}>
+                    {t('Home')}
                 </Link>
             )
         }
@@ -252,24 +222,24 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/migliori-bonus-casino') {
             return (
-                <Link passHref href={`/migliori-bonus-casino`}>
-                    <a key={key}>{t(page.label)}</a>
+                <Link passHref href={`/migliori-bonus-casino`} key={key}>
+                    {t(page.label)}
                 </Link>
             )
         }
 
         if (page.link === '/videolist') {
             return (
-                <Link passHref href={`${page.link}/${countryCode}`}>
-                    <a key={key}>{t(page.label)}</a>
+                <Link passHref href={`${page.link}/${countryCode}`} key={key}>
+                    {t(page.label)}
                 </Link>
             )
         }
 
         if (page.link === '/guide/lab') {
             return (
-                <Link passHref href={`${page.link}`}>
-                    <a key={key}>{t(page.label)}</a>
+                <Link passHref href={`${page.link}`} key={key}>
+                    {t(page.label)}
                 </Link>
             )
         }
@@ -291,8 +261,8 @@ const NavbarProvider: FunctionComponent<Props> = ({
         }
 
         return (
-            <Link passHref href={page.link === '/' ? `${page.link}` : `${page.link}/${countryCode}`}>
-                <a key={key}>{t(page.label)}</a>
+            <Link passHref href={page.link === '/' ? `${page.link}` : `${page.link}/${countryCode}`} key={key}>
+                {t(page.label)}
             </Link>
         )
     }
@@ -308,10 +278,6 @@ const NavbarProvider: FunctionComponent<Props> = ({
         }
         return <div></div>
     }
-
-    const handleCookieAccepted = () => updateCookiesAccepted(true)
-
-    const handleCookieRefused = () => updateCookiesAccepted(false)
 
     return (
         <Wrapper currentPage={currentPage} style={{ background: '#fafafa' }}>
@@ -402,12 +368,6 @@ const NavbarProvider: FunctionComponent<Props> = ({
                     <ChildrenWrapper style={{ background: 'white' }}>{children}</ChildrenWrapper>
                     <Footer />
                 </FadeInOut>
-                {cookiesAccepted === 'unknown' && (
-                    <CookieDisclaimer
-                        onCookiesAccepted={() => handleCookieAccepted()}
-                        onCookiesRefused={() => handleCookieRefused()}
-                    />
-                )}
             </PushMenu>
         </Wrapper>
     )

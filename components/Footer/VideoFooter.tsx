@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react"
-import styled from "styled-components"
-import { desktop } from "../Responsive/Breakpoints"
-import ArticleToMarkdown from "../Markdown/ArticleToMarkdown"
-import AquaClient from "./../../graphql/aquaClient"
-import { VIDEO_FOOTER } from "../../graphql/queries/footer"
-import { countryContext } from "../../context/CountryContext"
-import { LocaleContext } from "../../context/LocaleContext"
-import NavbarAams from "../Banners/NavbarAams"
+import React, { useState, useEffect, useContext } from 'react'
+import styled from 'styled-components'
+import { desktop } from '../Responsive/Breakpoints'
+import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
+import AquaClient from './../../graphql/aquaClient'
+import { VIDEO_FOOTER } from '../../graphql/queries/footer'
+import { countryContext } from '../../context/CountryContext'
+import { LocaleContext } from '../../context/LocaleContext'
+import NavbarAams from '../Banners/NavbarAams'
 
 const VideoFooter = () => {
     const [show, setShow] = useState(false)
@@ -14,7 +14,7 @@ const VideoFooter = () => {
 
     const aquaClient = new AquaClient()
 
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         getFooterArticle()
@@ -31,92 +31,92 @@ const VideoFooter = () => {
 
     return (
         <Container>
-            <div style={{ margin: "auto", width: "100%" }}>
+            <div style={{ margin: 'auto', width: '100%' }}>
                 <Body show={true}>
                     <section>
-                        <Header>{t("Information and contacts")}</Header>
+                        <Header>{t('Information and contacts')}</Header>
                         <div>
                             <LinkContainer>
-                                <a href="/spike/it">{t("About")}</a>
+                                <a href='/spike/it'>{t('About')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href="/contatti">{t("Contacts")}</a>
+                                <a href='/contatti'>{t('Contacts')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/cookie-privacy-policy/it`}>{t("Privacy and Cookie Policy")}</a>
+                                <a href={`/cookie-privacy-policy/it`}>{t('Privacy and Cookie Policy')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href="https://shop.spreadshirt.it/spike4">{t("Official Store")}</a>
+                                <a href='https://shop.spreadshirt.it/spike4'>{t('Official Store')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
                                 <a href={`/articoli/ludopatia-come-smettere-di-giocare/${contextCountry}`}>
-                                    {t("Responsible gaming")}
+                                    {t('Responsible gaming')}
                                 </a>
                             </LinkContainer>
                         </div>
                     </section>
 
                     <section>
-                        <Header>{t("Popular Slot Machine Guides")}</Header>
+                        <Header>{t('Popular Slot Machine Guides')}</Header>
                         <div>
                             <LinkContainer>
-                                <a href={`/slot/book-of-ra-deluxe/${contextCountry}`}>{t("Book of Ra Deluxe")}</a>
+                                <a href={`/slot/book-of-ra-deluxe/${contextCountry}`}>{t('Book of Ra Deluxe')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/reactoonz/${contextCountry}`}>{t("Reactoonz")}</a>
+                                <a href={`/slot/reactoonz/${contextCountry}`}>{t('Reactoonz')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/sweet-bonanza/${contextCountry}`}>{t("Sweet Bonanza")}</a>
+                                <a href={`/slot/sweet-bonanza/${contextCountry}`}>{t('Sweet Bonanza')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/dead-or-alive-2/${contextCountry}`}>{t("Dead or Alive 2")}</a>
+                                <a href={`/slot/dead-or-alive-2/${contextCountry}`}>{t('Dead or Alive 2')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/starburst/${contextCountry}`}>{t("Starburst")}</a>
+                                <a href={`/slot/starburst/${contextCountry}`}>{t('Starburst')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/slot/the-dog-house/${contextCountry}`}>{t("The dog house")}</a>
+                                <a href={`/slot/the-dog-house/${contextCountry}`}>{t('The dog house')}</a>
                             </LinkContainer>
                         </div>
                     </section>
 
                     <section>
-                        <Header>{t("Welcome Bonus Guides")}</Header>
+                        <Header>{t('Welcome Bonus Guides')}</Header>
                         <div>
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-starcasino/${contextCountry}`}>{t("Starcasino")}</a>
+                                <a href={`/guida/bonus-benvenuto-starcasino/${contextCountry}`}>{t('Starcasino')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-leovegas/${contextCountry}`}>{t("Leovegas")}</a>
+                                <a href={`/guida/bonus-benvenuto-casino-leovegas/${contextCountry}`}>{t('Leovegas')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
                                 <a href={`/guida/bonus-benvenuto-casino-starvegas/${contextCountry}`}>
-                                    {t("Starvegas")}
+                                    {t('Starvegas')}
                                 </a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-snai/${contextCountry}`}>{t("Snai")}</a>
+                                <a href={`/guida/bonus-benvenuto-casino-snai/${contextCountry}`}>{t('Snai')}</a>
                             </LinkContainer>
 
                             <LinkContainer>
-                                <a href={`/guida/bonus-benvenuto-casino-slotyes/${contextCountry}`}>{t("Slot-Yes")}</a>
+                                <a href={`/guida/bonus-benvenuto-casino-slotyes/${contextCountry}`}>{t('Slot-Yes')}</a>
                             </LinkContainer>
                         </div>
                     </section>
                 </Body>
-                <h1 onClick={() => setShow(!show)} className="show-more">
+                <h1 onClick={() => setShow(!show)} className='show-more'>
                     {!show ? t(`Show more`) : t(`Hide`)}
                 </h1>
                 <Body show={show}>
@@ -127,12 +127,12 @@ const VideoFooter = () => {
                     )}
                 </Body>
 
-                <div style={{ display: "flex", justifyContent: "center", margin: "1.5rem 0rem" }}>
-                    {contextCountry === "it" && <NavbarAams />}
+                <div style={{ display: 'flex', justifyContent: 'center', margin: '1.5rem 0rem' }}>
+                    {contextCountry === 'it' && <NavbarAams />}
                 </div>
 
                 <Divider />
-                <p style={{ textAlign: "center", padding: "2rem" }}>Copyright ©2020 www.spikeslot.com</p>
+                <p style={{ textAlign: 'center', padding: '2rem' }}>Copyright ©2020 www.spikeslot.com</p>
             </div>
         </Container>
     )
@@ -188,7 +188,7 @@ interface IBody {
 }
 
 const Body = styled.div`
-    display: ${(props: IBody) => (props.show ? "flex" : "hidden")};
+    display: ${(props: IBody) => (props.show ? 'flex' : 'hidden')};
     justify-content: space-between;
     width: 100%;
     ${desktop} {

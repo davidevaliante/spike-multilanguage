@@ -18,7 +18,7 @@ const SlotListSlotCard: FunctionComponent<Props> = ({ slotCardData }) => {
 
     const fullStars = rating
 
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     const injectCdnOrFallback = (): string => {
         if (slotCardData.image === null || slotCardData.image.url === 'https://spikeapi.eu/icons/app_icon.svg')

@@ -82,7 +82,7 @@ const ApolloSlideShow: FunctionComponent<Props> = ({
                     <div>loading</div>
                 )}
 
-                <Link href={buttonRoute} as={buttonRouteAs} passHref>
+                <Link href={buttonRoute} as={buttonRouteAs} passHref legacyBehavior>
                     <ButtonSlider>
                         <a>{t(buttonText)}</a>
 
@@ -91,7 +91,7 @@ const ApolloSlideShow: FunctionComponent<Props> = ({
                 </Link>
             </Container>
         </Fragment>
-    )
+    );
 }
 
 interface ContainerProps {

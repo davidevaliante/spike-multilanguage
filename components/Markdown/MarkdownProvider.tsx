@@ -6,6 +6,7 @@ import { laptop } from '../Responsive/Breakpoints'
 
 interface Props {
     style?: CSSProperties
+    children: React.ReactNode
 }
 
 const MarkdownProvider: FunctionComponent<Props> = ({ style, children }) => {

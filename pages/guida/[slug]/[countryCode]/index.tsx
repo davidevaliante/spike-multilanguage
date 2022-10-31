@@ -31,7 +31,13 @@ interface Props {
 
 const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList, countryCode }) => {
     const router = useRouter()
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     useEffect(() => {
         setContextCountry(countryCode)

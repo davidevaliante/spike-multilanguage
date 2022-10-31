@@ -23,17 +23,22 @@ import CountryEquivalentPageSnackbar from '../../../components/Snackbars/Country
 
 interface Props extends DynamicContentProps {
     seo: Seo
-    bonusList: { bonus: ApolloBonusCardReveal }[],
-    _requestedCountryCode : string
+    bonusList: { bonus: ApolloBonusCardReveal }[]
+    _requestedCountryCode: string
 }
 
 const About: FunctionComponent<Props> = ({ seo, content, bonusList, _requestedCountryCode }) => {
-
     const aquaClient = new AquaClient()
 
     const [loading, setLoading] = useState(true)
 
-    const { t, contextCountry, userCountry, setUserCountry, setContextCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        userCountry,
+        setUserCountry,
+        setAppCountry: setContextCountry,
+    } = useContext(LocaleContext)
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
     const [canonicalPath, setCanonicalPath] = useState(getCanonicalPath())
 
@@ -41,17 +46,17 @@ const About: FunctionComponent<Props> = ({ seo, content, bonusList, _requestedCo
         const geoLocatedCountryCode = await getUserCountryCode()
         setUserCountry(geoLocatedCountryCode)
 
-        if(geoLocatedCountryCode !== _requestedCountryCode){
+        if (geoLocatedCountryCode !== _requestedCountryCode) {
             const aboutPageResponse = await aquaClient.query({
                 query: ABOUT_PAGE,
                 variables: {
-                    countryCode : geoLocatedCountryCode,
-                }
+                    countryCode: geoLocatedCountryCode,
+                },
             })
 
-            if(aboutPageResponse.data.data.aboutPages[0]) setUserCountryEquivalentExists(true)
+            if (aboutPageResponse.data.data.aboutPages[0]) setUserCountryEquivalentExists(true)
         }
-        setContextCountry(_requestedCountryCode)           
+        setContextCountry(_requestedCountryCode)
         setLoading(false)
     }
 
@@ -64,74 +69,69 @@ const About: FunctionComponent<Props> = ({ seo, content, bonusList, _requestedCo
         setContextCountry(_requestedCountryCode)
     }, [_requestedCountryCode])
 
-
     return (
         <Fragment>
-                <Head>
-                    <title>{seo.seoTitle}</title>
-                    <link rel="canonical" href={canonicalPath} />
-                    <meta
-                        name="description"
-                        content={seo.seoDescription}>
-                    </meta>
-                    <meta httpEquiv="content-language" content="it-IT"></meta>
-                </Head>
-                <NavbarProvider currentPage='about' countryCode={contextCountry}>
-                    <div style={{ width: '100%', marginBottom: '6rem', paddingTop : '3rem' }}>
-                        {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/spike/${userCountry}`} />}
-                        <BodyContainer>
-                            <MainColumn>
-                                <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='about' name='SPIKE' />
-                                <DynamicContent content={content} />
-                            </MainColumn>
-                            <RightColumn>
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <Icon
-                                        width={56}
-                                        height={56}
-                                        source='/icons/flame_icon.svg' />
-                                    <h1 className='video-header'>{t("Watch SPIKE's latest video")}</h1>
-                                </div>
-                                <LatestVideoCard />
-                                <h1 className='bonus-header'>{t("The best welcome bonuses")}</h1>
-                                <div className='bonus-column-container'>
-                                    {bonusList && bonusList.map(bo => <ApolloBonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />)}
-                                </div>
-                            </RightColumn>
-                        </BodyContainer>
-                    </div>
-                </NavbarProvider>
-        </Fragment>        
+            <Head>
+                <title>{seo.seoTitle}</title>
+                <link rel='canonical' href={canonicalPath} />
+                <meta name='description' content={seo.seoDescription}></meta>
+                <meta httpEquiv='content-language' content='it-IT'></meta>
+            </Head>
+            <NavbarProvider currentPage='about' countryCode={contextCountry}>
+                <div style={{ width: '100%', marginBottom: '6rem', paddingTop: '3rem' }}>
+                    {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/spike/${userCountry}`} />}
+                    <BodyContainer>
+                        <MainColumn>
+                            <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='about' name='SPIKE' />
+                            <DynamicContent content={content} />
+                        </MainColumn>
+                        <RightColumn>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <Icon width={56} height={56} source='/icons/flame_icon.svg' />
+                                <h1 className='video-header'>{t("Watch SPIKE's latest video")}</h1>
+                            </div>
+                            <LatestVideoCard />
+                            <h1 className='bonus-header'>{t('The best welcome bonuses')}</h1>
+                            <div className='bonus-column-container'>
+                                {bonusList &&
+                                    bonusList.map((bo) => (
+                                        <ApolloBonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />
+                                    ))}
+                            </div>
+                        </RightColumn>
+                    </BodyContainer>
+                </div>
+            </NavbarProvider>
+        </Fragment>
     )
 }
 
-export const getServerSideProps : GetServerSideProps = async ({query}) => {
-
-    const {countryCode} = query
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+    const { countryCode } = query
     const aquaClient = new AquaClient()
 
     const aboutPageResponse = await aquaClient.query({
         query: ABOUT_PAGE,
         variables: {
-            countryCode : countryCode,
-        }
+            countryCode: countryCode,
+        },
     })
 
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
         variables: {
-            countryCode: countryCode
-        }
+            countryCode: countryCode,
+        },
     })
-    
+
     const bonusList = bonusListResponse.data.data.homes[0].bonuses.bonus
     return {
         props: {
             seo: aboutPageResponse.data.data.aboutPages[0].seo,
             content: aboutPageResponse.data.data.aboutPages[0].content,
             bonusList: bonusList,
-            _requestedCountryCode:countryCode
-        }
+            _requestedCountryCode: countryCode,
+        },
     }
 }
 

@@ -11,36 +11,34 @@ interface BonusGuideCardProps {
 }
 
 const BonusGuideCard: FunctionComponent<BonusGuideCardProps> = ({ guide }) => {
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     return (
         <StyleProvider>
             <Link href={`/guida/[slug]/[countryCode]`} as={`/guida/${guide.slug}/${contextCountry}`}>
-                <a>
-                    <CardContainer backgroundColor={guide.bonus!.backgroundColor}>
-                        <LazyBonusImage
-                            alt={`${guide.bonus?.name}-logo`}
-                            width={60}
-                            height={60}
-                            borderColor={guide.bonus?.borderColor!}
-                            src={guide.bonus?.circular_image.url}
-                        />
+                <CardContainer backgroundColor={guide.bonus!.backgroundColor}>
+                    <LazyBonusImage
+                        alt={`${guide.bonus?.name}-logo`}
+                        width={60}
+                        height={60}
+                        borderColor={guide.bonus?.borderColor!}
+                        src={guide.bonus?.circular_image.url}
+                    />
 
-                        <div style={{ display: 'flex', justifyContent: 'flex-start', flexGrow: 1 }}>
-                            <div>
-                                <h2 className='card-header'>{`${t('Bonus Guide')} ${guide.bonus?.name}`}</h2>
-                                {['StarCasinò', 'Starvegas', 'LeoVegas', 'Unibet'].includes(
-                                    guide.bonus?.name as string
-                                ) && (
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p className='card-subheader'>{t('With video explanation by SPIKE')}</p>
-                                        <LazyImage width={30} height={30} src={'/icons/ciak.svg'} alt='ciak' />
-                                    </div>
-                                )}
-                            </div>
+                    <div style={{ display: 'flex', justifyContent: 'flex-start', flexGrow: 1 }}>
+                        <div>
+                            <h2 className='card-header'>{`${t('Bonus Guide')} ${guide.bonus?.name}`}</h2>
+                            {['StarCasinò', 'Starvegas', 'LeoVegas', 'Unibet'].includes(
+                                guide.bonus?.name as string
+                            ) && (
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <p className='card-subheader'>{t('With video explanation by SPIKE')}</p>
+                                    <LazyImage width={30} height={30} src={'/icons/ciak.svg'} alt='ciak' />
+                                </div>
+                            )}
                         </div>
-                    </CardContainer>
-                </a>
+                    </div>
+                </CardContainer>
             </Link>
         </StyleProvider>
     )

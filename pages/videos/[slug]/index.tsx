@@ -34,7 +34,13 @@ const VideoList: FunctionComponent<Props> = ({
     const [videoList, setVideoList] = useState<AlgoliaVideo[] | undefined>(initialVideos)
     const [lastVideoTime, setLastVideoTime] = useState<number>(initialLatestVideoInListTime)
     const [showNewest, setShowNewest] = useState(true)
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
     // search
     const [searchValue, setSearchValue] = useState('')
     const [algoliaVideoIndex, setAlgoliaVideoIndex] = useState<SearchIndex | undefined>(undefined)

@@ -33,7 +33,13 @@ const automaticRedirect = false
 const BlogArticle: FunctionComponent<Props> = ({ article, bonusList, _requestedCountryCode }) => {
     console.log(_requestedCountryCode)
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
     const [loading, setLoading] = useState(true)

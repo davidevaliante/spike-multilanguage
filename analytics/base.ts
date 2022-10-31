@@ -11,15 +11,15 @@ export const initializeAnalytics = (pageName: string) => {
         {
             trackingId: davideId,
             gaOptions: {
-                name: 'dev'
-            }
+                name: 'dev',
+            },
         },
         {
             trackingId: karloId,
             gaOptions: {
-                name: 'spike'
-            }
-        }
+                name: 'spike',
+            },
+        },
     ])
 
     ReactGA.ga('dev.send', 'pageview', pageName)

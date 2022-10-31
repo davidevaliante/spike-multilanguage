@@ -29,68 +29,37 @@ import { defaultShareImage } from './../constants/constants'
 import Logo from '../components/StructuredData.tsx/Logo'
 import SidebarBonusHeader from '../components/Text/SidebarBonusHeader'
 import NoLimitHighlightProducerSlideShow from '../components/SlideShow/NoLimitHighlightProducerSlideShow'
+import { useCountry } from '../hooks/useCountry'
 
 interface PageProps {
-    _shallow: boolean
-    _home: Home
+    homeData: Home
 }
 
 const automaticRedirect = false
 
-const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+const Index: FunctionComponent<PageProps> = ({ homeData }) => {
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const router = useRouter()
+    const country = useCountry()
 
     const [isBakeca, setIsBakeca] = useState(router.asPath.split('from=')[1] === 'bakeca')
 
-    const [loading, setLoading] = useState(true)
-    const [home, setHome] = useState<Home>(_home)
-    // const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map((s) => s.slot))
+    const [home, setHome] = useState<Home>(homeData)
 
-    const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(_home.producerSlots.slot.map((s) => s.slot))
-    const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[]>(_home.onlineSlots.slot.map((s) => s.slot))
-    const [barSlots, setBarSlots] = useState<ApolloSlotCard[]>(_home.barSlots.slot.map((s) => s.slot))
-    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[]>(_home.vltSlots.slot.map((s) => s.slot))
-    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[]>(_home.bonuses.bonus.map((b) => b.bonus))
+    const [producerSlots, setProducerSlots] = useState<ApolloSlotCard[]>(home.producerSlots.slot.map((s) => s.slot))
+    const [onlineSlots, setOnlineSlots] = useState<ApolloSlotCard[]>(home.onlineSlots.slot.map((s) => s.slot))
+    const [barSlots, setBarSlots] = useState<ApolloSlotCard[]>(home.barSlots.slot.map((s) => s.slot))
+    const [vltSlots, setVltSlots] = useState<ApolloSlotCard[]>(home.vltSlots.slot.map((s) => s.slot))
+    const [bonusList, setBonusList] = useState<ApolloBonusCardReveal[]>(home.bonuses.bonus.map((b) => b.bonus))
 
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
-
-    useEffect(() => {
-        setContextCountry('it')
-        if (_shallow) {
-            setContextCountry('it')
-            setLoading(false)
-        } else getCountryData()
-    }, [])
-
-    const getCountryData = async () => {
-        const geoLocatedCountryCode = await getUserCountryCode()
-        setUserCountry(geoLocatedCountryCode)
-        setContextCountry('it')
-
-        if (geoLocatedCountryCode !== 'it') {
-            const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
-            const homeData = await aquaClient.query({
-                query: HOME,
-                variables: { countryCode: geoLocatedCountryCode },
-            })
-
-            if (homeData.data.data.homes[0]) {
-                if (automaticRedirect) {
-                    router.push(`/${geoLocatedCountryCode}`)
-                    return
-                } else {
-                    setUserCountryEquivalentExists(true)
-                    setContextCountry('it')
-                }
-            }
-        } else {
-            setContextCountry('it')
-        }
-
-        setLoading(false)
-    }
 
     return (
         <div>
@@ -102,11 +71,10 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                 locale={contextCountry}
             />
             <Logo />
-
             <NavbarProvider currentPage={!isBakeca ? 'Home' : '/bakeca-home'} countryCode={contextCountry}>
-                {home.topArticle && <HomeHeader topArticle={home.topArticle} />}
+                <HomeHeader topArticle={home.topArticle} />
                 <BodyContainer>
-                    {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/${userCountry}`} />}
+                    <CountryEquivalentPageSnackbar path={`/${userCountry}`} exists={userCountryEquivalentExists} />
                     <MainColumn>
                         <LiveStatsCta />
 
@@ -198,8 +166,7 @@ export async function getServerSideProps({ query, params, req }) {
 
     return {
         props: {
-            _home: pageData,
-            _shallow: null,
+            homeData: pageData,
         },
     }
 }

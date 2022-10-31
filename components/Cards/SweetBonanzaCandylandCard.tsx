@@ -15,7 +15,13 @@ interface CardProps {
 const SweetBonanzaCandylandCard: FunctionComponent<CardProps> = ({ stat, totalSpinsConsidered, timeFrame }) => {
     console.log(stat)
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const expectation = (s: string) => {
         if (s === '1')

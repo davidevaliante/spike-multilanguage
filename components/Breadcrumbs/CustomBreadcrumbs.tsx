@@ -51,7 +51,13 @@ const Breadcrumbs: FunctionComponent<Props> = ({
     labSlug,
     style,
 }) => {
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const breadCrumbRenderer = () => {
         if (from === 'lab') {
@@ -102,7 +108,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 >
                     <SlotListBreadCrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/guide-e-trucchi/${contextCountry}`}>
@@ -168,7 +174,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 >
                     <SlotListBreadCrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/guide-e-trucchi/${contextCountry}`}>
@@ -232,18 +238,16 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                     <SlotBreadCrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/slots/${contextCountry}`}>Slots</a>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <Link href={`/producer/[slug]/[countryCode]`} as={`/producer/${producerSlug}/${contextCountry}`}>
-                        <a>{producerName}</a>
+                        {producerName}
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                    <Link href={`/slot/${slotSlug}/${contextCountry}`}>
-                        <a>{capitalize(lowerCase(name))}</a>
-                    </Link>
+                    <Link href={`/slot/${slotSlug}/${contextCountry}`}>{capitalize(lowerCase(name))}</Link>
                 </div>
             )
         }
@@ -284,7 +288,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', margin: '0rem 1rem' }}>
                     <SlotListBreadCrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/slots/${contextCountry}`}>
@@ -330,12 +334,10 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', margin: '0rem 1rem' }}>
                     <VltSlotListBreadCrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                    <Link href='#'>
-                        <a>Vlt Slots</a>
-                    </Link>
+                    <Link href='#'>Vlt Slots</Link>
                 </div>
             )
         }
@@ -375,13 +377,9 @@ const Breadcrumbs: FunctionComponent<Props> = ({
             return (
                 <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', margin: '0rem 1rem' }}>
                     <VltSlotListBreadCrumb />
-                    <Link href={contextCountry === 'it' ? '/' : `/${contextCountry}`}>
-                        <a>Home</a>
-                    </Link>
+                    <Link href={contextCountry === 'it' ? '/' : `/${contextCountry}`}>Home</Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
-                    <Link href='#'>
-                        <a>Bar Slots</a>
-                    </Link>
+                    <Link href='#'>Bar Slots</Link>
                 </div>
             )
         }
@@ -422,7 +420,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ProducerCrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     {/* <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                 <p>
@@ -438,7 +436,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
             return (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/blog/${contextCountry}`}>Blog</a>
@@ -488,7 +486,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <GuideBreadcrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a
@@ -548,7 +546,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ArticleBreadcrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/guide-e-trucchi/${contextCountry}`}>{t('Guides and Tricks')}</a>
@@ -600,7 +598,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ArticleBreadcrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/blog/${contextCountry}`}>Blog</a>
@@ -649,7 +647,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <GuideListBreadcrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a
@@ -701,7 +699,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <AboutListBreadcrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/spike/${contextCountry}`}>{name}</a>
@@ -745,7 +743,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <PrivacyPolicyBreadcrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <a href={`/cookie-privacy-policy/${contextCountry}`}>{name}</a>
@@ -789,7 +787,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <ContactsBreadcrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
-                        <a>Home</a>
+                        Home
                     </Link>
                     <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
                     <p>{name}</p>

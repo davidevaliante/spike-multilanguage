@@ -47,7 +47,13 @@ interface PageProps extends NextPageContext {
 }
 
 const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusList, _countryCode }) => {
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
     const [loading, setLoading] = useState(true)
 
     const [playLink, setPlayLink] = useState(_slotData.playLink)

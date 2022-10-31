@@ -1,12 +1,12 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
-import LazyLoad from "react-lazyload"
+import React, { useContext } from 'react'
+import styled from 'styled-components'
+import LazyLoad from 'react-lazyload'
 // import { countryContext } from './../../context/CountryContext';
 // import { Translations } from './../../constants/translation';
-import { laptop } from "./../Responsive/Breakpoints"
-import { FunctionComponent } from "react"
-import { LocaleContext } from "../../context/LocaleContext"
-import Link from "next/link"
+import { laptop } from './../Responsive/Breakpoints'
+import { FunctionComponent } from 'react'
+import { LocaleContext } from '../../context/LocaleContext'
+import Link from 'next/link'
 
 interface Props {
     image: string
@@ -15,7 +15,13 @@ interface Props {
 }
 
 const SmallSlotCard: FunctionComponent<Props> = ({ image, slug, onClick }) => {
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     return (
         <Container onClick={() => onClick && onClick()}>
@@ -23,10 +29,8 @@ const SmallSlotCard: FunctionComponent<Props> = ({ image, slug, onClick }) => {
                 <img src={image} />
             </LazyLoad>
             <PlayButton>
-                <p>{t("Play")}</p>
-                <Link href={`/demo/[slug]/[countryCode]`} as={`/demo/${slug}/${contextCountry}`} passHref>
-                    <a></a>
-                </Link>
+                <p>{t('Play')}</p>
+                <Link href={`/demo/[slug]/[countryCode]`} as={`/demo/${slug}/${contextCountry}`} passHref></Link>
             </PlayButton>
         </Container>
     )

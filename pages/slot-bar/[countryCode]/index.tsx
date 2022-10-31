@@ -76,7 +76,13 @@ const Slots: FunctionComponent<Props> = ({
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
     const router = useRouter()
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const [loading, setLoading] = useState(true)
 

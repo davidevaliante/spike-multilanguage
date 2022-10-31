@@ -20,7 +20,7 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
 
     const [childrenWrapperPosition, setChildrenWrapperPosition] = useState(false)
 
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         if (state === true) setChildrenWrapperPosition(true)

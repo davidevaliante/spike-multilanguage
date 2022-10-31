@@ -1,13 +1,13 @@
-import React, { CSSProperties, useEffect, useState, useContext } from "react"
-import styled from "styled-components"
-import { FunctionComponent } from "react"
-import { getLatestVideo } from "./../../data/api/video"
-import { AwsVideoApproved } from "./../../data/models/AwsVideoApproved"
-import LazyLoad from "react-lazyload"
-import Link from "next/link"
-import { snakeCase } from "lodash"
-import { countryContext } from "../../context/CountryContext"
-import { LocaleContext } from "./../../context/LocaleContext"
+import React, { CSSProperties, useEffect, useState, useContext } from 'react'
+import styled from 'styled-components'
+import { FunctionComponent } from 'react'
+import { getLatestVideo } from './../../data/api/video'
+import { AwsVideoApproved } from './../../data/models/AwsVideoApproved'
+import LazyLoad from 'react-lazyload'
+import Link from 'next/link'
+import { snakeCase } from 'lodash'
+import { countryContext } from '../../context/CountryContext'
+import { LocaleContext } from './../../context/LocaleContext'
 
 interface Props {
     style?: CSSProperties
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const LatestVideoCard: FunctionComponent<Props> = ({}) => {
-    const { contextCountry } = useContext(LocaleContext)
+    const { appCountry: contextCountry } = useContext(LocaleContext)
 
     const [videoData, setVideoData] = useState<AwsVideoApproved | undefined>(undefined)
 
@@ -30,23 +30,21 @@ const LatestVideoCard: FunctionComponent<Props> = ({}) => {
 
     return videoData !== undefined ? (
         <AnimatedBorder>
-            <div className="rainbow">
+            <div className='rainbow'>
                 <Link
                     href={`/videos/[slug]/[countryCode]`}
                     as={`/videos/${snakeCase(videoData.title)}/${contextCountry}`}
                 >
-                    <a>
-                        <Container>
-                            <LazyLoad>
-                                <img
-                                    alt="latest video image"
-                                    src={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fvideo_${videoData?.videoId}?alt=media`}
-                                />
-                            </LazyLoad>
+                    <Container>
+                        <LazyLoad>
+                            <img
+                                alt='latest video image'
+                                src={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fvideo_${videoData?.videoId}?alt=media`}
+                            />
+                        </LazyLoad>
 
-                            <h1>{videoData.title}</h1>
-                        </Container>
-                    </a>
+                        <h1>{videoData.title}</h1>
+                    </Container>
                 </Link>
             </div>
         </AnimatedBorder>
@@ -94,7 +92,7 @@ const AnimatedBorder = styled.div`
         padding: 6px;
 
         &::before {
-            content: "";
+            content: '';
             position: absolute;
             z-index: -2;
             left: -50%;
@@ -111,7 +109,7 @@ const AnimatedBorder = styled.div`
         }
 
         &::after {
-            content: "";
+            content: '';
             position: absolute;
             z-index: -1;
             left: 6px;

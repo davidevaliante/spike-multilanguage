@@ -32,7 +32,13 @@ const automaticRedirect = false
 const index: FunctionComponent<Props> = ({ _shallow, _bonusPage, _requestedCountryCode }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
     const router = useRouter()
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const [loading, setLoading] = useState(true)
     const [bonusPage, setBonusPage] = useState<BonusPage>(_bonusPage)

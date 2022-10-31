@@ -194,7 +194,7 @@ export const replaceAll = (baseString: string, search: string, replace: string):
 }
 
 function escapeRegExp(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
 
 export const injectCDN = (s: string, size: 'small_' | 'medium_' | 'large_' | 'thumbnail_' | '' = ''): string => {

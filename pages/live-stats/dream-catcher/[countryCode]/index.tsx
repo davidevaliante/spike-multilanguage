@@ -64,7 +64,13 @@ const index: FunctionComponent<Props> = ({
         },
     }
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const filterOptions = ['1', '2', '5', '10', '20', '40', '2x', '7x']
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)

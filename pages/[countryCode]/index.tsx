@@ -43,7 +43,13 @@ const automaticRedirect = false
 const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountryCode }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
     const router = useRouter()
 
     if (router.isFallback) return <FullPageLoader />

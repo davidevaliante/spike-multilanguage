@@ -13,23 +13,22 @@ interface Props {
 }
 
 const LabCard: FunctionComponent<Props> = ({ article }) => {
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     return (
         <StyleProvider>
             <Link href={`/guide/lab/[slug]`} as={`/guide/lab/${article.slug}`}>
-                <a>
-                    <CardContainer>
-                        <LazyImage width='100%' height='200px' src={injectCDN(article.image?.url!)} />
-                        <div style={{ height: '64px', display: 'flex', alignItems: 'center' }}>
-                            <h3>{article.title}</h3>
-                        </div>
-                        <Divider />
-                        <p style={{ textAlign: 'end', margin: '.5rem', fontSize: '.8rem' }}>{`${t(
-                            'Published on'
-                        )} ${format(new Date(article.updated_at), 'dd/MM/yyyy')}`}</p>
-                    </CardContainer>
-                </a>
+                <CardContainer>
+                    <LazyImage width='100%' height='200px' src={injectCDN(article.image?.url!)} />
+                    <div style={{ height: '64px', display: 'flex', alignItems: 'center' }}>
+                        <h3>{article.title}</h3>
+                    </div>
+                    <Divider />
+                    <p style={{ textAlign: 'end', margin: '.5rem', fontSize: '.8rem' }}>{`${t('Published on')} ${format(
+                        new Date(article.updated_at),
+                        'dd/MM/yyyy'
+                    )}`}</p>
+                </CardContainer>
             </Link>
         </StyleProvider>
     )

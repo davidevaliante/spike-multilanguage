@@ -14,7 +14,13 @@ const Footer = () => {
     const [show, setShow] = useState(false)
     const [article, setArticle] = useState<string | undefined>(undefined)
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const aquaClient = new AquaClient()
 

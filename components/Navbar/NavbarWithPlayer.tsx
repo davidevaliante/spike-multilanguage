@@ -93,7 +93,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
         setAnchorEl(null)
     }
 
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         if (cookiesAccepted === 'accepted') {
@@ -209,7 +209,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
         if (page.link === '/') {
             return (
                 <Link key={key} href={`/`}>
-                    <a>{t(page.label)}</a>
+                    {t(page.label)}
                 </Link>
             )
         }
@@ -245,7 +245,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
         if (page.link === '/migliori-bonus-casino') {
             return (
                 <Link key={key} href={`/migliori-bonus-casino`}>
-                    <a>{t(page.label)}</a>
+                    {t(page.label)}
                 </Link>
             )
         }
@@ -253,7 +253,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
         if (page.link === '/videolist') {
             return (
                 <Link key={key} href={`${page.link}`}>
-                    <a>{t(page.label)}</a>
+                    {t(page.label)}
                 </Link>
             )
         }
@@ -268,7 +268,7 @@ const NavbarWithPlayer: FunctionComponent<Props> = ({
 
         return (
             <Link key={key} href={page.link === '/' ? `${page.link}` : `${page.link}/${contextCountry}`}>
-                <a>{t(page.label)}</a>
+                {t(page.label)}
             </Link>
         )
     }

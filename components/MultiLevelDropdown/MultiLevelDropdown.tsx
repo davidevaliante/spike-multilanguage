@@ -34,7 +34,7 @@ const MultiLevelDropdown: FunctionComponent<Props> = ({ items }) => {
         <StyleProvider onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
 
             <Link href={`/pagamenti`}>
-                <a>Altro</a>
+                Altro
             </Link>
 
             <div className='dropdown'  >
@@ -42,7 +42,7 @@ const MultiLevelDropdown: FunctionComponent<Props> = ({ items }) => {
             </div>
 
         </StyleProvider>
-    )
+    );
 }
 
 const StyleProvider = styled.div`

@@ -1,12 +1,12 @@
-import React, { useContext, CSSProperties } from "react"
-import styled from "styled-components"
-import { AlgoliaVideo } from "./../../graphql/schema"
-import { FunctionComponent } from "react"
-import LazyVideoImage from "./../Lazy/LazyVideoImage"
-import truncate from "lodash/truncate"
-import snakeCase from "lodash/snakeCase"
-import { getColorForType, formatVideoCardType, formatVideoCardDate, replaceAll } from "../../utils/Utils"
-import { LocaleContext } from "./../../context/LocaleContext"
+import React, { useContext, CSSProperties } from 'react'
+import styled from 'styled-components'
+import { AlgoliaVideo } from './../../graphql/schema'
+import { FunctionComponent } from 'react'
+import LazyVideoImage from './../Lazy/LazyVideoImage'
+import truncate from 'lodash/truncate'
+import snakeCase from 'lodash/snakeCase'
+import { getColorForType, formatVideoCardType, formatVideoCardDate, replaceAll } from '../../utils/Utils'
+import { LocaleContext } from './../../context/LocaleContext'
 
 interface Props {
     videoData: AlgoliaVideo
@@ -15,29 +15,29 @@ interface Props {
 }
 
 const VideoCard: FunctionComponent<Props> = ({ videoData }) => {
-    const { contextCountry } = useContext(LocaleContext)
+    const { appCountry: contextCountry } = useContext(LocaleContext)
     return (
         <CardContainer headerColor={getColorForType(videoData.slotType)}>
-            <a href={`/videos/${snakeCase(replaceAll(videoData.title, "€", "euro"))}/${contextCountry}`}>
+            <a href={`/videos/${snakeCase(replaceAll(videoData.title, '€', 'euro'))}/${contextCountry}`}>
                 <LazyVideoImage
                     alt={`${videoData.title} spike video`}
                     fromTop={100}
-                    style={{ borderRadius: "0" }}
-                    width={"100%"}
-                    height={"166px"}
+                    style={{ borderRadius: '0' }}
+                    width={'100%'}
+                    height={'166px'}
                     vid={videoData.videoId}
                 />
 
-                <div className="time-type">
+                <div className='time-type'>
                     <p>{formatVideoCardDate(videoData.time)}</p>
-                    <p className="type">{formatVideoCardType(videoData.slotType)}</p>
+                    <p className='type'>{formatVideoCardType(videoData.slotType)}</p>
                 </div>
 
-                <div className="header-container">
+                <div className='header-container'>
                     <h3>{truncate(videoData.title, { length: 60 })}</h3>
                 </div>
 
-                <div className="desc-container">
+                <div className='desc-container'>
                     <p>{truncate(videoData.description, { length: 160 })}</p>
                 </div>
             </a>

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .markdown-style-provider {
+        @apply mb-2 flex flex-col;
+    }
+
+    .markdown-style-provider h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply text-primary-500;
+    }
+
+    .markdown-style-provider a {
+        @apply text-blue-500 cursor-pointer font-bold;
+    }
+
+    .markdown-style-provider strong {
+        @apply font-bold leading-5;
+    }
+}

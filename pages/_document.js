@@ -51,10 +51,7 @@ export default class Document extends NextDocument {
         return (
             <Html lang={this.props.lang}>
                 <Head>
-                    <link
-                        href='https://fonts.googleapis.com/css2?family=Kanit:wght@900&display=swap'
-                        rel='stylesheet'
-                    />
+                    <link href='https://fonts.googleapis.com/css2?family=Chango&display=swap' rel='stylesheet' />
                     <link
                         href='https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap'
                         rel='stylesheet'

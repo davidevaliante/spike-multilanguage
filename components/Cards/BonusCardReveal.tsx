@@ -32,7 +32,7 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
         return b
     }
 
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     const [_bonus, setBonus] = useState(isBakeca ? remapBonusLink(bonus) : bonus)
 
@@ -120,8 +120,9 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
                                 <Link
                                     href={`/guida/[slug]/[countryCode]`}
                                     as={`/guida/${bonus?.bonus_guide?.slug}/${contextCountry}`}
+                                    className='read-guide link'
                                 >
-                                    <a className='read-guide link'>{t('READ THE GUIDE')}</a>
+                                    {t('READ THE GUIDE')}
                                 </Link>
                             </div>
                         </div>

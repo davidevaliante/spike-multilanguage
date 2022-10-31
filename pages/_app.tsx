@@ -12,8 +12,13 @@ import { cookieContext } from '../context/CookieContext'
 import { useMyCookies } from '../hooks/useMyCookies'
 import { LocaleContextProvider } from '../context/LocaleContext'
 import NextNProgress from 'nextjs-progressbar'
+import '../styles/globals.css'
 
-const ContextProvider: FunctionComponent = ({ children }) => {
+interface ContextProps {
+    children: React.ReactNode
+}
+
+const ContextProvider: FunctionComponent<ContextProps> = ({ children }) => {
     const cookieAcceptedStatus = useMyCookies()
 
     return (

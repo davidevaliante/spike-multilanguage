@@ -1,165 +1,59 @@
-import React, { Fragment, useState, useContext } from "react"
-import { FunctionComponent } from "react"
-import styled from "styled-components"
-import Divider from "../Ui/Divider"
-import Link from "next/link"
-import LazyImage from "../Lazy/LazyImage"
-import ArticleToMarkdown from "../Markdown/ArticleToMarkdown"
-import { LocaleContext } from "./../../context/LocaleContext"
+import React, { Fragment, useState, useContext } from 'react'
+import { FunctionComponent } from 'react'
+import styled from 'styled-components'
+import Divider from '../Ui/Divider'
+import Link from 'next/link'
+import LazyImage from '../Lazy/LazyImage'
+import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
+import { LocaleContext } from './../../context/LocaleContext'
+import Image from 'next/image'
 
 interface Props {
-    topArticle: string
+    topArticle?: string
 }
 
 const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     const [disclaimerOpen, setDisclaimerOpen] = useState(false)
 
     return (
-        <Fragment>
-            <DescriptionContainer>
-                <HeaderAndButtonContainer>
-                    <HeaderContainer>
-                        <h1>Slot Online SPIKE SLOT</h1>
-                        <LazyImage
-                            style={{ marginLeft: "1rem", cursor: "pointer" }}
-                            width={24}
-                            height={24}
-                            onClick={() => setDisclaimerOpen(!disclaimerOpen)}
-                            alt="alert icon"
-                            src="/icons/info-icon.svg"
-                        />
-                    </HeaderContainer>
+        <div className='my-7 text-sm px-4 lg:px-0'>
+            <div className='flex flex-col gap-4 lg:gap-0 lg:flex-row justify-between items-center my-6'>
+                <div className='flex flex-row items-center gap-6'>
+                    <h1 className='font-serif text-3xl text-primary-500'>Slot Online SPIKE SLOT</h1>
+                    <Image
+                        className='cursor-pointer'
+                        width={24}
+                        height={24}
+                        onClick={() => setDisclaimerOpen(!disclaimerOpen)}
+                        alt='alert icon'
+                        src='/icons/info-icon.svg'
+                    />
+                </div>
 
-                    <Link href={"/slots/[countryCode]"} as={`/slots/${contextCountry}`}>
-                        <a>
-                            <div>
-                                <GoToFullSlotListButton>
-                                    <h2>{t("Go to the full list of slots")}</h2>
-                                    <LazyImage
-                                        style={{ marginLeft: "1rem" }}
-                                        width={36}
-                                        height={36}
-                                        alt="777_slot_icon"
-                                        src="/icons/jackpot_slot_icon.svg"
-                                    />
-                                    <LazyImage
-                                        style={{ marginLeft: "1rem" }}
-                                        width={26}
-                                        height={26}
-                                        alt="arrow_right_icon"
-                                        src="/icons/cheveron_right_white.svg"
-                                    />
-                                </GoToFullSlotListButton>
-                            </div>
-                        </a>
-                    </Link>
-                </HeaderAndButtonContainer>
-                {disclaimerOpen && (
+                <Link href={`/slots/${contextCountry}`}>
                     <div>
-                        <p className="disclaimer">{t("HomeHeaderDisclaimer")}</p>
+                        <div className='bg-primary-500 px-4 py-3 text-white flex flex-row rounded-md items-center justify-between gap-4'>
+                            <h2 className='text-white uppercase font-bold'>{t('Go to the full list of slots')}</h2>
+                            <Image width={36} height={36} alt='slot 777' src='/icons/jackpot_slot_icon.svg' />
+                            <Image width={26} height={26} alt='arrow right' src='/icons/cheveron_right_white.svg' />
+                        </div>
                     </div>
-                )}
-                <Divider color="#a8a8a8" style={{ marginBottom: "1.5rem" }} />
+                </Link>
+            </div>
+            {disclaimerOpen && (
+                <div>
+                    <p className='text-sm mb-1'>{t('HomeHeaderDisclaimer')}</p>
+                </div>
+            )}
 
-                <ArticleToMarkdown style={{ marginBottom: "2rem" }} content={topArticle} />
-            </DescriptionContainer>
-        </Fragment>
+            <div className='h-px w-full bg-zinc-200 mb-8' />
+
+            <ArticleToMarkdown content={topArticle} />
+        </div>
     )
 }
-
-const DescriptionContainer = styled.div`
-    padding: 1rem 1rem;
-
-    h1 {
-        color: ${(props) => props.theme.colors.primary};
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        font-size: 2rem;
-        letter-spacing: 0.1rem;
-    }
-
-    p {
-        margin-bottom: 1rem;
-        font-size: 90%;
-    }
-
-    .disclaimer {
-        font-size: 80%;
-    }
-
-    .header-desc {
-        margin: 1rem 0rem;
-        line-height: 1.3rem;
-
-        strong {
-            font-family: ${(props) => props.theme.text.secondaryFont};
-            color: ${(props) => props.theme.colors.primaryDark};
-            font-size: 1rem;
-        }
-
-        .bolder {
-            font-weight: bold;
-        }
-
-        .strong-secondary {
-            cursor: pointer;
-            font-family: ${(props) => props.theme.text.secondaryFont};
-            color: ${(props) => props.theme.colors.secondary};
-            font-size: 1rem;
-        }
-
-        .strong-terziary {
-            cursor: pointer;
-            font-family: ${(props) => props.theme.text.secondaryFont};
-            /* color : ${(props) => props.theme.colors.fourth}; */
-            color: #ab3aa2;
-            font-size: 1rem;
-        }
-
-        .video-link {
-            cursor: pointer;
-            font-family: ${(props) => props.theme.text.secondaryFont};
-            color: ${(props) => props.theme.colors.primaryDark};
-            font-size: 1rem;
-        }
-    }
-`
-
-const HeaderContainer = styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-`
-
-const HeaderAndButtonContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    h2 {
-        font-weight: bold;
-    }
-`
-
-const GoToFullSlotListButton = styled.div`
-    cursor: pointer;
-    display: flex;
-    padding: 1rem;
-    background: ${(props) => props.theme.colors.primaryDark};
-    margin-bottom: 1rem;
-    border-radius: 4px;
-    align-items: center;
-    color: #fff;
-    font-weight: bold;
-    justify-content: space-between;
-    max-width: 450px;
-    transition: background 0.2s ease-in;
-
-    :hover {
-        background: ${(props) => props.theme.colors.primary};
-    }
-`
 
 const GoToCrazyTimeStatsButton = styled.div`
     cursor: pointer;

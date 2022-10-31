@@ -47,7 +47,7 @@ const getFlagFromCountry = (country: string) => {
 }
 
 const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
     const [flagSrc, setFlagSrc] = useState('/flags/it.svg')
 
     useEffect(() => {
@@ -110,7 +110,7 @@ const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
                             href={`/guida/[slug]/[countryCode]`}
                             as={`/guida/${bonus.bonus_guide.slug}/${contextCountry}`}
                         >
-                            <a>{t('READ THE GUIDE')}</a>
+                            {t('READ THE GUIDE')}
                         </Link>
                     </GuideButton>
                 )}

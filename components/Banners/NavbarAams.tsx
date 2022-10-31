@@ -1,10 +1,10 @@
-import React, { FunctionComponent, Fragment, useContext, useState, useEffect } from "react"
-import styled from "styled-components"
-import LazyImage from "../Lazy/LazyImage"
-import { LocaleContext } from "../../context/LocaleContext"
+import React, { FunctionComponent, Fragment, useContext, useState, useEffect } from 'react'
+import styled from 'styled-components'
+import LazyImage from '../Lazy/LazyImage'
+import { LocaleContext } from '../../context/LocaleContext'
 
 const NavbarAams: FunctionComponent = () => {
-    const { t, contextCountry } = useContext(LocaleContext)
+    const { t, appCountry: contextCountry } = useContext(LocaleContext)
 
     useEffect(() => {
         setImage(getImage())
@@ -12,20 +12,20 @@ const NavbarAams: FunctionComponent = () => {
 
     const getImage = () => {
         switch (contextCountry) {
-            case "it":
-                return "https://spikewebsitemedia.b-cdn.net/adm_logo.png"
-            case "row":
-                return "/icons/gamble_aware.png"
+            case 'it':
+                return 'https://spikewebsitemedia.b-cdn.net/adm_logo.png'
+            case 'row':
+                return '/icons/gamble_aware.png'
             default:
-                return "https://spikewebsitemedia.b-cdn.net/adm_logo.png"
+                return 'https://spikewebsitemedia.b-cdn.net/adm_logo.png'
         }
     }
 
     const getWidth = () => {
         switch (contextCountry) {
-            case "it":
+            case 'it':
                 return 66
-            case "row":
+            case 'row':
                 return 66
             default:
                 return 66
@@ -34,9 +34,9 @@ const NavbarAams: FunctionComponent = () => {
 
     const getHeight = () => {
         switch (contextCountry) {
-            case "it":
+            case 'it':
                 return 56
-            case "row":
+            case 'row':
                 return 66
             default:
                 return 66
@@ -48,13 +48,13 @@ const NavbarAams: FunctionComponent = () => {
     return (
         <Fragment>
             <Container>
-                {contextCountry === "it" && (
+                {contextCountry === 'it' && (
                     <LazyImage
                         key={image}
                         width={getWidth()}
                         height={getHeight()}
-                        style={{ marginRight: "1rem" }}
-                        alt="aams logo"
+                        style={{ marginRight: '1rem' }}
+                        alt='aams logo'
                         src={image}
                     />
                 )}
@@ -62,12 +62,12 @@ const NavbarAams: FunctionComponent = () => {
                 <LazyImage
                     width={36}
                     height={36}
-                    style={{ marginRight: "1rem" }}
-                    alt="eighteen"
-                    src="https://spikewebsitemedia.b-cdn.net/eighteen_white.svg"
+                    style={{ marginRight: '1rem' }}
+                    alt='eighteen'
+                    src='https://spikewebsitemedia.b-cdn.net/eighteen_white.svg'
                 />
 
-                <p>{t("Gambling is forbidden for minors and can cause pathological addiction - odds of winning")}</p>
+                <p>{t('Gambling is forbidden for minors and can cause pathological addiction - odds of winning')}</p>
             </Container>
         </Fragment>
     )

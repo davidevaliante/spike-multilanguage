@@ -55,12 +55,12 @@ const VideoMainBonusCard: FunctionComponent<Props> = ({ bonusData, style, onClic
                 </BonusInfoContainer>
                 <div className='guide-button-container'>
                     <Link href={`/guide/[slug]/[countryCode]`} as={`/guide/${bonusData.bonus_guide?.slug}/${bonusData.country.code}`} passHref>
-                        <a>{t("READ THE GUIDE")}</a>
+                        {t("READ THE GUIDE")}
                     </Link>
                 </div>
             </MainBonusContainer>
         </Fragment >
-    )
+    );
 }
 
 interface IMainBonusContainer {

@@ -10,7 +10,13 @@ interface Props {
 }
 
 const CookieDisclaimer: FunctionComponent<Props> = ({ onCookiesAccepted, onCookiesRefused }) => {
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const countryCodeToCountryName = (cc: string) => {
         switch (cc) {

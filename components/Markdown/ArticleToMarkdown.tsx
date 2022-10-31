@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import MarkdownProvider from './MarkdownProvider'
-import ReactMarkdown from 'react-markdown'
 import { injectCDN } from '../../utils/Utils'
 import { FunctionComponent, Children } from 'react'
 import ArticleBonus from './ArticleBonus'
@@ -12,9 +11,11 @@ import LoadingSlotCard from './../Cards/LoadingSlotCard'
 import LoadingVideoCard from './../Cards/LoadingVideoCard'
 import { tablet } from '../Responsive/Breakpoints'
 import { LocaleContext } from '../../context/LocaleContext'
+import Markdown from 'markdown-to-jsx'
+import MardownStyleProvider from '../commons/MardownStyleProvider'
 
 interface Props {
-    content: string
+    content?: string
     style?: CSSProperties
     isBakeca?: boolean
     allowBonuses?: boolean
@@ -27,7 +28,13 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
         const elementType = parts[0]
 
         const elementData = parts[1]
-        const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+        const {
+            t,
+            appCountry: contextCountry,
+            setAppCountry: setContextCountry,
+            userCountry,
+            setUserCountry,
+        } = useContext(LocaleContext)
 
         if (elementType === 'spikeBonusCard') {
             // if (allowBonuses) return <ArticleBonus bonusName={elementData} countryCode={"it"} />
@@ -145,16 +152,22 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
     }
 
     return (
-        <MarkdownProvider style={style}>
-            <ReactMarkdown
-                escapeHtml={false}
-                renderers={{
-                    blockquote: (props) => replaceWithCustomElement(props),
-                    link: (props) => replaceLink(props),
-                }}
-                source={injectCDN(content)}
-            />
-        </MarkdownProvider>
+        <MardownStyleProvider>
+            <Markdown
+            // options={{
+            //     overrides: {
+            //         blockquote: {
+            //             component: MyParagraph,
+            //             props: {
+            //                 className: 'foo',
+            //             },
+            //         },
+            //     },
+            // }}
+            >
+                {content ? content : ''}
+            </Markdown>
+        </MardownStyleProvider>
     )
 }
 
@@ -175,34 +188,6 @@ const SlotNameContainer = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 1rem 0rem;
-`
-
-const TableTop = styled.div`
-    display: flex;
-    background: ${(props) => props.theme.colors.primary};
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    margin: 0rem auto;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 550px;
-
-    h4 {
-        color: white;
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        padding: 1rem;
-        width: 80px;
-    }
-`
-
-const TableTopDivider = styled.div`
-    width: 2px;
-    height: 40px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 `
 
 export default ArticleToMarkdown

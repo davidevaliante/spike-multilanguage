@@ -20,7 +20,13 @@ const BonusesBackdrop: FunctionComponent<Props> = ({ bonuses }) => {
     const bonusRef = useRef()
     useOnClickOutside(bonusRef, () => handleCloseSpamBonuses())
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const [timeout, setTimeout] = useState<NodeJS.Timeout | undefined>(undefined)
     const [showSpamBonuses, setShowSpamBonuses] = useState(false)

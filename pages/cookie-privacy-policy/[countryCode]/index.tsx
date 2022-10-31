@@ -22,7 +22,13 @@ interface Props extends DynamicContentProps {
 
 const index: FunctionComponent<Props> = ({ seo, content, _requestedCountryCode }) => {
     const [loading, setLoading] = useState(true)
-    const { t, contextCountry, userCountry, setUserCountry, setContextCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        userCountry,
+        setUserCountry,
+        setAppCountry: setContextCountry,
+    } = useContext(LocaleContext)
 
     useEffect(() => {
         setContextCountry(_requestedCountryCode)

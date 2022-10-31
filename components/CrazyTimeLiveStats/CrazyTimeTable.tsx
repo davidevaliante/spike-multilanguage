@@ -114,7 +114,13 @@ export const EnhancedTableHead: FunctionComponent<TableHeadProps> = ({
         onRequestSort(event, property)
     }
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     return (
         <TableHead style={{ background: '#db0d30' }}>
@@ -161,7 +167,13 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
     const [dense, setDense] = useState(false)
     const [rowsPerPage, setRowsPerPage] = useState(10)
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Spin) => {
         const isAsc = orderBy === property && order === 'asc'

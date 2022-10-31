@@ -11,7 +11,6 @@ interface Props {
 }
 
 const MobileSearchResults: FunctionComponent<Props> = ({ searchResults }) => {
-    
     const handleEntityClick = (result: AlgoliaSearchResult) => {
         if (result.type === 'slot') Router.push(`/slot/${result.slug}/${result.country}`)
 
@@ -24,31 +23,39 @@ const MobileSearchResults: FunctionComponent<Props> = ({ searchResults }) => {
         else console.log(result.type)
     }
 
-    return <SearchResultsContainer>
-        {searchResults ? searchResults?.map((r: AlgoliaSearchResult, index: number) =>
-            <div key={`mobile_search_res_${index}`} onClick={() => handleEntityClick(r)}>
-                <SearchTile result={r} />
-                <Divider color='#c9c9c9' />
-            </div>)
-            :
-            <SuggestedSearchs />
-        }
-    </SearchResultsContainer>
+    return (
+        <SearchResultsContainer>
+            {searchResults ? (
+                searchResults?.map((r: AlgoliaSearchResult, index: number) => (
+                    <div key={`mobile_search_res_${index}`} onClick={() => handleEntityClick(r)}>
+                        <SearchTile result={r} />
+                        <Divider color='#c9c9c9' />
+                    </div>
+                ))
+            ) : (
+                <SuggestedSearchs />
+            )}
+        </SearchResultsContainer>
+    )
 }
 
 const SuggestedSearchs: FunctionComponent = () => {
+    const {
+        t,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+        userCountry,
+        setUserCountry,
+    } = useContext(LocaleContext)
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
-    
     return (
         <div>
-            <h3 className='search-suggestions'>{t("Popular searches")} :</h3>
+            <h3 className='search-suggestions'>{t('Popular searches')} :</h3>
         </div>
     )
 }
 
 const SearchTile: FunctionComponent<{ result: AlgoliaSearchResult }> = ({ result }) => {
-
     const typeToString = (type: 'slot' | 'producer' | 'bonus') => {
         switch (type) {
             case 'slot':
@@ -77,46 +84,46 @@ const SearchTile: FunctionComponent<{ result: AlgoliaSearchResult }> = ({ result
 }
 
 const SearchResultsContainer = styled.div`
-    display : flex;
-    flex-direction:  column;
-    background : white;
-    overflow-y : scroll;
-    width : 100%;
-    z-index : 999;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    overflow-y: scroll;
+    width: 100%;
+    z-index: 999;
 
-    .search-suggestions{
-        color : ${(props) => props.theme.colors.primary};
-        padding : 1rem;
-        font-family : ${(props) => props.theme.text.secondaryFont};
-        font-size : 80%;
+    .search-suggestions {
+        color: ${(props) => props.theme.colors.primary};
+        padding: 1rem;
+        font-family: ${(props) => props.theme.text.secondaryFont};
+        font-size: 80%;
     }
 
-    .tile-container{
-        cursor: pointer;    
-        display : flex;
-        align-items : center;
-        color : black;
-        padding : 1rem;
+    .tile-container {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: black;
+        padding: 1rem;
     }
 
-    .type{
-        color : black;
-        padding: .3rem .5rem;
-        letter-spacing : .05rem;
-        font-family : ${(props) => props.theme.text.secondaryFont};
-        border-radius : 6px;
-        font-size : 65%;
+    .type {
+        color: black;
+        padding: 0.3rem 0.5rem;
+        letter-spacing: 0.05rem;
+        font-family: ${(props) => props.theme.text.secondaryFont};
+        border-radius: 6px;
+        font-size: 65%;
         margin-left: auto;
-        background : grey;
+        background: grey;
     }
 
-    h3{
-        text-align : start;
+    h3 {
+        text-align: start;
     }
 
-    img{
-        border-radius : 50%;
-        margin-right : 1rem;
+    img {
+        border-radius: 50%;
+        margin-right: 1rem;
     }
 `
 

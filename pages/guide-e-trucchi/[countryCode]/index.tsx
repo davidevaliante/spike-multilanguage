@@ -31,7 +31,13 @@ interface Props {
 const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _articles, _requestedCountryCode }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
-    const { t, userCountry, setUserCountry, contextCountry, setContextCountry } = useContext(LocaleContext)
+    const {
+        t,
+        userCountry,
+        setUserCountry,
+        appCountry: contextCountry,
+        setAppCountry: setContextCountry,
+    } = useContext(LocaleContext)
     useEffect(() => {
         console.log(contextCountry)
     }, [contextCountry])
