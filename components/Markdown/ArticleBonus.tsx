@@ -57,7 +57,7 @@ const ArticleBonus: FunctionComponent<Props> = ({ bonusName, countryCode, style,
             : setBonus(remapBonusLink(bonusResponse.data.data.bonuses[0]))
     }
 
-    return <div>{bonus && <ArticleBonusCard style={style} bonus={bonus} />}</div>
+    return bonus ? <ArticleBonusCard style={style} bonus={bonus} /> : null
 }
 
 export default ArticleBonus

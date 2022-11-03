@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px !important;
+        height: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #red;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #red;
+    }
+}
+
 @layer components {
     .markdown-style-provider {
         @apply mb-2 flex flex-col;
@@ -13,7 +36,7 @@
     h4,
     h5,
     h6 {
-        @apply text-primary-500;
+        @apply text-primary-500 font-serif text-2xl pb-2;
     }
 
     .markdown-style-provider a {
@@ -21,6 +44,6 @@
     }
 
     .markdown-style-provider strong {
-        @apply font-bold leading-5;
+        @apply font-bold leading-6;
     }
 }

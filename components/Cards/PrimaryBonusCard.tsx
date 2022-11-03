@@ -42,76 +42,68 @@ const PrimaryBonusCard: FunctionComponent<Props> = ({ bonus, style, withSuggesti
     }
 
     return (
-        <Fragment>
-            <Container withSuggestion={withSuggestion} bonus={bonus} style={style}>
-                <ImageContainer withSuggestion={withSuggestion} bonus={bonus} onClick={() => window.open(bonus.link)}>
-                    {/* {withSuggestion && <h3>Per questa slot suggeriamo</h3>} */}
-                    {bonus?.circular_image && (
-                        <LazyLoad>
-                            <img
-                                style={{ marginTop: '.5rem' }}
-                                src={injectCDN(bonus.circular_image.url)}
-                                className='circular-image'
-                            />
-                        </LazyLoad>
-                    )}
-                    <p>{bonus?.description}</p>
-                </ImageContainer>
-                <TipsContainer onClick={() => bonus.name !== '888 Casino' && window.open(bonus.link)}>
-                    {bonus?.tips &&
-                        extractTips(bonus.tips).map((t, index) => (
-                            <div
-                                key={t}
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'start',
-                                    alignItems: 'center',
-                                    padding: '.5rem',
-                                }}
-                            >
-                                <InfoIcon src='/icons/info_icon.svg' />
-                                {(index == 0 || index == 1) && bonus.name === '888 Casino' ? (
-                                    <EightEightEightClickable
-                                        onClick={index == 0 ? visitOne : visitTwo}
-                                        className='tip'
-                                    >
-                                        {t}
-                                    </EightEightEightClickable>
-                                ) : (
-                                    <p className='tip'>{t}</p>
-                                )}
-                            </div>
-                        ))}
-                </TipsContainer>
-
-                <Button rel='nofollow' href={`/go?to=${bonus.link}`}>
-                    <div>
-                        <div>{t('VISIT THE SITE')}</div>
+        <Container withSuggestion={withSuggestion} bonus={bonus} style={style}>
+            <ImageContainer withSuggestion={withSuggestion} bonus={bonus} onClick={() => window.open(bonus.link)}>
+                {/* {withSuggestion && <h3>Per questa slot suggeriamo</h3>} */}
+                {bonus?.circular_image && (
+                    <LazyLoad>
+                        <img
+                            style={{ marginTop: '.5rem' }}
+                            src={injectCDN(bonus.circular_image.url)}
+                            className='circular-image'
+                        />
+                    </LazyLoad>
+                )}
+                <p className='font-sans px-2 py-2 font-bold text-sm'>{bonus?.description}</p>
+            </ImageContainer>
+            <div
+                className='grow flex flex-col items-start justify-center'
+                onClick={() => bonus.name !== '888 Casino' && window.open(bonus.link)}
+            >
+                {bonus?.tips &&
+                    extractTips(bonus.tips).map((t, index) => (
                         <div
+                            key={t}
                             style={{
-                                marginTop: '.5rem',
-                                textAlign: 'center',
-                                fontFamily: appTheme.text.primaryFont,
-                                fontSize: '.8rem',
+                                display: 'flex',
+                                justifyContent: 'start',
+                                alignItems: 'center',
+                                padding: '.5rem',
                             }}
                         >
-                            {bonus?.name}
+                            <InfoIcon src='/icons/info_icon.svg' />
+                            {(index == 0 || index == 1) && bonus.name === '888 Casino' ? (
+                                <EightEightEightClickable onClick={index == 0 ? visitOne : visitTwo} className='tip'>
+                                    {t}
+                                </EightEightEightClickable>
+                            ) : (
+                                <p className='text-xs'>{t}</p>
+                            )}
                         </div>
-                    </div>
-                </Button>
+                    ))}
+            </div>
 
-                {bonus?.bonus_guide && (
-                    <Link
-                        href={`/guida/[slug]/[countryCode]`}
-                        as={`/guida/${bonus.bonus_guide.slug}/${contextCountry}`}
-                    >
-                        <HollowButton>{t('READ THE GUIDE')}</HollowButton>
-                    </Link>
-                )}
+            <a
+                className='bg-primary-500 rounded-lg px-6 py-2 text-white mb-2'
+                rel='nofollow'
+                href={`/go?to=${bonus.link}`}
+            >
+                <div className='font-bold '>{t('VISIT THE SITE')}</div>
+                <div className='text-center text-xs'>{bonus?.name}</div>
+            </a>
 
-                <PaymentAccepetedIcons>{bonus?.acceptedPayments && mapPaymentsMethodsToIcons()}</PaymentAccepetedIcons>
-            </Container>
-        </Fragment>
+            {bonus?.bonus_guide && (
+                <Link
+                    className=''
+                    href={`/guida/[slug]/[countryCode]`}
+                    as={`/guida/${bonus.bonus_guide.slug}/${contextCountry}`}
+                >
+                    <HollowButton>{t('READ THE GUIDE')}</HollowButton>
+                </Link>
+            )}
+
+            <PaymentAccepetedIcons>{bonus?.acceptedPayments && mapPaymentsMethodsToIcons()}</PaymentAccepetedIcons>
+        </Container>
     )
 }
 
@@ -130,21 +122,6 @@ const InfoIcon = styled.img`
     width: 16px;
     height: 16px;
     margin-right: 0.5rem;
-`
-
-const TipsContainer = styled.div`
-    flex-grow: 1;
-    justify-content: center;
-
-    .tip {
-        color: black;
-        font-size: 80%;
-    }
-
-    ${laptop} {
-        display: flex;
-        flex-direction: column;
-    }
 `
 
 const Icon = styled.img`
@@ -207,10 +184,6 @@ const ImageContainer = styled.div`
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     text-align: center;
-    p {
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        padding: 1rem;
-    }
 `
 
 const Button = styled.a`

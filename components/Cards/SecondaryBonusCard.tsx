@@ -1,8 +1,8 @@
-import React, { Fragment, FunctionComponent } from "react"
-import styled from "styled-components"
-import { Bonus } from "../../graphql/schema"
-import { injectCDN } from "./../../utils/Utils"
-import LazyLoad from "react-lazyload"
+import React, { Fragment, FunctionComponent } from 'react'
+import styled from 'styled-components'
+import { Bonus } from '../../graphql/schema'
+import { injectCDN } from './../../utils/Utils'
+import Image from 'next/image'
 
 interface Props {
     bonus: Bonus
@@ -10,44 +10,25 @@ interface Props {
 
 const SecondaryBonusCard: FunctionComponent<Props> = ({ bonus }) => {
     return (
-        <Fragment>
-            <Container rel="nofollow" bonus={bonus} href={`/go?to=${bonus.link}`}>
-                <ImageContainer bonus={bonus}>
-                    <LazyLoad>
-                        <img
-                            alt={
-                                bonus.circular_image.alternativeText
-                                    ? bonus.circular_image.alternativeText
-                                    : `${bonus.name}-logo`
-                            }
-                            src={injectCDN(bonus?.circular_image?.url)}
-                            className="circular-image"
-                        />
-                    </LazyLoad>
-                    <p>{bonus.description}</p>
-                    <LazyLoad>
-                        <img
-                            style={{ width: "26px", height: "26px", marginRight: "1rem" }}
-                            src="/icons/cheveron_right_white.svg"
-                        />
-                    </LazyLoad>
-                </ImageContainer>
-            </Container>
-        </Fragment>
+        <Container rel='nofollow' bonus={bonus} href={`/go?to=${bonus.link}`}>
+            <ImageContainer bonus={bonus}>
+                <Image
+                    alt={
+                        bonus.circular_image.alternativeText
+                            ? bonus.circular_image.alternativeText
+                            : `${bonus.name}-logo`
+                    }
+                    src={injectCDN(bonus?.circular_image?.url)}
+                    className='circular-image'
+                    width={50}
+                    height={50}
+                />
+                <p className='text-xs'>{bonus.description}</p>
+                <Image width={26} height={26} className='mr-2' src='/icons/cheveron_right_white.svg' alt={'chevron'} />
+            </ImageContainer>
+        </Container>
     )
 }
-
-const Icon = styled.img`
-    width: 40px;
-    height: 40px;
-`
-
-const PaymentAccepetedIcons = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    padding: 1rem;
-`
 
 interface SecondaryBonusCardProps {
     bonus: Bonus
@@ -87,21 +68,5 @@ const ImageContainer = styled.div`
     align-items: center;
     border-radius: 6px;
     text-align: center;
-    p {
-        font-family: ${(props) => props.theme.text.primaryFont};
-        font-size: 0.8rem;
-        margin-right: 0.5rem;
-        line-height: 1.2rem;
-    }
 `
-
-const Button = styled.div`
-    border-radius: 16px;
-    padding: 1.2rem 2rem;
-    background: ${(props) => props.theme.colors.primary};
-    font-family: ${(props) => props.theme.text.secondaryFont};
-    color: white;
-    margin: 1rem;
-`
-
 export default SecondaryBonusCard

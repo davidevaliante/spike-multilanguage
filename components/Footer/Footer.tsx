@@ -214,7 +214,8 @@ const Footer = () => {
                     </div>
                     <CoFreeImage />
                     <a
-                        href='//www.dmca.com/Protection/Status.aspx?ID=232dd2f5-6e9d-47e7-8826-660e6eade29e'
+                        href='https://dmca.com/Protection/Status.aspx?ID=232dd2f5-6e9d-47e7-8826-660e6eade29e/'
+                        target={'_blank'}
                         title='DMCA.com Protection Status'
                         className='dmca-badge'
                     >

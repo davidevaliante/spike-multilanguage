@@ -12,10 +12,11 @@ import LazyImage from '../Lazy/LazyImage'
 import { LocaleContext } from './../../context/LocaleContext'
 
 interface Props {
+    mKey: string
     slotCardData: ApolloSlotCard
 }
 
-const SlotCardComponent: FunctionComponent<Props> = ({ slotCardData }) => {
+const SlotCardComponent: FunctionComponent<Props> = ({ slotCardData, mKey }) => {
     const { appCountry: contextCountry } = useContext(LocaleContext)
 
     const { name, rating, slug } = slotCardData
@@ -30,9 +31,10 @@ const SlotCardComponent: FunctionComponent<Props> = ({ slotCardData }) => {
         if (slotCardData.image === null) return 'https://spikeapi.eu/icons/app_icon.svg'
         return injectCDN(slotCardData.image.url, 'thumbnail_')
     }
+    console.log(mKey)
 
     return (
-        <CardStyleProvider>
+        <div className='select-none relative flex flex-row justify-center' key={mKey}>
             <CardContainer onClick={() => goToSlotPage()}>
                 <LazyImage
                     className='image-border swiper-lazy'
@@ -48,7 +50,7 @@ const SlotCardComponent: FunctionComponent<Props> = ({ slotCardData }) => {
                 />
 
                 <div className='card-content'>
-                    <h3>{name.toUpperCase()}</h3>
+                    <h3 className='font-serif text-lg leading-5 my-2 mx-2 text-zinc-800'>{name.toUpperCase()}</h3>
                     <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
                         <FadeBorderButton href={`/slot/${slug}/${contextCountry}`} />
                         <LazyLoad offset={100}>
@@ -74,7 +76,7 @@ const SlotCardComponent: FunctionComponent<Props> = ({ slotCardData }) => {
                     </div>
                 </div>
             </CardContainer>
-        </CardStyleProvider>
+        </div>
     )
 }
 
@@ -83,17 +85,12 @@ const CardStyleProvider = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
-
-    .card-content {
-        display: flex;
-        flex-direction: column;
-    }
 `
 
 const CardContainer = styled.div`
     cursor: pointer;
     width: 250px;
-    height: 330px;
+    height: 310px;
     background: white;
     position: relative;
 
@@ -105,13 +102,6 @@ const CardContainer = styled.div`
     img {
         width: 250px;
         height: 140px;
-    }
-
-    h3 {
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        color: ${(props) => props.theme.text.color};
-        padding: 0.7rem;
-        vertical-align: center;
     }
 
     border-radius: 4px;

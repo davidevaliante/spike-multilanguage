@@ -1,14 +1,15 @@
-import React, { Fragment, CSSProperties, useContext } from "react"
-import { FunctionComponent } from "react"
-import styled from "styled-components"
-import { ApolloSlotCard } from "../../data/models/Slot"
-import { laptop, tablet } from "../Responsive/Breakpoints"
-import { AppTheme, appTheme } from "../../theme/theme"
-import snakeCase from "lodash/snakeCase"
-import Link from "next/link"
-import SlotCardComponent from "../Cards/SlotCardComponent"
-import Carousel from "react-multi-carousel"
-import { LocaleContext } from "../../context/LocaleContext"
+import React, { Fragment, CSSProperties, useContext } from 'react'
+import { FunctionComponent } from 'react'
+import styled from 'styled-components'
+import { ApolloSlotCard } from '../../data/models/Slot'
+import { laptop, tablet } from '../Responsive/Breakpoints'
+import { AppTheme, appTheme } from '../../theme/theme'
+import snakeCase from 'lodash/snakeCase'
+import Link from 'next/link'
+import SlotCardComponent from '../Cards/SlotCardComponent'
+import Carousel from 'react-multi-carousel'
+import { LocaleContext } from '../../context/LocaleContext'
+import Image from 'next/image'
 
 interface Props {
     title: string
@@ -55,10 +56,10 @@ const ApolloSlideShow: FunctionComponent<Props> = ({
 
     return (
         <Fragment>
-            <Container {...restProps}>
+            <Container className='shadow-md shadow-zinc-700' {...restProps}>
                 {/* <ProducerLogo src='/icons/pragmatic_logo.png' /> */}
                 <TitleAndIconContainer>
-                    <h1>{t(title)}</h1>
+                    <h1 className='font-serif'>{t(title)}</h1>
                     {icon && <img alt={snakeCase(icon)} src={icon} />}
                 </TitleAndIconContainer>
                 {apolloSlotCards ? (
@@ -67,15 +68,13 @@ const ApolloSlideShow: FunctionComponent<Props> = ({
                         ssr={true}
                         autoPlay={true}
                         infinite={true}
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        removeArrowOnDeviceType={['tablet', 'mobile']}
                         arrows={false}
                         autoPlaySpeed={4000}
                         responsive={responsive}
                     >
                         {apolloSlotCards.map((slotCard, index) => (
-                            <div key={index}>
-                                <SlotCardComponent slotCardData={slotCard} />
-                            </div>
+                            <SlotCardComponent mKey={`${title}-${slotCard.name}-${index}`} slotCardData={slotCard} />
                         ))}
                     </Carousel>
                 ) : (
@@ -83,15 +82,21 @@ const ApolloSlideShow: FunctionComponent<Props> = ({
                 )}
 
                 <Link href={buttonRoute} as={buttonRouteAs} passHref legacyBehavior>
-                    <ButtonSlider>
-                        <a>{t(buttonText)}</a>
+                    <div className='flex flex-row justify-end text-white pt-8 pb-4 items-center'>
+                        <a className='font-sans font-bold cursor-pointer'>{t(buttonText)}</a>
 
-                        <img alt="cheveron_right" src="/icons/cheveron_right_white.svg" />
-                    </ButtonSlider>
+                        <Image
+                            className='ml-2'
+                            width={20}
+                            height={20}
+                            alt='cheveron_right'
+                            src='/icons/cheveron_right_white.svg'
+                        />
+                    </div>
                 </Link>
             </Container>
         </Fragment>
-    );
+    )
 }
 
 interface ContainerProps {
@@ -112,25 +117,9 @@ const TitleAndIconContainer = styled.div`
     }
 
     h1 {
-        font-family: ${(props) => props.theme.text.secondaryFont};
         /* color : white; */
         color: #fff;
         font-size: 2rem;
-    }
-`
-
-const ButtonSlider = styled.div`
-    cursor: pointer;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    font-family: ${(props) => props.theme.text.secondaryFont};
-    color: white;
-    padding: 1rem;
-
-    img {
-        width: 26px;
-        height: 26px;
     }
 `
 
@@ -143,7 +132,6 @@ const Container = styled.div`
         props.secondaryColor ? `5px solid ${props.secondaryColor}` : `5px solid ${props.theme.colors.primary}`};
     border-radius: 4px;
     position: relative;
-    box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.73);
 
     /* classe del contenitore più esterno da modificare per l'offset dello swiper */
     .swiper-container {
@@ -160,7 +148,7 @@ const Container = styled.div`
     }
 
     ${laptop} {
-        width: 800px;
+        width: 874px;
         padding: 2rem;
         padding-bottom: 0rem;
         margin-left: 0;

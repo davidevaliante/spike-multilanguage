@@ -23,7 +23,7 @@ export const appTheme: AppTheme = {
         fifth: appFifthColor,
         yellow: appYellow,
         yellowDark: yellowDark,
-        background: '#212121'
+        background: '#212121',
     },
 
     text: {
@@ -31,8 +31,8 @@ export const appTheme: AppTheme = {
     },
 
     brand: {
-        icon: '/icons/app_icon.svg'
-    }
+        icon: '/icons/app_icon.svg',
+    },
 }
 
 export interface AppTheme {
@@ -45,7 +45,7 @@ export interface AppTheme {
         terziary: string
         fourth: string
         fifth: string
-        yellow: string,
+        yellow: string
         yellowDark: string
         background: string
     }
@@ -71,19 +71,18 @@ export const styledTheme: StyledTheme = {
         fifth: appFifthColor,
         yellow: appYellow,
         yellowDark: yellowDark,
-        background: '#212121'
+        background: '#212121',
     },
 
     text: {
         primaryFont: 'Raleway',
         secondaryFont: 'Kanit',
-        color: '#1f1f1f'
+        color: '#1f1f1f',
     },
 
     brand: {
-        icon: '/icons/app_icon.svg'
-    }
-
+        icon: '/icons/app_icon.svg',
+    },
 }
 
 export interface StyledTheme {
@@ -92,18 +91,18 @@ export interface StyledTheme {
     colors: {
         primary: string
         primaryDark: string
-        secondary: string,
-        terziary: string,
+        secondary: string
+        terziary: string
         fourth: string
         fifth: string
-        yellow: string,
-        yellowDark: string,
+        yellow: string
+        yellowDark: string
         background: string
     }
 
     text: {
-        primaryFont: string,
-        secondaryFont: string,
+        primaryFont: string
+        secondaryFont: string
         color: string
     }
 
@@ -120,48 +119,42 @@ export const GlobalStyle = createGlobalStyle`
         font-family : 'Raleway', sans-serif;
     }
 
-    h1{
-        color : black;
-    }
-
     a{
         text-decoration : none;
     }
 
 
     /* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #888; 
+    }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    }
 `
 
 export const materialTheme = createMuiTheme({
     palette: {
         primary: {
-            main: appPrimaryColor
+            main: appPrimaryColor,
         },
         secondary: {
-            main: appSecondaryColor
+            main: appSecondaryColor,
         },
     },
     typography: {
-        fontFamily: [
-            '"Raleway"',
-        ].join(','),
+        fontFamily: ['"Raleway"'].join(','),
     },
-});
+})

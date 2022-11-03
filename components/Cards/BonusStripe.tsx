@@ -88,7 +88,7 @@ const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
                         ))}
                     </StarContainer>
                 </div>
-                <Image width={30} height={30} src={flagSrc ? flagSrc : ''} />
+                <Image alt='flag' width={30} height={30} src={flagSrc ? flagSrc : ''} />
             </Row>
 
             <RowDeposit onClick={() => visit()}>

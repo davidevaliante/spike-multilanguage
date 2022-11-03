@@ -31,10 +31,7 @@ const LatestVideoCard: FunctionComponent<Props> = ({}) => {
     return videoData !== undefined ? (
         <AnimatedBorder>
             <div className='rainbow'>
-                <Link
-                    href={`/videos/[slug]/[countryCode]`}
-                    as={`/videos/${snakeCase(videoData.title)}/${contextCountry}`}
-                >
+                <Link href={`/videos/${snakeCase(videoData.title)}/${contextCountry}`}>
                     <Container>
                         <LazyLoad>
                             <img
@@ -43,7 +40,9 @@ const LatestVideoCard: FunctionComponent<Props> = ({}) => {
                             />
                         </LazyLoad>
 
-                        <h1>{videoData.title}</h1>
+                        <div className='font-sans text-primary-500 px-2 py-2 font-bold text-lg leading-5'>
+                            {videoData.title}
+                        </div>
                     </Container>
                 </Link>
             </div>
@@ -59,12 +58,6 @@ const Container = styled.div`
     flex-direction: column;
     position: relative;
 
-    h1 {
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        padding: 1rem 0.5rem;
-        color: ${(props) => props.theme.colors.primary};
-    }
-
     img {
         width: 100%;
     }
@@ -76,6 +69,8 @@ const AnimatedBorder = styled.div`
     *::after {
         box-sizing: border-box;
     }
+
+    width: 90%;
 
     @keyframes rotate {
         100% {

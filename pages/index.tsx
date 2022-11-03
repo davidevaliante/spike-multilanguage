@@ -7,16 +7,12 @@ import LatestVideoCard from '../components/Cards/LatestVideoCard'
 import Icon from '../components/Icons/Icon'
 import { Home } from './../graphql/schema'
 import SlideShow from '../components/SlideShow/SlideShow'
-import HighlightProducerSlideShow from '../components/SlideShow/NovomaticHighlightProducerSlideShow'
 import BonusCardRevealComponent from '../components/Cards/BonusCardReveal'
-import AquaClient from './../graphql/aquaClient'
 import { BodyContainer, MainColumn, RightColumn } from '../components/Layout/Layout'
-import { HOME } from '../graphql/queries/home'
 import ArticleToMarkdown from '../components/Markdown/ArticleToMarkdown'
 import { OnlyMobile } from '../components/Responsive/Only'
 import { ApolloSlotCard } from '../data/models/Slot'
 import { ApolloBonusCardReveal } from '../data/models/Bonus'
-import { getUserCountryCode } from '../utils/Utils'
 import { useRouter } from 'next/router'
 import { LocaleContext } from '../context/LocaleContext'
 import Newsletter from '../components/Newsletter/Newsletter'
@@ -78,54 +74,45 @@ const Index: FunctionComponent<PageProps> = ({ homeData }) => {
                     <MainColumn>
                         <LiveStatsCta />
 
-                        {producerSlots && <NoLimitHighlightProducerSlideShow producerSlots={producerSlots} />}
+                        <NoLimitHighlightProducerSlideShow producerSlots={producerSlots} />
 
-                        <LazyLoad height={450} once>
-                            <SlideShow
-                                apolloSlotCards={onlineSlots.filter((s) => s.image !== undefined)}
-                                title={'The Online Slots of the moment'}
-                                icon='/icons/slot_online_icon.svg'
-                                buttonText={'See the full list of Online Slots'}
-                                buttonRoute={`/slots/[countryCode]`}
-                                buttonRouteAs={`/slots/${contextCountry}`}
-                                style={{ marginTop: '2rem' }}
-                                mainColor={appTheme.colors.primary}
-                                secondaryColor={appTheme.colors.primary}
-                            />
-                        </LazyLoad>
+                        <SlideShow
+                            apolloSlotCards={onlineSlots.filter((s) => s.image !== undefined)}
+                            title={'The Online Slots of the moment'}
+                            icon='/icons/slot_online_icon.svg'
+                            buttonText={'See the full list of Online Slots'}
+                            buttonRoute={`/slots/[countryCode]`}
+                            buttonRouteAs={`/slots/${contextCountry}`}
+                            style={{ marginTop: '2rem' }}
+                            mainColor={appTheme.colors.primary}
+                            secondaryColor={appTheme.colors.primary}
+                        />
 
-                        {barSlots && (
-                            <LazyLoad height={450} once offset={100}>
-                                <SlideShow
-                                    apolloSlotCards={barSlots?.filter((s) => s.image !== undefined)}
-                                    title='The most famous Bar Slots'
-                                    icon='/icons/slot_bar_icon.svg'
-                                    buttonText='See the full list of Bar Slots'
-                                    buttonRoute={`/slot-bar/[countryCode]`}
-                                    buttonRouteAs={`/slot-bar/${contextCountry}`}
-                                    style={{ marginTop: '2rem' }}
-                                    mainColor={appTheme.colors.secondary}
-                                    secondaryColor={appTheme.colors.secondary}
-                                />
-                            </LazyLoad>
-                        )}
+                        <SlideShow
+                            apolloSlotCards={barSlots?.filter((s) => s.image !== undefined)}
+                            title='The most famous Bar Slots'
+                            icon='/icons/slot_bar_icon.svg'
+                            buttonText='See the full list of Bar Slots'
+                            buttonRoute={`/slot-bar/[countryCode]`}
+                            buttonRouteAs={`/slot-bar/${contextCountry}`}
+                            style={{ marginTop: '2rem' }}
+                            mainColor={appTheme.colors.secondary}
+                            secondaryColor={appTheme.colors.secondary}
+                        />
 
-                        {vltSlots && (
-                            <LazyLoad height={450} once offset={100}>
-                                <SlideShow
-                                    apolloSlotCards={vltSlots?.filter((s) => s.image !== undefined)}
-                                    title='The funniest VLT Slots'
-                                    icon='/icons/slot_vlt_icon.svg'
-                                    buttonText='See the full list of VLT Slots'
-                                    buttonRoute={`/slot-vlt/[countryCode]`}
-                                    buttonRouteAs={`/slot-vlt/${contextCountry}`}
-                                    style={{ marginTop: '2rem' }}
-                                    mainColor={appTheme.colors.terziary}
-                                    secondaryColor={appTheme.colors.terziary}
-                                />
-                            </LazyLoad>
-                        )}
-                        <div style={{ padding: '0rem 1rem' }}>
+                        <SlideShow
+                            apolloSlotCards={vltSlots?.filter((s) => s.image !== undefined)}
+                            title='The funniest VLT Slots'
+                            icon='/icons/slot_vlt_icon.svg'
+                            buttonText='See the full list of VLT Slots'
+                            buttonRoute={`/slot-vlt/[countryCode]`}
+                            buttonRouteAs={`/slot-vlt/${contextCountry}`}
+                            style={{ marginTop: '2rem' }}
+                            mainColor={appTheme.colors.terziary}
+                            secondaryColor={appTheme.colors.terziary}
+                        />
+
+                        <div className='px-1 lg:px-0 mt-8'>
                             {home.bottomArticle && (
                                 <ArticleToMarkdown content={home.bottomArticle} isBakeca={isBakeca} />
                             )}
@@ -133,9 +120,9 @@ const Index: FunctionComponent<PageProps> = ({ homeData }) => {
                     </MainColumn>
 
                     <RightColumn>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div className='flex flex-row mb-4'>
                             <Icon width={56} height={56} source='/icons/flame_icon.svg' alt={'flame icon'} />
-                            <h4 className='video-header'>{t(`Watch SPIKE's latest video`)}</h4>
+                            <div className='font-serif text-lg text-primary-500'>{t(`Watch SPIKE's latest video`)}</div>
                         </div>
 
                         <LatestVideoCard />
@@ -161,8 +148,18 @@ const Index: FunctionComponent<PageProps> = ({ homeData }) => {
     )
 }
 
+export const fetchAsyncData = async (topArticle) => {
+    const spikeCompare = '>spikeCompare@'
+    console.log(topArticle, 'TOP ART')
+}
+
 export async function getServerSideProps({ query, params, req }) {
     const pageData = await homeDataForCountry('it')
+
+    const topArticle = pageData.topArticle
+    const bottomArticle = pageData.bottomArticle
+
+    await fetchAsyncData(bottomArticle)
 
     return {
         props: {

@@ -113,14 +113,14 @@ const PushMenu: FunctionComponent<Props> = ({ state, children, tiles }) => {
                     tile.label !== 'LiveStats' ? (
                         <div
                             style={{ marginBottom: index == tiles.length - 1 ? '12rem' : '0rem' }}
-                            key={`push_menu_${tile.label}`}
+                            key={`push_menu_${tile.label}-${index}`}
                             onClick={() => navigateTo(tile.link)}
                         >
                             <p>{t(tile.label)}</p>
                             <Divider />
                         </div>
                     ) : (
-                        <div>
+                        <div key={`other-${index}`}>
                             <div
                                 onClick={() => setLiveStatsMenuOpen(!liveStatsMenuOpen)}
                                 style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}

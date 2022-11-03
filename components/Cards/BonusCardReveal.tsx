@@ -36,22 +36,6 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
 
     const [_bonus, setBonus] = useState(isBakeca ? remapBonusLink(bonus) : bonus)
 
-    const goToBonus = () => {
-        window.open(_bonus?.link)
-    }
-
-    const visitOne = () => {
-        window.open(
-            'https://www.888casino.it/promozioni/bonus-senza-deposito/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc'
-        )
-    }
-
-    const visitTwo = () => {
-        window.open(
-            'https://www.888casino.it/promozioni/bonus-benvenuto/?utm_medium=casap&utm_source=aff&sr=1648815&mm_id=46717&utm_source=aff&utm_medium=casap#tc'
-        )
-    }
-
     return (
         <StyleProvider style={{ marginBottom: '.5rem' }} bgColor={bonus?.backgroundColor}>
             <div>
@@ -72,9 +56,9 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
                                     }
                                     src={bonus.circular_image ? injectCDN(bonus.circular_image.url) : ''}
                                 />
-                                <h4 className='deposit-header'>{t('Without Deposit')}</h4>
+                                <div className='font-sans text-xs text-white'>{t('Without Deposit')}</div>
                                 <p className='deposit-text'>{bonus?.noDeposit}</p>
-                                <h4 className='deposit-header'>{t('With Deposit')}</h4>
+                                <div className='font-sans text-xs text-white'>{t('With Deposit')}</div>
                                 <p className='deposit-text'>{bonus?.withDeposit}</p>
                             </div>
                         </div>
@@ -114,13 +98,17 @@ const ApolloBonusCardRevealComponent: FunctionComponent<Props> = ({ bonus, isBak
                             </div>
 
                             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
-                                <a rel='nofollow' className='visit-website link' href={`/go?to=${_bonus.link}`}>
+                                <a
+                                    rel='nofollow'
+                                    className='bg-primary-500 text-sm px-2 flex flex-col justify-center text-center rounded-lg text-white'
+                                    href={`/go?to=${_bonus.link}`}
+                                >
                                     {t('VISIT THE SITE')}
                                 </a>
                                 <Link
+                                    className='bg-primary-500 text-sm px-2 flex flex-col justify-center text-center rounded-lg text-white'
                                     href={`/guida/[slug]/[countryCode]`}
                                     as={`/guida/${bonus?.bonus_guide?.slug}/${contextCountry}`}
-                                    className='read-guide link'
                                 >
                                     {t('READ THE GUIDE')}
                                 </Link>
@@ -144,15 +132,6 @@ interface CircularImageProps {
     borderColor: string
 }
 
-const CircularImage = styled.img`
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: ${(props: CircularImageProps) => {
-        return `2px solid ${props.borderColor}`
-    }};
-`
-
 const InfoIcon = styled.img`
     width: 16px;
     height: 16px;
@@ -165,12 +144,15 @@ interface CardProps {
 }
 
 const StyleProvider = styled.div`
+    position: relative;
     animation: decrescendo 0.4s ease-in;
+    z-index: 1;
+    cursor: pointer;
 
     :hover {
         animation: crescendo 0.4s ease-in;
         transform: scale(1.1);
-        z-index: 10;
+        z-index: 20;
 
         .deposit-header {
             font-size: 80%;
@@ -210,7 +192,6 @@ const StyleProvider = styled.div`
 
     .deposit-header {
         font-size: 80%;
-        padding: 0.3rem;
         font-family: ${(props) => props.theme.text.secondaryFont};
         color: white;
     }

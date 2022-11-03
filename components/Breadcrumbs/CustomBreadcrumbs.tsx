@@ -1,12 +1,12 @@
 import React, { Fragment, useContext } from 'react'
 import styled from 'styled-components'
-import { countryContext } from './../../context/CountryContext'
 import { FunctionComponent, CSSProperties } from 'react'
 import Link from 'next/link'
 import Icon from '../Icons/Icon'
 import lowerCase from 'lodash/lowerCase'
 import capitalize from 'lodash/capitalize'
 import { LocaleContext } from '../../context/LocaleContext'
+import Image from 'next/image'
 
 interface Props {
     from:
@@ -37,7 +37,7 @@ interface Props {
     style?: CSSProperties
 }
 
-const websiteRoot = 'https://spikeslot.com'
+const websiteRoot = 'https://spikeslotgratis.com'
 
 const Breadcrumbs: FunctionComponent<Props> = ({
     from,
@@ -110,11 +110,11 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/guide-e-trucchi/${contextCountry}`}>
                         <a>Guide</a>
                     </a>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <p style={{ margin: '0' }}>Lab</p>
                 </div>
             )
@@ -176,15 +176,15 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/guide-e-trucchi/${contextCountry}`}>
                         <a>Guide</a>
                     </a>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/guide/lab`}>
                         <a>Lab</a>
                     </a>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <p>{name}</p>
                 </div>
             )
@@ -235,18 +235,18 @@ const Breadcrumbs: FunctionComponent<Props> = ({
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <SlotBreadCrumb />
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/slots/${contextCountry}`}>Slots</a>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <Link href={`/producer/[slug]/[countryCode]`} as={`/producer/${producerSlug}/${contextCountry}`}>
                         {producerName}
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <Link href={`/slot/${slotSlug}/${contextCountry}`}>{capitalize(lowerCase(name))}</Link>
                 </div>
             )
@@ -290,7 +290,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/slots/${contextCountry}`}>
                         <a>Slots</a>
                     </a>
@@ -336,7 +336,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <Link href='#'>Vlt Slots</Link>
                 </div>
             )
@@ -378,7 +378,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', margin: '0rem 1rem' }}>
                     <VltSlotListBreadCrumb />
                     <Link href={contextCountry === 'it' ? '/' : `/${contextCountry}`}>Home</Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <Link href='#'>Bar Slots</Link>
                 </div>
             )
@@ -426,7 +426,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                 <p>
                     {Translations.producersSlug[currentCountry]}
                 </p> */}
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={currentPageLink}>{name}</a>
                 </div>
             )
@@ -438,7 +438,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/blog/${contextCountry}`}>Blog</a>
                 </div>
             )
@@ -488,7 +488,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a
                         href={
                             contextCountry === 'it'
@@ -498,7 +498,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     >
                         {t('Guides and Tricks')}
                     </a>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <p>{name}</p>
                 </div>
             )
@@ -548,9 +548,9 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/guide-e-trucchi/${contextCountry}`}>{t('Guides and Tricks')}</a>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <p>{name}</p>
                 </div>
             )
@@ -600,9 +600,9 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/blog/${contextCountry}`}>Blog</a>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <p>{name}</p>
                 </div>
             )
@@ -649,7 +649,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a
                         href={
                             contextCountry === 'it'
@@ -701,7 +701,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/spike/${contextCountry}`}>{name}</a>
                 </div>
             )
@@ -745,7 +745,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <a href={`/cookie-privacy-policy/${contextCountry}`}>{name}</a>
                 </div>
             )
@@ -789,7 +789,7 @@ const Breadcrumbs: FunctionComponent<Props> = ({
                     <Link href={contextCountry === 'it' ? `${websiteRoot}` : `${websiteRoot}/${contextCountry}`}>
                         Home
                     </Link>
-                    <Icon style={{ margin: '0 .5rem' }} width={16} height={16} source='/icons/chevron_colored.svg' />
+                    <Image className='mx-1' width={16} height={16} src='/icons/chevron_colored.svg' alt={'chevron'} />
                     <p>{name}</p>
                 </div>
             )
@@ -797,9 +797,9 @@ const Breadcrumbs: FunctionComponent<Props> = ({
     }
 
     return (
-        <Fragment>
-            <Container style={style}>{breadCrumbRenderer()}</Container>
-        </Fragment>
+        <div className='flex flex-row text-primary-500 items-center' style={style}>
+            {breadCrumbRenderer()}
+        </div>
     )
 }
 

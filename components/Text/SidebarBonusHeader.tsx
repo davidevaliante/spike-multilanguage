@@ -24,17 +24,15 @@ const SidebarBonusHeader: FunctionComponent<ISidebarBonusHeader> = () => {
         }
     }
 
-    return <StyledHeader>{countryToString(contextCountry)}</StyledHeader>
+    return <StyledHeader className='font-serif'>{countryToString(contextCountry)}</StyledHeader>
 }
 
 const StyledHeader = styled.h4`
     font-weight: bold;
-    font-family: 'Kanit';
     color: ${(props) => props.theme.colors.primary};
-    padding: 0rem 1rem;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     position: absolute;
-    top: 10px;
+    top: 1px;
 `
 
 export default SidebarBonusHeader

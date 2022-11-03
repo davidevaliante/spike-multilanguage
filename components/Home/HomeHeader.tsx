@@ -35,7 +35,7 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
                 <Link href={`/slots/${contextCountry}`}>
                     <div>
                         <div className='bg-primary-500 px-4 py-3 text-white flex flex-row rounded-md items-center justify-between gap-4'>
-                            <h2 className='text-white uppercase font-bold'>{t('Go to the full list of slots')}</h2>
+                            <p className='text-white uppercase font-bold'>{t('Go to the full list of slots')}</p>
                             <Image width={36} height={36} alt='slot 777' src='/icons/jackpot_slot_icon.svg' />
                             <Image width={26} height={26} alt='arrow right' src='/icons/cheveron_right_white.svg' />
                         </div>

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import React, { useContext } from 'react'
 import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { ApolloSlotCard } from '../../data/models/Slot'
@@ -13,11 +13,13 @@ interface Props {
 }
 
 const NoLimitHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerSlots }) => {
+    console.log(producerSlots)
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
-            items: 5,
+            items: 3,
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -36,75 +38,29 @@ const NoLimitHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerS
     const { t } = useContext(LocaleContext)
 
     return (
-        <Fragment>
-            <Container>
-                <LazyLoad>
-                    <ProducerLogo
-                        src='https://media-exp1.licdn.com/dms/image/C4D0BAQE-Je4F7zSLFw/company-logo_200_200/0/1602670033611?e=1674086400&v=beta&t=p8ujkFpMlFPWAghIZl_InFVNhs357GpzoaUEy7T7Q4g'
-                        alt='no limit logo'
-                    />
-                </LazyLoad>
-                <h1>{'Le migliori NoLimit City selezionate per te'}</h1>
-                {producerSlots.length > 0 ? (
-                    <Carousel
-                        swipeable={true}
-                        ssr={true}
-                        autoPlay={true}
-                        infinite={true}
-                        arrows={false}
-                        autoPlaySpeed={4000}
-                        responsive={responsive}
-                    >
-                        {producerSlots.map((slotCard, index) => (
-                            <div key={index}>
-                                <SlotCardComponent slotCardData={slotCard} />
-                            </div>
-                        ))}
-                    </Carousel>
-                ) : (
-                    <div>loading</div>
-                )}
-            </Container>
-        </Fragment>
+        <Container className='shadow-md shadow-zinc-700'>
+            <LazyLoad>
+                <ProducerLogo
+                    src='https://media-exp1.licdn.com/dms/image/C4D0BAQE-Je4F7zSLFw/company-logo_200_200/0/1602670033611?e=1674086400&v=beta&t=p8ujkFpMlFPWAghIZl_InFVNhs357GpzoaUEy7T7Q4g'
+                    alt='no limit logo'
+                />
+            </LazyLoad>
+            <h1 className='font-serif'>{'Le migliori NoLimit City selezionate per te'}</h1>
+            <Carousel
+                swipeable={true}
+                ssr={true}
+                infinite={true}
+                arrows={false}
+                autoPlay={true}
+                autoPlaySpeed={4000}
+                responsive={responsive}
+            >
+                {producerSlots.map((slotCard, index) => (
+                    <SlotCardComponent mKey={`no-limits-${slotCard.name}-${index}`} slotCardData={slotCard} />
+                ))}
+            </Carousel>
+        </Container>
     )
-}
-
-const params = {
-    slidesPerView: 1,
-    slidesPerGroup: 1,
-    loop: true,
-    autoplay: {
-        delay: 1500,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        renderBullet: (index, className) => {
-            return '<div />'
-        },
-    },
-    // navigation: {
-    //     nextEl: '.swiper-button-next',
-    //     prevEl: '.swiper-button-prev'
-    // },
-    breakpoints: {
-        1024: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-        },
-        768: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-        },
-        640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-        },
-        320: {
-            slidesPerView: 1,
-        },
-    },
 }
 
 const ProducerLogo = styled.img`
@@ -153,8 +109,6 @@ const Container = styled.div`
     border: 5px solid #f5bc42;
     position: relative;
     width: 300px;
-    box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.73);
-    /* margin-left: 0.8rem; */
 
     /* classe del contenitore più esterno da modificare per l'offset dello swiper */
     .swiper-container {
@@ -171,13 +125,12 @@ const Container = styled.div`
     }
 
     ${laptop} {
-        width: 800px;
+        width: 874px;
         padding: 2rem;
         margin-left: 0;
     }
 
     h1 {
-        font-family: ${(props) => props.theme.text.secondaryFont};
         /* color : white; */
         color: #f5bc42;
         font-size: 2rem;

@@ -9,9 +9,9 @@ export const MainColumnScroll: FunctionComponent<{ children: ReactNode }> = ({ c
 }
 
 export const MainColumn: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    return <div className='max-w-[900px] flex flex-col items-center min-h-[2400px]'>{children}</div>
+    return <div className='max-w-[900px] lg:w-[900px] flex flex-col min-h-[2400px]'>{children}</div>
 }
 
 export const RightColumn: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    return <div className='hidden w-[200px] relative lg:flex lg:flex-col lg:min-w-[300px]'>{children}</div>
+    return <div className='hidden w-[200px] relative lg:flex lg:flex-col lg:min-w-[300px] items-center'>{children}</div>
 }

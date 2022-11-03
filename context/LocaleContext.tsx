@@ -20,7 +20,7 @@ export const LocaleContext = createContext<LocaleContextInterface>({
 })
 
 // Create a provider for components to consume and subscribe to changes
-export const LocaleContextProvider: FunctionComponent = (props: any) => {
+export const LocaleContextProvider: FunctionComponent<{ children: React.ReactNode }> = (props: any) => {
     const [country, setCountry] = useState('it')
     const [_userCountry, set_userCountry] = useState('')
 

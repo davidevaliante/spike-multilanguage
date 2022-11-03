@@ -6,14 +6,7 @@ import CustomBreadcrumbs from '../../../../components/Breadcrumbs/CustomBreadcru
 import { Slot, Bonus } from './../../../../graphql/schema'
 import AquaClient from '../../../../graphql/aquaClient'
 import { SLOT_WITH_SLUG } from './../../../../graphql/queries/slots'
-import {
-    injectCDN,
-    goFullScreen,
-    exitFullscreen,
-    getCanonicalPath,
-    serverSideRedirect,
-    serverSide404,
-} from './../../../../utils/Utils'
+import { injectCDN, goFullScreen, exitFullscreen, getCanonicalPath, serverSide404 } from './../../../../utils/Utils'
 import SmallSlotCard from '../../../../components/Cards/SmallSlotCard'
 import snakeCase from 'lodash/snakeCase'
 import { isMobile } from 'react-device-detect'
@@ -30,10 +23,8 @@ import BonusCardRevealComponent from './../../../../components/Cards/BonusCardRe
 import SlotMainFeatures from '../../../../components/Cards/SlotMainFeatures'
 import Head from 'next/head'
 import { ApolloBonusCardReveal } from '../../../../data/models/Bonus'
-import { BONUSES_BY_NAME, GET_BONUS_BY_NAME_AND_COUNTRY, HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
-import { useRouter } from 'next/router'
+import { GET_BONUS_BY_NAME_AND_COUNTRY, HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { LocaleContext } from './../../../../context/LocaleContext'
-import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 import Author from '../../../../components/StructuredData.tsx/Author'
 import axios from 'axios'
@@ -249,7 +240,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                 </TopRowContainer>
 
                                 <Container>
-                                    <div style={{ overflow: 'hidden ', border: '1px solid white' }}>
+                                    <div className='overflow-hidden'>
                                         <SlotBackgroundImage
                                             isMobile={isMobile}
                                             image={injectCDN(_slotData?.image.url)}
@@ -258,7 +249,9 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
                                     <div style={{ zIndex: 9 }}>
                                         <TitleAndRating>
-                                            <h1>{_slotData?.name}</h1>
+                                            <div className='font-serif text-xl text-white ml-4 mt-2 mb-1'>
+                                                {_slotData?.name}
+                                            </div>
                                             <StarContainer>
                                                 {_slotData ? (
                                                     <>
@@ -299,7 +292,9 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                     {primaryBonus && <PrimaryBonusCard bonus={primaryBonus} />}
                                 </Container>
 
-                                <h2 className='alternative-bonus-list'>{t('You can also find it on these sites')}</h2>
+                                <div className='font-serif mt-12 text-primary-500 text-lg py-4'>
+                                    {t('You can also find it on these sites')}
+                                </div>
 
                                 <SecondaryBonusListContainer>
                                     {auxiliaryBonuses?.map((bonus) => (
@@ -310,14 +305,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
                             <div style={{ width: '100%', marginBottom: '6rem' }}>
                                 <BodyContainer>
-                                    <MainColumn
-                                        style={{
-                                            maxWidth: '800px',
-                                            margin: '1rem',
-                                            justifyContent: 'flex-start',
-                                            marginTop: '2.5rem',
-                                        }}
-                                    >
+                                    <MainColumn>
                                         <ArticleToMarkdown content={_slotData?.description} />
                                     </MainColumn>
                                     <RightColumn>
@@ -393,15 +381,6 @@ const PlayArea = styled.div`
 const Body = styled.div`
     min-height: 100vh;
     width: 100%;
-
-    .alternative-bonus-list {
-        font-family: ${(props) => props.theme.text.secondaryFont};
-        color: ${(props) => props.theme.colors.primary};
-        margin-top: 2rem;
-        padding: 1rem 1rem;
-        font-size: 1.5rem;
-        text-align: start;
-    }
 `
 
 const SecondaryBonusListContainer = styled.div`

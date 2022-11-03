@@ -11,7 +11,7 @@ import LoadingSlotCard from './../Cards/LoadingSlotCard'
 import LoadingVideoCard from './../Cards/LoadingVideoCard'
 import { tablet } from '../Responsive/Breakpoints'
 import { LocaleContext } from '../../context/LocaleContext'
-import Markdown from 'markdown-to-jsx'
+import ReactMarkdown from 'react-markdown'
 import MardownStyleProvider from '../commons/MardownStyleProvider'
 
 interface Props {
@@ -153,20 +153,14 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
 
     return (
         <MardownStyleProvider>
-            <Markdown
-            // options={{
-            //     overrides: {
-            //         blockquote: {
-            //             component: MyParagraph,
-            //             props: {
-            //                 className: 'foo',
-            //             },
-            //         },
-            //     },
-            // }}
-            >
-                {content ? content : ''}
-            </Markdown>
+            <ReactMarkdown
+                escapeHtml={false}
+                renderers={{
+                    blockquote: (props) => replaceWithCustomElement(props),
+                    link: (props) => replaceLink(props),
+                }}
+                source={injectCDN(content ? content : '')}
+            />
         </MardownStyleProvider>
     )
 }

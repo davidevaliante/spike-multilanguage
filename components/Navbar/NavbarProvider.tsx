@@ -185,7 +185,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/live-stats') {
             return (
-                <div>
+                <div key='live-stats'>
                     <NewAnchorTag text={t(page.label)} onClick={handleClick} />
                     <Menu
                         id='live-stats-menu'
@@ -222,7 +222,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/migliori-bonus-casino') {
             return (
-                <Link passHref href={`/migliori-bonus-casino`} key={key}>
+                <Link passHref href={`/migliori-bonus-casino`} key='migliori-bonus'>
                     {t(page.label)}
                 </Link>
             )
@@ -230,7 +230,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/videolist') {
             return (
-                <Link passHref href={`${page.link}/${countryCode}`} key={key}>
+                <Link passHref href={`${page.link}/${countryCode}`} key='video-list'>
                     {t(page.label)}
                 </Link>
             )
@@ -238,25 +238,9 @@ const NavbarProvider: FunctionComponent<Props> = ({
 
         if (page.link === '/guide/lab') {
             return (
-                <Link passHref href={`${page.link}`} key={key}>
+                <Link passHref href={`${page.link}`} key='lab'>
                     {t(page.label)}
                 </Link>
-            )
-        }
-
-        if (page.link === '/altro') {
-            return (
-                <MultiLevelDropdown
-                    key={key}
-                    label={t('Altro')}
-                    items={[
-                        { label: 'Sistemi di pagamento', linkTo: '/pagamenti' },
-                        { label: 'PayPal', linkTo: '/pagamenti' },
-                        { label: 'Skrill', linkTo: '/pagamenti' },
-                        { label: 'Neteller', linkTo: '/pagamenti' },
-                        { label: 'Bonifico Bancario', linkTo: '/pagamenti' },
-                    ]}
-                />
             )
         }
 

@@ -1,6 +1,5 @@
 import App from 'next/app'
 import React, { FunctionComponent, Fragment } from 'react'
-import { ThemeProvider } from 'styled-components'
 import { styledTheme, GlobalStyle } from '../theme/theme'
 import { Reset } from 'styled-reset'
 import Head from 'next/head'
@@ -13,6 +12,7 @@ import { useMyCookies } from '../hooks/useMyCookies'
 import { LocaleContextProvider } from '../context/LocaleContext'
 import NextNProgress from 'nextjs-progressbar'
 import '../styles/globals.css'
+import { ThemeProvider } from 'styled-components'
 
 interface ContextProps {
     children: React.ReactNode
@@ -36,6 +36,7 @@ class MyApp extends App {
         return (
             <ContextProvider>
                 <MaterialThemeProvider theme={materialTheme}>
+                    {/* @ts-ignore */}
                     <ThemeProvider theme={styledTheme}>
                         <Head>
                             <script async src='https://www.googletagmanager.com/gtag/js?id=G-VW9JVLDQEM' />
@@ -76,8 +77,6 @@ class MyApp extends App {
                                 }}
                             />
                         </Head>
-                        <Reset />
-                        <GlobalStyle />
                         <NextNProgress />
                         <Component {...pageProps} />
                     </ThemeProvider>

@@ -6,6 +6,7 @@ import LazyLoad from 'react-lazyload'
 import { laptop } from '../Responsive/Breakpoints'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { LocaleContext } from '../../context/LocaleContext'
+import Image from 'next/image'
 
 interface Props {
     bonus: Bonus
@@ -17,35 +18,35 @@ const ArticleBonusCard: FunctionComponent<Props> = ({ bonus, style }) => {
     return (
         <Container rel='nofollow' style={style} bonus={bonus} href={`/go?to=${bonus.link}`}>
             <ImageContainer bonus={bonus}>
-                <LazyLoad>
-                    <img
-                        alt={
-                            bonus.circular_image.alternativeText
-                                ? bonus.circular_image.alternativeText
-                                : `${bonus.name}-logo`
-                        }
-                        src={injectCDN(bonus.circular_image.url)}
-                        className='circular-image'
-                    />
-                </LazyLoad>
+                <Image
+                    alt={
+                        bonus.circular_image.alternativeText
+                            ? bonus.circular_image.alternativeText
+                            : `${bonus.name}-logo`
+                    }
+                    width={60}
+                    height={60}
+                    src={injectCDN(bonus.circular_image.url)}
+                    className='circular-image'
+                />
                 <DepositTextContainer>
                     <div className='col'>
-                        <h3>{t('Without Deposit')}</h3>
+                        <div className='font-serif text-sm'>{t('Without Deposit')}</div>
                         <p>{bonus.noDeposit}</p>
                     </div>
 
                     <div className='col'>
-                        <h3>{t('With Deposit')}</h3>
+                        <div className='font-serif text-sm'>{t('With Deposit')}</div>
                         <p>{bonus.withDeposit}</p>
                     </div>
                 </DepositTextContainer>
-                <LazyLoad>
-                    <img
-                        alt='cheveron right white'
-                        style={{ width: '16px', height: '16px', marginRight: '1rem' }}
-                        src='/icons/cheveron_right_white.svg'
-                    />
-                </LazyLoad>
+                <Image
+                    alt='cheveron right white'
+                    width={60}
+                    height={60}
+                    style={{ width: '16px', height: '16px', marginRight: '1rem' }}
+                    src='/icons/cheveron_right_white.svg'
+                />
             </ImageContainer>
         </Container>
     )
@@ -59,7 +60,6 @@ const DepositTextContainer = styled.div`
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    align-items: center;
     padding: 0.5rem 0rem;
 
     .col {
