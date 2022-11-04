@@ -9,6 +9,7 @@ import { LocaleContext } from '../../context/LocaleContext'
 import { laptop } from './../Responsive/Breakpoints'
 import NavbarAams from '../Banners/NavbarAams'
 import MarkdownProvider from '../Markdown/MarkdownProvider'
+import Image from 'next/image'
 
 const Footer = () => {
     const [show, setShow] = useState(false)
@@ -221,6 +222,21 @@ const Footer = () => {
                     {contextCountry === 'it' && <p style={{ marginLeft: '1rem' }}>Giochi di slot machine gratuiti</p>}
                     <a href='https://spikeslotgratis.com/spike_sitemap.xml' style={{ marginLeft: '1rem' }}>
                         Sitemap
+                    </a>
+                </LowerFooterContainer>
+
+                <LowerFooterContainer style={{ display: 'flex', gap: 16, padding: '2rem 0rem' }}>
+                    <a style={{ display: 'flex', alignItems: 'center', gap: 8 }} href='https://spikeslot.pe'>
+                        <Image width={30} height={20} src='/flags/peru-flag.png' />
+                        Slot Peru
+                    </a>
+                    <a style={{ display: 'flex', alignItems: 'center', gap: 8 }} href='https://spikeslotgratis.com/ca'>
+                        <Image width={20} height={20} src='/flags/ca.svg' />
+                        Slot Canada
+                    </a>
+                    <a style={{ display: 'flex', alignItems: 'center', gap: 8 }} href='https://spikeslotgratis.com/nz'>
+                        <Image width={30} height={20} src='/flags/new-zeland-flag.svg' />
+                        Slot New Zeland
                     </a>
                 </LowerFooterContainer>
             </div>
