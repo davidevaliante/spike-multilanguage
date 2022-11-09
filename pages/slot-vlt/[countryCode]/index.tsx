@@ -375,8 +375,6 @@ const Slots: FunctionComponent<Props> = ({
 }
 
 export async function getServerSideProps({ query, req, res }) {
-    const shallow = req.query.shallow as boolean
-
     const country = query.countryCode as string
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
