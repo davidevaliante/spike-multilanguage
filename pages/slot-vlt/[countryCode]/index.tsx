@@ -64,7 +64,6 @@ interface SlotListArticles {
 const automaticRedirect = false
 
 const Slots: FunctionComponent<Props> = ({
-    _shallow,
     _initialSlots,
     _bonusList,
     _requestedCountryCode,
@@ -92,10 +91,7 @@ const Slots: FunctionComponent<Props> = ({
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
     useEffect(() => {
-        if (_shallow) {
-            setContextCountry(_requestedCountryCode)
-            setLoading(false)
-        } else getCountryData()
+        getCountryData()
     }, [])
 
     const getCountryData = async () => {
@@ -431,7 +427,6 @@ export async function getServerSideProps({ query, req, res }) {
     if (somethingIsUndefined([slotList, bonusList, slotListArticles, vltSlotListPage])) serverSideRedirect(res, '/')
     return {
         props: {
-            _shallow: isShallow(country, shallow),
             _initialSlots: slotList,
             _slotListArticles: slotListArticles,
             _bonusList: bonusList,
