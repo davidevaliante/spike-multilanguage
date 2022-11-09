@@ -8,11 +8,16 @@ import upperCase from 'lodash/upperCase'
 import lowerCase from 'lodash/lowerCase'
 
 export const getUserCountryCode = async () => {
+    // const geolocationRequest = await axios.get(
+    //     process.env.NODE_ENV === 'development'
+    //         ? 'https://api.ipgeolocation.io/ipgeo?apiKey=d9c8ca199b3f40fabc69dfdfefdc9aa2'
+    //         : 'https://api.ipgeolocation.io/ipgeo'
+    // )
+
     const geolocationRequest = await axios.get(
-        process.env.NODE_ENV === 'development'
-            ? 'https://api.ipgeolocation.io/ipgeo?apiKey=d9c8ca199b3f40fabc69dfdfefdc9aa2'
-            : 'https://api.ipgeolocation.io/ipgeo'
+        'https://api.ipgeolocation.io/ipgeo?apiKey=d9c8ca199b3f40fabc69dfdfefdc9aa2'
     )
+
     const countryCode = lowerCase(geolocationRequest.data.country_code2)
 
     return countryCode
