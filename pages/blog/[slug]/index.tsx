@@ -27,6 +27,7 @@ import { HOME_BONUS_LIST } from '../../../graphql/queries/bonus'
 import { useRouter } from 'next/router'
 import { LocaleContext } from '../../../context/LocaleContext'
 import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
+import BlockingOverlay from '../../../components/Ui/BlockingOverlay'
 
 interface Props {
     blogList: {
@@ -161,9 +162,12 @@ const BlogArticleList: FunctionComponent<Props> = ({ blogList, bonusList, articl
             </Head>
 
             <NavbarProvider currentPage='/blog' countryCode={contextCountry}>
+                <BlockingOverlay redirectLink='/blog/it' userCountry={userCountry} />
                 <CustomBreadcrumbs style={{ padding: '1rem 1rem' }} from='blog' />
                 <BodyContainer>
-                    {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/blog/${userCountry}`} />}
+                    {userCountryEquivalentExists && userCountry !== 'it' && (
+                        <CountryEquivalentPageSnackbar path={`/blog/${userCountry}`} />
+                    )}
 
                     <MainColumn>
                         <Wrapper>

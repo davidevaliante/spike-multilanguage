@@ -31,6 +31,7 @@ import { useRouter } from 'next/router'
 import CountryEquivalentPageSnackbar from '../../components/Snackbars/CountryEquivalentPageSnackbar'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Newsletter from '../../components/Newsletter/Newsletter'
+import BlockingOverlay from '../../components/Ui/BlockingOverlay'
 
 interface PageProps {
     _shallow: boolean
@@ -58,13 +59,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
 
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
-    console.log(_requestedCountryCode, 'requested country code')
-
     useEffect(() => {
-        if (_shallow) {
-            setContextCountry(_requestedCountryCode)
-            setLoading(false)
-        } else getCountryData()
+        getCountryData()
     }, [])
 
     const getCountryData = async () => {
@@ -115,6 +111,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
             </Head>
 
             <NavbarProvider currentPage='Home' countryCode={contextCountry}>
+                <BlockingOverlay userCountry={userCountry} />
                 {home.topArticle && <HomeHeader topArticle={home.topArticle}>SPIKE SLOT</HomeHeader>}
                 <BodyContainer>
                     {userCountryEquivalentExists && (

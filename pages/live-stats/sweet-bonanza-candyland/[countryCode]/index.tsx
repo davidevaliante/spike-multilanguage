@@ -26,6 +26,8 @@ import { SweetBonanzaSpin } from '../../../../data/models/SweetBonanzaSpin'
 import SweetBonanzaCandylandCard from '../../../../components/Cards/SweetBonanzaCandylandCard'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
 import StatsCta from '../../../../components/Singles/StatsCta'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
+import { getUserCountryCode } from '../../../../utils/Utils'
 
 interface Props {
     _requestedCountryCode: string
@@ -179,11 +181,17 @@ const index: FunctionComponent<Props> = ({
         })
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
+        geoLocate()
         return () => {
             // cleaning up socket connection if it exists
             socket && socket.disconnect()
         }
     }, [])
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
+    }
 
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
@@ -237,6 +245,8 @@ const index: FunctionComponent<Props> = ({
                 </Head>
 
                 <BodyContainer>
+                    <BlockingOverlay redirectLink='/live-stats/sweet-bonanza-candyland/it' userCountry={userCountry} />
+
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >

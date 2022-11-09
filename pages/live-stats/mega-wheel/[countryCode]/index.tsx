@@ -17,6 +17,7 @@ import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 import StatsCta from '../../../../components/Singles/StatsCta'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 import { LocaleContext } from '../../../../context/LocaleContext'
 import { MegaWheelStat, SweetBonanzaCandylandStat } from '../../../../data/models/CrazyTimeSymbolStat'
 import { MegaWheelSpin } from '../../../../data/models/MegaWheelSpin'
@@ -24,6 +25,7 @@ import { TimeFrame } from '../../../../data/models/TimeFrames'
 import AquaClient from '../../../../graphql/aquaClient'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
+import { getUserCountryCode } from '../../../../utils/Utils'
 
 interface Props {
     _requestedCountryCode: string
@@ -161,11 +163,17 @@ const index: FunctionComponent<Props> = ({
         })
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
+        geoLocate()
         return () => {
             // cleaning up socket connection if it exists
             socket && socket.disconnect()
         }
     }, [])
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
+    }
 
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
@@ -223,6 +231,8 @@ const index: FunctionComponent<Props> = ({
                 </Head>
 
                 <BodyContainer>
+                    <BlockingOverlay redirectLink='/live-stats/mega-wheel/it' userCountry={userCountry} />
+
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >

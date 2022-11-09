@@ -59,7 +59,6 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBak
     // const bonusListRenderer: FunctionComponent<DynamicBonusList> = (key: string, bonusList: { bonus: Bonus }[], direction: 'vertical' | 'horizontal', tableLabel: string | undefined) => {
 
     const bonusListRenderer: FunctionComponent<DynamicBonusList> = ({ bonus, direction, tableLabel, collapsable }) => {
-        console.log(bonus)
         const remapBonusLink = () =>
             bonus.map((b) => {
                 if (b.bonus.name === 'LeoVegas')
@@ -83,9 +82,7 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBak
             })
 
         const [collapsed, setCollapsed] = useState(collapsable === true)
-        useEffect(() => {
-            console.log(collapsed, 'collapsed')
-        }, [collapsed])
+        useEffect(() => {}, [collapsed])
 
         if (!collapsed && direction === 'vertical')
             return (

@@ -13,6 +13,7 @@ import {
     getCanonicalPath,
     serverSideRedirect,
     serverSide404,
+    getUserCountryCode,
 } from './../../../../utils/Utils'
 import SmallSlotCard from '../../../../components/Cards/SmallSlotCard'
 import snakeCase from 'lodash/snakeCase'
@@ -38,6 +39,7 @@ import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareB
 import Author from '../../../../components/StructuredData.tsx/Author'
 import axios from 'axios'
 import { substituteName, bonusToExclude } from '../../../../config'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 
 interface PageProps extends NextPageContext {
     _shallow: boolean
@@ -72,6 +74,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
     useEffect(() => {
         setup()
+        geoLocate()
     }, [])
 
     useEffect(() => {
@@ -117,6 +120,11 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
         }
         setContextCountry(_countryCode)
         setLoading(false)
+    }
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
     }
 
     const [showProblemForm, setShowProblemForm] = useState(false)
@@ -207,6 +215,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
             </Head>
 
             <FadeInOut visible={!isPlayingMobile}>
+                <BlockingOverlay redirectLink='/slots/it' userCountry={userCountry} />
                 {!isPlayingMobile && (
                     <NavbarProvider currentPage={`/slot/${_slotData?.name}`} countryCode={contextCountry}>
                         <Body>

@@ -23,6 +23,8 @@ import { LightningDiceSpin } from '../../../../data/models/LightningDiceSpin'
 import { LightningDiceTable } from '../../../../components/LightningDiceLiveStats/LightningDiceTable'
 import LightningDiceStats from '../../../../components/LightningDiceLiveStats/LightningDiceStats'
 import StatsCta from '../../../../components/Singles/StatsCta'
+import { getUserCountryCode } from '../../../../utils/Utils'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 
 interface Props {
     _requestedCountryCode: string
@@ -166,6 +168,9 @@ const index: FunctionComponent<Props> = ({
             secure: true,
             rejectUnauthorized: false,
         })
+
+        geoLocate()
+
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
         return () => {
@@ -173,6 +178,11 @@ const index: FunctionComponent<Props> = ({
             socket && socket.disconnect()
         }
     }, [])
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
+    }
 
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
@@ -230,6 +240,8 @@ const index: FunctionComponent<Props> = ({
                 </Head>
 
                 <BodyContainer>
+                    <BlockingOverlay redirectLink='/live-stats/lightning-dice/it' userCountry={userCountry} />
+
                     <MainColumnScroll
                         style={{
                             width: '100%',

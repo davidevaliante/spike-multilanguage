@@ -11,6 +11,7 @@ import "video.js/dist/video-js.css"
 import { cookieContext } from "../context/CookieContext"
 import { useMyCookies } from "../hooks/useMyCookies"
 import { LocaleContextProvider } from "../context/LocaleContext"
+import NextNProgress from 'nextjs-progressbar';
 
 const ContextProvider: FunctionComponent = ({ children }) => {
     const cookieAcceptedStatus = useMyCookies()
@@ -71,6 +72,8 @@ class MyApp extends App {
                             />
                         </Head>
                         <Reset />
+                              <NextNProgress />
+
                         <GlobalStyle />
                         <Component {...pageProps} />
                     </ThemeProvider>
