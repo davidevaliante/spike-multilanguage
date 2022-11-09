@@ -43,7 +43,7 @@ interface Props {
 
 const automaticRedirect = false
 
-const BestBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage, _requestedCountryCode, _bonusList }) => {
+const BestBonus: FunctionComponent<Props> = ({ _bonusPage, _requestedCountryCode, _bonusList }) => {
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
     const router = useRouter()
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
@@ -180,7 +180,6 @@ export async function getServerSideProps({ query, req, res }) {
 
     return {
         props: {
-            _shallow: isShallow(country, shallow),
             _bonusPage: data.data.data.bonusPages[0] ? data.data.data.bonusPages[0] : data1.data.data.bonusPages[0],
             _bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
             _requestedCountryCode: country,
