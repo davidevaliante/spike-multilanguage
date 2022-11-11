@@ -15,8 +15,6 @@ export const getLastPath = (path: string) => {
 }
 
 const BlockingOverlay: FunctionComponent<IBlockingOverlay> = ({ userCountry, redirectLink }) => {
-    console.log(redirectLink)
-
     const router = useRouter()
     useEffect(() => {
         setPageCountry(getLastPath(router.asPath))
@@ -45,7 +43,6 @@ const BlockingOverlay: FunctionComponent<IBlockingOverlay> = ({ userCountry, red
 
         if (userCountry === 'it' && pageCountry !== 'it') {
             timeout = setTimeout(() => {
-                console.log(redirectLink, 'redirectLink')
                 setContextCountry('it')
                 redirectLink ? router.push(redirectLink) : router.push('/')
             }, autoRedirectTimeout)

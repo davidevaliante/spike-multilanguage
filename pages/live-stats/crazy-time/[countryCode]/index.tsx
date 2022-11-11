@@ -29,22 +29,18 @@ import { getUserCountryCode } from '../../../../utils/Utils'
 
 interface Props {
     _requestedCountryCode: string
-    _stats: {
-        totalSpins: number
-        lastTenSpins: Spin[]
-        stats: any
-    }
+    _stats: any
     _lastTenSpins: Spin[]
     _bonuses: Bonus[]
     _pageContent: CrazyTimeArticle
     _countryCode: string
 }
 
-const SOCKET_ENDPOINT = 'https://crazytime.spike-realtime-api.eu'
+const SOCKET_ENDPOINT = 'https://casinowizard.topadscron.it/crazy-time'
 
 const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
 
-const SPAM_BONUSES = true
+const SPAM_BONUSES = false
 
 const index: FunctionComponent<Props> = ({
     _requestedCountryCode,
@@ -67,6 +63,18 @@ const index: FunctionComponent<Props> = ({
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
+    useEffect(() => {
+        lazyUpdateInitialData()
+    }, [])
+
+    const lazyUpdateInitialData = async () => {
+        const update = await axios.get(`https://casinowizard.topadscron.it/crazy-time?hours=24`)
+
+        console.log(update.data.data)
+        setStats(orderStats(update.data.data.snapshotData))
+        setRows(update.data.data.resultsData)
+    }
+
     const filterOptions = ['1', '2', '5', '10', 'Pachinko', 'Cash Hunt', 'Coin Flip', 'Crazy Time']
     const [selectedFilters, setSelectedFilters] = useState(filterOptions)
     useEffect(() => {
@@ -82,7 +90,7 @@ const index: FunctionComponent<Props> = ({
     const [lastUpdate, setLastUpdate] = useState(now())
 
     // keeps track of the stats
-    const [stats, setStats] = useState<CrazyTimeSymbolStat[] | undefined>(_stats.stats)
+    const [stats, setStats] = useState<CrazyTimeSymbolStat[] | undefined>(_stats)
     const [totalSpinsInTimeFrame, setTotalSpinsInTimeFrame] = useState(_stats.totalSpins)
     // the time frame currently selected
     const [timeFrame, setTimeFrame] = useState(TimeFrame.TWENTY_FOUR_HOURS)
@@ -90,27 +98,18 @@ const index: FunctionComponent<Props> = ({
         // see [socket] hook before this
         if (socket) {
             // whenever TimeFrame is changed we ask the socket server to join the new time frame updates (server takes care of leaving the previous TimeFrame updates)
-            socket.emit(timeFrame)
+            socket.emit('1h')
             setTimeFrame(timeFrame)
             // we'll receive updates from the newly joined TimeFrame here
-            socket.on(timeFrame, (data) => {
+            socket.on('newEntry', (data) => {
                 console.log(data, timeFrame)
-                // this is the update regarding the top cards with percentages
-                const topUpdate = data.stats.stats
-                console.log(topUpdate)
-                // this is the update regarding the rows of the table
-                const updatedRows = data.spins
-                if (rows)
-                    setRows(
-                        mergeWithUpdate(
-                            rows,
-                            updatedRows.map((r) => {
-                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
-                                return r
-                            })
-                        )
-                    )
-                setStats(topUpdate)
+                // we merge the current rows and the updated rows updating the table afterward
+                if (rows) {
+                    let newEntry = data.entries
+                    // newEntry.timeOfSpin = newEntry.timeOfSpin + 60 * 60 * 1000
+                    setRows(mergeWithUpdate(rows, [newEntry]))
+                }
+                setStats(orderStats(data.stats))
             })
         }
     }, [timeFrame])
@@ -121,35 +120,22 @@ const index: FunctionComponent<Props> = ({
         // the socket instance should only really change when it is initialized
         if (socket) {
             // we send a message to the socket server asking to subscribe a given TimeFrame updates
-            socket.emit(timeFrame)
+            socket.emit('1h')
             // whenever the server sends updates to a given TimeFrame subcribers we receive them here
-            socket.on(timeFrame, (data) => {
+            socket.on('newEntry', (data) => {
                 console.log(data, timeFrame)
-                // this is the update regarding the top cards with percentages
-                const topUpdate = data.stats.stats
-                // this is the update regarding the rows of the table
-                const updatedRows = data.spins
                 // we merge the current rows and the updated rows updating the table afterward
-                if (rows)
-                    setRows(
-                        mergeWithUpdate(
-                            rows,
-                            updatedRows.map((r) => {
-                                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
-                                return r
-                            })
-                        )
-                    )
-                setStats(topUpdate)
+                if (rows) {
+                    let newEntry = data.entries
+                    // newEntry.timeOfSpin = newEntry.timeOfSpin + 60 * 60 * 1000
+                    setRows(mergeWithUpdate(rows, [newEntry]))
+                }
+
+                setStats(orderStats(data.stats))
                 setLastUpdate(now())
             })
         }
     }, [socket])
-
-    // table Ordering
-    const [order, setOrder] = useState<'asc' | 'des'>('des')
-    // stuff for multilanguage porpouses
-    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setContextCountry(_countryCode)
@@ -178,7 +164,6 @@ const index: FunctionComponent<Props> = ({
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         const change = event.target.value as string[]
-        console.log(change)
         setSelectedFilters(change)
     }
 
@@ -360,15 +345,8 @@ const index: FunctionComponent<Props> = ({
 
 // helper function to merge exsisting rows with the update from the Socket
 export const mergeWithUpdate = (current: Spin[], update: Spin[]) => {
-    // the latest row in the table
-    const lastFromCurrent = current[0]
-    // slicing up the update array to the last known row based on the _id
-
-    console.log(current, update)
-
-    const slicedUpdate = update.slice(0, update.map((u) => u._id).indexOf(lastFromCurrent._id))
     // spreading the result so that is automatically ordered by time as returned by the Socket
-    return [...slicedUpdate, ...current]
+    return [...update, ...current]
 }
 
 export const getServerSideProps = async ({ query, req, res }) => {
@@ -377,7 +355,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
     const { countryCode } = query
 
     const _requestedCountryCode = query.countryCode
-    const pageData = await axios.get('https://crazytime.spike-realtime-api.eu/api/data-for-the-last-hours/24')
+    const { data: pageData } = await axios.get('https://casinowizard.topadscron.it/crazy-time?hours=3')
 
     const pageContent = await aquaClient.query({
         query: PAGE_ARTICLE_QUERY,
@@ -419,14 +397,13 @@ export const getServerSideProps = async ({ query, req, res }) => {
         WinCasino: 'https://www.wincasinopromo.it/?=registration&mp=cd6cb4e9-42cc-4d51-bc95-46bbb80844a2',
     }
 
+    const snapshot = pageData.data.snapshotData
+
     return {
         props: {
             _requestedCountryCode,
-            _stats: pageData.data.stats,
-            _lastTenSpins: pageData.data.spinsInTimeFrame.map((r) => {
-                r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
-                return r
-            }),
+            _stats: orderStats(snapshot),
+            _lastTenSpins: pageData.data.resultsData,
             _bonuses:
                 countryCode === 'it'
                     ? orderedBonusList.map((b) => {
@@ -440,6 +417,8 @@ export const getServerSideProps = async ({ query, req, res }) => {
         },
     }
 }
+
+export const orderStats = (arr: any[]) => [arr[4], arr[5], arr[6], arr[7], arr[1], arr[2], arr[3], arr[0]]
 
 const BONUS_QUERY = `
         query CRAZY_TIME_BONUSES($countryCode:String, $names:[String]){

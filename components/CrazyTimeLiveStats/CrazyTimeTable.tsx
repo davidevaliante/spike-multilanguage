@@ -93,7 +93,7 @@ interface HeadCell {
 }
 
 const headCells: HeadCell[] = [
-    { id: 'date', numeric: true, disablePadding: true, label: 'Occurred At' },
+    { id: 'timeOfSpin', numeric: true, disablePadding: true, label: 'Occurred At' },
     { id: 'spinResultSymbol', numeric: false, disablePadding: false, label: 'Spin Result' },
     { id: 'slotResultSymbol', numeric: false, disablePadding: true, label: 'Slot Result' },
     { id: 'multiplier', numeric: true, disablePadding: false, label: 'Multiplier' },
@@ -155,7 +155,7 @@ interface EnhancedTableProps {
 export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) => {
     const classes = useStyles()
     const [order, setOrder] = useState<Order>('desc')
-    const [orderBy, setOrderBy] = useState<keyof Spin>('date')
+    const [orderBy, setOrderBy] = useState<keyof Spin>('timeOfSpin')
     const [selected, setSelected] = useState<string[]>([])
     const [page, setPage] = useState(0)
     const [dense, setDense] = useState(false)
@@ -178,8 +178,8 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
         setPage(0)
     }
 
-    const handleOpenVideo = (url: string) =>
-        window.open(`https://crazy-time-scalper.vercel.app/video/${url.split('/').pop()}`)
+    // const handleOpenVideo = (url: string) =>
+    //     window.open(`https://crazy-time-scalper.vercel.app/video/${url.split('/').pop()}`)
 
     return (
         <TableWrapper>
@@ -216,7 +216,7 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                                                     scope='row'
                                                     padding='none'
                                                 >
-                                                    {format(row.timeOfSpin as number, 'dd/MM HH:mm')}
+                                                    {format((row.timeOfSpin as number) + 60 * 60 * 1000, 'dd/MM HH:mm')}
                                                 </TableCell>
                                                 <TableCell align='left'>
                                                     <SpinResultSpan>
