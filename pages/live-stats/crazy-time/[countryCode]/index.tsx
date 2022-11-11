@@ -63,10 +63,6 @@ const index: FunctionComponent<Props> = ({
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
-    useEffect(() => {
-        lazyUpdateInitialData()
-    }, [])
-
     const lazyUpdateInitialData = async () => {
         const update = await axios.get(`https://casinowizard.topadscron.it/crazy-time?hours=24`)
 
@@ -95,19 +91,14 @@ const index: FunctionComponent<Props> = ({
     // the time frame currently selected
     const [timeFrame, setTimeFrame] = useState(TimeFrame.TWENTY_FOUR_HOURS)
     useEffect(() => {
-        // see [socket] hook before this
         if (socket) {
-            // whenever TimeFrame is changed we ask the socket server to join the new time frame updates (server takes care of leaving the previous TimeFrame updates)
             socket.emit('1h')
             setTimeFrame(timeFrame)
-            // we'll receive updates from the newly joined TimeFrame here
             socket.on('newEntry', (data) => {
                 console.log(data, timeFrame)
-                // we merge the current rows and the updated rows updating the table afterward
                 if (rows) {
                     let newEntry = data.entries
-                    // newEntry.timeOfSpin = newEntry.timeOfSpin + 60 * 60 * 1000
-                    setRows(mergeWithUpdate(rows, [newEntry]))
+                    setRows((prev) => mergeWithUpdate(prev, [newEntry]))
                 }
                 setStats(orderStats(data.stats))
             })
@@ -117,18 +108,13 @@ const index: FunctionComponent<Props> = ({
     // the socket instance to receive real time updates
     const [socket, setSocket] = useState<Socket | undefined>(undefined)
     useEffect(() => {
-        // the socket instance should only really change when it is initialized
         if (socket) {
-            // we send a message to the socket server asking to subscribe a given TimeFrame updates
             socket.emit('1h')
-            // whenever the server sends updates to a given TimeFrame subcribers we receive them here
             socket.on('newEntry', (data) => {
                 console.log(data, timeFrame)
-                // we merge the current rows and the updated rows updating the table afterward
                 if (rows) {
                     let newEntry = data.entries
-                    // newEntry.timeOfSpin = newEntry.timeOfSpin + 60 * 60 * 1000
-                    setRows(mergeWithUpdate(rows, [newEntry]))
+                    setRows((prev) => mergeWithUpdate(prev, [newEntry]))
                 }
 
                 setStats(orderStats(data.stats))
@@ -166,6 +152,10 @@ const index: FunctionComponent<Props> = ({
         const change = event.target.value as string[]
         setSelectedFilters(change)
     }
+
+    useEffect(() => {
+        lazyUpdateInitialData()
+    }, [])
 
     return (
         <Fragment>
