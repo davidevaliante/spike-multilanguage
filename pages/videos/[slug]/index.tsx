@@ -188,7 +188,7 @@ const VideoList: FunctionComponent<Props> = ({
             </Head>
 
             <NavbarProvider currentPage='/videolist' countryCode={countryCode}>
-                {userCountry !== 'mt' && (
+                {uc !== 'mt' && (
                     <div
                         style={{
                             position: 'fixed',
