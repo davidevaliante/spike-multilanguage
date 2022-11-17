@@ -203,6 +203,9 @@ const RowDeposit = styled.div`
 
     .deposit-container {
         width: 45%;
+        ${laptop} {
+            width: 170px;
+        }
     }
 
     h3 {

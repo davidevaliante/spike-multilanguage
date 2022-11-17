@@ -38,7 +38,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://casinowizard.topadscron.it/crazy-time'
 
-const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
+const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas', 'Unibet']
 
 const SPAM_BONUSES = false
 

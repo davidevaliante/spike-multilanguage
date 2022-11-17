@@ -43,7 +43,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://dreamcatcher.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
+const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas', 'Unibet']
 
 const SPAM_BONUSES = true
 
