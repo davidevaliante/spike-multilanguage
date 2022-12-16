@@ -79,7 +79,7 @@ app.prepare().then(() => {
 
     server.get('/', (req, res) => {
         // since we don't use next's requestHandler, we lose compression, so we manually add it
-        renderAndCache(app)(req, res, '/')
+        return handle(req, res, '/')
     })
 
     server.get('/slot/:slug/:countryCode', (req, res) => {
