@@ -92,7 +92,7 @@ app.prepare().then(() => {
         //     res.set('location', `https://spikeslotgratis.com${req.url}`)
         //     res.status(301).send()
         // }
-        res.set('location', `https://spikeslotgratis.com${req.url}`)
+        res.set('location', `https://spikeslot.com${req.url}`)
         res.status(301).send()
         // handle(req, res)
     })
