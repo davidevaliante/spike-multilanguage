@@ -34,10 +34,7 @@ const index: FunctionComponent<Props> = ({ seo, content, _requestedCountryCode }
             <Head>
                 <title>{seo.seoTitle}</title>
                 <meta name='description' content={seo.seoDescription}></meta>
-                <link
-                    rel='canonical'
-                    href={`https://spikeslotgratis.com/cookie-privacy-policy/${_requestedCountryCode}`}
-                />
+                <link rel='canonical' href={`https://spikeslot.com/cookie-privacy-policy/${_requestedCountryCode}`} />
                 <meta httpEquiv='content-language' content='it-IT'></meta>
             </Head>
 

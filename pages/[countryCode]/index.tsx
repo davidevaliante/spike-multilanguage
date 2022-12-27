@@ -93,13 +93,13 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
         <div>
             <Head>
                 <title>{home.seo.seoTitle}</title>
-                <link rel='canonical' href='https://spikeslotgratis.com' />
+                <link rel='canonical' href='https://spikeslot.com' />
                 <meta name='description' content={home.seo.seoDescription}></meta>
                 <meta httpEquiv='content-language' content={buildContentLanguageString(contextCountry)}></meta>
                 <link rel='canonical' href={`https://spikeslot.com/${_requestedCountryCode}`} />
 
                 <meta property='og:title' content={home.seo.seoTitle} />
-                <meta property='og:url' content={`https://spikeslotgratis.com/${_requestedCountryCode}`} />
+                <meta property='og:url' content={`https://spikeslot.com/${_requestedCountryCode}`} />
                 <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property='og:locale' content={contextCountry} />
                 <meta property='og:type' content='article' />

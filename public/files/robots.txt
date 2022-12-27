@@ -1,3 +1,3 @@
 User-Agent: *
 
-Sitemap: https://spikeslotgratis.com/spike_sitemap.xml
+Sitemap: https://spikeslot.com/spike_sitemap.xml

@@ -47,7 +47,7 @@ const index: FunctionComponent<Props> = ({ content }) => {
                     content={`Contatta SPIKE tramite mail oppure tramite i canali social più utilizzati`}
                 ></meta>
 
-                <link rel='canonical' href={`https://spikeslotgratis.com/contatti`} />
+                <link rel='canonical' href={`https://spikeslot.com/contatti`} />
             </Head>
             <NavbarProvider currentPage='/contacts' countryCode={contextCountry}>
                 <BodyContainer>

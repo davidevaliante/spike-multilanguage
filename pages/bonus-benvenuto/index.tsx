@@ -42,7 +42,7 @@ const index: FunctionComponent<Props> = ({ _shallow, _bonusPage, _requestedCount
         <NavbarProvider currentPage='/bonus-bakeca' countryCode={contextCountry}>
             <Head>
                 <title>{t('Best Casino Bonuses |  SPIKE')}</title>
-                <link rel='canonical' href={`https://spikeslotgratis.com/bonus-benvenuto`} />
+                <link rel='canonical' href={`https://spikeslot.com/bonus-benvenuto`} />
                 <meta name='robots' content='noindex' />
                 <meta
                     name='description'

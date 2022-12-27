@@ -220,7 +220,7 @@ const Footer = () => {
                     </a>
                     <script src='https://images.dmca.com/Badges/DMCABadgeHelper.min.js'> </script>
                     {contextCountry === 'it' && <p style={{ marginLeft: '1rem' }}>Giochi di slot machine gratuiti</p>}
-                    <a href='https://spikeslotgratis.com/spike_sitemap.xml' style={{ marginLeft: '1rem' }}>
+                    <a href='https://spikeslot.com/spike_sitemap.xml' style={{ marginLeft: '1rem' }}>
                         Sitemap
                     </a>
                 </LowerFooterContainer>
@@ -230,11 +230,11 @@ const Footer = () => {
                         <Image width={30} height={20} src='/flags/peru-flag.png' />
                         Slot Peru
                     </a>
-                    <a style={{ display: 'flex', alignItems: 'center', gap: 8 }} href='https://spikeslotgratis.com/ca'>
+                    <a style={{ display: 'flex', alignItems: 'center', gap: 8 }} href='https://spikeslot.com/ca'>
                         <Image width={20} height={20} src='/flags/ca.svg' />
                         Slot Canada
                     </a>
-                    <a style={{ display: 'flex', alignItems: 'center', gap: 8 }} href='https://spikeslotgratis.com/nz'>
+                    <a style={{ display: 'flex', alignItems: 'center', gap: 8 }} href='https://spikeslot.com/nz'>
                         <Image width={30} height={20} src='/flags/new-zeland-flag.svg' />
                         Slot New Zeland
                     </a>

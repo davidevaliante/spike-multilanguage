@@ -195,10 +195,7 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Mega Wheel Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{MegaWheelArticles(contextCountry, 'title')}</title>
-                    <link
-                        rel='canonical'
-                        href={`https://spikeslotgratis.com/live-stats/mega-wheel/${contextCountry}`}
-                    />
+                    <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-wheel/${contextCountry}`} />
                     <meta name='description' content={MegaWheelArticles(contextCountry, 'desc')}></meta>
 
                     <meta

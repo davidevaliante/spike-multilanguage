@@ -73,10 +73,7 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList, _requestedC
             <Head>
                 <title>{article.seo?.seoTitle}</title>
                 <meta name='description' content={article.seo?.seoDescription}></meta>
-                <link
-                    rel='canonical'
-                    href={`https://spikeslotgratis.com/blog/${article.slug}/${_requestedCountryCode}`}
-                />
+                <link rel='canonical' href={`https://spikeslot.com/blog/${article.slug}/${_requestedCountryCode}`} />
                 <meta httpEquiv='content-language' content='it-IT'></meta>
 
                 {/* <!-- Google / Search Engine Tags --> */}

@@ -162,10 +162,7 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Crazy Time Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{_pageContent.seo?.seoTitle}</title>
-                    <link
-                        rel='canonical'
-                        href={`https://spikeslotgratis.com/live-stats/crazy-time/${contextCountry}`}
-                    />
+                    <link rel='canonical' href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
                     <meta name='description' content={_pageContent.seo.seoDescription}></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}

@@ -51,7 +51,7 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList, count
         <Fragment>
             <Head>
                 <title>{bonusGuide.seo ? `${bonusGuide.seo.seoTitle}` : `${bonusGuide.bonus?.name} | SPIKE`}</title>
-                <link rel='canonical' href={`https://spikeslotgratis.com/guida/${bonusGuide.slug}/${countryCode}`} />
+                <link rel='canonical' href={`https://spikeslot.com/guida/${bonusGuide.slug}/${countryCode}`} />
                 <meta
                     name='description'
                     content={

@@ -1,6 +1,6 @@
 export const placeholderImage = 'https://spikeapi.eu/icons/app_icon.svg'
 
-export const websiteRoot = 'https://spikeslotgratis.com'
+export const websiteRoot = 'https://spikeslot.com'
 
 export const defaultShareImage = 'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'
 
