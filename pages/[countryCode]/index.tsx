@@ -31,6 +31,7 @@ import { useRouter } from 'next/router'
 import CountryEquivalentPageSnackbar from '../../components/Snackbars/CountryEquivalentPageSnackbar'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Newsletter from '../../components/Newsletter/Newsletter'
+import BlockingOverlay from '../../components/Ui/BlockingOverlay'
 
 interface PageProps {
     _shallow: boolean
@@ -58,13 +59,8 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
 
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
-    console.log(_requestedCountryCode, 'requested country code')
-
     useEffect(() => {
-        if (_shallow) {
-            setContextCountry(_requestedCountryCode)
-            setLoading(false)
-        } else getCountryData()
+        getCountryData()
     }, [])
 
     const getCountryData = async () => {
@@ -97,13 +93,13 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
         <div>
             <Head>
                 <title>{home.seo.seoTitle}</title>
-                <link rel='canonical' href='https://spikeslot.com' />
+                <link rel='canonical' href='https://spikeslotgratis.com' />
                 <meta name='description' content={home.seo.seoDescription}></meta>
                 <meta httpEquiv='content-language' content={buildContentLanguageString(contextCountry)}></meta>
                 <link rel='canonical' href={`https://spikeslot.com/${_requestedCountryCode}`} />
 
                 <meta property='og:title' content={home.seo.seoTitle} />
-                <meta property='og:url' content={`https://spikeslot.com/${_requestedCountryCode}`} />
+                <meta property='og:url' content={`https://spikeslotgratis.com/${_requestedCountryCode}`} />
                 <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property='og:locale' content={contextCountry} />
                 <meta property='og:type' content='article' />
@@ -115,6 +111,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
             </Head>
 
             <NavbarProvider currentPage='Home' countryCode={contextCountry}>
+                <BlockingOverlay userCountry={userCountry} />
                 {home.topArticle && <HomeHeader topArticle={home.topArticle}>SPIKE SLOT</HomeHeader>}
                 <BodyContainer>
                     {userCountryEquivalentExists && (

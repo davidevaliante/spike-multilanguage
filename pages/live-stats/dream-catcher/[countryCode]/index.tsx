@@ -25,6 +25,8 @@ import { DreamCatcherTable } from '../../../../components/DramCatcherLiveStats/D
 import DreamCatcherStatCard from './../../../../components/Cards/DreamCatcherStatCard'
 import { DreamcatcherSymbolStat } from './../../../../data/models/CrazyTimeSymbolStat'
 import StatsCta from '../../../../components/Singles/StatsCta'
+import { getUserCountryCode } from '../../../../utils/Utils'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 
 interface Props {
     _requestedCountryCode: string
@@ -41,7 +43,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://dreamcatcher.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
+const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas', 'Unibet']
 
 const SPAM_BONUSES = true
 
@@ -172,11 +174,18 @@ const index: FunctionComponent<Props> = ({
         })
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
+
+        geoLocate()
         return () => {
             // cleaning up socket connection if it exists
             socket && socket.disconnect()
         }
     }, [])
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
+    }
 
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
@@ -192,7 +201,10 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Dream Catcher Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{_pageContent.seo?.seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/crazy-time/${contextCountry}`} />
+                    <link
+                        rel='canonical'
+                        href={`https://spikeslotgratis.com/live-stats/crazy-time/${contextCountry}`}
+                    />
                     <meta name='description' content={_pageContent.seo.seoDescription}></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}
@@ -228,6 +240,8 @@ const index: FunctionComponent<Props> = ({
                 </Head>
 
                 <BodyContainer>
+                    <BlockingOverlay redirectLink='/live-stats/dream-catcher/it' userCountry={userCountry} />
+
                     <MainColumnScroll
                         style={{
                             width: '100%',

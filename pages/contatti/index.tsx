@@ -1,20 +1,20 @@
-import React, { Fragment, useState, useEffect, useContext } from "react"
-import AquaClient from "../../graphql/aquaClient"
-import { NextPageContext } from "next"
-import { CONTACTS } from "./../../graphql/queries/contacts"
-import DynamicContent, { DynamicContentProps } from "./../../components/DynamicContent/DynamicContent"
-import { Seo } from "./../../graphql/schema"
-import { FunctionComponent } from "react"
-import NavbarProvider from "../../components/Navbar/NavbarProvider"
-import { BodyContainer } from "../../components/Layout/Layout"
-import CustomBreadcrumbs from "../../components/Breadcrumbs/CustomBreadcrumbs"
-import MailForm from "../../components/MailForm/MailForm"
-import Head from "next/head"
-import { getCanonicalPath, getUserCountryCode } from "../../utils/Utils"
-import FullPageLoader from "../../components/Layout/FullPageLoader"
-import { LocaleContext } from "../../context/LocaleContext"
-import { HOME } from "../../graphql/queries/home"
-import axios from "axios"
+import React, { Fragment, useState, useEffect, useContext } from 'react'
+import AquaClient from '../../graphql/aquaClient'
+import { NextPageContext } from 'next'
+import { CONTACTS } from './../../graphql/queries/contacts'
+import DynamicContent, { DynamicContentProps } from './../../components/DynamicContent/DynamicContent'
+import { Seo } from './../../graphql/schema'
+import { FunctionComponent } from 'react'
+import NavbarProvider from '../../components/Navbar/NavbarProvider'
+import { BodyContainer } from '../../components/Layout/Layout'
+import CustomBreadcrumbs from '../../components/Breadcrumbs/CustomBreadcrumbs'
+import MailForm from '../../components/MailForm/MailForm'
+import Head from 'next/head'
+import { getCanonicalPath, getUserCountryCode } from '../../utils/Utils'
+import FullPageLoader from '../../components/Layout/FullPageLoader'
+import { LocaleContext } from '../../context/LocaleContext'
+import { HOME } from '../../graphql/queries/home'
+import axios from 'axios'
 
 interface Props extends DynamicContentProps {
     seo: Seo
@@ -33,8 +33,8 @@ const index: FunctionComponent<Props> = ({ content }) => {
         const geoLocatedCountryCode = await getUserCountryCode()
         setUserCountry(geoLocatedCountryCode)
 
-        if (geoLocatedCountryCode !== "it") setContextCountry("row")
-        else setContextCountry("it")
+        if (geoLocatedCountryCode !== 'it') setContextCountry('row')
+        else setContextCountry('it')
         setLoading(false)
     }
 
@@ -43,16 +43,16 @@ const index: FunctionComponent<Props> = ({ content }) => {
             <Head>
                 <title>Contacts</title>
                 <meta
-                    name="description"
+                    name='description'
                     content={`Contatta SPIKE tramite mail oppure tramite i canali social più utilizzati`}
                 ></meta>
 
-                <link rel="canonical" href={`https://spikeslot.com/contatti`} />
+                <link rel='canonical' href={`https://spikeslotgratis.com/contatti`} />
             </Head>
-            <NavbarProvider currentPage="/contacts" countryCode={contextCountry}>
+            <NavbarProvider currentPage='/contacts' countryCode={contextCountry}>
                 <BodyContainer>
-                    <div style={{ padding: "1rem", width: "100%" }}>
-                        <CustomBreadcrumbs style={{ marginBottom: "2rem" }} from="contacts" name={t("Contacts")} />
+                    <div style={{ padding: '1rem', width: '100%' }}>
+                        <CustomBreadcrumbs style={{ marginBottom: '2rem' }} from='contacts' name={t('Contacts')} />
                         {content !== null && <DynamicContent content={content} />}
                         <MailForm />
                     </div>

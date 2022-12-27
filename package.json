@@ -36,6 +36,7 @@
     "logrocket": "^1.0.14",
     "lru-cache": "^6.0.0",
     "next": "10.0.9",
+    "nextjs-progressbar": "^0.0.16",
     "npm-force-resolutions": "0.0.10",
     "npx": "^10.2.2",
     "prop-types": "^15.7.2",

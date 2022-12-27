@@ -9,6 +9,7 @@ import LazyImage from '../Lazy/LazyImage'
 import Link from 'next/link'
 import { LocaleContext } from '../../context/LocaleContext'
 import Image from 'next/image'
+import { laptop } from '../Responsive/Breakpoints'
 
 interface Props {
     bonus: Bonus
@@ -102,7 +103,7 @@ const BonusStripe: FunctionComponent<Props> = ({ bonus }) => {
                 </div>
             </RowDeposit>
 
-            <Row style={{ marginTop: '.5rem' }}>
+            <Row style={{ marginLeft: 'auto', justifyContent: 'space-between' }}>
                 {bonus.bonus_guide && (
                     <GuideButton>
                         <Link
@@ -128,7 +129,7 @@ const GuideButton = styled.div`
     cursor: pointer;
     border: 2px solid ${(props) => props.theme.colors.primary};
     padding: 0.5rem 1rem;
-    width: 35%;
+    width: 40%;
     text-align: center;
     font-weight: bold;
     color: ${(props) => props.theme.colors.primary};
@@ -167,10 +168,14 @@ const StarContainer = styled.div`
 const Row = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 0rem 1rem;
+
+    ${laptop} {
+        margin: 0rem 1rem;
+    }
+
     align-items: center;
     flex-grow: 1;
-    min-width: 300px;
+    max-width: 320px;
 
     h2 {
         text-align: start;
@@ -189,10 +194,18 @@ const RowDeposit = styled.div`
     flex-grow: 1;
     padding: 0.5rem;
     margin-top: 0.4rem;
-    max-width: 300px;
+    min-height: 70px;
+    max-width: 320px;
+
+    ${laptop} {
+        max-width: 400px;
+    }
 
     .deposit-container {
         width: 45%;
+        ${laptop} {
+            width: 170px;
+        }
     }
 
     h3 {

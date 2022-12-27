@@ -43,6 +43,7 @@ import ProducersList, {
 } from '../../../components/Lists/ProducersList'
 import CategoriesList from '../../../components/Lists/CategoriesList'
 import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
+import BlockingOverlay from '../../../components/Ui/BlockingOverlay'
 
 interface Props {
     _shallow: boolean
@@ -415,6 +416,8 @@ const Slots: FunctionComponent<Props> = ({
             </Head>
 
             <NavbarProvider currentPage='/slot-list' countryCode={contextCountry}>
+                <BlockingOverlay redirectLink='/slots/it' userCountry={userCountry} />
+
                 <BodyContainer>
                     {userCountryEquivalentExists && <CountryEquivalentPageSnackbar path={`/slots/${userCountry}`} />}
                     <MainColumn>

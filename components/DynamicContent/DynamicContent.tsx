@@ -82,9 +82,7 @@ const DynamicContent: FunctionComponent<DynamicContentProps> = ({ content, isBak
             })
 
         const [collapsed, setCollapsed] = useState(collapsable === true)
-        useEffect(() => {
-            console.log(collapsed, 'collapsed')
-        }, [collapsed])
+        useEffect(() => {}, [collapsed])
 
         if (!collapsed && direction === 'vertical')
             return (

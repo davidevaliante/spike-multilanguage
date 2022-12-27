@@ -12,7 +12,7 @@ interface Props {
     producerSlots: ApolloSlotCard[]
 }
 
-const NoLimitHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerSlots }) => {
+const HacksawGamingHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerSlots }) => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -39,12 +39,9 @@ const NoLimitHighlightProducerSlideShow: FunctionComponent<Props> = ({ producerS
         <Fragment>
             <Container>
                 <LazyLoad>
-                    <ProducerLogo
-                        src='https://media-exp1.licdn.com/dms/image/C4D0BAQE-Je4F7zSLFw/company-logo_200_200/0/1602670033611?e=1674086400&v=beta&t=p8ujkFpMlFPWAghIZl_InFVNhs357GpzoaUEy7T7Q4g'
-                        alt='no limit logo'
-                    />
+                    <ProducerLogo src='/images/hacksaw-logo.webp' alt='hacksaw logo' />
                 </LazyLoad>
-                <h1>{'Le migliori NoLimit City selezionate per te'}</h1>
+                <h1>{'Le migliori Hacksaw Gaming selezionate per te'}</h1>
                 {producerSlots.length > 0 ? (
                     <Carousel
                         swipeable={true}
@@ -185,4 +182,4 @@ const Container = styled.div`
     }
 `
 
-export default NoLimitHighlightProducerSlideShow
+export default HacksawGamingHighlightProducerSlideShow

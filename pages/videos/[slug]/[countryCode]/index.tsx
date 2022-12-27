@@ -144,7 +144,7 @@ const VideoPage: FunctionComponent<Props> = ({ video, mainBonus, auxiliaryBonuse
                     thumbnailUrl={`https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/VideoThumbnails%2Fthumb_500_${video.videoId}?alt=media`}
                 />
                 <Body>
-                    {userCountry === 'it' && (
+                    {userCountry !== 'mt' && (
                         <div
                             style={{
                                 position: 'fixed',

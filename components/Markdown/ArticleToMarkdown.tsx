@@ -39,7 +39,13 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
             // if (allowBonuses) {
 
             // } else return <div></div>;
-            const bonusNames = elementData.split('&')
+            const bonusNames = elementData.split('&').map((bonusName) => {
+                if (bonusName === 'Slot Yes') {
+                    return 'AdmiralBet'
+                }
+
+                return bonusName
+            })
             return (
                 <Wrapper>
                     {bonusNames &&

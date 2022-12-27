@@ -3,7 +3,7 @@ import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import AquaClient from '../../../../graphql/aquaClient'
 import { FunctionComponent } from 'react'
 import MarkdownProvider from '../../../../components/Markdown/MarkdownProvider'
-import { getCanonicalPath, injectCDN, serverSide404 } from '../../../../utils/Utils'
+import { getCanonicalPath, getUserCountryCode, injectCDN, serverSide404 } from '../../../../utils/Utils'
 import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 import ArticleToMarkdown from '../../../../components/Markdown/ArticleToMarkdown'
@@ -22,6 +22,7 @@ import { LocaleContext } from '../../../../context/LocaleContext'
 import ShareButtons from '../../../../components/Seo/ShareButtons'
 import { TopRowContainer } from './../../../../components/Seo/ShareButtons'
 import SidebarBonusHeader from '../../../../components/Text/SidebarBonusHeader'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 
 interface Props {
     bonusGuide: BonusGuide
@@ -34,6 +35,15 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList, count
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
 
     useEffect(() => {
+        geoLocate()
+    }, [])
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
+    }
+
+    useEffect(() => {
         setContextCountry(countryCode)
     }, [countryCode])
 
@@ -41,7 +51,7 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList, count
         <Fragment>
             <Head>
                 <title>{bonusGuide.seo ? `${bonusGuide.seo.seoTitle}` : `${bonusGuide.bonus?.name} | SPIKE`}</title>
-                <link rel='canonical' href={`https://spikeslot.com/guida/${bonusGuide.slug}/${countryCode}`} />
+                <link rel='canonical' href={`https://spikeslotgratis.com/guida/${bonusGuide.slug}/${countryCode}`} />
                 <meta
                     name='description'
                     content={
@@ -91,6 +101,8 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList, count
                 currentPage={`Guida - ${bonusGuide?.bonus?.name} - ${bonusGuide?.bonus?.country.code}`}
                 countryCode={contextCountry}
             >
+                <BlockingOverlay redirectLink='/guide-e-trucchi/it' userCountry={userCountry} />
+
                 <TopRowContainer>
                     <CustomBreadcrumbs
                         style={{ padding: '1rem 1rem' }}

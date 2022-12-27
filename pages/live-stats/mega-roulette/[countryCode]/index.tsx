@@ -21,6 +21,7 @@ import { OnlyDesktop, OnlyMobile } from '../../../../components/Responsive/Only'
 import BonusesBackdrop from '../../../../components/Singles/BonusesBackdrop'
 import StatsCta from '../../../../components/Singles/StatsCta'
 import { SweetBonanzaTable } from '../../../../components/SweetBonanzaCandylandLiveStats/SweetBonanzaTimeTable'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 import { LocaleContext } from '../../../../context/LocaleContext'
 import { MegaWheelStat, SweetBonanzaCandylandStat } from '../../../../data/models/CrazyTimeSymbolStat'
 import { MegaRouletteSpin } from '../../../../data/models/MegaRouletteSpin'
@@ -29,6 +30,7 @@ import { TimeFrame } from '../../../../data/models/TimeFrames'
 import AquaClient from '../../../../graphql/aquaClient'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import { Bonus, CrazyTimeArticle } from '../../../../graphql/schema'
+import { getUserCountryCode } from '../../../../utils/Utils'
 
 interface Props {
     _requestedCountryCode: string
@@ -170,11 +172,19 @@ const index: FunctionComponent<Props> = ({
         })
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
+
+        geoLocate()
+
         return () => {
             // cleaning up socket connection if it exists
             socket && socket.disconnect()
         }
     }, [])
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
+    }
 
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
@@ -196,7 +206,10 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Mega Roulette Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-roulette/${contextCountry}`} />
+                    <link
+                        rel='canonical'
+                        href={`https://spikeslotgratis.com/live-stats/mega-roulette/${contextCountry}`}
+                    />
                     <meta name='description' content={seoDescription}></meta>
 
                     <meta
@@ -229,6 +242,8 @@ const index: FunctionComponent<Props> = ({
                 </Head>
 
                 <BodyContainer>
+                    <BlockingOverlay redirectLink='/live-stats/mega-roulette/it' userCountry={userCountry} />
+
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >

@@ -29,6 +29,7 @@ import { defaultShareImage } from './../constants/constants'
 import Logo from '../components/StructuredData.tsx/Logo'
 import SidebarBonusHeader from '../components/Text/SidebarBonusHeader'
 import NoLimitHighlightProducerSlideShow from '../components/SlideShow/NoLimitHighlightProducerSlideShow'
+import HacksawGamingHighlightProducerSlideShow from '../components/SlideShow/HacksawGamingHighlightProducerSlideShow'
 
 interface PageProps {
     _shallow: boolean
@@ -110,7 +111,7 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                     <MainColumn>
                         <LiveStatsCta />
 
-                        {producerSlots && <NoLimitHighlightProducerSlideShow producerSlots={producerSlots} />}
+                        {producerSlots && <HacksawGamingHighlightProducerSlideShow producerSlots={producerSlots} />}
 
                         <LazyLoad height={450} once>
                             <SlideShow

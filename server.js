@@ -79,7 +79,7 @@ app.prepare().then(() => {
 
     server.get('/', (req, res) => {
         // since we don't use next's requestHandler, we lose compression, so we manually add it
-        renderAndCache(app)(req, res, '/')
+        return handle(req, res, '/')
     })
 
     server.get('/slot/:slug/:countryCode', (req, res) => {
@@ -266,10 +266,18 @@ app.prepare().then(() => {
         res.status(301).send()
     })
 
+    server.get('/guida/bonus-benvenuto-casino-slotyes/it', async (req, res) => {
+        res.set('location', 'https://spikeslotgratis.com/guida/bonus-benvenuto-casino-admiral-bet/it')
+
+        console.log('redirecting slotyes guide')
+
+        res.status(301).send()
+    })
+
     server.get('/guida/bonus-benvenuto-casino-betway/it', (req, res) => {
         res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
 
-        console.log('hello world')
+        console.log('redirecting betway guide')
 
         res.status(301).send()
     })
@@ -328,6 +336,8 @@ app.prepare().then(() => {
 
         return handle(req, res)
     })
+
+    // small change
 
     server.get('/blog', (req, res) => {
         res.set('location', 'https://spikeslot.com/blog/it')

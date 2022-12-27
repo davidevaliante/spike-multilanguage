@@ -29,6 +29,8 @@ import MonopolyDiceRollTable from '../../../../components/MonopolyLiveStats/Mono
 import MonopolyStatCard from '../../../../components/Cards/MonopolyStatCard'
 import { HOME_BONUS_LIST } from '../../../../graphql/queries/bonus'
 import StatsCta from '../../../../components/Singles/StatsCta'
+import { getUserCountryCode } from '../../../../utils/Utils'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 
 interface Props {
     _requestedCountryCode: string
@@ -46,7 +48,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://monopoly.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas']
+const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas', 'Unibet']
 
 const SPAM_BONUSES = true
 
@@ -168,11 +170,17 @@ const index: FunctionComponent<Props> = ({
         })
         // set the new socket instance triggering the respective hook
         setSocket(initializedSocket)
+        geoLocate()
         return () => {
             // cleaning up socket connection if it exists
             socket && socket.disconnect()
         }
     }, [])
+
+    const geoLocate = async () => {
+        const uc = await getUserCountryCode()
+        setUserCountry(uc)
+    }
 
     // handlers
     const handleTimeFrameChange = async (e) => setTimeFrame(e.target.value)
@@ -188,7 +196,10 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Monopoly Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{_pageContent.seo[0]?.seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/monopoly-live/${contextCountry}`} />
+                    <link
+                        rel='canonical'
+                        href={`https://spikeslotgratis.com/live-stats/monopoly-live/${contextCountry}`}
+                    />
                     <meta name='description' content={_pageContent.seo[0].seoDescription}></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}
@@ -224,6 +235,8 @@ const index: FunctionComponent<Props> = ({
                 </Head>
 
                 <BodyContainer>
+                    <BlockingOverlay redirectLink='/live-stats/monopoly-live/it' userCountry={userCountry} />
+
                     <MainColumnScroll
                         style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
                     >

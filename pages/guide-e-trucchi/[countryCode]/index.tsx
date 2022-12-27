@@ -17,9 +17,12 @@ import {
     getUserCountryCode,
     getBGuidePageRedirectUrlForCountry,
     serverSide404,
+    injectCDN,
 } from '../../../utils/Utils'
 import { LocaleContext } from './../../../context/LocaleContext'
 import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
+import ReactMarkdown from 'react-markdown'
+import MarkdownProvider from '../../../components/Markdown/MarkdownProvider'
 
 interface Props {
     _initialGuides: BonusGuide[]
@@ -124,8 +127,18 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
                 <StyleProvider>
                     <CustomBreadcrumbs style={{ margin: '1rem 0rem' }} from='guide-list' name='Guides and Tricks' />
 
-                    <h1>{t('Guides to the best bonuses of Italian casinos')} </h1>
-                    <p>{t('GuidesTextContent1')}</p>
+                    <h1 style={{ marginTop: '3rem' }}>{t('Guides to the best bonuses of Italian casinos')} </h1>
+                    <MarkdownProvider style={{ marginBottom: '2rem' }}>
+                        <ReactMarkdown>
+                            {`È possibile che tu non sappia cosa significhi sbloccare i bonus. Oppure stai cercando una guida che ti spieghi come valutare le migliore offerte disponibili negli operatori legali che offrono servizi certificati e sicuri. Sei nel posto giusto.
+
+Qui troverai tutte le guide dei migliori Casinò italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. È possibile anche consultare le guide create per accompagnare le statistiche live, come le [Mega Wheel stats](/live-stats/mega-wheel/it) o le [Mega Roulette stats](/live-stats/mega-roulette/it).
+
+Ricorda, comunque, che illustriamo solo strategie che esplorano diverse possibilità di sblocco dei bonus, ma potrebbero non funzionare in quanto è sempre la fortuna a farla da padrone.
+
+**Gioca sempre responsabilmente** e guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
+                        </ReactMarkdown>
+                    </MarkdownProvider>
                     <BonusGuideContainer>
                         {initialGuides
                             .filter(
@@ -141,8 +154,13 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
                             ))}
                     </BonusGuideContainer>
 
-                    <h1 style={{ margin: '2rem 0rem' }}>{t('Online Slot, Slot Bar and VLT Cheats')} </h1>
-                    <p>{t('GuidesTextContent2')}</p>
+                    <h1 style={{ marginTop: '3rem' }}>{t('Online Slot, Slot Bar and VLT Cheats')} </h1>
+                    <MarkdownProvider style={{ marginBottom: '2rem' }}>
+                        <ReactMarkdown>
+                            {`Tutta l'esperienza di SPIKE raccolta in articoli dettagliati che risponderanno a tutti i tuoi dubbi sull'esistenza o meno di trucchi nascosti alle slot più famose.
+Scoprirai che attualmente non ci sono trucchi, sequenze o altre metodologie in grado di condizionare il risultato di una partita a una slot.`}
+                        </ReactMarkdown>
+                    </MarkdownProvider>
                     <ArticlesContainer>
                         {articles.map((article, index) => (
                             <ArticleCard key={`article_${index}`} article={article} />

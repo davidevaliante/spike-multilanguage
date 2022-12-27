@@ -21,6 +21,7 @@ import { LocaleContext } from './../../../../context/LocaleContext'
 import CountryEquivalentPageSnackbar from '../../../../components/Snackbars/CountryEquivalentPageSnackbar'
 import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 import Author from '../../../../components/StructuredData.tsx/Author'
+import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 
 interface Props {
     article: BG
@@ -31,8 +32,6 @@ interface Props {
 const automaticRedirect = false
 
 const BlogArticle: FunctionComponent<Props> = ({ article, bonusList, _requestedCountryCode }) => {
-    console.log(_requestedCountryCode)
-
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
     const [userCountryEquivalentExists, setUserCountryEquivalentExists] = useState(false)
 
@@ -74,7 +73,10 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList, _requestedC
             <Head>
                 <title>{article.seo?.seoTitle}</title>
                 <meta name='description' content={article.seo?.seoDescription}></meta>
-                <link rel='canonical' href={`https://spikeslot.com/blog/${article.slug}/${_requestedCountryCode}`} />
+                <link
+                    rel='canonical'
+                    href={`https://spikeslotgratis.com/blog/${article.slug}/${_requestedCountryCode}`}
+                />
                 <meta httpEquiv='content-language' content='it-IT'></meta>
 
                 {/* <!-- Google / Search Engine Tags --> */}
@@ -106,6 +108,7 @@ const BlogArticle: FunctionComponent<Props> = ({ article, bonusList, _requestedC
             </Head>
 
             <NavbarProvider currentPage={`/blog-article/${article.seo?.seoTitle}`} countryCode={contextCountry}>
+                <BlockingOverlay redirectLink='/blog/it' userCountry={userCountry} />
                 <TopRowContainer>
                     <CustomBreadcrumbs style={{ padding: '1rem 1rem' }} name={article.title} from='blog-article' />
                     <Author
