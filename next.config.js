@@ -6,7 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // // module.exports = withBundleAnalyzer({})
 
 module.exports = withBundleAnalyzer({
-    assetPrefix: isProd ? 'https://spikeslotgratis.b-cdn.net' : '',
+    assetPrefix: isProd ? 'spikeslotwebsite.b-cdn.net' : '',
     images: {
         domains: ['dzyz6pzqu8wfo.cloudfront.net'],
     },
