@@ -196,7 +196,10 @@ const index: FunctionComponent<Props> = ({
             <NavbarProvider currentPage='Mega Roulette Stats' countryCode={contextCountry}>
                 <Head>
                     <title>{seoTitle}</title>
-                    <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-roulette/${contextCountry}`} />
+                    <link
+                        rel='canonical'
+                        href={`https://spikeslotgratis.com/live-stats/mega-roulette/${contextCountry}`}
+                    />
                     <meta name='description' content={seoDescription}></meta>
 
                     <meta

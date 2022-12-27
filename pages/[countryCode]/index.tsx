@@ -41,6 +41,8 @@ interface PageProps {
 const automaticRedirect = false
 
 const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountryCode }) => {
+    console.log('country code page')
+
     const aquaClient = new AquaClient(`https://spikeapistaging.tech/graphql`)
 
     const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
@@ -97,13 +99,13 @@ const Index: FunctionComponent<PageProps> = ({ _shallow, _home, _requestedCountr
         <div>
             <Head>
                 <title>{home.seo.seoTitle}</title>
-                <link rel='canonical' href='https://spikeslot.com' />
+                <link rel='canonical' href='https://spikeslotgratis.com' />
                 <meta name='description' content={home.seo.seoDescription}></meta>
                 <meta httpEquiv='content-language' content={buildContentLanguageString(contextCountry)}></meta>
-                <link rel='canonical' href={`https://spikeslot.com/${_requestedCountryCode}`} />
+                <link rel='canonical' href={`https://spikeslotgratis.com/${_requestedCountryCode}`} />
 
                 <meta property='og:title' content={home.seo.seoTitle} />
-                <meta property='og:url' content={`https://spikeslot.com/${_requestedCountryCode}`} />
+                <meta property='og:url' content={`https://spikeslotgratis.com/${_requestedCountryCode}`} />
                 <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property='og:locale' content={contextCountry} />
                 <meta property='og:type' content='article' />
@@ -201,12 +203,14 @@ export const getServerSideProps = async ({ params, res }) => {
 
     const requestedCountryCode = params?.countryCode
 
+    // console.log(`REQUESTED COUNTRY CODE: ${requestedCountryCode}`)
+
     const data = await aquaClient.query({
         query: HOME,
         variables: { countryCode: requestedCountryCode },
     })
 
-    // console.log('hello world')
+    console.log('hello world')
 
     if (requestedCountryCode === '') serverSideRedirect(res, '/', 301)
     if (somethingIsUndefined([data.data.data.homes[0]])) serverSideRedirect(res, `/row`)
@@ -218,12 +222,5 @@ export const getServerSideProps = async ({ params, res }) => {
         },
     }
 }
-
-const Provider = styled.div`
-    .sib-form {
-        padding: 0px !important;
-        margin: 0px !important;
-    }
-`
 
 export default Index

@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { BodyContainer, MainColumn, RightColumn } from '../../../../components/Layout/Layout'
 import LatestVideoCard from '../../../../components/Cards/LatestVideoCard'
 import Icon from '../../../../components/Icons/Icon'
-import {  Article } from '../../../../graphql/schema'
+import { Article } from '../../../../graphql/schema'
 import BonusCardRevealComponent from '../../../../components/Cards/BonusCardReveal'
 import CustomBreadcrumbs from '../../../../components/Breadcrumbs/CustomBreadcrumbs'
 import Head from 'next/head'
@@ -19,72 +19,67 @@ import { LocaleContext } from '../../../../context/LocaleContext'
 import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 
 interface Props {
-    article: Article,
-    bonusList: { bonus: ApolloBonusCardReveal }[],
-    countryCode:string
+    article: Article
+    bonusList: { bonus: ApolloBonusCardReveal }[]
+    countryCode: string
 }
 
-const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode }) => {
-
-    const { t, setContextCountry} = useContext(LocaleContext)
+const ArticlePage: FunctionComponent<Props> = ({ article, bonusList, countryCode }) => {
+    const { t, setContextCountry } = useContext(LocaleContext)
 
     console.log(article)
 
     useEffect(() => {
         setContextCountry(countryCode)
     }, [])
-    
+
     return (
         <Fragment>
             <Head>
                 <title>{article.seo?.seoTitle}</title>
-                <meta
-                    name="description"
-                    content={article.seo?.seoDescription}>
-                </meta>
-                <meta httpEquiv="content-language" content="it-IT"></meta>
-                <meta charSet="utf-8" />
-                <link rel="canonical" href={getCanonicalPath()} />
+                <meta name='description' content={article.seo?.seoDescription}></meta>
+                <meta httpEquiv='content-language' content='it-IT'></meta>
+                <meta charSet='utf-8' />
+                <link rel='canonical' href={getCanonicalPath()} />
 
                 {/* <!-- Google / Search Engine Tags --> */}
-                <meta itemProp="name" content={article.seo?.seoTitle} />
-                <meta itemProp="description" content={article.seo?.seoDescription} />
-                <meta itemProp="image" content={article.image[0].url}  />
-                
-                {/* <!-- Twitter Meta Tags --> */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={article.seo?.seoTitle} />
-                <meta name="twitter:description" content={article.seo?.seoDescription} />
-                <meta name="twitter:image" content={article.image[0].url} />
+                <meta itemProp='name' content={article.seo?.seoTitle} />
+                <meta itemProp='description' content={article.seo?.seoDescription} />
+                <meta itemProp='image' content={article.image[0].url} />
 
-                <meta property="og:title" content={article.seo?.seoTitle} />
-                <meta property="og:type" content="article" />
-                <meta property="og:image" content={injectCDN(article.image[0].url)} />
-                <meta property="og:url" content={`https://spikeslot.com/articoli/${article.slug}/${countryCode}`} />
-                <meta property="og:locale" content={'it'} />
-                <meta property="og:description" content={article.seo?.seoDescription} />
-                <meta property="og:site_name" content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-                <meta property="article:tag" content={article.seo?.seoTitle} />
-                <meta property="article:published_time" content={article.created_at} />
+                {/* <!-- Twitter Meta Tags --> */}
+                <meta name='twitter:card' content='summary_large_image' />
+                <meta name='twitter:title' content={article.seo?.seoTitle} />
+                <meta name='twitter:description' content={article.seo?.seoDescription} />
+                <meta name='twitter:image' content={article.image[0].url} />
+
+                <meta property='og:title' content={article.seo?.seoTitle} />
+                <meta property='og:type' content='article' />
+                <meta property='og:image' content={injectCDN(article.image[0].url)} />
+                <meta property='og:url' content={`https://spikeslot.com/articoli/${article.slug}/${countryCode}`} />
+                <meta property='og:locale' content={'it'} />
+                <meta property='og:description' content={article.seo?.seoDescription} />
+                <meta
+                    property='og:site_name'
+                    content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                />
+                <meta property='article:tag' content={article.seo?.seoTitle} />
+                <meta property='article:published_time' content={article.created_at} />
             </Head>
 
             <NavbarProvider currentPage={`/articoli/${article.title}`} countryCode={countryCode}>
                 <TopRowContainer>
-                    <CustomBreadcrumbs
-                        style={{ padding: '1rem 1rem' }}
-                        name={article.title}
-                        from='article' />
+                    <CustomBreadcrumbs style={{ padding: '1rem 1rem' }} name={article.title} from='article' />
 
-                    <ShareButtons 
-                        title={article.seo?.seoTitle} 
-                        description={article.seo?.seoDescription} 
-                        url={`https://spikeslot.com/articoli/${article.slug}/${countryCode}`} 
-                        image={article.seo?.shareImg ? article.seo.shareImg : injectCDN(article.image[0].url) }/> 
-                        
+                    <ShareButtons
+                        title={article.seo?.seoTitle}
+                        description={article.seo?.seoDescription}
+                        url={`https://spikeslotgratis.com/articoli/${article.slug}/${countryCode}`}
+                        image={article.seo?.shareImg ? article.seo.shareImg : injectCDN(article.image[0].url)}
+                    />
                 </TopRowContainer>
 
                 <BodyContainer>
-
                     <MainColumn>
                         <Wrapper>
                             <DynamicContent content={article.content} />
@@ -93,32 +88,30 @@ const ArticlePage: FunctionComponent<Props> = ({ article, bonusList,countryCode 
 
                     <RightColumn>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <Icon
-                                width={56}
-                                height={56}
-                                source='/icons/flame_icon.svg' />
+                            <Icon width={56} height={56} source='/icons/flame_icon.svg' />
                             <h1 className='video-header'>{t("Watch SPIKE's latest video")}</h1>
                         </div>
                         <LatestVideoCard />
-                        <h1 className='bonus-header'>{t("The best welcome bonuses")}</h1>
+                        <h1 className='bonus-header'>{t('The best welcome bonuses')}</h1>
 
                         <div style={{ marginTop: '0rem' }} className='bonus-column-container'>
-                            {bonusList && bonusList.map(bo => <BonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />)}
+                            {bonusList &&
+                                bonusList.map((bo) => (
+                                    <BonusCardRevealComponent key={bo.bonus.name} bonus={bo.bonus} />
+                                ))}
                         </div>
                     </RightColumn>
                 </BodyContainer>
-
             </NavbarProvider>
         </Fragment>
     )
 }
 
 const Wrapper = styled.div`
-    padding : 1rem 1rem;
+    padding: 1rem 1rem;
 `
 
 export async function getServerSideProps({ query }) {
-
     const slug = query.slug as string
     const country = query.countryCode as string
 
@@ -128,25 +121,24 @@ export async function getServerSideProps({ query }) {
         query: ARTICLE_BY_SLUG,
         variables: {
             slug: slug,
-            countryCode: country
-        }
+            countryCode: country,
+        },
     })
 
     const bonusListResponse = await aquaClient.query({
         query: HOME_BONUS_LIST,
         variables: {
-            countryCode: country
-        }
+            countryCode: country,
+        },
     })
-
 
     return {
         props: {
             query,
             article: articleResponse.data.data.articles[0],
             bonusList: bonusListResponse.data.data.homes[0]?.bonuses.bonus,
-            countryCode:country
-        }
+            countryCode: country,
+        },
     }
 }
 
