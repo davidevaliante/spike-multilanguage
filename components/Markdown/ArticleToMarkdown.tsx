@@ -12,15 +12,25 @@ import LoadingSlotCard from './../Cards/LoadingSlotCard'
 import LoadingVideoCard from './../Cards/LoadingVideoCard'
 import { tablet } from '../Responsive/Breakpoints'
 import { LocaleContext } from '../../context/LocaleContext'
+import RtpDisplayer from '../Singles/RtpDisplayer'
 
 interface Props {
     content: string
     style?: CSSProperties
     isBakeca?: boolean
     allowBonuses?: boolean
+    slotRtp?: number
+    slotImage?: string
 }
 
-const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca = false, allowBonuses }) => {
+const ArticleToMarkdown: FunctionComponent<Props> = ({
+    content,
+    style,
+    isBakeca = false,
+    allowBonuses,
+    slotImage,
+    slotRtp,
+}) => {
     const replaceWithCustomElement = (props: any) => {
         const customCode = props.children[0].props.children[0].props.value
         const parts = customCode.toString().split('@')
@@ -129,6 +139,10 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({ content, style, isBakeca 
                     src='https://docs.google.com/forms/d/e/1FAIpQLSeBOYGD66e_zs29HG36OJjFe2851Yiqh0cveG3BvU5pOSTh0Q/viewform'
                 />
             )
+        }
+
+        if (elementType === 'rtpChart' && slotRtp && slotImage) {
+            return <RtpDisplayer rtp={slotRtp} image={slotImage} />
         }
 
         return <h1>{customCode}</h1>

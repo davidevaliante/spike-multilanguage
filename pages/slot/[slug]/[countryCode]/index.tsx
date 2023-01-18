@@ -40,6 +40,7 @@ import Author from '../../../../components/StructuredData.tsx/Author'
 import axios from 'axios'
 import { substituteName, bonusToExclude } from '../../../../config'
 import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
+import RtpDisplayer from '../../../../components/Singles/RtpDisplayer'
 
 interface PageProps extends NextPageContext {
     _shallow: boolean
@@ -321,7 +322,11 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                             marginTop: '2.5rem',
                                         }}
                                     >
-                                        <ArticleToMarkdown content={_slotData?.description} />
+                                        <ArticleToMarkdown
+                                            content={_slotData?.description}
+                                            slotImage={_slotData.image.url}
+                                            slotRtp={_slotData.rtp}
+                                        />
                                     </MainColumn>
                                     <RightColumn>
                                         <SlotMainFeatures
