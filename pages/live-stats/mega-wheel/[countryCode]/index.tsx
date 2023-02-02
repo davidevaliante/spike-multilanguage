@@ -419,7 +419,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
 
     const bonusRemapping = {
         BetFlag: 'https://adv.betflag.com/redirect.aspx?pid=5262&bid=2690',
-        LeoVegas: 'https://ads.leovegas.com/redirect.aspx?pid=3704489&bid=14965',
+        LeoVegas: 'https://ntrfr.leovegas.com/redirect.aspx?pid=3704489&lpid=1757&bid=19140',
         '888 Casino': 'https://ic.aff-handler.com/c/43431?sr=1868828',
         StarCasinò: 'https://record.starcasino.it/_SEA3QA6bJTNXl890vMAfUGNd7ZgqdRLk/131/',
         Unibet: 'https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251',

@@ -342,6 +342,8 @@ const Slots: FunctionComponent<Props> = ({
         setShowMoreFilter(false)
     }
 
+    console.log(slotList)
+
     return (
         <StyleProvider>
             <Head>
