@@ -455,6 +455,8 @@ export const getServerSideProps = async ({ query, req, res }) => {
         '888 Casino': 'https://ic.aff-handler.com/c/43431?sr=1868828',
         StarCasinò: 'https://record.starcasino.it/_SEA3QA6bJTNXl890vMAfUGNd7ZgqdRLk/131/',
         Unibet: 'https://b1.trickyrock.com/redirect.aspx?pid=70955130&bid=21251',
+        'William Hill':
+            'https://campaigns.williamhill.it/C.ashx?btag=a_200887b_834c_&affid=1742025&siteid=200887&adid=834&c=',
         'PokerStars Casino':
             'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_6258c_&affid=100976968&siteid=182773&adid=6258&c=',
         WinCasino: 'https://www.wincasinopromo.it/?=registration&mp=cd6cb4e9-42cc-4d51-bc95-46bbb80844a2',
