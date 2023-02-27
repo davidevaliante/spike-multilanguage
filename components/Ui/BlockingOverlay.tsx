@@ -11,7 +11,10 @@ const autoRedirectTimeout = 5000
 
 export const getLastPath = (path: string) => {
     const pathArray = path.split('/')
-    return pathArray[pathArray.length - 1]
+    // remove any query params
+    const country = pathArray[pathArray.length - 1].split('?')[0]
+
+    return country
 }
 
 const BlockingOverlay: FunctionComponent<IBlockingOverlay> = ({ userCountry, redirectLink }) => {

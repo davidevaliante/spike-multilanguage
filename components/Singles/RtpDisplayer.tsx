@@ -19,7 +19,7 @@ const RtpDisplayer: FunctionComponent<IRtpDisplayer> = ({ rtp, image }) => {
     return (
         <Container>
             <VerticalText>RTP (Return to Player)</VerticalText>
-            <div style={{ width: '200px' }}>
+            <div style={{ width: '170px' }}>
                 <High>
                     <div>97.5% ↑</div>
                     {isHigh && (
@@ -131,7 +131,7 @@ const CardContainer = styled.div`
     flex-direction: column;
     position: absolute;
     top: 50%;
-    right: -150px;
+    right: -135px;
     z-index: 30;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     border-radius: 6px;
@@ -154,7 +154,7 @@ const Container = styled.div`
     height: 300px;
     margin: 7rem 0rem;
     font-weight: bold;
-    padding: 0rem 1rem;
+    padding: 0rem 0.3rem;
 
     ${tablet} {
         justify-content: center;

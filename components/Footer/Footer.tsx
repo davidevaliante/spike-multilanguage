@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
-import { desktop } from '../Responsive/Breakpoints'
+import { desktop, tablet } from '../Responsive/Breakpoints'
 import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
 import AquaClient from './../../graphql/aquaClient'
 import { FOOTER } from '../../graphql/queries/footer'
@@ -117,8 +117,8 @@ const Footer = () => {
 
     return (
         <Container>
-            <div style={{ margin: 'auto', width: '100%' }}>
-                <Body show={true}>
+            <div style={{ margin: 'auto 1rem', width: '100%' }}>
+                <Flex>
                     <section>
                         <Header>{t('Information and contacts')}</Header>
                         <div>
@@ -177,7 +177,7 @@ const Footer = () => {
                         <Header>{t('Welcome Bonus Guides')}</Header>
                         {getBonusGuideLinkForCountry(contextCountry)}
                     </section>
-                </Body>
+                </Flex>
                 <h4 onClick={() => setShow(!show)} className='show-more'>
                     {!show ? t(`Show more`) : t(`Hide`)}
                 </h4>
@@ -243,6 +243,17 @@ const Footer = () => {
         </Container>
     )
 }
+
+const Flex = styled.div`
+    ${tablet} {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        justify-content: space-between;
+        max-width: 1280px;
+        margin: 0rem auto;
+    }
+`
 
 const getArticleForCountry = (country: string) => {
     if (country === 'ca')
@@ -465,7 +476,8 @@ const Header = styled.h2`
     font-family: ${(props) => props.theme.text.secondaryFont};
     color: #ff6666;
     font-size: 1rem;
-    padding: 2rem 0rem;
+    padding-top: 2rem;
+    padding-bottom: 0.1rem;
 `
 
 const HideAble = styled.div``
