@@ -168,7 +168,10 @@ const index: FunctionComponent<Props> = ({
                     {/* <!-- Google / Search Engine Tags --> */}
                     <meta
                         itemProp='name'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                        content={
+                            _pageContent.seo.seoTitle ||
+                            "SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                        }
                     />
                     <meta itemProp='description' content={_pageContent.seo.seoDescription} />
                     <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
@@ -177,21 +180,23 @@ const index: FunctionComponent<Props> = ({
                     <meta name='twitter:card' content='summary_large_image' />
                     <meta
                         name='twitter:title'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                        content={
+                            _pageContent.seo.seoTitle ||
+                            "SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
+                        }
                     />
                     <meta name='twitter:description' content={_pageContent.seo.seoDescription} />
                     <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                     {/* <!-- Facebook Meta Tags --> */}
                     <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={_pageContent.seo.seoDescription} />
                     <meta property='og:site_name' content={_pageContent.seo?.seoTitle} />
 
-                    <meta httpEquiv='content-language' content='it-IT'></meta>
                     <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={_pageContent.seo?.seoDescription} />
                     <meta property='og:site_name' content={_pageContent.seo?.seoTitle} />

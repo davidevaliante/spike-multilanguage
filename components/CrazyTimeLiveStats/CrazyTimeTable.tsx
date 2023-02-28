@@ -181,6 +181,15 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
     // const handleOpenVideo = (url: string) =>
     //     window.open(`https://crazy-time-scalper.vercel.app/video/${url.split('/').pop()}`)
 
+    const nilToLang = (cc: string) => {
+        switch (cc) {
+            case 'it':
+                return 'Nullo'
+            default:
+                return 'Null'
+        }
+    }
+
     return (
         <TableWrapper>
             <div className={classes.root}>
@@ -235,7 +244,9 @@ export const CrazyTimeTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                                                                 fontSize: row.sameSlotAndSpinResult ? '1.1rem' : '',
                                                             }}
                                                         >
-                                                            {row.slotResult === 'Miss' ? 'Nullo' : row.slotResult}
+                                                            {row.slotResult === 'Miss'
+                                                                ? nilToLang(contextCountry)
+                                                                : row.slotResult}
                                                         </p>
                                                     </SlotResultSpan>
                                                 </TableCell>

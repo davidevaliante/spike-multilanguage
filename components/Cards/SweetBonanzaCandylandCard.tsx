@@ -93,7 +93,7 @@ const SweetBonanzaCandylandCard: FunctionComponent<CardProps> = ({ stat, totalSp
                 <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1rem' }}>
                     <p style={{ marginTop: '.3rem', marginRight: '.4rem' }}>{`${t('Spins Since')}`}</p>
                     <p style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-                        {stat.spinSince != totalSpinsConsidered ? stat.spinSince : `> ${totalSpinsConsidered}`} Spin
+                        {stat.spinSince != totalSpinsConsidered ? stat.spinSince : `> ${totalSpinsConsidered}`} Spins
                     </p>
                 </span>
 

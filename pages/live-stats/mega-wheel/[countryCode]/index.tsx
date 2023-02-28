@@ -198,30 +198,23 @@ const index: FunctionComponent<Props> = ({
                     <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-wheel/${contextCountry}`} />
                     <meta name='description' content={MegaWheelArticles(contextCountry, 'desc')}></meta>
 
-                    <meta
-                        itemProp='name'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta itemProp='name' content={MegaWheelArticles(contextCountry, 'title')} />
                     <meta itemProp='description' content={MegaWheelArticles(contextCountry, 'desc')} />
                     <meta itemProp='image' content={imageSocial} />
 
                     <meta name='twitter:card' content='summary_large_image' />
-                    <meta
-                        name='twitter:title'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta name='twitter:title' content={MegaWheelArticles(contextCountry, 'title')} />
                     <meta name='twitter:description' content={MegaWheelArticles(contextCountry, 'desc')} />
                     <meta name='twitter:image' content={imageSocial} />
 
                     <meta property='og:image' content={imageSocial} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={MegaWheelArticles(contextCountry, 'desc')} />
                     <meta property='og:site_name' content={MegaWheelArticles(contextCountry, 'title')} />
 
-                    <meta httpEquiv='content-language' content='it-IT'></meta>
                     <meta property='og:image' content={imageSocial} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={MegaWheelArticles(contextCountry, 'desc')} />
                     <meta property='og:site_name' content={MegaWheelArticles(contextCountry, 'title')} />

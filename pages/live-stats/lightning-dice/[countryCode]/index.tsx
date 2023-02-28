@@ -225,14 +225,13 @@ const index: FunctionComponent<Props> = ({
 
                     {/* <!-- Facebook Meta Tags --> */}
                     <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     {/* <meta property="og:description" content={_pageContent.seo.seoDescription} /> */}
                     {/* <meta property="og:site_name" content={_pageContent.seo?.seoTitle} /> */}
 
-                    <meta httpEquiv='content-language' content='it-IT'></meta>
                     <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                 </Head>
 

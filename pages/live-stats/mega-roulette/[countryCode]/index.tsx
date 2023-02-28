@@ -225,14 +225,13 @@ const index: FunctionComponent<Props> = ({
                     <meta name='twitter:image' content={imageSocial} />
 
                     <meta property='og:image' content={imageSocial} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={seoDescription} />
                     <meta property='og:site_name' content={seoTitle} />
 
-                    <meta httpEquiv='content-language' content='it-IT'></meta>
                     <meta property='og:image' content={imageSocial} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={seoDescription} />
                     <meta property='og:site_name' content={seoTitle} />

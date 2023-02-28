@@ -200,32 +200,25 @@ const index: FunctionComponent<Props> = ({
                     <meta name='description' content={_pageContent.seo[0].seoDescription}></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}
-                    <meta
-                        itemProp='name'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta itemProp='name' content={_pageContent.seo[0]?.seoTitle} />
                     <meta itemProp='description' content={_pageContent.seo[0].seoDescription} />
                     <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                     {/* <!-- Twitter Meta Tags --> */}
                     <meta name='twitter:card' content='summary_large_image' />
-                    <meta
-                        name='twitter:title'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta name='twitter:title' content={_pageContent.seo[0]?.seoTitle} />
                     <meta name='twitter:description' content={_pageContent.seo[0].seoDescription} />
                     <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                     {/* <!-- Facebook Meta Tags --> */}
                     <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={_pageContent.seo[0].seoDescription} />
                     <meta property='og:site_name' content={_pageContent.seo[0]?.seoTitle} />
 
-                    <meta httpEquiv='content-language' content='it-IT'></meta>
                     <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
-                    <meta property='og:locale' content={'it'} />
+                    <meta property='og:locale' content={contextCountry} />
                     <meta property='og:type' content='article' />
                     <meta property='og:description' content={_pageContent.seo[0].seoDescription} />
                     <meta property='og:site_name' content={_pageContent.seo[0]?.seoTitle} />
