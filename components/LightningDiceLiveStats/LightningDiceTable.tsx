@@ -248,7 +248,7 @@ export const LightningDiceTable: FunctionComponent<EnhancedTableProps> = ({ rows
                                                     scope='row'
                                                     padding='none'
                                                 >
-                                                    {format(row.timeOfSpin as number, 'dd/MM HH:mm')}
+                                                    {format((row.timeOfSpin as number) - 3600 * 1000, 'dd/MM HH:mm')}
                                                 </TableCell>
                                                 <TableCell align='center'>
                                                     <SpinResultSpan>
