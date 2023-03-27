@@ -69,8 +69,6 @@ const renderAndCache = (app) =>
         }
     }
 
-const redirectSlugs = ['migliori-bonus-casino', '/']
-
 app.prepare().then(() => {
     const server = express()
     server.use(compression())
@@ -79,28 +77,9 @@ app.prepare().then(() => {
         server.use(compression())
     }
 
-    server.get('*', (req, res) => {
-        console.log(`The URL is ${req.url}`)
-        if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
-            res.set('location', 'https://spikeslotgratis.com/guide-e-trucchi/it')
-            res.status(301).send()
-        }
-        // const pieces = req.url.split('/')
-        // const last = pieces[pieces.length - 1]
-        // if (last == 'it' || req.url === '/' || (redirectSlugs.includes(last) && !req.url.includes['robots.txt'])) {
-        //     console.log('redirecting')
-        //     res.set('location', `https://spikeslotgratis.com${req.url}`)
-        //     res.status(301).send()
-        // }
-        res.set('location', `https://spikeslot.com${req.url}`)
-        res.status(301).send()
-        // handle(req, res)
-    })
-
     server.get('/', (req, res) => {
-        console.log('here /')
         // since we don't use next's requestHandler, we lose compression, so we manually add it
-        renderAndCache(app)(req, res, '/')
+        return handle(req, res, '/')
     })
 
     server.get('/slot/:slug/:countryCode', (req, res) => {
@@ -123,6 +102,10 @@ app.prepare().then(() => {
             const pagePath = `/slot/${req.params.slug}/${req.params.countryCode}`
             renderAndCache(app)(req, res, pagePath)
         }
+    })
+
+    server.get('/slot/:slug', (req, res) => {
+        console.log('testing the stuff that is happening')
     })
 
     server.get('/slots/:countryCode', (req, res) => {
@@ -266,9 +249,9 @@ app.prepare().then(() => {
         }
     })
 
-    // server.get('/robots.txt', (req, res) => {
-    //     res.status(200).sendFile(path.join(__dirname, './public/files/robots.txt'))
-    // })
+    server.get('/robots.txt', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname, './public/files/robots.txt'))
+    })
 
     server.get('/spike_sitemap.xml', (req, res) => {
         res.status(200).sendFile(path.join(__dirname, './public/files/spike_sitemap.xml'))
@@ -425,6 +408,16 @@ app.prepare().then(() => {
 
         res.set('location', `${websiteRoot}${newUrl}`)
         res.status(301).send()
+    })
+
+    server.get('*', (req, res) => {
+        if (req.url === '/guida/bonus-benvenuto-betfair-casino/it') {
+            res.set('location', 'https://spikeslot.com/guide-e-trucchi/it')
+
+            res.status(301).send()
+        } else {
+            handle(req, res)
+        }
     })
 
     server.post('*', (req, res) => {
