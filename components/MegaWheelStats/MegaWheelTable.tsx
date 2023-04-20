@@ -206,7 +206,7 @@ export const MegaWheelTable: FunctionComponent<EnhancedTableProps> = ({ rows }) 
                                                     padding='none'
                                                 >
                                                     {format(
-                                                        new Date(row.timeMillis as number).getTime() + 2 * 3600 * 1000,
+                                                        new Date(row.timeMillis as number).getTime() + 3 * 3600 * 1000,
                                                         'dd/MM HH:mm'
                                                     )}
                                                 </TableCell>
