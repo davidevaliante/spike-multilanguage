@@ -195,9 +195,9 @@ const index: FunctionComponent<Props> = ({
         setSelectedFilters(change)
     }
 
-    const seoTitle = 'Diretta Estrazioni | Mega Roulette | SPIKE Slot'
+    const seoTitle = 'Diretta Estrazioni Statistiche | Mega Roulette | SPIKE Slot'
     const seoDescription =
-        'Estrazioni in diretta, live casino di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲'
+        'Estrazioni in diretta e statistiche live casino di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲'
 
     const imageSocial = 'https://spike-images.s3.eu-central-1.amazonaws.com/mega_roulette_thumbnail.png'
 
@@ -209,18 +209,12 @@ const index: FunctionComponent<Props> = ({
                     <link rel='canonical' href={`https://spikeslot.com/live-stats/mega-roulette/${contextCountry}`} />
                     <meta name='description' content={seoDescription}></meta>
 
-                    <meta
-                        itemProp='name'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta itemProp='name' content='Diretta Estrazioni Statistiche | Mega Roulette | SPIKE Slot' />
                     <meta itemProp='description' content={seoDescription} />
                     <meta itemProp='image' content={imageSocial} />
 
                     <meta name='twitter:card' content='summary_large_image' />
-                    <meta
-                        name='twitter:title'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta name='twitter:title' content='Diretta Estrazioni Statistiche | Mega Roulette | SPIKE Slot' />
                     <meta name='twitter:description' content={seoDescription} />
                     <meta name='twitter:image' content={imageSocial} />
 

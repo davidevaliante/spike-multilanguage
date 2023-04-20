@@ -648,8 +648,8 @@ export default index
 const SweetBonanzaCandyLandArticle = (country: string, type: 'top' | 'bottom' | 'title' | 'desc') => {
     const text = {
         it: {
-            title: 'Diretta Estrazioni | Sweet Bonanza Candyland | SPIKE Slot',
-            desc: 'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲',
+            title: 'Diretta Estrazioni Statistiche | Sweet Bonanza Candyland | SPIKE Slot',
+            desc: 'Estrazioni in diretta e statistiche game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲',
             top: `## Statistiche delle Estrazioni in Tempo Reale Sweet Bonanza Candyland
 
 Puoi trovare qui tutte le informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Sweet Bonanza Candyland.<br>

@@ -197,29 +197,23 @@ const index: FunctionComponent<Props> = ({
         <Fragment>
             <NavbarProvider currentPage='Lightning Dice Stats' countryCode={contextCountry}>
                 <Head>
-                    <title>Lightining Dice Stats | SPIKE Slot</title>
+                    <title>Diretta Estrazioni Statistiche | Lightning Dice | SPIKE Slot 🎡🎲</title>
                     <link rel='canonical' href={`https://spikeslot.com/live-stats/lightning-dice/${contextCountry}`} />
                     <meta
                         name='description'
                         content={
-                            'Estrazioni in tempo reale per Lightning Dice. Controlla i dettagli di tutte le estrazioni di questo game show di Evolution Gaming'
+                            'Estrazioni in diretta e statistiche del live game di Evolution Gaming. Controlla i dettagli di tutte le estrazioni. Valuta una strategia per gestire il tuo Budget.'
                         }
                     ></meta>
 
                     {/* <!-- Google / Search Engine Tags --> */}
-                    <meta
-                        itemProp='name'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta itemProp='name' content='Diretta Estrazioni Statistiche | Lightning Dice | SPIKE Slot' />
                     {/* <meta itemProp="description" content={_pageContent.seo.seoDescription} /> */}
                     <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                     {/* <!-- Twitter Meta Tags --> */}
                     <meta name='twitter:card' content='summary_large_image' />
-                    <meta
-                        name='twitter:title'
-                        content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo"
-                    />
+                    <meta name='twitter:title' content='Diretta Estrazioni Statistiche | Lightning Dice | SPIKE Slot' />
                     {/* <meta name="twitter:description" content={_pageContent.seo.seoDescription} /> */}
                     <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 

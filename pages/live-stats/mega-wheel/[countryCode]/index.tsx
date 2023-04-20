@@ -616,8 +616,8 @@ export default index
 const MegaWheelArticles = (country: string, type: 'top' | 'bottom' | 'title' | 'desc') => {
     const text = {
         it: {
-            title: 'Diretta Estrazioni | Mega Wheel | SPIKE Slot',
-            desc: 'Estrazioni in diretta, game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲',
+            title: 'Diretta Estrazioni Statistiche | Mega Wheel | SPIKE Slot',
+            desc: 'Estrazioni in diretta e statistiche game show di Pragmatic Play. Controlla i dettagli di tutte le estrazioni. Crea con facilità una strategia unica per gestire il tuo Budget.🎡🎲',
             top: `## Statistiche delle Estrazioni in Tempo Reale Mega Wheel
 
 Questa pagina è dedicata alle informazioni principali relative alle estrazioni in tempo reale del gioco Live di Pragmatic Play: Mega Wheel.<br>
