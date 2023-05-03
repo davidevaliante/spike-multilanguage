@@ -34,43 +34,54 @@ class MyApp extends App {
                 <MaterialThemeProvider theme={materialTheme}>
                     <ThemeProvider theme={styledTheme}>
                         <Head>
-                            <script async src='https://www.googletagmanager.com/gtag/js?id=G-VW9JVLDQEM' />
-                            <script type='text/javascript' src='https://cdn.ywxi.net/js/1.js' async></script>
+                            {/*    <script async src='https://www.googletagmanager.com/gtag/js?id=G-VW9JVLDQEM' /> */}
+                            {/*     <script type='text/javascript' src='https://cdn.ywxi.net/js/1.js' async></script> */}
+                            {/**/}
+                            {/*     <script */}
+                            {/*         dangerouslySetInnerHTML={{ */}
+                            {/*             __html: ` */}
+                            {/*     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': */}
+                            {/*     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], */}
+                            {/*     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= */}
+                            {/*     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); */}
+                            {/*     })(window,document,'script','dataLayer','GTM-M729KQK'); */}
+                            {/* `, */}
+                            {/*         }} */}
+                            {/*     /> */}
 
+                            {/*     <script */}
+                            {/*         dangerouslySetInnerHTML={{ */}
+                            {/*             __html: ` */}
+                            {/*     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': */}
+                            {/*     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], */}
+                            {/*     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= */}
+                            {/*     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); */}
+                            {/*     })(window,document,'script','dataLayer','GTM-5FV2NFS'); */}
+                            {/* `, */}
+                            {/*         }} */}
+                            {/*     /> */}
+                            {/**/}
+                            {/*     <script */}
+                            {/*         dangerouslySetInnerHTML={{ */}
+                            {/*             __html: ` */}
+                            {/*             window.dataLayer = window.dataLayer || []; */}
+                            {/*             function gtag(){dataLayer.push(arguments);} */}
+                            {/*             gtag('js', new Date()); */}
+                            {/*             gtag('config', 'G-VW9JVLDQEM'); */}
+                            {/*         `, */}
+                            {/*         }} */}
+                            {/*     /> */}
+
+                            <script async src='https://www.googletagmanager.com/gtag/js?id=G-DSMJL6Q2B3'></script>
                             <script
                                 dangerouslySetInnerHTML={{
-                                    __html: `
-                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                            })(window,document,'script','dataLayer','GTM-M729KQK');
-                        `,
-                                }}
-                            />
+                                    __html: `window.dataLayer = window.dataLayer || [];
+                                              function gtag(){dataLayer.push(arguments);}
+                                              gtag('js', new Date());
 
-                            <script
-                                dangerouslySetInnerHTML={{
-                                    __html: `
-                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                            })(window,document,'script','dataLayer','GTM-5FV2NFS');
-                        `,
+                                              gtag('config', 'G-DSMJL6Q2B3');`,
                                 }}
-                            />
-
-                            <script
-                                dangerouslySetInnerHTML={{
-                                    __html: `
-                                    window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    gtag('config', 'G-VW9JVLDQEM');
-                                `,
-                                }}
-                            />
+                            ></script>
                         </Head>
                         <Reset />
                         <NextNProgress />
