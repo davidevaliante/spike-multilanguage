@@ -1,86 +1,92 @@
-import React, { useContext } from 'react'
-import styled from 'styled-components'
-import { FunctionComponent } from 'react'
-import { injectCDN } from '../../utils/Utils'
-import FadeBorderButton from './../Buttons/FadeBorderButton'
-import snakeCase from 'lodash/snakeCase'
-import LazyLoad from 'react-lazyload'
-import { AlgoliaSearchResult } from '../../graphql/schema'
-import { tablet } from '../Responsive/Breakpoints'
-import { LocaleContext } from './../../context/LocaleContext'
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { FunctionComponent } from "react";
+import { injectCDN } from "../../utils/Utils";
+import FadeBorderButton from "./../Buttons/FadeBorderButton";
+import snakeCase from "lodash/snakeCase";
+import LazyLoad from "react-lazyload";
+import { AlgoliaSearchResult } from "../../graphql/schema";
+import { tablet } from "../Responsive/Breakpoints";
+import { LocaleContext } from "./../../context/LocaleContext";
 
 interface Props {
-    slotCardData: AlgoliaSearchResult
+  slotCardData: AlgoliaSearchResult;
 }
 
 const SlotListSlotCard: FunctionComponent<Props> = ({ slotCardData }) => {
-    const { name, rating, slug } = slotCardData
+  const { name, rating, slug } = slotCardData;
 
-    const fullStars = rating
+  const fullStars = rating;
 
-    const { t, contextCountry } = useContext(LocaleContext)
+  const { t, contextCountry } = useContext(LocaleContext);
 
-    const injectCdnOrFallback = (): string => {
-        if (slotCardData.image === null || slotCardData.image.url === 'https://spikeapi.eu/icons/app_icon.svg')
-            return 'https://spikeapi.eu/icons/app_icon.svg'
-        return injectCDN(slotCardData.image.url, 'thumbnail_')
+  const injectCdnOrFallback = (): string => {
+    if (
+      slotCardData.image === null ||
+      slotCardData.image.url === "https://spikeapi.eu/icons/app_icon.svg"
+    ) {
+      return "https://spikeapi.eu/icons/app_icon.svg";
     }
+    return injectCDN(slotCardData.image.url, "thumbnail_");
+  };
 
-    return (
-        <CardStyleProvider>
-            <CardContainer>
-                <LazyLoad style={{ position: 'relative' }}>
-                    <ButtonsContainer>
-                        <FadeBorderButton
-                            noFade={true}
-                            href={`/go?to=${slotCardData.mainBonus.link}`}
-                            nofollow={true}
-                            external={
-                                slotCardData.mainBonus.link
-                                    ? slotCardData.mainBonus.link
-                                    : `/go?to=${slotCardData.bonuses[0].link}`
-                            }
-                            text={t('Real money')}
-                            color='#07ba13'
-                        />
-                        <FadeBorderButton noFade={true} href={`/slot/${slug}/${contextCountry}`} />
-                    </ButtonsContainer>
+  return (
+    <CardStyleProvider>
+      <CardContainer>
+        <LazyLoad style={{ position: "relative" }}>
+          <ButtonsContainer>
+            <FadeBorderButton
+              noFade={true}
+              href={`/go?to=${slotCardData.mainBonus.link}`}
+              nofollow={true}
+              external={slotCardData.mainBonus.link
+                ? slotCardData.mainBonus.link
+                : `/go?to=${slotCardData.bonuses[0].link}`}
+              text={t("Real money")}
+              color="#07ba13"
+            />
+            <FadeBorderButton
+              href=""
+              noFade={true}
+              as={`/slot/${slug}/${contextCountry}`}
+            />
+          </ButtonsContainer>
 
-                    <img
-                        alt={`${snakeCase(slotCardData.name)}_image`}
-                        className='swiper-lazy'
-                        src={injectCdnOrFallback()}
-                    />
-                </LazyLoad>
-                <div className='card-content'>
-                    <h3>{name.toUpperCase()}</h3>
-                    <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
-                        <LazyLoad>
-                            <StarContainer>
-                                {[...Array(fullStars).keys()].map((s, i) => (
-                                    <img
-                                        key={`${snakeCase(name)}_${i}_start_full`}
-                                        alt='full_star_icon'
-                                        className='star'
-                                        src='/icons/star_full.svg'
-                                    />
-                                ))}
-                                {[...Array(5 - fullStars).keys()].map((s, i) => (
-                                    <img
-                                        key={`${snakeCase(name)}_${i}_start_empty`}
-                                        alt='empty_star_icon'
-                                        className='star'
-                                        src='/icons/star_empty.svg'
-                                    />
-                                ))}
-                            </StarContainer>
-                        </LazyLoad>
-                    </div>
-                </div>
-            </CardContainer>
-        </CardStyleProvider>
-    )
-}
+          <img
+            alt={`${snakeCase(slotCardData.name)}_image`}
+            className="swiper-lazy"
+            src={injectCdnOrFallback()}
+          />
+        </LazyLoad>
+        <div className="card-content">
+          <h3>{name.toUpperCase()}</h3>
+          <div style={{ position: "absolute", bottom: "0", width: "100%" }}>
+            <LazyLoad>
+              <StarContainer>
+                {[...Array(fullStars).keys()].map((s, i) => (
+                  <img
+                    key={`${snakeCase(name)}_${i}_start_full`}
+                    alt="full_star_icon"
+                    className="star"
+                    src="/icons/star_full.svg"
+                  />
+                ))}
+                {[...Array(5 - fullStars).keys()].map((s, i) => (
+                  <img
+                    key={`${snakeCase(name)}_${i}_start_empty`}
+                    alt="empty_star_icon"
+                    className="star"
+                    src="/icons/star_empty.svg"
+                  />
+                ))}
+              </StarContainer>
+            </LazyLoad>
+          </div>
+        </div>
+      </CardContainer>
+    </CardStyleProvider>
+  );
+};
 
 const ButtonsContainer = styled.div`
     opacity: 0;
@@ -96,7 +102,7 @@ const ButtonsContainer = styled.div`
     :hover {
         opacity: 1;
     }
-`
+`;
 
 const CardStyleProvider = styled.div`
     user-select: none;
@@ -113,7 +119,7 @@ const CardStyleProvider = styled.div`
         margin-right: 1rem;
         margin-bottom: 1 rem;
     }
-`
+`;
 
 const CardContainer = styled.div`
     width: 250px;
@@ -141,7 +147,7 @@ const CardContainer = styled.div`
 
     border-radius: 4px;
     border-bottom-left-radius: 36px;
-`
+`;
 const StarContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -152,6 +158,6 @@ const StarContainer = styled.div`
         width: 16px;
         height: 16px;
     }
-`
+`;
 
-export default SlotListSlotCard
+export default SlotListSlotCard;
