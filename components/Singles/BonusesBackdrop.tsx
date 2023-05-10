@@ -1,145 +1,172 @@
-import React, { FunctionComponent, useRef, useState, useEffect, useContext } from 'react'
-import { Backdrop, Paper } from '@material-ui/core'
-import PrimaryBonusCard from '../Cards/PrimaryBonusCard'
-import useOnClickOutside from '../../hooks/useOnClickOutside'
-import { isMobile, isDesktop, isTablet } from 'react-device-detect'
-import { Bonus } from '../../graphql/schema'
-import BonusStripe from './../Cards/BonusStripe'
-import SecondaryBonusCard from '../Cards/SecondaryBonusCard'
-import styled from 'styled-components'
-import { tablet, desktop } from '../Responsive/Breakpoints'
-import { LocaleContext } from '../../context/LocaleContext'
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Backdrop, Paper } from "@material-ui/core";
+import PrimaryBonusCard from "../Cards/PrimaryBonusCard";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
+import { Bonus } from "../../graphql/schema";
+import SecondaryBonusCard from "../Cards/SecondaryBonusCard";
+import styled from "styled-components";
+import { desktop, tablet } from "../Responsive/Breakpoints";
+import { LocaleContext } from "../../context/LocaleContext";
 
 interface Props {
-    bonuses: Bonus[]
+  bonuses: Bonus[];
 }
 
-const SPAM_INTERVAL = 60000
+const SPAM_INTERVAL = 60000;
 
 const BonusesBackdrop: FunctionComponent<Props> = ({ bonuses }) => {
-    const bonusRef = useRef()
-    useOnClickOutside(bonusRef, () => handleCloseSpamBonuses())
+  const bonusRef = useRef();
+  useOnClickOutside(bonusRef, () => handleCloseSpamBonuses());
 
-    const { t, contextCountry, setContextCountry, userCountry, setUserCountry } = useContext(LocaleContext)
+  const { t, contextCountry, setContextCountry, userCountry, setUserCountry } =
+    useContext(LocaleContext);
 
-    const [timeout, setTimeout] = useState<NodeJS.Timeout | undefined>(undefined)
-    const [showSpamBonuses, setShowSpamBonuses] = useState(false)
+  const [timeout, setTimeout] = useState<NodeJS.Timeout | undefined>(undefined);
+  const [showSpamBonuses, setShowSpamBonuses] = useState(false);
 
-    const handleCloseSpamBonuses = () => {
-        timeout && clearInterval(timeout)
-        setShowSpamBonuses(false)
-        const spamBonusInterval = setInterval(() => setShowSpamBonuses(true), SPAM_INTERVAL)
-        setTimeout(spamBonusInterval)
+  const handleCloseSpamBonuses = () => {
+    timeout && clearInterval(timeout);
+    setShowSpamBonuses(false);
+    const spamBonusInterval = setInterval(
+      () => setShowSpamBonuses(true),
+      SPAM_INTERVAL,
+    );
+    setTimeout(spamBonusInterval);
+  };
+
+  useEffect(() => {
+    const spamBonusInterval = setInterval(
+      () => setShowSpamBonuses(true),
+      SPAM_INTERVAL,
+    );
+    setTimeout(spamBonusInterval);
+
+    return () => {
+      timeout && clearInterval(timeout);
+    };
+  }, []);
+
+  const countryCodeToString = (countryCode: string) => {
+    switch (countryCode) {
+      case "it":
+        return "Comparazione offerte di siti legali";
+
+      case "ca":
+        return "Claim Bonuses from the Best Casino in Canada!";
+
+      case "gb":
+        return "Claim Bonuses from the Best Casino in United Kingdom!";
+
+      case "nz":
+        return "Claim Bonuses from the Best Casino in New Zeland!";
+
+      case "rs":
+        return "Claim Bonuses from the Best Casino in Serbia!";
+
+      case "me":
+        return "Claim Bonuses from the Best Casino in Montenegro!";
+
+      default:
+        "Claim Bonuses from the Best Casinos";
     }
+  };
 
-    useEffect(() => {
-        const spamBonusInterval = setInterval(() => setShowSpamBonuses(true), SPAM_INTERVAL)
-        setTimeout(spamBonusInterval)
+  return (
+    <div>
+      <Backdrop style={{ zIndex: 10 }} open={showSpamBonuses}>
+        <DesktopContainer>
+          <Paper ref={bonusRef} elevation={3} style={{ padding: "2rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "space-around",
+              }}
+            >
+              <h1
+                style={{
+                  marginLeft: "1rem",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                  color: "crimson",
+                  marginBottom: "2rem",
+                }}
+              >
+                {countryCodeToString(contextCountry)}
+              </h1>
+              <img
+                onClick={() => handleCloseSpamBonuses()}
+                style={{ width: "36px", height: "36px", cursor: "pointer" }}
+                src="/icons/close_red.svg"
+              />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              {[...bonuses.slice(0, 3)].map((b) => (
+                <PrimaryBonusCard
+                  key={b.name}
+                  style={{ margin: "1rem" }}
+                  bonus={b}
+                />
+              ))}
+            </div>
+          </Paper>
+        </DesktopContainer>
 
-        return () => {
-            timeout && clearInterval(timeout)
-        }
-    }, [])
-
-    const countryCodeToString = (countryCode: string) => {
-        switch (countryCode) {
-            case 'it':
-                return 'Comparazione offerte di siti legali'
-
-            case 'ca':
-                return 'Claim Bonuses from the Best Casino in Canada!'
-
-            case 'gb':
-                return 'Claim Bonuses from the Best Casino in United Kingdom!'
-
-            case 'nz':
-                return 'Claim Bonuses from the Best Casino in New Zeland!'
-
-            case 'rs':
-                return 'Claim Bonuses from the Best Casino in Serbia!'
-
-            case 'me':
-                return 'Claim Bonuses from the Best Casino in Montenegro!'
-
-            default:
-                'Claim Bonuses from the Best Casinos'
-        }
-    }
-
-    return (
-        <div>
-            <Backdrop style={{ zIndex: 10 }} open={showSpamBonuses}>
-                <DesktopContainer>
-                    <Paper ref={bonusRef} elevation={3} style={{ padding: '2rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'space-around' }}>
-                            <h1
-                                style={{
-                                    marginLeft: '1rem',
-                                    fontWeight: 'bold',
-                                    fontSize: '1.5rem',
-                                    color: 'crimson',
-                                    marginBottom: '2rem',
-                                }}
-                            >
-                                {countryCodeToString(contextCountry)}
-                            </h1>
-                            <img
-                                onClick={() => handleCloseSpamBonuses()}
-                                style={{ width: '36px', height: '36px', cursor: 'pointer' }}
-                                src='/icons/close_red.svg'
-                            />
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            {[...bonuses.slice(0, 3)].map((b) => (
-                                <PrimaryBonusCard key={b.name} style={{ margin: '1rem' }} bonus={b} />
-                            ))}
-                        </div>
-                    </Paper>
-                </DesktopContainer>
-
-                <MobileContainer>
-                    <Paper ref={bonusRef} elevation={3} style={{ padding: '2rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'space-around' }}>
-                            <h1
-                                style={{
-                                    marginLeft: '1rem',
-                                    fontWeight: 'bold',
-                                    fontSize: '1.5rem',
-                                    color: 'crimson',
-                                    marginBottom: '2rem',
-                                }}
-                            >
-                                {t('Compare legal websites')}
-                            </h1>
-                            <img
-                                onClick={() => handleCloseSpamBonuses()}
-                                style={{ width: '36px', height: '36px', cursor: 'pointer' }}
-                                src='/icons/close_red.svg'
-                            />
-                        </div>
-                        <div style={{}}>
-                            {[...bonuses.slice(0, 3)].map((b) => (
-                                <SecondaryBonusCard key={b.name} bonus={b} />
-                            ))}
-                        </div>
-                    </Paper>
-                </MobileContainer>
-            </Backdrop>
-        </div>
-    )
-}
+        <MobileContainer>
+          <Paper ref={bonusRef} elevation={3} style={{ padding: "2rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "space-around",
+              }}
+            >
+              <h1
+                style={{
+                  marginLeft: "1rem",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                  color: "crimson",
+                  marginBottom: "2rem",
+                }}
+              >
+                {t("Compare legal websites")}
+              </h1>
+              <img
+                onClick={() => handleCloseSpamBonuses()}
+                style={{ width: "36px", height: "36px", cursor: "pointer" }}
+                src="/icons/close_red.svg"
+              />
+            </div>
+            <div style={{}}>
+              {[...bonuses.slice(0, 3)].map((b) => (
+                <SecondaryBonusCard key={b.name} bonus={b} />
+              ))}
+            </div>
+          </Paper>
+        </MobileContainer>
+      </Backdrop>
+    </div>
+  );
+};
 
 const MobileContainer = styled.div`
     ${tablet} {
         display: none;
     }
-`
+`;
 
 const DesktopContainer = styled.div`
     display: none;
     ${tablet} {
         display: block;
     }
-`
+`;
 
-export default BonusesBackdrop
+export default BonusesBackdrop;
