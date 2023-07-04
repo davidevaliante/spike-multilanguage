@@ -1,11 +1,11 @@
 export const SearchString = {
-    it: 'Cerca'
+  it: 'Cerca',
 }
 
 export const SearchStringBigScreens = {
-    it: 'Look for a Slot a Casino or a Manufacturer'
+  it: 'Look for a Slot a Casino or a Manufacturer',
 }
 
 export const PlayString = {
-    it: 'Gioco Gratis'
+  it: 'Gioco Gratis',
 }
