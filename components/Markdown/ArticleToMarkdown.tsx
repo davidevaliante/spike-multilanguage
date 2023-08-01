@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import MarkdownProvider from './MarkdownProvider'
 import ReactMarkdown from 'react-markdown'
 import { injectCDN } from '../../utils/Utils'
-import { FunctionComponent, Children } from 'react'
+import { Children, FunctionComponent } from 'react'
 import ArticleBonus from './ArticleBonus'
 import styled from 'styled-components'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
@@ -46,30 +46,29 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({
 
         if (elementType === 'spikeCompare') {
             // to remove bonuses we need this prop
-            // if (allowBonuses) {
+            if (allowBonuses) {
+                const bonusNames = elementData.split('&').map((bonusName) => {
+                    if (bonusName === 'Slot Yes') {
+                        return 'AdmiralBet'
+                    }
 
-            // } else return <div></div>;
-            const bonusNames = elementData.split('&').map((bonusName) => {
-                if (bonusName === 'Slot Yes') {
-                    return 'AdmiralBet'
-                }
-
-                return bonusName
-            })
-            return (
-                <Wrapper>
-                    {bonusNames &&
-                        bonusNames.map((name) => (
-                            <ArticleBonus
-                                style={{ margin: '.7rem auto' }}
-                                key={`compare_${name}`}
-                                bonusName={name}
-                                countryCode={contextCountry ? contextCountry : 'it'}
-                                isBakeca={isBakeca}
-                            />
-                        ))}
-                </Wrapper>
-            )
+                    return bonusName
+                })
+                return (
+                    <Wrapper>
+                        {bonusNames &&
+                            bonusNames.map((name) => (
+                                <ArticleBonus
+                                    style={{ margin: '.7rem auto' }}
+                                    key={`compare_${name}`}
+                                    bonusName={name}
+                                    countryCode={contextCountry ? contextCountry : 'it'}
+                                    isBakeca={isBakeca}
+                                />
+                            ))}
+                    </Wrapper>
+                )
+            } else return <div></div>
         }
 
         if (elementType === 'spikeVideo') {
@@ -149,12 +148,13 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({
     }
 
     const replaceLink = (props: any) => {
-        if (props.href === 'https://vincipromo.it/wincasino/?mp=42794b32-7604-49d2-92d0-8adf67a6b173')
+        if (props.href === 'https://vincipromo.it/wincasino/?mp=42794b32-7604-49d2-92d0-8adf67a6b173') {
             return (
                 <a rel='nofollow' href={props.href}>
                     {props.children[0].props.children}
                 </a>
             )
+        }
         return <a href={props.href}>{props.children[0].props.children}</a>
     }
 
