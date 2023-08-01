@@ -1,14 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { FunctionComponent, Fragment } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Fragment, FunctionComponent } from 'react'
 import { LocaleContext } from './../../../../context/LocaleContext'
 import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import { BodyContainer, MainColumn, MainColumnScroll } from '../../../../components/Layout/Layout'
 import io, { Socket } from 'socket.io-client'
-import { Select, MenuItem, Paper, Divider, Backdrop, Input, Checkbox, ListItemText } from '@material-ui/core'
+import { Backdrop, Checkbox, Divider, Input, ListItemText, MenuItem, Paper, Select } from '@material-ui/core'
 import { TimeFrame } from '../../../../data/models/TimeFrames'
 import styled from 'styled-components'
-import { Spin, crazyTimeSymbolToFilterOption } from '../../../../data/models/Spin'
+import { crazyTimeSymbolToFilterOption, Spin } from '../../../../data/models/Spin'
 import axios from 'axios'
 import { CrazyTimeSymbolStat, MonopolySymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
 import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
@@ -48,7 +48,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://monopoly.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas', 'William Hill']
+const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas', 'NetBet', 'William Hill']
 
 const SPAM_BONUSES = true
 
@@ -109,16 +109,17 @@ const index: FunctionComponent<Props> = ({
                 const topUpdate = data.stats.stats
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
-                if (rows)
+                if (rows) {
                     setRows(
                         mergeWithUpdate(
                             rows,
                             updatedRows.map((r) => {
                                 r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                                 return r
-                            })
-                        )
+                            }),
+                        ),
                     )
+                }
                 setTables(data.tables[0])
             })
         }
@@ -140,16 +141,17 @@ const index: FunctionComponent<Props> = ({
                 // this is the update regarding the rows of the table
                 const updatedRows = data.spins
                 // we merge the current rows and the updated rows updating the table afterward
-                if (rows)
+                if (rows) {
                     setRows(
                         mergeWithUpdate(
                             rows,
                             updatedRows.map((r) => {
                                 r.timeOfSpin = r.timeOfSpin - 1000 * 60 * 60 * 1
                                 return r
-                            })
-                        )
+                            }),
+                        ),
                     )
+                }
                 setTables(data.tables[0])
                 setLastUpdate(now())
             })
@@ -228,7 +230,12 @@ const index: FunctionComponent<Props> = ({
                     <BlockingOverlay redirectLink='/live-stats/monopoly-live/it' userCountry={userCountry} />
 
                     <MainColumnScroll
-                        style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
+                        style={{
+                            width: '100%',
+                            maxWidth: '90%',
+                            paddingBottom: '4rem',
+                            paddingTop: '2rem',
+                        }}
                     >
                         <DynamicContent content={_pageContent.topContent} />
                         <Divider style={{ marginTop: '2rem' }} />
@@ -246,7 +253,13 @@ const index: FunctionComponent<Props> = ({
                                     <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>{t('Monopoly Statistics')}</h1>
                                     <h1 style={{ marginTop: '.5rem' }}>
                                         {`${t('for the past')} ${timeFrame}`}
-                                        <span style={{ marginLeft: '1rem', fontWeight: 'bold', color: 'crimson' }}>
+                                        <span
+                                            style={{
+                                                marginLeft: '1rem',
+                                                fontWeight: 'bold',
+                                                color: 'crimson',
+                                            }}
+                                        >
                                             In REAL TIME
                                         </span>
                                     </h1>
@@ -266,10 +279,9 @@ const index: FunctionComponent<Props> = ({
                                     </Select>
                                 </div>
                             </div>
-                            <p style={{ marginTop: '1rem', fontSize: '.9rem' }}>{`${t('Last Update')} ${format(
-                                lastUpdate,
-                                'dd/MM HH:mm:ss'
-                            )}`}</p>
+                            <p style={{ marginTop: '1rem', fontSize: '.9rem' }}>
+                                {`${t('Last Update')} ${format(lastUpdate, 'dd/MM HH:mm:ss')}`}
+                            </p>
                         </div>
 
                         <Divider style={{ marginTop: '2rem', marginBottom: '2rem' }} />
@@ -295,7 +307,9 @@ const index: FunctionComponent<Props> = ({
                                 fontSize: '1.4rem',
                                 textAlign: 'center',
                             }}
-                        >{`${t('You can play at Monopoly here')}`}</h1>
+                        >
+                            {`${t('You can play at Monopoly here')}`}
+                        </h1>
                         <Paper elevation={6} style={{ marginTop: '1rem', marginBottom: '4rem' }}>
                             {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
                         </Paper>
@@ -437,6 +451,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
             'https://campaigns.williamhill.it/C.ashx?btag=a_200887b_834c_&affid=1742025&siteid=200887&adid=834&c=',
         'PokerStars Casino':
             'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_6258c_&affid=100976968&siteid=182773&adid=6258&c=',
+        NetBet: 'https://netbetit.livepartners.com/click.php?z=170390',
     }
 
     console.log(pageData.data)
