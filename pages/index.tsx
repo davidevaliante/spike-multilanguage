@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext, useState, useEffect } from 'react'
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react'
 import NavbarProvider from '../components/Navbar/NavbarProvider'
 import HomeHeader from './../components/Home/HomeHeader'
 import { appTheme } from './../theme/theme'
@@ -160,7 +160,11 @@ const Index: FunctionComponent<PageProps> = ({ _shallow = false, _home }) => {
                         )}
                         <div style={{ padding: '0rem 1rem' }}>
                             {home.bottomArticle && (
-                                <ArticleToMarkdown content={home.bottomArticle} isBakeca={isBakeca} />
+                                <ArticleToMarkdown
+                                    content={home.bottomArticle}
+                                    isBakeca={isBakeca}
+                                    allowBonuses={true}
+                                />
                             )}
                         </div>
                     </MainColumn>

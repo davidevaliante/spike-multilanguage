@@ -1,19 +1,19 @@
-import React, { Fragment, useState, useEffect, useContext } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import { NextPageContext } from 'next'
 import CustomBreadcrumbs from '../../../../components/Breadcrumbs/CustomBreadcrumbs'
-import { Slot, Bonus } from './../../../../graphql/schema'
+import { Bonus, Slot } from './../../../../graphql/schema'
 import AquaClient from '../../../../graphql/aquaClient'
 import { SLOT_WITH_SLUG } from './../../../../graphql/queries/slots'
 import {
-    injectCDN,
-    goFullScreen,
     exitFullscreen,
     getCanonicalPath,
-    serverSideRedirect,
-    serverSide404,
     getUserCountryCode,
+    goFullScreen,
+    injectCDN,
+    serverSide404,
+    serverSideRedirect,
 } from './../../../../utils/Utils'
 import SmallSlotCard from '../../../../components/Cards/SmallSlotCard'
 import snakeCase from 'lodash/snakeCase'
@@ -25,7 +25,7 @@ import NeonButton from './../../../../components/NeonButton/NeonButton'
 import PlayDimmer from '../../../../components/PlayDimmer/PlayDimmer'
 import FadeInOut from '../../../../components/Ui/FadeInOut'
 import ArticleToMarkdown from './../../../../components/Markdown/ArticleToMarkdown'
-import { MainColumn, RightColumn, BodyContainer } from '../../../../components/Layout/Layout'
+import { BodyContainer, MainColumn, RightColumn } from '../../../../components/Layout/Layout'
 import { FunctionComponent } from 'react'
 import BonusCardRevealComponent from './../../../../components/Cards/BonusCardReveal'
 import SlotMainFeatures from '../../../../components/Cards/SlotMainFeatures'
@@ -38,7 +38,7 @@ import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import ShareButtons, { TopRowContainer } from '../../../../components/Seo/ShareButtons'
 import Author from '../../../../components/StructuredData.tsx/Author'
 import axios from 'axios'
-import { substituteName, bonusToExclude } from '../../../../config'
+import { bonusToExclude, substituteName } from '../../../../config'
 import BlockingOverlay from '../../../../components/Ui/BlockingOverlay'
 import RtpDisplayer from '../../../../components/Singles/RtpDisplayer'
 
@@ -61,7 +61,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
 
     const [primaryBonus, setPrimaryBonus] = useState(_slotData.mainBonus)
     const [auxiliaryBonuses, setAuxiliaryBonuses] = useState(
-        _slotData?.bonuses.filter((b: Bonus) => b.name !== primaryBonus?.name)
+        _slotData?.bonuses.filter((b: Bonus) => b.name !== primaryBonus?.name),
     )
 
     const [isPlaying, setIsPlaying] = useState(false)
@@ -110,7 +110,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
         if (_slotData.mainBonus.name === bonusToExclude) fetchSubstitute()
         if (_slotData.bonuses.map((b) => b.name).includes(bonusToExclude)) {
             const substituteReq = await axios.get(
-                `https://spikeapistaging.tech/bonuses?country.code=it&name=${substituteName}`
+                `https://spikeapistaging.tech/bonuses?country.code=it&name=${substituteName}`,
             )
 
             const substitute = substituteReq.data[0]
@@ -326,6 +326,7 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                             content={_slotData?.description}
                                             slotImage={_slotData.image.url}
                                             slotRtp={_slotData.rtp}
+                                            allowBonuses={true}
                                         />
                                     </MainColumn>
                                     <RightColumn>
