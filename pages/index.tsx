@@ -28,7 +28,6 @@ import { websiteRoot } from '../constants/constants'
 import { defaultShareImage } from './../constants/constants'
 import Logo from '../components/StructuredData.tsx/Logo'
 import SidebarBonusHeader from '../components/Text/SidebarBonusHeader'
-import NoLimitHighlightProducerSlideShow from '../components/SlideShow/NoLimitHighlightProducerSlideShow'
 import HacksawGamingHighlightProducerSlideShow from '../components/SlideShow/HacksawGamingHighlightProducerSlideShow'
 
 interface PageProps {
