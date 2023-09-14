@@ -1,5 +1,5 @@
 import React, { Fragment, FunctionComponent, useContext, useEffect, useState } from 'react'
-import { BonusGuide, Bonus, Article } from '../../../graphql/schema'
+import { Article, Bonus, BonusGuide } from '../../../graphql/schema'
 import AquaClient from '../../../graphql/aquaClient'
 import { BONUS_GUIDES_BY_COUNTRY } from '../../../graphql/queries/bonusguide'
 import NavbarProvider from '../../../components/Navbar/NavbarProvider'
@@ -13,11 +13,11 @@ import ArticleCard from './../../../components/Cards/ArticleCard'
 import { tablet } from '../../../components/Responsive/Breakpoints'
 import { useRouter } from 'next/router'
 import {
+    getBGuidePageRedirectUrlForCountry,
     getCanonicalPath,
     getUserCountryCode,
-    getBGuidePageRedirectUrlForCountry,
-    serverSide404,
     injectCDN,
+    serverSide404,
 } from '../../../utils/Utils'
 import { LocaleContext } from './../../../context/LocaleContext'
 import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
@@ -64,7 +64,9 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
                 },
             })
 
-            if (initialGuidesResponse.data.data.bonusGuides.length > 0) setUserCountryEquivalentExists(true)
+            if (initialGuidesResponse.data.data.bonusGuides.length > 0) {
+                setUserCountryEquivalentExists(true)
+            }
             setUserCountry(geoLocatedCountryCode)
         }
         setContextCountry(_requestedCountryCode)
@@ -127,7 +129,7 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
                 <StyleProvider>
                     <CustomBreadcrumbs style={{ margin: '1rem 0rem' }} from='guide-list' name='Guides and Tricks' />
 
-                    <h1 style={{ marginTop: '3rem' }}>{t('Guides to the best bonuses of Italian casinos')} </h1>
+                    <h1 style={{ marginTop: '3rem' }}>{t('Guides to the best bonuses of Italian casinos')}</h1>
                     <MarkdownProvider style={{ marginBottom: '2rem' }}>
                         <ReactMarkdown>
                             {`È possibile che tu non sappia cosa significhi sbloccare i bonus. Oppure stai cercando una guida che ti spieghi come valutare le migliore offerte disponibili negli operatori legali che offrono servizi certificati e sicuri. Sei nel posto giusto.
@@ -136,7 +138,7 @@ Qui troverai tutte le guide dei migliori Casinò italiani con informazioni detta
 
 Ricorda, comunque, che illustriamo solo strategie che esplorano diverse possibilità di sblocco dei bonus, ma potrebbero non funzionare in quanto è sempre la fortuna a farla da padrone.
 
-**Gioca sempre responsabilmente** e guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
+**Gioca sempre responsabilmente** e leggi le opinioni di SPIKE nelle sue spiegazioni passo per passo.`}
                         </ReactMarkdown>
                     </MarkdownProvider>
                     <BonusGuideContainer>
@@ -147,14 +149,14 @@ Ricorda, comunque, che illustriamo solo strategie che esplorano diverse possibil
                                     it.slug !== 'bonus-benvenuto-casino-betway' &&
                                     it.slug !== 'recensione-william-hill-bonus' &&
                                     it.slug !== 'bonus-benvenuto-betfair-casino' &&
-                                    it.slug !== 'guida-al-bonus-di-benvenuto-pokerstars'
+                                    it.slug !== 'guida-al-bonus-di-benvenuto-pokerstars',
                             )
                             .map((guide, index) => (
                                 <BonusGuideCard key={`guide_${index}`} guide={guide} />
                             ))}
                     </BonusGuideContainer>
 
-                    <h1 style={{ marginTop: '3rem' }}>{t('Online Slot, Slot Bar and VLT Cheats')} </h1>
+                    <h1 style={{ marginTop: '3rem' }}>{t('Online Slot, Slot Bar and VLT Cheats')}</h1>
                     <MarkdownProvider style={{ marginBottom: '2rem' }}>
                         <ReactMarkdown>
                             {`Tutta l'esperienza di SPIKE raccolta in articoli dettagliati che risponderanno a tutti i tuoi dubbi sull'esistenza o meno di trucchi nascosti alle slot più famose.
