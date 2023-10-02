@@ -1,14 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { FunctionComponent, Fragment } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Fragment, FunctionComponent } from 'react'
 import { LocaleContext } from './../../../../context/LocaleContext'
 import FullPageLoader from '../../../../components/Layout/FullPageLoader'
 import NavbarProvider from '../../../../components/Navbar/NavbarProvider'
 import { BodyContainer, MainColumn, MainColumnScroll } from '../../../../components/Layout/Layout'
 import io, { Socket } from 'socket.io-client'
-import { Select, MenuItem, Paper, Divider, Backdrop, Input, Checkbox, ListItemText } from '@material-ui/core'
+import { Backdrop, Checkbox, Divider, Input, ListItemText, MenuItem, Paper, Select } from '@material-ui/core'
 import { TimeFrame } from '../../../../data/models/TimeFrames'
 import styled from 'styled-components'
-import { Spin, crazyTimeSymbolToFilterOption } from '../../../../data/models/Spin'
+import { crazyTimeSymbolToFilterOption, Spin } from '../../../../data/models/Spin'
 import axios from 'axios'
 import { CrazyTimeSymbolStat } from '../../../../data/models/CrazyTimeSymbolStat'
 import CrazyTimeStatCard from '../../../../components/Cards/CrazyTimeStatCard'
@@ -205,7 +205,12 @@ const index: FunctionComponent<Props> = ({
                 <BodyContainer>
                     <BlockingOverlay redirectLink='/live-stats/crazy-time/it' userCountry={userCountry} />
                     <MainColumnScroll
-                        style={{ width: '100%', maxWidth: '90%', paddingBottom: '4rem', paddingTop: '2rem' }}
+                        style={{
+                            width: '100%',
+                            maxWidth: '90%',
+                            paddingBottom: '4rem',
+                            paddingTop: '2rem',
+                        }}
                     >
                         <DynamicContent content={_pageContent.topContent} />
 
@@ -226,7 +231,13 @@ const index: FunctionComponent<Props> = ({
                                     </h1>
                                     <h1 style={{ marginTop: '.5rem' }}>
                                         {`${t('for the past')} ${timeFrame}`}
-                                        <span style={{ marginLeft: '1rem', fontWeight: 'bold', color: 'crimson' }}>
+                                        <span
+                                            style={{
+                                                marginLeft: '1rem',
+                                                fontWeight: 'bold',
+                                                color: 'crimson',
+                                            }}
+                                        >
                                             In REAL TIME
                                         </span>
                                     </h1>
@@ -246,10 +257,9 @@ const index: FunctionComponent<Props> = ({
                                     </Select>
                                 </div>
                             </div>
-                            <p style={{ marginTop: '1rem', fontSize: '.9rem' }}>{`${t('Last Update')} ${format(
-                                lastUpdate,
-                                'dd/MM HH:mm:ss'
-                            )}`}</p>
+                            <p style={{ marginTop: '1rem', fontSize: '.9rem' }}>
+                                {`${t('Last Update')} ${format(lastUpdate, 'dd/MM HH:mm:ss')}`}
+                            </p>
                         </div>
 
                         <Divider style={{ marginTop: '2rem', marginBottom: '2rem' }} />
@@ -275,7 +285,9 @@ const index: FunctionComponent<Props> = ({
                                 fontSize: '1.4rem',
                                 textAlign: 'center',
                             }}
-                        >{`${t('You can play at CRAZY TIME here')}`}</h1>
+                        >
+                            {`${t('You can play at CRAZY TIME here')}`}
+                        </h1>
                         <Paper elevation={6} style={{ marginTop: '1rem', marginBottom: '4rem' }}>
                             {_bonuses && _bonuses.map((b) => <BonusStripe key={b.name} bonus={b} />)}
                         </Paper>

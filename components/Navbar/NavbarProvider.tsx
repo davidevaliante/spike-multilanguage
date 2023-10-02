@@ -1,8 +1,8 @@
-import React, { useState, FunctionComponent, useEffect, useContext } from 'react'
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { appTheme, AppTheme } from '../../theme/theme'
+import { AppTheme, appTheme } from '../../theme/theme'
 import SearchBox from './SearchBox'
-import { laptop, desktop } from './../Responsive/Breakpoints'
+import { desktop, laptop } from './../Responsive/Breakpoints'
 import SearchInput from '../Input/SearchInput'
 import NavbarAams from '../Banners/NavbarAams'
 import Footer from '../Footer/Footer'
@@ -14,7 +14,7 @@ import MobileSearchResults from './MobileSearchResults'
 import { AlgoliaSearchResult } from '../../graphql/schema'
 import FadeInOut from '../Ui/FadeInOut'
 import LazyImage from '../Lazy/LazyImage'
-import { HomeSchemaWebSite, HomeSchemaOrganization } from '../Schema/Website'
+import { HomeSchemaOrganization, HomeSchemaWebSite } from '../Schema/Website'
 import { useRouter } from 'next/router'
 import MultiLevelDropdown from '../MultiLevelDropdown/MultiLevelDropdown'
 import { cookieContext } from '../../context/CookieContext'
@@ -56,7 +56,6 @@ const NavbarProvider: FunctionComponent<Props> = ({
         { label: 'Book of Ra Online', link: '/slot/book-of-ra-deluxe' },
 
         { label: 'Blogs and Articles', link: '/blog' },
-        { label: 'Investimenti Online', link: '/guide/lab' },
     ]
 
     const { cookiesAccepted, updateCookiesAccepted } = useContext(cookieContext)
@@ -75,12 +74,21 @@ const NavbarProvider: FunctionComponent<Props> = ({
     useEffect(() => {
         let copy = [...p]
         if (contextCountry === 'it') {
-            copy.splice(6, 0, { label: 'Welcome bonus', link: '/migliori-bonus-casino' })
-            copy.splice(8, 0, { label: 'Guides and Tricks', link: '/guide-e-trucchi' })
+            copy.splice(6, 0, {
+                label: 'Welcome bonus',
+                link: '/migliori-bonus-casino',
+            })
+            copy.splice(8, 0, {
+                label: 'Guides and Tricks',
+                link: '/guide-e-trucchi',
+            })
         }
         if (contextCountry === 'row' || contextCountry === 'ca') {
             copy.splice(6, 0, { label: 'Welcome bonus', link: `/best-casino-bonus` })
-            copy.splice(8, 0, { label: 'Guides and Tricks', link: '/guides-and-tricks' })
+            copy.splice(8, 0, {
+                label: 'Guides and Tricks',
+                link: '/guides-and-tricks',
+            })
             copy.splice(1, 1)
         }
         setDrawerPages(copy)
@@ -158,7 +166,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
                             },
                         }
                     })
-                    .filter((obj: any) => !searchExclusion.includes(obj.name))
+                    .filter((obj: any) => !searchExclusion.includes(obj.name)),
             )
         }, 400)
         setSearchTimerId(newTimer)
@@ -389,7 +397,7 @@ const NavbarProvider: FunctionComponent<Props> = ({
                                       (p) =>
                                           p.label !== 'Bar Slot' &&
                                           p.label !== 'VLT slot' &&
-                                          p.label !== 'Investimenti Online'
+                                          p.label !== 'Investimenti Online',
                                   )
                                   .map((page) => remapNavbarLink(page))}
                     </div>
