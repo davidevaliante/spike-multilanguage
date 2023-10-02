@@ -26,17 +26,23 @@ const BonusGuideCard: FunctionComponent<BonusGuideCardProps> = ({ guide }) => {
                             src={guide.bonus?.circular_image.url}
                         />
 
-                        <div style={{ display: 'flex', justifyContent: 'flex-start', flexGrow: 1 }}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'flex-start',
+                                flexGrow: 1,
+                            }}
+                        >
                             <div>
                                 <h2 className='card-header'>{`${t('Bonus Guide')} ${guide.bonus?.name}`}</h2>
-                                {['StarCasinò', 'Starvegas', 'LeoVegas', 'Unibet'].includes(
+                                {/* {['StarCasinò', 'Starvegas', 'LeoVegas', 'Unibet'].includes(
                                     guide.bonus?.name as string
                                 ) && (
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <p className='card-subheader'>{t('With video explanation by SPIKE')}</p>
                                         <LazyImage width={30} height={30} src={'/icons/ciak.svg'} alt='ciak' />
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         </div>
                     </CardContainer>

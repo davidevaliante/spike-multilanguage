@@ -48,7 +48,7 @@ interface Props {
 
 const SOCKET_ENDPOINT = 'https://monopoly.spike-realtime-api.eu'
 
-const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'WinCasino', 'LeoVegas', 'NetBet', 'William Hill']
+const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'Lottomatica' ,'WinCasino', 'LeoVegas', 'NetBet', 'William Hill']
 
 const SPAM_BONUSES = true
 
@@ -452,6 +452,7 @@ export const getServerSideProps = async ({ query, req, res }) => {
         'PokerStars Casino':
             'https://secure.starsaffiliateclub.com/C.ashx?btag=a_182773b_6258c_&affid=100976968&siteid=182773&adid=6258&c=',
         NetBet: 'https://netbetit.livepartners.com/click.php?z=170390',
+        Lottomatica: "https://media.lottomaticapartners.it/redirect.aspx?pid=11563&bid=1509"
     }
 
     console.log(pageData.data)

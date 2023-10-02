@@ -63,15 +63,15 @@ const ButtonStyleProvider = styled.div`
         align-items: center;
         background-color: transparent;
         border: ${(props: StyledButtonProps) => {
-    if (props.color) return `2px solid ${props.color}`;
-    else return `2px solid ${props.theme.colors.primary}`;
-  }};
+  if (props.color) return `2px solid ${props.color}`;
+  else return `2px solid ${props.theme.colors.primary}`;
+}};
         border: 2px solid #ff9333;
         border-radius: 0.6em;
         color: ${(props: StyledButtonProps) => {
-    if (props.color) return props.color;
-    else return props.theme.colors.primary;
-  }};
+  if (props.color) return props.color;
+  else return props.theme.colors.primary;
+}};
         cursor: pointer;
         display: -webkit-box;
         display: -webkit-flex;
@@ -97,35 +97,35 @@ const ButtonStyleProvider = styled.div`
 
     .fade-button-effect {
         border-color: ${(props: StyledButtonProps) => {
-    if (props.color) return props.color;
-    else return props.theme.colors.primary;
-  }};
+  if (props.color) return props.color;
+  else return props.theme.colors.primary;
+}};
         color: #fff;
         box-shadow: ${(props: StyledButtonProps) => {
-    if (props.color) {
-      return `0 0 40px 40px ${props.color} inset, 0 0 0 0 ${props.color}`;
-    } else {
-      return `0 0 40px 40px ${props.theme.colors.primary} inset, 0 0 0 0 ${props.theme.colors.primary}`;
-    }
-  }};
+  if (props.color) {
+    return `0 0 40px 40px ${props.color} inset, 0 0 0 0 ${props.color}`;
+  } else {
+    return `0 0 40px 40px ${props.theme.colors.primary} inset, 0 0 0 0 ${props.theme.colors.primary}`;
+  }
+}};
         transition: all 150ms ease-in-out;
     }
     .fade-button-effect:hover {
         box-shadow: ${(props: StyledButtonProps) => {
-    if (props.color) {
-      return `0 0 10px 0 ${props.color} inset, 0 0 10px 4px ${props.color}`;
-    } else {
-      return `0 0 10px 0 ${props.theme.colors.primary} inset, 0 0 10px 4px ${props.theme.colors.primary}`;
-    }
-  }};
+  if (props.color) {
+    return `0 0 10px 0 ${props.color} inset, 0 0 10px 4px ${props.color}`;
+  } else {
+    return `0 0 10px 0 ${props.theme.colors.primary} inset, 0 0 10px 4px ${props.theme.colors.primary}`;
+  }
+}};
 
         color: ${(props: StyledButtonProps) => {
-    if (props.noFade) return "white";
-    else {
-      if (props.color) return props.color;
-      else return props.theme.colors.primary;
-    }
-  }};
+  if (props.noFade) return "white";
+  else {
+    if (props.color) return props.color;
+    else return props.theme.colors.primary;
+  }
+}};
     }
 `;
 

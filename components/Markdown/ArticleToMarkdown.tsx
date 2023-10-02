@@ -74,6 +74,7 @@ const ArticleToMarkdown: FunctionComponent<Props> = ({
         if (elementType === 'spikeVideo') {
             console.log(props.children[0].props.children[0].props.children)
             const videoLink = props.children[0].props.children[0].props.children.split('@')[1]
+            return <div></div>
             return (
                 <video controls preload='metadata'>
                     <source src={`${videoLink}#t=0.5`} type='video/mp4'></source>
