@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useContext } from "react"
-import { FunctionComponent } from "react"
-import styled from "styled-components"
-import Divider from "../Ui/Divider"
-import Link from "next/link"
-import LazyImage from "../Lazy/LazyImage"
-import ArticleToMarkdown from "../Markdown/ArticleToMarkdown"
-import { LocaleContext } from "./../../context/LocaleContext"
+import React, { Fragment, useContext, useState } from 'react'
+import { FunctionComponent } from 'react'
+import styled from 'styled-components'
+import Divider from '../Ui/Divider'
+import Link from 'next/link'
+import LazyImage from '../Lazy/LazyImage'
+import ArticleToMarkdown from '../Markdown/ArticleToMarkdown'
+import { LocaleContext } from './../../context/LocaleContext'
 
 interface Props {
     topArticle: string
@@ -21,35 +21,35 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
             <DescriptionContainer>
                 <HeaderAndButtonContainer>
                     <HeaderContainer>
-                        <h1>Slot Online SPIKE SLOT</h1>
+                        <h1>Slot Online SPIKE SLOT - Informazioni</h1>
                         <LazyImage
-                            style={{ marginLeft: "1rem", cursor: "pointer" }}
+                            style={{ marginLeft: '1rem', cursor: 'pointer' }}
                             width={24}
                             height={24}
                             onClick={() => setDisclaimerOpen(!disclaimerOpen)}
-                            alt="alert icon"
-                            src="/icons/info-icon.svg"
+                            alt='alert icon'
+                            src='/icons/info-icon.svg'
                         />
                     </HeaderContainer>
 
-                    <Link href={"/slots/[countryCode]"} as={`/slots/${contextCountry}`}>
+                    <Link href={'/slots/[countryCode]'} as={`/slots/${contextCountry}`}>
                         <a>
                             <div>
                                 <GoToFullSlotListButton>
-                                    <h2>{t("Go to the full list of slots")}</h2>
+                                    <h2>{t('Go to the full list of slots')}</h2>
                                     <LazyImage
-                                        style={{ marginLeft: "1rem" }}
+                                        style={{ marginLeft: '1rem' }}
                                         width={36}
                                         height={36}
-                                        alt="777_slot_icon"
-                                        src="/icons/jackpot_slot_icon.svg"
+                                        alt='777_slot_icon'
+                                        src='/icons/jackpot_slot_icon.svg'
                                     />
                                     <LazyImage
-                                        style={{ marginLeft: "1rem" }}
+                                        style={{ marginLeft: '1rem' }}
                                         width={26}
                                         height={26}
-                                        alt="arrow_right_icon"
-                                        src="/icons/cheveron_right_white.svg"
+                                        alt='arrow_right_icon'
+                                        src='/icons/cheveron_right_white.svg'
                                     />
                                 </GoToFullSlotListButton>
                             </div>
@@ -58,12 +58,12 @@ const HomeHeader: FunctionComponent<Props> = ({ topArticle }) => {
                 </HeaderAndButtonContainer>
                 {disclaimerOpen && (
                     <div>
-                        <p className="disclaimer">{t("HomeHeaderDisclaimer")}</p>
+                        <p className='disclaimer'>{t('HomeHeaderDisclaimer')}</p>
                     </div>
                 )}
-                <Divider color="#a8a8a8" style={{ marginBottom: "1.5rem" }} />
+                <Divider color='#a8a8a8' style={{ marginBottom: '1.5rem' }} />
 
-                <ArticleToMarkdown style={{ marginBottom: "2rem" }} content={topArticle} />
+                <ArticleToMarkdown style={{ marginBottom: '2rem' }} content={topArticle} />
             </DescriptionContainer>
         </Fragment>
     )
