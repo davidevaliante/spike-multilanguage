@@ -36,9 +36,7 @@ interface Props {
     _countryCode: string
 }
 
-// const SOCKET_ENDPOINT = 'https://casinowizard.topadscron.it/crazy-time'
-
-const SOCKET_ENDPOINT = 'http://localhost:4000/crazy-time'
+const SOCKET_ENDPOINT = 'https://casinowizard.topadscron.it/crazy-time'
 
 const PAGE_BONUSES = ['888 Casino', 'StarCasinò', 'Lottomatica', 'WinCasino', 'LeoVegas', 'William Hill']
 
@@ -348,6 +346,10 @@ const index: FunctionComponent<Props> = ({
         </Fragment>
     )
 }
+// HEAD
+//
+//1a160351ee8a5fa8936a19ba9543c04ecafa54db
+//15ad92b3e8fef8860b0de861071c3b71fac3d0f5
 
 // helper function to merge exsisting rows with the update from the Socket
 export const mergeWithUpdate = (current: Spin[], update: Spin[]) => {
