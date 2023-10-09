@@ -122,7 +122,7 @@ const BonusGuidePage: FunctionComponent<Props> = ({ bonusGuide, bonusList, count
                 <BodyContainer>
                     <MainColumn>
                         <Wrapper>
-                            <ArticleToMarkdown content={bonusGuide?.article!} />
+                            <ArticleToMarkdown content={bonusGuide?.article!} allowBonuses />
                         </Wrapper>
                     </MainColumn>
 
