@@ -73,51 +73,38 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
         setLoading(false)
     }
 
+    const desc = `È possibile che tu non sappia cosa significhi sbloccare i bonus. Oppure stai cercando una guida che ti spieghi come valutare le migliori offerte disponibili negli operatori legali che offrono servizi certificati e sicuri. Qui troverai alcune opinioni a riguardo.`
+
     return (
         <Fragment>
             <Head>
-                <title>{t(`Bonus Guides and Slot Tricks |  SPIKE`)}</title>
+                <title>{`Guide e informazioni ai migliori bonus dei Casinò Italiani |  SPIKE`}</title>
                 <link rel='canonical' href={getCanonicalPath()} />
-                <meta
-                    name='description'
-                    content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
-                ></meta>
+                <meta name='description' content={desc}></meta>
                 <meta httpEquiv='content-language' content='it-IT'></meta>
 
                 {/* <!-- Google / Search Engine Tags --> */}
                 <meta itemProp='name' content="SPIKE Slot | Il Blog n.1 in Italia su Slot Machines e Gioco D'azzardo" />
-                <meta
-                    itemProp='description'
-                    content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
-                />
+                <meta itemProp='description' content={desc} />
                 <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                 {/* <!-- Twitter Meta Tags --> */}
                 <meta name='twitter:card' content='summary_large_image' />
                 <meta name='twitter:title' content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
-                <meta
-                    name='twitter:description'
-                    content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
-                />
+                <meta name='twitter:description' content={desc} />
                 <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
 
                 {/* <!-- Facebook Meta Tags --> */}
                 <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property='og:locale' content={'it'} />
                 <meta property='og:type' content='article' />
-                <meta
-                    property='og:description'
-                    content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
-                />
+                <meta property='og:description' content={desc} />
                 <meta property='og:site_name' content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
 
                 <meta property='og:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
                 <meta property='og:locale' content={'it'} />
                 <meta property='og:type' content='article' />
-                <meta
-                    property='og:description'
-                    content={`Non sai come sbloccare i bonus ? Stai cercando una guida che ti spieghi come ottenere le migliore offerte disponibili ? Sei nel posto giusto ! Qui troverai tutte le guide dei migliori Casinò Italiani con informazioni dettagliate su come sbloccarli ed usufruirne al meglio. Guarda la video spiegazione di SPIKE che ti guiderà passo per passo`}
-                />
+                <meta property='og:description' content={desc} />
                 <meta property='og:site_name' content={t(`Bonus Guides and Slot Tricks |  SPIKE`)} />
             </Head>
 

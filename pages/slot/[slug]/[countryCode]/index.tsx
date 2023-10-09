@@ -239,7 +239,18 @@ const SlotPage: FunctionComponent<PageProps> = ({ _shallow, _slotData, _bonusLis
                                         name={_slotData?.name}
                                         from='slot'
                                     />
-
+                                    <h2
+                                        style={{
+                                            width: '100%',
+                                            fontSize: '22px',
+                                            margin: '12px 0px',
+                                            color: '#db0d30',
+                                            fontWeight: 'bold',
+                                            textAlign: 'center',
+                                        }}
+                                    >
+                                        {`⚠️ ${_slotData.name} - Demo Gratuita a soldi finti ⚠️`}
+                                    </h2>
                                     <ShareButtons
                                         title={_slotData.seo?.seoTitle}
                                         description={_slotData.seo?.seoDescription}

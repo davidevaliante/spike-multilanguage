@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext, FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react'
 import AquaClient from '../../../graphql/aquaClient'
-import { PAGINATED_SLOTS, HIGHLIGHT_SLOT, PRODUCER_SLOTS, THEME_SLOTS } from '../../../graphql/queries/slots'
+import { HIGHLIGHT_SLOT, PAGINATED_SLOTS, PRODUCER_SLOTS, THEME_SLOTS } from '../../../graphql/queries/slots'
 import { AlgoliaSearchResult, Producer } from '../../../graphql/schema'
 import NavbarProvider from '../../../components/Navbar/NavbarProvider'
 import { BodyContainer, MainColumn, RightColumn } from '../../../components/Layout/Layout'
@@ -35,11 +35,11 @@ import usePrevious from '../../../hooks/usePrevious'
 import { translateHeadString } from '../../../translations/TranslationsUtils'
 import { LocaleContext } from '../../../context/LocaleContext'
 import ProducersList, {
-    OptionalFiltersContainer,
     MainFiltersContainer,
-    MoreFiltersWrapper,
-    MoreFiltersList,
     MoreFiltersButton,
+    MoreFiltersList,
+    MoreFiltersWrapper,
+    OptionalFiltersContainer,
 } from '../../../components/Lists/ProducersList'
 import CategoriesList from '../../../components/Lists/CategoriesList'
 import CountryEquivalentPageSnackbar from '../../../components/Snackbars/CountryEquivalentPageSnackbar'
@@ -164,8 +164,9 @@ const Slots: FunctionComponent<Props> = ({
     }, [searchResults])
 
     useEffect(() => {
-        if (searchValue.length > 0 && searchResults?.length === 0) setShowSearchHasNoResults(true)
-        else setShowSearchHasNoResults(false)
+        if (searchValue.length > 0 && searchResults?.length === 0) {
+            setShowSearchHasNoResults(true)
+        } else setShowSearchHasNoResults(false)
     }, [searchValue, searchResults])
 
     // slot ordering
@@ -173,7 +174,9 @@ const Slots: FunctionComponent<Props> = ({
     const prevOrdering = usePrevious(ordering)
 
     useEffect(() => {
-        if (prevOrdering !== undefined && ordering !== prevOrdering) getInitalOrderedBatch(ordering)
+        if (prevOrdering !== undefined && ordering !== prevOrdering) {
+            getInitalOrderedBatch(ordering)
+        }
     }, [ordering])
 
     // filters
@@ -182,7 +185,9 @@ const Slots: FunctionComponent<Props> = ({
     const [producers, setProducers] = useState<Producer[] | undefined>(undefined)
 
     useEffect(() => {
-        if (categories === undefined || producers === undefined) getCategoriesAndProducers()
+        if (categories === undefined || producers === undefined) {
+            getCategoriesAndProducers()
+        }
     }, [showMoreFilter])
 
     const [showProducers, setShowProducers] = useState(false)
@@ -293,7 +298,7 @@ const Slots: FunctionComponent<Props> = ({
                             link: obj.link,
                         },
                     }
-                })
+                }),
             )
         }, 300)
 
@@ -347,17 +352,12 @@ const Slots: FunctionComponent<Props> = ({
     return (
         <StyleProvider>
             <Head>
-                <title>
-                    {translateHeadString(
-                        contextCountry,
-                        'Free Slot Machine - Play now without downloading |  SPIKE Slot'
-                    )}
-                </title>
+                <title>Informazioni Slot Gratis | Gioca a Slot Machine Gratis senza scaricare | SPIKE Slot</title>
                 <meta
                     name='description'
                     content={translateHeadString(
                         contextCountry,
-                        'On SPIKE Slot you will find free slots machines playable without money and without registration. Play the free demos'
+                        'On SPIKE Slot you will find free slots machines playable without money and without registration. Play the free demos',
                     )}
                 ></meta>
                 <meta httpEquiv='content-language' content={buildContentLanguageString(contextCountry)}></meta>
@@ -368,14 +368,14 @@ const Slots: FunctionComponent<Props> = ({
                     itemProp='name'
                     content={translateHeadString(
                         contextCountry,
-                        'Free Slot Machine - Play now without downloading |  SPIKE Slot'
+                        'Free Slot Machine - Play now without downloading |  SPIKE Slot',
                     )}
                 />
                 <meta
                     itemProp='description'
                     content={translateHeadString(
                         contextCountry,
-                        'On SPIKE Slot you will find free slots machines playable without money and without registration. Play the free demos'
+                        'On SPIKE Slot you will find free slots machines playable without money and without registration. Play the free demos',
                     )}
                 />
                 <meta itemProp='image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
@@ -386,14 +386,14 @@ const Slots: FunctionComponent<Props> = ({
                     name='twitter:title'
                     content={translateHeadString(
                         contextCountry,
-                        'Free Slot Machine - Play now without downloading |  SPIKE Slot'
+                        'Free Slot Machine - Play now without downloading |  SPIKE Slot',
                     )}
                 />
                 <meta
                     name='twitter:description'
                     content={translateHeadString(
                         contextCountry,
-                        'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos'
+                        'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos',
                     )}
                 />
                 <meta name='twitter:image' content={'https://spikewebsitemedia.b-cdn.net/spike_share_img.jpg'} />
@@ -405,14 +405,14 @@ const Slots: FunctionComponent<Props> = ({
                     property='og:description'
                     content={translateHeadString(
                         contextCountry,
-                        'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos'
+                        'On SPIKE Slot you will find free slots machines playable without money and without regitration. Play the free demos',
                     )}
                 />
                 <meta
                     property='og:site_name'
                     content={translateHeadString(
                         contextCountry,
-                        'SPIKE Slot | The number 1 blog on Slot Machines and gambling" :"SPIKE Slot | The number 1 blog on Slot Machines and gambling'
+                        'SPIKE Slot | The number 1 blog on Slot Machines and gambling" :"SPIKE Slot | The number 1 blog on Slot Machines and gambling',
                     )}
                 />
             </Head>
@@ -586,8 +586,9 @@ export async function getServerSideProps({ query, req, res }) {
     const slotListArticles = slotListArticlesResponse.data.data.slotListArticles[0]
     const highlightSlot = highlightSlotResponse.data.data.slot
 
-    if (somethingIsUndefined([slotList, bonusList, slotListArticles, highlightSlot]))
+    if (somethingIsUndefined([slotList, bonusList, slotListArticles, highlightSlot])) {
         serverSideRedirect(res, '/slots/row')
+    }
     return {
         props: {
             _shallow: false,

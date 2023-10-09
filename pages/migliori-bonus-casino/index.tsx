@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useContext, useState, useEffect } from 'react'
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react'
 import { Seo } from '../../graphql/schema'
 import { NextPageContext } from 'next'
 import AquaClient from '../../graphql/aquaClient'
 import { BONUS_PAGE_BY_COUNTRY } from '../../graphql/queries/bonuspage'
-import { getCanonicalPath, getUserCountryCode, getBonusPageRedirectUrlForCountry } from './../../utils/Utils'
+import { getBonusPageRedirectUrlForCountry, getCanonicalPath, getUserCountryCode } from './../../utils/Utils'
 import NavbarProvider from '../../components/Navbar/NavbarProvider'
 import { BodyContainer, MainColumn, RightColumn } from '../../components/Layout/Layout'
 import {
@@ -72,7 +72,7 @@ const MiglioriBonus: FunctionComponent<Props> = ({ _shallow, _bonusPage, _reques
     return (
         <NavbarProvider currentPage='/migliori-bonus-casino' countryCode={contextCountry}>
             <Head>
-                <title>{t('Best Casino Bonuses |  SPIKE')}</title>
+                <title>Informazioni Migliori Bonus Casinò | SPIKE</title>
                 <link rel='canonical' href={getCanonicalPath()} />
 
                 <meta
