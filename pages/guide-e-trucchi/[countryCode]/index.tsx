@@ -116,7 +116,7 @@ const GuidesList: FunctionComponent<Props> = ({ _initialGuides, _bonusList, _art
                 <StyleProvider>
                     <CustomBreadcrumbs style={{ margin: '1rem 0rem' }} from='guide-list' name='Guides and Tricks' />
 
-                    <h1 style={{ marginTop: '3rem' }}>{t('Guides to the best bonuses of Italian casinos')}</h1>
+                    <h1 style={{ marginTop: '3rem' }}>Guide e informazioni ai migliori bonus dei Casinò Italiani</h1>
                     <MarkdownProvider style={{ marginBottom: '2rem' }}>
                         <ReactMarkdown>
                             {`È possibile che tu non sappia cosa significhi sbloccare i bonus. Oppure stai cercando una guida che ti spieghi come valutare le migliore offerte disponibili negli operatori legali che offrono servizi certificati e sicuri. Sei nel posto giusto.
